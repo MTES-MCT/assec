@@ -1,1 +1,2 @@
-mockup: cd mockup && npm run dev
+.gitignoremockup: npm run start
+sass: npm run sass
