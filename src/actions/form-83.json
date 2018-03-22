@@ -1,0 +1,76 @@
+{
+  "alertes": [],
+  "fields": [{
+    "id": "canal",
+    "type": "choice",
+    "question": "Prélévement sur un canal ?",
+    "help": "",
+    "values": [{
+      "id": "canal_oui",
+      "value": "Oui",
+      "help": ""
+    }, {
+      "id": "canal_non",
+      "value": "Non",
+      "help": ""
+    }]
+  }, {
+    "id": "nomcanal",
+    "type": "list",
+    "question": "De quel canal s'agit il ?",
+    "help": "",
+    "values": [{
+      "id": "nomcanal_mon_canal_1",
+      "value": "Mon Canal 1",
+      "help": ""
+    }, {
+      "id": "nomcanal_mon_canal_2",
+      "value": "Mon Canal 2",
+      "help": ""
+    }, {
+      "id": "nomcanal_mon_canal_3",
+      "value": "Mon Canal 3",
+      "help": ""
+    }, {
+      "id": "nomcanal_mon_canal_4",
+      "value": "Mon Canal 4",
+      "help": ""
+    }, {
+      "id": "nomcanal_mon_canal_5",
+      "value": "Mon Canal 5",
+      "help": ""
+    }, {
+      "id": "nomcanal_mon_canal_6",
+      "value": "Mon Canal 6",
+      "help": ""
+    }]
+  }, {
+    "id": "usage",
+    "type": "choice",
+    "question": "Pour quel usage ?",
+    "help": "",
+    "values": [{
+      "id": "usage_agricole",
+      "value": "Agricole",
+      "help": ""
+    }, {
+      "id": "usage_non_agricole",
+      "value": "Non Agricole (pelouse, lavage voiture...)",
+      "help": ""
+    }]
+  }, {
+    "id": "origine",
+    "type": "choice",
+    "question": "Origine du prélévement ?",
+    "help": "",
+    "values": [{
+      "id": "usage_par_forage",
+      "value": "Par forage",
+      "help": ""
+    }, {
+      "id": "usage_par_pompage",
+      "value": "Par pompage",
+      "help": ""
+    }]
+  }]
+}
