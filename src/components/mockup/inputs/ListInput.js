@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, FormSection } from 'redux-form';
 
+// application
+import './list-input.css';
+
 const ListInput = ({
   id, help, question, values,
 }) => (
@@ -9,8 +12,7 @@ const ListInput = ({
     <h3>{question}</h3>
     {help && <p>{help}</p>}
     <div className="flex-rows">
-      <label htmlFor="iscanal">
-        <span>Nom du Canal</span>
+      <label htmlFor="iscanal" className="list-input flex-columns items-center">
         <Field id="iscanal" name="choice" component="select">
           <option key="listinput::default" />
           {values.map(obj => (
