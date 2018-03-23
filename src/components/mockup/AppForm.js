@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Form, reduxForm } from 'redux-form';
 
 // application
-import ListInput from './inputs/ListInput';
+import ListInput from './forms/ListInput';
 import Constants from './../../constants';
-import ChoiceInput from './inputs/ChoiceInput';
+import ChoiceInput from './forms/ChoiceInput';
 import loadForm from './../../actions/load-form';
-import { checkConditions } from './../../actions/check-conditions';
+import checkConditions from './../../actions/check-conditions';
 
 class AppForm extends React.PureComponent {
   constructor (props) {
