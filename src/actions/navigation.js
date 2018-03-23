@@ -29,9 +29,25 @@ export const stepForward = () => (dispatch, getState) => {
   });
 };
 
-export const stepBackward = () => ({
-  type: 'onStepBackward',
-});
+export const stepBackward = () => (dispatch, getState) => {
+  const { activestep, fields, disabledfields } = getState();
+  const filtered = fields
+    .map((obj, index) => {
+      // si index est superieur
+      const isdown = index < activestep;
+      // si index est pas inclus dans les etapes desactivees
+      const notindexed = isdown && !disabledfields.includes(index);
+      return notindexed ? index : false;
+    })
+    .filter(v => v !== false);
+  filtered.reverse();
+  return dispatch({
+    type: 'onStepForwardTo',
+    // max value pour les résultats
+    // FIXME -> risque de planter à un moment
+    index: filtered[0] || 0,
+  });
+};
 
 export const stepReset = () => (dispatch, getState) => {
   const { defaultfields } = getState();
