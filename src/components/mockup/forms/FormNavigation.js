@@ -20,13 +20,13 @@ const FormNavigation = ({
   completedcount,
 }) => (
   <div id="form-navigation" className="flex-columns flex-end">
-    {!resetstep && (
+    {/* {!resetstep && (
       <button onClick={() => dispatch(stepBackward())}
         disabled={disabled || activestep === 0}>
         <i className="icon icon-left-open-big" />
         <span>Précédent</span>
       </button>
-    )}
+    )} */}
     {!laststep &&
       !resetstep && (
       <button onClick={() => dispatch(stepForward())}
