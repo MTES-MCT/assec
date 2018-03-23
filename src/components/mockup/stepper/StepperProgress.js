@@ -20,7 +20,7 @@ const renderCirledIndex = (index, completed, isactive) => {
           fontSize: size,
           display: 'block',
           userSelect: 'none',
-          transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
+          // transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
         }}>
         <circle cx="12" cy="12" r="10" />
         <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff">

@@ -5,10 +5,14 @@
 
 #form-navigation button {
   height: 40px;
-  width: 100px;
+  width: 130px;
   color: #FFFFFF;
   border-radius: 20px;
   background-color: #5DAEF2;
+}
+
+#form-navigation button ~ button {
+  margin-left: 12px;
 }
 
 #form-navigation button:disabled {

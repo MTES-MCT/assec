@@ -9,7 +9,7 @@
 }
 
 #app-content {
-  padding: 40px 20px;
+  padding: 20px;
 
   .column {
     padding: 20px;
@@ -24,4 +24,35 @@
   padding: 10px;
   margin: auto 0;
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ---- THEME ----- */
+#stepper-progress {
+  background-color: #E4E4E4;
+}
+
+/* ------------------------------------------------------------
+
+RESPONSIVE
+
+------------------------------------------------------------ */
+
+@media (max-width: 870px) {
+  #app-header {
+    padding: 20px 0;
+  }
+
+  #stepper-progress {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  #app-content {
+    flex-direction: column-reverse;
+
+    .column ~ .column {
+      margin-top: 0;
+      margin-left: 0;
+    }
+  }
 }
