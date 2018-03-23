@@ -19,20 +19,26 @@ class FormScreen extends React.PureComponent {
 
   render () {
     const {
-      disabled, stepper, formfields, responses,
+      steps,
+      locked,
+      responses,
+      formfields,
+      activestep,
+      disabledsteps,
     } = this.props;
-    console.log('formfields', formfields);
     return (
       <div id="screen-container">
-        <StepperProgress {...stepper} />
+        <StepperProgress active={activestep} steps={steps} />
         <div id="app-content" className="flex-columns">
           <div id="app-sidebar-left" className="column flex1">
             <FormSidebarHeader />
             <FormSidebarContent responses={responses} />
           </div>
           <div id="stepper-form" className="column flex4">
-            <FormFields fields={formfields} active={stepper.active} />
-            <FormNavigation disabled={disabled} />
+            <FormFields fields={formfields}
+              active={activestep}
+              disabled={disabledsteps} />
+            <FormNavigation disabled={locked} />
           </div>
         </div>
       </div>
@@ -41,20 +47,28 @@ class FormScreen extends React.PureComponent {
 }
 
 FormScreen.propTypes = {
+  steps: PropTypes.array.isRequired,
+  locked: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  stepper: PropTypes.object.isRequired,
   responses: PropTypes.array.isRequired,
   formfields: PropTypes.array.isRequired,
+  activestep: PropTypes.number.isRequired,
+  disabledsteps: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = ({ form, stepper, formfields }) => {
+  const { activestep, disabledsteps } = stepper;
   const values = (form[FORM_NAME] && form[FORM_NAME].values) || [];
   return {
     stepper,
     formfields,
-    disabled: true,
+    activestep,
+    locked: true,
     responses: [],
+    disabledsteps,
+    steps: formfields
+      .filter((o, index) => !disabledsteps.includes(index))
+      .map(({ id, label }) => ({ id, label })),
   };
 };
 

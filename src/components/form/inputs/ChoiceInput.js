@@ -6,9 +6,9 @@ import { Field, FormSection } from 'redux-form';
 import './choice-button.css';
 
 const ChoiceInput = ({
-  id, help, label, values,
+  id, help, label, values, onChange,
 }) => (
-  <FormSection name={id} component="fieldset">
+  <FormSection name={id} component="fieldset" onChange={onChange}>
     <h3>{label}</h3>
     {help && <p>{help}</p>}
     <div className="flex-columns">
@@ -33,6 +33,7 @@ ChoiceInput.propTypes = {
   help: PropTypes.string.isRequired,
   values: PropTypes.array.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ChoiceInput;

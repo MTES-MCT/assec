@@ -1,36 +1,22 @@
 import deepequal from 'fast-deep-equal';
 
 // application
-import { FORM_NAME } from './../constants';
 import splitObject from './../lib/split-object';
+import { FORM_NAME, STEP_INSERT, STEP_REMOVE } from './../constants';
 
-const checkConditions = () => (dispatch, getState) => {
-  /*
-  const { form, activestep, fields } = getState();
-  const nextindex = activestep + 1;
-  // si le prochain existe pas dans le tableau des fields
-  const nextfield = fields[nextindex];
-  if (!nextfield) return;
-
+const checkConditions = fieldindex => (dispatch, getState) => {
+  const { formfields, form, stepper } = getState();
+  const nextindex = fieldindex + 1;
+  const nextfield = formfields[nextindex];
+  const { conditions: [firstcond] } = nextfield;
   const formvalues = splitObject(form[FORM_NAME].values);
-  // on recupere la prochaine étape que le formulaire doit afficher normalement
-  const nextconditions = nextfield.conditions;
-  if (!nextconditions || !nextconditions.length) return;
-  const firstcond = nextconditions[0];
   const hasconditions = formvalues.filter(obj => deepequal(firstcond, obj));
-  const valideconditions = hasconditions.length > 0;
-  if (!valideconditions) {
-    dispatch({
-      index: nextindex,
-      type: 'onRemoveField',
-    });
-  } else {
-    dispatch({
-      index: nextindex,
-      type: 'onInsertField',
-    });
-  }
-  */
+  const validateconditions = hasconditions.length > 0;
+  const type = validateconditions ? STEP_INSERT : STEP_REMOVE;
+  dispatch({
+    type,
+    index: nextindex,
+  });
 };
 
 export default checkConditions;

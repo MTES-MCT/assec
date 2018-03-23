@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 // application
 import './stepper-progress.css';
@@ -62,9 +61,4 @@ StepperProgress.propTypes = {
   active: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state, { active, ...rest }) => ({
-  active,
-  steps: rest.steps.map(({ id, label }) => ({ id, label })),
-});
-
-export default connect(mapStateToProps)(StepperProgress);
+export default StepperProgress;

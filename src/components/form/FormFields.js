@@ -21,13 +21,21 @@ const getinputbytype = (obj) => {
 
 class FormFields extends React.PureComponent {
   render () {
-    const { fields, handleSubmit, dispatch } = this.props;
+    const {
+      fields, disabled, dispatch, handleSubmit,
+    } = this.props;
     return (
-      <Form onSubmit={handleSubmit(() => {})}
-        onChange={() => dispatch(checkConditions())}>
+      <Form onSubmit={handleSubmit(() => {})}>
         {fields.map((obj, index) => {
+          if (disabled.includes(index)) return null;
+          const key = `formfield_${obj.id}`;
           const Instance = getinputbytype(obj);
-          return <Instance key={`formstep_${obj.id}`} {...obj} />;
+          return (
+            <Instance {...obj}
+              key={key}
+              fieldindex={index}
+              onChange={() => dispatch(checkConditions(index))} />
+          );
         })}
       </Form>
     );
@@ -38,6 +46,7 @@ FormFields.propTypes = {
   fields: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
   active: PropTypes.number.isRequired,
+  disabled: PropTypes.array.isRequired,
   // redux form injected props
   handleSubmit: PropTypes.func.isRequired,
 };
