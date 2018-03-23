@@ -13,6 +13,7 @@ import { configure } from './store';
 import AppForm from './components/mockup/AppForm';
 import AppHeader from './components/mockup/AppHeader';
 import AppSidebar from './components/mockup/AppSidebar';
+import StepperProgress from './components/mockup/stepper/StepperProgress';
 
 const Page = () => (
   <div id="app-container" className="flex-rows">
@@ -22,6 +23,7 @@ const Page = () => (
         href="https://fonts.googleapis.com/css?family=Roboto" />
     </Helmet>
     <AppHeader />
+    <StepperProgress />
     <div id="app-content" className="flex-columns">
       <AppSidebar />
       <AppForm />

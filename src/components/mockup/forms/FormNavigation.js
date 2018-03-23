@@ -5,48 +5,38 @@ import { connect } from 'react-redux';
 // application
 import './form-navigation.css';
 import Constants from './../../../constants';
+import {
+  // stepReset,
+  stepForward,
+  stepBackward,
+} from './../../../actions/navigation';
 
 const FormNavigation = ({
-  disabled,
-  // current,
-  // nextstep,
-  // maxsteps,
-  // resetClick,
-  // forwardClick,
-  // backwardClick,
+  dispatch, disabled, activestep, completedcount,
 }) => (
-  // const canbackward = current - 1 < 0;
-  // const canforward = dirty && nextstep > current;
   <div id="form-navigation" className="flex-columns flex-end">
-    {/* {current < maxsteps && ( */}
-    <button onClick={() => {}} disabled={disabled}>
+    <button onClick={() => dispatch(stepBackward())}
+      disabled={disabled || activestep === 0}>
       <i className="icon icon-left-open-big" />
       <span>back</span>
     </button>
-    {/* )}
-    {current < maxsteps && ( */}
-    <button onClick={() => {}} disabled={disabled}>
+    <button onClick={() => dispatch(stepForward())}
+      disabled={disabled || activestep >= completedcount}>
       <span>next</span>
       <i className="icon icon-right-open-big" />
     </button>
-    {/* )}
-    {current >= maxsteps && ( */}
-    <button onClick={() => {}} disabled={disabled}>
-      <span>reset</span>
-    </button>
-    {/* )} */}
+    {/* {current >= maxsteps && (
+      <button onClick={() => dispatch(stepReset())} disabled={disabled}>
+        <span>reset</span>
+      </button>
+    )} */}
   </div>
 );
 FormNavigation.propTypes = {
   disabled: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
   activestep: PropTypes.number.isRequired,
   completedcount: PropTypes.number.isRequired,
-  // current: PropTypes.number.isRequired,
-  // nextstep: PropTypes.number.isRequired,
-  // maxsteps: PropTypes.number.isRequired,
-  // resetClick: PropTypes.func.isRequired,
-  // forwardClick: PropTypes.func.isRequired,
-  // backwardClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ form, activestep }) => {
