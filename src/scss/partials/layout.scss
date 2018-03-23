@@ -14,9 +14,13 @@
   .column {
     padding: 20px;
   }
+}
 
-  .column ~ .column {
-    margin-left: 20px;
+#app-sidebar-left {
+  .title {
+    margin-bottom: 20px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #000000;
   }
 }
 
@@ -29,6 +33,19 @@
 /* ---- THEME ----- */
 #stepper-progress {
   background-color: #E4E4E4;
+}
+
+#user-case {
+  margin: 12px 0;
+  font-size: 12px;
+
+  * {
+    display: block;
+  }
+
+  strong {
+    font-weight: 900;
+  }
 }
 
 /* ------------------------------------------------------------

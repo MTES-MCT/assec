@@ -11,22 +11,22 @@ body {
   min-height: 100vh;
 }
 
-// body {
-//   color: #000;
-//   font-size: 12px;
-//   font-family: Helvetica, Arial, Verdana, sans-serif;
-// }
+body {
+  color: #000000;
+  font-size: 12px;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
 
-// ul,
-// li {
-//   margin: 0;
-//   padding: 0;
-//   list-style-type: none;
-// }
-//
-// li ~ li {
-//   margin-top: 12px;
-// }
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li ~ li {
+  margin-top: 12px;
+}
 
 button {
   outline: none;

@@ -2,40 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const AppSidebar = ({ values }) => {
-  const today = new Date();
+const AppSidebar = ({ responses, fields }) => {
+  const today = new Date().toLocaleDateString('fr-FR', {
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+    year: 'numeric',
+  });
   return (
     <div id="app-sidebar-left" className="column flex1">
-      <h6>
-        <small>
-          {today.toLocaleDateString('fr-FR', {
-            month: 'long',
-            day: 'numeric',
-            weekday: 'long',
-            year: 'numeric',
-          })}
-        </small>
+      <h6 className="suptitle">
+        <small>{today}</small>
       </h6>
-      <h4>
+      <h4 className="title">
         <span>Votre sélection</span>
       </h4>
-      <ul>
-        {Object.keys(values).map(key => (
-          <li key={`question_${key}`}>
-            {`${key}: ${JSON.stringify(values[key])}`}
-          </li>
-        ))}
+      <ul id="user-case">
+        {Object.keys(responses).map((key, index) => {
+          const { question, type, values } = fields[index];
+          const reponse =
+            type !== 'choice'
+              ? responses[key].choice
+              : values[parseInt(responses[key].choice, 10)].value;
+          return (
+            <li key={`question_${key}`}>
+              <strong>{question}</strong>
+              <span>{reponse}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 };
 
 AppSidebar.propTypes = {
-  values: PropTypes.object.isRequired,
+  fields: PropTypes.array.isRequired,
+  responses: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ form }) => ({
-  values: (form.decisionnal && form.decisionnal.values) || {},
+const mapStateToProps = ({ fields, form }) => ({
+  fields,
+  responses: (form.decisionnal && form.decisionnal.values) || {},
 });
 
 export default connect(mapStateToProps)(AppSidebar);
