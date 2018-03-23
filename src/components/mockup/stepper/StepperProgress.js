@@ -62,14 +62,18 @@ StepperProgress.propTypes = {
   activestep: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = ({ activestep, fields }) => ({
+const mapStateToProps = ({ activestep, fields, disabledfields }) => ({
   activestep,
-  steps: fields.map(({ question, id }) => ({ question, id })).concat([
-    {
-      id: 'resultats',
-      question: 'Résultats',
-    },
-  ]),
+  disabledfields,
+  steps: fields
+    .map(({ question, id }) => ({ question, id }))
+    .filter((obj, index) => (disabledfields.includes(index) ? false : obj))
+    .concat([
+      {
+        id: 'resultats',
+        question: 'Résultats',
+      },
+    ]),
 });
 
 export default connect(mapStateToProps)(StepperProgress);

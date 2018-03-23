@@ -70,7 +70,7 @@
     "type": "choice",
     "question": "Origine du prélévement ?",
     "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-    "conditions": [{ "usage": {"choice": "0"} }],
+    "conditions": [{ "usage": {"choice":  "0"} }],
     "values": [{
       "id": "usage_par_forage",
       "value": "Par forage",

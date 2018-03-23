@@ -42,8 +42,8 @@ AppSidebar.propTypes = {
   responses: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ fields, form }) => ({
-  fields,
+const mapStateToProps = ({ fields, form, disabledfields }) => ({
+  fields: fields.filter((obj, index) => (disabledfields.includes(index) ? false : obj)),
   responses: (form.decisionnal && form.decisionnal.values) || {},
 });
 

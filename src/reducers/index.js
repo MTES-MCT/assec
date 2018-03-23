@@ -19,8 +19,6 @@ const fields = (state = [], action) => {
     return action.fields;
   case 'onFormReset':
     return action.fields;
-  case 'onRemoveField':
-    return state.filter(obj => obj.id !== action.id);
   default:
     return state;
   }
@@ -30,10 +28,21 @@ const activestep = (state = 0, action) => {
   switch (action.type) {
   case 'onFormReset':
     return 0;
-  case 'onStepForward':
-    return state + 1;
-  case 'onStepBackward':
-    return state - 1;
+  case 'onStepForwardTo':
+    return action.index;
+  default:
+    return state;
+  }
+};
+
+const disabledfields = (state = [], action) => {
+  switch (action.type) {
+  case 'onFormReset':
+    return [];
+  case 'onRemoveField':
+    return state.concat([action.index]).sort();
+  case 'onInsertField':
+    return state.filter(num => num !== action.index).sort();
   default:
     return state;
   }
@@ -43,6 +52,7 @@ export default combineReducers({
   fields,
   activestep,
   defaultfields,
+  disabledfields,
   form: formReducer,
   router: routerReducer,
 });
