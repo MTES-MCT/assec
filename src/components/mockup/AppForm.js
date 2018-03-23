@@ -7,7 +7,6 @@ import { Form, reduxForm } from 'redux-form';
 import ListInput from './forms/ListInput';
 import Constants from './../../constants';
 import ChoiceInput from './forms/ChoiceInput';
-import loadForm from './../../actions/load-form';
 import checkConditions from './../../actions/check-conditions';
 
 class AppForm extends React.PureComponent {
@@ -15,10 +14,6 @@ class AppForm extends React.PureComponent {
     super(props);
     this.state = { current: 0 };
     this.renderFormStep = this.renderFormStep.bind(this);
-  }
-
-  componentDidMount () {
-    this.props.dispatch(loadForm());
   }
 
   componentWillReceiveProps (nextprops) {
@@ -64,10 +59,8 @@ class AppForm extends React.PureComponent {
 AppForm.propTypes = {
   fields: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
-  formvalues: PropTypes.object.isRequired,
   activestep: PropTypes.number.isRequired,
   // redux form injected props
-  array: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 
@@ -76,17 +69,9 @@ const MockupStepperForm = reduxForm({
   form: Constants.FORM_NAME,
 })(AppForm);
 
-const mapStateToProps = ({ form, fields, activestep }) => {
-  const values =
-    (form[Constants.FORM_NAME] && form[Constants.FORM_NAME].values) || {};
-  return {
-    fields,
-    activestep,
-    formvalues: Object.keys(values).reduce(
-      (acc, key) => Object.assign(acc, { [key]: values[key].choice }),
-      {},
-    ),
-  };
-};
+const mapStateToProps = ({ fields, activestep }) => ({
+  fields,
+  activestep,
+});
 
 export default connect(mapStateToProps)(MockupStepperForm);

@@ -5,17 +5,19 @@ import { connect } from 'react-redux';
 
 // pages
 import loadForm from './actions/load-form';
-import AppForm from './components/mockup/AppForm';
-import AppHeader from './components/mockup/AppHeader';
+import AppHeader from './components/AppHeader';
+import AppFooter from './components/AppFooter';
+// import AppForm from './components/mockup/AppForm';
 // import AppResults from './components/mockup/AppResults';
-import AppSidebar from './components/mockup/AppSidebar';
-import FormNavigation from './components/mockup/forms/FormNavigation';
-import StepperProgress from './components/mockup/stepper/StepperProgress';
+// import AppSidebar from './components/mockup/AppSidebar';
+// import FormNavigation from './components/mockup/forms/FormNavigation';
+// import StepperProgress from './components/mockup/stepper/StepperProgress';
 
 class PageComponent extends React.PureComponent {
   componentDidMount () {
     this.props.dispatch(loadForm());
   }
+
   render () {
     return (
       <div id="app-container" className="flex-rows">
@@ -25,16 +27,15 @@ class PageComponent extends React.PureComponent {
             href="https://fonts.googleapis.com/css?family=Roboto" />
         </Helmet>
         <AppHeader />
-        <StepperProgress />
+        {/* <StepperProgress />
         <div id="app-content" className="flex-columns">
           <AppSidebar />
           <div id="stepper-form" className="column flex4">
             <AppForm />
-            {/* {showresults && <AppResults />} */}
             <FormNavigation />
           </div>
-        </div>
-        <div id="app-footer" />
+        </div> */}
+        <AppFooter />
       </div>
     );
   }
