@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
@@ -15,7 +15,7 @@ import AppHeader from './components/mockup/AppHeader';
 import AppSidebar from './components/mockup/AppSidebar';
 import StepperProgress from './components/mockup/stepper/StepperProgress';
 
-const Page = () => (
+const PageComponent = () => (
   <div id="app-container" className="flex-rows">
     <Helmet>
       <title>Assec</title>
@@ -32,7 +32,7 @@ const Page = () => (
   </div>
 );
 
-Page.propTypes = {};
+PageComponent.propTypes = {};
 
 // application
 const history = createHistory();
@@ -40,7 +40,7 @@ const store = configure(history);
 const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Page />
+      <PageComponent />
     </ConnectedRouter>
   </Provider>
 );

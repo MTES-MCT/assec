@@ -25,12 +25,7 @@ class AppForm extends React.PureComponent {
   componentWillReceiveProps (nextprops) {
     const index = this.state.current;
     if (index === nextprops.activestep) return;
-    this.setState({ current: nextprops.activestep }, () => {
-      const shouldcheck = nextprops.activestep !== 0;
-      if (!shouldcheck) return;
-      // sinon on vérifie qu'il valide les conditions
-      this.props.dispatch(checkConditions());
-    });
+    this.setState({ current: nextprops.activestep });
   }
 
   renderFormStep (obj, index) {
@@ -55,7 +50,11 @@ class AppForm extends React.PureComponent {
     const { fields, handleSubmit } = this.props;
     return (
       <div id="stepper-form" className="column flex4">
-        <Form onSubmit={handleSubmit(() => {})}>
+        <Form onSubmit={handleSubmit(() => {})}
+          onChange={() => {
+            console.log('onchange onchange onchange onchange');
+            this.props.dispatch(checkConditions());
+          }}>
           {fields.map(this.renderFormStep)}
         </Form>
         <FormNavigation />

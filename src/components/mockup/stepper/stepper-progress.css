@@ -8,7 +8,6 @@
 
 #stepper-progress .step {
   padding-left: 14px;
-  padding-right: 14px;
 }
 
 #stepper-progress .step .text {
@@ -39,4 +38,14 @@
   border-top-width: 1px;
   border-top-style: solid;
   border-color: rgb(189, 189, 189);
+}
+
+#stepper-progress .step.last {
+  flex: 0;
+  padding-right: 14px;
+}
+
+#stepper-progress .step.last .line {
+  display: none !important;
+  visibility: hidden !important;
 }

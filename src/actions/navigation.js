@@ -33,6 +33,11 @@ export const stepReset = () => (dispatch, getState) => {
 
 export const checkConditions = () => (dispatch, getState) => {
   const { form, activestep, fields } = getState();
+  // console.log('activestep', activestep);
+  const formvalues = splitObject(form[Constants.FORM_NAME].values);
+  console.log('formvalues', formvalues);
+  // const nextconditions =
+  /*
   const nextfield = fields[activestep];
   // on recupere la prochaine étape que le formulaire doit afficher normalement
   const { conditions } = nextfield;
@@ -41,7 +46,6 @@ export const checkConditions = () => (dispatch, getState) => {
   const firstcond = conditions[0];
   // on recupere les valeurs du form
   // on splitte les cles pour en faire un array
-  const formvalues = splitObject(form[Constants.FORM_NAME].values);
 
   // on verifie
   // si le formulaire contient au moins une clé de condition
@@ -52,4 +56,5 @@ export const checkConditions = () => (dispatch, getState) => {
   const valideconditions = hasconditions.length > 0;
   if (valideconditions) return;
   dispatch(removeField(nextfield.id));
+  */
 };

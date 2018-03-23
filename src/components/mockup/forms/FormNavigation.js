@@ -27,15 +27,14 @@ const FormNavigation = ({
         <span>Précédent</span>
       </button>
     )} */}
-    {!laststep &&
-      !resetstep && (
+    {!resetstep && (
       <button onClick={() => dispatch(stepForward())}
         disabled={disabled || activestep >= completedcount}>
         <span>Suivant</span>
         <i className="icon icon-right-open-big" />
       </button>
     )}
-    {laststep && (
+    {/* {laststep && (
       <button onClick={() => {}}
         className="last-step"
         disabled={disabled || activestep >= completedcount}>
@@ -43,7 +42,7 @@ const FormNavigation = ({
         <span>Résultats</span>
         <i className="icon icon-right-open-big" />
       </button>
-    )}
+    )} */}
     {resetstep && (
       <button onClick={() => dispatch(stepReset())} disabled={disabled}>
         <span>reset</span>

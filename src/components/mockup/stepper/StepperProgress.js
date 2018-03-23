@@ -35,7 +35,10 @@ const StepperProgress = ({ steps, activestep }) => (
   <div id="stepper-progress">
     {steps &&
       steps.map((obj, index) => [
-        <div key={`step_${obj.id}`} className="flex-columns items-center step">
+        <div key={`step_${obj.id}`}
+          className={`flex-columns items-center step ${
+            index + 1 < steps.length ? '' : 'last'
+          }`}>
           <div className="text">
             <span>
               {renderCirledIndex(
@@ -61,7 +64,12 @@ StepperProgress.propTypes = {
 
 const mapStateToProps = ({ activestep, fields }) => ({
   activestep,
-  steps: fields.map(({ question, id }) => ({ question, id })),
+  steps: fields.map(({ question, id }) => ({ question, id })).concat([
+    {
+      id: 'resultats',
+      question: 'Résultats',
+    },
+  ]),
 });
 
 export default connect(mapStateToProps)(StepperProgress);
