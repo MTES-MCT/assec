@@ -2,15 +2,6 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
-const fields = (state = [], action) => {
-  switch (action.type) {
-  case 'onFormLoaded':
-    return action.fields;
-  default:
-    return state;
-  }
-};
-
 const defaultfields = (state = [], action) => {
   switch (action.type) {
   case 'onFormLoaded':
@@ -22,16 +13,27 @@ const defaultfields = (state = [], action) => {
   }
 };
 
+const fields = (state = [], action) => {
+  switch (action.type) {
+  case 'onFormLoaded':
+    return action.fields;
+  case 'onFormReset':
+    return action.fields;
+  case 'onRemoveField':
+    return state.filter(obj => obj.id !== action.id);
+  default:
+    return state;
+  }
+};
+
 const activestep = (state = 0, action) => {
   switch (action.type) {
-  case 'onStepReset':
+  case 'onFormReset':
     return 0;
   case 'onStepForward':
     return state + 1;
   case 'onStepBackward':
     return state - 1;
-  case 'onStepForwardTo':
-    return action.index;
   default:
     return state;
   }

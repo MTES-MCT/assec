@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import deepequal from 'fast-deep-equal';
 import { Form, reduxForm } from 'redux-form';
 
 // application
@@ -10,7 +9,7 @@ import Constants from './../../constants';
 import ChoiceInput from './inputs/ChoiceInput';
 import loadForm from './../../actions/loadForm';
 import FormNavigation from './forms/FormNavigation';
-import { stepForwardTo } from './../../actions/navigation';
+import { checkConditions } from './../../actions/navigation';
 
 class AppForm extends React.PureComponent {
   constructor (props) {
@@ -27,8 +26,10 @@ class AppForm extends React.PureComponent {
     const index = this.state.current;
     if (index === nextprops.activestep) return;
     this.setState({ current: nextprops.activestep }, () => {
-      if (nextprops.activestep === nextprops.fields.length) return;
-      this.props.dispatch(stepForwardTo());
+      const shouldcheck = nextprops.activestep !== 0;
+      if (!shouldcheck) return;
+      // sinon on vérifie qu'il valide les conditions
+      this.props.dispatch(checkConditions());
     });
   }
 

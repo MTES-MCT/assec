@@ -7,7 +7,7 @@ import './stepper-progress.css';
 
 const renderCirledIndex = (index, completed, isactive) => {
   const size = '24px';
-  let color = isactive ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.05)';
+  let color = isactive ? 'rgba(136, 198, 65, 1)' : 'rgba(0, 0, 0, 0.05)';
   if (completed) color = 'rgb(0, 188, 212)';
   return (
     <span style={{ paddingRight: '8px' }}>

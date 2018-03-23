@@ -15,18 +15,20 @@ const FormNavigation = ({
   dispatch,
   laststep,
   disabled,
+  resetstep,
   activestep,
   completedcount,
 }) => (
   <div id="form-navigation" className="flex-columns flex-end">
-    {!laststep && (
+    {!resetstep && (
       <button onClick={() => dispatch(stepBackward())}
         disabled={disabled || activestep === 0}>
         <i className="icon icon-left-open-big" />
         <span>Précédent</span>
       </button>
     )}
-    {!laststep && (
+    {!laststep &&
+      !resetstep && (
       <button onClick={() => dispatch(stepForward())}
         disabled={disabled || activestep >= completedcount}>
         <span>Suivant</span>
@@ -34,6 +36,15 @@ const FormNavigation = ({
       </button>
     )}
     {laststep && (
+      <button onClick={() => {}}
+        className="last-step"
+        disabled={disabled || activestep >= completedcount}>
+        <i className="icon icon-adjust" />
+        <span>Résultats</span>
+        <i className="icon icon-right-open-big" />
+      </button>
+    )}
+    {resetstep && (
       <button onClick={() => dispatch(stepReset())} disabled={disabled}>
         <span>reset</span>
       </button>
@@ -44,6 +55,7 @@ FormNavigation.propTypes = {
   disabled: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   laststep: PropTypes.bool.isRequired,
+  resetstep: PropTypes.bool.isRequired,
   activestep: PropTypes.number.isRequired,
   completedcount: PropTypes.number.isRequired,
 };
@@ -54,7 +66,8 @@ const mapStateToProps = ({ form, fields, activestep }) => {
   return {
     activestep,
     completedcount,
-    laststep: activestep >= fields.length,
+    resetstep: activestep >= fields.length,
+    laststep: activestep === fields.length - 1,
     disabled: activestep === completedcount && !completedcount,
   };
 };

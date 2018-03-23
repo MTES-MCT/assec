@@ -59,6 +59,12 @@
       "css": "down-open-mini",
       "code": 59400,
       "src": "entypo"
+    },
+    {
+      "uid": "f6fa10cb3ffec7becb60834f50bb0182",
+      "css": "adjust",
+      "code": 59401,
+      "src": "entypo"
     }
   ]
 }

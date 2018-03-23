@@ -24,3 +24,13 @@
 #form-navigation button .icon ~ span {
   margin-left: 12px;
 }
+
+#form-navigation button.last-step {
+  width: 150px;
+  background-color: #89C541;
+}
+
+#form-navigation button.last-step:disabled {
+  width: 150px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
