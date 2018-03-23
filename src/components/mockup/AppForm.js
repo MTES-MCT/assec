@@ -8,7 +8,6 @@ import ListInput from './inputs/ListInput';
 import Constants from './../../constants';
 import ChoiceInput from './inputs/ChoiceInput';
 import loadForm from './../../actions/loadForm';
-import FormNavigation from './forms/FormNavigation';
 import { checkConditions } from './../../actions/navigation';
 
 class AppForm extends React.PureComponent {
@@ -30,6 +29,9 @@ class AppForm extends React.PureComponent {
 
   renderFormStep (obj, index) {
     const { current } = this.state;
+    // only shows current field
+    // will not show anything if current is superior at fields length
+    // FIXME -> show all fields and hide/visible as needed
     if (current !== index) return null;
     let Instance = null;
     switch (obj.type) {
@@ -49,16 +51,12 @@ class AppForm extends React.PureComponent {
   render () {
     const { fields, handleSubmit } = this.props;
     return (
-      <div id="stepper-form" className="column flex4">
-        <Form onSubmit={handleSubmit(() => {})}
-          onChange={() => {
-            console.log('onchange onchange onchange onchange');
-            this.props.dispatch(checkConditions());
-          }}>
-          {fields.map(this.renderFormStep)}
-        </Form>
-        <FormNavigation />
-      </div>
+      <Form onSubmit={handleSubmit(() => {})}
+        onChange={() => {
+          this.props.dispatch(checkConditions());
+        }}>
+        {fields.map(this.renderFormStep)}
+      </Form>
     );
   }
 }
