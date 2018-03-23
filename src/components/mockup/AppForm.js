@@ -4,18 +4,21 @@ import { connect } from 'react-redux';
 import { Form, reduxForm, formValueSelector } from 'redux-form';
 
 // application
-import ListInput from './stepper/ListInput';
-import ChoiceInput from './stepper/ChoiceInput';
+import ListInput from './inputs/ListInput';
+import Constants from './../../constants';
+import ChoiceInput from './inputs/ChoiceInput';
 import loadForm from './../../actions/loadForm';
+import FormNavigation from './forms/FormNavigation';
+import StepperProgress from './stepper/StepperProgress';
 
-class MockupStepperComponent extends React.PureComponent {
+class AppForm extends React.PureComponent {
   constructor (props) {
     super(props);
+    this.state = { current: 0 };
     this.resetClick = this.resetClick.bind(this);
     this.forwardClick = this.forwardClick.bind(this);
     this.backwardClick = this.backwardClick.bind(this);
     this.renderFormStep = this.renderFormStep.bind(this);
-    this.state = { current: 0 };
   }
 
   componentDidMount () {
@@ -23,7 +26,8 @@ class MockupStepperComponent extends React.PureComponent {
   }
 
   resetClick () {
-    this.setState({ current: 0 });
+    const { reset } = this.props;
+    this.setState({ current: 0 }, reset);
   }
 
   forwardClick () {
@@ -56,48 +60,28 @@ class MockupStepperComponent extends React.PureComponent {
     return Instance && <Instance key={`formstep_${obj.name}`} {...obj} />;
   }
 
-  renderFormNavigation () {
-    const {
-      dirty, reset, nextstep, maxsteps,
-    } = this.props;
-    const { current } = this.state;
-    const canbackward = current - 1 < 0;
-    const canforward = dirty && nextstep > current;
-    return (
-      <div>
-        {current < maxsteps && (
-          <button onClick={this.backwardClick} disabled={canbackward}>
-            <span>back</span>
-          </button>
-        )}
-        {current < maxsteps && (
-          <button onClick={this.forwardClick} disabled={!canforward}>
-            <span>next</span>
-          </button>
-        )}
-        {current >= maxsteps && (
-          <button onClick={() => this.setState({ current: 0 }, reset)}>
-            <span>reset</span>
-          </button>
-        )}
-      </div>
-    );
-  }
-
   render () {
-    const { handleSubmit, fields } = this.props;
+    const { current } = this.state;
+    const {
+      // reset,
+      fields,
+      // maxsteps,
+      // nextstep,
+      handleSubmit,
+    } = this.props;
     return (
-      <div id="mockup-stepper">
+      <div id="stepper-form" className="column flex4">
+        <StepperProgress current={current} />
         <Form onSubmit={handleSubmit(() => {})}>
           {fields.map(this.renderFormStep)}
         </Form>
-        {this.renderFormNavigation()}
+        <FormNavigation />
       </div>
     );
   }
 }
 
-MockupStepperComponent.propTypes = {
+AppForm.propTypes = {
   reset: PropTypes.func.isRequired,
   dirty: PropTypes.bool.isRequired,
   fields: PropTypes.array.isRequired,
@@ -107,20 +91,23 @@ MockupStepperComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-const formName = 'decisionnal';
 const MockupStepperForm = reduxForm({
-  form: formName,
   initialValues: {},
-})(MockupStepperComponent);
+  form: Constants.FORM_NAME,
+})(AppForm);
 
-const selector = formValueSelector(formName);
+const selector = formValueSelector(Constants.FORM_NAME);
 const mapStateToProps = (state) => {
   const { fields } = state;
   const keys = fields.map(obj => obj.id);
   const formState = (keys.length && selector(state, ...keys)) || 0;
   const maxsteps = keys.length;
   const nextstep = Object.keys(formState).length;
-  return { fields, maxsteps, nextstep };
+  return {
+    fields,
+    maxsteps,
+    nextstep,
+  };
 };
 
 export default connect(mapStateToProps)(MockupStepperForm);

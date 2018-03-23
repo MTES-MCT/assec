@@ -1,7 +1,27 @@
-#mockup-stepper {
-  flex: 2;
+#app-header {
+  padding: 60px 0;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  .title,
+  .subtitle {
+    margin: 0;
+  }
 }
 
-#mockup-usercase {
-  flex: 1;
+#app-content {
+  padding: 40px 20px;
+
+  .column {
+    padding: 20px;
+  }
+
+  .column ~ .column {
+    margin-left: 20px;
+  }
+}
+
+#app-footer {
+  padding: 10px;
+  margin: auto 0;
+  background-color: rgba(0, 0, 0, 0.1);
 }

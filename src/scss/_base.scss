@@ -28,10 +28,58 @@ body {
 //   margin-top: 12px;
 // }
 
-// button {
-//   outline: none;
-//   cursor: pointer;
-// }
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+:disabled,
+:disabled:hover,
+:disabled:visited {
+  cursor: not-allowed;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  pointer-events: none;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+h2 {
+  font-size: 2.2em;
+}
+
+h3 {
+  font-size: 1.6em;
+}
+
+h4 {
+  font-size: 1.4em;
+}
+
+h5 {
+  font-size: 1.2em;
+}
+
+h6 {
+  font-size: 1.1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
 
 /* ------------------------------------------------------
 
@@ -178,16 +226,28 @@ body {
  TEXT Alignments
 
 -------------------------------------------- */
-.aright {
-  text-align: right;
-}
-
 .aleft {
   text-align: left;
 }
 
+.aright {
+  text-align: right;
+}
+
 .acenter {
-  text-align: left;
+  text-align: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 /* --------------------------------------------

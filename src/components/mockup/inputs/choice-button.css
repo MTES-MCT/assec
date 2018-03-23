@@ -1,0 +1,13 @@
+.choice-button {
+  height: 40px;
+  display: flex;
+  cursor: pointer;
+}
+
+.choice-button input {
+  margin-right: 7px;
+}
+
+.choice-button ~ .choice-button {
+  margin-left: 24px;
+}

@@ -11,8 +11,22 @@ const fields = (state = [], action) => {
   }
 };
 
+const activestep = (state = 0, action) => {
+  switch (action.type) {
+  case 'onStepReset':
+    return 0;
+  case 'onStepForward':
+    return state + 1;
+  case 'onStepBackward':
+    return state - 1;
+  default:
+    return state;
+  }
+};
+
 export default combineReducers({
   fields,
+  activestep,
   form: formReducer,
   router: routerReducer,
 });

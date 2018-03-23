@@ -10,22 +10,23 @@ import './styles.css';
 import { configure } from './store';
 
 // pages
-import MockupHeader from './components/mockup/MockupHeader';
-import MockupStepper from './components/mockup/MockupStepper';
-import MockupUserCase from './components/mockup/MockupUserCase';
+import AppForm from './components/mockup/AppForm';
+import AppHeader from './components/mockup/AppHeader';
+import AppSidebar from './components/mockup/AppSidebar';
 
 const Page = () => (
   <div id="app-container" className="flex-rows">
     <Helmet>
       <title>Assec</title>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto" />
     </Helmet>
-    <div id="main-container">
-      <MockupHeader />
-      <div id="main-content" className="flex-columns">
-        <MockupStepper />
-        <MockupUserCase />
-      </div>
+    <AppHeader />
+    <div id="app-content" className="flex-columns">
+      <AppSidebar />
+      <AppForm />
     </div>
+    <div id="app-footer" />
   </div>
 );
 

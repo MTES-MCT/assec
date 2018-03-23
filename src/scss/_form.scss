@@ -1,5 +1,80 @@
+::-webkit-search-decoration {
+  display: none;
+}
+
+::-webkit-file-upload-button {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+::placeholder {
+  font-style: italic;
+}
+
+:disabled {
+  cursor: default;
+}
+
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  line-height: 1;
+  background: none;
+  white-space: normal;
+  display: inline-block;
+  vertical-align: middle;
+
+  /* Browsers have different default form fonts */
+  font-size: 13px;
+  font-family: 'arial', sans-serif;
+}
+
+input,
+textarea {
+  box-sizing: content-box;
+}
+
+input:focus {
+  outline: 0;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  width: 13px;
+  height: 13px;
+}
+
+input[type='search'] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+}
+
+button,
+input[type='reset'],
+input[type='button'],
+input[type='submit'] {
+  width: auto;
+  cursor: pointer;
+  overflow: visible;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+select[multiple] {
+  vertical-align: top;
+}
+
 fieldset {
   border: 0;
-  padding: 20px;
-  background-color: #c4c4c4;
+  margin: 0;
+  padding: 0;
 }

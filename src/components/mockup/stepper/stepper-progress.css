@@ -1,0 +1,7 @@
+.stepper-progress div:first-child span:first-child {
+  /* padding-left: 0 !important; */
+}
+
+.stepper-progress div:last-child span {
+  /* padding-right: 0 !important; */
+}
