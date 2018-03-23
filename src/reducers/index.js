@@ -1,3 +1,4 @@
+import produce from 'immer';
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
@@ -6,16 +7,15 @@ import { reducer as formReducer } from 'redux-form';
 import stepper from './stepper';
 import { FORM_LOADED } from './../constants';
 
-const formfields = (state = [], action) => {
-  switch (action.type) {
-  case FORM_LOADED:
-    // FIXME -> performance
-    // doit on utiliser un deepclone ou JSON.stringify
-    return JSON.stringify(action.fields);
-  default:
-    return state;
-  }
-};
+const formfields = (state = [], action) =>
+  produce(state, () => {
+    switch (action.type) {
+    case FORM_LOADED:
+      return action.fields;
+    default:
+      return state;
+    }
+  });
 
 // const fields = (state = [], action) => {
 //   switch (action.type) {

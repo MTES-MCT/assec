@@ -44,7 +44,7 @@ const renderSingleStep = (obj, num, color, last = false) => (
   </div>
 );
 
-const StepperProgress = ({ steps, activestep: active }) => {
+const StepperProgress = ({ steps, active }) => {
   const len = steps.length;
   const lastobj = { id: 'results', label: 'Résultats' };
   return (
@@ -59,15 +59,12 @@ const StepperProgress = ({ steps, activestep: active }) => {
 
 StepperProgress.propTypes = {
   steps: PropTypes.array.isRequired,
-  activestep: PropTypes.number.isRequired,
+  active: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state, { activestep, ...rest }) => ({
-  activestep,
-  steps: rest.steps.map(({ id, question: label }) => ({
-    id,
-    label,
-  })),
+const mapStateToProps = (state, { active, ...rest }) => ({
+  active,
+  steps: rest.steps.map(({ id, label }) => ({ id, label })),
 });
 
 export default connect(mapStateToProps)(StepperProgress);

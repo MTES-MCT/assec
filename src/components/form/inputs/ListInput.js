@@ -6,10 +6,10 @@ import { Field, FormSection } from 'redux-form';
 import './list-input.css';
 
 const ListInput = ({
-  id, help, question, values,
+  id, help, label, values,
 }) => (
-  <FormSection name={id} component="fieldset" className="form-step">
-    <h3>{question}</h3>
+  <FormSection name={id} component="fieldset">
+    <h3>{label}</h3>
     {help && <p>{help}</p>}
     <div className="flex-rows">
       <label htmlFor="iscanal" className="list-input flex-columns items-center">
@@ -30,7 +30,7 @@ ListInput.propTypes = {
   id: PropTypes.string.isRequired,
   help: PropTypes.string.isRequired,
   values: PropTypes.array.isRequired,
-  question: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default ListInput;

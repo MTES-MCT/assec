@@ -26,7 +26,7 @@ const steps = (state = [], action) =>
 //   }
 // };
 
-const activestep = (state = 0, action) => {
+const active = (state = 0, action) => {
   switch (action.type) {
   default:
     return state;
@@ -35,5 +35,5 @@ const activestep = (state = 0, action) => {
 
 export default combineReducers({
   steps,
-  activestep,
+  active,
 });

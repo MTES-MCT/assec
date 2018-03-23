@@ -3,7 +3,7 @@
   "fields": [{
     "id": "canal",
     "type": "choice",
-    "question": "Prélévement sur un canal ?",
+    "label": "Prélévement sur un canal ?",
     "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
     "conditions": [],
     "values": [{
@@ -18,7 +18,7 @@
   }, {
     "id": "nomcanal",
     "type": "list",
-    "question": "De quel canal s'agit il ?",
+    "label": "De quel canal s'agit il ?",
     "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
     "conditions": [{ "canal": {"choice":  "1"} }],
     "values": [{
@@ -53,7 +53,7 @@
   }, {
     "id": "usage",
     "type": "choice",
-    "question": "Pour quel usage ?",
+    "label": "Pour quel usage ?",
     "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
     "conditions": [],
     "values": [{
@@ -68,7 +68,7 @@
   }, {
     "id": "origine",
     "type": "choice",
-    "question": "Origine du prélévement ?",
+    "label": "Origine du prélévement ?",
     "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
     "conditions": [{ "usage": {"choice":  "0"} }],
     "values": [{
