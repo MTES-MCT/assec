@@ -1,3 +1,4 @@
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -16,7 +17,7 @@ export const configure = (history, initialState = {}) =>
   createStore(
     reducers,
     initialState,
-    bindMiddleware([routerMiddleware(history)]),
+    bindMiddleware([thunk, routerMiddleware(history)]),
   );
 
 export default configure;

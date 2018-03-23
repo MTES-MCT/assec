@@ -20,8 +20,13 @@
     "type": "list",
     "question": "De quel canal s'agit il ?",
     "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-    "conditions": [{ "canal": 1 }],
+    "conditions": [{ "canal": "1" }],
+    "defaultvalue": ["nomcanal.choice", "Je ne sais pas"],
     "values": [{
+      "id": "jenesaispas",
+      "value": "Aucun/Je ne sais pas",
+      "help": ""
+    }, {
       "id": "nomcanal_mon_canal_1",
       "value": "Mon Canal 1",
       "help": ""
@@ -66,7 +71,8 @@
     "type": "choice",
     "question": "Origine du prélévement ?",
     "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-    "conditions": [{ "usage": 0 }],
+    "conditions": [{ "usage": "1" }],
+    "defaultvalue": ["origine.choice", "Par pompage"],
     "values": [{
       "id": "usage_par_forage",
       "value": "Par forage",

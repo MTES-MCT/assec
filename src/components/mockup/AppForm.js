@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import deepequal from 'fast-deep-equal';
 import { Form, reduxForm } from 'redux-form';
 
 // application
@@ -9,10 +10,12 @@ import Constants from './../../constants';
 import ChoiceInput from './inputs/ChoiceInput';
 import loadForm from './../../actions/loadForm';
 import FormNavigation from './forms/FormNavigation';
+import { stepForwardTo } from './../../actions/navigation';
 
 class AppForm extends React.PureComponent {
   constructor (props) {
     super(props);
+    this.state = { current: 0 };
     this.renderFormStep = this.renderFormStep.bind(this);
   }
 
@@ -20,9 +23,18 @@ class AppForm extends React.PureComponent {
     this.props.dispatch(loadForm());
   }
 
+  componentWillReceiveProps (nextprops) {
+    const index = this.state.current;
+    if (index === nextprops.activestep) return;
+    this.setState({ current: nextprops.activestep }, () => {
+      if (nextprops.activestep === nextprops.fields.length) return;
+      this.props.dispatch(stepForwardTo());
+    });
+  }
+
   renderFormStep (obj, index) {
-    const { activestep } = this.props;
-    if (activestep !== index) return null;
+    const { current } = this.state;
+    if (current !== index) return null;
     let Instance = null;
     switch (obj.type) {
     case 'list':
@@ -54,7 +66,10 @@ class AppForm extends React.PureComponent {
 AppForm.propTypes = {
   fields: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
+  formvalues: PropTypes.object.isRequired,
   activestep: PropTypes.number.isRequired,
+  // redux form injected props
+  array: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 
@@ -63,9 +78,17 @@ const MockupStepperForm = reduxForm({
   form: Constants.FORM_NAME,
 })(AppForm);
 
-const mapStateToProps = ({ fields, activestep }) => ({
-  fields,
-  activestep,
-});
+const mapStateToProps = ({ form, fields, activestep }) => {
+  const values =
+    (form[Constants.FORM_NAME] && form[Constants.FORM_NAME].values) || {};
+  return {
+    fields,
+    activestep,
+    formvalues: Object.keys(values).reduce(
+      (acc, key) => Object.assign(acc, { [key]: values[key].choice }),
+      {},
+    ),
+  };
+};
 
 export default connect(mapStateToProps)(MockupStepperForm);

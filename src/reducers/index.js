@@ -11,6 +11,17 @@ const fields = (state = [], action) => {
   }
 };
 
+const defaultfields = (state = [], action) => {
+  switch (action.type) {
+  case 'onFormLoaded':
+    // FIXME -> performance
+    // doit on utiliser un deepclone ou JSON.stringify
+    return JSON.stringify(action.fields);
+  default:
+    return state;
+  }
+};
+
 const activestep = (state = 0, action) => {
   switch (action.type) {
   case 'onStepReset':
@@ -19,6 +30,8 @@ const activestep = (state = 0, action) => {
     return state + 1;
   case 'onStepBackward':
     return state - 1;
+  case 'onStepForwardTo':
+    return action.index;
   default:
     return state;
   }
@@ -27,6 +40,7 @@ const activestep = (state = 0, action) => {
 export default combineReducers({
   fields,
   activestep,
+  defaultfields,
   form: formReducer,
   router: routerReducer,
 });
