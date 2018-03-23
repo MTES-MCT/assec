@@ -32,29 +32,12 @@ const renderCirledIndex = (index, completed, isactive) => {
 };
 
 const StepperProgress = ({ steps, activestep }) => (
-  <div className="stepper-progress"
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: '20px',
-      flexDirection: 'row',
-      paddingBottom: '20px',
-      borderBottom: '1px solid #000',
-      placeContent: 'center space-between',
-    }}>
+  <div id="stepper-progress">
     {steps &&
       steps.map((obj, index) => [
-        <div key={`step_${obj.id}`} className="flex-columns items-center">
-          <div style={{ flex: '0 0 auto' }}>
-            <span style={{
-              height: '40px',
-              display: 'flex',
-              fontSize: '14px',
-              fontWeight: '500',
-              alignItems: 'center',
-              color: 'rgba(0, 0, 0, 0.87)',
-              fontFamily: 'Roboto, sans-serif',
-            }}>
+        <div key={`step_${obj.id}`} className="flex-columns items-center step">
+          <div className="text">
+            <span>
               {renderCirledIndex(
                 index + 1,
                 index < activestep,
@@ -63,14 +46,8 @@ const StepperProgress = ({ steps, activestep }) => (
               <small>{obj.question}</small>
             </span>
           </div>
-          <div style={{ flex: '1 1 auto' }}>
-            <span style={{
-              display: 'block',
-              marginLeft: '-6px',
-              borderTopWidth: '1px',
-              borderTopStyle: 'solid',
-              borderColor: 'rgb(189, 189, 189)',
-            }} />
+          <div className="line">
+            <span />
           </div>
         </div>,
       ])}

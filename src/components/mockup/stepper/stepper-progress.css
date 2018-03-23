@@ -1,7 +1,42 @@
-.stepper-progress div:first-child span:first-child {
-  /* padding-left: 0 !important; */
+#stepper-progress {
+  display: flex;
+  padding: 20px 0;
+  align-items: center;
+  flex-direction: row;
+  place-content: center space-between;
 }
 
-.stepper-progress div:last-child span {
-  /* padding-right: 0 !important; */
+#stepper-progress .step {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+#stepper-progress .step .text {
+  flex: '0 0 auto';
+}
+
+#stepper-progress .step .text > span {
+  height: 40px;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: 'Roboto', sans-serif;
+}
+
+#stepper-progress .step .text > span small {
+  margin-right: 14px;
+}
+
+#stepper-progress .step .line {
+  flex: 1 1 auto;
+}
+
+#stepper-progress .step .line span {
+  display: block;
+  margin-left: -6px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-color: rgb(189, 189, 189);
 }

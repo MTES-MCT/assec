@@ -18,11 +18,11 @@ const FormNavigation = ({
     <button onClick={() => dispatch(stepBackward())}
       disabled={disabled || activestep === 0}>
       <i className="icon icon-left-open-big" />
-      <span>back</span>
+      <span>Précédent</span>
     </button>
     <button onClick={() => dispatch(stepForward())}
       disabled={disabled || activestep >= completedcount}>
-      <span>next</span>
+      <span>Suivant</span>
       <i className="icon icon-right-open-big" />
     </button>
     {/* {current >= maxsteps && (
