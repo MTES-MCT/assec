@@ -7,8 +7,8 @@ import { Form, reduxForm } from 'redux-form';
 import ListInput from './inputs/ListInput';
 import Constants from './../../constants';
 import ChoiceInput from './inputs/ChoiceInput';
-import loadForm from './../../actions/loadForm';
-import { checkConditions } from './../../actions/navigation';
+import loadForm from './../../actions/load-form';
+import { checkConditions } from './../../actions/check-conditions';
 
 class AppForm extends React.PureComponent {
   constructor (props) {
