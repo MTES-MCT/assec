@@ -5,10 +5,8 @@ import { connect } from 'react-redux';
 // application
 import './stepper-progress.css';
 
-const renderCirledIndex = (index, completed, isactive) => {
+const renderCirledIndex = (num, color) => {
   const size = '24px';
-  let color = isactive ? 'rgba(136, 198, 65, 1)' : 'rgba(0, 0, 0, 0.05)';
-  if (completed) color = 'rgb(0, 188, 212)';
   return (
     <span style={{ paddingRight: '8px' }}>
       <svg viewBox="0 0 24 24"
@@ -24,56 +22,58 @@ const renderCirledIndex = (index, completed, isactive) => {
         }}>
         <circle cx="12" cy="12" r="10" />
         <text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff">
-          {index}
+          {num}
         </text>
       </svg>
     </span>
   );
 };
 
-const StepperProgress = ({ steps, activestep }) => (
-  <div id="stepper-progress">
-    {steps &&
-      steps.map((obj, index) => [
-        <div key={`step_${obj.id}`}
-          className={`flex-columns items-center step ${
-            index + 1 < steps.length ? '' : 'last'
-          }`}>
-          <div className="text">
-            <span>
-              {renderCirledIndex(
-                index + 1,
-                index < activestep,
-                index === activestep,
-              )}
-              <small>{obj.question}</small>
-            </span>
-          </div>
-          <div className="line">
-            <span />
-          </div>
-        </div>,
-      ])}
-  </div>
-);
+const StepperProgress = ({ steps, activestep }) => {
+  let num = 0;
+  return (
+    <div id="stepper-progress">
+      {steps &&
+        steps.map((obj, index) => {
+          if (!obj) return null;
+          num += 1;
+          let color = 'rgba(0, 0, 0, 0.05)';
+          if (index < activestep) color = 'rgb(0, 188, 212)';
+          if (index === activestep) color = 'rgba(136, 198, 65, 1)';
+          const last = index + 1 < steps.length ? '' : 'last';
+          return [
+            <div key={`step_${obj.id}`}
+              className={`flex-columns items-center step ${last}`}>
+              <div className="text">
+                <span>
+                  {renderCirledIndex(num, color)}
+                  <small>{obj.question}</small>
+                </span>
+              </div>
+              <div className="line">
+                <span />
+              </div>
+            </div>,
+          ];
+        })}
+    </div>
+  );
+};
 
 StepperProgress.propTypes = {
   steps: PropTypes.array.isRequired,
   activestep: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = ({ activestep, fields, disabledfields }) => ({
-  activestep,
-  disabledfields,
-  steps: fields
-    .map(({ question, id }) => ({ question, id }))
-    .filter((obj, index) => (disabledfields.includes(index) ? false : obj))
-    .concat([
-      {
-        id: 'resultats',
-        question: 'Résultats',
-      },
-    ]),
-});
+const mapStateToProps = ({ fields, disabledfields, activestep }) => {
+  const last = { id: 'resultats', question: 'Résultats' };
+  return {
+    activestep,
+    steps: fields
+      .map(({ question, id }) => ({ question, id }))
+      .map((obj, index) => (disabledfields.includes(index) ? null : obj))
+      .concat([last]),
+  };
+};
 
 export default connect(mapStateToProps)(StepperProgress);
