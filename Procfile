@@ -1,2 +1,2 @@
-.gitignoremockup: npm run start
+mockup: npm run start
 sass: npm run sass
