@@ -8,7 +8,7 @@
   width: 130px;
   color: #FFFFFF;
   border-radius: 20px;
-  background-color: #5DAEF2;
+  background-color: #01BCD5;
 }
 
 #form-navigation button ~ button {
@@ -16,7 +16,7 @@
 }
 
 #form-navigation button:disabled {
-  color: #000000;
+  color: rgba(0, 0, 0, 0.25);
   background-color: rgba(0, 0, 0, 0.05);
 }
 

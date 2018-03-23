@@ -49,14 +49,15 @@
 }
 
 #selecteur-departement {
-  padding: 6px 12px;
   top: 12px;
   right: 12px;
   height: 24px;
+  font-weight: 900;
+  padding: 6px 12px;
   position: absolute;
   border-radius: 12px;
-  color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #01BCD5;
+  color: rgba(0, 0, 0, 0.5);
 
   .icon {
     margin-left: 12px;

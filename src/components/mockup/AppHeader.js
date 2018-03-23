@@ -3,6 +3,7 @@ import React from 'react';
 const AppHeader = () => (
   <div id="app-header" className="relative">
     <h1 className="acenter title">
+      <i className="icon icon-droplet" />
       <span>ASSEC</span>
     </h1>
     <h5 className="acenter subtitle">
