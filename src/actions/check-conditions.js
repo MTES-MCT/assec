@@ -2,7 +2,7 @@ import deepequal from 'fast-deep-equal';
 
 // application
 import Constants from './../constants';
-import splitObject from './../lib/splitObject';
+import splitObject from './../lib/split-object';
 
 const checkConditions = () => (dispatch, getState) => {
   const { form, activestep, fields } = getState();
