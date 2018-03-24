@@ -1,27 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FormSidebarContent = ({ responses }) => (
+const selectstep = (key, choice, fields) => {
+  const [field] = fields.filter(obj => obj.id === key);
+  const { label, type, values } = field;
+  let reponse = choice;
+  if (type === 'choice') reponse = values[parseInt(choice, 10)].value;
+  return { label, reponse };
+};
+
+const FormSidebarContent = ({ choices, fields }) => (
   <ul id="user-case">
-    {/* Object.keys(responses).map((key, index) => {
-      const { question, type, values } = fields[index];
-      // console.log('responses', responses);
-      const reponse =
-        type !== 'choice'
-          ? responses[key].choice
-          : values[parseInt(responses[key].choice, 10)].value;
+    {Object.keys(choices).map((key) => {
+      const field = selectstep(key, choices[key].choice, fields);
       return (
-        <li key={`question_${key}`}>
-          <strong>{question}</strong>
-          <span>{reponse}</span>
+        <li key={`choice::${key}`}>
+          <strong>{field.label}</strong>
+          <span>{field.reponse}</span>
         </li>
       );
-    }) */}
+    })}
   </ul>
 );
 
 FormSidebarContent.propTypes = {
-  responses: PropTypes.array.isRequired,
+  fields: PropTypes.array.isRequired,
+  choices: PropTypes.object.isRequired,
 };
 
 export default FormSidebarContent;

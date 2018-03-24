@@ -21,7 +21,7 @@ class FormScreen extends React.PureComponent {
     const {
       steps,
       locked,
-      responses,
+      choices,
       formfields,
       activestep,
       disabledsteps,
@@ -32,7 +32,7 @@ class FormScreen extends React.PureComponent {
         <div id="app-content" className="flex-columns">
           <div id="app-sidebar-left" className="column flex1">
             <FormSidebarHeader />
-            <FormSidebarContent responses={responses} />
+            <FormSidebarContent fields={formfields} choices={choices} />
           </div>
           <div id="stepper-form" className="column flex4">
             <FormFields fields={formfields}
@@ -50,7 +50,7 @@ FormScreen.propTypes = {
   steps: PropTypes.array.isRequired,
   locked: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
-  responses: PropTypes.array.isRequired,
+  choices: PropTypes.object.isRequired,
   formfields: PropTypes.array.isRequired,
   activestep: PropTypes.number.isRequired,
   disabledsteps: PropTypes.array.isRequired,
@@ -58,13 +58,13 @@ FormScreen.propTypes = {
 
 const mapStateToProps = ({ form, stepper, formfields }) => {
   const { activestep, disabledsteps } = stepper;
-  const values = (form[FORM_NAME] && form[FORM_NAME].values) || [];
+  const choices = (form[FORM_NAME] && form[FORM_NAME].values) || {};
   return {
     stepper,
+    choices,
     formfields,
     activestep,
     locked: true,
-    responses: [],
     disabledsteps,
     steps: formfields
       .filter((o, index) => !disabledsteps.includes(index))

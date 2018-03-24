@@ -34,7 +34,10 @@ class FormFields extends React.PureComponent {
             <Instance {...obj}
               key={key}
               fieldindex={index}
-              onChange={() => dispatch(checkConditions(index))} />
+              onChange={() => {
+                if (index >= fields.length - 1) return;
+                dispatch(checkConditions(index));
+              }} />
           );
         })}
       </Form>
