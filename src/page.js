@@ -6,7 +6,7 @@ import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 
 // routes
-import FormScreen from './components/screens/FormScreen';
+import FormScreen from './components/pages/FormScreen';
 // import AppForm from './components/form/AppForm';
 // import AppResults from './components/mockup/AppResults';
 // import AppSidebar from './components/mockup/AppSidebar';

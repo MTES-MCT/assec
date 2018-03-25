@@ -3,6 +3,7 @@ import { reset } from 'redux-form';
 // application
 import Constants from './../constants';
 
+/*
 export const stepForward = () => (dispatch, getState) => {
   const { activestep, fields, disabledfields } = getState();
   const filtered = fields
@@ -41,6 +42,7 @@ export const stepBackward = () => (dispatch, getState) => {
     index: filtered[0] || 0,
   });
 };
+*/
 
 export const stepReset = () => (dispatch, getState) => {
   const { defaultfields } = getState();

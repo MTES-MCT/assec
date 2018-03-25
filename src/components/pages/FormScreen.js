@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import deepequal from 'fast-deep-equal';
+import { bindActionCreators } from 'redux';
+import { getFormValues, clearFields } from 'redux-form';
 
 // application
 import { FORM_NAME } from './../../constants';
@@ -12,9 +15,25 @@ import FormSidebarHeader from './../form/sidebar/FormSidebarHeader';
 import FormSidebarContent from './../form/sidebar/FormSidebarContent';
 
 class FormScreen extends React.PureComponent {
+  constructor (props) {
+    super(props);
+    const { dispatch } = props;
+    this.actions = bindActionCreators({ loadForm, clearFields }, dispatch);
+  }
+
   componentDidMount () {
     // charge le schema du formulaire au chargement de la page
-    this.props.dispatch(loadForm());
+    this.actions.loadForm();
+  }
+
+  componentWillReceiveProps ({ stepskeys, choiceskeys }) {
+    if (deepequal(stepskeys, this.props.stepskeys)) return;
+    const filtered = choiceskeys.filter(key => !stepskeys.includes(key));
+    if (!filtered.length) return;
+    // Supprime les entrees du formulaire
+    // dont l'input n'est pas present dans le fil d'ariane
+    // utile dans le cas de stepBackward/stepFormard
+    this.actions.clearFields(FORM_NAME, false, false, filtered);
   }
 
   render () {
@@ -51,24 +70,30 @@ FormScreen.propTypes = {
   locked: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   choices: PropTypes.object.isRequired,
+  stepskeys: PropTypes.array.isRequired,
   formfields: PropTypes.array.isRequired,
   activestep: PropTypes.number.isRequired,
+  choiceskeys: PropTypes.array.isRequired,
   disabledsteps: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({ form, stepper, formfields }) => {
-  const { activestep, disabledsteps } = stepper;
-  const choices = (form[FORM_NAME] && form[FORM_NAME].values) || {};
+const mapStateToProps = (state) => {
+  const { stepper: { activestep, disabledsteps }, formfields } = state;
+  const choices = getFormValues(FORM_NAME)(state) || {};
+  const choiceskeys = Object.keys(choices);
+  const steps = formfields
+    .filter((o, index) => !disabledsteps.includes(index))
+    .map(({ id, label }) => ({ id, label }));
+  const stepskeys = steps.map(({ id }) => id);
   return {
-    stepper,
+    steps,
     choices,
+    stepskeys,
     formfields,
     activestep,
+    choiceskeys,
     locked: true,
     disabledsteps,
-    steps: formfields
-      .filter((o, index) => !disabledsteps.includes(index))
-      .map(({ id, label }) => ({ id, label })),
   };
 };
 
