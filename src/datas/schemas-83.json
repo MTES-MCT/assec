@@ -1,0 +1,226 @@
+[
+  {
+    "canal": "canal_non",
+    "alerte": 1,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 3,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 0,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 0,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 0,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 0,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 1,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 2,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 1,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 0,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 2,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_non",
+    "alerte": 0,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 2,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 0,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 3,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 2,
+    "nomcanal": "jenesaispas",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 2,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 2,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 0,
+    "nomcanal": "nomcanal_mon_canal_1",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 1,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 2,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_2",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 3,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 0,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_non_agricole",
+    "origine": "usage_par_forage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 2,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_agricole",
+    "origine": "usage_par_pompage"
+  },
+  {
+    "canal": "canal_oui",
+    "alerte": 0,
+    "nomcanal": "nomcanal_mon_canal_3",
+    "usage": "usage_agricole",
+    "origine": "usage_par_forage"
+  }
+]

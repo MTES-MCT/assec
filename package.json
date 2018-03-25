@@ -29,6 +29,7 @@
   },
   "scripts": {
     "dev": "nf start -p 3000",
+    "tap": "node ./.scripts/schema.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "postbuild": "cp ./src/styles.css ./build/",
