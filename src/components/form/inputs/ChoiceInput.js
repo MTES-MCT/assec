@@ -12,7 +12,7 @@ const ChoiceInput = ({
     <h3>{label}</h3>
     {help && <p>{help}</p>}
     <div className="flex-columns">
-      {values.map((obj, index) => (
+      {values.map(obj => (
         <label key={`choiceinput::${obj.id}`}
           className="choice-button items-center"
           htmlFor={`${obj.id}_true`}>
@@ -20,7 +20,7 @@ const ChoiceInput = ({
             type="radio"
             name="choice"
             component="input"
-            value={`${index}`} />
+            value={`${obj.id}`} />
           <span>{obj.value}</span>
         </label>
       ))}

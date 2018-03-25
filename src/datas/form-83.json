@@ -1,90 +1,69 @@
-{
-  "alertes": [{
-    "label": "Alerte 1",
-    "cases": [{
-      "canal": "canal_non",
-      "nomcanal": "jenesaispas",
-      "usage": "usage_non_agricole",
-      "origine": "usage_par_pompage"
-    }, {
-      "canal": "canal_non",
-      "nomcanal": "nomcanal_mon_canal_1",
-      "usage": "usage_non_agricole",
-      "origine": "usage_par_pompage"
-    }, {
-      "canal": "canal_non",
-      "nomcanal": "jenesaispas",
-      "usage": "nomcanal_mon_canal_1",
-      "origine": "usage_par_pompage"
-    }]
-  }],
-  "fields": [{
-    "id": "canal",
-    "type": "choice",
-    "label": "Prélévement sur un canal ?",
-    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-    "conditions": [],
-    "values": [{
-      "id": "canal_non",
-      "value": "Non",
-      "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
-    }, {
-      "id": "canal_oui",
-      "value": "Oui",
-      "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
-    }]
+[{
+  "id": "canal",
+  "type": "choice",
+  "label": "Prélévement sur un canal ?",
+  "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
+  "conditions": [],
+  "values": [{
+    "id": "canal_non",
+    "value": "Non",
+    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
   }, {
-    "id": "nomcanal",
-    "type": "list",
-    "label": "De quel canal s'agit il ?",
-    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-    "conditions": [{ "canal": {"choice":  "1"} }],
-    "values": [{
-      "id": "jenesaispas",
-      "value": "Aucun/Je ne sais pas",
-      "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_1",
-      "value": "Mon Canal 1",
-      "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_2",
-      "value": "Mon Canal 2",
-      "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_3",
-      "value": "Mon Canal 3",
-      "help": ""
-    }]
-  }, {
-    "id": "usage",
-    "type": "choice",
-    "label": "Pour quel usage ?",
-    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-    "conditions": [],
-    "values": [{
-      "id": "usage_non_agricole",
-      "value": "Non Agricole (pelouse, lavage voiture...)",
-      "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
-    }, {
-      "id": "usage_agricole",
-      "value": "Agricole",
-      "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
-    }]
-  }, {
-    "id": "origine",
-    "type": "choice",
-    "label": "Origine du prélévement ?",
-    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-    "conditions": [{ "usage": {"choice":  "0"} }],
-    "values": [{
-      "id": "usage_par_pompage",
-      "value": "Par pompage",
-      "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
-    }, {
-      "id": "usage_par_forage",
-      "value": "Par forage",
-      "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
-    }]
+    "id": "canal_oui",
+    "value": "Oui",
+    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
   }]
-}
+}, {
+  "id": "nomcanal",
+  "type": "list",
+  "label": "De quel canal s'agit il ?",
+  "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
+  "conditions": [{ "canal": {"choice":  "canal_oui"} }],
+  "values": [{
+    "id": "jenesaispas",
+    "value": "Aucun/Je ne sais pas",
+    "help": ""
+  }, {
+    "id": "nomcanal_mon_canal_1",
+    "value": "Mon Canal 1",
+    "help": ""
+  }, {
+    "id": "nomcanal_mon_canal_2",
+    "value": "Mon Canal 2",
+    "help": ""
+  }, {
+    "id": "nomcanal_mon_canal_3",
+    "value": "Mon Canal 3",
+    "help": ""
+  }]
+}, {
+  "id": "usage",
+  "type": "choice",
+  "label": "Pour quel usage ?",
+  "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
+  "conditions": [],
+  "values": [{
+    "id": "usage_non_agricole",
+    "value": "Non Agricole (pelouse, lavage voiture...)",
+    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
+  }, {
+    "id": "usage_agricole",
+    "value": "Agricole",
+    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
+  }]
+}, {
+  "id": "origine",
+  "type": "choice",
+  "label": "Origine du prélévement ?",
+  "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
+  "conditions": [{ "usage": {"choice":  "usage_agricole"} }],
+  "values": [{
+    "id": "usage_par_pompage",
+    "value": "Par pompage",
+    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
+  }, {
+    "id": "usage_par_forage",
+    "value": "Par forage",
+    "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
+  }]
+}]

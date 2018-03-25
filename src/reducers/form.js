@@ -1,36 +1,56 @@
-import produce from 'immer';
 import { combineReducers } from 'redux';
 
 // application
 import { FORM_RESET, FORM_SUBMIT, FIELDS_LOADED } from './../constants';
 
-const results = (state = {}, action) => {
+const alertlevel = (state = false, action) => {
   switch (action.type) {
   case FORM_RESET:
-    return {};
+    return false;
   case FORM_SUBMIT:
-    return { ...action.values };
+    return action.submitted;
   default:
     return state;
   }
 };
 
-const fields = produce((draft, action) => {
+const defaults = (state = {}, action) => {
   switch (action.type) {
   case FIELDS_LOADED:
-    action.fields.forEach((obj, index) => {
-      const field = Object.assign({}, obj, { index });
-      draft.push(field);
-    });
-    return draft;
+    return action.fields.reduce(
+      // take first value from field as default value
+      (acc, { id, values }) => Object.assign({}, acc, { [id]: values[0].id }),
+      {},
+    );
   default:
-    return draft;
+    return state;
   }
-}, []);
+};
+
+const fields = (state = [], action) => {
+  switch (action.type) {
+  case FIELDS_LOADED:
+    return action.fields.map((obj, index) =>
+      Object.assign({}, obj, { index }));
+  default:
+    return state;
+  }
+};
+
+const alerts = (state = [], action) => {
+  switch (action.type) {
+  case FIELDS_LOADED:
+    return state.concat(action.alerts);
+  default:
+    return state;
+  }
+};
 
 export const form = combineReducers({
   fields,
-  results,
+  alerts,
+  defaults,
+  alertlevel,
 });
 
 export default form;

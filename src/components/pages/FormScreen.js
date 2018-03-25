@@ -8,6 +8,7 @@ import { getFormValues, clearFields } from 'redux-form';
 // application
 import { FORM_NAME } from './../../constants';
 import FormFields from './../form/FormFields';
+import FormResults from './../form/FormResults';
 import FormNavigation from './../form/FormNavigation';
 import { loadForm, formSubmit } from './../../actions/form';
 import checkConditions from './../../actions/check-conditions';
@@ -58,18 +59,20 @@ class FormScreen extends React.PureComponent {
       showresults,
       canbackward,
       disabledsteps,
-      isresultscreen,
+      alertlevel,
     } = this.props;
     return (
       <div id="screen-container">
-        <StepperProgress active={activestep} steps={steps} />
+        <StepperProgress steps={steps}
+          active={!alertlevel ? activestep : activestep + 1} />
         <div id="app-content" className="flex-columns">
           <div id="app-sidebar-left" className="column flex1">
             <FormSidebarHeader />
-            <FormSidebarContent fields={fields} choices={choices} />
+            <FormSidebarContent fields={fields}
+              choices={!alertlevel ? choices : alertlevel.submitted} />
           </div>
           <div id="stepper-form" className="column flex4">
-            {!isresultscreen &&
+            {!alertlevel &&
               fields &&
               fields.length > 0 && (
               <FormFields fields={fields}
@@ -78,10 +81,11 @@ class FormScreen extends React.PureComponent {
                 onSubmit={values => this.actions.formSubmit(values)}
                 onConditions={index => this.actions.checkConditions(index)} />
             )}
+            {alertlevel && <FormResults alertlevel={alertlevel.result} />}
             <FormNavigation showresults={showresults}
               canforward={canforward}
-              canreset={isresultscreen}
-              canbackward={canbackward} />
+              canbackward={canbackward}
+              canreset={alertlevel !== false} />
           </div>
         </div>
       </div>
@@ -94,7 +98,8 @@ FormScreen.propTypes = {
   canforward: PropTypes.bool.isRequired,
   canbackward: PropTypes.bool.isRequired,
   showresults: PropTypes.bool.isRequired,
-  isresultscreen: PropTypes.bool.isRequired,
+  alertlevel: PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
+    .isRequired,
   //
   steps: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
@@ -108,7 +113,7 @@ FormScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   const {
-    steppedform: { fields, results },
+    steppedform: { fields, alertlevel },
     stepper: { activestep, disabledsteps },
   } = state;
   const choices = getFormValues(FORM_NAME)(state) || {};
@@ -123,20 +128,18 @@ const mapStateToProps = (state) => {
   // par l'utilisateur
   const showresults =
     choiceskeys.length === steps.length && activestep === steps.length - 1;
-  // last screen
-  const isresultscreen = false;
   return {
     steps,
     fields,
     choices,
     stepskeys,
     activestep,
+    alertlevel,
     canforward,
     choiceskeys,
     canbackward,
     showresults,
     disabledsteps,
-    isresultscreen,
   };
 };
 
