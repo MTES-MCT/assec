@@ -3,7 +3,7 @@
   "type": "choice",
   "label": "Prélévement sur un canal ?",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": [],
+  "conditions": false,
   "values": [{
     "id": "canal_non",
     "value": "Non",
@@ -41,7 +41,7 @@
   "type": "choice",
   "label": "Pour quel usage ?",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": [],
+  "conditions": false,
   "values": [{
     "id": "usage_non_agricole",
     "value": "Non Agricole (pelouse, lavage voiture...)",
@@ -71,6 +71,6 @@
   "type": "zoning",
   "label": "Zone de prélévement",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": [],
+  "conditions": false,
   "values": [{"id": "zone_0", "value": "Zone 0", "help":""}]
 }]

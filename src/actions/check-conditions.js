@@ -18,10 +18,13 @@ const checkConditions = fieldindex => (dispatch, getState) => {
   // FIXME -> use an array of conditions to validate with and/or
   // si une conditions est remplie on affiche la prochaine étape
   // sinon on l'ajouter dans un array d'étapes à ne pas afficher
-  const { conditions: [firstcond] } = nextfield;
+  const { conditions } = nextfield;
+  const hasnocondition = conditions === false;
   const formvalues = getArrayValues(state);
-  const validconditions = formvalues.filter(obj => deepequal(firstcond, obj));
-  const type = validconditions.length > 0 ? STEP_INSERT : STEP_REMOVE;
+  const validconditions = formvalues.filter(obj =>
+    deepequal(conditions[0] || {}, obj));
+  const type =
+    hasnocondition || validconditions.length > 0 ? STEP_INSERT : STEP_REMOVE;
   dispatch({
     type,
     index: nextindex,
