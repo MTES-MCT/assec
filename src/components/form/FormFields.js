@@ -4,9 +4,9 @@ import { Form, reduxForm } from 'redux-form';
 
 // application
 import { FORM_NAME } from './../../constants';
-import ZoneInput from './inputs/ZoneInput';
 import ListInput from './inputs/ListInput';
 import ChoiceInput from './inputs/ChoiceInput';
+import ZoningInput from './inputs/ZoningInput';
 
 const getinputbytype = (obj) => {
   switch (obj.type) {
@@ -14,6 +14,8 @@ const getinputbytype = (obj) => {
     return ListInput;
   case 'choice':
     return ChoiceInput;
+  case 'zoning':
+    return ZoningInput;
   default:
     return null;
   }
@@ -38,7 +40,6 @@ class FormFields extends React.PureComponent {
         <Instance {...field}
           key={`formfield_${field.id}`}
           onChange={() => onConditions(field.index)} />
-        <ZoneInput />
       </Form>
     );
   }
