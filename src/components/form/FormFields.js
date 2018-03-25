@@ -6,7 +6,6 @@ import { Form, reduxForm } from 'redux-form';
 import ListInput from './inputs/ListInput';
 import { FORM_NAME } from './../../constants';
 import ChoiceInput from './inputs/ChoiceInput';
-import checkConditions from './../../actions/check-conditions';
 
 const getinputbytype = (obj) => {
   switch (obj.type) {
@@ -23,8 +22,9 @@ class FormFields extends React.PureComponent {
   render () {
     const {
       fields,
-      dispatch,
+      onSubmit,
       activestep,
+      onConditions,
       handleSubmit,
       disabledsteps,
     } = this.props;
@@ -33,15 +33,10 @@ class FormFields extends React.PureComponent {
       .filter((obj, index) => index === activestep);
     const Instance = getinputbytype(field);
     return (
-      <Form onSubmit={handleSubmit(() => {})}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Instance {...field}
           key={`formfield_${field.id}`}
-          onChange={() => {
-            // si il s'agit du dernier champ de formulaire
-            // on ne fait pas de verification
-            if (field.index >= fields.length - 1) return;
-            dispatch(checkConditions(field.index));
-          }} />
+          onChange={() => onConditions(field.index)} />
       </Form>
     );
   }
@@ -51,8 +46,9 @@ FormFields.propTypes = {
   fields: PropTypes.array.isRequired,
   activestep: PropTypes.number.isRequired,
   disabledsteps: PropTypes.array.isRequired,
-  // connect redux
-  dispatch: PropTypes.func.isRequired,
+  // form screen callback
+  onSubmit: PropTypes.func.isRequired,
+  onConditions: PropTypes.func.isRequired,
   // redux form injected props
   handleSubmit: PropTypes.func.isRequired,
 };

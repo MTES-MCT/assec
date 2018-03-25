@@ -1,19 +1,25 @@
 import deepequal from 'fast-deep-equal';
+import { getFormValues } from 'redux-form';
 
 // application
 import splitObject from './../lib/split-object';
 import { FORM_NAME, STEP_INSERT, STEP_REMOVE } from './../constants';
 
+const getArrayValues = (state) => {
+  const formvalues = getFormValues(FORM_NAME)(state);
+  return splitObject(formvalues);
+};
+
 const checkConditions = fieldindex => (dispatch, getState) => {
-  const { formfields, form } = getState();
+  const state = getState();
   const nextindex = fieldindex + 1;
-  if (nextindex >= formfields.length) return;
-  const nextfield = formfields[nextindex];
+  const nextfield = state.steppedform.fields[nextindex];
+  if (!nextfield) return;
   // FIXME -> use an array of conditions to validate with and/or
   // si une conditions est remplie on affiche la prochaine étape
   // sinon on l'ajouter dans un array d'étapes à ne pas afficher
   const { conditions: [firstcond] } = nextfield;
-  const formvalues = splitObject(form[FORM_NAME].values);
+  const formvalues = getArrayValues(state);
   const validconditions = formvalues.filter(obj => deepequal(firstcond, obj));
   const type = validconditions.length > 0 ? STEP_INSERT : STEP_REMOVE;
   dispatch({

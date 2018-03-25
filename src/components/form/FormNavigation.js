@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { submit } from 'redux-form';
 import { connect } from 'react-redux';
 
 // application
 import './form-navigation.css';
-import {
-  formReset,
-  showResults,
-  stepForward,
-  stepBackward,
-} from './../../actions/navigation';
+import { FORM_NAME } from './../../constants';
+import { formReset } from './../../actions/form';
+import { stepForward, stepBackward } from './../../actions/navigation';
 
 const FormNavigation = ({
   dispatch,
@@ -37,7 +35,7 @@ const FormNavigation = ({
         null,
       (showresults && (
         <button key="results"
-          onClick={() => dispatch(showResults())}
+          onClick={() => dispatch(submit(FORM_NAME))}
           className="last-step">
           <i className="icon icon-adjust" />
           <span>Résultats</span>
