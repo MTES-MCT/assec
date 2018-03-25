@@ -7,6 +7,7 @@ import { FORM_NAME, STEP_INSERT, STEP_REMOVE } from './../constants';
 const checkConditions = fieldindex => (dispatch, getState) => {
   const { formfields, form } = getState();
   const nextindex = fieldindex + 1;
+  if (nextindex >= formfields.length) return;
   const nextfield = formfields[nextindex];
   // FIXME -> use an array of conditions to validate with and/or
   // si une conditions est remplie on affiche la prochaine étape

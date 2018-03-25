@@ -27,7 +27,10 @@ class FormScreen extends React.PureComponent {
   }
 
   componentWillReceiveProps ({ stepskeys, choiceskeys }) {
-    if (deepequal(stepskeys, this.props.stepskeys)) return;
+    if (deepequal(stepskeys, this.props.stepskeys)) {
+      // si le fil d'ariane contient les même éléments
+      return;
+    }
     const filtered = choiceskeys.filter(key => !stepskeys.includes(key));
     if (!filtered.length) return;
     // Supprime les entrees du formulaire
@@ -40,13 +43,13 @@ class FormScreen extends React.PureComponent {
     const {
       steps,
       choices,
-      canreset,
       formfields,
       activestep,
       canforward,
       showresults,
       canbackward,
       disabledsteps,
+      isresultscreen,
     } = this.props;
     return (
       <div id="screen-container">
@@ -57,12 +60,16 @@ class FormScreen extends React.PureComponent {
             <FormSidebarContent fields={formfields} choices={choices} />
           </div>
           <div id="stepper-form" className="column flex4">
-            <FormFields fields={formfields}
-              active={activestep}
-              disabled={disabledsteps} />
+            {!isresultscreen &&
+              formfields &&
+              formfields.length > 0 && (
+              <FormFields fields={formfields}
+                activestep={activestep}
+                disabledsteps={disabledsteps} />
+            )}
             <FormNavigation showresults={showresults}
-              canreset={canreset}
               canforward={canforward}
+              canreset={isresultscreen}
               canbackward={canbackward} />
           </div>
         </div>
@@ -73,10 +80,10 @@ class FormScreen extends React.PureComponent {
 
 FormScreen.propTypes = {
   // navigation
-  canreset: PropTypes.bool.isRequired,
   canforward: PropTypes.bool.isRequired,
   canbackward: PropTypes.bool.isRequired,
   showresults: PropTypes.bool.isRequired,
+  isresultscreen: PropTypes.bool.isRequired,
   //
   steps: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
@@ -98,13 +105,14 @@ const mapStateToProps = (state) => {
   const stepskeys = steps.map(({ id }) => id);
   const canbackward = activestep > 0;
   const canforward = choiceskeys.length > activestep;
-  const canreset = activestep > choiceskeys.length + 1;
-  const showresults = false;
-  // choiceskeys.length === steps.length;
+  // defini si le dernier resultats a ete selectionne
+  // par l'utilisateur
+  const showresults = choiceskeys.length === steps.length;
+  // last screen
+  const isresultscreen = false;
   return {
     steps,
     choices,
-    canreset,
     stepskeys,
     formfields,
     activestep,
@@ -113,6 +121,7 @@ const mapStateToProps = (state) => {
     canbackward,
     showresults,
     disabledsteps,
+    isresultscreen,
   };
 };
 

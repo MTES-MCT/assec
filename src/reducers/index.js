@@ -10,7 +10,11 @@ import { FORM_LOADED } from './../constants';
 const formfields = produce((draft, action) => {
   switch (action.type) {
   case FORM_LOADED:
-    return draft.concat(action.fields);
+    action.fields.forEach((obj, index) => {
+      const field = Object.assign({}, obj, { index });
+      draft.push(field);
+    });
+    return draft;
   default:
     return draft;
   }
