@@ -3702,10 +3702,6 @@ ignore@^3.3.3, ignore@^3.3.5:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-immer@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-1.2.0.tgz#06a0dd9a8f8061258149f4c609250e1e5a32ffbc"
-
 import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"

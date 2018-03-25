@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Form, reduxForm } from 'redux-form';
 
 // application
-import ListInput from './inputs/ListInput';
 import { FORM_NAME } from './../../constants';
+import ZoneInput from './inputs/ZoneInput';
+import ListInput from './inputs/ListInput';
 import ChoiceInput from './inputs/ChoiceInput';
 
 const getinputbytype = (obj) => {
@@ -37,6 +38,7 @@ class FormFields extends React.PureComponent {
         <Instance {...field}
           key={`formfield_${field.id}`}
           onChange={() => onConditions(field.index)} />
+        <ZoneInput />
       </Form>
     );
   }
