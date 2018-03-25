@@ -24,7 +24,7 @@ const PageComponent = () => (
     <AppHeader />
     {/* routes */}
     <FormScreen />
-    <AppFooter />
+    <AppFooter version="0.5.0" />
   </div>
 );
 
