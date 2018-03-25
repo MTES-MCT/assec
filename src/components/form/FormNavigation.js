@@ -4,50 +4,62 @@ import { connect } from 'react-redux';
 
 // application
 import './form-navigation.css';
-// import Constants from './../../constants';
+import {
+  formReset,
+  showResults,
+  stepForward,
+  stepBackward,
+} from './../../actions/navigation';
 
 const FormNavigation = ({
-  // dispatch,
-  // laststep,
-  disabled,
-  // resetstep,
-  // activestep,
-  // userchoicecount,
+  dispatch,
+  canreset,
+  canforward,
+  canbackward,
+  showresults,
 }) => (
   <div id="form-navigation" className="flex-columns flex-end">
-    <button onClick={() => {}} disabled={disabled}>
-      <i className="icon icon-left-open-big" />
-      <span>Précédent</span>
-    </button>
-    <button onClick={() => {}} disabled={disabled}>
-      <span>Suivant</span>
-      <i className="icon icon-right-open-big" />
-    </button>
-    {/* {laststep && (
-      <button onClick={() => {}}
-        className="last-step"
-        disabled={disabled || activestep >= completedcount}>
-        <i className="icon icon-adjust" />
-        <span>Résultats</span>
-        <i className="icon icon-right-open-big" />
-      </button>
-    )}
-    {resetstep && (
-      <button onClick={() => dispatch(stepReset())} disabled={disabled}>
+    {(!canreset && [
+      <button key="backward"
+        onClick={() => dispatch(stepBackward())}
+        disabled={!canbackward}>
+        <i className="icon icon-left-open-big" />
+        <span>Précédent</span>
+      </button>,
+      (!showresults && (
+        <button key="forward"
+          onClick={() => dispatch(stepForward())}
+          disabled={!canforward}>
+          <span>Suivant</span>
+          <i className="icon icon-right-open-big" />
+        </button>
+      )) ||
+        null,
+      (showresults && (
+        <button key="results"
+          onClick={() => dispatch(showResults())}
+          className="last-step">
+          <i className="icon icon-adjust" />
+          <span>Résultats</span>
+          <i className="icon icon-right-open-big" />
+        </button>
+      )) ||
+        null,
+    ]) ||
+      null}
+    {canreset && (
+      <button onClick={() => dispatch(formReset())}>
         <span>reset</span>
       </button>
-    )} */}
+    )}
   </div>
 );
 FormNavigation.propTypes = {
-  disabled: PropTypes.bool.isRequired,
-  // dispatch: PropTypes.func.isRequired,
-  // laststep: PropTypes.bool.isRequired,
-  // resetstep: PropTypes.bool.isRequired,
-  // activestep: PropTypes.number.isRequired,
-  // userchoicecount: PropTypes.number.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  canreset: PropTypes.bool.isRequired,
+  canforward: PropTypes.bool.isRequired,
+  canbackward: PropTypes.bool.isRequired,
+  showresults: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = () => ({});
-
-export default connect(mapStateToProps)(FormNavigation);
+export default connect()(FormNavigation);

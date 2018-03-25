@@ -39,10 +39,13 @@ class FormScreen extends React.PureComponent {
   render () {
     const {
       steps,
-      locked,
       choices,
+      canreset,
       formfields,
       activestep,
+      canforward,
+      showresults,
+      canbackward,
       disabledsteps,
     } = this.props;
     return (
@@ -57,7 +60,10 @@ class FormScreen extends React.PureComponent {
             <FormFields fields={formfields}
               active={activestep}
               disabled={disabledsteps} />
-            <FormNavigation disabled={locked} />
+            <FormNavigation showresults={showresults}
+              canreset={canreset}
+              canforward={canforward}
+              canbackward={canbackward} />
           </div>
         </div>
       </div>
@@ -66,8 +72,13 @@ class FormScreen extends React.PureComponent {
 }
 
 FormScreen.propTypes = {
+  // navigation
+  canreset: PropTypes.bool.isRequired,
+  canforward: PropTypes.bool.isRequired,
+  canbackward: PropTypes.bool.isRequired,
+  showresults: PropTypes.bool.isRequired,
+  //
   steps: PropTypes.array.isRequired,
-  locked: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
   choices: PropTypes.object.isRequired,
   stepskeys: PropTypes.array.isRequired,
@@ -85,14 +96,22 @@ const mapStateToProps = (state) => {
     .filter((o, index) => !disabledsteps.includes(index))
     .map(({ id, label }) => ({ id, label }));
   const stepskeys = steps.map(({ id }) => id);
+  const canbackward = activestep > 0;
+  const canforward = choiceskeys.length > activestep;
+  const canreset = activestep > choiceskeys.length + 1;
+  const showresults = false;
+  // choiceskeys.length === steps.length;
   return {
     steps,
     choices,
+    canreset,
     stepskeys,
     formfields,
     activestep,
+    canforward,
     choiceskeys,
-    locked: true,
+    canbackward,
+    showresults,
     disabledsteps,
   };
 };
