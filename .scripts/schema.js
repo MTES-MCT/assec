@@ -5,7 +5,7 @@ const path = require('path');
 const dest = path.join(__dirname, '..', 'src', 'datas');
 const input = path.join(dest, 'form-83.json');
 const output = path.join(dest, 'schemas-83.json');
-const { fields } = require(input);
+const fields = require(input);
 
 function getRandAlert() {
   // renvoi un chiffre entre 0 et 3;
