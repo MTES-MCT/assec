@@ -29,26 +29,6 @@
       "id": "nomcanal_mon_canal_1",
       "value": "Mon Canal 1",
       "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_2",
-      "value": "Mon Canal 2",
-      "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_3",
-      "value": "Mon Canal 3",
-      "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_4",
-      "value": "Mon Canal 4",
-      "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_5",
-      "value": "Mon Canal 5",
-      "help": ""
-    }, {
-      "id": "nomcanal_mon_canal_6",
-      "value": "Mon Canal 6",
-      "help": ""
     }]
   }, {
     "id": "usage",
