@@ -6,7 +6,7 @@ export const FORM_RESET = 'onFormReset';
 export const FORM_SUBMIT = 'onFormSubmit';
 export const FORM_LOADED = 'onFormLoaded';
 
-// used on check conditions
+// used on check required
 // to validate if a field should be used in the steppet
 // or showned in the form
 export const STEP_INSERT = 'onStepInsert';

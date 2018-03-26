@@ -10,8 +10,8 @@ import { FORM_NAME } from './../../constants';
 import FormFields from './../form/FormFields';
 import FormResults from './../form/FormResults';
 import FormNavigation from './../form/FormNavigation';
+import checkRequired from './../../actions/check-required';
 import { loadForm, formSubmit } from './../../actions/form';
-import checkConditions from './../../actions/check-conditions';
 import StepperProgress from './../form/stepper/StepperProgress';
 import FormSidebarHeader from './../form/sidebar/FormSidebarHeader';
 import FormSidebarContent from './../form/sidebar/FormSidebarContent';
@@ -25,7 +25,7 @@ class FormScreen extends React.PureComponent {
         loadForm,
         formSubmit,
         clearFields,
-        checkConditions,
+        checkRequired,
       },
       dispatch,
     );
@@ -79,7 +79,7 @@ class FormScreen extends React.PureComponent {
                 activestep={activestep}
                 disabledsteps={disabledsteps}
                 onSubmit={values => this.actions.formSubmit(values)}
-                onConditions={index => this.actions.checkConditions(index)} />
+                onRequired={index => this.actions.checkRequired(index)} />
             )}
             {alertlevel && <FormResults alertlevel={alertlevel.result} />}
             <FormNavigation showresults={showresults}

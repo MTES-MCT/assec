@@ -27,7 +27,7 @@ class FormFields extends React.PureComponent {
       fields,
       onSubmit,
       activestep,
-      onConditions,
+      onRequired,
       handleSubmit,
       disabledsteps,
     } = this.props;
@@ -39,7 +39,7 @@ class FormFields extends React.PureComponent {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Instance {...field}
           key={`formfield_${field.id}`}
-          onChange={() => onConditions(field.index)} />
+          onChange={() => onRequired(field.index)} />
       </Form>
     );
   }
@@ -51,7 +51,7 @@ FormFields.propTypes = {
   disabledsteps: PropTypes.array.isRequired,
   // form screen callback
   onSubmit: PropTypes.func.isRequired,
-  onConditions: PropTypes.func.isRequired,
+  onRequired: PropTypes.func.isRequired,
   // redux form injected props
   handleSubmit: PropTypes.func.isRequired,
 };

@@ -3,7 +3,7 @@
   "type": "choice",
   "label": "Prélévement sur un canal ?",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": false,
+  "requires": false,
   "values": [{
     "id": "canal_non",
     "value": "Non",
@@ -18,7 +18,7 @@
   "type": "list",
   "label": "De quel canal s'agit il ?",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": [{ "canal": {"choice":  "canal_oui"} }],
+  "requires": [{ "canal": "canal_oui" }],
   "values": [{
     "id": "jenesaispas",
     "value": "Aucun/Je ne sais pas",
@@ -41,7 +41,7 @@
   "type": "choice",
   "label": "Pour quel usage ?",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": false,
+  "requires": false,
   "values": [{
     "id": "usage_non_agricole",
     "value": "Non Agricole (pelouse, lavage voiture...)",
@@ -56,7 +56,7 @@
   "type": "choice",
   "label": "Origine du prélévement ?",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": [{ "usage": {"choice":  "usage_agricole"} }],
+  "requires": [{ "usage": "usage_agricole" }],
   "values": [{
     "id": "usage_par_pompage",
     "value": "Par pompage",
@@ -71,6 +71,6 @@
   "type": "zoning",
   "label": "Zone de prélévement",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim.",
-  "conditions": false,
+  "requires": [{ "origine": "*" }],
   "values": [{"id": "zone_0", "value": "Zone 0", "help":"", "geojson": {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[5.936737060546875,43.12203614830064],[6.00128173828125,43.091957828335666],[6.14410400390625,43.07591001456969],[6.19354248046875,43.11201168384308],[6.278686523437499,43.193162620926074],[6.282806396484375,43.28320393686986],[6.183929443359375,43.297198404646366],[6.0809326171875,43.33416828298583],[5.968322753906249,43.24420236973],[5.936737060546875,43.12203614830064]]]}}]}}, {"id": "zone_1", "value": "Zone 1", "help":"", "geojson": {"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[6.225128173828124,43.30019680023961],[6.30340576171875,43.28820233071705],[6.293792724609374,43.201171681272456],[6.251220703125,43.13606763955625],[6.295166015625,43.12604547425635],[6.354217529296874,43.12504316740127],[6.436614990234374,43.17914423586488],[6.395416259765625,43.26420629463836],[6.34185791015625,43.34215881285053],[6.229248046875,43.34016127896536],[6.225128173828124,43.30019680023961]]]}}]}}]
 }]
