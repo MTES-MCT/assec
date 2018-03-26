@@ -12,7 +12,7 @@ import FormScreen from './components/pages/FormScreen';
 const PageComponent = () => (
   <div id="app-container" className="flex-rows">
     <Helmet>
-      <title>Assec{debug() && ' | Development'}</title>
+      <title>Assec{debug() ? ' | Development' : ''}</title>
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto" />
       <link rel="stylesheet"
