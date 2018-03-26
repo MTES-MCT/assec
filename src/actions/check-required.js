@@ -1,9 +1,8 @@
-import deepequal from 'fast-deep-equal';
 import { getFormValues } from 'redux-form';
 
 // application
-// import splitObject from './../lib/split-object';
-import { FORM_NAME, STEP_INSERT, STEP_REMOVE } from './../constants';
+import has from './../lib/has';
+import { FORM_NAME, STEP_DISABLED } from './../constants';
 
 const formValues = (state) => {
   const values = getFormValues(FORM_NAME)(state);
@@ -14,41 +13,41 @@ const formValues = (state) => {
   );
 };
 
-const validRequires = (aobj, obj) => {
-  aobj.map((obj) => {});
+const validate = (requires, choices) => {
+  const rules = Object.assign({}, requires);
+  const ruleskeys = Object.keys(rules);
+  // est ce que toutes les cles dans la regles sont valides ?
+  const validated = ruleskeys
+    .map((key) => {
+      // si pas de cle dans le choix utilisateur -> false
+      // const contains = has(choices, key);
+      // if (!contains) return false;
+      if (rules[key] === '*') return true;
+      return rules[key] === choices[key];
+    })
+    .filter(v => v);
+  // test d'egalite
+  // -> il est valide uniquement toutes les valeurs sont true (and)
+  // -> pour le "or" il faut juste tester si une valeur est valide
+  return validated.length === ruleskeys.length;
 };
 
 const checkRequires = () => (dispatch, getState) => {
   const state = getState();
   const { fields } = state.steppedform;
   const choices = formValues(state);
-  const validator = fields.map(({ requires }) => {
-    // le flag false indique qu'aucune requires ne s'applique au champs
-    if (requires === false) return true;
-    const fitrequires = validRequires(requires, choices);
-    return fitrequires;
-    // return deepequal(requires[0] || {}, {});
-  });
-  console.log('validator', validator);
-
-  /*
-  // FIXME -> use an array of requires to validate with and/or
-  // si une requires est remplie on affiche la prochaine étape
-  // sinon on l'ajouter dans un array d'étapes à ne pas afficher
-  const { requires } = nextfield;
-  // si le champs requires du JSON est false
-  // on autorise toujours la visibilité du champs
-  const hasnocondition = requires === false;
-  const choices = getArrayValues(state);
-  const validrequires = choices.filter(obj =>
-    deepequal(requires[0] || {}, obj));
-  const type =
-    hasnocondition || validrequires.length > 0 ? STEP_INSERT : STEP_REMOVE;
+  const disabled = fields
+    .map(({ requires }) => {
+      // le flag false indique qu'aucune requires ne s'applique au champs
+      // donc le champs ne doit pas être disabled
+      if (requires === false) return false;
+      return !validate(requires, choices);
+    })
+    .reduce((acc, bool, index) => (!bool ? acc : acc.concat([index])), []);
   dispatch({
-    type,
-    index: nextindex,
+    disabled,
+    type: STEP_DISABLED,
   });
-  */
 };
 
 export default checkRequires;
