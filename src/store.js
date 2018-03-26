@@ -4,13 +4,14 @@ import { routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // application
+import debug from './lib/debug';
 import reducers from './reducers';
 
 const bindMiddleware = (middleware = []) => {
-  if (process.env.NODE_ENV === 'production') {
-    return applyMiddleware(...middleware);
+  if (debug()) {
+    return composeWithDevTools(applyMiddleware(...middleware));
   }
-  return composeWithDevTools(applyMiddleware(...middleware));
+  return applyMiddleware(...middleware);
 };
 
 export const configure = (history, initialState = {}) =>

@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 // application
+import debug from './lib/debug';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 
@@ -11,7 +12,7 @@ import FormScreen from './components/pages/FormScreen';
 const PageComponent = () => (
   <div id="app-container" className="flex-rows">
     <Helmet>
-      <title>Assec</title>
+      <title>Assec{debug() && ' | Development'}</title>
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto" />
       <link rel="stylesheet"
