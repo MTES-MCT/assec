@@ -9,7 +9,6 @@ import ChoiceInput from './inputs/ChoiceInput';
 import ZoningInput from './inputs/ZoningInput';
 
 const getinputbytype = (obj) => {
-  // console.log('obj', obj);
   switch (obj.type) {
   case 'list':
     return ListInput;

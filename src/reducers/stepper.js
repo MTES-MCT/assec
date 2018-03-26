@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
 // application
-import uniq from './../lib/uniq';
 import {
   FORM_RESET,
   STEP_DISABLED,

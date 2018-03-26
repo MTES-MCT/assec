@@ -7,10 +7,6 @@ import AppFooter from './components/AppFooter';
 
 // routes
 import FormScreen from './components/pages/FormScreen';
-// import AppForm from './components/form/AppForm';
-// import AppResults from './components/mockup/AppResults';
-// import AppSidebar from './components/mockup/AppSidebar';
-// import StepperProgress from './components/mockup/stepper/StepperProgress';
 
 const PageComponent = () => (
   <div id="app-container" className="flex-rows">
@@ -24,7 +20,7 @@ const PageComponent = () => (
     <AppHeader />
     {/* routes */}
     <FormScreen />
-    <AppFooter version="0.5.0" />
+    <AppFooter version="0.6.0" />
   </div>
 );
 

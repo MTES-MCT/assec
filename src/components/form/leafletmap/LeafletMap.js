@@ -41,9 +41,6 @@ class LeafletMap extends React.PureComponent {
 
 LeafletMap.propTypes = {
   zones: PropTypes.array.isRequired,
-  // coords: PropTypes.object.isRequired,
-  // isGeolocationEnabled: PropTypes.bool.isRequired,
-  // isGeolocationAvailable: PropTypes.bool.isRequired,
 };
 
 export default geolocated()(LeafletMap);
