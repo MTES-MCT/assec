@@ -39,7 +39,8 @@
     "postbuild": "cp ./src/styles.css ./build/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
+    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed",
+    "precommit": "sh ./.scripts/hooks/pre-commit"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
