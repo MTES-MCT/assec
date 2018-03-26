@@ -2,13 +2,17 @@
 
 ## Documentation
 
+- [React](https://reactjs.org)
 - [React Leaflet](https://react-leaflet.js.org)
+- [QGis](https://www.qgis.org/fr/site/index.html)
+- [GeoJSON.io](http://geojson.io)
 
-#### MongoDB Admin
+#### Admin Templates
 
 - [MongoUI](https://github.com/azat-co/mongoui)
 - [Mongo Express](https://github.com/mongo-express/mongo-express)
 - [KeystoneJS](http://keystonejs.com/)
+- [Rubix](http://rubix.sketchpixy.com)
 
 ## Changelog
 
