@@ -1,7 +1,6 @@
 import { getFormValues } from 'redux-form';
 
 // application
-import has from './../lib/has';
 import { FORM_NAME, STEP_DISABLED } from './../constants';
 
 const formValues = (state) => {
