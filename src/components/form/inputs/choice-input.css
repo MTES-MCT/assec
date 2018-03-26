@@ -1,14 +1,14 @@
-.choice-button {
+.choice-input {
   height: 40px;
   display: flex;
   cursor: pointer;
   font-size: 1.6em;
 }
 
-.choice-button input {
+.choice-input input {
   margin-right: 7px;
 }
 
-.choice-button ~ .choice-button {
+.choice-input ~ .choice-input {
   margin-left: 24px;
 }

@@ -87,11 +87,27 @@ RESPONSIVE
   }
 
   #app-content {
+    padding: 0;
     flex-direction: column-reverse;
 
     .column ~ .column {
       margin-top: 0;
       margin-left: 0;
+    }
+  }
+
+  #stepper-form {
+    .list-input {
+      width: 100%;
+    }
+
+    .input-type-list .flex-columns,
+    .input-type-choice .flex-columns {
+      flex-direction: column;
+
+      & label ~ label {
+        margin-left: 0;
+      }
     }
   }
 }
