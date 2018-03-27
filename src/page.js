@@ -13,7 +13,6 @@ const PageComponent = () => (
   <div id="app-container" className="flex-rows">
     <Helmet>
       <title>Assec{debug() ? ' | Development' : ''}</title>
-      <link rel="stylesheet" href="css/leaflet.css" />
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto" />
     </Helmet>
