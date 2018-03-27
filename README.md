@@ -1,22 +1,22 @@
 # ASSEC
 
-## Documentation
+## Requirements
+> This app was scaffolded with [create-react-app](https://github.com/facebook/create-react-app)
+
+- [Yarn](https://yarnpkg.com/fr/)
+- [NodeJS v8.10.0](https://nodejs.org/en/)
+> Use [NVM](https://github.com/creationix/nvm) to switch between NodeJS versions
+
+## Main Dependencies
 
 - [React](https://reactjs.org)
+- [React Redux](https://github.com/reactjs/react-redux)
 - [React Leaflet](https://react-leaflet.js.org)
+
+## Softwares & Utils
+
 - [QGis](https://www.qgis.org/fr/site/index.html)
 - [GeoJSON.io](http://geojson.io)
-
-### Propluvia SIG to GeoJSON (QGis)
-
-- Open QGis
-- Open SIG layer zip file
-- Right click on a layer in the left panel "couches"
-- Click "Save as..."
-- Select an output format (GeoJSON)
-- Select an output file
-- Select a SCR value (ESPG-4326)
-- Save file
 
 #### Admin Templates
 
