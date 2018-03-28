@@ -11,6 +11,8 @@ import FormScreen from './components/pages/FormScreen';
 
 const PageComponent = () => (
   <div id="app-container" className="flex-rows">
+    {console.log('process.env', process.env.PORT)}
+    {console.log('process.env', process.env.REACT_APP_PORT)}
     <Helmet>
       <title>Assec{debug() ? ' | Development' : ''}</title>
       <link rel="stylesheet"

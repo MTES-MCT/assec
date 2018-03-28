@@ -1,8 +1,9 @@
 {
   "name": "assec",
   "version": "0.7.0",
-  "private": true,
   "license": "ISC",
+  "description": "ASSEC Frontend",
+  "private": true,
   "author": {
     "name": "Matthieu Lassalvy",
     "email": "sixertoy.github@gmail.com"
@@ -12,7 +13,8 @@
     "precommit": "sh ./.scripts/hooks/pre-commit"
   },
   "workspaces": [
-    "frontend"
+    "frontend",
+    "backoffice"
   ],
   "devDependencies": {
     "eslint": "^4.19.1",
