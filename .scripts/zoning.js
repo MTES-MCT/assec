@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const uuidv1 = require('uuid/v1');
 
 const inputfolder = path.join(__dirname, 'layers');
 const outputfile = path.join(__dirname, '..', 'src', 'datas', 'zones.json');
@@ -10,9 +11,9 @@ const targets = ['eso_93.json', 'esu_93.json']
       acc.concat(
         ...features.map(feat => ({
           help: '',
-          id: feat.properties.Id,
-          value: feat.properties.Libel_ZA_ESU || feat.properties.Libel_ZA_ESO,
+          id: uuidv1(),
           geojson: feat.geometry,
+          value: feat.properties.Libel_ZA_ESU || feat.properties.Libel_ZA_ESO,
         }))
       ),
     []
