@@ -1,2 +1,2 @@
-mockup: npm run start
-sass: npm run sass
+frontend: cd frontend && npm run start
+frontend-sass: cd frontend && npm run sass
