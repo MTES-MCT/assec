@@ -1,0 +1,21 @@
+@import './leaflet/leaflet.css';
+@import './fontello/css/fontello-embedded.css';
+
+// SCSS Files
+@import 'base';
+@import 'form';
+@import 'grid';
+
+body {
+  font-size: 11px;
+  background-color: #F1F1F1;
+  font-family: 'Roboto', sans-serif;
+}
+
+// application
+#root,
+#app-container {
+  min-height: 100vh;
+}
+
+@import './modules/theme.scss';

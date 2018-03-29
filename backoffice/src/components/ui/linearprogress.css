@@ -1,0 +1,53 @@
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
+  }
+
+  50% {
+    width: 30%;
+  }
+
+  70% {
+    width: 70%;
+  }
+
+  80% {
+    left: 50%;
+  }
+
+  95% {
+    left: 120%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+#preloader {
+  position: relative;
+}
+
+#preloader,
+.loader,
+.loading,
+.loading::before {
+  height: 4px;
+}
+
+.loading {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 7px;
+  position: absolute;
+}
+
+.loading::before {
+  content: '';
+  left: -200px;
+  width: 200px;
+  display: block;
+  position: absolute;
+  animation: loading 2s linear infinite;
+}

@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+// application
+import './mainnavigation.css';
+
 const isdisabled = (path, currentpath) =>
   (path !== '/'
     ? path !== '/' && currentpath.indexOf(path) !== -1
@@ -11,28 +14,20 @@ const renderLink = (label, path, icon, minimize, currpath) => {
   const disabled = isdisabled(path, currpath) ? 'active' : '';
   return (
     // eslint-disable-next-line
-    <a to={path} className={`button ${disabled}`}>
-      <i className={`editor-icon-${icon}`} />
+    <a href={path} className={`link ${disabled}`}>
+      <i className={`icon-${icon}`} />
       {minimize ? null : <span>{label}</span>}
     </a>
   );
 };
 
-const MainNavigation = ({
-  user, path, islogged, minimize,
-}) => (
-  <div id="main-navigation" className="flex-rows flex-between">
-    <nav className="flex-rows top-nav">
+const MainNavigation = ({ path, minimize }) => (
+  <div id="main-navigation"
+    className={`flex-rows flex-between ${minimize ? '' : 'opened'}`}>
+    <nav className="flex-rows flex-start">
       {renderLink('Dashboard', '/', 'gauge', minimize, path)}
-      {islogged &&
-        renderLink('Applications', '/applications', 'window', minimize, path)}
-      {/* renderLink('Games', '/games', 'gamepad', minimize, path)}
-      {renderLink('Categories', '/categories', 'bookmarks', minimize, path)}
-      {renderLink('Markers', '/markers', 'location', minimize, path)}
-      {renderLink('Maps', '/maps', 'map', minimize, path) */}
-    </nav>
-    <nav className="flex-rows bottom-nav">
-      {user && renderLink('User', `/users/${user._id}`, 'user', minimize, path)}
+      {renderLink('Restrictions', '/restrictions', 'alert', minimize, path)}
+      {renderLink('Contributeurs', '/contributeurs', 'users', minimize, path)}
     </nav>
   </div>
 );
@@ -44,12 +39,6 @@ MainNavigation.defaultProps = {
 MainNavigation.propTypes = {
   path: PropTypes.string.isRequired,
   minimize: PropTypes.bool.isRequired,
-  islogged: PropTypes.bool.isRequired,
-  user: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };
 
-const mapStateToProps = state => ({
-  user: state.user,
-});
-
-export default connect(mapStateToProps)(MainNavigation);
+export default connect()(MainNavigation);

@@ -8,3 +8,4 @@ backoffice: cd backoffice && npm start
 
 # SASS
 frontend-sass: cd frontend && npm run sass
+backoffice-sass: cd backoffice && npm run sass

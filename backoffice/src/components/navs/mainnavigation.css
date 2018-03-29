@@ -1,0 +1,26 @@
+#main-navigation {
+  flex: 0;
+  padding: 0;
+  width: 45px;
+  min-width: 45px;
+  font-size: 1.3em;
+  justify-content: space-between;
+}
+
+#main-navigation.opened {
+  width: 120px;
+  min-width: 120px;
+}
+
+#main-navigation .link {
+  height: 45px;
+  display: block;
+  min-height: 45px;
+  border-radius: 0;
+  line-height: 45px;
+  text-align: center;
+}
+
+#main-navigation .link + .link {
+  margin-top: 1px;
+}

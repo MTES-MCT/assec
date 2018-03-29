@@ -35,6 +35,18 @@
       "css": "floppy",
       "code": 59396,
       "src": "entypo"
+    },
+    {
+      "uid": "ecf8edb95c3f45eb433b4cce7ba9f740",
+      "css": "users",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "39a5a0d7ce8342d149373b2ce219503a",
+      "css": "alert",
+      "code": 59398,
+      "src": "entypo"
     }
   ]
 }

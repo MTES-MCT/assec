@@ -1,26 +1,33 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
 import { debug } from 'assec-utils';
+import { withRouter } from 'react-router';
 
-import AppHeader from './components/AppHeader';
-import AppFooter from './components/AppFooter';
-import AdminPage from './components/pages/AdminPage';
+// application
+import Dashboard from './pages/Dashboard';
+
+// components
 import MainNavigation from './components/navs/MainNavigation';
 
-const PageComponent = () => (
-  <div id="app-container" className="flex-rows">
+const PageComponent = ({ location }) => (
+  <div id="app-container" className="flex-columns">
     <Helmet>
       <title>Assec Backoffice{debug() ? ' | Development' : ''}</title>
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto" />
     </Helmet>
-    <MainNavigation />
-    <AppHeader />
-    {/* routes */}
-    <AdminPage />
-    {/* routes */}
-    <AppFooter version="0.6.0" />
+    <MainNavigation path={location.pathname} />
+    <div id="page-container" className="flex1">
+      {/* routes */}
+      <Dashboard />
+      {/* routes */}
+    </div>
   </div>
 );
 
-export default PageComponent;
+PageComponent.propTypes = {
+  location: PropTypes.object.isRequired,
+};
+
+export default withRouter(PageComponent);

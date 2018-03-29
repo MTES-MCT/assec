@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+const path = require('path');
+const fse = require('fs-extra');
+const semver = require('semver');
+const exec = require('child_process').exec;
+
+const logger = require('assec-utils/lib/logger');
+const colorize = require('assec-utils/lib/colorize');
+
+const patch = from => {
+  const splitted = semver.clean(from).split('.');
+  return `${splitted[0]}.${splitted[1]}.${Number(splitted[2]) + 1}`;
+};
+
+const minor = from => {
+  const splitted = semver.clean(from).split('.');
+  return `${splitted[0]}.${Number(splitted[1]) + 1}.0`;
+};
+
+const major = from => {
+  const splitted = semver.clean(from).split('.');
+  return `${Number(splitted[0]) + 1}.0.0`;
+};
+
+// calcul des versions
+const rootcwd = path.join(__dirname, '..');
+const mainpkg = require(path.join(rootcwd, 'package.json'));
+const opts = { spaces: 2 };
+const currentversion = mainpkg.version;
+const workspaces = mainpkg.workspaces || [];
+
+const arg = process.argv[2] || false;
+const isvalid = !arg
+  ? false
+  : semver.valid(arg) && semver.gt(arg, currentversion);
+let numto = patch(currentversion);
+if (isvalid) numto = semver.clean(arg);
+else if (!isvalid && arg && arg === 'minor') numto = minor(currentversion);
+else if (!isvalid && arg && arg === 'major') numto = major(currentversion);
+else if (!isvalid && arg && (arg !== 'major' || arg !== 'minor')) {
+  logger.error(
+    `Requires a valid semver term (x.x.x, minor, major) greater than ${currentversion}`,
+    'bump'
+  );
+  console.log(colorize('Script aborted', 'red'));
+  process.exit(0);
+}
+
+const updatepackages = version => {
+  Promise.all(
+    [
+      // update all package.json with a new version number
+      path.join(rootcwd, 'package.json'),
+      ...workspaces.map(pth => path.join(rootcwd, pth, 'package.json')),
+    ].map(filepath =>
+      fse.readJson(filepath).then(data => {
+        const update = { version };
+        return fse.outputJson(filepath, Object.assign({}, data, update), opts);
+      })
+    )
+  )
+    .then(() => {
+      // create a new git commit with version number
+      // it do not create tag
+      exec(
+        `git add -A . && git ci -m "v${version}"`,
+        {
+          encoding: 'utf8',
+          cwd: path.join(rootcwd),
+        },
+        error => {
+          if (error) {
+            console.log(error);
+            process.exit(1);
+          } else {
+            console.log(`all success Packages updated to version ${version}\n`);
+            process.exit(0);
+          }
+        }
+      );
+    })
+    .catch(err => {
+      console.log(err);
+      console.log('all error Unable to update packages versions\n');
+      process.exit(1);
+    });
+};
+
+if (!numto) {
+  console.log(`all error ${numto} is not a valid semver\n`);
+  process.exit(1);
+}
+
+updatepackages(numto);

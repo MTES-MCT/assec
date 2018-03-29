@@ -1,6 +1,6 @@
 {
   "name": "backoffice",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "private": true,
   "dependencies": {
     "assec-utils": "",
@@ -11,6 +11,7 @@
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
@@ -22,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
