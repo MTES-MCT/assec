@@ -1,6 +1,6 @@
 {
   "name": "assec-frontend",
-  "version": "0.7.2",
+  "version": "0.7.0",
   "private": true,
   "dependencies": {
     "assec-utils": "",

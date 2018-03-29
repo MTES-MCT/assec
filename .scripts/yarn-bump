@@ -42,8 +42,13 @@ else if (!isvalid && arg && (arg !== 'major' || arg !== 'minor')) {
     `Requires a valid semver term (x.x.x, minor, major) greater than ${currentversion}`,
     'bump'
   );
-  console.log(colorize('Script aborted', 'red'));
+  logger.error('Script aborted', 'bump');
   process.exit(0);
+}
+
+if (!numto) {
+  logger.error(`${numto} is not a valid semver\n`);
+  process.exit(1);
 }
 
 const updatepackages = version => {
@@ -63,7 +68,7 @@ const updatepackages = version => {
       // create a new git commit with version number
       // it do not create tag
       exec(
-        `git add -A . && git ci -m "v${version}"`,
+        `git add -A . && git ci -m "🚀  bump version v${version}"`,
         {
           encoding: 'utf8',
           cwd: path.join(rootcwd),
@@ -71,9 +76,10 @@ const updatepackages = version => {
         error => {
           if (error) {
             console.log(error);
+            logger.error('Unable to commit changes\n', 'bump');
             process.exit(1);
           } else {
-            console.log(`all success Packages updated to version ${version}\n`);
+            logger.ok(`Packages updated to version ${version}\n`, 'bump');
             process.exit(0);
           }
         }
@@ -81,14 +87,8 @@ const updatepackages = version => {
     })
     .catch(err => {
       console.log(err);
-      console.log('all error Unable to update packages versions\n');
+      logger.error('Unable to update packages versions\n', 'bump');
       process.exit(1);
     });
 };
-
-if (!numto) {
-  console.log(`all error ${numto} is not a valid semver\n`);
-  process.exit(1);
-}
-
 updatepackages(numto);

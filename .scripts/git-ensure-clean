@@ -14,5 +14,5 @@ if [ -n "$GIT_STATUS" ]; then
   echo "$(tput setaf 136)$(tput bold)❌  Git repository is dirty!$(tput sgr0)"
   echo
   git status
-  exit 0
+  exit 1
 fi
