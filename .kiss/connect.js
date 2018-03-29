@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-class MyComponent extends ReactPureComponent {
+class MyComponent extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
