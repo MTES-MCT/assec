@@ -1,11 +1,21 @@
 # ASSEC
 
 ## Requirements
-> This app was scaffolded with [create-react-app](https://github.com/facebook/create-react-app)
+> This project use [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) to manage a monorepo project<br>
+> Backoffice and Frontend apps were scaffolded with [create-react-app](https://github.com/facebook/create-react-app)<br>
 
 - [Yarn](https://yarnpkg.com/fr/)
 - [NodeJS v8.10.0](https://nodejs.org/en/)
-> Use [NVM](https://github.com/creationix/nvm) to switch between NodeJS versions
+> Instann and use [NVM](https://github.com/creationix/nvm) to manage and switch between NodeJS required version
+
+## Scripts
+
+**`yarn cleanup`**
+- Remove sub-projects `node_modules` packages
+- Remove sub-projects `yarn-error.log` file
+- Fresh node_modules install
+
+**`yarn bump`**
 
 ## Main Dependencies
 
@@ -18,13 +28,6 @@
 - [QGis](https://www.qgis.org/fr/site/index.html)
 - [GeoJSON.io](http://geojson.io)
 
-#### Admin Templates
-
-- [MongoUI](https://github.com/azat-co/mongoui)
-- [Mongo Express](https://github.com/mongo-express/mongo-express)
-- [KeystoneJS](http://keystonejs.com/)
-- [Rubix](http://rubix.sketchpixy.com)
-
 ## Changelog
 
 #### v0.5.0
@@ -32,4 +35,4 @@
 
 #### v0.4.0
 * [ ] fix alert view
-* [ ] fix stepper index when show results
+* [x] fix stepper index when show results

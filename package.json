@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "nf start -p 3000",
     "precommit": "sh ./.scripts/hooks/pre-commit",
-    "cleanup": "rm -rf node_modules && yarn install"
+    "cleanup": "sh ./.scripts/yarn-cleanup",
+    "postcleanup": "yarn install"
   },
   "workspaces": [
     "utils",

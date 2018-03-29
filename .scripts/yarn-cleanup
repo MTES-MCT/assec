@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# ------------------------
+#
+# Description
+# ---
+# Cleanup de toutes les dependances des sous projets
+# Les sous projets sont definis dans ./package.json { workspaces: [...] }
+#
+# Usage
+# ---
+# $ yarn cleanup
+#
+# ------------------------
+
+# recupere les sous projets definis dans le main ./package.json
+WORKSPACES=$(
+  node -pe 'JSON.parse(process.argv[1]).workspaces.join(" ")' "$(cat package.json)"
+)
+
+function deleteFile () {
+  if [ -f $1 ]; then
+    echo "Deleting $1"
+    rm "$1"
+  fi
+}
+
+function deleteModules () {
+  if [ -d $1 ]; then
+    echo "Deleting $1"
+    rm -rf "$1"
+  fi
+}
+
+# ---- SUB PROJECTS ----
+# iterate to workspaces
+for FOLDER in $WORKSPACES
+do
+  # delete node_modules folder
+  deleteModules "./$FOLDER/node_modules"
+  # delete yarn error log file
+  deleteFile "./$FOLDER/yarn-error.log"
+  # delete yarn lock file
+  deleteFile "./$FOLDER/yarn.lock"
+done
+
+# ---- MAIN ----
+# delete node_modules folder
+deleteModules "./node_modules"
+# delete yarn error log file
+# delete yarn error log file
+deleteFile "./yarn-error.log"
+# delete yarn lock file
+deleteFile "./yarn.lock"
+
+exit 0
