@@ -3,14 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "assec-utils": "",
+    "history": "^4.7.2",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
+    "react-color": "^2.14.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1"
+    "react-helmet": "^5.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "1.1.1",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-form": "^7.3.0",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "node-sass": "^4.7.2",
+    "prettier": "^1.11.1",
+    "prettier-eslint": "^8.8.1",
+    "prettier-stylelint": "^0.4.2",
+    "stylelint-config-standard": "^18.2.0"
   }
 }

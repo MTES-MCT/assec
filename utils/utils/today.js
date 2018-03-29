@@ -1,4 +1,4 @@
-const today = () =>
+export const today = () =>
   new Date().toLocaleDateString('fr-FR', {
     month: 'long',
     day: 'numeric',

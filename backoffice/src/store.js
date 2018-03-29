@@ -1,10 +1,10 @@
 import thunk from 'redux-thunk';
+import { debug } from 'assec-utils';
 import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // application
-import { debug } from 'assec-utils';
 import reducers from './reducers';
 
 const bindMiddleware = (middleware = []) => {

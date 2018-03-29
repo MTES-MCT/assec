@@ -137,8 +137,3 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/windows,linux,osx,macos,node
-
-build
-src/styles.css
-src/fontello/**
-!src/fontello/config.json
