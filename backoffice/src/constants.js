@@ -1,1 +1,1 @@
-export const FORM_NAME = 'admin_form';
+export const CONTRIBUTORS_FORM_NAME = 'contributors_form';

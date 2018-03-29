@@ -2,11 +2,10 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 
 // application
-import { FORM_NAME } from './../constants';
 import ColorPickerInput from './../components/colorpicker/ColorPickerInput';
 
 const Dashboard = () => (
-  <div>
+  <div id="dashboard-page">
     <table>
       <thead>
         <tr>
@@ -66,5 +65,5 @@ const Dashboard = () => (
 );
 
 export default reduxForm({
-  form: { FORM_NAME },
+  form: 'form',
 })(Dashboard);
