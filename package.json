@@ -8,6 +8,9 @@
     "name": "Matthieu Lassalvy",
     "email": "sixertoy.github@gmail.com"
   },
+  "engines": {
+    "node": "8.11.0"
+  },
   "scripts": {
     "dev": "nf start -p 3000",
     "dev:db": "mongod --dbpath /mongodb/db --port 27018",
@@ -18,7 +21,7 @@
     "postcleanup": "yarn install"
   },
   "workspaces": [
-    "api",
+    "graph",
     "utils",
     "frontend",
     "backoffice"
