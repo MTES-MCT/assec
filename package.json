@@ -21,10 +21,10 @@
     "postcleanup": "yarn install"
   },
   "workspaces": [
+    "admin",
     "graph",
     "utils",
-    "frontend",
-    "backoffice"
+    "frontend"
   ],
   "devDependencies": {
     "eslint": "^4.19.1",

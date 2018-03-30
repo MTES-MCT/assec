@@ -5,9 +5,9 @@
 #
 # ------------
 frontend: cd frontend && npm run start
-backoffice: cd backoffice && npm start
+admin: cd admin && npm start
 graph: cd graph && npm run dev
 
 # SASS
 frontend-sass: cd frontend && npm run sass
-backoffice-sass: cd backoffice && npm run sass
+admin-sass: cd admin && npm run sass
