@@ -23,8 +23,10 @@ const PageComponent = ({ location }) => {
           {pagetitle(routes, location.pathname)}
           {debug() ? ' | DEV' : ''} | Assec Backoffice
         </title>
+        {/* <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto" /> */}
         <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto" />
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" />
       </Helmet>
       <MainNavigation path={location.pathname} routes={routes} />
       <div id="page-container" className="flex1">
