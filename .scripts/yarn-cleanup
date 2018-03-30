@@ -42,6 +42,7 @@ do
   deleteFile "./$FOLDER/yarn-error.log"
   # delete yarn lock file
   deleteFile "./$FOLDER/yarn.lock"
+  deleteFile "./$FOLDER/package-lock.json"
 done
 
 # ---- MAIN ----
@@ -52,5 +53,6 @@ deleteModules "./node_modules"
 deleteFile "./yarn-error.log"
 # delete yarn lock file
 deleteFile "./yarn.lock"
+deleteFile "./package-lock.json"
 
 exit 0

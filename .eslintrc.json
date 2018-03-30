@@ -1,9 +1,11 @@
 {
   "extends": "airbnb",
   "env": {
+    "jest": true,
     "node": true,
     "mocha": true,
-    "browser": true
+    "browser": true,
+    "jasmine": true
   },
   "rules": {
     "indent": [2, 2, { "SwitchCase": 0 }],

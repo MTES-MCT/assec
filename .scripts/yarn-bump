@@ -32,7 +32,7 @@ const workspaces = mainpkg.workspaces || [];
 const arg = process.argv[2] || false;
 const isvalid = !arg
   ? false
-  : semver.valid(arg) && semver.gt(arg, currentversion);
+  : arg === 'patch' || (semver.valid(arg) && semver.gt(arg, currentversion));
 let numto = patch(currentversion);
 if (isvalid) numto = semver.clean(arg);
 else if (!isvalid && arg && arg === 'minor') numto = minor(currentversion);
