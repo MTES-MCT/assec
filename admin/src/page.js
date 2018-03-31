@@ -1,11 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import { debug } from 'assec-utils';
 import { withRouter, Switch, Route } from 'react-router';
 
 // application
 import { routes } from './routes';
+import { debug } from './lib/debug';
 import { keypath } from './lib/keypath';
 import { pagetitle } from './lib/pagetitle';
 import MainNavigation from './components/navs/MainNavigation';

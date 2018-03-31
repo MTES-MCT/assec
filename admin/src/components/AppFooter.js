@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { debug } from 'assec-utils';
 
 // application
+import { debug } from './../lib/debug';
 
 const AppFooter = ({ version }) => (
   <div id="app-footer" className="flex-columns flex-between">

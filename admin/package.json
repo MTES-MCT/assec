@@ -3,8 +3,9 @@
   "version": "0.7.1",
   "private": true,
   "dependencies": {
-    "assec-utils": "",
+    "express": "^4.16.3",
     "history": "^4.7.2",
+    "ip": "^1.1.5",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-color": "^2.14.0",
