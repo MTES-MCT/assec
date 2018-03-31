@@ -1,4 +1,8 @@
-FROM node:alpine
+FROM node:8.11.0-alpine
+
+# File Author / Maintainer
+MAINTAINER matthieu.lassalvy@beta.gouv.fr
+
 #
 # NodeJS Docker Webapp - Official Doc
 # @see https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
@@ -9,27 +13,36 @@ FROM node:alpine
 # PM2 Docker Integration
 # @see http://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/
 #
+# PS1 Prompt Generated with
+# http://bashrcgenerator.com
+#
 
 # Install bash commands
-RUN apk update && apk add bash
+RUN apk update \
+  && apk add bash \
+  && apk add ncurses
 
-# Creating aliases
+# NPM Env Configuration
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+
+# Copy DOTFILES
 WORKDIR /home/node
-RUN touch .bashrc
-RUN echo 'alias ll="ls -lA"' > .bashrc
-# RUN source /home/node/.bashrc
+COPY ./docker/dotfiles .
 
 WORKDIR /home/node/app
-COPY package.json .
 COPY server.js .
-COPY pm2.json .
+COPY package.json .
 COPY build/ ./public/
 
-RUN npm install --only=production
-RUN npm install pm2 -g
+# NPM Install
+RUN yarn global add pm2
+RUN yarn install --production
 
-EXPOSE 3000
+# expose ExpressJS server port to Docker Compose links
+EXPOSE 3100
+ENV PORT=3100
 
 # !!! DO NOT RUN AS `ROOT` !!!
-# USER node
-CMD ["pm2-runtime", "pm2.json"]
+USER node
+CMD ["pm2-runtime", "server.js"]

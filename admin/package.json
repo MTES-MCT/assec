@@ -5,7 +5,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "history": "^4.7.2",
-    "ip": "^1.1.5",
+    "morgan": "^1.9.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-color": "^2.14.0",
@@ -26,7 +26,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
+    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed",
+    "docker:build": "docker build -t assec/admin .",
+    "docker:dev": "docker run -p 3100:3100 -e \"NODE_ENV=development\" -i -t assec/admin"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

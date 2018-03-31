@@ -1,4 +1,25 @@
-# ASSEC Backoffice
+# ASSEC Admin
+
+## Docker
+
+**Build the image**
+```bash
+docker build -t assec/admin .
+```
+
+**Run the container (production)**
+```bash
+docker run -m "300M" --memory-swap "1G" -w "/home/node/app" -e \"NODE_ENV=production\" -d assec/admin
+```
+
+**Run the container (development)**
+```bash
+docker run -p 3000:3000 -e \"NODE_ENV=development\" -i -t assec/admin
+```
+
+## Server
+
+- [Morgan Logger](https://github.com/expressjs/morgan)
 
 #### Admin Templates
 
