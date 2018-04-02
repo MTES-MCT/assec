@@ -1,0 +1,13 @@
+version: '3'
+services:
+  assec-web:
+    build: ./nginx/
+    ports:
+     - "8080:80"
+     - "443:443"
+    links:
+      - assec-admin:admin
+  assec-admin:
+    build: ./admin/
+    ports:
+     - "3100"
