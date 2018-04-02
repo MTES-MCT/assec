@@ -3,6 +3,7 @@
   "version": "0.7.1",
   "private": true,
   "dependencies": {
+    "dotenv-safe": "^5.0.1",
     "express": "^4.16.3",
     "history": "^4.7.2",
     "morgan": "^1.9.0",
@@ -28,7 +29,7 @@
     "eject": "react-scripts eject",
     "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed",
     "docker:build": "docker build -t assec/admin .",
-    "docker:dev": "docker run -p 3100:3100 -e \"NODE_ENV=development\" -i -t assec/admin"
+    "docker:dev": "docker run -p 3100:3100 --env-file=./.env -it --rm --name=assec_admin assec/admin"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

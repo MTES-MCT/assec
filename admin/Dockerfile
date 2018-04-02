@@ -1,7 +1,7 @@
 FROM node:8.11.0-alpine
 
 # File Author / Maintainer
-MAINTAINER matthieu.lassalvy@beta.gouv.fr
+LABEL maintainer=matthieu.lassalvy@beta.gouv.fr
 
 #
 # NodeJS Docker Webapp - Official Doc
@@ -41,7 +41,6 @@ RUN yarn install --production
 
 # expose ExpressJS server port to Docker Compose links
 EXPOSE 3100
-ENV PORT=3100
 
 # !!! DO NOT RUN AS `ROOT` !!!
 USER node
