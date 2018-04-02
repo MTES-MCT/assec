@@ -18,7 +18,9 @@
     "prebump": "sh ./.scripts/git-ensure-clean",
     "bump": "node ./.scripts/yarn-bump",
     "cleanup": "sh ./.scripts/yarn-cleanup",
-    "postcleanup": "yarn install"
+    "postcleanup": "yarn install",
+    "precompose": "cd admin && yarn build",
+    "compose": "docker-compose up --build"
   },
   "workspaces": [
     "admin",
