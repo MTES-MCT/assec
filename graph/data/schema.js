@@ -11,7 +11,17 @@ import resolvers from './resolvers';
 // Queries that users are allowed to make
 const queryTypeDefs = `
 type Query {
+  allPersons: [Person]
   allDepartements: [Departement]
+}
+`;
+
+const personTypeDefs = `
+type Person {
+  id: String
+  email: String
+  lastname: String
+  firstname: String
 }
 `;
 
@@ -26,6 +36,7 @@ type Departement {
 
 const typeDefs = `
 ${queryTypeDefs}
+${personTypeDefs}
 ${departementTypeDefs}
 `;
 

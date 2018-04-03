@@ -4,7 +4,10 @@
 
 - [GraphQL](http://graphql.org)
 - [Express](https://expressjs.com)
+- [Apollo](https://www.apollographql.com/docs/react/)
 
+## Documentation
+- [.env File](https://github.com/rolodato/dotenv-safe)
 
 ## More Docs & Links
 
