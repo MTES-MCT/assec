@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
-import { ALL_PERSONS } from './../../apollo';
+import { ALL_PERSONS } from './../../graphql';
 
 const renderPersonTableHeader = () => (
   <thead>

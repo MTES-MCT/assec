@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
 // application
-import { CREATE_PERSON, UPDATE_PERSONS } from './../../apollo';
+import { CREATE_PERSON, UPDATE_PERSONS } from './../../graphql';
 
 const PersonForm = () => (
   <Mutation mutation={CREATE_PERSON} update={UPDATE_PERSONS}>

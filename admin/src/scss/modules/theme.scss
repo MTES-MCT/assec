@@ -6,6 +6,10 @@
   }
 }
 
+#preloader .loading::before {
+  background-color: #2BD1C0;
+}
+
 /*
 .default-theme {
   .nav {

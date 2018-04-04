@@ -1,20 +1,18 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import React, { Fragment } from 'react';
+import { ApolloProvider } from 'react-apollo';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
 
 // application
 import './styles.css';
 import Page from './page';
 import { configure } from './store';
+import { createClient } from './client';
+import LinearProgress from './components/ui/LinearProgress';
 
-const client = new ApolloClient({
-  uri: 'http://localhost:3200/graphql',
-});
+const { client, NetworkStatusNotifier } = createClient('http://localhost:3200/graphql');
 
 // application
 const history = createHistory();
@@ -23,7 +21,15 @@ const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ApolloProvider client={client}>
-        <Page />
+        <Fragment>
+          <NetworkStatusNotifier render={({ loading, error }) => (
+            <div className="relative">
+              <LinearProgress loading={loading} />
+              {error && <p>Error: {JSON.stringify(error)}</p>}
+            </div>
+          )} />
+          <Page />
+        </Fragment>
       </ApolloProvider>
     </ConnectedRouter>
   </Provider>
