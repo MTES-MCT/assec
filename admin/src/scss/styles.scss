@@ -5,6 +5,7 @@
 @import 'base';
 @import 'form';
 @import 'grid';
+@import 'table';
 
 body {
   font-size: 12px;
@@ -19,4 +20,5 @@ body {
   min-height: 100vh;
 }
 
+@import './modules/form.scss';
 @import './modules/theme.scss';

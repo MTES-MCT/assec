@@ -1,20 +1,12 @@
-import times from 'lodash.times';
-import { Departement } from './connectors';
+import { Person } from './connectors';
 
-const casual = require('casual');
-
-casual.seed(123);
-const resolvers = {
-  Query: {
-    allPersons: () =>
-      times(20, () => ({
-        id: casual.uuid,
-        email: casual.email,
-        lastname: casual.last_name,
-        firstname: casual.first_name,
-      })),
-    allDepartements: () => Departement.findAll(),
-  },
+const Query = {
+  persons: () => Person.findAll(),
 };
 
-export default resolvers;
+const Mutation = {
+  createPerson: (_, { firstname, lastname, email }) =>
+    Person.create({ firstname, lastname, email }),
+};
+
+export default { Query, Mutation };

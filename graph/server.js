@@ -5,10 +5,17 @@ import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv-safe';
 import bodyParser from 'body-parser';
+import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
 // application
-import schema from './data/schema';
+import myresolvers from './data/resolvers';
+import mydefinitions from './data/schema';
+
+const myschema = makeExecutableSchema({
+  resolvers: myresolvers,
+  typeDefs: mydefinitions,
+});
 
 dotenv.config();
 const debug = require('assec-utils/lib/debug');
@@ -16,7 +23,17 @@ const logger = require('assec-utils/lib/logger');
 
 const app = express();
 app.use(cors());
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use(
+  '/graphql',
+  // bodyParser is needed just for POST.
+  bodyParser.json(),
+  graphqlExpress({
+    schema: myschema,
+    // Apollo Server accepts a GraphQLOptions object as its single argument
+    // @see apollographql.com/docs/apollo-server/setup.html#graphqlOptions
+    debug: debug(),
+  }),
+);
 
 if (debug()) {
   // use GraphQL web interface only in development environment

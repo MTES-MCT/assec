@@ -1,21 +1,3 @@
-/**
- *
- * GraphQL Schemas
- *
- */
-import { makeExecutableSchema } from 'graphql-tools';
-
-// application
-import resolvers from './resolvers';
-
-// Queries that users are allowed to make
-const queryTypeDefs = `
-type Query {
-  allPersons: [Person]
-  allDepartements: [Departement]
-}
-`;
-
 const personTypeDefs = `
 type Person {
   id: String
@@ -25,19 +7,24 @@ type Person {
 }
 `;
 
-const departementTypeDefs = `
-type Departement {
-  id: Int
-  code: String
-  name: String
-  slug: String
+const queriesTypeDefs = `
+type Query {
+  # nom identique au resolver
+  persons: [Person]
+}
+
+type Mutation {
+  createPerson(
+    email: String
+    lastname: String
+    firstname: String
+  ): Person
 }
 `;
 
-const typeDefs = `
-${queryTypeDefs}
+const typedefinitions = `
+${queriesTypeDefs}
 ${personTypeDefs}
-${departementTypeDefs}
 `;
 
-export default makeExecutableSchema({ typeDefs, resolvers });
+export default typedefinitions;
