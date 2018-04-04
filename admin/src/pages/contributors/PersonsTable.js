@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
-import { getAllPersons } from './graph';
+import { ALL_PERSONS } from './../../apollo';
 
 const renderPersonTableHeader = () => (
   <thead>
@@ -22,15 +22,15 @@ const renderPersonTableRow = person => (
 );
 
 const PersonTable = () => (
-  <Query query={getAllPersons} displayName="PersonTableQuery">
-    {({ loading, error, data }) => {
+  <Query query={ALL_PERSONS} displayName="PersonTableQuery">
+    {({ loading, error, data: { allPersons } }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
       return (
         <div className="page-contributors-persons">
           <table>
             {renderPersonTableHeader()}
-            <tbody>{data.persons.map(renderPersonTableRow)}</tbody>
+            <tbody>{allPersons.map(renderPersonTableRow)}</tbody>
           </table>
         </div>
       );

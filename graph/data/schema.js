@@ -9,8 +9,7 @@ type Person {
 
 const queriesTypeDefs = `
 type Query {
-  # nom identique au resolver
-  persons: [Person]
+  allPersons: [Person]
 }
 
 type Mutation {

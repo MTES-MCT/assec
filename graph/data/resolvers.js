@@ -1,7 +1,7 @@
 import { Person } from './connectors';
 
 const Query = {
-  persons: () => Person.findAll(),
+  allPersons: () => Person.findAll(),
 };
 
 const Mutation = {

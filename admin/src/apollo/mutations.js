@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const createPerson = gql(`
+export const CREATE_PERSON = gql(`
 mutation createPerson(
   $email: String
   $lastname: String
@@ -19,13 +19,4 @@ mutation createPerson(
 }
 `);
 
-export const getAllPersons = gql(`
-query getAllPersons{
-  persons{
-    id
-    email
-    lastname
-    firstname
-  }
-}
-`);
+export default CREATE_PERSON;
