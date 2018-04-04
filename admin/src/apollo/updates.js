@@ -6,10 +6,11 @@ import { ALL_PERSONS } from './queries';
  * @param {[type]} data GraphQL Request Result
  */
 export const UPDATE_PERSONS = (store, { data: { createPerson } }) => {
-  const { persons } = store.readQuery({ query: ALL_PERSONS });
+  const { allPersons } = store.readQuery({ query: ALL_PERSONS });
+  console.log('allPersons', allPersons);
   store.writeQuery({
     query: ALL_PERSONS,
-    data: { persons: persons.concat([createPerson]) },
+    data: { allPersons: allPersons.concat([createPerson]) },
   });
 };
 

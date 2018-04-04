@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 
 import { ALL_PERSONS } from './../../apollo';
 
-const renderPersonTableHeader = () => (
+const renderRestrictionsTableHeader = () => (
   <thead>
     <tr>
       <th>Lastname</th>
@@ -13,7 +13,7 @@ const renderPersonTableHeader = () => (
   </thead>
 );
 
-const renderPersonTableRow = person => (
+const renderRestrictionsTableRow = person => (
   <tr key={person.id}>
     <td>{person.lastname}</td>
     <td>{person.firstname}</td>
@@ -21,16 +21,16 @@ const renderPersonTableRow = person => (
   </tr>
 );
 
-const PersonTable = () => (
-  <Query query={ALL_PERSONS} displayName="PersonTableQuery">
+const RestrictionsTable = () => (
+  <Query query={ALL_PERSONS} displayName="RestrictionsTableQuery">
     {({ loading, error, data: { allPersons } }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
       return (
         <div>
           <table>
-            {renderPersonTableHeader()}
-            <tbody>{allPersons.map(renderPersonTableRow)}</tbody>
+            {renderRestrictionsTableHeader()}
+            <tbody>{allPersons.map(renderRestrictionsTableRow)}</tbody>
           </table>
         </div>
       );
@@ -38,4 +38,4 @@ const PersonTable = () => (
   </Query>
 );
 
-export default PersonTable;
+export default RestrictionsTable;

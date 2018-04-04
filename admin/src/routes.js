@@ -1,4 +1,5 @@
 import Dashboard from './pages/Dashboard';
+import Restrictions from './pages/Restrictions';
 import Contributors from './pages/Contributors';
 
 export const routes = [
@@ -15,6 +16,13 @@ export const routes = [
     path: '/contributors',
     name: 'Contributeurs',
     component: Contributors,
+  },
+  {
+    exact: true,
+    icon: 'alert',
+    name: 'Restrictions',
+    path: '/restrictions',
+    component: Restrictions,
   },
 ];
 

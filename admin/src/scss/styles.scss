@@ -20,5 +20,9 @@ body {
   min-height: 100vh;
 }
 
+.page-content {
+  padding: 40px 20px;
+}
+
 @import './modules/form.scss';
 @import './modules/theme.scss';
