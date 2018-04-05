@@ -8,7 +8,7 @@ import Legend from './../../components/forms/Legend';
 import TextInput from './../../components/forms/TextInput';
 import SubmitButton from './../../components/forms/SubmitButton';
 
-const PersonForm = () => (
+const ContributorForm = () => (
   <Mutation mutation={CREATE_PERSON} update={UPDATE_PERSONS}>
     {createPerson => (
       <Form onSubmit={variables => createPerson({ variables })}
@@ -28,4 +28,4 @@ const PersonForm = () => (
   </Mutation>
 );
 
-export default PersonForm;
+export default ContributorForm;

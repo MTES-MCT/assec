@@ -13,17 +13,17 @@ export const routes = [
   },
   {
     exact: false,
-    icon: 'globe',
-    path: '/departements',
-    name: 'Départements',
-    component: Departements,
-  },
-  {
-    exact: false,
     icon: 'attention',
     name: 'Restrictions',
     path: '/restrictions',
     component: Restrictions,
+  },
+  {
+    exact: false,
+    icon: 'globe',
+    path: '/departements',
+    name: 'Départements',
+    component: Departements,
   },
   {
     exact: false,

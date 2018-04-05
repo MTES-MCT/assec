@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 const renderOption = obj => (
-  <option key={obj.id} value={obj.id}>
+  <option key={obj.id} value={obj.value}>
     {obj.name}
   </option>
 );

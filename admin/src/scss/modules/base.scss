@@ -42,13 +42,13 @@ span + .icon,
   flex: 1;
 }
 
-#page-aside-column {
+#page-aside-column:not(.col50) {
   flex: 0;
   min-width: 320px;
+}
 
-  legend {
-    width: 100%;
-  }
+#page-aside-column legend {
+  width: 100%;
 }
 
 #page-main-column + #page-aside-column {

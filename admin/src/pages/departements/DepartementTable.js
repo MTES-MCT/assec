@@ -9,17 +9,23 @@ const renderDepartementTableHeader = () => (
       <th>Code</th>
       <th>Nom</th>
       <th className="btn-cell" />
+      <th className="btn-cell" />
     </tr>
   </thead>
 );
 
-const renderDepartementTableRow = person => (
-  <tr key={person.id}>
-    <td>{person.code}</td>
-    <td>{person.nom}</td>
+const renderDepartementTableRow = departement => (
+  <tr key={departement.id}>
+    <td>{departement.code}</td>
+    <td>{departement.name}</td>
     <td className="btn-cell">
       <button type="button" onClick={() => {}}>
         <i className="icon icon-pencil" />
+      </button>
+    </td>
+    <td className="btn-cell">
+      <button type="button" className="button-remove" onClick={() => {}}>
+        <i className="icon icon-cancel-circled" />
       </button>
     </td>
   </tr>
