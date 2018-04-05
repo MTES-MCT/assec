@@ -27,6 +27,11 @@ legend {
   background-color: #FFFFFF;
 }
 
+input:disabled,
+textarea:disabled {
+  opacity: 0.5;
+}
+
 #application-header {
   color: #FFFFFF;
   // stylelint-disable-next-line

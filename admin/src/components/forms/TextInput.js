@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
-const TextInput = ({ label, name }) => (
+const TextInput = ({ label, name, ...rest }) => (
   <p>
     <label htmlFor={name}>
       <span>{label}</span>
-      <Field type="text" id={name} name={name} component="input" />
+      <Field {...rest} type="text" id={name} name={name} component="input" />
     </label>
   </p>
 );

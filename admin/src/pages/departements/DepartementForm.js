@@ -27,7 +27,9 @@ const DepartementForm = () => (
                     name: `${code} - ${name}`,
                   }))
                 } />
-              <SubmitButton pristine={pristine} invalid={invalid} />
+              <SubmitButton label="Ajouter"
+                pristine={pristine}
+                invalid={invalid} />
             </fieldset>
           </form>
         )} />

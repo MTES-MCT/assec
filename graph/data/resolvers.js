@@ -5,6 +5,10 @@ const Query = {
   allPersons: () => Person.findAll(),
   allDepartements: () => Departement.findAll(),
   allRestrictions: () => Restriction.findAll(),
+  getDepartementSUO: (_, { departement }) => {
+    const q = { where: { code: `${departement}` } };
+    return Departement.findOne(q);
+  },
   allDepartementRestrictions: (_, { departement }) => {
     const q = { where: { departement: `${departement}` } };
     return Restriction.findAll(q);

@@ -18,7 +18,7 @@ const DepartementForm = () => (
           <form onSubmit={handleSubmit} className="mb20">
             <fieldset>
               <Legend icon="globe" label="Ajouter un département" />
-              <SelectBox name="departement.object"
+              <SelectBox name="departement.code"
                 label="Département"
                 provider={
                   provider &&
@@ -27,7 +27,9 @@ const DepartementForm = () => (
                     name: `${code} - ${name}`,
                   }))
                 } />
-              <SubmitButton pristine={pristine} invalid={invalid} />
+              <SubmitButton label="Ajouter"
+                pristine={pristine}
+                invalid={invalid} />
             </fieldset>
           </form>
         )} />

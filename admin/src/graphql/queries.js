@@ -44,4 +44,19 @@ query allDepartementRestrictions ($departement: String) {
 }
 `);
 
-export default { ALL_PERSONS, ALL_DEPARTEMENTS, ALL_RESTRICTIONS };
+export const GET_DEPARTEMENT_SUO = gql(`
+query getDepartementSUO ($departement: String) {
+  getDepartementSUO (departement: $departement) {
+    id
+    code
+    name
+  }
+}
+`);
+
+export default {
+  ALL_PERSONS,
+  ALL_DEPARTEMENTS,
+  ALL_RESTRICTIONS,
+  GET_DEPARTEMENT_SUO,
+};
