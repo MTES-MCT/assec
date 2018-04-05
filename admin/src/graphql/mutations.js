@@ -36,4 +36,23 @@ mutation createDepartement(
 }
 `);
 
+export const CREATE_RESTRICTION = gql(`
+mutation createRestriction(
+  $description: String
+  $informations: String
+  $departement: String
+) {
+  createRestriction(
+    description: $description
+    informations: $informations
+    departement: $departement
+  ) {
+    id
+    description
+    informations
+    departement
+  }
+}
+`);
+
 export default { CREATE_PERSON, CREATE_DEPARTEMENT };

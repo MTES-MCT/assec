@@ -1,0 +1,14 @@
+.bt {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+.bb {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.by {
+  @extend .bt;
+  @extend .bb;
+}

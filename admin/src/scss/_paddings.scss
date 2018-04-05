@@ -1,0 +1,12 @@
+.pb12 {
+  padding-bottom: 12px;
+}
+
+.pt12 {
+  padding-top: 12px;
+}
+
+.py12 {
+  @extend .pt12;
+  @extend .pb12;
+}

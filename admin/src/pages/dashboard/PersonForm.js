@@ -5,7 +5,7 @@ import { Mutation } from 'react-apollo';
 // application
 import { CREATE_PERSON, UPDATE_PERSONS } from './../../graphql';
 import Legend from './../../components/forms/Legend';
-import InputText from './../../components/forms/InputText';
+import TextInput from './../../components/forms/TextInput';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const PersonForm = () => (
@@ -13,12 +13,13 @@ const PersonForm = () => (
     {createPerson => (
       <Form onSubmit={variables => createPerson({ variables })}
         render={({ handleSubmit, pristine, invalid }) => (
-          <form onSubmit={handleSubmit} className="mb20">
+          <form onSubmit={handleSubmit} className="mb40">
+            <span name="person-form-anchor" />
             <fieldset>
               <Legend icon="user" label="Ajouter un nouveau contributeur" />
-              <InputText name="firstname" label="Prénom" />
-              <InputText name="lastname" label="Nom" />
-              <InputText name="email" label="eMail" />
+              <TextInput name="person.firstname" label="Prénom" />
+              <TextInput name="person.lastname" label="Nom" />
+              <TextInput name="person.email" label="eMail" />
               <SubmitButton invalid={invalid} pristine={pristine} />
             </fieldset>
           </form>

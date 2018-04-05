@@ -37,3 +37,20 @@ span + .icon,
     letter-spacing: 0.4em;
   }
 }
+
+#page-main-column {
+  flex: 1;
+}
+
+#page-aside-column {
+  flex: 0;
+  min-width: 320px;
+
+  legend {
+    width: 100%;
+  }
+}
+
+#page-main-column + #page-aside-column {
+  margin-left: 40px;
+}

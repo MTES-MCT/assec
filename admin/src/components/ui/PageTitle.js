@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PageTitle = ({ label, icon }) => (
-  <h1 className="mb20">
+  <h1 id="page-title" className="mb20 pb12 bb">
     {icon && <i className={`icon icon-${icon}`} />}
     <span>{label}</span>
   </h1>

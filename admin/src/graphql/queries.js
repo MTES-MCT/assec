@@ -22,4 +22,15 @@ query allDepartements {
 }
 `);
 
-export default { ALL_PERSONS, ALL_DEPARTEMENTS };
+export const ALL_RESTRICTIONS = gql(`
+query allRestrictions {
+  allRestrictions {
+    id
+    code
+    name
+    slug
+  }
+}
+`);
+
+export default { ALL_PERSONS, ALL_DEPARTEMENTS, ALL_RESTRICTIONS };

@@ -5,7 +5,7 @@ import { Mutation } from 'react-apollo';
 // application
 import { CREATE_DEPARTEMENT, UPDATE_DEPARTEMENTS } from './../../graphql';
 import Legend from './../../components/forms/Legend';
-import InputText from './../../components/forms/InputText';
+import TextInput from './../../components/forms/TextInput';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const DepartementForm = () => (
@@ -16,8 +16,8 @@ const DepartementForm = () => (
           <form onSubmit={handleSubmit} className="mb20">
             <fieldset>
               <Legend icon="globe" label="Ajouter un département" />
-              <InputText name="code" label="Numéro" />
-              <InputText name="name" label="Nom du département" />
+              <TextInput name="departement.code" label="Numéro" />
+              <TextInput name="departement.name" label="Nom du département" />
               <SubmitButton pristine={pristine} invalid={invalid} />
             </fieldset>
           </form>

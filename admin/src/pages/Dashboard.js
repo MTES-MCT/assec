@@ -2,16 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // application
-// import ColorPickerInput from './../components/colorpicker/ColorPickerInput';
 import PersonForm from './dashboard/PersonForm';
 import PageTitle from './../components/ui/PageTitle';
 import DepartementForm from './dashboard/DepartementForm';
+import RestrictionsForm from './dashboard/RestrictionsForm';
 
 const Dashboard = ({ name, icon }) => (
   <div id="dashboard-page" className="page-content">
     <PageTitle label={name} icon={icon} />
-    <DepartementForm />
-    <PersonForm />
+    <div className="flex-columns">
+      <div id="page-main-column">
+        <RestrictionsForm />
+        <PersonForm />
+      </div>
+      <div id="page-aside-column">
+        <DepartementForm />
+      </div>
+    </div>
   </div>
 );
 

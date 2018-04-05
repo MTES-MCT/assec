@@ -1,3 +1,4 @@
+textarea,
 input[type='text'] {
   font-size: 1.2em;
   padding: 12px 7px;
@@ -6,6 +7,14 @@ input[type='text'] {
   border-style: solid;
   background-color: #FFFFFF;
   border-color: rgba(0, 0, 0, 0.2);
+}
+
+textarea {
+  height: 2.4em;
+
+  &.large {
+    height: 6em;
+  }
 }
 
 button {
@@ -44,5 +53,21 @@ fieldset.inline label {
 
   input {
     flex: 2;
+  }
+}
+
+.selectbox {
+  flex: 1;
+  display: flex;
+  font-size: 1.2em;
+  padding: 12px 7px;
+  border-width: 1px;
+  border-radius: 4px;
+  border-style: solid;
+  background-color: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.2);
+
+  select {
+    width: 100%;
   }
 }

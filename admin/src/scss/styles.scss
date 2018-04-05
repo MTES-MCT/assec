@@ -8,6 +8,10 @@
 @import 'grid';
 @import 'table';
 @import 'margin';
+@import 'borders';
+@import 'paddings';
+
+// application
 @import './modules/base.scss';
 @import './modules/form.scss';
 @import './modules/theme.scss';
