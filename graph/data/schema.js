@@ -21,9 +21,11 @@ type Restriction {
 }
 
 type SUO {
-  usages: Array
-  origines: Array
-  situations: Array
+  id: String
+  usages: String
+  origines: String
+  situations: String
+  departement: String
 }
 `;
 
