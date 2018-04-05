@@ -1,0 +1,39 @@
+body {
+  font-size: 12px;
+  // font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+span + .icon,
+.icon + span {
+  margin-left: 7px;
+}
+
+.button-big {
+  font-size: 1.2em;
+  min-width: 120px;
+  padding: 17px 35px;
+}
+
+.page-content {
+  padding: 20px;
+}
+
+/* ------------------------------------------------
+
+ LAYOUTS
+
+------------------------------------------------ */
+#root,
+#app-container {
+  min-height: 100vh;
+}
+
+#application-header {
+  padding: 20px;
+
+  .title {
+    font-weight: normal;
+    letter-spacing: 0.4em;
+  }
+}

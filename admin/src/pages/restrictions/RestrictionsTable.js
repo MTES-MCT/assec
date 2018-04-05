@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
+// application
 import { ALL_PERSONS } from './../../graphql';
 
 const renderRestrictionsTableHeader = () => (
@@ -24,13 +25,15 @@ const renderRestrictionsTableRow = person => (
 const RestrictionsTable = () => (
   <Query query={ALL_PERSONS} displayName="RestrictionsTableQuery">
     {({ loading, error, data: { allPersons } }) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <p>Loading... </p>;
       if (error) return <p>Error </p>;
       return (
         <div>
           <table>
             {renderRestrictionsTableHeader()}
-            <tbody>{allPersons.map(renderRestrictionsTableRow)}</tbody>
+            <tbody>
+              {allPersons && allPersons.map(renderRestrictionsTableRow)}
+            </tbody>
           </table>
         </div>
       );

@@ -6,7 +6,6 @@
     "apollo-cache-inmemory": "^1.1.12",
     "apollo-client": "^2.2.8",
     "apollo-link": "^1.2.1",
-    "apollo-link-error": "^1.0.7",
     "apollo-link-http": "^1.5.3",
     "dotenv-safe": "^5.0.1",
     "express": "^4.16.3",
@@ -30,7 +29,6 @@
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "redux-form": "^7.3.0",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {

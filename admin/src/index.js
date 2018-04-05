@@ -10,6 +10,7 @@ import './styles.css';
 import Page from './page';
 import { configure } from './store';
 import { createClient } from './client';
+import AppHeader from './components/AppHeader';
 import LinearProgress from './components/ui/LinearProgress';
 
 const { client, NetworkStatusNotifier } = createClient('http://localhost:3200/graphql');
@@ -28,6 +29,7 @@ const Root = () => (
               {error && <p>Error: {JSON.stringify(error)}</p>}
             </div>
           )} />
+          <AppHeader title="ASSEC" />
           <Page />
         </Fragment>
       </ApolloProvider>

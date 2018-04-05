@@ -17,18 +17,3 @@
 .flex4 {
   flex: 4;
 }
-
-/* ----- MARGIN ----- */
-
-.mt20 {
-  margin-top: 20px;
-}
-
-.mb20 {
-  margin-bottom: 20px;
-}
-
-.my20 {
-  @extend .mt20;
-  @extend .mb20;
-}

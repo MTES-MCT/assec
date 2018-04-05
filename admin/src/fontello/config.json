@@ -43,8 +43,26 @@
       "src": "entypo"
     },
     {
-      "uid": "39a5a0d7ce8342d149373b2ce219503a",
-      "css": "alert",
+      "uid": "6a12c2b74456ea21cc984e11dec227a1",
+      "css": "globe",
+      "code": 59399,
+      "src": "entypo"
+    },
+    {
+      "uid": "f8e120c48c070f8afd2d072651b4fb9f",
+      "css": "light-up",
+      "code": 59400,
+      "src": "entypo"
+    },
+    {
+      "uid": "97902f87200ce74d181044df02a0458d",
+      "css": "attention",
+      "code": 59401,
+      "src": "entypo"
+    },
+    {
+      "uid": "6274e0601f2feef7eced89146e708de0",
+      "css": "user-add",
       "code": 59398,
       "src": "entypo"
     }

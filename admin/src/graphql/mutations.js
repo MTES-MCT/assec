@@ -19,4 +19,21 @@ mutation createPerson(
 }
 `);
 
-export default CREATE_PERSON;
+export const CREATE_DEPARTEMENT = gql(`
+mutation createDepartement(
+  $code: String
+  $name: String
+) {
+  createDepartement(
+    code: $code
+    name: $name
+  ) {
+    id
+    code
+    name
+    slug
+  }
+}
+`);
+
+export default { CREATE_PERSON, CREATE_DEPARTEMENT };

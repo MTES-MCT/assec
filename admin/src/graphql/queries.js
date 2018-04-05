@@ -11,4 +11,15 @@ query allPersons {
 }
 `);
 
-export default ALL_PERSONS;
+export const ALL_DEPARTEMENTS = gql(`
+query allDepartements {
+  allDepartements {
+    id
+    code
+    name
+    slug
+  }
+}
+`);
+
+export default { ALL_PERSONS, ALL_DEPARTEMENTS };

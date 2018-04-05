@@ -1,23 +1,55 @@
+/* ---------------------
+  color: #823B60
+  color: #18154E
+  color: #2BD1C0
+  color: #353843
+  color: #21242B
+  color: #E96900
+  color: #F8F8F8 // shape
+  color: #EEEEEE // border
+  color: #444444 // text1
+  color: #666666 // text2
+  color: #999999 // text3 | placeholder
+  color: #CCCCCC // text4
+  color: #EEEEEE // text5
+--------------------- */
+
+body {
+  background-color: #FFFFFF;
+}
+
+fieldset {
+  background-color: #F8F8F8;
+}
+
+legend {
+  color: #2BD1C0;
+  background-color: #FFFFFF;
+}
+
+#application-header {
+  color: #FFFFFF;
+  // stylelint-disable-next-line
+  background-image: linear-gradient(
+    312deg,
+    #14134E 0%,
+    #512D5A 68%,
+    #843B61 100%
+  );
+}
+
 #main-navigation {
-  background-color: #000000;
+  background-color: #353843;
 
   .link {
     color: #FFFFFF;
   }
 }
 
-#preloader .loading::before {
-  background-color: #2BD1C0;
-}
+#preloader {
+  background-color: #843B61;
 
-/*
-.default-theme {
-  .nav {
-    color: #363943
-    color: #2BD1C0
-    color: #EEEEEE
-    // source sans pro
+  .loading::before {
+    background-color: #FFFFFF;
   }
 }
-#
-*/

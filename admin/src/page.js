@@ -32,13 +32,15 @@ const PageComponent = ({ location }) => {
       <div id="page-container" className="flex1">
         {/* routes */}
         <Switch>
-          {routes.map((obj) => {
-            const key = keypath(obj.path, 'route');
+          {routes.map(({
+            path, exact, name, icon, component: Component,
+          }) => {
+            const key = keypath(path, 'route');
             return (
               <Route key={key}
-                path={obj.path}
-                component={obj.component}
-                exact={obj.exact || false} />
+                path={path}
+                render={() => <Component name={name} icon={icon} />}
+                exact={exact || false} />
             );
           })}
         </Switch>

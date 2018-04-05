@@ -3,26 +3,11 @@
 
 // SCSS Files
 @import 'base';
+@import 'text';
 @import 'form';
 @import 'grid';
 @import 'table';
-
-body {
-  font-size: 12px;
-  background-color: #F1F1F1;
-  // font-family: 'Roboto', sans-serif;
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-// application
-#root,
-#app-container {
-  min-height: 100vh;
-}
-
-.page-content {
-  padding: 40px 20px;
-}
-
+@import 'margin';
+@import './modules/base.scss';
 @import './modules/form.scss';
 @import './modules/theme.scss';
