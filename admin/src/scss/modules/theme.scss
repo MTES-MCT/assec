@@ -37,6 +37,11 @@ button:not(:disabled) {
   background-color: #2BD1C0;
 }
 
+.button-remove:not(:disabled) {
+  color: #FFFFFF;
+  background-color: #E96900;
+}
+
 #application-header {
   color: #FFFFFF;
   // stylelint-disable-next-line

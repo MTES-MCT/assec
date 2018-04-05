@@ -21,7 +21,6 @@ const DepartementForm = () => (
           // variables => createDepartement({ variables })
         }}
         render={({
-          values,
           invalid,
           pristine,
           handleSubmit,
@@ -40,8 +39,17 @@ const DepartementForm = () => (
                   }))
                 } />
               <ArrayValues name="departement.zones"
+                push={unshift}
                 label="Zones"
-                push={unshift} />
+                placeholder="Nom de la zone" />
+              <ArrayValues name="departement.usages"
+                label="Usages"
+                push={unshift}
+                placeholder="Nom de l'usage" />
+              <ArrayValues name="departement.origines"
+                label="Origines"
+                push={unshift}
+                placeholder="Nom de l'origine" />
               <SubmitButton label="Ajouter"
                 pristine={pristine}
                 invalid={invalid} />
