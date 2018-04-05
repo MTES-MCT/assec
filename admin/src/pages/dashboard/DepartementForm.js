@@ -5,8 +5,10 @@ import { Mutation } from 'react-apollo';
 // application
 import { CREATE_DEPARTEMENT, UPDATE_DEPARTEMENTS } from './../../graphql';
 import Legend from './../../components/forms/Legend';
-import TextInput from './../../components/forms/TextInput';
+import SelectBox from './../../components/forms/SelectBox';
 import SubmitButton from './../../components/forms/SubmitButton';
+
+const provider = require('./../../datas/departements.json');
 
 const DepartementForm = () => (
   <Mutation mutation={CREATE_DEPARTEMENT} update={UPDATE_DEPARTEMENTS}>
@@ -16,8 +18,15 @@ const DepartementForm = () => (
           <form onSubmit={handleSubmit} className="mb20">
             <fieldset>
               <Legend icon="globe" label="Ajouter un département" />
-              <TextInput name="departement.code" label="Numéro" />
-              <TextInput name="departement.name" label="Nom du département" />
+              <SelectBox name="departement.object"
+                label="Département"
+                provider={
+                  provider &&
+                  provider.map(({ code, name }) => ({
+                    id: code,
+                    name: `${code} - ${name}`,
+                  }))
+                } />
               <SubmitButton pristine={pristine} invalid={invalid} />
             </fieldset>
           </form>
