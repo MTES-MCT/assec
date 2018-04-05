@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // application
-import PageTitle from './../components/ui/PageTitle';
-
 class AppPage extends React.PureComponent {
   render () {
     const {
@@ -11,7 +9,10 @@ class AppPage extends React.PureComponent {
     } = this.props;
     return (
       <div id={`${path}-page`} className="page-content">
-        <PageTitle label={name} icon={icon} />
+        <h1 id="page-title" className="mb20 pb12 bb">
+          {icon && <i className={`icon icon-${icon}`} />}
+          <span>{name}</span>
+        </h1>
         <div className="flex-columns">{children}</div>
       </div>
     );
