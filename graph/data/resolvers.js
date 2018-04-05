@@ -1,9 +1,9 @@
-import { slugify } from './../lib/slugify';
-import { Person, Departement, Restriction } from './connectors/sqlite';
+import { Departement } from './connectors/mongodb';
+import { Person, Restriction } from './connectors/sqlite';
 
 const Query = {
   allPersons: () => Person.findAll(),
-  allDepartements: () => Departement.findAll(),
+  allDepartements: () => Departement.find(),
   allRestrictions: () => Restriction.findAll(),
   getDepartementSUO: (_, { departement }) => {
     const q = { where: { code: `${departement}` } };
@@ -18,10 +18,8 @@ const Query = {
 const Mutation = {
   createPerson: (_, { firstname, lastname, email }) =>
     Person.create({ firstname, lastname, email }),
-  createDepartement: (_, { code, name }) => {
-    const slug = slugify(name);
-    return Departement.create({ code, name, slug });
-  },
+  createDepartement: (_, { code, name }) =>
+    Departement.create({ code, name, slug: name }),
   createRestriction: (_, { description, informations, departement }) =>
     Restriction.create({ description, informations, departement }),
 };
