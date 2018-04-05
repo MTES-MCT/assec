@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SubmitButton = ({ label, pristine, invalid }) => (
-  <p>
+  <p className="flex-columns flex-end">
     <button type="submit" className="button-big" disabled={pristine || invalid}>
       <span>{label}</span>
-      <i className="icon icon-save" />
+      <i className="icon icon-floppy" />
     </button>
   </p>
 );

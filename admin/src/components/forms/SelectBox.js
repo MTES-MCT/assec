@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
-// application
-import { noop } from './../../lib/noop';
+const renderOption = obj => (
+  <option key={obj.id} value={obj.id}>
+    {obj.name}
+  </option>
+);
 
+// application
 const SelectBox = ({
   label, name, multiple, provider,
 }) => (
@@ -14,12 +18,7 @@ const SelectBox = ({
       <span className="selectbox">
         <Field id={name} name={name} component="select" multiple={multiple}>
           <option key="default" />
-          {provider &&
-            provider.map(obj => (
-              <option key={obj.id} value={obj.id}>
-                {obj.name}
-              </option>
-            ))}
+          {provider && provider.map(renderOption)}
         </Field>
       </span>
     </label>
