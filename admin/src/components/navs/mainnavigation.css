@@ -24,3 +24,7 @@
 #main-navigation .link + .link {
   margin-top: 1px;
 }
+
+#main-navigation .link.active {
+  cursor: default;
+}

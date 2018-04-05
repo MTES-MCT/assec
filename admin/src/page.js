@@ -33,13 +33,13 @@ const PageComponent = ({ location }) => {
         {/* routes */}
         <Switch>
           {routes.map(({
-            path, exact, name, icon, component: Component,
+            path, exact, name, icon, component: Page,
           }) => {
             const key = keypath(path, 'route');
             return (
               <Route key={key}
                 path={path}
-                render={() => <Component name={name} icon={icon} />}
+                render={() => <Page config={{ name, icon, path }} />}
                 exact={exact || false} />
             );
           })}

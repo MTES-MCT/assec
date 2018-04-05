@@ -1,16 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 
 // application
+import AppPage from './../components/AppPage';
 import PersonForm from './dashboard/PersonForm';
-import PageTitle from './../components/ui/PageTitle';
 import DepartementForm from './dashboard/DepartementForm';
 import RestrictionsForm from './dashboard/RestrictionsForm';
 
-const Dashboard = ({ name, icon }) => (
-  <div id="dashboard-page" className="page-content">
-    <PageTitle label={name} icon={icon} />
-    <div className="flex-columns">
+const Dashboard = ({ config }) => (
+  <AppPage {...config}>
+    <Fragment>
       <div id="page-main-column">
         <RestrictionsForm />
         <PersonForm />
@@ -18,13 +17,12 @@ const Dashboard = ({ name, icon }) => (
       <div id="page-aside-column">
         <DepartementForm />
       </div>
-    </div>
-  </div>
+    </Fragment>
+  </AppPage>
 );
 
 Dashboard.propTypes = {
-  name: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  config: PropTypes.object.isRequired,
 };
 
 export default Dashboard;

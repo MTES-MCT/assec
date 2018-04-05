@@ -46,7 +46,17 @@ legend {
   background-color: #353843;
 
   .link {
-    color: #FFFFFF;
+    color: #EEEEEE;
+  }
+
+  .link:hover {
+    color: #2BD1C0;
+    background-color: #21242B;
+  }
+
+  .link.active {
+    color: #2BD1C0;
+    background-color: #FFFFFF;
   }
 }
 
