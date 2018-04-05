@@ -67,7 +67,8 @@ fieldset.inline label {
   background-color: #FFFFFF;
   border-color: rgba(0, 0, 0, 0.2);
 
-  select {
+  select,
+  select option {
     width: 100%;
   }
 }

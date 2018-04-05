@@ -26,9 +26,20 @@ export const ALL_RESTRICTIONS = gql(`
 query allRestrictions {
   allRestrictions {
     id
-    code
-    name
-    slug
+    description
+    departement
+    informations
+  }
+}
+`);
+
+export const ALL_DEPARTEMENT_RESTRICTIONS = gql(`
+query allDepartementRestrictions ($departement: String) {
+  allDepartementRestrictions (departement: $departement) {
+    id
+    description
+    departement
+    informations
   }
 }
 `);

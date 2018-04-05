@@ -39,18 +39,18 @@ mutation createDepartement(
 export const CREATE_RESTRICTION = gql(`
 mutation createRestriction(
   $description: String
-  $informations: String
   $departement: String
+  $informations: String
 ) {
   createRestriction(
     description: $description
-    informations: $informations
     departement: $departement
+    informations: $informations
   ) {
     id
     description
-    informations
     departement
+    informations
   }
 }
 `);
