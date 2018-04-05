@@ -18,6 +18,12 @@ body {
   background-color: #FFFFFF;
 }
 
+/* ---------------------
+
+ FORMS
+
+--------------------- */
+
 fieldset {
   background-color: #F8F8F8;
 }
@@ -37,10 +43,52 @@ button:not(:disabled) {
   background-color: #2BD1C0;
 }
 
+/* ---------------------
+
+ TABLE
+
+--------------------- */
+
+thead {
+  color: #666666;
+  background-color: #F8F8F8;
+}
+
+tbody {
+  color: #444444;
+  background-color: #FFFFFF;
+}
+
+tr:nth-child(even) {
+  background-color: #F8F8F8;
+}
+
+thead tr:active {
+  color: #FFFFFF;
+  background-color: #2BD1C0;
+}
+
+th {
+  border-right: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+/* ---------------------
+
+ CLASSES
+
+--------------------- */
+
 .button-remove:not(:disabled) {
   color: #FFFFFF;
   background-color: #E96900;
 }
+
+/* ---------------------
+
+ LAYOUTS
+
+--------------------- */
 
 #application-header {
   color: #FFFFFF;

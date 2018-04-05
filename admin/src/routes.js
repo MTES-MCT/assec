@@ -20,17 +20,17 @@ export const routes = [
   },
   {
     exact: false,
-    icon: 'users',
-    path: '/contributors',
-    name: 'Contributeurs',
-    component: Contributors,
-  },
-  {
-    exact: false,
     icon: 'attention',
     name: 'Restrictions',
     path: '/restrictions',
     component: Restrictions,
+  },
+  {
+    exact: false,
+    icon: 'users',
+    path: '/contributors',
+    name: 'Contributeurs',
+    component: Contributors,
   },
 ];
 

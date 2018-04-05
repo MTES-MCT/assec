@@ -1,3 +1,42 @@
 table {
   width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  font-size: 12px;
+  text-align: left;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+th {
+  font-weight: bold;
+}
+
+th,
+td {
+  overflow: hidden;
+  padding: 12px 15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0;
+}
+
+.btn-cell {
+  width: 61px;
+  max-width: 61px;
+  text-align: center;
+}
+
+.btn-cell .button {
+  width: auto;
+  padding: 7px;
+}
+
+.select-cell {
+  width: 200px;
+  max-width: 200px;
 }
