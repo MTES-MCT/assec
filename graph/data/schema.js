@@ -8,6 +8,7 @@ type Person {
 
 type Departement {
   id: String
+  suos: String
   code: String
   name: String
   slug: String
@@ -48,6 +49,7 @@ type Mutation {
   ): Person
 
   createDepartement(
+    suos: String
     code: String
     name: String
   ): Departement

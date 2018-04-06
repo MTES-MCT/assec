@@ -23,10 +23,12 @@ export const CREATE_DEPARTEMENT = gql(`
 mutation createDepartement(
   $code: String
   $name: String
+  $suos: String
 ) {
   createDepartement(
     code: $code
     name: $name
+    suos: $suos
   ) {
     id
     code

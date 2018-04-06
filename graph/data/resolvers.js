@@ -18,8 +18,12 @@ const Query = {
 const Mutation = {
   createPerson: (_, { firstname, lastname, email }) =>
     Person.create({ firstname, lastname, email }),
-  createDepartement: (_, { code, name }) =>
-    Departement.create({ code, name, slug: name }),
+  createDepartement: (_, args) => {
+    const { code, name, suos } = args;
+    return Departement.create({
+      code, name, suos, slug: name,
+    });
+  },
   createRestriction: (_, { description, informations, departement }) =>
     Restriction.create({ description, informations, departement }),
 };

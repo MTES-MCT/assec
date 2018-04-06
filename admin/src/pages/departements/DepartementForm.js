@@ -37,12 +37,12 @@ const DepartementForm = () => (
           {createDepartement => (
             <Form mutators={{ ...arrayMutators }}
               onSubmit={({ departement: { object, ...rest } }, form) => {
-                createDepartement({
-                  variables: {
-                    ...JSON.parse(object),
-                    ...rest,
-                  },
-                });
+                const vars = {
+                  ...JSON.parse(object),
+                  suos: JSON.stringify(rest),
+                };
+                console.log('vars', vars);
+                createDepartement({ variables: vars });
                 form.reset();
               }}
               render={({
