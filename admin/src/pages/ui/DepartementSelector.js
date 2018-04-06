@@ -22,7 +22,11 @@ const DepartementSelector = ({ onChange }) => (
             <span className="selectbox">
               <select id="departement.selector"
                 name="departement.selector"
-                onChange={onChange}>
+                onChange={({ target }) => {
+                  const id =
+                    target.value && target.value !== '' ? target.value : false;
+                  return onChange(id);
+                }}>
                 <option key="default" />
                 {provider &&
                   provider.map(obj => (

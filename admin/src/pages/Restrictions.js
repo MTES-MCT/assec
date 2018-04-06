@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 // application
 import AppPage from './../components/AppPage';
 import DepartementSelector from './ui/DepartementSelector';
+import RestrictionsForm from './restrictions/RestrictionsForm';
 import RestrictionsTable from './restrictions/RestrictionsTable';
 
 class RestrictionsPage extends React.PureComponent {
@@ -13,8 +14,9 @@ class RestrictionsPage extends React.PureComponent {
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange (departementId) {
-    this.setState({ selected: departementId });
+  onChange (id) {
+    if (!id) return;
+    this.setState({ selected: id });
   }
 
   render () {
@@ -26,7 +28,9 @@ class RestrictionsPage extends React.PureComponent {
         <div id="page-main-column" className="col50">
           <RestrictionsTable selected={selected} />
         </div>
-        <div id="page-aside-column" className="col50" />
+        <div id="page-aside-column" className="col50">
+          <RestrictionsForm selected={selected} />
+        </div>
       </AppPage>
     );
   }

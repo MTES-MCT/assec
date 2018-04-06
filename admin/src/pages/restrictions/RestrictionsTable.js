@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { ALL_PERSONS } from './../../graphql';
+import { ALL_DEPARTEMENT_RESTRICTIONS } from './../../graphql';
 
 const renderRestrictionsTableHeader = () => (
   <thead>
@@ -22,9 +23,10 @@ const renderRestrictionsTableRow = person => (
   </tr>
 );
 
-const RestrictionsTable = () => (
-  <Query query={ALL_PERSONS} displayName="RestrictionsTableQuery">
-    {({ loading, error, data: { allPersons } }) => {
+const RestrictionsTable = ({ selected }) => (
+  <Query query={ALL_DEPARTEMENT_RESTRICTIONS}
+    variables={{ departement: selected }}>
+    {({ loading, error, data: { allDepartementRestrictions } }) => {
       if (loading) return <p>Loading... </p>;
       if (error) return <p>Error </p>;
       return (
@@ -32,7 +34,8 @@ const RestrictionsTable = () => (
           <table>
             {renderRestrictionsTableHeader()}
             <tbody>
-              {allPersons && allPersons.map(renderRestrictionsTableRow)}
+              {allDepartementRestrictions &&
+                allDepartementRestrictions.map(renderRestrictionsTableRow)}
             </tbody>
           </table>
         </div>
@@ -40,5 +43,13 @@ const RestrictionsTable = () => (
     }}
   </Query>
 );
+
+RestrictionsTable.defaultProps = {
+  selected: null,
+};
+
+RestrictionsTable.propTypes = {
+  selected: PropTypes.string,
+};
 
 export default RestrictionsTable;
