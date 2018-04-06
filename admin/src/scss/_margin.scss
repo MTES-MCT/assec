@@ -22,6 +22,14 @@
   margin-bottom: 20px;
 }
 
+.ml40 {
+  margin-left: 40px;
+}
+
+.mr40 {
+  margin-right: 40px;
+}
+
 .mb40 {
   margin-bottom: 40px;
 }
@@ -43,6 +51,11 @@
 .my20 {
   @extend .mt20;
   @extend .mb20;
+}
+
+.mx40 {
+  @extend .mr40;
+  @extend .ml40;
 }
 
 .my40 {

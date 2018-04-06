@@ -16,7 +16,7 @@ span + .icon,
 }
 
 .page-content {
-  padding: 20px;
+  @extend .p20;
 }
 
 /* ------------------------------------------------
@@ -30,12 +30,20 @@ span + .icon,
 }
 
 #application-header {
-  padding: 20px;
+  @extend .p20;
 
   .title {
     font-weight: normal;
     letter-spacing: 0.4em;
   }
+}
+
+#page-column-header {
+  @extend .mb20;
+}
+
+#page-column-footer {
+  @extend .mt20;
 }
 
 #page-main-column {
@@ -52,5 +60,5 @@ span + .icon,
 }
 
 #page-main-column + #page-aside-column {
-  margin-left: 40px;
+  @extend .ml40;
 }

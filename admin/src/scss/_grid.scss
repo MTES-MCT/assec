@@ -18,6 +18,11 @@
   flex: 4;
 }
 
+.col100 {
+  flex: 1;
+  min-width: 100%;
+}
+
 .col50 {
   flex: 1;
   min-width: 48%;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
+// application
 const renderOption = obj => (
   <option key={obj.id} value={obj.value}>
     {obj.name}
@@ -26,13 +27,11 @@ const SelectBox = ({
 );
 
 SelectBox.defaultProps = {
-  // onChange: noop,
   multiple: false,
 };
 
 SelectBox.propTypes = {
   multiple: PropTypes.bool,
-  // onChange: PropTypes.func,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   provider: PropTypes.array.isRequired,

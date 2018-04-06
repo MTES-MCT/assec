@@ -60,14 +60,14 @@ fieldset {
 
 .clearfix::after,
 .clearfix::before {
+  width: 0;
+  height: 0;
   content: '.';
+  font-size: 0;
+  line-height: 0;
   display: block;
   overflow: hidden;
   visibility: hidden;
-  font-size: 0;
-  line-height: 0;
-  width: 0;
-  height: 0;
 }
 
 .clearfix::after {
