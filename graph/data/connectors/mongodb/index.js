@@ -34,7 +34,10 @@ Mongoose.connect(`mongodb://localhost:${PORT}/assec`, options).then(
 const DepartementSchema = Mongoose.Schema({
   code: String,
   name: String,
-  suos: String,
+  suos: {
+    type: Object,
+    set: v => JSON.parse(v),
+  },
   slug: {
     set: slugify,
     type: String,

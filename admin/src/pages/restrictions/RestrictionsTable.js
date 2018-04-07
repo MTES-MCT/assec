@@ -8,9 +8,8 @@ import { ALL_DEPARTEMENT_RESTRICTIONS } from './../../graphql';
 const renderRestrictionsTableHeader = () => (
   <thead>
     <tr>
-      <th>Lastname</th>
-      <th>Firstname</th>
-      <th>eMail</th>
+      <th>Libellé</th>
+      <th />
     </tr>
   </thead>
 );

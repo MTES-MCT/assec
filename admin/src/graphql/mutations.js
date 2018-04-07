@@ -31,6 +31,7 @@ mutation createDepartement(
     suos: $suos
   ) {
     id
+    suos
     code
     name
     slug

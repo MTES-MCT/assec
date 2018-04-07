@@ -20,14 +20,6 @@ type Restriction {
   description: String
   informations: String
 }
-
-type SUO {
-  id: String
-  usages: String
-  origines: String
-  situations: String
-  departement: String
-}
 `;
 
 const queriesTypeDefs = `
@@ -35,7 +27,7 @@ type Query {
   allPersons: [Person]
   allRestrictions: [Restriction]
   allDepartements: [Departement]
-  getDepartementSUO(departement: String): [Departement]
+  getDepartementSUO(departement: String): Departement
   allDepartementRestrictions(departement: String): [Restriction]
 }
 `;

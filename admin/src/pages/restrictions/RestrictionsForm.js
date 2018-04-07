@@ -18,6 +18,9 @@ import SubmitButton from './../../components/forms/SubmitButton';
 const renderConsummer = (provider, selected, args) => {
   const { handleSubmit, pristine, invalid } = args;
   const disabled = !(selected && selected !== null);
+  console.log('provider', provider);
+  console.log('provider', typeof provider);
+  console.log('provider.zones', provider.zones);
   return (
     <form onSubmit={handleSubmit} className="mb40">
       <span name="restriction-form-anchor" />
@@ -27,17 +30,17 @@ const renderConsummer = (provider, selected, args) => {
           name="restriction.description"
           label="Description" />
         <RadioGroup disabled={disabled}
-          name="restriction.situation"
+          name="restriction.zones"
           label="Situation"
-          provider={[]} />
+          provider={(provider && provider.zones) || []} />
         <RadioGroup disabled={disabled}
-          name="restriction.usage"
+          name="restriction.usages"
           label="Usage"
-          provider={[]} />
+          provider={(provider && provider.usages) || []} />
         <RadioGroup disabled={disabled}
-          name="restriction.origine"
+          name="restriction.origines"
           label="Origine"
-          provider={[]} />
+          provider={(provider && provider.origines) || []} />
         <TextArea disabled={disabled}
           name="restriction.informations"
           label="Plus d'informations"
@@ -57,24 +60,19 @@ const renderMutation = (provider, selected) => (
   </Mutation>
 );
 
-const parseProvider = (suos) => {
-  console.log('suos', suos);
-  return suos;
-};
-
-const RestrictionsForm = ({ selected }) => {
-  console.log('selected', selected);
-  return (
-    <Query query={GET_DEPARTEMENT_SUO} variables={{ departement: selected }}>
-      {({ loading, error, data: { getDepartementSUO: suos } }) => {
-        if (loading) return <p>Loading...</p>;
-        if (error) return <p>Error </p>;
-        const provider = parseProvider(suos);
-        return renderMutation(provider, selected);
-      }}
-    </Query>
-  );
-};
+const RestrictionsForm = ({ selected }) => (
+  <Query query={GET_DEPARTEMENT_SUO} variables={{ departement: selected }}>
+    {({ loading, error, data: { getDepartementSUO: dpt } }) => {
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error </p>;
+      console.log('dpt.suos', dpt && dpt.suos);
+      // console.log('dpt.suos', dpt.suos);
+      const provider = [];
+      // const provider = (dpt && dpt.suos && dpt.suos) || [];
+      return renderMutation(provider, selected);
+    }}
+  </Query>
+);
 
 RestrictionsForm.defaultProps = {
   selected: null,

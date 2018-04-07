@@ -5,10 +5,7 @@ const Query = {
   allPersons: () => Person.findAll(),
   allDepartements: () => Departement.find(),
   allRestrictions: () => Restriction.findAll(),
-  getDepartementSUO: (_, { departement }) => {
-    const q = { where: { code: `${departement}` } };
-    return Departement.findOne(q);
-  },
+  getDepartementSUO: (_, { departement }) => Departement.findById(departement),
   allDepartementRestrictions: (_, { departement }) => {
     const q = { where: { departement: `${departement}` } };
     return Restriction.findAll(q);
@@ -21,7 +18,10 @@ const Mutation = {
   createDepartement: (_, args) => {
     const { code, name, suos } = args;
     return Departement.create({
-      code, name, suos, slug: name,
+      code,
+      name,
+      suos,
+      slug: name,
     });
   },
   createRestriction: (_, { description, informations, departement }) =>

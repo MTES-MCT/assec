@@ -15,6 +15,7 @@ export const ALL_DEPARTEMENTS = gql(`
 query allDepartements {
   allDepartements {
     id
+    suos
     code
     name
     slug
@@ -48,6 +49,7 @@ export const GET_DEPARTEMENT_SUO = gql(`
 query getDepartementSUO ($departement: String) {
   getDepartementSUO (departement: $departement) {
     id
+    suos
     code
     name
   }

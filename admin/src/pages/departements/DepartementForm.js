@@ -41,7 +41,6 @@ const DepartementForm = () => (
                   ...JSON.parse(object),
                   suos: JSON.stringify(rest),
                 };
-                console.log('vars', vars);
                 createDepartement({ variables: vars });
                 form.reset();
               }}
@@ -57,10 +56,10 @@ const DepartementForm = () => (
                     <SelectBox name="departement.object"
                       label="Département"
                       provider={selectprovider} />
-                    <ArrayValues name="departement.zones"
+                    <ArrayValues name="departement.situations"
                       push={unshift}
-                      label="Zones"
-                      placeholder="Nom de la zone" />
+                      label="Situations"
+                      placeholder="Nom de la situation" />
                     <ArrayValues name="departement.usages"
                       label="Usages"
                       push={unshift}

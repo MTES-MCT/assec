@@ -9,8 +9,11 @@ const RadioGroup = ({
     <label htmlFor={name}>
       <span>{label}</span>
       {provider &&
-        provider.map(() => (
-          <Field {...rest} name={name} type="radio" component="input" />
+        provider.map((obj, index) => (
+          <label key={`radio::${index}`}>
+            <Field {...rest} name={name} type="radio" component="input" />
+            <span>{obj.name}</span>
+          </label>
         ))}
     </label>
   </p>

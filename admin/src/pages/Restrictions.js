@@ -24,7 +24,11 @@ class RestrictionsPage extends React.PureComponent {
     const { selected } = this.state;
     return (
       <AppPage {...config}
-        header={() => <DepartementSelector onChange={this.onChange} />}>
+        header={() => (
+          <fieldset>
+            <DepartementSelector onChange={this.onChange} />
+          </fieldset>
+        )}>
         <div id="page-main-column" className="col50">
           <RestrictionsTable selected={selected} />
         </div>
