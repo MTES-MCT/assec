@@ -1,5 +1,5 @@
-import { Departement } from './connectors/mongodb';
-import { Person, Restriction } from './connectors/sqlite';
+import { Departement } from './drivers/mongodb';
+import { Person, Restriction } from './drivers/sqlite';
 
 const Query = {
   allPersons: () => Person.findAll(),
@@ -17,10 +17,10 @@ const Mutation = {
     Person.create({ firstname, lastname, email }),
   createDepartement: (_, args) => {
     const { code, name, suos } = args;
+    console.log('suos', suos);
     return Departement.create({
       code,
       name,
-      suos,
       slug: name,
     });
   },

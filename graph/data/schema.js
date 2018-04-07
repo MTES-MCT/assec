@@ -1,4 +1,10 @@
 const entitiesTypeDefs = `
+interface SUOS {
+  id: String
+  name: String
+  slug: String
+}
+
 type Person {
   id: String
   email: String
@@ -8,7 +14,7 @@ type Person {
 
 type Departement {
   id: String
-  suos: String
+  suos: [SUOS]
   code: String
   name: String
   slug: String
@@ -41,7 +47,7 @@ type Mutation {
   ): Person
 
   createDepartement(
-    suos: String
+    suos: [SUOS]
     code: String
     name: String
   ): Departement
@@ -55,8 +61,8 @@ type Mutation {
 `;
 
 const typedefinitions = `
-${queriesTypeDefs}
 ${entitiesTypeDefs}
+${queriesTypeDefs}
 ${mutationsTypeDefs}
 `;
 
