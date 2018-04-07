@@ -1,4 +1,4 @@
 // schemas
-import Departement from './_departement';
+import Department from './_departments';
 
-export default { Departement };
+export default { Department };

@@ -3,7 +3,7 @@ import { slugify } from './../../lib/slugify';
 
 const slugType = { set: slugify, type: String };
 
-const DepartementSchema = new Schema({
+const DepartmentSchema = new Schema({
   code: String,
   name: String,
   slug: slugType,
@@ -14,6 +14,6 @@ const DepartementSchema = new Schema({
   },
 });
 
-const Departement = Mongoose.model('departements', DepartementSchema);
+const Departement = Mongoose.model('departments', DepartmentSchema);
 
 export default Departement;

@@ -1,10 +1,7 @@
 const queriesTypeDefs = `
 type Query {
-  allPersons: [Person]
-  allRestrictions: [Restriction]
-  allDepartements: [Departement]
-  getDepartementSUO(departement: String): [SUOS]
-  allDepartementRestrictions(departement: String): [Restriction]
+  allDepartments: [Department]
+  getDepartmentSUO(department: String): [SUOS]
 }
 `;
 
