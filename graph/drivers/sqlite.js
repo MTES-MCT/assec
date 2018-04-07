@@ -7,6 +7,10 @@ const DB_FILEPATH = process.env.SQLITE_DB_FILEPATH;
 const db = new Sequelize(DB_NAME, null, null, {
   dialect: 'sqlite',
   storage: DB_FILEPATH,
+  // FIX depraction warning
+  // @see https://github.com/sequelize/sequelize/issues/8427
+  // @see http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
+  operatorsAliases: false,
 });
 
 personModel.init(db);
