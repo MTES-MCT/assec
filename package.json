@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "nf start -p 3000",
-    "dev:db": "mongod --dbpath /mongodb/db --port 27018",
+    "dev:db": "mongod --config ./mongo/mongod.conf",
     "precommit": "sh ./.scripts/hooks/pre-commit",
     "prebump": "sh ./.scripts/git-ensure-clean",
     "bump": "node ./.scripts/yarn-bump",
