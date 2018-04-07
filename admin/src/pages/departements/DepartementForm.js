@@ -8,7 +8,7 @@ import {
   ALL_DEPARTEMENTS,
   CREATE_DEPARTEMENT,
   UPDATE_DEPARTEMENTS,
-} from './../../graphql';
+} from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import SelectBox from './../../components/forms/SelectBox';
 import ArrayValues from './../../components/forms/ArrayValues';

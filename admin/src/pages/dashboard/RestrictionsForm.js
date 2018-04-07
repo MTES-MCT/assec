@@ -9,7 +9,7 @@ import {
   CREATE_RESTRICTION,
   GET_DEPARTEMENT_SUO,
   UPDATE_RESTRICTIONS,
-} from './../../graphql';
+} from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import TextArea from './../../components/forms/TextArea';
 import RadioGroup from './../../components/forms/RadioGroup';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { ALL_DEPARTEMENTS } from './../../graphql';
+import { ALL_DEPARTEMENTS } from './../../apolloql';
 
 const DepartementSelector = ({ onChange }) => (
   <Query query={ALL_DEPARTEMENTS}>

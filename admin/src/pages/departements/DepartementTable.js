@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
-import { ALL_DEPARTEMENTS } from './../../graphql';
+import { ALL_DEPARTEMENTS } from './../../apolloql';
 
 const renderDepartementTableHeader = () => (
   <thead>

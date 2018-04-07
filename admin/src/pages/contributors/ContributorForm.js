@@ -3,7 +3,7 @@ import { Form } from 'react-final-form';
 import { Mutation } from 'react-apollo';
 
 // application
-import { CREATE_PERSON, UPDATE_PERSONS } from './../../graphql';
+import { CREATE_PERSON, UPDATE_PERSONS } from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import TextInput from './../../components/forms/TextInput';
 import SubmitButton from './../../components/forms/SubmitButton';

@@ -20,6 +20,7 @@
     "react-apollo": "^2.1.2",
     "react-apollo-network-status": "^1.0.0",
     "react-color": "^2.14.0",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.2.0",
     "react-final-form": "^3.1.5",
     "react-final-form-arrays": "^1.0.4",

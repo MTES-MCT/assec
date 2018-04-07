@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { ALL_DEPARTEMENT_RESTRICTIONS } from './../../graphql';
+import { ALL_DEPARTEMENT_RESTRICTIONS } from './../../apolloql';
 
 const renderRestrictionsTableHeader = () => (
   <thead>
