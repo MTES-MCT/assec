@@ -1,596 +1,620 @@
 [
   {
-    "code": "01",
-    "name": "Ain",
-    "uppercase": "AIN",
-    "slug": "ain"
+    "departmentCode": "01",
+    "departmentName": "Ain",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "02",
-    "name": "Aisne",
-    "uppercase": "AISNE",
-    "slug": "aisne"
+    "departmentCode": "02",
+    "departmentName": "Aisne",
+    "regionCode": "32",
+    "regionName": "Hauts-de-France"
   },
   {
-    "code": "03",
-    "name": "Allier",
-    "uppercase": "ALLIER",
-    "slug": "allier"
+    "departmentCode": "03",
+    "departmentName": "Allier",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "04",
-    "name": "Alpes-de-Haute-Provence",
-    "uppercase": "alpes-de-Haute-Provence",
-    "slug": "ALPES-DE-HAUTE-PROVENCE"
+    "departmentCode": "04",
+    "departmentName": "Alpes-de-Haute-Provence",
+    "regionCode": "93",
+    "regionName": "Provence-Alpes-Côte d'Azur"
   },
   {
-    "code": "05",
-    "name": "Hautes-Alpes",
-    "uppercase": "HAUTES-ALPES",
-    "slug": "hautes-alpes"
+    "departmentCode": "05",
+    "departmentName": "Hautes-Alpes",
+    "regionCode": "93",
+    "regionName": "Provence-Alpes-Côte d'Azur"
   },
   {
-    "code": "07",
-    "name": "Ardèche",
-    "uppercase": "ARDÈCHE",
-    "slug": "ardeche"
+    "departmentCode": "06",
+    "departmentName": "Alpes-Maritimes",
+    "regionCode": "93",
+    "regionName": "Provence-Alpes-Côte d'Azur"
   },
   {
-    "code": "08",
-    "name": "Ardennes",
-    "uppercase": "ARDENNES",
-    "slug": "ardennes"
+    "departmentCode": "07",
+    "departmentName": "Ardèche",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "09",
-    "name": "Ariège",
-    "uppercase": "ARIÈGE",
-    "slug": "ariege"
+    "departmentCode": "08",
+    "departmentName": "Ardennes",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "10",
-    "name": "Aube",
-    "uppercase": "AUBE",
-    "slug": "aube"
+    "departmentCode": "09",
+    "departmentName": "Ariège",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "11",
-    "name": "Aude",
-    "uppercase": "AUDE",
-    "slug": "aude"
+    "departmentCode": "10",
+    "departmentName": "Aube",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "12",
-    "name": "Aveyron",
-    "uppercase": "AVEYRON",
-    "slug": "aveyron"
+    "departmentCode": "11",
+    "departmentName": "Aude",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "13",
-    "name": "Bouches-du-Rhône",
-    "uppercase": "BOUCHES-DU-RHÔNE",
-    "slug": "bouches-du-rhone"
+    "departmentCode": "12",
+    "departmentName": "Aveyron",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "14",
-    "name": "Calvados",
-    "uppercase": "CALVADOS",
-    "slug": "calvados"
+    "departmentCode": "13",
+    "departmentName": "Bouches-du-Rhône",
+    "regionCode": "93",
+    "regionName": "Provence-Alpes-Côte d'Azur"
   },
   {
-    "code": "15",
-    "name": "Cantal",
-    "uppercase": "CANTAL",
-    "slug": "cantal"
+    "departmentCode": "14",
+    "departmentName": "Calvados",
+    "regionCode": "28",
+    "regionName": "Normandie"
   },
   {
-    "code": "16",
-    "name": "Charente",
-    "uppercase": "CHARENTE",
-    "slug": "charente"
+    "departmentCode": "15",
+    "departmentName": "Cantal",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "17",
-    "name": "Charente-Maritime",
-    "uppercase": "CHARENTE-MARITIME",
-    "slug": "charente-maritime"
+    "departmentCode": "16",
+    "departmentName": "Charente",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "18",
-    "name": "Cher",
-    "uppercase": "CHER",
-    "slug": "cher"
+    "departmentCode": "17",
+    "departmentName": "Charente-Maritime",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "19",
-    "name": "Corrèze",
-    "uppercase": "CORRÈZE",
-    "slug": "correze"
+    "departmentCode": "18",
+    "departmentName": "Cher",
+    "regionCode": "24",
+    "regionName": "Centre-Val de Loire"
   },
   {
-    "code": "2a",
-    "name": "Corse-du-sud",
-    "uppercase": "CORSE-DU-SUD",
-    "slug": "corse-du-sud"
+    "departmentCode": "19",
+    "departmentName": "Corrèze",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "2b",
-    "name": "Haute-corse",
-    "uppercase": "HAUTE-CORSE",
-    "slug": "haute-corse"
+    "departmentCode": "21",
+    "departmentName": "Côte-d'or",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "21",
-    "name": "Côte-d'or",
-    "uppercase": "CÔTE-D'OR",
-    "slug": "cote-dor"
+    "departmentCode": "22",
+    "departmentName": "Côtes-d'armor",
+    "regionCode": "53",
+    "regionName": "Bretagne"
   },
   {
-    "code": "22",
-    "name": "Côtes-d'armor",
-    "uppercase": "CÔTES-D'ARMOR",
-    "slug": "cotes-darmor"
+    "departmentCode": "23",
+    "departmentName": "Creuse",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "23",
-    "name": "Creuse",
-    "uppercase": "CREUSE",
-    "slug": "creuse"
+    "departmentCode": "24",
+    "departmentName": "Dordogne",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "24",
-    "name": "Dordogne",
-    "uppercase": "DORDOGNE",
-    "slug": "dordogne"
+    "departmentCode": "25",
+    "departmentName": "Doubs",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "25",
-    "name": "Doubs",
-    "uppercase": "DOUBS",
-    "slug": "doubs"
+    "departmentCode": "26",
+    "departmentName": "Drôme",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "26",
-    "name": "Drôme",
-    "uppercase": "DRÔME",
-    "slug": "drome"
+    "departmentCode": "27",
+    "departmentName": "Eure",
+    "regionCode": "28",
+    "regionName": "Normandie"
   },
   {
-    "code": "27",
-    "name": "Eure",
-    "uppercase": "EURE",
-    "slug": "eure"
+    "departmentCode": "28",
+    "departmentName": "Eure-et-Loir",
+    "regionCode": "24",
+    "regionName": "Centre-Val de Loire"
   },
   {
-    "code": "28",
-    "name": "Eure-et-Loir",
-    "uppercase": "EURE-ET-LOIR",
-    "slug": "eure-et-loir"
+    "departmentCode": "29",
+    "departmentName": "Finistère",
+    "regionCode": "53",
+    "regionName": "Bretagne"
   },
   {
-    "code": "29",
-    "name": "Finistère",
-    "uppercase": "FINISTÈRE",
-    "slug": "finistere"
+    "departmentCode": "2a",
+    "departmentName": "Corse-du-Sud",
+    "regionCode": "94",
+    "regionName": "Corse"
   },
   {
-    "code": "30",
-    "name": "Gard",
-    "uppercase": "GARD",
-    "slug": "gard"
+    "departmentCode": "2b",
+    "departmentName": "Haute-Corse",
+    "regionCode": "94",
+    "regionName": "Corse"
   },
   {
-    "code": "31",
-    "name": "Haute-Garonne",
-    "uppercase": "HAUTE-GARONNE",
-    "slug": "haute-garonne"
+    "departmentCode": "30",
+    "departmentName": "Gard",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "32",
-    "name": "Gers",
-    "uppercase": "GERS",
-    "slug": "gers"
+    "departmentCode": "31",
+    "departmentName": "Haute-Garonne",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "33",
-    "name": "Gironde",
-    "uppercase": "GIRONDE",
-    "slug": "gironde"
+    "departmentCode": "32",
+    "departmentName": "Gers",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "34",
-    "name": "Hérault",
-    "uppercase": "HÉRAULT",
-    "slug": "herault"
+    "departmentCode": "33",
+    "departmentName": "Gironde",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "35",
-    "name": "Ile-et-Vilaine",
-    "uppercase": "ILE-ET-VILAINE",
-    "slug": "ile-et-vilaine"
+    "departmentCode": "34",
+    "departmentName": "Hérault",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "36",
-    "name": "Indre",
-    "uppercase": "INDRE",
-    "slug": "indre"
+    "departmentCode": "35",
+    "departmentName": "Ille-et-Vilaine",
+    "regionCode": "53",
+    "regionName": "Bretagne"
   },
   {
-    "code": "37",
-    "name": "Indre-et-Loire",
-    "uppercase": "INDRE-ET-LOIRE",
-    "slug": "indre-et-loire"
+    "departmentCode": "36",
+    "departmentName": "Indre",
+    "regionCode": "24",
+    "regionName": "Centre-Val de Loire"
   },
   {
-    "code": "38",
-    "name": "Isère",
-    "uppercase": "ISÈRE",
-    "slug": "isere"
+    "departmentCode": "37",
+    "departmentName": "Indre-et-Loire",
+    "regionCode": "24",
+    "regionName": "Centre-Val de Loire"
   },
   {
-    "code": "39",
-    "name": "Jura",
-    "uppercase": "JURA",
-    "slug": "jura"
+    "departmentCode": "38",
+    "departmentName": "Isère",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "40",
-    "name": "Landes",
-    "uppercase": "LANDES",
-    "slug": "landes"
+    "departmentCode": "39",
+    "departmentName": "Jura",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "41",
-    "name": "Loir-et-Cher",
-    "uppercase": "LOIR-ET-CHER",
-    "slug": "loir-et-cher"
+    "departmentCode": "40",
+    "departmentName": "Landes",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "42",
-    "name": "Loire",
-    "uppercase": "LOIRE",
-    "slug": "loire"
+    "departmentCode": "41",
+    "departmentName": "Loir-et-Cher",
+    "regionCode": "24",
+    "regionName": "Centre-Val de Loire"
   },
   {
-    "code": "43",
-    "name": "Haute-Loire",
-    "uppercase": "HAUTE-LOIRE",
-    "slug": "haute-loire"
+    "departmentCode": "42",
+    "departmentName": "Loire",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "44",
-    "name": "Loire-Atlantique",
-    "uppercase": "LOIRE-ATLANTIQUE",
-    "slug": "loire-atlantique"
+    "departmentCode": "43",
+    "departmentName": "Haute-Loire",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "45",
-    "name": "Loiret",
-    "uppercase": "LOIRET",
-    "slug": "loiret"
+    "departmentCode": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionCode": "52",
+    "regionName": "Pays de la Loire"
   },
   {
-    "code": "46",
-    "name": "Lot",
-    "uppercase": "LOT",
-    "slug": "lot"
+    "departmentCode": "45",
+    "departmentName": "Loiret",
+    "regionCode": "24",
+    "regionName": "Centre-Val de Loire"
   },
   {
-    "code": "47",
-    "name": "Lot-et-Garonne",
-    "uppercase": "LOT-ET-GARONNE",
-    "slug": "lot-et-garonne"
+    "departmentCode": "46",
+    "departmentName": "Lot",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "48",
-    "name": "Lozère",
-    "uppercase": "LOZÈRE",
-    "slug": "lozere"
+    "departmentCode": "47",
+    "departmentName": "Lot-et-Garonne",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "49",
-    "name": "Maine-et-Loire",
-    "uppercase": "MAINE-ET-LOIRE",
-    "slug": "maine-et-loire"
+    "departmentCode": "48",
+    "departmentName": "Lozère",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "50",
-    "name": "Manche",
-    "uppercase": "MANCHE",
-    "slug": "manche"
+    "departmentCode": "49",
+    "departmentName": "Maine-et-Loire",
+    "regionCode": "52",
+    "regionName": "Pays de la Loire"
   },
   {
-    "code": "51",
-    "name": "Marne",
-    "uppercase": "MARNE",
-    "slug": "marne"
+    "departmentCode": "50",
+    "departmentName": "Manche",
+    "regionCode": "28",
+    "regionName": "Normandie"
   },
   {
-    "code": "52",
-    "name": "Haute-Marne",
-    "uppercase": "HAUTE-MARNE",
-    "slug": "haute-marne"
+    "departmentCode": "51",
+    "departmentName": "Marne",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "53",
-    "name": "Mayenne",
-    "uppercase": "MAYENNE",
-    "slug": "mayenne"
+    "departmentCode": "52",
+    "departmentName": "Haute-Marne",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "55",
-    "name": "Meurthe-et-Moselle",
-    "uppercase": "MEURTHE-ET-MOSELLE",
-    "slug": "meurthe-et-moselle"
+    "departmentCode": "53",
+    "departmentName": "Mayenne",
+    "regionCode": "52",
+    "regionName": "Pays de la Loire"
   },
   {
-    "code": "56",
-    "name": "Morbihan",
-    "uppercase": "MORBIHAN",
-    "slug": "morbihan"
+    "departmentCode": "54",
+    "departmentName": "Meurthe-et-Moselle",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "57",
-    "name": "Moselle",
-    "uppercase": "MOSELLE",
-    "slug": "moselle"
+    "departmentCode": "55",
+    "departmentName": "Meuse",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "58",
-    "name": "Nièvre",
-    "uppercase": "NIÈVRE",
-    "slug": "nievre"
+    "departmentCode": "56",
+    "departmentName": "Morbihan",
+    "regionCode": "53",
+    "regionName": "Bretagne"
   },
   {
-    "code": "59",
-    "name": "Nord",
-    "uppercase": "NORD",
-    "slug": "nord"
+    "departmentCode": "57",
+    "departmentName": "Moselle",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "60",
-    "name": "Oise",
-    "uppercase": "OISE",
-    "slug": "oise"
+    "departmentCode": "58",
+    "departmentName": "Nièvre",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "61",
-    "name": "Orne",
-    "uppercase": "ORNE",
-    "slug": "orne"
+    "departmentCode": "59",
+    "departmentName": "Nord",
+    "regionCode": "32",
+    "regionName": "Hauts-de-France"
   },
   {
-    "code": "62",
-    "name": "Pas-de-Calais",
-    "uppercase": "PAS-DE-CALAIS",
-    "slug": "pas-de-calais"
+    "departmentCode": "60",
+    "departmentName": "Oise",
+    "regionCode": "32",
+    "regionName": "Hauts-de-France"
   },
   {
-    "code": "63",
-    "name": "Puy-de-Dôme",
-    "uppercase": "PUY-DE-DÔME",
-    "slug": "puy-de-dome"
+    "departmentCode": "61",
+    "departmentName": "Orne",
+    "regionCode": "28",
+    "regionName": "Normandie"
   },
   {
-    "code": "64",
-    "name": "Pyrénées-Atlantiques",
-    "uppercase": "PYRÉNÉES-ATLANTIQUES",
-    "slug": "pyrenees-atlantiques"
+    "departmentCode": "62",
+    "departmentName": "Pas-de-Calais",
+    "regionCode": "32",
+    "regionName": "Hauts-de-France"
   },
   {
-    "code": "65",
-    "name": "Hautes-Pyrénées",
-    "uppercase": "HAUTES-PYRÉNÉES",
-    "slug": "hautes-pyrenees"
+    "departmentCode": "63",
+    "departmentName": "Puy-de-Dôme",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "66",
-    "name": "66",
-    "uppercase": "Pyrénées-Orientales",
-    "slug": "PYRÉNÉES-ORIENTALES"
+    "departmentCode": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "67",
-    "name": "Bas-Rhin",
-    "uppercase": "BAS-RHIN",
-    "slug": "bas-rhin"
+    "departmentCode": "65",
+    "departmentName": "Hautes-Pyrénées",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "68",
-    "name": "Haut-Rhin",
-    "uppercase": "HAUT-RHIN",
-    "slug": "haut-rhin"
+    "departmentCode": "66",
+    "departmentName": "Pyrénées-Orientales",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "69",
-    "name": "Rhône",
-    "uppercase": "RHÔNE",
-    "slug": "rhone"
+    "departmentCode": "67",
+    "departmentName": "Bas-Rhin",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "70",
-    "name": "Haute-Saône",
-    "uppercase": "HAUTE-SAÔNE",
-    "slug": "haute-saone"
+    "departmentCode": "68",
+    "departmentName": "Haut-Rhin",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "71",
-    "name": "Saône-et-Loire",
-    "uppercase": "SAÔNE-ET-LOIRE",
-    "slug": "saone-et-loire"
+    "departmentCode": "69",
+    "departmentName": "Rhône",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "72",
-    "name": "Sarthe",
-    "uppercase": "SARTHE",
-    "slug": "sarthe"
+    "departmentCode": "70",
+    "departmentName": "Haute-Saône",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "73",
-    "name": "Savoie",
-    "uppercase": "SAVOIE",
-    "slug": "savoie"
+    "departmentCode": "71",
+    "departmentName": "Saône-et-Loire",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "74",
-    "name": "Haute-Savoie",
-    "uppercase": "HAUTE-SAVOIE",
-    "slug": "haute-savoie"
+    "departmentCode": "72",
+    "departmentName": "Sarthe",
+    "regionCode": "52",
+    "regionName": "Pays de la Loire"
   },
   {
-    "code": "75",
-    "name": "Paris",
-    "uppercase": "PARIS",
-    "slug": "paris"
+    "departmentCode": "73",
+    "departmentName": "Savoie",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "76",
-    "name": "Seine-Maritime",
-    "uppercase": "SEINE-MARITIME",
-    "slug": "seine-maritime"
+    "departmentCode": "74",
+    "departmentName": "Haute-Savoie",
+    "regionCode": "84",
+    "regionName": "Auvergne-Rhône-Alpes"
   },
   {
-    "code": "77",
-    "name": "Seine-et-Marne",
-    "uppercase": "SEINE-ET-MARNE",
-    "slug": "seine-et-marne"
+    "departmentCode": "75",
+    "departmentName": "Paris",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "78",
-    "name": "Yvelines",
-    "uppercase": "YVELINES",
-    "slug": "yvelines"
+    "departmentCode": "76",
+    "departmentName": "Seine-Maritime",
+    "regionCode": "28",
+    "regionName": "Normandie"
   },
   {
-    "code": "79",
-    "name": "Deux-Sèvres",
-    "uppercase": "DEUX-SÈVRES",
-    "slug": "deux-sevres"
+    "departmentCode": "77",
+    "departmentName": "Seine-et-Marne",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "80",
-    "name": "Somme",
-    "uppercase": "SOMME",
-    "slug": "somme"
+    "departmentCode": "78",
+    "departmentName": "Yvelines",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "81",
-    "name": "Tarn",
-    "uppercase": "TARN",
-    "slug": "tarn"
+    "departmentCode": "79",
+    "departmentName": "Deux-Sèvres",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "82",
-    "name": "Tarn-et-Garonne",
-    "uppercase": "TARN-ET-GARONNE",
-    "slug": "tarn-et-garonne"
+    "departmentCode": "80",
+    "departmentName": "Somme",
+    "regionCode": "32",
+    "regionName": "Hauts-de-France"
   },
   {
-    "code": "83",
-    "name": "Var",
-    "uppercase": "VAR",
-    "slug": "var"
+    "departmentCode": "81",
+    "departmentName": "Tarn",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "84",
-    "name": "Vaucluse",
-    "uppercase": "VAUCLUSE",
-    "slug": "vaucluse"
+    "departmentCode": "82",
+    "departmentName": "Tarn-et-Garonne",
+    "regionCode": "76",
+    "regionName": "Occitanie"
   },
   {
-    "code": "85",
-    "name": "Vendée",
-    "uppercase": "VENDÉE",
-    "slug": "vendee"
+    "departmentCode": "83",
+    "departmentName": "Var",
+    "regionCode": "93",
+    "regionName": "Provence-Alpes-Côte d'Azur"
   },
   {
-    "code": "86",
-    "name": "Vienne",
-    "uppercase": "VIENNE",
-    "slug": "vienne"
+    "departmentCode": "84",
+    "departmentName": "Vaucluse",
+    "regionCode": "93",
+    "regionName": "Provence-Alpes-Côte d'Azur"
   },
   {
-    "code": "87",
-    "name": "Haute-Vienne",
-    "uppercase": "HAUTE-VIENNE",
-    "slug": "haute-vienne"
+    "departmentCode": "85",
+    "departmentName": "Vendée",
+    "regionCode": "52",
+    "regionName": "Pays de la Loire"
   },
   {
-    "code": "88",
-    "name": "Vosges",
-    "uppercase": "VOSGES",
-    "slug": "vosges"
+    "departmentCode": "86",
+    "departmentName": "Vienne",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "89",
-    "name": "Yonne",
-    "uppercase": "YONNE",
-    "slug": "yonne"
+    "departmentCode": "87",
+    "departmentName": "Haute-Vienne",
+    "regionCode": "75",
+    "regionName": "Nouvelle Aquitaine"
   },
   {
-    "code": "90",
-    "name": "Territoire de Belfort",
-    "uppercase": "TERRITOIRE DE BELFORT",
-    "slug": "territoire-de-Belfort"
+    "departmentCode": "88",
+    "departmentName": "Vosges",
+    "regionCode": "44",
+    "regionName": "Grand Est"
   },
   {
-    "code": "91",
-    "name": "Essonne",
-    "uppercase": "ESSONNE",
-    "slug": "essonne"
+    "departmentCode": "89",
+    "departmentName": "Yonne",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "92",
-    "name": "Hauts-de-Seine",
-    "uppercase": "HAUTS-DE-SEINE",
-    "slug": "hauts-de-seine"
+    "departmentCode": "90",
+    "departmentName": "Territoire de Belfort",
+    "regionCode": "27",
+    "regionName": "Bourgogne-Franche-Comté"
   },
   {
-    "code": "93",
-    "name": "Seine-Saint-Denis",
-    "uppercase": "SEINE-SAINT-DENIS",
-    "slug": "seine-saint-denis"
+    "departmentCode": "91",
+    "departmentName": "Essonne",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "94",
-    "name": "Val-de-Marne",
-    "uppercase": "VAL-DE-MARNE",
-    "slug": "val-de-marne"
+    "departmentCode": "92",
+    "departmentName": "Hauts-de-Seine",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "95",
-    "name": "Val-d'oise",
-    "uppercase": "VAL-D'OISE",
-    "slug": "val-doise"
+    "departmentCode": "93",
+    "departmentName": "Seine-Saint-Denis",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "976",
-    "name": "Mayotte",
-    "uppercase": "MAYOTTE",
-    "slug": "mayotte"
+    "departmentCode": "94",
+    "departmentName": "Val-de-Marne",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "971",
-    "name": "Guadeloupe",
-    "uppercase": "GUADELOUPE",
-    "slug": "guadeloupe"
+    "departmentCode": "95",
+    "departmentName": "Val-d'oise",
+    "regionCode": "11",
+    "regionName": "Ile-de-France"
   },
   {
-    "code": "973",
-    "name": "Guyane",
-    "uppercase": "GUYANE",
-    "slug": "guyane"
+    "departmentCode": "971",
+    "departmentName": "Guadeloupe",
+    "regionCode": "01",
+    "regionName": "Guadeloupe"
   },
   {
-    "code": "972",
-    "name": "Martinique",
-    "uppercase": "MARTINIQUE",
-    "slug": "martinique"
+    "departmentCode": "972",
+    "departmentName": "Martinique",
+    "regionCode": "02",
+    "regionName": "Martinique"
   },
   {
-    "code": "974",
-    "name": "Réunion",
-    "uppercase": "RÉUNION",
-    "slug": "reunion"
+    "departmentCode": "973",
+    "departmentName": "Guyane",
+    "regionCode": "03",
+    "regionName": "Guyane"
+  },
+  {
+    "departmentCode": "974",
+    "departmentName": "La Réunion",
+    "regionCode": "04",
+    "regionName": "La Réunion"
+  },
+  {
+    "departmentCode": "976",
+    "departmentName": "Mayotte",
+    "regionCode": "06",
+    "regionName": "Mayotte"
+  },
+  {
+    "departmentCode": "987",
+    "departmentName": "Polynésie Française",
+    "regionCode": "",
+    "regionName": ""
+  },
+  {
+    "departmentCode": "988",
+    "departmentName": "Nouvelle Calédonie",
+    "regionCode": "",
+    "regionName": ""
   }
 ]
