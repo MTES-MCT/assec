@@ -1,5 +1,5 @@
 import Mongoose, { Schema } from 'mongoose';
-import { slugify } from './../../../lib/slugify';
+import { slugify } from './../../lib/slugify';
 
 const slugType = { set: slugify, type: String };
 

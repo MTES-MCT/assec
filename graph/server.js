@@ -9,16 +9,13 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
 import typeDefs from './types';
-import myresolvers from './data/resolvers';
+import resolvers from './resolvers';
 
 const logger = require('assec-utils/lib/logger');
 
 // application
 const usedebug = process.env.NODE_ENV !== 'production';
-const myschema = makeExecutableSchema({
-  typeDefs,
-  resolvers: myresolvers,
-});
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 const app = express();
 app.use(cors());
@@ -27,7 +24,7 @@ app.use(
   // bodyParser is needed just for POST.
   bodyParser.json(),
   graphqlExpress({
-    schema: myschema,
+    schema,
     // Apollo Server accepts a GraphQLOptions object as its single argument
     // @see apollographql.com/docs/apollo-server/setup.html#graphqlOptions
     debug: usedebug,
