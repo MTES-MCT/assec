@@ -8,16 +8,16 @@ import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
+import typeDefs from './types';
 import myresolvers from './data/resolvers';
-import mydefinitions from './data/schema';
 
 const logger = require('assec-utils/lib/logger');
 
 // application
 const usedebug = process.env.NODE_ENV !== 'production';
 const myschema = makeExecutableSchema({
+  typeDefs,
   resolvers: myresolvers,
-  typeDefs: mydefinitions,
 });
 
 const app = express();
