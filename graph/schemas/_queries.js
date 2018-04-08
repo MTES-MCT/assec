@@ -1,6 +1,5 @@
 const queriesDefs = `
 type Query {
-  suos: [SUOSType]
   departements: [DepartementType]
 }
 `;

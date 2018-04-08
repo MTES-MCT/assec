@@ -8,14 +8,14 @@ import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
-import typeDefs from './types';
+import schemas from './schemas';
 import * as resolvers from './resolvers';
 
 const logger = require('assec-utils/lib/logger');
 
 // application
 const usedebug = process.env.NODE_ENV !== 'production';
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+const schema = makeExecutableSchema({ typeDefs: schemas, resolvers });
 
 const app = express();
 app.use(cors());
