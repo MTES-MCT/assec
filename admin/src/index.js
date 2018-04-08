@@ -9,11 +9,12 @@ import createHistory from 'history/createBrowserHistory';
 import './styles.css';
 import Page from './page';
 import { configure } from './store';
-import { createClient } from './client';
+import { createClient } from './apollo';
 import AppHeader from './components/AppHeader';
 import LinearProgress from './components/ui/LinearProgress';
 
-const { client, NetworkStatusNotifier } = createClient('http://localhost:3200/graphql');
+const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
+const { client, NetworkStatusNotifier } = createClient(graphqluri);
 
 // application
 const history = createHistory();
