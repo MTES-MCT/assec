@@ -1,9 +1,18 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import loadingReducer from './loading';
+const toasts = (state = [], action) => {
+  switch (action.type) {
+  case 'onAddToast':
+    return state.concat([action.item]);
+  case 'onRemoveToast':
+    return state.filter(obj => obj.id !== action.id);
+  default:
+    return state;
+  }
+};
 
 export default combineReducers({
-  loading: loadingReducer,
+  toasts,
   router: routerReducer,
 });
