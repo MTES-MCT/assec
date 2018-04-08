@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { DEPARTEMENTS } from './../../apolloql';
+import { ALL_DEPARTEMENTS } from './../../apolloql';
 
 const DepartementSelector = ({ onChange }) => (
-  <Query query={DEPARTEMENTS}>
+  <Query query={ALL_DEPARTEMENTS}>
     {({ loading, error, data: { departements: dpts } }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;

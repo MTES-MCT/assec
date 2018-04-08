@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 // application
 import AppPage from './../components/AppPage';
-import DepartementSelector from './ui/DepartementSelector';
+import Selector from './../components/ui/DepartementSelector';
 import RestrictionsForm from './restrictions/RestrictionsForm';
-import RestrictionsTable from './restrictions/RestrictionsTable';
+// import RestrictionsTable from './restrictions/RestrictionsTable';
 
 class RestrictionsPage extends React.PureComponent {
   constructor (props) {
@@ -26,11 +26,11 @@ class RestrictionsPage extends React.PureComponent {
       <AppPage {...config}
         header={() => (
           <fieldset>
-            <DepartementSelector onChange={this.onChange} />
+            <Selector onChange={this.onChange} />
           </fieldset>
         )}>
         <div id="page-main-column" className="col50">
-          <RestrictionsTable selected={selected} />
+          {/* <RestrictionsTable selected={selected} /> */}
         </div>
         <div id="page-aside-column" className="col50">
           <RestrictionsForm selected={selected} />

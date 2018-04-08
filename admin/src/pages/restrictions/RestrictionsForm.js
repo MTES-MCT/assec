@@ -6,8 +6,8 @@ import { Query, Mutation } from 'react-apollo';
 // application
 import {
   CREATE_RESTRICTION,
-  GET_DEPARTEMENT_SUO,
   UPDATE_RESTRICTIONS,
+  GET_DEPARTEMENT_SUOS,
 } from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import TextArea from './../../components/forms/TextArea';
@@ -61,11 +61,11 @@ const renderMutation = (provider, selected) => (
 );
 
 const RestrictionsForm = ({ selected }) => (
-  <Query query={GET_DEPARTEMENT_SUO} variables={{ departement: selected }}>
-    {({ loading, error, data: { getDepartementSUO: dpt } }) => {
+  <Query query={GET_DEPARTEMENT_SUOS} variables={{ id: selected }}>
+    {({ loading, error, data: { departementSUOS } }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      console.log('dpt.suos', dpt && dpt.suos);
+      console.log('dpt.suos', departementSUOS);
       // console.log('dpt.suos', dpt.suos);
       const provider = [];
       // const provider = (dpt && dpt.suos && dpt.suos) || [];

@@ -12,7 +12,19 @@ const toasts = (state = [], action) => {
   }
 };
 
+const popin = (state = null, action) => {
+  switch (action.type) {
+  case 'onOpenPopin':
+    return { ...action.popin };
+  case 'onClosePopin':
+    return null;
+  default:
+    return state;
+  }
+};
+
 export default combineReducers({
+  popin,
   toasts,
   router: routerReducer,
 });

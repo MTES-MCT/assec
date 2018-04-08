@@ -7,26 +7,20 @@ import { ALL_DEPARTEMENTS } from './../../apolloql';
 const renderDepartementTableHeader = () => (
   <thead>
     <tr>
-      <th>Code</th>
+      <th className="small">Code</th>
       <th>Nom</th>
-      <th className="btn-cell" />
-      <th className="btn-cell" />
+      <th className="small" />
     </tr>
   </thead>
 );
 
 const renderDepartementTableRow = departement => (
   <tr key={departement.id}>
-    <td>{departement.code}</td>
+    <td className="small">{departement.code}</td>
     <td>{departement.name}</td>
-    <td className="btn-cell">
+    <td className="small">
       <button type="button" onClick={() => {}}>
         <i className="icon icon-pencil" />
-      </button>
-    </td>
-    <td className="btn-cell">
-      <button type="button" className="button-remove" onClick={() => {}}>
-        <i className="icon icon-cancel-circled" />
       </button>
     </td>
   </tr>

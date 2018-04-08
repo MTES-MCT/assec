@@ -1,0 +1,25 @@
+#app-popin,
+#app-popin-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+#app-popin-holder,
+#app-popin-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#app-popin-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+#app-popin-controls {
+  top: 12px;
+  right: 12px;
+  position: absolute;
+}

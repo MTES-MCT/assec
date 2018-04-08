@@ -99,3 +99,37 @@ export const ALL_DEPARTEMENTS = gql(`
     }
   }
 `);
+
+export const GET_DEPARTEMENT_SUOS = gql(`
+query departementSUOS (
+  $id: ID!
+) {
+  departementSUOS (
+    id: $id
+  ) {
+    usages {
+      id
+      name
+    }
+    origines {
+      name
+    }
+    situations {
+      name
+    }
+  }
+}
+`);
+
+export const UPDATE_DEPARTEMENTS = (
+  store,
+  { data: { createDepartement: next } },
+) => {
+  const { departements: previous } = store.readQuery({
+    query: ALL_DEPARTEMENTS,
+  });
+  store.writeQuery({
+    query: ALL_DEPARTEMENTS,
+    data: { departements: previous.concat([next]) },
+  });
+};

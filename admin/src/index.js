@@ -7,9 +7,10 @@ import createHistory from 'history/createBrowserHistory';
 
 // application
 import './styles.css';
-import Page from './page';
 import { configure } from './store';
 import { createClient } from './apollo';
+import Page from './page';
+import AppPopin from './components/AppPopin';
 import AppHeader from './components/AppHeader';
 import LinearProgress from './components/ui/LinearProgress';
 
@@ -32,6 +33,7 @@ const Root = () => (
           )} />
           <AppHeader title="ASSEC" />
           <Page />
+          <AppPopin />
         </Fragment>
       </ApolloProvider>
     </ConnectedRouter>
