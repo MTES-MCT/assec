@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
+// application
 import { ALL_DEPARTEMENTS } from './../../apolloql';
 
 const renderDepartementTableHeader = () => (
@@ -33,14 +34,14 @@ const renderDepartementTableRow = departement => (
 
 const DepartementTable = () => (
   <Query query={ALL_DEPARTEMENTS} displayName="DepartementTableQuery">
-    {({ loading, error, data: { allDepartements: dpts } }) => {
+    {({ loading, error, data: { departements: dpts } }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
       return (
         <div>
           <table>
             {renderDepartementTableHeader()}
-            <tbody>{dpts.map(renderDepartementTableRow)}</tbody>
+            <tbody>{dpts && dpts.map(renderDepartementTableRow)}</tbody>
           </table>
         </div>
       );

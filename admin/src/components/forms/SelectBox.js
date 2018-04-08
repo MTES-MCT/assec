@@ -3,34 +3,34 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 // application
-const renderOption = obj => (
-  <option key={obj.id} value={obj.value}>
-    {obj.name}
-  </option>
-);
+import SelectAdapter from './adpaters/Select';
 
-// application
 const SelectBox = ({
-  label, name, multiple, provider,
+  name, size, label, multiple, provider, ...rest
 }) => (
   <p>
     <label htmlFor={name}>
       <span>{label}</span>
       <span className="selectbox">
-        <Field id={name} name={name} component="select" multiple={multiple}>
-          <option key="default" />
-          {provider && provider.map(renderOption)}
-        </Field>
+        <Field id={name}
+          size={size}
+          name={name}
+          multiple={multiple}
+          provider={provider}
+          component={SelectAdapter}
+          {...rest} />
       </span>
     </label>
   </p>
 );
 
 SelectBox.defaultProps = {
+  size: 1,
   multiple: false,
 };
 
 SelectBox.propTypes = {
+  size: PropTypes.number,
   multiple: PropTypes.bool,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,

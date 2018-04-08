@@ -33,6 +33,11 @@ fieldset {
   padding: 12px;
 }
 
+// FIXME -> last-child
+fieldset .submit-button {
+  margin-bottom: 0;
+}
+
 fieldset label,
 fieldset .as-form-label {
   @extend .flex-rows;
@@ -47,13 +52,14 @@ fieldset .as-form-label span {
 .selectbox {
   flex: 1;
   display: flex;
+  padding: 0 7px;
   font-size: 1.2em;
-  padding: 12px 7px;
   border-width: 1px;
   border-radius: 4px;
   border-style: solid;
   background-color: #FFFFFF;
   border-color: rgba(0, 0, 0, 0.2);
+  height: calc(15px + 24px); // 24px = 2 * padding(12px)
 
   select,
   select option {
@@ -68,6 +74,10 @@ fieldset .as-form-label span {
   padding: 0 12px 12px 12px;
   border-color: rgba(0, 0, 0, 0.2);
 
+  .buttons {
+    margin: 0;
+  }
+
   .list {
     max-height: 260px;
     overflow-y: scroll;
@@ -76,6 +86,7 @@ fieldset .as-form-label span {
 
   .item {
     width: 100%;
+    margin-top: 12px;
   }
 
   .item input {

@@ -17,6 +17,13 @@ docker run -m "300M" --memory-swap "1G" -w "/home/node/app" -e \"NODE_ENV=produc
 docker run -p 3000:3000 -e \"NODE_ENV=development\" -i -t assec/admin
 ```
 
+## MongoDB
+
+**Import des Départements Français depuis le JSON**
+```bash
+mongoimport --jsonArray --db assec --collection french_departments --file ./datas/departements.json --port 27018
+```
+
 ## Server
 
 - [Morgan Logger](https://github.com/expressjs/morgan)

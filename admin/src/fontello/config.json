@@ -77,6 +77,12 @@
       "css": "plus",
       "code": 59402,
       "src": "entypo"
+    },
+    {
+      "uid": "c709da589c923ba3c2ad48d9fc563e93",
+      "css": "cancel",
+      "code": 59404,
+      "src": "entypo"
     }
   ]
 }

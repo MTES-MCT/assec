@@ -1,3 +1,4 @@
-export * from './queries';
+// export * from './queries';
 export * from './updates';
-export * from './mutations';
+export * from './mutations/person';
+export * from './mutations/departements';

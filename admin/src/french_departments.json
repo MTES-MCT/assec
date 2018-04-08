@@ -114,6 +114,18 @@
     "regionName": "Nouvelle Aquitaine"
   },
   {
+    "departmentCode": "2a",
+    "departmentName": "Corse-du-Sud",
+    "regionCode": "94",
+    "regionName": "Corse"
+  },
+  {
+    "departmentCode": "2b",
+    "departmentName": "Haute-Corse",
+    "regionCode": "94",
+    "regionName": "Corse"
+  },
+  {
     "departmentCode": "21",
     "departmentName": "Côte-d'or",
     "regionCode": "27",
@@ -166,18 +178,6 @@
     "departmentName": "Finistère",
     "regionCode": "53",
     "regionName": "Bretagne"
-  },
-  {
-    "departmentCode": "2a",
-    "departmentName": "Corse-du-Sud",
-    "regionCode": "94",
-    "regionName": "Corse"
-  },
-  {
-    "departmentCode": "2b",
-    "departmentName": "Haute-Corse",
-    "regionCode": "94",
-    "regionName": "Corse"
   },
   {
     "departmentCode": "30",

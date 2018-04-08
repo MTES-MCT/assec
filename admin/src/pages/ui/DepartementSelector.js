@@ -3,18 +3,13 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { ALL_DEPARTEMENTS } from './../../apolloql';
+import { DEPARTEMENTS } from './../../apolloql';
 
 const DepartementSelector = ({ onChange }) => (
-  <Query query={ALL_DEPARTEMENTS}>
-    {({ loading, error, data: { allDepartements: dpts } }) => {
+  <Query query={DEPARTEMENTS}>
+    {({ loading, error, data: { departements: dpts } }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      const provider = dpts.map(({ id, name }) => ({
-        id,
-        name,
-        value: id,
-      }));
       return (
         <label htmlFor="departement.selector">
           <span>Sélectionner un département</span>
@@ -27,9 +22,9 @@ const DepartementSelector = ({ onChange }) => (
                 return onChange(id);
               }}>
               <option key="default" />
-              {provider &&
-                provider.map(obj => (
-                  <option key={obj.id} value={obj.value}>
+              {dpts &&
+                dpts.map(obj => (
+                  <option key={obj.id} value={obj.id}>
                     {obj.name}
                   </option>
                 ))}
