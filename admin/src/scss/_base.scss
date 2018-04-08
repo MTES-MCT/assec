@@ -212,3 +212,24 @@ fieldset {
 .flex-around {
   justify-content: space-around;
 }
+
+/* --------------------------------------------
+
+ BORDER RADIUS
+
+-------------------------------------------- */
+.br4 {
+  border-radius: 4px;
+}
+
+.br12 {
+  border-radius: 12px;
+}
+
+.br20 {
+  border-radius: 20px;
+}
+
+.br50 {
+  border-radius: 50%;
+}

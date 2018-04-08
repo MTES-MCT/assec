@@ -13,7 +13,7 @@ type Mutation {
     suos: SUOSInput
   ): DepartementType
 
-  deleteDepartement(
+  deleteDepartment(
     id: ID!
   ): String
 }

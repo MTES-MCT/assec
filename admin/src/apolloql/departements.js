@@ -1,10 +1,44 @@
 import gql from 'graphql-tag';
 
+import { ALL_DEPARTEMENTS } from './queries';
+
+export const CREATE_DEPARTEMENT = gql(`
+mutation createDepartement(
+  $code: String!
+  $name: String!
+  $suos: SUOSInput!
+) {
+  createDepartement(
+    code: $code
+    name: $name
+    suos: $suos
+  ) {
+    id
+    code
+    name
+    suos {
+      usages {
+        id
+        name
+      }
+      origines {
+        id
+        name
+      }
+      situations {
+        id
+        name
+      }
+    }
+  }
+}
+`);
+
 export const DELETE_DEPARTEMENT = gql(`
-mutation deleteDepartement (
+mutation deleteDepartment (
   $id: ID!
 ) {
-  deleteDepartement (
+  deleteDepartment (
     id: $id
   )
 }
@@ -44,105 +78,23 @@ mutation updateDepartement(
 }
 `);
 
-export const CREATE_DEPARTEMENT = gql(`
-mutation createDepartement(
-  $code: String!
-  $name: String!
-  $suos: SUOSInput!
-) {
-  createDepartement(
-    code: $code
-    name: $name
-    suos: $suos
-  ) {
-    id
-    code
-    name
-    suos {
-      usages {
-        id
-        name
-      }
-      origines {
-        id
-        name
-      }
-      situations {
-        id
-        name
-      }
-    }
-  }
-}
-`);
-
-export const ALL_DEPARTEMENTS = gql(`
-  query departements {
-    departements {
-      id
-      code
-      name
-      suos {
-        usages {
-          id
-          name
-        }
-        origines {
-          id
-          name
-        }
-        situations {
-          id
-          name
-        }
-      }
-    }
-  }
-`);
-
-export const GET_DEPARTEMENT_SUOS = gql(`
-query departementSUOS (
-  $id: ID!
-) {
-  departementSUOS (
-    id: $id
-  ) {
-    usages {
-      id
-      name
-    }
-    origines {
-      name
-    }
-    situations {
-      name
-    }
-  }
-}
-`);
-
-export const GET_DEPARTEMENT = gql(`
-query departement (
-  $id: ID!
-) {
-  departement (
-    id: $id
-  ) {
-    id
-    name
-  }
-}
-`);
-
-export const UPDATE_DEPARTEMENTS = (
-  store,
-  { data: { createDepartement: next } },
-) => {
-  const { departements: previous } = store.readQuery({
+export const UPDATE_DEPARTEMENTS = (store, { data }) => {
+  const { departements } = store.readQuery({
     query: ALL_DEPARTEMENTS,
   });
+  let dpts = [];
+  if (data.createDepartement) {
+    dpts = departements.concat([data.createDepartement]);
+  }
+  if (data.updateDepartement) {
+    dpts = departements.map(dpt =>
+      (dpt.id === data.updateDepartement.id ? data.updateDepartement.id : dpt));
+  }
+  if (data.deleteDepartement) {
+    dpts = departements.filter(({ id }) => id !== data.deleteDepartment);
+  }
   store.writeQuery({
     query: ALL_DEPARTEMENTS,
-    data: { departements: previous.concat([next]) },
+    data: { departements: dpts },
   });
 };

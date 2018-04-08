@@ -1,12 +1,8 @@
 import omit from 'lodash.omit';
 import { Departement } from './../drivers/mongodb';
 
-// import { Person, Restriction } from './../drivers/sqlite';
-
 export const Mutation = {
-  // createPerson: (_, { firstname, lastname, email }) =>
-  //   Person.create({ firstname, lastname, email }),
-  deleteDepartement: (_, args) => {
+  deleteDepartment: (_, args) => {
     const { id } = args;
     const fieldstoreturns = { select: ['_id'] };
     return new Promise((resolve, reject) => {
@@ -25,8 +21,6 @@ export const Mutation = {
     return Departement.findByIdAndUpdate(id, rest, returnsnewdoc);
   },
   createDepartement: (_, args) => Departement.create(args),
-  // createRestriction: (_, { description, informations, departement }) =>
-  //   Restriction.create({ description, informations, departement }),
 };
 
 export default Mutation;

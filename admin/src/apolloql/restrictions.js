@@ -1,15 +1,6 @@
 import gql from 'graphql-tag';
 
-export const ALL_DEPARTEMENT_RESTRICTIONS = gql(`
-query allRestrictions {
-  allRestrictions {
-    id
-    department
-    description
-    informations
-  }
-}
-`);
+import { ALL_DEPARTEMENT_RESTRICTIONS } from './queries';
 
 export const CREATE_RESTRICTION = gql(`
 mutation createRestriction(

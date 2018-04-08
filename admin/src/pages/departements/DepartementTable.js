@@ -12,6 +12,7 @@ const renderDepartementTableHeader = () => (
       <th className="small">Code</th>
       <th>Nom</th>
       <th className="small" />
+      <th className="small" />
     </tr>
   </thead>
 );
@@ -19,15 +20,20 @@ const renderDepartementTableHeader = () => (
 class DepartementTable extends React.PureComponent {
   constructor (props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
-  onClick (id) {
-    const popin = {
-      id,
-      type: 'DepartmentPopin',
-    };
+  onEditClick (args) {
+    this.openPopin({ ...args, type: 'DepartmentPopin' });
+  }
+
+  onDeleteClick (args) {
+    this.openPopin({ ...args, type: 'DeletePopin' });
+  }
+
+  openPopin (popin) {
     this.props.dispatch({ type: 'onOpenPopin', popin });
   }
 
@@ -38,8 +44,15 @@ class DepartementTable extends React.PureComponent {
         <td className="small">{code}</td>
         <td>{name}</td>
         <td className="small">
-          <button type="button" onClick={() => this.onClick(id)}>
+          <button type="button" onClick={() => this.onEditClick({ id })}>
             <i className="icon icon-pencil" />
+          </button>
+        </td>
+        <td className="small">
+          <button type="button"
+            className="button-remove"
+            onClick={() => this.onDeleteClick({ id, name })}>
+            <i className="icon icon-trash" />
           </button>
         </td>
       </tr>

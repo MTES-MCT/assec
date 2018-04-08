@@ -97,4 +97,8 @@ AppToaster.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(AppToaster);
+const mapStateToProps = state => ({
+  items: state.toasts,
+});
+
+export default connect(mapStateToProps)(AppToaster);

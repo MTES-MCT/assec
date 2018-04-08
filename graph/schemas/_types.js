@@ -21,15 +21,6 @@ type DepartementType {
 }
 `;
 
-// const restriction = `
-// type Restriction {
-//   id: String
-//   departement: String
-//   description: String
-//   informations: String
-// }
-// `;
-
 const typeDefs = `
 ${suos}
 ${departement}

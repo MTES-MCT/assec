@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 // application
 import './apppopin.css';
+import DeletePopin from './popins/DeletePopin';
 import DepartmentPopin from './../pages/departements/DepartmentPopin';
 
 class AppPopin extends React.PureComponent {
@@ -32,9 +33,10 @@ class AppPopin extends React.PureComponent {
     if (!popin) return null;
     const { type, ...rest } = popin;
     switch (type) {
+    case 'DeletePopin':
+      return <DeletePopin {...rest} onClose={this.closePopin} />;
     case 'DepartmentPopin':
-      console.log('rest', rest);
-      return <DepartmentPopin {...rest} />;
+      return <DepartmentPopin {...rest} onClose={this.closePopin} />;
     default:
       return null;
     }
@@ -47,11 +49,6 @@ class AppPopin extends React.PureComponent {
         <div id="app-popin-holder">
           <div id="app-popin-overlay" />
           <div id="app-popin-content">{this.renderPopin()}</div>
-          <div id="app-popin-controls">
-            <button onClick={this.closePopin}>
-              <i className="icon icon-cancel" />
-            </button>
-          </div>
         </div>
       </div>
     );

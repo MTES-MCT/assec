@@ -1,7 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import { withRouter, Switch, Route } from 'react-router';
+import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router';
 
 // application
 import { routes } from './routes';
@@ -10,11 +11,12 @@ import { keypath } from './lib/keypath';
 import { pagetitle } from './lib/pagetitle';
 import MainNavigation from './components/navs/MainNavigation';
 
-const PageComponent = ({ location }) => {
-  const bodyclass = `route-page-${location.pathname
+const PageComponent = ({ location, popin }) => {
+  let bodyclass = `route-page-${location.pathname
     .split('/')
     .filter(v => v)
     .join('-') || 'home'}`;
+  if (popin) bodyclass = `${bodyclass} noscroll`;
   return (
     <div id="app-container" className="flex-columns">
       <Helmet>
@@ -50,8 +52,18 @@ const PageComponent = ({ location }) => {
   );
 };
 
+PageComponent.defaultProps = {
+  popin: null,
+};
+
 PageComponent.propTypes = {
+  popin: PropTypes.object,
   location: PropTypes.object.isRequired,
 };
 
-export default withRouter(PageComponent);
+const mapStateToProps = state => ({
+  popin: state.popin,
+  location: state.router.location,
+});
+
+export default connect(mapStateToProps)(PageComponent);

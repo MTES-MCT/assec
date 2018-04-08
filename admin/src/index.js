@@ -12,6 +12,7 @@ import { createClient } from './apollo';
 import Page from './page';
 import AppPopin from './components/AppPopin';
 import AppHeader from './components/AppHeader';
+import AppToaster from './components/AppToaster';
 import LinearProgress from './components/ui/LinearProgress';
 
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
@@ -34,6 +35,7 @@ const Root = () => (
           <AppHeader title="ASSEC" />
           <Page />
           <AppPopin />
+          <AppToaster />
         </Fragment>
       </ApolloProvider>
     </ConnectedRouter>

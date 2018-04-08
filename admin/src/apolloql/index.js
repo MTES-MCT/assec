@@ -1,2 +1,3 @@
+export * from './queries';
 export * from './departements';
-export * from './mutations/restrictions';
+export * from './restrictions';

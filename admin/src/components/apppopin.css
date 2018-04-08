@@ -7,6 +7,11 @@
   position: fixed;
 }
 
+#app-popin-overlay {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
 #app-popin-holder,
 #app-popin-content {
   width: 100%;
@@ -14,12 +19,39 @@
   position: relative;
 }
 
-#app-popin-overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-}
-
 #app-popin-controls {
   top: 12px;
   right: 12px;
   position: absolute;
+}
+
+#app-popin-controls button {
+  width: 40px;
+  height: 40px;
+}
+
+#app-popin-content {
+  display: flex;
+}
+
+.popin-inner {
+  margin: auto;
+  border-radius: 4px;
+  position: relative;
+  background-color: #FFFFFF;
+}
+
+/* -----------------------------------
+
+ POPINS
+
+----------------------------------- */
+
+#delete-popin {
+  padding: 40px;
+  font-size: 1.3em;
+}
+
+#delete-popin button {
+  font-size: 1em;
 }

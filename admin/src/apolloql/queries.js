@@ -1,43 +1,85 @@
-// export const ALL_PERSONS = gql(`
-// query allPersons {
-//   allPersons {
-//     id
-//     email
-//     lastname
-//     firstname
-//   }
-// }
-// `);
+import gql from 'graphql-tag';
 
-// export const ALL_RESTRICTIONS = gql(`
-// query allRestrictions {
-//   allRestrictions {
-//     id
-//     department
-//     description
-//     informations
-//   }
-// }
-// `);
+export const ALL_DEPARTEMENT_RESTRICTIONS = gql(`
+query estrictions {
+  estrictions {
+    id
+    department
+    description
+    informations
+  }
+}
+`);
 
-// export const DEPARTEMENT_RESTRICTIONS = gql(`
-// query allDepartementRestrictions ($departement: String) {
-//   allDepartementRestrictions (departement: $departement) {
-//     id
-//     description
-//     departement
-//     informations
-//   }
-// }
-// `);
+export const ALL_DEPARTEMENTS = gql(`
+  query departements {
+    departements {
+      id
+      code
+      name
+      suos {
+        usages {
+          id
+          name
+        }
+        origines {
+          id
+          name
+        }
+        situations {
+          id
+          name
+        }
+      }
+    }
+  }
+`);
 
-// export const DEPARTEMENT_SUOS = gql(`
-// query getDepartementSUO ($departement: String) {
-//   getDepartementSUO (departement: $departement) {
-//     id
-//     suos
-//     code
-//     name
-//   }
-// }
-// `);
+export const GET_DEPARTEMENT_SUOS = gql(`
+query departementSUOS (
+  $id: ID!
+) {
+  departementSUOS (
+    id: $id
+  ) {
+    usages {
+      id
+      name
+    }
+    origines {
+      name
+    }
+    situations {
+      name
+    }
+  }
+}
+`);
+
+export const GET_DEPARTEMENT = gql(`
+query departement (
+  $id: ID!
+) {
+  departement (
+    id: $id
+  ) {
+    id
+    code
+    name
+    suos {
+      usages {
+        id
+        name
+      }
+      origines {
+        id
+        name
+      }
+      situations {
+        id
+        name
+      }
+    }
+  }
+}
+`);
