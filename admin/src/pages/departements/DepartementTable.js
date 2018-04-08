@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
+import { connect } from 'react-redux';
 
 // application
 import { ALL_DEPARTEMENTS } from './../../apolloql';
@@ -14,33 +16,58 @@ const renderDepartementTableHeader = () => (
   </thead>
 );
 
-const renderDepartementTableRow = departement => (
-  <tr key={departement.id}>
-    <td className="small">{departement.code}</td>
-    <td>{departement.name}</td>
-    <td className="small">
-      <button type="button" onClick={() => {}}>
-        <i className="icon icon-pencil" />
-      </button>
-    </td>
-  </tr>
-);
+class DepartementTable extends React.PureComponent {
+  constructor (props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+    this.renderTableRow = this.renderTableRow.bind(this);
+  }
 
-const DepartementTable = () => (
-  <Query query={ALL_DEPARTEMENTS} displayName="DepartementTableQuery">
-    {({ loading, error, data: { departements: dpts } }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error </p>;
-      return (
-        <div>
-          <table>
-            {renderDepartementTableHeader()}
-            <tbody>{dpts && dpts.map(renderDepartementTableRow)}</tbody>
-          </table>
-        </div>
-      );
-    }}
-  </Query>
-);
+  onClick (id) {
+    const popin = {
+      id,
+      type: 'DepartmentPopin',
+    };
+    this.props.dispatch({ type: 'onOpenPopin', popin });
+  }
 
-export default DepartementTable;
+  renderTableRow (departement) {
+    const { id, code, name } = departement;
+    return (
+      <tr key={id}>
+        <td className="small">{code}</td>
+        <td>{name}</td>
+        <td className="small">
+          <button type="button" onClick={() => this.onClick(id)}>
+            <i className="icon icon-pencil" />
+          </button>
+        </td>
+      </tr>
+    );
+  }
+
+  render () {
+    return (
+      <Query query={ALL_DEPARTEMENTS}>
+        {({ loading, error, data: { departements: dpts } }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>Error </p>;
+          return (
+            <div>
+              <table>
+                {renderDepartementTableHeader()}
+                <tbody>{dpts && dpts.map(this.renderTableRow)}</tbody>
+              </table>
+            </div>
+          );
+        }}
+      </Query>
+    );
+  }
+}
+
+DepartementTable.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default connect()(DepartementTable);

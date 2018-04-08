@@ -121,6 +121,19 @@ query departementSUOS (
 }
 `);
 
+export const GET_DEPARTEMENT = gql(`
+query departement (
+  $id: ID!
+) {
+  departement (
+    id: $id
+  ) {
+    id
+    name
+  }
+}
+`);
+
 export const UPDATE_DEPARTEMENTS = (
   store,
   { data: { createDepartement: next } },

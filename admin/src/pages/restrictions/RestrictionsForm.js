@@ -18,9 +18,6 @@ import SubmitButton from './../../components/forms/SubmitButton';
 const renderConsummer = (provider, selected, args) => {
   const { handleSubmit, pristine, invalid } = args;
   const disabled = !(selected && selected !== null);
-  console.log('provider', provider);
-  console.log('provider', typeof provider);
-  console.log('provider.zones', provider.zones);
   return (
     <form onSubmit={handleSubmit} className="mb40">
       <span name="restriction-form-anchor" />

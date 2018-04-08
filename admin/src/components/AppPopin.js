@@ -4,24 +4,24 @@ import { connect } from 'react-redux';
 
 // application
 import './apppopin.css';
+import DepartmentPopin from './../pages/departements/DepartmentPopin';
 
 class AppPopin extends React.PureComponent {
   constructor (props) {
     super(props);
-    this.state = { opened: true };
+    this.state = { opened: false };
     this.closePopin = this.closePopin.bind(this);
     this.renderPopin = this.renderPopin.bind(this);
   }
 
   componentWillReceiveProps (next) {
     if (this.state.opened || !next.popin) return;
-    if (next.popin.type !== this.props.popin.type) {
+    if (next.popin.type !== (this.props.popin && this.props.popin.type)) {
       this.setState({ opened: true });
     }
   }
 
   closePopin () {
-    console.log('closePopin closePopin closePopin');
     const { dispatch } = this.props;
     const cb = () => dispatch({ type: 'onClosePopin' });
     this.setState({ opened: false }, cb);
@@ -30,9 +30,11 @@ class AppPopin extends React.PureComponent {
   renderPopin () {
     const { popin } = this.props;
     if (!popin) return null;
-    switch (popin.type) {
-    case 'EditDepartement':
-      return null;
+    const { type, ...rest } = popin;
+    switch (type) {
+    case 'DepartmentPopin':
+      console.log('rest', rest);
+      return <DepartmentPopin {...rest} />;
     default:
       return null;
     }

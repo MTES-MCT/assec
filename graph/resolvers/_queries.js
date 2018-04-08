@@ -7,6 +7,7 @@ export const Query = {
   // const dpt = Departement.findById(id);
   // },
   departements: () => Departement.find(),
+  departement: (_, { id }) => Departement.findById(id),
   // allRestrictions: () => Restriction.findAll(),
   // getDepartementSUO: (_, { id }) => Departement.findById(id),
   // allDepartmentRestrictions: (_, { id }) => {
