@@ -63,7 +63,9 @@ const DepartementForm = () => (
       if (loading) return <p>Loading... </p>;
       const dptslist = dptsutils.omit(loaded);
       return (
-        <Mutation mutation={CREATE_DEPARTEMENT} update={UPDATE_DEPARTEMENTS}>
+        <Mutation mutation={CREATE_DEPARTEMENT}
+          update={UPDATE_DEPARTEMENTS}
+          onCompleted={() => {}}>
           {createDepartement => (
             <Form mutators={{ ...arrayMutators }}
               validate={validator}
@@ -71,6 +73,7 @@ const DepartementForm = () => (
               initialValues={initialValues}
               onSubmit={(values, form) => {
                 createDepartement({ variables: values });
+                // FIXME -> bouger form.reset dans le onCompleted
                 form.reset();
               }}
               render={({
