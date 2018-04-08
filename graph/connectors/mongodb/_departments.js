@@ -1,19 +1,33 @@
 import Mongoose, { Schema } from 'mongoose';
 import { slugify } from './../../lib/slugify';
 
+// application
 const slugType = { set: slugify, type: String };
 
-const DepartmentSchema = new Schema({
+const SUOSchema = new Schema({
+  name: String,
+});
+
+const DepartementSchema = new Schema({
   code: String,
   name: String,
   slug: slugType,
   suos: {
-    zones: [new Schema({ name: String, slug: slugType })],
-    usages: [new Schema({ name: String, slug: slugType })],
-    origines: [new Schema({ name: String, slug: slugType })],
+    usages: [SUOSchema],
+    origines: [SUOSchema],
+    situations: [SUOSchema],
   },
 });
 
-const Departement = Mongoose.model('departments', DepartmentSchema);
+function saveMiddleware (next) {
+  this.slug = this.name;
+  next();
+}
 
-export default Departement;
+DepartementSchema.pre('save', saveMiddleware);
+DepartementSchema.pre('update', saveMiddleware);
+DepartementSchema.pre('findOneAndUpdate', saveMiddleware);
+
+export const Departement = Mongoose.model('departments', DepartementSchema);
+
+export default { Departement };

@@ -1,27 +1,23 @@
 const suos = `
-interface SUOS {
-  id: String
-  name: String
-  slug: String
+type SUOType {
+  id: ID!
+  name: String!
+}
+
+type SUOSType {
+  usages: [SUOType]!
+  origines: [SUOType]!
+  situations: [SUOType]!
 }
 `;
 
-// const person = `
-// type Person {
-//   id: String
-//   email: String
-//   lastname: String
-//   firstname: String
-// }
-// `;
-
-const department = `
-type Department {
-  id: String
-  suos: [SUOS]
-  code: String
-  name: String
-  slug: String
+const departement = `
+type DepartementType {
+  id: ID!
+  code: String!
+  name: String!
+  slug: String!
+  suos: SUOSType!
 }
 `;
 
@@ -34,9 +30,9 @@ type Department {
 // }
 // `;
 
-const entitiesTypeDefs = `
+const typeDefs = `
 ${suos}
-${department}
+${departement}
 `;
 
-export default entitiesTypeDefs;
+export default typeDefs;

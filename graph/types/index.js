@@ -1,9 +1,11 @@
-import entitiesTypeDefs from './_types';
-import queriesTypeDefs from './_queries';
-import mutationsTypeDefs from './_mutations';
+import typeDefs from './_types';
+import inputsDefs from './_inputs';
+import queriesDefs from './_queries';
+import mutationsDefs from './_mutations';
 
 export default `
-${entitiesTypeDefs}
-${queriesTypeDefs}
-${mutationsTypeDefs}
+${typeDefs}
+${inputsDefs}
+${queriesDefs}
+${mutationsDefs}
 `;

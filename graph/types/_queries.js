@@ -1,8 +1,8 @@
-const queriesTypeDefs = `
+const queriesDefs = `
 type Query {
-  allDepartments: [Department]
-  getDepartmentSUO(department: String): [SUOS]
+  suos: [SUOSType]
+  departements: [DepartementType]
 }
 `;
 
-export default queriesTypeDefs;
+export default queriesDefs;

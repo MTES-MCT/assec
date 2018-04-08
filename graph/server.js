@@ -9,7 +9,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
 import typeDefs from './types';
-import resolvers from './resolvers';
+import * as resolvers from './resolvers';
 
 const logger = require('assec-utils/lib/logger');
 

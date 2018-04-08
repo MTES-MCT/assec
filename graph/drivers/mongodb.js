@@ -1,6 +1,5 @@
 // at the top with imports:
 import Mongoose from 'mongoose';
-import * as Schemas from './../connectors/mongodb';
 
 const logger = require('assec-utils/lib/logger');
 
@@ -34,4 +33,4 @@ Mongoose.connect(DB_BASE, options).then(
   err => logger.error(`MongoDB connection error ${err}`),
 );
 
-export default Schemas;
+export * from './../connectors/mongodb';

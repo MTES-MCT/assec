@@ -1,11 +1,22 @@
-const mutationsTypeDefs = `
+const mutationsDefs = `
 type Mutation {
-  createDepartment(
-    suos: [SUOS]
+  createDepartement(
+    code: String!
+    name: String!
+    suos: SUOSInput!
+  ): DepartementType
+
+  updateDepartement(
+    id: ID!
     code: String
     name: String
-  ): Department
+    suos: SUOSInput
+  ): DepartementType
+
+  deleteDepartement(
+    id: ID!
+  ): String
 }
 `;
 
-export default mutationsTypeDefs;
+export default mutationsDefs;
