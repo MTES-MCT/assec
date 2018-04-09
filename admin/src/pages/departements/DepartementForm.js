@@ -12,8 +12,8 @@ import {
 } from './../../apolloql';
 import dptsutils from './../../lib/departments';
 import Legend from './../../components/forms/Legend';
+import TagValues from './../../components/forms/TagValues';
 import SelectBox from './../../components/forms/SelectBox';
-import ArrayValues from './../../components/forms/ArrayValues';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const calculator = createDecorator({
@@ -23,6 +23,11 @@ const calculator = createDecorator({
   },
 });
 
+const validateSUOS = (suos) => {
+  const results = Object.keys(suos).filter(key => suos[key].length > 0);
+  return results.length === 3;
+};
+
 const validator = (values) => {
   const errors = {};
   if (!values.code || values.code === '') {
@@ -30,6 +35,9 @@ const validator = (values) => {
   }
   if (!values.name || values.code === '') {
     errors.name = 'Required';
+  }
+  if (!values.suos || !validateSUOS(values.suos)) {
+    errors.suos = 'Required';
   }
   return errors;
 };
@@ -50,19 +58,17 @@ const DepartementForm = () => (
       if (loading) return <p>Loading... </p>;
       const dptslist = dptsutils.omit(loaded);
       return (
-        <Mutation mutation={CREATE_DEPARTEMENT}
-          update={UPDATE_DEPARTEMENTS}
-          onCompleted={() => {}}>
-          {createDepartement => (
+        <Mutation mutation={CREATE_DEPARTEMENT} update={UPDATE_DEPARTEMENTS}>
+          {(createDepartement, result) => (
             <Form mutators={{ ...arrayMutators }}
               validate={validator}
               decorators={[calculator]}
               initialValues={initialValues}
-              onSubmit={(values, form) => {
-                createDepartement({ variables: values });
-                // FIXME -> bouger form.reset dans le onCompleted
-                form.reset();
-              }}
+              onSubmit={(values, form) =>
+                createDepartement({ variables: values })
+                  .then(() => form.reset())
+                  .catch(() => {})
+              }
               render={({
                 invalid,
                 pristine,
@@ -74,29 +80,30 @@ const DepartementForm = () => (
                     <Legend icon="globe" label="Ajouter un département" />
                     <SelectBox name="code"
                       label="Département"
+                      disabled={result.loading}
                       provider={dptslist.map(obj => ({
                         id: obj.departmentCode,
                         label: `${obj.departmentCode} - ${obj.departmentName}`,
                       }))} />
                     <Field name="name" type="hidden" component="input" />
-                    <ArrayValues name="suos.situations"
-                      initial={[]}
+                    <TagValues name="suos.situations"
                       push={unshift}
                       label="Situations"
+                      disabled={pristine || result.loading}
                       placeholder="Nom de la situation" />
-                    <ArrayValues name="suos.usages"
-                      initial={[]}
+                    <TagValues name="suos.usages"
                       label="Usages"
                       push={unshift}
+                      disabled={pristine || result.loading}
                       placeholder="Nom de l'usage" />
-                    <ArrayValues name="suos.origines"
-                      initial={[]}
+                    <TagValues name="suos.origines"
                       push={unshift}
                       label="Origines"
+                      disabled={pristine || result.loading}
                       placeholder="Nom de l'origine" />
                     <SubmitButton label="Ajouter"
-                      invalid={invalid}
-                      pristine={pristine} />
+                      invalid={invalid || result.loading}
+                      pristine={pristine || result.loading} />
                   </fieldset>
                 </form>
               )} />

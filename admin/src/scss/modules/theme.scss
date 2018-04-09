@@ -99,13 +99,13 @@ th {
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-.arrayvalues {
+.tagvalues {
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-.arrayvalues .item input:disabled {
-  opacity: 1;
-  color: #000000;
+.button-add:not(:disabled) {
+  color: #FFFFFF;
+  background-color: #18154E;
 }
 
 .button-remove:not(:disabled) {

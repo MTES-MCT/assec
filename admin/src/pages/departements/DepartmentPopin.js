@@ -7,7 +7,7 @@ import arrayMutators from 'final-form-arrays';
 // application
 import { GET_DEPARTEMENT } from './../../apolloql';
 import CloseButton from './../../components/popins/CloseButton';
-import ArrayValues from './../../components/forms/ArrayValues';
+import TagValues from './../../components/forms/TagValues';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const validator = () => {
@@ -38,17 +38,17 @@ const DepartmentPopin = ({ id, onClose }) => (
                   <span>{`${departement.code} - ${departement.name}`}</span>
                 </h3>
                 <div className="flex-columns flex-between">
-                  <ArrayValues name="suos.situations"
+                  <TagValues name="suos.situations"
                     initial={departement.suos.situations}
                     push={unshift}
                     label="Situations"
                     placeholder="Nom de la situation" />
-                  <ArrayValues name="suos.usages"
+                  <TagValues name="suos.usages"
                     initial={departement.suos.usages}
                     label="Usages"
                     push={unshift}
                     placeholder="Nom de l'usage" />
-                  <ArrayValues name="suos.origines"
+                  <TagValues name="suos.origines"
                     initial={departement.suos.origines}
                     push={unshift}
                     label="Origines"
