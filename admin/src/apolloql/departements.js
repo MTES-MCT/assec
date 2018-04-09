@@ -90,7 +90,7 @@ export const UPDATE_DEPARTEMENTS = (store, { data }) => {
     dpts = departements.map(dpt =>
       (dpt.id === data.updateDepartement.id ? data.updateDepartement.id : dpt));
   }
-  if (data.deleteDepartement) {
+  if (data.deleteDepartment) {
     dpts = departements.filter(({ id }) => id !== data.deleteDepartment);
   }
   store.writeQuery({

@@ -4,12 +4,11 @@ import { Departement } from './../drivers/mongodb';
 export const Mutation = {
   deleteDepartment: (_, args) => {
     const { id } = args;
-    const fieldstoreturns = { select: ['_id'] };
     return new Promise((resolve, reject) => {
-      Departement.findByIdAndRemove(id, fieldstoreturns, (err, doc) => {
+      Departement.findByIdAndRemove(id, (err, doc) => {
         if (err) reject(err);
         else if (!doc) reject(new Error('unable to find document'));
-        else resolve(doc._id);
+        else resolve(id);
       });
     });
   },
