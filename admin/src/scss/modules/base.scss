@@ -29,15 +29,6 @@ span + .icon,
   min-height: 100vh;
 }
 
-#application-header {
-  @extend .p20;
-
-  .title {
-    font-weight: normal;
-    letter-spacing: 0.4em;
-  }
-}
-
 #page-column-header {
   @extend .mb20;
 }

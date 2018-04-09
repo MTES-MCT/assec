@@ -3,18 +3,7 @@ import PropTypes from 'prop-types';
 
 // application
 import './appheader.css';
-
-const today = () => {
-  const now = Date.now();
-  const opts = {
-    day: 'numeric',
-    year: 'numeric',
-    month: 'long',
-    weekday: 'long',
-  };
-  const date = new Intl.DateTimeFormat('fr-FR', opts).format(now);
-  return date;
-};
+import today from './../lib/today';
 
 class AppHeader extends React.PureComponent {
   render () {
@@ -27,10 +16,13 @@ class AppHeader extends React.PureComponent {
         </h1>
         <div>
           <p className="m0">
+            <small>{today()}</small>
+          </p>
+          <p className="m0">
             <span>Bonjour</span> <b>Michel</b>
           </p>
           <p className="m0">
-            <small>{today()}</small>
+            <span>Vous êtes connecté en tant que</span> <b>Administrateur</b>
           </p>
         </div>
       </div>

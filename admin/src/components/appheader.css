@@ -1,0 +1,8 @@
+#application-header {
+  padding: 20px;
+}
+
+#application-header .title {
+  font-weight: normal;
+  letter-spacing: 0.4em;
+}
