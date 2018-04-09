@@ -5,8 +5,6 @@ input[type='text'] {
   border-width: 1px;
   border-radius: 4px;
   border-style: solid;
-  background-color: #FFFFFF;
-  border-color: rgba(0, 0, 0, 0.2);
 }
 
 textarea {
@@ -21,7 +19,6 @@ button {
   padding: 7px;
   border: none;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 legend {
@@ -57,8 +54,6 @@ fieldset .as-form-label span {
   border-width: 1px;
   border-radius: 4px;
   border-style: solid;
-  background-color: #FFFFFF;
-  border-color: rgba(0, 0, 0, 0.2);
   height: calc(15px + 24px); // 24px = 2 * padding(12px)
 
   select,
@@ -72,7 +67,6 @@ fieldset .as-form-label span {
   border-radius: 4px;
   border-style: solid;
   padding: 0 12px 12px 12px;
-  border-color: rgba(0, 0, 0, 0.2);
 
   .buttons {
     margin: 0;
@@ -91,6 +85,10 @@ fieldset .as-form-label span {
 
   .item input {
     flex: 1;
+
+    &:disabled {
+      border: 0;
+    }
   }
 
   .item button {

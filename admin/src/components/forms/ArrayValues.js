@@ -24,6 +24,7 @@ const ArrayValues = ({
               <Field name={`${name}.name`}
                 type="text"
                 component="input"
+                disabled={index > 0}
                 placeholder={placeholder} />
               <button type="button"
                 className="button-remove"

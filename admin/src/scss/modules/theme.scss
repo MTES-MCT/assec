@@ -14,8 +14,14 @@
   color: #EEEEEE // text5
 --------------------- */
 
+::placeholder {
+  color: #CCCCCC;
+}
+
 body {
   background-color: #FFFFFF;
+  // font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 /* ---------------------
@@ -33,9 +39,19 @@ legend {
   background-color: #FFFFFF;
 }
 
+textarea,
+input[type='text'] {
+  background-color: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
 input:disabled,
 textarea:disabled {
   opacity: 0.5;
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 button:not(:disabled) {
@@ -78,6 +94,19 @@ th {
  CLASSES
 
 --------------------- */
+.selectbox {
+  background-color: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.arrayvalues {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.arrayvalues .item input:disabled {
+  opacity: 1;
+  color: #000000;
+}
 
 .button-remove:not(:disabled) {
   color: #FFFFFF;
