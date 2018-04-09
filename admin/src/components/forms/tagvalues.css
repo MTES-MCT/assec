@@ -1,7 +1,5 @@
 .tagvalues {
-  border-width: 1px;
-  border-radius: 4px;
-  border-style: solid;
+  border: 0;
   padding: 0 12px 12px 12px;
 }
 
@@ -19,7 +17,7 @@
   margin-left: 12px;
 }
 
-.tagvalues .button-add {
+.tagvalues .primary {
   flex: 1;
   max-width: 100px;
 }
@@ -27,13 +25,9 @@
 .tagvalues .tag {
   margin: 0;
   font-size: 1.1em;
-  padding: 7px 12px;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-right: 12px;
   margin-bottom: 12px;
-  background-color: #CCCCCC;
-}
-
-.tagvalues .tag:hover {
-  background-color: #FB1166;
+  transition: all 0.5s;
+  padding: 7px 3px 7px 7px;
 }

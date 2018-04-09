@@ -13,7 +13,6 @@ body {
 
 body {
   color: #000000;
-  font-size: 12px;
   font-family: Helvetica, Arial, Verdana, sans-serif;
 }
 
@@ -134,7 +133,6 @@ fieldset {
 
 .cover {
   background-size: cover;
-  // background-color: #DDD;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -203,25 +201,4 @@ fieldset {
 
 .items-end {
   align-items: flex-end;
-}
-
-/* --------------------------------------------
-
- BORDER RADIUS
-
--------------------------------------------- */
-.br4 {
-  border-radius: 4px;
-}
-
-.br12 {
-  border-radius: 12px;
-}
-
-.br20 {
-  border-radius: 20px;
-}
-
-.br50 {
-  border-radius: 50%;
 }

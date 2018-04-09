@@ -30,8 +30,7 @@ const RestrictionsForm = ({ selected }) => (
                   <form onSubmit={handleSubmit} className="mb40">
                     <span name="restriction-form-anchor" />
                     <fieldset>
-                      <Legend icon="attention"
-                        label="Ajouter une restriction" />
+                      <Legend label="Ajouter une restriction" />
                       <TextArea disabled={disabled}
                         name="description"
                         label="Description" />

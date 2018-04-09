@@ -11,46 +11,43 @@ import { keypath } from './lib/keypath';
 import { pagetitle } from './lib/pagetitle';
 import MainNavigation from './components/navs/MainNavigation';
 
-const PageComponent = ({ location, popin }) => {
-  let bodyclass = `route-page-${location.pathname
+const getbodyclass = (path, haspopin) =>
+  `route-page-${path
     .split('/')
     .filter(v => v)
-    .join('-') || 'home'}`;
-  if (popin) bodyclass = `${bodyclass} noscroll`;
-  return (
-    <div id="app-container" className="flex-columns">
-      <Helmet>
-        <body className={`${bodyclass}`} />
-        <title>
-          {pagetitle(routes, location.pathname)}
-          {debug() ? ' | DEV' : ''} | Assec Backoffice
-        </title>
-        {/* <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto" /> */}
-        <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" />
-      </Helmet>
-      <MainNavigation path={location.pathname} routes={routes} />
-      <div id="page-container" className="flex1">
-        {/* routes */}
-        <Switch>
-          {routes.map(({
-            path, exact, name, icon, component: Page,
-          }) => {
-            const key = keypath(path, 'route');
-            return (
-              <Route key={key}
-                path={path}
-                render={() => <Page config={{ name, icon, path }} />}
-                exact={exact || false} />
-            );
-          })}
-        </Switch>
-        {/* routes */}
-      </div>
+    .join('-') || 'home'}${haspopin ? ' noscroll' : ''}`;
+
+const PageComponent = ({ location, popin }) => (
+  <div id="app-container" className="flex-columns">
+    <Helmet>
+      <body className={getbodyclass(location.pathname, popin)} />
+      <title>
+        {pagetitle(routes, location.pathname)}
+        {debug() ? ' | DEV' : ''} | Assec Backoffice
+      </title>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
+        rel="stylesheet" />
+    </Helmet>
+    <MainNavigation path={location.pathname} routes={routes} />
+    <div id="page-container" className="flex1">
+      {/* routes */}
+      <Switch>
+        {routes.map(({
+          path, exact, name, icon, component: Page,
+        }) => {
+          const key = keypath(path, 'route');
+          return (
+            <Route key={key}
+              path={path}
+              render={() => <Page config={{ name, icon, path }} />}
+              exact={exact || false} />
+          );
+        })}
+      </Switch>
+      {/* routes */}
     </div>
-  );
-};
+  </div>
+);
 
 PageComponent.defaultProps = {
   popin: null,

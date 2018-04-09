@@ -4,7 +4,6 @@
   color: #2BD1C0
   color: #353843
   color: #21242B
-  color: #E96900
   color: #F8F8F8 // shape
   color: #EEEEEE // border
   color: #444444 // text1
@@ -13,15 +12,34 @@
   color: #CCCCCC // text4
   color: #EEEEEE // text5
 --------------------- */
+$white: #FFFFFF;
+
+$dark: #353843;
+$darkActive: #21242B;
+
+$green: #89C541;
+$greenActive: #68992A;
+
+$gray: #EEEEEE;
+$grayActive: #999999;
+
+$grey: #CCCCCC;
+$greyActive: #666666;
+
+$blue: #5DAEF2;
+$blueActive: #188FFF;
+
+$red: #F56853;
+$redActive: #F52833;
 
 ::placeholder {
-  color: #CCCCCC;
+  color: $grey;
 }
 
 body {
-  background-color: #FFFFFF;
-  // font-family: 'Roboto', sans-serif;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 11px;
+  background-color: $white;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* ---------------------
@@ -35,28 +53,61 @@ fieldset {
 }
 
 legend {
-  color: #2BD1C0;
-  background-color: #FFFFFF;
+  color: $greyActive;
+  background-color: $dark;
 }
 
 textarea,
 input[type='text'] {
-  background-color: #FFFFFF;
+  background-color: $white;
   border-color: rgba(0, 0, 0, 0.2);
 }
 
+button {
+  color: $white;
+  transition: all 0.5s;
+  background-color: $grey;
+
+  &:disabled {
+    color: $grayActive;
+  }
+
+  &:hover {
+    background-color: $greyActive;
+  }
+}
+
+button.primary:not(:disabled) {
+  color: $white;
+  background-color: $blue;
+
+  &:hover {
+    background-color: $blueActive;
+  }
+}
+
+button.danger:not(:disabled) {
+  color: $white;
+  background-color: $red;
+
+  &:hover {
+    background-color: $redActive;
+  }
+}
+
+button.super:not(:disabled) {
+  color: $white;
+  background-color: $green;
+
+  &:hover {
+    background-color: $greenActive;
+  }
+}
+
 input:disabled,
+button:disabled,
 textarea:disabled {
   opacity: 0.5;
-}
-
-button {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-button:not(:disabled) {
-  color: #FFFFFF;
-  background-color: #2BD1C0;
 }
 
 /* ---------------------
@@ -66,13 +117,13 @@ button:not(:disabled) {
 --------------------- */
 
 thead {
-  color: #666666;
+  color: $grayActive;
   background-color: #F8F8F8;
 }
 
 tbody {
   color: #444444;
-  background-color: #FFFFFF;
+  background-color: $white;
 }
 
 tr:nth-child(even) {
@@ -80,13 +131,13 @@ tr:nth-child(even) {
 }
 
 thead tr:active {
-  color: #FFFFFF;
-  background-color: #2BD1C0;
+  color: $white;
+  background-color: $green;
 }
 
 th {
-  border-right: 1px solid #EEEEEE;
-  border-bottom: 1px solid #EEEEEE;
+  border-right: 1px solid $gray;
+  border-bottom: 1px solid $gray;
 }
 
 /* ---------------------
@@ -95,22 +146,30 @@ th {
 
 --------------------- */
 .selectbox {
-  background-color: #FFFFFF;
+  background-color: $white;
   border-color: rgba(0, 0, 0, 0.2);
 }
 
 .tagvalues {
-  border-color: rgba(0, 0, 0, 0.2);
+  background-color: $white;
 }
 
-.button-add:not(:disabled) {
-  color: #FFFFFF;
-  background-color: #18154E;
-}
+.tagvalues .tag {
+  color: $greyActive;
+  background-color: $grey;
 
-.button-remove:not(:disabled) {
-  color: #FFFFFF;
-  background-color: #E96900;
+  .icon {
+    color: $gray;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $red;
+
+    .icon {
+      color: $white;
+    }
+  }
 }
 
 /* ---------------------
@@ -120,7 +179,7 @@ th {
 --------------------- */
 
 #application-header {
-  color: #FFFFFF;
+  color: $white;
   // stylelint-disable-next-line
   background-image: linear-gradient(
     312deg,
@@ -131,24 +190,24 @@ th {
 }
 
 #page-title {
-  border-color: #EEEEEE;
+  border-color: $gray;
 }
 
 #main-navigation {
-  background-color: #353843;
+  background-color: $dark;
 
   .link {
-    color: #EEEEEE;
+    color: $gray;
+    transition: all 0.5s;
   }
 
   .link:hover {
-    color: #2BD1C0;
-    background-color: #21242B;
+    background-color: $darkActive;
   }
 
   .link.active {
-    color: #2BD1C0;
-    background-color: #FFFFFF;
+    color: $grayActive;
+    background-color: $white;
   }
 }
 
@@ -156,6 +215,6 @@ th {
   background-color: #843B61;
 
   .loading::before {
-    background-color: #FFFFFF;
+    background-color: $white;
   }
 }

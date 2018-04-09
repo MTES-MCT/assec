@@ -77,7 +77,7 @@ const DepartementForm = () => (
               }) => (
                 <form onSubmit={handleSubmit} className="mb20">
                   <fieldset>
-                    <Legend icon="globe" label="Ajouter un département" />
+                    <Legend label="Ajouter un département" />
                     <SelectBox name="code"
                       label="Département"
                       disabled={result.loading}

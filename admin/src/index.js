@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import React, { Fragment } from 'react';
 import { ApolloProvider } from 'react-apollo';
+import { Scrollbars } from 'react-custom-scrollbars';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
@@ -18,6 +19,13 @@ import LinearProgress from './components/ui/LinearProgress';
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
 const { client, NetworkStatusNotifier } = createClient(graphqluri);
 
+const renderNetworkStatus = args => (
+  <Fragment>
+    <LinearProgress loading={args.loading} />
+    {args.error && <p>Error: {JSON.stringify(args.error)}</p>}
+  </Fragment>
+);
+
 // application
 const history = createHistory();
 const store = configure(history);
@@ -26,14 +34,13 @@ const Root = () => (
     <ConnectedRouter history={history}>
       <ApolloProvider client={client}>
         <Fragment>
-          <NetworkStatusNotifier render={({ loading, error }) => (
-            <div className="relative">
-              <LinearProgress loading={loading} />
-              {error && <p>Error: {JSON.stringify(error)}</p>}
+          <Scrollbars autoHide id="body-scroller">
+            <div id="body-scroller-content">
+              <NetworkStatusNotifier render={renderNetworkStatus} />
+              <AppHeader title="ASSEC" />
+              <Page />
             </div>
-          )} />
-          <AppHeader title="ASSEC" />
-          <Page />
+          </Scrollbars>
           <AppPopin />
           <AppToaster />
         </Fragment>

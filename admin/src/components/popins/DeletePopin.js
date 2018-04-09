@@ -19,11 +19,11 @@ const DeletePopin = ({ id, name, onClose }) => (
           <span>?</span>
         </p>
         <div className="buttons flex-columns flex-around">
-          <button className="button-big" onClick={onClose}>
+          <button className="big" onClick={onClose}>
             <span>Non</span>
             <i className="icon icon-cancel" />
           </button>
-          <button className="button-big  button-remove ml20"
+          <button className="big primary"
             onClick={() => {
               deleteDepartment({ variables: { id } });
             }}>

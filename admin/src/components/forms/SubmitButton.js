@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SubmitButton = ({ label, pristine, invalid }) => (
   <p className="flex-columns flex-end submit-button">
-    <button type="submit" className="button-big" disabled={pristine || invalid}>
+    <button type="submit" className="big super" disabled={pristine || invalid}>
       <span>{label}</span>
       <i className="icon icon-floppy" />
     </button>

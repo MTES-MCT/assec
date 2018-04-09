@@ -1,0 +1,23 @@
+/* -----------------------------------
+
+ POPINS
+
+----------------------------------- */
+
+#edit-popin,
+#delete-popin {
+  padding: 40px;
+  font-size: 1.3em;
+}
+
+#delete-popin {
+  margin-top: 100px;
+}
+
+#delete-popin button {
+  font-size: 1em;
+}
+
+#delete-popin button ~ button {
+  @extend .ml20;
+}

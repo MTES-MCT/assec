@@ -1,0 +1,53 @@
+.popin,
+.popin-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.popin {
+  height: 0;
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-property: opacity;
+
+  &.opened {
+    opacity: 1;
+    height: 100%;
+  }
+}
+
+.popin-overlay {
+  content: '';
+}
+
+.popin-holder,
+.popin-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.popin-controls {
+  top: 7px;
+  right: 7px;
+  position: absolute;
+
+  button {
+    padding: 0;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.popin-content {
+  display: flex;
+}
+
+.popin-inner {
+  margin: auto;
+  border-radius: 4px;
+  position: relative;
+}

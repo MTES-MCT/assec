@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import './apppopin.css';
 import DeletePopin from './popins/DeletePopin';
 import DepartmentPopin from './../pages/departements/DepartmentPopin';
 
@@ -24,8 +23,8 @@ class AppPopin extends React.PureComponent {
 
   closePopin () {
     const { dispatch } = this.props;
-    const cb = () => dispatch({ type: 'onClosePopin' });
-    this.setState({ opened: false }, cb);
+    const setStateCB = () => dispatch({ type: 'onClosePopin' });
+    this.setState({ opened: false }, setStateCB);
   }
 
   renderPopin () {
@@ -43,13 +42,15 @@ class AppPopin extends React.PureComponent {
   }
 
   render () {
-    if (!this.state.opened) return null;
+    const { opened } = this.state;
     return (
-      <div id="app-popin">
-        <div id="app-popin-holder">
-          <div id="app-popin-overlay" />
-          <div id="app-popin-content">{this.renderPopin()}</div>
-        </div>
+      <div className={`popin ${opened ? 'opened' : ''}`}>
+        {opened && (
+          <div className="popin-holder">
+            <div className="popin-overlay" />
+            <div className="popin-content">{this.renderPopin()}</div>
+          </div>
+        )}
       </div>
     );
   }

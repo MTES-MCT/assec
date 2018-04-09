@@ -101,6 +101,18 @@
       "css": "info-circled",
       "code": 59407,
       "src": "entypo"
+    },
+    {
+      "uid": "414fe97e4af5215a06d29be0f2cecdf5",
+      "css": "network",
+      "code": 59408,
+      "src": "entypo"
+    },
+    {
+      "uid": "630529f03c319c01101aa167181b650e",
+      "css": "tag",
+      "code": 59409,
+      "src": "elusive"
     }
   ]
 }

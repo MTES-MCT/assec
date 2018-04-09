@@ -1,9 +1,15 @@
+input,
+select,
 textarea,
-input[type='text'] {
+.selectbox {
+  border-radius: 0;
+}
+
+input,
+textarea {
   font-size: 1.2em;
-  padding: 12px 7px;
+  padding: 9px 7px;
   border-width: 1px;
-  border-radius: 4px;
   border-style: solid;
 }
 
@@ -18,16 +24,28 @@ textarea {
 button {
   padding: 7px;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
-legend {
-  padding: 5px 24px;
-  font-weight: normal !important;
+button.big {
+  font-size: 1.2em;
+  min-width: 120px;
+  padding: 17px 35px;
 }
 
 fieldset {
+  position: relative;
+  padding: 36px 12px 12px 12px;
+}
+
+legend {
+  top: 0;
+  left: 0;
   padding: 12px;
+  font-size: 1.1em;
+  position: absolute;
+  font-weight: lighter;
+  border-radius: 4px 4px 0 0;
 }
 
 // FIXME -> last-child
@@ -52,7 +70,6 @@ fieldset .as-form-label span {
   padding: 0 7px;
   font-size: 1.2em;
   border-width: 1px;
-  border-radius: 4px;
   border-style: solid;
   height: calc(15px + 24px); // 24px = 2 * padding(12px)
 

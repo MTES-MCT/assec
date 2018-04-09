@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // application
-import './appheader.css';
 import today from './../lib/today';
 
 class AppHeader extends React.PureComponent {

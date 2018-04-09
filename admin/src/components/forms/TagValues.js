@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 
 // application
 import './tagvalues.css';
+import Tag from './adpaters/Tag';
 
 const getkey = (name, index) => `tag::${name}::${index}`;
 
@@ -37,37 +37,30 @@ class TagValues extends React.PureComponent {
         <span className="as-form-label">
           <span>{label}</span>
         </span>
-        <p className="flex-columns">
+        <p className="tags m0">
+          <FieldArray name={id}>
+            {({ fields }) =>
+              fields.map((name, index) => (
+                <Tag name={name}
+                  key={getkey(name, index)}
+                  onClick={() => fields.remove(index)} />
+              ))
+            }
+          </FieldArray>
+        </p>
+        <p className="flex-columns m0">
           <input type="text"
             value={primary}
             disabled={disabled}
             placeholder={placeholder}
             onChange={this.onInputChange} />
           <button type="button"
+            className="primary"
             disabled={!canadd}
-            className="button-add"
             onClick={this.onAddClick}>
             <i className="icon icon-plus-circled" />
             <span>Ajouter</span>
           </button>
-        </p>
-        <p className="tags">
-          <FieldArray name={id}>
-            {({ fields }) =>
-              fields.map((name, index) => (
-                <Field name={`${name}.name`}
-                  key={getkey(name, index)}
-                  render={({ input }) => (
-                    <button type="button"
-                      className="tag"
-                      onClick={() => fields.remove(index)}>
-                      <span>{input.value}</span>
-                      <i className="icon icon-cancel-circled" />
-                    </button>
-                  )} />
-              ))
-            }
-          </FieldArray>
         </p>
       </div>
     );
