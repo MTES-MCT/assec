@@ -96,14 +96,6 @@ fieldset {
   position: relative;
 }
 
-.marged {
-  margin: 20px;
-}
-
-.padded {
-  padding: 12px;
-}
-
 .noborder {
   border: 0 !important;
 }
@@ -152,28 +144,16 @@ fieldset {
  TEXT Alignments
 
 -------------------------------------------- */
-.aleft {
+.align-left {
   text-align: left;
 }
 
-.aright {
+.align-right {
   text-align: right;
 }
 
-.acenter {
+.align-center {
   text-align: center;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.items-start {
-  align-items: flex-start;
-}
-
-.items-end {
-  align-items: flex-end;
 }
 
 /* --------------------------------------------
@@ -211,6 +191,18 @@ fieldset {
 
 .flex-around {
   justify-content: space-around;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 /* --------------------------------------------

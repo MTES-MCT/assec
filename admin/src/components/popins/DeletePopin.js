@@ -13,7 +13,7 @@ const DeletePopin = ({ id, name, onClose }) => (
     {deleteDepartment => (
       <div id="delete-popin" className="popin-inner">
         <CloseButton onClose={onClose} />
-        <p className="acenter">
+        <p className="align-center">
           <span>Êtes vous sûr de vouloir supprimer</span>
           <b>{` ${name} `}</b>
           <span>?</span>

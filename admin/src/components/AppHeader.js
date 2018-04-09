@@ -1,13 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AppHeader = ({ title }) => (
-  <div id="application-header" className="relative">
-    <h1 className="title">
-      <span>{title}</span>
-    </h1>
-  </div>
-);
+// application
+import './appheader.css';
+
+const today = () => {
+  const now = Date.now();
+  const opts = {
+    day: 'numeric',
+    year: 'numeric',
+    month: 'long',
+    weekday: 'long',
+  };
+  const date = new Intl.DateTimeFormat('fr-FR', opts).format(now);
+  return date;
+};
+
+class AppHeader extends React.PureComponent {
+  render () {
+    const { title } = this.props;
+    return (
+      <div id="application-header"
+        className="relative flex-columns flex-between align-right">
+        <h1 className="title">
+          <span>{title}</span>
+        </h1>
+        <div>
+          <p className="m0">
+            <span>Bonjour</span> <b>Michel</b>
+          </p>
+          <p className="m0">
+            <small>{today()}</small>
+          </p>
+        </div>
+      </div>
+    );
+  }
+}
 
 AppHeader.propTypes = {
   title: PropTypes.string.isRequired,

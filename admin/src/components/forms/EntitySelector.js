@@ -5,11 +5,12 @@ import { Query } from 'react-apollo';
 // application
 import { ALL_DEPARTEMENTS } from './../../apolloql';
 
-const DepartementSelector = ({ onChange }) => (
+const EntitySelector = ({ onChange }) => (
   <Query query={ALL_DEPARTEMENTS}>
-    {({ loading, error, data: { departements: dpts } }) => {
+    {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
+      const dpts = data.departements;
       return (
         <label htmlFor="departement.selector">
           <span>Sélectionner un département</span>
@@ -25,7 +26,7 @@ const DepartementSelector = ({ onChange }) => (
               {dpts &&
                 dpts.map(obj => (
                   <option key={obj.id} value={obj.id}>
-                    {obj.name}
+                    {`${obj.code} - ${obj.name}`}
                   </option>
                 ))}
             </select>
@@ -36,8 +37,8 @@ const DepartementSelector = ({ onChange }) => (
   </Query>
 );
 
-DepartementSelector.propTypes = {
+EntitySelector.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default DepartementSelector;
+export default EntitySelector;

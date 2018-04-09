@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { ALL_DEPARTEMENT_RESTRICTIONS } from './../../apolloql';
+import { GET_DEPARTEMENT_RESTRICTIONS } from './../../apolloql';
 
 const renderRestrictionsTableHeader = () => (
   <thead>
@@ -23,7 +23,7 @@ const renderRestrictionsTableRow = person => (
 );
 
 const RestrictionsTable = ({ selected }) => (
-  <Query query={ALL_DEPARTEMENT_RESTRICTIONS}
+  <Query query={GET_DEPARTEMENT_RESTRICTIONS}
     variables={{ departement: selected }}>
     {({ loading, error, data: { allDepartementRestrictions } }) => {
       if (loading) return <p>Loading... </p>;

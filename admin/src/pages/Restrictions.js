@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 // application
 import AppPage from './../components/AppPage';
-import Selector from './../components/ui/DepartementSelector';
 import RestrictionsForm from './restrictions/RestrictionsForm';
+import EntitySelector from './../components/forms/EntitySelector';
 // import RestrictionsTable from './restrictions/RestrictionsTable';
 
 class RestrictionsPage extends React.PureComponent {
@@ -26,14 +26,14 @@ class RestrictionsPage extends React.PureComponent {
       <AppPage {...config}
         header={() => (
           <fieldset>
-            <Selector onChange={this.onChange} />
+            <EntitySelector onChange={this.onChange} />
           </fieldset>
         )}>
         <div id="page-main-column" className="col50">
           {/* <RestrictionsTable selected={selected} /> */}
         </div>
         <div id="page-aside-column" className="col50">
-          <RestrictionsForm selected={selected} />
+          {selected && <RestrictionsForm selected={selected} />}
         </div>
       </AppPage>
     );

@@ -1,16 +1,5 @@
 import gql from 'graphql-tag';
 
-export const ALL_DEPARTEMENT_RESTRICTIONS = gql(`
-query estrictions {
-  estrictions {
-    id
-    department
-    description
-    informations
-  }
-}
-`);
-
 export const ALL_DEPARTEMENTS = gql(`
   query departements {
     departements {
@@ -35,11 +24,26 @@ export const ALL_DEPARTEMENTS = gql(`
   }
 `);
 
-export const GET_DEPARTEMENT_SUOS = gql(`
-query departementSUOS (
+export const GET_DEPARTEMENT_RESTRICTIONS = gql(`
+query restrictions (
   $id: ID!
 ) {
-  departementSUOS (
+  restrictions (
+    id: $id
+  ) {
+    id
+    department
+    description
+    informations
+  }
+}
+`);
+
+export const GET_DEPARTEMENT_SUOS = gql(`
+query departmentSUOS (
+  $id: ID!
+) {
+  departmentSUOS (
     id: $id
   ) {
     usages {
@@ -47,9 +51,11 @@ query departementSUOS (
       name
     }
     origines {
+      id
       name
     }
     situations {
+      id
       name
     }
   }

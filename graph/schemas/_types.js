@@ -5,9 +5,9 @@ type SUOType {
 }
 
 type SUOSType {
-  usages: [SUOType]!
-  origines: [SUOType]!
-  situations: [SUOType]!
+  usages: [SUOType]
+  origines: [SUOType]
+  situations: [SUOType]
 }
 `;
 

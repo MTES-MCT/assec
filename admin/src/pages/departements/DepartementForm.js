@@ -31,19 +31,6 @@ const validator = (values) => {
   if (!values.name || values.code === '') {
     errors.name = 'Required';
   }
-  // if (!values.suos) {
-  //   errors.suos = 'required';
-  // }
-  // // FIXME -> validate empty fields
-  // if (!values.suos.usages || !values.suos.usages.length) {
-  //   errors['suos.usages'] = 'Required';
-  // }
-  // if (!values.suos.origines || !values.suos.origines.length) {
-  //   errors['suos.origines'] = 'Required';
-  // }
-  // if (!values.suos.situations || !values.suos.situations.length) {
-  //   errors['suos.situations'] = 'Required';
-  // }
   return errors;
 };
 

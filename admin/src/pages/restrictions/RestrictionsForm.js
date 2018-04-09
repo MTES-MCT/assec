@@ -14,59 +14,51 @@ import TextArea from './../../components/forms/TextArea';
 import RadioGroup from './../../components/forms/RadioGroup';
 import SubmitButton from './../../components/forms/SubmitButton';
 
-// eslint-disable-next-line
-const renderConsummer = (provider, selected, args) => {
-  const { handleSubmit, pristine, invalid } = args;
-  const disabled = !(selected && selected !== null);
-  return (
-    <form onSubmit={handleSubmit} className="mb40">
-      <span name="restriction-form-anchor" />
-      <fieldset>
-        <Legend icon="attention" label="Ajouter une restriction" />
-        <TextArea disabled={disabled}
-          name="restriction.description"
-          label="Description" />
-        <RadioGroup disabled={disabled}
-          name="restriction.zones"
-          label="Situation"
-          provider={(provider && provider.zones) || []} />
-        <RadioGroup disabled={disabled}
-          name="restriction.usages"
-          label="Usage"
-          provider={(provider && provider.usages) || []} />
-        <RadioGroup disabled={disabled}
-          name="restriction.origines"
-          label="Origine"
-          provider={(provider && provider.origines) || []} />
-        <TextArea disabled={disabled}
-          name="restriction.informations"
-          label="Plus d'informations"
-          large />
-        <SubmitButton pristine={pristine} invalid={invalid} />
-      </fieldset>
-    </form>
-  );
-};
-
-const renderMutation = (provider, selected) => (
-  <Mutation mutation={CREATE_RESTRICTION} update={UPDATE_RESTRICTIONS}>
-    {createDepartement => (
-      <Form onSubmit={variables => createDepartement({ variables })}
-        render={args => renderConsummer(provider, selected, args)} />
-    )}
-  </Mutation>
-);
-
 const RestrictionsForm = ({ selected }) => (
   <Query query={GET_DEPARTEMENT_SUOS} variables={{ id: selected }}>
-    {({ loading, error, data: { departementSUOS } }) => {
+    {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      console.log('dpt.suos', departementSUOS);
-      // console.log('dpt.suos', dpt.suos);
-      const provider = [];
-      // const provider = (dpt && dpt.suos && dpt.suos) || [];
-      return renderMutation(provider, selected);
+      const suos = data.departmentSUOS;
+      return (
+        <Mutation mutation={CREATE_RESTRICTION} update={UPDATE_RESTRICTIONS}>
+          {() => (
+            <Form onSubmit={() => {}}
+              render={({ handleSubmit, pristine, invalid }) => {
+                const disabled = !(selected && selected !== null);
+                return (
+                  <form onSubmit={handleSubmit} className="mb40">
+                    <span name="restriction-form-anchor" />
+                    <fieldset>
+                      <Legend icon="attention"
+                        label="Ajouter une restriction" />
+                      <TextArea disabled={disabled}
+                        name="description"
+                        label="Description" />
+                      <RadioGroup disabled={disabled}
+                        name="situations"
+                        label="Situation"
+                        provider={(suos && suos.situations) || []} />
+                      <RadioGroup disabled={disabled}
+                        name="usages"
+                        label="Usage"
+                        provider={(suos && suos.usages) || []} />
+                      <RadioGroup disabled={disabled}
+                        name="origines"
+                        label="Origine"
+                        provider={(suos && suos.origines) || []} />
+                      <TextArea disabled={disabled}
+                        name="informations"
+                        label="Plus d'informations"
+                        large />
+                      <SubmitButton pristine={pristine} invalid={invalid} />
+                    </fieldset>
+                  </form>
+                );
+              }} />
+          )}
+        </Mutation>
+      );
     }}
   </Query>
 );

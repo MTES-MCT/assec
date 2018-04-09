@@ -11,9 +11,7 @@ const SUOSchema = new Schema({
 const DepartementSchema = new Schema(
   {
     code: {
-      index: true,
       type: String,
-      unique: true,
       required: true,
     },
     name: {
