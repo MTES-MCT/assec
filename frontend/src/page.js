@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 // application
-import { debug } from 'assec-utils';
+import { debug } from './utils';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 

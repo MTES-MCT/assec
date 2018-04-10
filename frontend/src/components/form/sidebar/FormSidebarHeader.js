@@ -1,7 +1,7 @@
 import React from 'react';
 
 // application
-import { today } from 'assec-utils';
+import { today } from './../../../utils';
 
 const FormSidebarHeader = () => (
   <div id="form-sidebar-header">
