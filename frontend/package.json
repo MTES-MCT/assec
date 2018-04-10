@@ -32,7 +32,6 @@
   "scripts": {
     "generate:schema": "node ./.scripts/schema.js",
     "start": "react-scripts start",
-    "prebuild": "node_modules/.bin/node-sass -r src/scss/styles.scss src/styles.css --output-style compressed",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

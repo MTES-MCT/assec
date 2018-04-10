@@ -6,7 +6,9 @@ echo 'Building Frontend Package'
 echo ''
 echo '------------------------------'
 (
-  cd ./frontend && yarn build
+  cd ./frontend
+  ./node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
+  yarn build
 )
 
 echo '------------------------------'
@@ -15,5 +17,7 @@ echo 'Building Admin Package'
 echo ''
 echo '------------------------------'
 (
-  cd ./admin && yarn build
+  cd ./admin
+  ./node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
+  yarn build
 )
