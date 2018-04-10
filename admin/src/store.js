@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // application
 import reducers from './reducers';
-import { debug } from './lib/debug';
+import { debug } from './utils/debug';
 
 const bindMiddleware = (middleware = []) => {
   if (debug()) {

@@ -6,9 +6,9 @@ import { Switch, Route } from 'react-router';
 
 // application
 import { routes } from './routes';
-import { debug } from './lib/debug';
-import { keypath } from './lib/keypath';
-import { pagetitle } from './lib/pagetitle';
+import { debug } from './utils/debug';
+import { keypath } from './utils/keypath';
+import { pagetitle } from './utils/pagetitle';
 import MainNavigation from './components/navs/MainNavigation';
 
 const getbodyclass = (path, haspopin) =>

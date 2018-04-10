@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // application
-import today from './../lib/today';
+import today from './../utils/today';
 
 class AppHeader extends React.PureComponent {
   render () {

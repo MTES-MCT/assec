@@ -13,7 +13,7 @@ class AlertsPage extends React.PureComponent {
         {...rest}
         header={() => (
           <fieldset>
-            <EntitySelector onChange={this.onChange} />
+            <EntitySelector onChange={() => {}} />
           </fieldset>
         )}>
         <div id="page-main-column" />
