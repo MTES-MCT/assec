@@ -28,21 +28,23 @@ const PageComponent = ({ location, popin }) => (
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" />
     </Helmet>
-    <MainNavigation path={location.pathname} routes={routes} />
+    <MainNavigation path={location.pathname} routes={routes.main} />
     <div id="page-container" className="flex1">
       {/* routes */}
       <Switch>
-        {routes.map(({
-          path, exact, name, icon, component: Page,
-        }) => {
-          const key = keypath(path, 'route');
-          return (
-            <Route key={key}
-              path={path}
-              render={() => <Page config={{ name, icon, path }} />}
-              exact={exact || false} />
-          );
-        })}
+        {routes.main
+          .concat(routes.sub)
+          .map(({
+            path, exact, name, icon, component: Page,
+          }) => {
+            const key = keypath(path, 'route');
+            return (
+              <Route key={key}
+                path={path}
+                render={() => <Page config={{ name, icon, path }} />}
+                exact={exact || false} />
+            );
+          })}
       </Switch>
       {/* routes */}
     </div>
