@@ -125,6 +125,12 @@
       "css": "alert",
       "code": 59411,
       "src": "entypo"
+    },
+    {
+      "uid": "248db7c0563d8cee80b7041f7736dcad",
+      "css": "database",
+      "code": 59412,
+      "src": "entypo"
     }
   ]
 }

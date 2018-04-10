@@ -14,7 +14,7 @@ export const routes = [
   },
   {
     exact: false,
-    icon: 'globe',
+    icon: 'database',
     path: '/departements',
     name: 'Départements',
     component: Departements,
