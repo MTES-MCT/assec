@@ -121,6 +121,10 @@ https://en.wikipedia.org/wiki/Iptables
 [TODO] Voir la doc Firewall Network d’OVH<br>
 https://docs.ovh.com/fr/dedicated/firewall-network/
 
+#### More Security
+
+- see https://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers
+
 #### Utiliser le service Snapshot pour créer des images de sauvegarde
 
 [Source](https://www.ovh.com/world/vps/backup-vps.xml)

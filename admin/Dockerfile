@@ -17,11 +17,6 @@ LABEL maintainer=matthieu.lassalvy@beta.gouv.fr
 # http://bashrcgenerator.com
 #
 
-# Install bash commands
-RUN apk update \
-  && apk add bash \
-  && apk add ncurses
-
 # NPM Env Configuration
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
