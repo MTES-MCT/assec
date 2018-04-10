@@ -41,7 +41,7 @@ query restrictions (
 
 export const GET_DEPARTEMENT_SUOS = gql(`
 query departmentSUOS (
-  $id: ID!
+  $id: ID
 ) {
   departmentSUOS (
     id: $id

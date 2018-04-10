@@ -67,11 +67,15 @@ class TagValues extends React.PureComponent {
   }
 }
 
+TagValues.defaultProps = {
+  disabled: false,
+};
+
 TagValues.propTypes = {
+  disabled: PropTypes.bool,
   push: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
   placeholder: PropTypes.string.isRequired,
 };
 

@@ -6,8 +6,8 @@ import AppPage from './../components/AppPage';
 import DepartementForm from './departements/DepartementForm';
 import DepartementTable from './departements/DepartementTable';
 
-const DepartementsPage = ({ config }) => (
-  <AppPage {...config}>
+const DepartementsPage = ({ config: { name, ...rest } }) => (
+  <AppPage name={`Gestion ${name}`} {...rest}>
     <div id="page-main-column" className="col50">
       <DepartementTable />
     </div>

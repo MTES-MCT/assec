@@ -20,10 +20,11 @@ class RestrictionsPage extends React.PureComponent {
   }
 
   render () {
-    const { config } = this.props;
     const { selected } = this.state;
+    const { config: { name, ...rest } } = this.props;
     return (
-      <AppPage {...config}
+      <AppPage name={`Gestion ${name}`}
+        {...rest}
         header={() => (
           <fieldset>
             <EntitySelector onChange={this.onChange} />
@@ -33,7 +34,7 @@ class RestrictionsPage extends React.PureComponent {
           {/* <RestrictionsTable selected={selected} /> */}
         </div>
         <div id="page-aside-column" className="col50">
-          {selected && <RestrictionsForm selected={selected} />}
+          <RestrictionsForm selected={selected} />
         </div>
       </AppPage>
     );
