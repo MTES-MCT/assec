@@ -20,7 +20,7 @@
     "cleanup": "sh ./.scripts/yarn-cleanup",
     "postcleanup": "yarn install",
     "precompose": "sh ./.scripts/yarn-build",
-    "compose": "docker-compose up --build"
+    "compose": "docker-compose -p assec up --build"
   },
   "workspaces": [
     "admin",

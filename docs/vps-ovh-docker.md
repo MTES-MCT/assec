@@ -1,5 +1,13 @@
 # Install OVH's VPS + Docker
 
+- Requirements
+- Install OVH's VPS
+- Install Docker
+- Install Docker Compose
+- Linux Tips
+
+## Requirements
+
 - OVH VPS 1 Strasbourg
 - Debian 8 64bits (Jessie)
 
@@ -174,7 +182,7 @@ exit
 
 ## Docker
 
-### Install using the repository
+### Install Docker using the repository
 
 [Source](https://docs.docker.com/install/linux/docker-ce/debian/)
 
@@ -227,7 +235,35 @@ docker run hello-world
 
 - [Read More](https://docs.docker.com/install/linux/linux-postinstall/#cannot-connect-to-the-docker-daemon)
 
-## Linux Commands && Bash config
+### Install Docker Compose
+
+[Source](https://docs.docker.com/compose/install/)
+
+```bash
+# connect to the server
+ssh <myusername>@<ipserver> -p <port>
+# switch to root user and enter password at prompt
+su root
+# download docker-compose last version
+# replace version from any https://github.com/docker/compose/releases 
+sudo curl -L https://github.com/docker/compose/releases/download/<version>/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+# change docker-composer permissions
+sudo chmod +x /usr/local/bin/docker-compose
+# unlog from root
+exit
+# and test installation
+docker-compose -v
+```
+
+> Optionally you can install docker-compose completion commands<br>
+> see https://docs.docker.com/compose/completion/
+
+### Deploy
+
+**Possible Solutions**
+- [See Concourse](https://concourse-ci.org)
+
+## Linux Tips
 
 **Generate a bash prompt for your user**
 - http://bashrcgenerator.com
