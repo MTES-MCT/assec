@@ -39,15 +39,30 @@ span + .icon,
 }
 
 #application-header {
-  height: 85px;
-  max-height: 85px;
-  min-height: 85px;
-  padding: 20px 20px 20px 65px;
+  height: 105px;
+  max-height: 105px;
+  min-height: 105px;
+  padding: 20px 20px 20px 70px;
 }
 
 #application-header .title {
   font-weight: normal;
-  letter-spacing: 0.4em;
+
+  > * {
+    display: block;
+  }
+
+  span {
+    font-size: 1.2em;
+    letter-spacing: 0.4em;
+  }
+
+  small {
+    font-size: 0.3em;
+    padding: 3px 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 }
 
 #page-title {

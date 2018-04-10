@@ -9,11 +9,15 @@ class AppHeader extends React.PureComponent {
     const { title } = this.props;
     return (
       <div id="application-header"
-        className="relative flex-columns flex-between align-right">
+        className="relative flex-columns flex-between items-end">
         <h1 className="title">
           <span>{title}</span>
+          <small>
+            Optimiser la réponse collective du monde agricole en période de
+            sécheresse
+          </small>
         </h1>
-        <div>
+        <div className=" align-right">
           <p className="m0">
             <small>{today()}</small>
           </p>

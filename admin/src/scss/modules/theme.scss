@@ -189,6 +189,11 @@ th {
   );
 }
 
+#application-header .title small {
+  color: #512D5A;
+  background-color: $white;
+}
+
 #page-title {
   border-color: $gray;
 }
