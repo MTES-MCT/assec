@@ -1,4 +1,4 @@
 build
 src/styles.css
-src/fontello/**
-!src/fontello/config.json
+# src/fontello/**
+# !src/fontello/config.json
