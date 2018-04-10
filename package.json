@@ -20,8 +20,6 @@
     "cleanup": "sh ./.scripts/yarn-cleanup",
     "postcleanup": "yarn install",
     "compose": "docker-compose -p assec up --build",
-    "precompose:prod": "sh ./.scripts/yarn-build",
-    "compose:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p assec up --build",
     "deploy": "fab -f deploy.py deploy"
   },
   "workspaces": [
