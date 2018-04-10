@@ -17,16 +17,21 @@ class AppHeader extends React.PureComponent {
             sécheresse
           </small>
         </h1>
-        <div className=" align-right">
-          <p className="m0">
+        <div className="flex-columns flex-end items-end align-right">
+          <div className="m0">
             <small>{today()}</small>
-          </p>
-          <p className="m0">
-            <span>Bonjour</span> <b>Michel</b>
-          </p>
-          <p className="m0">
-            <span>Vous êtes connecté en tant que</span> <b>Administrateur</b>
-          </p>
+            <span>
+              <em>Bonjour</em> <b>Michel</b>
+            </span>
+            <span>
+              <em>Vous êtes connecté en tant que</em> <b>Administrateur</b>
+            </span>
+          </div>
+          <div className="p12">
+            <button>
+              <i className="icon icon-logout" />
+            </button>
+          </div>
         </div>
       </div>
     );

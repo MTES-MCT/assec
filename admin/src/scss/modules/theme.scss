@@ -116,6 +116,10 @@ textarea:disabled {
 
 --------------------- */
 
+table {
+  box-shadow: 0 0 7px -3px rgba(0, 0, 0, 0.07);
+}
+
 thead {
   color: $grayActive;
   background-color: #F8F8F8;
@@ -187,6 +191,15 @@ th {
     #512D5A 68%,
     #843B61 100%
   );
+
+  button {
+    color: #512D5A;
+    border-left: 1px solid #512D5A;
+
+    &:hover {
+      color: $white;
+    }
+  }
 }
 
 #application-header .title small {

@@ -6,6 +6,19 @@
   padding-top: 12px;
 }
 
+.pl12 {
+  padding-left: 12px;
+}
+
+.pr12 {
+  padding-right: 12px;
+}
+
+.px12 {
+  @extend .pr12;
+  @extend .pl12;
+}
+
 .py12 {
   @extend .pt12;
   @extend .pb12;

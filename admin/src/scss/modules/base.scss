@@ -43,14 +43,25 @@ span + .icon,
   max-height: 105px;
   min-height: 105px;
   padding: 20px 20px 20px 70px;
+
+  span,
+  small {
+    display: block;
+  }
+
+  em {
+    font-style: normal;
+  }
+
+  button {
+    font-size: 1.3em;
+    border-radius: 0;
+    background-color: transparent;
+  }
 }
 
 #application-header .title {
   font-weight: normal;
-
-  > * {
-    display: block;
-  }
 
   span {
     font-size: 1.2em;
@@ -63,6 +74,10 @@ span + .icon,
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
+}
+
+#user-logout-button {
+  font-size: 2em;
 }
 
 #page-title {
@@ -86,10 +101,6 @@ span + .icon,
 #page-aside-column:not(.col50) {
   flex: 0;
   min-width: 320px;
-}
-
-#page-aside-column legend {
-  width: 100%;
 }
 
 #page-main-column + #page-aside-column {
