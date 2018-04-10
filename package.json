@@ -9,7 +9,7 @@
     "email": "sixertoy.github@gmail.com"
   },
   "engines": {
-    "node": "8.11.0"
+    "node": "^8.11.0"
   },
   "scripts": {
     "dev": "nf start -p 3000",
