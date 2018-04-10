@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# List all files and hidden files
-alias ll='ls -laF'

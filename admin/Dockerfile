@@ -26,10 +26,7 @@ RUN apk update \
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
-# Copy DOTFILES
-WORKDIR /home/node
-COPY ./docker/dotfiles .
-
+# Install Sources
 WORKDIR /home/node/app
 COPY server.js .
 COPY package.json .
