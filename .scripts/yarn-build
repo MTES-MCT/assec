@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo '------------------------------'
+echo ''
+echo 'Building Frontend Package'
+echo ''
+echo '------------------------------'
+(
+  cd ./frontend && yarn build
+)
+
+echo '------------------------------'
+echo ''
+echo 'Building Admin Package'
+echo ''
+echo '------------------------------'
+(
+  cd ./admin && yarn build
+)

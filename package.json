@@ -19,7 +19,7 @@
     "bump": "node ./.scripts/yarn-bump",
     "cleanup": "sh ./.scripts/yarn-cleanup",
     "postcleanup": "yarn install",
-    "precompose": "cd admin && yarn build",
+    "precompose": "sh ./.scripts/yarn-build",
     "compose": "docker-compose up --build"
   },
   "workspaces": [
