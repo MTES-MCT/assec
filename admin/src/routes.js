@@ -1,7 +1,8 @@
+import Alerts from './pages/Alerts';
 import Dashboard from './pages/Dashboard';
 import Departements from './pages/Departements';
 import Restrictions from './pages/Restrictions';
-// import Contributors from './pages/Contributors';
+import Contributors from './pages/Contributors';
 
 export const routes = [
   {
@@ -25,13 +26,20 @@ export const routes = [
     path: '/restrictions',
     component: Restrictions,
   },
-  // {
-  //   exact: false,
-  //   icon: 'users',
-  //   path: '/contributors',
-  //   name: 'Contributeurs',
-  //   component: Contributors,
-  // },
+  {
+    exact: false,
+    icon: 'alert',
+    name: 'Alertes',
+    path: '/alerts',
+    component: Alerts,
+  },
+  {
+    exact: false,
+    icon: 'users',
+    path: '/contributors',
+    name: 'Contributeurs',
+    component: Contributors,
+  },
 ];
 
 export default routes;

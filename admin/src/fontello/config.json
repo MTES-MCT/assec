@@ -119,6 +119,12 @@
       "css": "logout",
       "code": 59410,
       "src": "websymbols"
+    },
+    {
+      "uid": "39a5a0d7ce8342d149373b2ce219503a",
+      "css": "alert",
+      "code": 59411,
+      "src": "entypo"
     }
   ]
 }

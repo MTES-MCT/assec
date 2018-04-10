@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import AppPage from './../components/AppPage';
 import EntitySelector from './../components/forms/EntitySelector';
 
-class ContributorsPage extends React.PureComponent {
+class AlertsPage extends React.PureComponent {
   render () {
     const { config: { name, ...rest } } = this.props;
     return (
@@ -23,8 +23,8 @@ class ContributorsPage extends React.PureComponent {
   }
 }
 
-ContributorsPage.propTypes = {
+AlertsPage.propTypes = {
   config: PropTypes.object.isRequired,
 };
 
-export default ContributorsPage;
+export default AlertsPage;

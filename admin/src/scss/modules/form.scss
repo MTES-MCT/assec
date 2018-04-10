@@ -35,7 +35,11 @@ button.big {
 
 fieldset {
   position: relative;
-  padding: 36px 12px 12px 12px;
+  padding: 12px 12px 12px 12px;
+}
+
+form fieldset {
+  padding-top: 36px;
 }
 
 legend {

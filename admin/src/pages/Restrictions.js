@@ -34,7 +34,7 @@ class RestrictionsPage extends React.PureComponent {
           {/* <RestrictionsTable selected={selected} /> */}
         </div>
         <div id="page-aside-column" className="col50">
-          <RestrictionsForm selected={selected} />
+          {selected && <RestrictionsForm selected={selected} />}
         </div>
       </AppPage>
     );
