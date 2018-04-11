@@ -12,6 +12,10 @@
   color: #CCCCCC // text4
   color: #EEEEEE // text5
 --------------------- */
+$header0: #14134E;
+$header1: #512D5A;
+$header2: #843B61;
+
 $white: #FFFFFF;
 
 $dark: #353843;
@@ -187,14 +191,14 @@ th {
   // stylelint-disable-next-line
   background-image: linear-gradient(
     312deg,
-    #14134E 0%,
-    #512D5A 68%,
-    #843B61 100%
+    $header0 0%,
+    $header1 68%,
+    $header2 100%
   );
 
   button {
-    color: #512D5A;
-    border-left: 1px solid #512D5A;
+    color: $header1;
+    border-left: 1px solid $header1;
 
     &:hover {
       color: $white;
@@ -203,7 +207,7 @@ th {
 }
 
 #application-header .title small {
-  color: #512D5A;
+  color: $header1;
   background-color: $white;
 }
 
@@ -230,7 +234,7 @@ th {
 }
 
 #preloader {
-  background-color: #843B61;
+  background-color: $header2;
 
   .loading::before {
     background-color: $white;
