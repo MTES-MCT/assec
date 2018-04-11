@@ -86,8 +86,17 @@ RESPONSIVE
 ------------------------------------------------------------ */
 
 @media (max-width: 870px) {
+  body {
+    overflow-y: scroll;
+  }
+
   #app-header {
     padding: 20px 0;
+    padding-left: 20px;
+
+    .acenter {
+      text-align: left;
+    }
   }
 
   #stepper-progress {
@@ -105,6 +114,10 @@ RESPONSIVE
     }
   }
 
+  #zoning-map ~ .flex1 {
+    margin-left: 0;
+  }
+
   #stepper-form {
     .list-input {
       width: 100%;
@@ -117,6 +130,10 @@ RESPONSIVE
       & label ~ label {
         margin-left: 0;
       }
+    }
+
+    .input-type-map .flex-columns {
+      flex-direction: column-reverse;
     }
   }
 }

@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { GeoJSON } from 'react-leaflet';
 
-const defaultStyle = {};
-const activeStyle = {
-  width: 1,
-  color: '#61AFEF',
-  fillColor: '#61AFEF',
-};
-
 // eslint
 class GeoJSONLayerInput extends React.PureComponent {
   render () {
@@ -17,18 +10,24 @@ class GeoJSONLayerInput extends React.PureComponent {
       id, geojson, input, selected, dispatch,
     } = this.props;
     const isselected = id === selected;
+    const commons = {
+      data: geojson,
+      onClick: () => {
+        input.onChange(id);
+        dispatch({
+          type: 'onAreaSelected',
+          id: isselected ? null : id,
+        });
+      },
+    };
     return (
-      <GeoJSON key={`mapzone_${id}`}
-        data={geojson}
-        className="geojson-layer"
-        style={() => (!isselected ? defaultStyle : activeStyle)}
-        onClick={() => {
-          input.onChange(id);
-          dispatch({
-            type: 'onAreaSelected',
-            id: isselected ? null : id,
-          });
-        }} />
+      (isselected && (
+        <GeoJSON {...commons}
+          key={`mapzone_${id}_active`}
+          className="geojson-layer active" />
+      )) || (
+        <GeoJSON {...commons} key={`mapzone_${id}`} className="geojson-layer" />
+      )
     );
   }
 }

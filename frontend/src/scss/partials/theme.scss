@@ -14,20 +14,18 @@ body {
 
 .geojson-layer {
   opacity: 1;
-  fill-opacity: 0.2;
+  fill: $blue;
+  stroke: $blue;
+  stroke-width: 1;
+  fill-opacity: 0.4;
   transition: all 0.5s;
 
-  &:not(.active) {
-    fill: $black;
-    stroke: $black;
-    stroke-width: 0;
+  &:hover {
+    fill-opacity: 0.6;
   }
 
-  &:hover,
   &.active {
-    fill: $blue;
-    stroke: $blue;
-    stroke-width: 1;
+    fill-opacity: 0.8;
   }
 }
 

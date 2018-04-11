@@ -9,13 +9,15 @@ const ZoningInput = ({
   id, help, label, values,
 }) => (
   <FormSection name={id} component="fieldset">
-    <div className="flex-columns">
-      <div id="zoning-map" className="flex2">
-        <LeafletMap zones={values} />
-      </div>
-      <div className="flex1">
-        <h3>{label}</h3>
-        {help && <p>{help}</p>}
+    <div className="input-type-map">
+      <div className="flex-columns">
+        <div id="zoning-map" className="flex2">
+          <LeafletMap zones={values} />
+        </div>
+        <div className="flex1">
+          <h3>{label}</h3>
+          {help && <p>{help}</p>}
+        </div>
       </div>
     </div>
   </FormSection>
