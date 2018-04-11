@@ -4,7 +4,7 @@ const express = require('express');
 
 // Constants
 const app = express();
-const port = process.env.PORT || 3100;
+const port = process.env.PORT || 3000;
 const www = path.join(__dirname, 'public');
 const usedebug = process.env.NODE_ENV !== 'production';
 

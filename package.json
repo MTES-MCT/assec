@@ -26,7 +26,8 @@
     "admin",
     "graph",
     "utils",
-    "frontend"
+    "frontend",
+    "nginx-web"
   ],
   "devDependencies": {
     "eslint": "^4.19.1",

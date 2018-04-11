@@ -1,4 +1,4 @@
-FROM node:8.11.0-alpine
+FROM node:8.11.1-alpine
 
 # File Author / Maintainer
 LABEL maintainer=matthieu.lassalvy@beta.gouv.fr
@@ -12,9 +12,6 @@ LABEL maintainer=matthieu.lassalvy@beta.gouv.fr
 #
 # PM2 Docker Integration
 # @see http://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/
-#
-# PS1 Prompt Generated with
-# http://bashrcgenerator.com
 #
 
 # NPM Env Configuration
