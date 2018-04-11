@@ -8,7 +8,3 @@
 .choice-input input {
   margin-right: 7px;
 }
-
-.choice-input ~ .choice-input {
-  margin-left: 24px;
-}

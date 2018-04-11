@@ -6,17 +6,7 @@
 @import 'form';
 @import 'grid';
 
-body {
-  font-size: 11px;
-  background-color: #F1F1F1;
-  font-family: 'Roboto', sans-serif;
-}
-
 // application
-#root,
-#app-container {
-  min-height: 100vh;
-}
-
 @import 'partials/map';
 @import 'partials/layout';
+@import 'partials/theme';

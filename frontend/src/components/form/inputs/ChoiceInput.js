@@ -14,7 +14,7 @@ const ChoiceInput = ({
     className="input-type-choice">
     <h3>{label}</h3>
     {help && <p>{help}</p>}
-    <div className="flex-columns">
+    <div className="flex-rows">
       {values.map((obj, index) => {
         const key = `choiceinput::${obj.id}`;
         const htmlfor = `choice_${index}`;

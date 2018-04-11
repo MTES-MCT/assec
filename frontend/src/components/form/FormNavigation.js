@@ -16,7 +16,7 @@ const FormNavigation = ({
   canbackward,
   showresults,
 }) => (
-  <div id="form-navigation" className="flex-columns flex-end">
+  <div id="form-navigation" className="flex-columns flex-start">
     {(!canreset && [
       <button key="backward"
         onClick={() => dispatch(stepBackward())}

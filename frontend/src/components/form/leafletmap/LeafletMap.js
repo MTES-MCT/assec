@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
-import { Field, formValueSelector } from 'redux-form';
 
 // application
-import GeoJSONInput from './../inputs/GeoJSONInput';
-import { FORM_NAME, TILES_LAYER, TILES_COPYRIGHT } from './../../../constants';
+import GeoJSONLayerInput from './../inputs/GeoJSONLayerInput';
+import { TILES_LAYER, TILES_COPYRIGHT } from './../../../constants';
 
 class LeafletMap extends React.PureComponent {
   constructor (props) {
@@ -19,16 +19,17 @@ class LeafletMap extends React.PureComponent {
   }
 
   render () {
-    const { zones } = this.props;
+    const { zones, selected } = this.props;
     const position = [this.state.lat, this.state.lng];
     return (
       <Map center={position} zoom={this.state.zoom}>
         <TileLayer attribution={TILES_COPYRIGHT} url={TILES_LAYER} />
         {zones &&
           zones.map(obj => (
-            <Field name="choice"
-              component={GeoJSONInput}
-              key={`mapzone_${obj.id}`}
+            <Field key={`mapzone_${obj.id}`}
+              name="choice"
+              selected={selected}
+              component={GeoJSONLayerInput}
               props={{
                 id: obj.id,
                 geojson: obj.geojson,
@@ -39,10 +40,13 @@ class LeafletMap extends React.PureComponent {
   }
 }
 
-LeafletMap.propTypes = {
-  zones: PropTypes.array.isRequired,
-  selected: PropTypes.string.isRequired,
+LeafletMap.defaultProps = {
+  selected: null,
 };
 
-const selector = formValueSelector(FORM_NAME);
-export default connect(state => ({ selected: selector(state, FORM_NAME) }))(LeafletMap);
+LeafletMap.propTypes = {
+  selected: PropTypes.string,
+  zones: PropTypes.array.isRequired,
+};
+
+export default connect(({ selected }) => ({ selected }))(LeafletMap);

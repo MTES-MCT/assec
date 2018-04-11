@@ -1,29 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 
 // application
 import { debug } from './../utils';
 
-const AppFooter = ({ version }) => (
+const AppFooter = () => (
   <div id="app-footer" className="flex-columns flex-between">
     <div className="left">
-      <span>v{version}</span>
+      <span>v0.7.5</span>
     </div>
     <div className="right">
       {debug() && (
-        <a target="_blank"
-          rel="noopener noreferrer"
-          href="http://assec.iziges.fr">
-          Demo
-        </a>
+        <Fragment>
+          <a target="_blank"
+            rel="noopener noreferrer"
+            href="http://localhost:3100">
+            Admin
+          </a>
+          <a target="_blank"
+            rel="noopener noreferrer"
+            href="http://54.38.35.159">
+            Production
+          </a>
+        </Fragment>
       )}
       <a href="http://geojson.io">GeoJSON.io</a>
     </div>
   </div>
 );
-
-AppFooter.propTypes = {
-  version: PropTypes.string.isRequired,
-};
 
 export default AppFooter;

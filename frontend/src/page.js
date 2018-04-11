@@ -13,14 +13,14 @@ const PageComponent = () => (
   <div id="app-container" className="flex-rows">
     <Helmet>
       <title>Assec{debug() ? ' | Development' : ''}</title>
-      <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto" />
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
+        rel="stylesheet" />
     </Helmet>
     <AppHeader />
     {/* routes */}
     <FormScreen />
     {/* routes */}
-    <AppFooter version="0.6.0" />
+    <AppFooter />
   </div>
 );
 

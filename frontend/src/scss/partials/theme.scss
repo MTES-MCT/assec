@@ -1,0 +1,48 @@
+$header0: #14134E;
+$header1: #512D5A;
+$header2: #843B61;
+
+$black: #000000;
+$blue: #61AFEF;
+$white: #FFFFFF;
+
+body {
+  font-size: 11px;
+  background-color: #F1F1F1;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.geojson-layer {
+  opacity: 1;
+  fill-opacity: 0.2;
+  transition: all 0.5s;
+
+  &:not(.active) {
+    fill: $black;
+    stroke: $black;
+    stroke-width: 0;
+  }
+
+  &:hover,
+  &.active {
+    fill: $blue;
+    stroke: $blue;
+    stroke-width: 1;
+  }
+}
+
+#app-header {
+  color: $white;
+  // stylelint-disable-next-line
+  background-image: linear-gradient(
+    312deg,
+    $header0 0%,
+    $header1 68%,
+    $header2 100%
+  );
+}
+
+#selecteur-departement {
+  color: $white;
+  background-color: #01BCD5;
+}
