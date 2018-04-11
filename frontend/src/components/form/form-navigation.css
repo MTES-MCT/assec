@@ -1,5 +1,9 @@
 #form-navigation {
   margin: auto 0;
+  margin-top: 40px;
+}
+
+.current-step-0 #form-navigation {
   margin-top: 15px;
 }
 

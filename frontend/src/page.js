@@ -1,5 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // application
 import { debug } from './utils';
@@ -9,9 +11,10 @@ import AppFooter from './components/AppFooter';
 // routes
 import FormScreen from './components/pages/FormScreen';
 
-const PageComponent = () => (
+const PageComponent = ({ activestep }) => (
   <div id="app-container" className="flex-rows">
     <Helmet>
+      <body className={`current-step-${activestep}`} />
       <title>Assec{debug() ? ' | Development' : ''}</title>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" />
@@ -24,4 +27,8 @@ const PageComponent = () => (
   </div>
 );
 
-export default PageComponent;
+PageComponent.propTypes = {
+  activestep: PropTypes.number.isRequired,
+};
+
+export default connect(({ stepper: { activestep } }) => ({ activestep }))(PageComponent);
