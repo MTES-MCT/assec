@@ -13,7 +13,6 @@
     "lodash.map": "^4.6.0",
     "lodash.maxby": "^4.6.0",
     "lodash.without": "^4.4.0",
-    "morgan": "^1.9.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

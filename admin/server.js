@@ -1,5 +1,4 @@
 const path = require('path');
-const morgan = require('morgan');
 const express = require('express');
 
 // Constants
@@ -8,7 +7,6 @@ const port = process.env.PORT || 3100;
 const www = path.join(__dirname, 'public');
 const usedebug = process.env.NODE_ENV !== 'production';
 
-app.use(morgan('combined')); // morgan logger
 app.use(express.static(www)); // serve static files
 
 // serve main HTML file
@@ -19,10 +17,11 @@ app.get('/', (req, res) => {
 
 // Do graceful shutdown
 process.on('SIGINT', () => {
-  process.stdout.write('graceful shutdown express');
-  app.close(() => {
-    process.stdout.write('closed express');
-  });
+  // FIXME -> close DB connections
+  app.close(() =>
+    process.stdout.write(`
+    Closing Frontend server
+  `));
 });
 
 // run application

@@ -25,7 +25,8 @@ COPY build/ ./public/
 RUN yarn global add pm2
 RUN yarn install --production
 
-# expose ExpressJS server port to Docker Compose links
+# expose ExpressJS server port to Docker
+# FIXME -> should be loaded from .env file
 EXPOSE 3000
 
 # !!! DO NOT RUN AS `ROOT` !!!

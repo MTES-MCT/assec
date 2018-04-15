@@ -6,16 +6,18 @@ services:
     ports:
       - 80:8080
       - 81:8081
-    depends_on:
-      - admin
-      - frontend
-  admin:
-    build: ./admin
-    restart: always
-    ports:
-      - "3100"
   frontend:
     build: ./frontend
     restart: always
     ports:
       - "3000"
+  admin:
+    build: ./admin
+    restart: always
+    ports:
+      - "3100"
+  graph:
+    build: ./frontend
+    restart: always
+    ports:
+      - "3100"
