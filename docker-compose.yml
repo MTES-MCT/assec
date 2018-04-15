@@ -1,23 +1,25 @@
-version: '3'
+version: '2'
+
 services:
-  web:
-    build: ./nginx
-    restart: always
+  nginx-proxy:
+    image: jwilder/nginx-proxy
     ports:
-      - 80:8080
-      - 81:8081
-  frontend:
-    build: ./frontend
-    restart: always
-    ports:
-      - "3000"
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  graph:
+    build: ./admin
+    environment:
+      - VIRTUAL_HOST=graph.iziges.fr
   admin:
     build: ./admin
-    restart: always
-    ports:
-      - "3100"
-  graph:
+    environment:
+      - VIRTUAL_HOST=backend.iziges.fr
+    depends_on:
+      - graph
+  frontend:
     build: ./frontend
-    restart: always
-    ports:
-      - "3100"
+    environment:
+      - VIRTUAL_HOST=assec.iziges.fr
+    depends_on:
+      - graph

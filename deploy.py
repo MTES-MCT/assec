@@ -14,6 +14,6 @@ def uptime():
 
 def deploy():
   with cd('/home/deploy/assec'):
-    run('git pull')
+    run('git pull origin master')
     run('sh ./.scripts/yarn-build')
     run('docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p assec up -d --build')

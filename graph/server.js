@@ -45,7 +45,7 @@ process.on('SIGINT', () => {
   });
 });
 
-const GRAPHQL_PORT = process.env.PORT || 3000;
+const GRAPHQL_PORT = process.env.PORT || 3200;
 app.listen(GRAPHQL_PORT, () => {
   if (!usedebug) return;
   logger.ok(`GraphiQL is now running under http://localhost:${GRAPHQL_PORT}/graphiql`);
