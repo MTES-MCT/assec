@@ -37,7 +37,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
+    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed",
+    "dbuild": "docker build -t assec-frontend ./",
+    "drun": "docker run -p 8080:3000 -it --rm --name=frontend-app assec-frontend"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

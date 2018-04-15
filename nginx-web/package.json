@@ -1,6 +1,0 @@
-{
-  "name": "nginx-web",
-  "version": "0.7.5",
-  "description": "Web Proxy Service",
-  "license": "ISC"
-}

@@ -41,8 +41,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed",
-    "docker:build": "docker build -t assec/admin .",
-    "docker:dev": "docker run -p 3100:3100 --env-file=./.env -it --rm --name=assec_admin assec/admin"
+    "dbuild": "docker build -t assec-admin .",
+    "drun": "docker run -p 8080:3100 -it --rm --name=admin-app assec-admin"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

@@ -1,11 +1,11 @@
 #!/usr/bin/python
 from fabric.api import *
 
-# FIXME -> prefer .env file
-env.port = 1976
+# FIXME -> prefer dot.env file
+env.port=1976
 env.user = "deploy"
-env.hosts = ["54.38.35.159"]
 env.use_ssh_config = False
+env.hosts = ["54.38.35.159"]
 env.key_filename = "~/.ssh/assec_deploy"
 
 # fab -f deploy.py uptime

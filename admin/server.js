@@ -17,6 +17,14 @@ app.get('/', (req, res) => {
   res.sendFile(indexfile);
 });
 
+// Do graceful shutdown
+process.on('SIGINT', () => {
+  process.stdout.write('graceful shutdown express');
+  app.close(() => {
+    process.stdout.write('closed express');
+  });
+});
+
 // run application
 app.listen(port, () => {
   if (!usedebug) return;

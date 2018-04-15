@@ -19,15 +19,16 @@
     "bump": "node ./.scripts/yarn-bump",
     "cleanup": "sh ./.scripts/yarn-cleanup",
     "postcleanup": "yarn install",
+    "build": "sh ./.scripts/yarn-build",
     "compose": "docker-compose -p assec up --build",
     "deploy": "fab -f deploy.py deploy"
   },
   "workspaces": [
+    "nginx",
     "admin",
     "graph",
     "utils",
-    "frontend",
-    "nginx-web"
+    "frontend"
   ],
   "devDependencies": {
     "eslint": "^4.19.1",

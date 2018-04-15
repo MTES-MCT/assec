@@ -36,6 +36,15 @@ if (usedebug) {
   app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 }
 
+// Do graceful shutdown
+process.on('SIGINT', () => {
+  process.stdout.write('graceful shutdown express');
+  app.close(() => {
+    // FIXME -> cleanup DB connections
+    process.stdout.write('closed express');
+  });
+});
+
 const GRAPHQL_PORT = process.env.PORT || 3000;
 app.listen(GRAPHQL_PORT, () => {
   if (!usedebug) return;

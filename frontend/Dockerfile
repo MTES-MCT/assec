@@ -14,17 +14,14 @@ LABEL maintainer=matthieu.lassalvy@beta.gouv.fr
 # @see http://pm2.keymetrics.io/docs/usage/docker-pm2-nodejs/
 #
 
-# NPM Env Configuration
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
-# Install Sources
 WORKDIR /home/node/app
 COPY server.js .
 COPY package.json .
 COPY build/ ./public/
 
-# NPM Install
 RUN yarn global add pm2
 RUN yarn install --production
 

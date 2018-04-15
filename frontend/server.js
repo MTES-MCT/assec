@@ -17,6 +17,15 @@ app.get('/', (req, res) => {
   res.sendFile(indexfile);
 });
 
+// Do graceful shutdown
+process.on('SIGINT', () => {
+  // FIXME -> close DB connections
+  app.close(() =>
+    process.stdout.write(`
+    Closing Frontend server
+  `));
+});
+
 // run application
 app.listen(port, () => {
   if (!usedebug) return;
