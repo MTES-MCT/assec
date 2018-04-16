@@ -3,9 +3,9 @@ const express = require('express');
 
 // Constants
 const app = express();
-const port = process.env.PORT || 3100;
+const port = process.env.PORT;
 const www = path.join(__dirname, 'public');
-const usedebug = process.env.NODE_ENV !== 'production';
+const usedebug = !process.env.NODE_ENV || process.env.NODE_ENV !== 'production';
 
 app.use(express.static(www)); // serve static files
 

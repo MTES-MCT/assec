@@ -1,32 +1,26 @@
 # ASSEC Admin
 
-## Environment Variables
+## Environments
+
+#### Development `.env`
 
 ```bash
-NODE_ENV=development
-# Port d'écoute du serveur
 PORT=3100
-# Version de l'application
-REACT_APP_VERSION=0.7.6
-# URI du serveur d'API GraphQL
 REACT_APP_GRAPHQL_URI=http://localhost:3200/graphql
 ```
 
-## Docker
+#### PreProduction `.env.production.local`
 
-**Build the image**
 ```bash
-docker build -t assec/admin .
+PORT=3100
+REACT_APP_GRAPHQL_URI=http://graph.docker.loc/graphql
 ```
 
-**Run the container (production)**
-```bash
-docker run -m "300M" --memory-swap "1G" -w "/home/node/app" -e \"NODE_ENV=production\" -d assec/admin
-```
+#### PreProduction `.env.production`
 
-**Run the container (development)**
 ```bash
-docker run -p 3000:3000 -e \"NODE_ENV=development\" -i -t assec/admin
+PORT=3100
+REACT_APP_GRAPHQL_URI=http://graph.iziges.fr/graphql
 ```
 
 ## MongoDB

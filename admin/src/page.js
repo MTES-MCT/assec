@@ -6,7 +6,7 @@ import { Switch, Route } from 'react-router';
 
 // application
 import { routes } from './routes';
-import { debug } from './core/utils/debug';
+import { usedebug } from './core/utils/usedebug';
 import { keypath } from './core/utils/keypath';
 import { pagetitle } from './core/utils/pagetitle';
 import MainNavigation from './components/navs/MainNavigation';
@@ -23,7 +23,7 @@ const PageComponent = ({ location, popin }) => (
       <body className={getbodyclass(location.pathname, popin)} />
       <title>
         {pagetitle(routes, location.pathname)}
-        {debug() ? ' | DEV' : ''} | Assec Backoffice
+        {usedebug() ? ' | DEV' : ''} | Assec Backoffice
       </title>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" />

@@ -6,12 +6,14 @@ import today from './../core/utils/today';
 
 class AppHeader extends React.PureComponent {
   render () {
-    const { title } = this.props;
+    const { title, version } = this.props;
     return (
       <div id="application-header"
         className="relative flex-columns flex-between items-end">
         <h1 className="title">
-          <span>{title}</span>
+          <span>
+            <span>{title}</span> <small>{version}</small>
+          </span>
           <small>
             Optimiser la réponse collective du monde agricole en période de
             sécheresse
@@ -40,6 +42,7 @@ class AppHeader extends React.PureComponent {
 
 AppHeader.propTypes = {
   title: PropTypes.string.isRequired,
+  version: PropTypes.string.isRequired,
 };
 
 export default AppHeader;

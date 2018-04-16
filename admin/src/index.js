@@ -10,12 +10,23 @@ import createHistory from 'history/createBrowserHistory';
 import './styles.css';
 import { configure } from './store';
 import { createClient } from './apollo';
+import { usedebug } from './core/utils/usedebug';
 import Page from './page';
 import AppPopin from './components/AppPopin';
 import AppHeader from './components/AppHeader';
 import AppToaster from './components/AppToaster';
 import LinearProgress from './components/ui/LinearProgress';
 
+if (usedebug()) {
+  /* eslint-disable */
+  console.log('**** Admin Application Debug ****');
+  console.log('NODE_ENV', process.env.NODE_ENV);
+  console.log('REACT_APP_VERSION', process.env.REACT_APP_VERSION);
+  console.log('REACT_APP_GRAPHQL_URI', process.env.REACT_APP_GRAPHQL_URI);
+  /* eslint-disable */
+}
+
+const appversion = process.env.REACT_APP_VERSION;
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
 const { client, NetworkStatusNotifier } = createClient(graphqluri);
 
@@ -37,7 +48,7 @@ const Root = () => (
           <Scrollbars autoHide id="body-scroller">
             <div id="body-scroller-content">
               <NetworkStatusNotifier render={renderNetworkStatus} />
-              <AppHeader title="ASSEC" />
+              <AppHeader title="ASSEC" version={appversion} />
               <Page />
             </div>
           </Scrollbars>
