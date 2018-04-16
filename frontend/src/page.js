@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { debug } from './core/utils';
+import { usedebug } from './core/utils';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 
@@ -15,7 +15,7 @@ const PageComponent = ({ activestep }) => (
   <div id="app-container" className="flex-rows">
     <Helmet>
       <body className={`current-step-${activestep}`} />
-      <title>Assec{debug() ? ' | Development' : ''}</title>
+      <title>Assec{usedebug() ? ' | Development' : ''}</title>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" />
     </Helmet>

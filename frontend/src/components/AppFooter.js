@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 
 // application
-import { debug } from './../core/utils';
+import { usedebug } from './../core/utils';
 
 const AppFooter = () => (
   <div id="app-footer" className="flex-columns flex-between">
     <div className="left">
-      <span>v0.7.5</span>
+      <span>v{process.env.REACT_APP_VERSION}</span>
     </div>
     <div className="right">
-      {debug() && (
+      {usedebug() && (
         <Fragment>
           <a target="_blank"
             rel="noopener noreferrer"

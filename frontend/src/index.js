@@ -8,6 +8,16 @@ import createHistory from 'history/createBrowserHistory';
 import './styles.css';
 import Page from './page';
 import { configure } from './store';
+import { usedebug } from './core/utils';
+
+if (usedebug()) {
+  /* eslint-disable */
+  console.log('**** Frontend Application Debug ****');
+  console.log('NODE_ENV', process.env.NODE_ENV);
+  console.log('REACT_APP_VERSION', process.env.REACT_APP_VERSION);
+  console.log('REACT_APP_GRAPHQL_URI', process.env.REACT_APP_GRAPHQL_URI);
+  /* eslint-disable */
+}
 
 // application
 const history = createHistory();
