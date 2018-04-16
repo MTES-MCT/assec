@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  graph:
+    environment:
+      - VIRTUAL_HOST=graph.iziges.fr
+  admin:
+    environment:
+      - VIRTUAL_HOST=admin.iziges.fr
+  frontend:
+    environment:
+      - VIRTUAL_HOST=assec.iziges.fr

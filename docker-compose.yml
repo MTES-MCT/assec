@@ -11,20 +11,11 @@ services:
     build: ./graph
     environment:
       - VIRTUAL_HOST=graph.docker.loc
-      - ASSEC_MONGO_DOMAIN=mongo.docker.loc
-    depends_on:
-      - mongo
   admin:
     build: ./admin
     environment:
-      - VIRTUAL_HOST=backend.docker.loc
-      - ASSEC_API_DOMAIN=graph.docker.loc
-    depends_on:
-      - graph
+      - VIRTUAL_HOST=admin.docker.loc
   frontend:
     build: ./frontend
     environment:
-      - VIRTUAL_HOST=assec.docker.loc
-      - ASSEC_API_DOMAIN=graph.docker.loc
-    depends_on:
-      - graph
+      - VIRTUAL_HOST=docker.loc
