@@ -18,7 +18,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
 WORKDIR /home/node/www
-COPY server.js .
+COPY serve.js .
 COPY package.json .
 COPY build/ ./public/
 
@@ -31,4 +31,4 @@ EXPOSE 3000
 
 # !!! DO NOT RUN AS `ROOT` !!!
 USER node
-CMD ["pm2-runtime", "server.js"]
+CMD ["pm2-runtime", "serve.js"]

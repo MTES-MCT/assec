@@ -40,6 +40,6 @@
     ]
   },
   "scripts": {
-    "dev": "nodemon ./server.js --exec babel-node"
+    "dev": "nodemon ./serve.js --exec babel-node"
   }
 }
