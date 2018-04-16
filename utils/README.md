@@ -1,1 +1,0 @@
-# ASSEC Utils shared library
