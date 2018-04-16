@@ -8,9 +8,9 @@ import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
-import schemas from './schemas';
-import { logger } from './utils/logger';
-import * as resolvers from './resolvers';
+import schemas from './app/schemas';
+import { logger } from './app/utils/logger';
+import * as resolvers from './app/resolvers';
 
 // application
 const usedebug = process.env.NODE_ENV !== 'production';
