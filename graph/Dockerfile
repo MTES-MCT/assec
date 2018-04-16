@@ -19,10 +19,13 @@ ENV PATH=$PATH:/home/node/.npm-global/bin
 
 WORKDIR /home/node/server
 COPY serve.js .
+COPY .babelrc .
+COPY entry-point.js .
 COPY package.json .
 COPY app/ ./app/
 
 RUN yarn global add pm2
+RUN yarn global add babel-cli
 RUN yarn install --production
 
 # expose ExpressJS server port to Docker
@@ -31,4 +34,4 @@ EXPOSE 3200
 
 # !!! DO NOT RUN AS `ROOT` !!!
 USER node
-CMD ["pm2-runtime", "serve.js"]
+CMD ["pm2-runtime", "entry-point.js"]
