@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
 // application
-import { debug } from './../utils';
+import { debug } from './../core/utils';
 
 const AppFooter = () => (
   <div id="app-footer" className="flex-columns flex-between">

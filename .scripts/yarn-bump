@@ -4,8 +4,8 @@ const fse = require('fs-extra');
 const semver = require('semver');
 const exec = require('child_process').exec;
 
-const logger = require('assec-utils/lib/logger');
-const colorize = require('assec-utils/lib/colorize');
+const logger = require('./core/utils/logger');
+const colorize = require('./core/utils/colorize');
 
 const patch = from => {
   const splitted = semver.clean(from).split('.');

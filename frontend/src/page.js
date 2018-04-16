@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { debug } from './utils';
+import { debug } from './core/utils';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
 

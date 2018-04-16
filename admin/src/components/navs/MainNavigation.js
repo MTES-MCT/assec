@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 // application
 import './mainnavigation.css';
-import { keypath } from './../../utils/keypath';
+import { keypath } from './../../core/utils/keypath';
 
 const isdisabled = (path, currentpath) =>
   (path !== '/'

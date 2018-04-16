@@ -4,8 +4,8 @@ import { routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // application
-import { debug } from './utils';
 import reducers from './reducers';
+import { debug } from './core/utils';
 
 const bindMiddleware = (middleware = []) => {
   if (debug()) {

@@ -10,8 +10,8 @@ import {
   CREATE_DEPARTEMENT,
   UPDATE_DEPARTEMENTS,
 } from './../../apolloql';
-import dptsutils from './../../utils/departments';
 import Legend from './../../components/forms/Legend';
+import dptsutils from './../../core/utils/departments';
 import TagValues from './../../components/forms/TagValues';
 import SelectBox from './../../components/forms/SelectBox';
 import SubmitButton from './../../components/forms/SubmitButton';

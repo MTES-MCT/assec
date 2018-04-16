@@ -24,10 +24,8 @@
     "deploy": "fab -f deploy.py deploy"
   },
   "workspaces": [
-    "nginx",
     "admin",
     "graph",
-    "utils",
     "frontend"
   ],
   "devDependencies": {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // application
-import { debug } from './../utils/debug';
+import { debug } from './../core/utils/debug';
 
 const AppFooter = ({ version }) => (
   <div id="app-footer" className="flex-columns flex-between">

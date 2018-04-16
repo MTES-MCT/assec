@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 // application
 import './apptoaster.css';
-import { noop } from './../utils/noop';
+import { noop } from './../core/utils/noop';
 import { removeToast } from './../actions';
 
 const Toast = ({
