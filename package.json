@@ -4,6 +4,11 @@
   "license": "ISC",
   "description": "ASSEC Frontend",
   "private": true,
+  "workspaces": [
+    "admin",
+    "graph",
+    "frontend"
+  ],
   "author": {
     "name": "Matthieu Lassalvy",
     "email": "sixertoy.github@gmail.com"
@@ -12,9 +17,9 @@
     "node": "^8.11.0"
   },
   "scripts": {
-    "dev": "nf start -p 3000",
-    "dev:db": "mongod --config ./mongo/mongod.conf",
     "precommit": "sh ./.scripts/hooks/pre-commit",
+    "dev": "nf start --env .env.foreman --port 3000",
+    "dev:mongo": "mongod --config ./mongo/mongod.conf",
     "prebump": "sh ./.scripts/git-ensure-clean",
     "bump": "node ./.scripts/yarn-bump",
     "cleanup": "sh ./.scripts/yarn-cleanup",
@@ -23,11 +28,6 @@
     "compose": "docker-compose -p assec up --build",
     "deploy": "fab -f deploy.py deploy"
   },
-  "workspaces": [
-    "admin",
-    "graph",
-    "frontend"
-  ],
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",

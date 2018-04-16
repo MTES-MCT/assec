@@ -1,5 +1,17 @@
 # ASSEC Admin
 
+## Environment Variables
+
+```bash
+NODE_ENV=development
+# Port d'écoute du serveur
+PORT=3100
+# Version de l'application
+REACT_APP_VERSION=0.7.6
+# URI du serveur d'API GraphQL
+REACT_APP_GRAPHQL_URI=http://localhost:3200/graphql
+```
+
 ## Docker
 
 **Build the image**
@@ -30,6 +42,7 @@ mongoimport --jsonArray --db assec --collection french_departments --file ./data
 
 #### Admin Templates
 
+- [ant.design](https://ant.design)
 - [MongoUI](https://github.com/azat-co/mongoui)
 - [Mongo Express](https://github.com/mongo-express/mongo-express)
 - [KeystoneJS](http://keystonejs.com/)
