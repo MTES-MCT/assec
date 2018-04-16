@@ -25,7 +25,6 @@ COPY package.json .
 COPY app/ ./app/
 
 RUN yarn global add pm2
-RUN yarn global add babel-cli
 RUN yarn install --production
 
 # expose ExpressJS server port to Docker
