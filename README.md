@@ -18,7 +18,9 @@ https://beta.gouv.fr/startup/assec.html
 
 ```bash
 git clone git@github.com:MTES-MCT/assec.git
-cd assec && yarn install
+cd assec
+nvm use
+yarn install
 ```
 
 ## Concept & Contribution
