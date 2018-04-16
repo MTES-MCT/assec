@@ -17,17 +17,17 @@ LABEL maintainer=matthieu.lassalvy@beta.gouv.fr
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
-WORKDIR /home/node/app
+WORKDIR /home/node/server
 COPY server.js .
 COPY package.json .
-COPY build/ ./public/
+COPY app/ ./app/
 
 RUN yarn global add pm2
 RUN yarn install --production
 
 # expose ExpressJS server port to Docker
 # FIXME -> should be loaded from .env file
-EXPOSE 3000
+EXPOSE 3200
 
 # !!! DO NOT RUN AS `ROOT` !!!
 USER node

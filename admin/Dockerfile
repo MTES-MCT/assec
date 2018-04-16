@@ -19,7 +19,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
 # Install Sources
-WORKDIR /home/node/app
+WORKDIR /home/node/www
 COPY server.js .
 COPY package.json .
 COPY build/ ./public/
