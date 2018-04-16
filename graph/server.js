@@ -9,9 +9,8 @@ import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
 import schemas from './schemas';
+import { logger } from './utils/logger';
 import * as resolvers from './resolvers';
-
-const logger = require('assec-utils/lib/logger');
 
 // application
 const usedebug = process.env.NODE_ENV !== 'production';
@@ -38,10 +37,10 @@ if (usedebug) {
 
 // Do graceful shutdown
 process.on('SIGINT', () => {
-  process.stdout.write('graceful shutdown express');
+  logger.ok('graceful shutdown express');
   app.close(() => {
     // FIXME -> cleanup DB connections
-    process.stdout.write('closed express');
+    logger.debug('closed express');
   });
 });
 

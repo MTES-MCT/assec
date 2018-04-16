@@ -1,7 +1,7 @@
 // at the top with imports:
 import Mongoose from 'mongoose';
 
-const logger = require('assec-utils/lib/logger');
+import { logger } from './../utils/logger';
 
 // somewhere in the middle:
 Mongoose.Promise = global.Promise;
