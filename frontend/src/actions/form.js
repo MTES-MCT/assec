@@ -4,7 +4,7 @@ import { reset } from 'redux-form';
 import fields from './../datas/form-83.json';
 import alerts from './../datas/alerts-83.json';
 import schema from './../datas/schemas-83.json';
-import DecisionTree from './../lib/decision-tree';
+import DecisionTree from './../core/decision-tree';
 import {
   FORM_NAME,
   FORM_RESET,
