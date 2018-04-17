@@ -1,12 +1,26 @@
 version: '2'
 
 services:
+  mongo:
+    environment:
+      - NODE_ENV=production
+      # - MONGO_INITDB_ROOT_USERNAME="admin"
+      # - MONGO_INITDB_ROOT_PASSWORD="password"
   graph:
     environment:
+      - NODE_ENV=production
       - VIRTUAL_HOST=graph.iziges.fr
   admin:
+    # les variables pour le build s'ajoute dans les fichier
+    # - .env.build.staging
+    # - .env.build.production
     environment:
+      - NODE_ENV=production
       - VIRTUAL_HOST=admin.iziges.fr
   frontend:
+    # les variables pour le build s'ajoute dans les fichier
+    # - .env.build.staging
+    # - .env.build.production
     environment:
+      - NODE_ENV=production
       - VIRTUAL_HOST=assec.iziges.fr

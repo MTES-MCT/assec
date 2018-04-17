@@ -1,23 +1,52 @@
 #!/bin/bash
 
-echo '------------------------------'
-echo ''
-echo 'Building Frontend Package'
-echo ''
-echo '------------------------------'
-(
-  cd ./frontend
-  ./node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
-  yarn build
-)
+# --------------------------------
+#
+# Package an application scaffolded with create-react-app
+# For a specific environment with specific dotenv file
+#
+# Usage
+# ---
+# $ sh ./.scripts/yarn-build --env=production
+#
+# --------------------------------
 
-echo '------------------------------'
-echo ''
-echo 'Building Admin Package'
-echo ''
-echo '------------------------------'
-(
-  cd ./admin
-  ./node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
-  yarn build
-)
+DEFAULT="staging"
+for i in "$@"; do
+  case $i in
+    -e=*|--env=*)
+    # user defined
+    REACT_APP_ENV="${i#*=}"
+    ;;
+    --default)
+    # default -> staging
+    REACT_APP_ENV=$DEFAULT
+    ;;
+    *)
+    # unknown option
+    ;;
+  esac
+done
+
+if [ -z $1 ]; then
+  REACT_APP_ENV=$DEFAULT
+fi
+
+ENV_FILE="./../.env.${REACT_APP_ENV}"
+
+build_application_with_env_variables() {
+  echo "\033[1;38;5;132mBuilding '$@' Package Using .env.${REACT_APP_ENV}\033[0m"
+  (
+    cd $@
+    # building sass file
+    ./node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
+    # start react-scripts + configure env variables
+    sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
+    exit 0
+  )
+}
+
+build_application_with_env_variables 'admin';
+build_application_with_env_variables 'frontend';
+
+exit 0
