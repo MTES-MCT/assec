@@ -26,6 +26,7 @@
     "postcleanup": "yarn install",
     "build": "sh ./.scripts/yarn-build",
     "compose": "docker-compose -f docker-compose.yml -p assec up --build",
+    "dump": "fab -f deploy.py dump",
     "deploy": "fab -f deploy.py deploy"
   },
   "devDependencies": {

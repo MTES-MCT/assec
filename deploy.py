@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from fabric.api import *
+from fabric.operations import *
 
 # FIXME -> prefer dot.env file
 env.port=1976
@@ -11,6 +12,14 @@ env.key_filename = "~/.ssh/assec_deploy"
 # fab -f deploy.py uptime
 def uptime():
   run("uptime")
+
+def dump():
+  with cd('/home/deploy/'):
+    # cree un dump de la base de donnees du container MongoDB
+    # --out path doit correspondre au volume defini dans le fichier docker-compose.prod.yml
+    # le nom du container est defini dans le fichier docker-compose.prod.yml
+    run('docker exec -it assec_mongodb_prod_container mongodump --db assec --gzip --out /backups/dump/assec.gzip')
+    # get(*args, **kwargs)
 
 def deploy():
   with cd('/home/deploy/'):

@@ -12,11 +12,23 @@ alias dk="docker"
 alias dk-lsi="docker image ls"
 # list all containers
 alias dk-lsc="docker container ls"
+# bash into a running container
+dk-connect () {
+  docker exec -it $1 /bin/bash
+}
 # stop all containers
-alias dk-stopc="docker stop $(docker ps -a -q)"
+dk-stopc () {
+  docker stop $(docker ps -a -q)
+}
 # remove all containers - filtering exited
-alias dk-rmc="docker rm $(docker ps -q -f status=exited)"
+dk-rmc () {
+  docker rm $(docker ps -q -f status=exited)
+}
 # remove all containers - no filter
-alias dk-rmac="docker rm $(docker ps -a -q)"
+dk-rmac () {
+  docker rm $(docker ps -a -q)
+}
 # remove all images - no filter
-alias dk-rmai="docker rmi $(docker images -q)"
+dk-rmai () {
+  docker rmi $(docker images -q)
+}
