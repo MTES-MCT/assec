@@ -19,7 +19,7 @@
   "scripts": {
     "precommit": "sh ./.scripts/hooks/pre-commit",
     "dev": "nf start --env .env.foreman --port 3000",
-    "dev:mongo": "mongod --config ./mongo/mongod.conf",
+    "mongo": "mongod --config ./mongo/mongod.dev.conf",
     "prebump": "sh ./.scripts/git-ensure-clean",
     "bump": "node ./.scripts/yarn-bump",
     "cleanup": "sh ./.scripts/yarn-cleanup",

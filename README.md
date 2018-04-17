@@ -18,7 +18,9 @@ https://beta.gouv.fr/startup/assec.html
 
 1. Création d'un dossier local de la base de données MongoDB
 ```bash
-sudo mkdir /mongodb/db
+# /data/db est le dossier par défaut à l'installation de mongodb
+sudo mkdir -p /data/db
+sudo chmod -R go+w /data/db
 ```
 
 2. Récupération du projet et installation des dépendances
@@ -57,11 +59,11 @@ Les modules [Husky](https://github.com/typicode/husky), [ESLint](https://eslint.
 
 En mode dévelopement local le serveur de la base de données MongoDB doit être démarré avant de lancer les autres sous-projets, la configuration par défaut de MongoDB est utilisée<br>
 
-Les commandes `yarn dev:mongo` et `yarn dev` doivent être éxécutées dans des processus différents<br>
+Les commandes `yarn mongo` et `yarn dev` doivent être éxécutées dans des processus différents<br>
 
 1. Lancer la base de données MongoDB
 ```bash
-yarn dev:mongo
+yarn mongo
 ```
 
 2. Lancer les applications
