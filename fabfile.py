@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import time
 from fabric.api import *
 from fabric.operations import *
 
@@ -18,8 +19,14 @@ def dump():
     # cree un dump de la base de donnees du container MongoDB
     # --out path doit correspondre au volume defini dans le fichier docker-compose.prod.yml
     # le nom du container est defini dans le fichier docker-compose.prod.yml
-    run('docker exec -it assec_mongodb_prod_container mongodump --db assec --gzip --out /backups/dump/assec.gzip')
-    # get(*args, **kwargs)
+    command = 'docker exec -it assec_mongodb_prod_container mongodump --archive=/backups/assec.gz --gzip --db assec'
+    run(command)
+    # le path du fichier a telecharger est defini par le volume monte dans le fichier docker-compose.prod.yml
+    now = int(time.time())
+    localp = './backups/assec_%s.gz' % (now)
+    get('/home/deploy/backups/assec.gz', localp)
+    # FIXME -> !!! le rm doit se faire en sudo :(
+    # run('rm /home/deploy/backups/assec.gz')
 
 def deploy():
   with cd('/home/deploy/'):
