@@ -21,8 +21,23 @@ type DepartementType {
 }
 `;
 
+const restriction = `
+type RestrictionType {
+  id: ID!
+  dpt: ID!
+  slug: String!
+  title: String!
+  usages: [String]!
+  origine: [String]!
+  description: String!
+  situations: [String]!
+  information: String
+}
+`;
+
 const typeDefs = `
 ${suos}
+${restriction}
 ${departement}
 `;
 

@@ -112,3 +112,25 @@ query departmentSUOS (
     }
   }
 }
+
+mutation createRestriction(
+  $dpt: ID!
+  $title: String!
+  $usages: [String]!
+  $origines: [String]!
+  $description: String!
+  $situations: [String]!
+  $information: String
+) {
+  createRestriction(
+    dpt: $dpt
+    title: $title
+    usages: $usages
+    origines: $origines
+    description: $description
+    situations: $situations
+  	information: $information
+  ) {
+    id
+  }
+}

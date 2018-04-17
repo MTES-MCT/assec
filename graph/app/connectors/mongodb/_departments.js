@@ -39,4 +39,4 @@ DepartementSchema.pre('findOneAndUpdate', saveMiddleware);
 
 export const Departement = Mongoose.model('departments', DepartementSchema);
 
-export default { Departement };
+export default { Departement, DepartementSchema };

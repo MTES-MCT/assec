@@ -6,6 +6,16 @@ type Mutation {
     suos: SUOSInput!
   ): DepartementType
 
+  createRestriction(
+    dpt: ID!
+    title: String!
+    usages: [String]!
+    origines: [String]!
+    description: String!
+    situations: [String]!
+    information: String
+  ): RestrictionType
+
   updateDepartement(
     id: ID!
     code: String

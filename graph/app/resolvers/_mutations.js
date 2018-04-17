@@ -1,5 +1,5 @@
 import omit from 'lodash.omit';
-import { Departement } from './../drivers/mongodb';
+import { Departement, Restriction } from './../drivers/mongodb';
 
 export const Mutation = {
   deleteDepartment: (_, args) => {
@@ -20,6 +20,7 @@ export const Mutation = {
     return Departement.findByIdAndUpdate(id, rest, returnsnewdoc);
   },
   createDepartement: (_, args) => Departement.create(args),
+  createRestriction: (_, args) => Restriction.create(args),
 };
 
 export default Mutation;
