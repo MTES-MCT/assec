@@ -1,15 +1,12 @@
 const path = require('path');
 const express = require('express');
+const usedebug = require('./server/usedebug');
 
-// Constants
 const app = express();
-const port = process.env.PORT;
 const www = path.join(__dirname, 'public');
-const usedebug = !process.env.NODE_ENV || process.env.NODE_ENV !== 'production';
-
-app.use(express.static(www)); // serve static files
 
 // serve main HTML file
+app.use(express.static(www));
 app.get('/', (req, res) => {
   const indexfile = path.join(www, 'index.html');
   res.sendFile(indexfile);
@@ -18,16 +15,12 @@ app.get('/', (req, res) => {
 // Do graceful shutdown
 process.on('SIGINT', () => {
   // FIXME -> close DB connections
-  app.close(() =>
-    process.stdout.write(`
-    Closing Frontend server
-  `));
+  app.close(() => process.stdout.write('Closing Admin server'));
 });
 
 // run application
+const port = process.env.PORT;
 app.listen(port, () => {
   if (!usedebug) return;
-  process.stdout.write(`
-    Running on http://0.0.0.0:${port}
-  `);
+  process.stdout.write(`Admin server running on http://0.0.0.0:${port}`);
 });

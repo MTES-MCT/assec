@@ -2,25 +2,12 @@
 
 ## Environments
 
-#### Development `.env`
+> Les fichiers .env sont obligatoires<br>
+> La commande `yarn build` de create-react-app permet de charger ces fichiers
 
 ```bash
 PORT=3100
 REACT_APP_GRAPHQL_URI=http://localhost:3200/graphql
-```
-
-#### PreProduction `.env.production.local`
-
-```bash
-PORT=3100
-REACT_APP_GRAPHQL_URI=http://graph.docker.loc/graphql
-```
-
-#### PreProduction `.env.production`
-
-```bash
-PORT=3100
-REACT_APP_GRAPHQL_URI=http://graph.iziges.fr/graphql
 ```
 
 ## MongoDB

@@ -34,13 +34,11 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
+    "build": "echo \"Error: see file ./.scripts/yarn-build\"",
+    "eject": "echo \"Error: unused\"",
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed",
-    "dbuild": "docker build -t assec-admin .",
-    "drun": "docker run -p 8080:3100 -it --rm --name=admin-app assec-admin"
+    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
