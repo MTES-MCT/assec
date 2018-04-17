@@ -8,7 +8,7 @@
 #
 # -----------
 frontend: cd frontend && npm run start
-admin: cd admin && npm start
+admin: cd admin && npm run start
 graph: cd graph && npm run dev
 
 # SASS Preprocessor
