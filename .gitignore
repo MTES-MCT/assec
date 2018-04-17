@@ -240,3 +240,4 @@ $RECYCLE.BIN/
 db
 temp
 wiki
+backups/*.gz
