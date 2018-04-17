@@ -1,9 +1,9 @@
 const queriesDefs = `
 type Query {
+  suos(dpt: ID): SUOSType
   departements: [DepartementType]
-  departmentSUOS(id: ID): SUOSType
-  departement(id: ID!): DepartementType
-  restrictions(dpt: ID!): [RestrictionType]
+  departement(id: ID): DepartementType
+  restrictions(dpt: ID): [RestrictionType]
 }
 `;
 
