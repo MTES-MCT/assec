@@ -13,6 +13,10 @@ def uptime():
   run("uptime")
 
 def deploy():
+  with cd('/home/deploy/'):
+    # stop all dockers containers
+    run('docker stop $(docker ps -a -q)')
+    run('docker rm $(docker ps -q -f status=exited)')
   with cd('/home/deploy/assec'):
     run('git pull origin master')
     run('yarn build --env=production')

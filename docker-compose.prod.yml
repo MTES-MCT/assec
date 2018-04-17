@@ -12,14 +12,12 @@ services:
       - VIRTUAL_HOST=graph.iziges.fr
   admin:
     # les variables pour le build s'ajoute dans les fichier
-    # - .env.build.staging
     # - .env.build.production
     environment:
       - NODE_ENV=production
       - VIRTUAL_HOST=admin.iziges.fr
   frontend:
     # les variables pour le build s'ajoute dans les fichier
-    # - .env.build.staging
     # - .env.build.production
     environment:
       - NODE_ENV=production
