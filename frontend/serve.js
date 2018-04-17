@@ -7,7 +7,7 @@ const www = path.join(__dirname, 'public');
 
 // serve main HTML file
 app.use(express.static(www));
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
   const indexfile = path.join(www, 'index.html');
   res.sendFile(indexfile);
 });
