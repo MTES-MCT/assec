@@ -3,7 +3,7 @@ version: '2'
 services:
   mongo:
     volumes:
-      - /mongodb/db:/data/db
+      - /home/deploy/mongo/db:/data/db
     environment:
       - NODE_ENV=production
       # - MONGO_INITDB_ROOT_USERNAME="admin"
