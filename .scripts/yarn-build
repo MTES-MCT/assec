@@ -35,7 +35,7 @@ fi
 ENV_FILE="./../.env.${REACT_APP_ENV}"
 
 build_application_with_env_variables() {
-  echo "\033[1;38;5;132mBuilding '$@' Package Using .env.${REACT_APP_ENV}\033[0m"
+  echo "\033[1;38;5;132mBuilding '$@ app' Using .env.${REACT_APP_ENV}\033[0m"
   (
     cd $@
     # building sass file
