@@ -28,7 +28,7 @@ type RestrictionType {
   slug: String!
   title: String!
   usages: [String]!
-  origine: [String]!
+  origines: [String]!
   description: String!
   situations: [String]!
   information: String
