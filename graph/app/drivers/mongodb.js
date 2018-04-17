@@ -29,8 +29,8 @@ const options = {
   // bufferMaxEntries: 0,
 };
 Mongoose.connect(DB_BASE, options).then(
-  () => logger.ok('MongoDB connection success'),
-  err => logger.error(`MongoDB connection error ${err}`),
+  () => logger.ok(`MongoDB connection success on: ${DB_BASE}`),
+  err => logger.error(`MongoDB connection error: ${DB_BASE} => ${err}`),
 );
 
 export * from './../connectors/mongodb';
