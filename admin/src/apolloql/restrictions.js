@@ -4,12 +4,22 @@ import { GET_DEPARTEMENT_RESTRICTIONS } from './queries';
 
 export const CREATE_RESTRICTION = gql(`
 mutation createRestriction(
-  $id: String!
+  $dpt: ID!
+  $title: String!
+  $usages: [String]!
+  $origines: [String]!
   $description: String!
+  $situations: [String]!
+  $information: String
 ) {
   createRestriction(
-    id: $id
+    dpt: $dpt
+    title: $title
+    usages: $usages
+    origines: $origines
     description: $description
+    situations: $situations
+    information: $information
   ) {
     id
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form } from 'react-final-form';
+import { Form, Field } from 'react-final-form';
 import { Query, Mutation } from 'react-apollo';
 
 // application
@@ -45,8 +45,22 @@ const RestrictionsForm = ({ selected }) => (
       return (
         <Mutation mutation={CREATE_RESTRICTION} update={UPDATE_RESTRICTIONS}>
           {(createRestriction, result) => (
-            <Form onSubmit={() => {}}
-              validate={validator}
+            <Form validate={validator}
+              initialValues={{ dpt: selected }}
+              onSubmit={(
+                { suos: { usages, origines, situations }, ...rest },
+                form,
+              ) => {
+                const variables = {
+                  usages,
+                  origines,
+                  situations,
+                  ...rest,
+                };
+                return createRestriction({ variables })
+                  .then(() => form.reset())
+                  .catch(() => {});
+              }}
               render={({
                 form, handleSubmit, pristine, invalid,
               }) => {
@@ -62,6 +76,7 @@ const RestrictionsForm = ({ selected }) => (
                     <span name="restriction-form-anchor" />
                     <fieldset>
                       <Legend label="Ajouter une restriction" />
+                      <Field name="dpt" type="hidden" component="input" />
                       <TextInput disabled={disabled}
                         name="title"
                         label="Titre de la restriction" />
@@ -84,7 +99,7 @@ const RestrictionsForm = ({ selected }) => (
                         disabled={moredisabled}
                         provider={(suos && suos.origines) || []} />
                       <TextArea disabled={moredisabled}
-                        name="informations"
+                        name="information"
                         label="Plus d'informations pédagogiques"
                         large />
                       <SubmitButton pristine={pristine} invalid={invalid} />
