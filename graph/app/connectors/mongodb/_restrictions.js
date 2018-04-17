@@ -15,7 +15,6 @@ const RestrictionSchema = new Schema(
     },
     information: {
       type: String,
-      required: true,
     },
     slug: slugType,
     usages: [String],
