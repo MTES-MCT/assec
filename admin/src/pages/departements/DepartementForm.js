@@ -60,9 +60,9 @@ const initialValues = {
 
 const DepartementForm = () => (
   <Query query={ALL_DEPARTEMENTS}>
-    {({ loading, data: { departements: loaded } }) => {
+    {({ loading, data }) => {
       if (loading) return <p>Loading... </p>;
-      const dptslist = dptsutils.omit(loaded);
+      const dptslist = dptsutils.omit(data.departements);
       return (
         <Mutation mutation={CREATE_DEPARTEMENT} update={UPDATE_DEPARTEMENTS}>
           {(createDepartement, result) => (

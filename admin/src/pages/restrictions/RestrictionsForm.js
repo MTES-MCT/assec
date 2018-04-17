@@ -5,9 +5,9 @@ import { Query, Mutation } from 'react-apollo';
 
 // application
 import {
+  SUOS,
   CREATE_RESTRICTION,
   UPDATE_RESTRICTIONS,
-  GET_DEPARTEMENT_SUOS,
 } from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import TextArea from './../../components/forms/TextArea';
@@ -37,11 +37,11 @@ const validator = (values) => {
 };
 
 const RestrictionsForm = ({ selected }) => (
-  <Query query={GET_DEPARTEMENT_SUOS} variables={{ id: selected }}>
+  <Query query={SUOS} variables={{ dpt: selected }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      const suos = data.departmentSUOS;
+      const { suos } = data;
       return (
         <Mutation mutation={CREATE_RESTRICTION} update={UPDATE_RESTRICTIONS}>
           {(createRestriction, result) => (

@@ -3,38 +3,48 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { GET_DEPARTEMENT_RESTRICTIONS } from './../../apolloql';
+import { ALL_RESTRICTIONS } from './../../apolloql';
 
 const renderRestrictionsTableHeader = () => (
   <thead>
     <tr>
-      <th>Libellé</th>
-      <th />
+      <th>Titre</th>
+      <th>Description</th>
+      <th className="small" />
+      <th className="small" />
     </tr>
   </thead>
 );
 
-const renderRestrictionsTableRow = person => (
-  <tr key={person.id}>
-    <td>{person.lastname}</td>
-    <td>{person.firstname}</td>
-    <td>{person.email}</td>
+const renderRestrictionsTableRow = obj => (
+  <tr key={obj.id}>
+    <td>{obj.title}</td>
+    <td>{obj.description}</td>
+    <td className="small">
+      <button type="button" onClick={() => {}}>
+        <i className="icon icon-pencil" />
+      </button>
+    </td>
+    <td className="small">
+      <button type="button" className="button-remove" onClick={() => {}}>
+        <i className="icon icon-trash" />
+      </button>
+    </td>
   </tr>
 );
 
 const RestrictionsTable = ({ selected }) => (
-  <Query query={GET_DEPARTEMENT_RESTRICTIONS}
-    variables={{ departement: selected }}>
-    {({ loading, error, data: { allDepartementRestrictions } }) => {
+  <Query query={ALL_RESTRICTIONS} variables={{ dpt: selected }}>
+    {({ loading, error, data }) => {
       if (loading) return <p>Loading... </p>;
       if (error) return <p>Error </p>;
+      const { restrictions } = data;
       return (
         <div>
           <table>
             {renderRestrictionsTableHeader()}
             <tbody>
-              {allDepartementRestrictions &&
-                allDepartementRestrictions.map(renderRestrictionsTableRow)}
+              {restrictions && restrictions.map(renderRestrictionsTableRow)}
             </tbody>
           </table>
         </div>

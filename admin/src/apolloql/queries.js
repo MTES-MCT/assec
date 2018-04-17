@@ -24,27 +24,32 @@ export const ALL_DEPARTEMENTS = gql(`
   }
 `);
 
-export const GET_DEPARTEMENT_RESTRICTIONS = gql(`
+export const ALL_RESTRICTIONS = gql(`
 query restrictions (
-  $id: ID!
+  $dpt: ID
 ) {
   restrictions (
-    id: $id
+    dpt: $dpt
   ) {
     id
-    department
+    dpt
+    slug
+    title
+    usages
+    origines
+    situations
     description
-    informations
+    information
   }
 }
 `);
 
-export const GET_DEPARTEMENT_SUOS = gql(`
-query departmentSUOS (
-  $id: ID
+export const SUOS = gql(`
+query suos (
+  $dpt: ID
 ) {
-  departmentSUOS (
-    id: $id
+  suos (
+    dpt: $dpt
   ) {
     usages {
       id
