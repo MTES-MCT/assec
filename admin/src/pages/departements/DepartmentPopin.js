@@ -28,10 +28,7 @@ const DepartmentPopin = ({ id, onClose }) => (
             initialValues={departement}
             onSubmit={() => {}}
             render={({
-              invalid,
-              pristine,
-              handleSubmit,
-              mutators: { unshift },
+              form, invalid, pristine, handleSubmit,
             }) => (
               <form onSubmit={handleSubmit}>
                 <h3>
@@ -40,17 +37,17 @@ const DepartmentPopin = ({ id, onClose }) => (
                 <div className="flex-columns flex-between">
                   <TagValues name="suos.situations"
                     initial={departement.suos.situations}
-                    push={unshift}
+                    push={form.mutators.unshift}
                     label="Situations"
                     placeholder="Nom de la situation" />
                   <TagValues name="suos.usages"
                     initial={departement.suos.usages}
                     label="Usages"
-                    push={unshift}
+                    push={form.mutators.unshift}
                     placeholder="Nom de l'usage" />
                   <TagValues name="suos.origines"
                     initial={departement.suos.origines}
-                    push={unshift}
+                    push={form.mutators.unshift}
                     label="Origines"
                     placeholder="Nom de l'origine" />
                 </div>
