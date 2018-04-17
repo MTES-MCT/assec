@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
-    "dotenv-safe": "^5.0.1",
     "express": "^4.16.3",
     "fast-deep-equal": "^1.1.0",
     "history": "^4.7.2",
@@ -31,14 +30,12 @@
     "uuid": "^3.2.1"
   },
   "scripts": {
+    "build": "echo \"Error: see file ./.scripts/yarn-build\"",
+    "eject": "echo \"Error: unused\"",
     "generate:schema": "node ./.scripts/schema.js",
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed",
-    "dbuild": "docker build -t assec-frontend ./",
-    "drun": "docker run -p 8080:3000 -it --rm --name=frontend-app assec-frontend"
+    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
