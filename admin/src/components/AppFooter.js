@@ -1,23 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// application
-import { debug } from './../core/utils/debug';
-
 const AppFooter = ({ version }) => (
-  <div id="app-footer" className="flex-columns flex-between">
+  <div id="app-footer" className="align-right p12">
     <div className="left">
       <span>v{version}</span>
-    </div>
-    <div className="right">
-      {debug() && (
-        <a target="_blank"
-          rel="noopener noreferrer"
-          href="http://assec.iziges.fr">
-          Demo
-        </a>
-      )}
-      <a href="http://geojson.io">GeoJSON.io</a>
     </div>
   </div>
 );

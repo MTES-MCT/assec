@@ -63,16 +63,16 @@ span + .icon,
 #application-header .title {
   font-weight: normal;
 
-  span {
-    font-size: 1.2em;
-    letter-spacing: 0.4em;
-  }
-
   small {
     font-size: 0.3em;
     padding: 3px 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  span {
+    font-size: 1.2em;
+    letter-spacing: 0.4em;
   }
 }
 

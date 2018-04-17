@@ -6,10 +6,13 @@ import { Switch, Route } from 'react-router';
 
 // application
 import { routes } from './routes';
-import { usedebug } from './core/utils/usedebug';
+import AppFooter from './components/AppFooter';
 import { keypath } from './core/utils/keypath';
+import { usedebug } from './core/utils/usedebug';
 import { pagetitle } from './core/utils/pagetitle';
 import MainNavigation from './components/navs/MainNavigation';
+
+const appversion = process.env.REACT_APP_VERSION;
 
 const getbodyclass = (path, haspopin) =>
   `route-page-${path
@@ -47,6 +50,7 @@ const PageComponent = ({ location, popin }) => (
           })}
       </Switch>
       {/* routes */}
+      <AppFooter version={appversion} />
     </div>
   </div>
 );
