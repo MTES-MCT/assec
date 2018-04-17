@@ -4,8 +4,8 @@ services:
   mongo:
     container_name: assec_mongodb_prod_container
     volumes:
-      - /home/deploy/mongo/db:/data/db
-      - /home/deploy/mongo/dumps:/backups/dump
+      - /home/deploy/data/db:/data/db
+      - /home/deploy/backups:/backups
     environment:
       - NODE_ENV=production
       # - MONGO_INITDB_ROOT_USERNAME="admin"
