@@ -70,10 +70,7 @@ const DepartementForm = () => (
                   .catch(() => {})
               }
               render={({
-                invalid,
-                pristine,
-                handleSubmit,
-                mutators: { unshift },
+                form, invalid, pristine, handleSubmit,
               }) => (
                 <form onSubmit={handleSubmit} className="mb20">
                   <fieldset>
@@ -87,17 +84,17 @@ const DepartementForm = () => (
                       }))} />
                     <Field name="name" type="hidden" component="input" />
                     <TagValues name="suos.situations"
-                      push={unshift}
+                      push={form.mutators.unshift}
                       label="Situations"
                       disabled={pristine || result.loading}
                       placeholder="Nom de la situation" />
                     <TagValues name="suos.usages"
                       label="Usages"
-                      push={unshift}
+                      push={form.mutators.unshift}
                       disabled={pristine || result.loading}
                       placeholder="Nom de l'usage" />
                     <TagValues name="suos.origines"
-                      push={unshift}
+                      push={form.mutators.unshift}
                       label="Origines"
                       disabled={pristine || result.loading}
                       placeholder="Nom de l'origine" />
