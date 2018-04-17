@@ -16,6 +16,12 @@ https://beta.gouv.fr/startup/assec.html
 
 ## Installation
 
+1. Création d'un dossier local de la base de données MongoDB
+```bash
+sudo mkdir /mongodb/db
+```
+
+2. Récupération du projet et installation des dépendances
 ```bash
 git clone git@github.com:MTES-MCT/assec.git
 cd assec
@@ -27,50 +33,57 @@ yarn install
 
 #### Concept
 
-> Ce projet utilise le mode mono repo de [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/), l'API GrapQL et les applications Frontend et Backend sont contenues dans le même repository dans des sous dossiers définis par la propriété  [workspaces](.package.json) du pakage.json<br>
+Ce projet utilise le mode mono repo de [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/), l'API GrapQL et les applications Frontend et Backend sont contenues dans le même repository dans des sous dossiers définis par la propriété  [workspaces](.package.json) du pakage.json<br>
 
-> La base des deux applications Backoffice et Frontend ont été générées à l'aide de [create-react-app](https://github.com/facebook/create-react-app)<br>
+La base des deux applications Backoffice et Frontend ont été générées à l'aide de [create-react-app](https://github.com/facebook/create-react-app)<br>
 
-> L'API [GraphQL](http://graphql.org) utilise [Apollo](https://www.apollographql.com), le client Apollo est utilisé pour les applications en React afin de pouvoir interroger cette API
+L'API [GraphQL](http://graphql.org) utilise [Apollo](https://www.apollographql.com), le client Apollo est utilisé pour les applications en React afin de pouvoir interroger cette API
 
 #### Contribution
 
-> Ne pas utiliser  `git push --force`, si un commit doit être remplacé il faut utiliser `git push --force-with-lease` qui vérifiera d'abord sur le serveur distant si une mise à jour du code est déjà en cours<br>
+Ne pas utiliser  `git push --force`, si un commit doit être remplacé il faut utiliser `git push --force-with-lease` qui vérifiera d'abord sur le serveur distant si une mise à jour du code est déjà en cours<br>
 
-> L'utilisation de `git rebase` en mode `--interactive` est obligatoire pour gérer les branches `git`.<br>
+L'utilisation de `git rebase` en mode `--interactive` est obligatoire pour gérer les branches `git`.<br>
 
-> `rebase` garantie une plus grande flexibilité d'utilisation que la commande `merge`<br>
+La commande `git rebase` garantie une plus grande flexibilité d'utilisation que la commande `merge`<br>
 
-> Afin de gèrer plusieurs version de NodeJS sur le même poste de dévelopement,  [NVM](https://github.com/creationix/nvm) doit être installé, le fichier [.nvmrc](./.nvmrc) défini quelle version de est utilisé pour ce projet<br>
+Afin de gèrer plusieurs version de NodeJS sur le même poste de dévelopement,  [NVM](https://github.com/creationix/nvm) doit être installé, le fichier [.nvmrc](./.nvmrc) défini quelle version de est utilisé pour ce projet<br>
 
-> Les modules [Husky](https://github.com/typicode/husky), [ESLint](https://eslint.org), [StyleLint](https://stylelint.io) et [Prettier](https://prettier.io) permettent de maintenir un cadre dévelopment continu pour l'environnement de dev, chaque commit est vérifié et formatté  grâce au script [pre-commit](./.scripts/hooks/pre-commit) avant d'être poussé  sur le repository Git distant
+Les modules [Husky](https://github.com/typicode/husky), [ESLint](https://eslint.org), [StyleLint](https://stylelint.io) et [Prettier](https://prettier.io) permettent de maintenir un cadre dévelopment continu pour l'environnement de dev, chaque commit est vérifié et formatté  grâce au script [pre-commit](./.scripts/hooks/pre-commit) avant d'être poussé  sur le repository Git distant
 
 ## Usage & Environnements
 
-#### Developement Local
+#### Developement
 
-> En mode dévelopement local le serveur de la base de données MongoDB doit être démarré avant de lancer les autres sous-projets<br>
+En mode dévelopement local le serveur de la base de données MongoDB doit être démarré avant de lancer les autres sous-projets, la configuration par défaut de MongoDB est utilisée<br>
 
-> Les commandes `yarn dev:mongo` et `yarn dev` doivent être éxécutées par des processus différents<br>
-
-> C'est la configuration de base qui est utilisée pour MongoDB
+Les commandes `yarn dev:mongo` et `yarn dev` doivent être éxécutées dans des processus différents<br>
 
 1. Lancer la base de données MongoDB
 ```bash
 yarn dev:mongo
 ```
 
-2. Lancer les applications en local
+2. Lancer les applications
 ```bash
 yarn dev
 ```
 
-#### Developement Préproduction (Docker)
+> Les variables d'environment sont chargées depuis le fichier [.env.foreman](./.env.foreman)
 
-Lancer les applications en local grâce à une machine virtuelle Docker
+#### Staging - Tester la machine Docker en local
+
+1. Lancer le build des applications Frontend et Backoffice
+```bash
+yarn build
+```
+
+2. Lancer le test de virutalisation du projet
 ```bash
 yarn compose
 ```
+
+> Les variables d'environment sont chargées depuis le fichier [docker-compose.yml](./docker-compose.yml)
 
 ## Scripts & Commandes
 
