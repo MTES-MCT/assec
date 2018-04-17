@@ -17,6 +17,10 @@ import SelectBox from './../../components/forms/SelectBox';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const calculator = createDecorator({
+  // permet de calculer une valeur en fonction
+  // d'une autre, ici c'est le code du département
+  // qui permet d'en sélectionner son nom dans liste
+  // prédéfinies des departements.json
   field: 'code',
   updates: {
     name: code => (!code || code === '' ? '' : dptsutils.get.name(code)),
@@ -24,6 +28,8 @@ const calculator = createDecorator({
 });
 
 const validateSUOS = (suos) => {
+  // vérifie que tous les champs validations
+  // contiennent au moins une valeur
   const results = Object.keys(suos).filter(key => suos[key].length > 0);
   return results.length === 3;
 };
@@ -33,7 +39,7 @@ const validator = (values) => {
   if (!values.code || values.code === '') {
     errors.code = 'Required';
   }
-  if (!values.name || values.code === '') {
+  if (!values.name || values.name === '') {
     errors.name = 'Required';
   }
   if (!values.suos || !validateSUOS(values.suos)) {

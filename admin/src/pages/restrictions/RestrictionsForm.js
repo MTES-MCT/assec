@@ -11,8 +11,30 @@ import {
 } from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import TextArea from './../../components/forms/TextArea';
-import RadioGroup from './../../components/forms/RadioGroup';
+import TextInput from './../../components/forms/TextInput';
+import CheckboxGroup from './../../components/forms/CheckboxGroup';
 import SubmitButton from './../../components/forms/SubmitButton';
+
+const validateSUOS = (suos) => {
+  // vérifie que tous les champs validations
+  // contiennent au moins une valeur
+  const results = Object.keys(suos).filter(key => suos[key].length > 0);
+  return results.length === 3;
+};
+
+const validator = (values) => {
+  const errors = {};
+  if (!values.title || values.title === '') {
+    errors.title = 'Required';
+  }
+  if (!values.description || values.description === '') {
+    errors.description = 'Required';
+  }
+  if (!values.suos || !validateSUOS(values.suos)) {
+    errors.suos = 'Required';
+  }
+  return errors;
+};
 
 const RestrictionsForm = ({ selected }) => (
   <Query query={GET_DEPARTEMENT_SUOS} variables={{ id: selected }}>
@@ -22,36 +44,48 @@ const RestrictionsForm = ({ selected }) => (
       const suos = data.departmentSUOS;
       return (
         <Mutation mutation={CREATE_RESTRICTION} update={UPDATE_RESTRICTIONS}>
-          {() => (
+          {(createRestriction, result) => (
             <Form onSubmit={() => {}}
-              render={({ handleSubmit, pristine, invalid }) => {
-                const disabled = !(selected && selected !== null);
+              validate={validator}
+              render={({
+                form, handleSubmit, pristine, invalid,
+              }) => {
+                const disabled =
+                  result.loading || !(selected && selected !== null);
+                const moredisabled =
+                  pristine ||
+                  result.loading ||
+                  !form.title === '' ||
+                  !(selected && selected !== null);
                 return (
                   <form onSubmit={handleSubmit} className="mb40">
                     <span name="restriction-form-anchor" />
                     <fieldset>
                       <Legend label="Ajouter une restriction" />
-                      <TextArea disabled={disabled}
+                      <TextInput disabled={disabled}
+                        name="title"
+                        label="Titre de la restriction" />
+                      <TextArea disabled={moredisabled}
                         name="description"
-                        label="Description" />
-                      <RadioGroup disabled={disabled}
+                        label="Description de la restriction" />
+                      <CheckboxGroup name="suos.situations"
                         display="inline"
-                        name="situations"
                         label="Situation"
+                        disabled={moredisabled}
                         provider={(suos && suos.situations) || []} />
-                      <RadioGroup disabled={disabled}
-                        name="usages"
+                      <CheckboxGroup name="suos.usages"
                         label="Usage"
                         display="inline"
+                        disabled={moredisabled}
                         provider={(suos && suos.usages) || []} />
-                      <RadioGroup disabled={disabled}
-                        name="origines"
+                      <CheckboxGroup name="suos.origines"
                         label="Origine"
                         display="inline"
+                        disabled={moredisabled}
                         provider={(suos && suos.origines) || []} />
-                      <TextArea disabled={disabled}
+                      <TextArea disabled={moredisabled}
                         name="informations"
-                        label="Plus d'informations"
+                        label="Plus d'informations pédagogiques"
                         large />
                       <SubmitButton pristine={pristine} invalid={invalid} />
                     </fieldset>
