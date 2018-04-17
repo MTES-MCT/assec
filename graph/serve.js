@@ -1,19 +1,19 @@
-/**
- * https://dev-blog.apollodata.com/tutorial-building-a-graphql-server-cddaa023c035
- */
-
+// https://dev-blog.apollodata.com/tutorial-building-a-graphql-server-cddaa023c035
 import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
-import schemas from './app/schemas';
 import { logger } from './app/utils/logger';
+import { usedebug } from './app/utils/usedebug';
+
+import schemas from './app/schemas';
 import * as resolvers from './app/resolvers';
 
+const graphqlport = process.env.PORT;
+
 // application
-const usedebug = process.env.NODE_ENV !== 'production';
 const schema = makeExecutableSchema({ typeDefs: schemas, resolvers });
 
 const app = express();
@@ -26,11 +26,11 @@ app.use(
     schema,
     // Apollo Server accepts a GraphQLOptions object as its single argument
     // @see apollographql.com/docs/apollo-server/setup.html#graphqlOptions
-    debug: usedebug,
+    debug: usedebug(),
   }),
 );
 
-if (usedebug) {
+if (usedebug()) {
   // use GraphQL web interface only in development environment
   app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 }
@@ -44,9 +44,8 @@ process.on('SIGINT', () => {
   });
 });
 
-const GRAPHQL_PORT = process.env.PORT || 3200;
-app.listen(GRAPHQL_PORT, () => {
-  logger.ok(`GraphQL served under http://localhost:${GRAPHQL_PORT}/graphql`);
-  if (!usedebug) return;
-  logger.ok(`GraphiQL is now running under http://localhost:${GRAPHQL_PORT}/graphiql`);
+app.listen(graphqlport, () => {
+  logger.ok(`GraphQL served under http://localhost:${graphqlport}/graphql`);
+  if (!usedebug()) return;
+  logger.ok(`GraphiQL is now running under http://localhost:${graphqlport}/graphiql`);
 });
