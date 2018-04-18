@@ -50,7 +50,7 @@ class DepartementTable extends React.PureComponent {
         </td>
         <td className="small">
           <button type="button"
-            className="button-remove"
+            className="danger"
             onClick={() => this.onDeleteClick({ id, name })}>
             <i className="icon icon-trash" />
           </button>

@@ -5,7 +5,7 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 
 // application
-import { GET_DEPARTEMENT } from './../../apolloql';
+import { GET_RESTRICTION } from './../../apolloql';
 import TagValues from './../../components/forms/TagValues';
 import CloseButton from './../../components/popins/CloseButton';
 import SubmitButton from './../../components/forms/SubmitButton';
@@ -15,8 +15,8 @@ const validator = () => {
   return errors;
 };
 
-const DepartmentPopin = ({ id, onClose }) => (
-  <Query query={GET_DEPARTEMENT} variables={{ id }}>
+const RestrictionsPopin = ({ id, onClose }) => (
+  <Query query={GET_RESTRICTION} variables={{ id }}>
     {({ loading, error, data: { departement } }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
@@ -62,9 +62,9 @@ const DepartmentPopin = ({ id, onClose }) => (
   </Query>
 );
 
-DepartmentPopin.propTypes = {
+RestrictionsPopin.propTypes = {
   id: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default DepartmentPopin;
+export default RestrictionsPopin;

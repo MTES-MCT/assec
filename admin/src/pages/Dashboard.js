@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 // application
 import AppPage from './../components/AppPage';
+import WelcomeMessage from './dashboard/WelcomeMessage';
 import DepartementForm from './departements/DepartementForm';
 
 const Dashboard = ({ config }) => (
   <AppPage {...config}>
     <div id="page-main-column" className="col50">
+      <WelcomeMessage />
       <DepartementForm />
     </div>
     <div id="page-aside-column" className="col50" />
