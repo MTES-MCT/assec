@@ -1,84 +1,60 @@
-.m0 {
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-}
+$spaces: (
+  0,
+  12,
+  20,
+  40
+);
 
-.mt0 {
-  margin-top: 0;
-}
+$sides: (
+  all,
+  topbottom,
+  leftright,
+  top,
+  left,
+  right,
+  bottom
+);
 
-.mb0 {
-  margin-bottom: 0;
-}
+@each $space in $spaces {
+  @each $side in $sides {
+    @if $side == 'all' {
+      .m#{$space} {
+        margin: #{$space}px;
+      }
 
-.mt12 {
-  margin-top: 12px;
-}
+      .p#{$space} {
+        padding: #{$space}px;
+      }
+    }
 
-.mb12 {
-  margin-bottom: 12px;
-}
+    @else if $side == 'topbottom' {
+      .my#{$space} {
+        margin: #{$space}px;
+      }
 
-.mt20 {
-  margin-top: 20px;
-}
+      .py#{$space} {
+        padding: #{$space}px;
+      }
+    }
 
-.mb20 {
-  margin-bottom: 20px;
-}
+    @else if $side == 'leftright' {
+      .mx#{$space} {
+        margin: #{$space}px;
+      }
 
-.ml40 {
-  margin-left: 40px;
-}
+      .px#{$space} {
+        padding: #{$space}px;
+      }
+    }
 
-.mr40 {
-  margin-right: 40px;
-}
+    @else {
+      .m#{str-slice($side, 0, 1)}#{$space} {
+        margin-#{$side}: #{$space}px;
+      }
 
-.ml20 {
-  margin-left: 20px;
-}
-
-.mr20 {
-  margin-right: 20px;
-}
-
-.mb40 {
-  margin-bottom: 40px;
-}
-
-.mt40 {
-  margin-top: 40px;
-}
-
-.my0 {
-  @extend .mt0;
-  @extend .mb0;
-}
-
-.my12 {
-  @extend .mt12;
-  @extend .mb12;
-}
-
-.my20 {
-  @extend .mt20;
-  @extend .mb20;
-}
-
-.mx20 {
-  @extend .mr20;
-  @extend .ml20;
-}
-
-.mx40 {
-  @extend .mr40;
-  @extend .ml40;
-}
-
-.my40 {
-  @extend .mt40;
-  @extend .mb40;
+      .p#{str-slice($side, 0, 1)}#{$space} {
+        padding-#{$side}: #{$space}px;
+      }
+    }
+  }
 }
