@@ -90,18 +90,18 @@ const DepartementForm = () => (
                       }))} />
                     <Field name="name" type="hidden" component="input" />
                     <TagValues name="suos.situations"
-                      push={form.mutators.unshift}
                       label="Situations"
+                      mutatorpush={form.mutators.unshift}
                       disabled={pristine || result.loading}
                       placeholder="Nom de la situation" />
                     <TagValues name="suos.usages"
                       label="Usages"
-                      push={form.mutators.unshift}
                       disabled={pristine || result.loading}
+                      mutatorpush={form.mutators.unshift}
                       placeholder="Nom de l'usage" />
                     <TagValues name="suos.origines"
-                      push={form.mutators.unshift}
                       label="Origines"
+                      mutatorpush={form.mutators.unshift}
                       disabled={pristine || result.loading}
                       placeholder="Nom de l'origine" />
                     <SubmitButton label="Ajouter"
