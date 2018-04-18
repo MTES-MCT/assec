@@ -26,7 +26,7 @@ class DepartementTable extends React.PureComponent {
   }
 
   onEditClick (args) {
-    this.openPopin({ ...args, type: 'DepartmentPopin' });
+    this.openPopin({ ...args, type: 'DepartementPopin' });
   }
 
   onDeleteClick (args) {

@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 // application
 import DeletePopin from './popins/DeletePopin';
-import DepartmentPopin from './../pages/departements/DepartmentPopin';
+import DepartementPopin from './../pages/departements/DepartementPopin';
+import RestrictionsPopin from './../pages/restrictions/RestrictionsPopin';
 
 class AppPopin extends React.PureComponent {
   constructor (props) {
@@ -34,8 +35,10 @@ class AppPopin extends React.PureComponent {
     switch (type) {
     case 'DeletePopin':
       return <DeletePopin {...rest} onClose={this.closePopin} />;
-    case 'DepartmentPopin':
-      return <DepartmentPopin {...rest} onClose={this.closePopin} />;
+    case 'DepartementPopin':
+      return <DepartementPopin {...rest} onClose={this.closePopin} />;
+    case 'RestrictionsPopin':
+      return <RestrictionsPopin {...rest} onClose={this.closePopin} />;
     default:
       return null;
     }
