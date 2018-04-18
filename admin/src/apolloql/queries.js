@@ -94,3 +94,22 @@ query departement (
   }
 }
 `);
+
+export const GET_RESTRICTION = gql(`
+query restriction (
+  $id: ID!
+) {
+  restriction (
+    id: $id
+  ) {
+    id
+    dpt
+    title
+    usages
+    origines
+    situations
+    description
+    information
+  }
+}
+`);
