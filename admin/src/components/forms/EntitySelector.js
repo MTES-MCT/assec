@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 // application
-import { ALL_DEPARTEMENTS } from './../../apolloql';
 
-const EntitySelector = ({ onChange }) => (
-  <Query query={ALL_DEPARTEMENTS}>
+const EntitySelector = ({ query, onChange }) => (
+  <Query query={query}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
@@ -38,6 +37,7 @@ const EntitySelector = ({ onChange }) => (
 );
 
 EntitySelector.propTypes = {
+  query: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

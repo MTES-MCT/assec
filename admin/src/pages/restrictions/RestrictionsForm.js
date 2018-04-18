@@ -7,7 +7,7 @@ import { Query, Mutation } from 'react-apollo';
 import {
   SUOS,
   CREATE_RESTRICTION,
-  UPDATE_RESTRICTIONS,
+  UPDATE_DPT_RESTRICTIONS,
 } from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import TextArea from './../../components/forms/TextArea';
@@ -43,7 +43,7 @@ const RestrictionsForm = ({ selected }) => (
       if (error) return <p>Error </p>;
       const { suos } = data;
       return (
-        <Mutation mutation={CREATE_RESTRICTION} update={UPDATE_RESTRICTIONS}>
+        <Mutation mutation={CREATE_RESTRICTION} update={UPDATE_DPT_RESTRICTIONS}>
           {(createRestriction, result) => (
             <Form validate={validator}
               initialValues={{ dpt: selected }}

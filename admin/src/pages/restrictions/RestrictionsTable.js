@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 // application
 import {
-  ALL_RESTRICTIONS,
+  DPT_RESTRICTIONS,
   DELETE_RESTRICTION,
-  UPDATE_RESTRICTIONS,
+  UPDATE_DPT_RESTRICTIONS,
 } from './../../apolloql';
 
 const renderRestrictionsTableHeader = () => (
@@ -42,7 +42,7 @@ class RestrictionsTable extends React.PureComponent {
       name: title,
       type: 'DeletePopin',
       deleteAction: DELETE_RESTRICTION,
-      updateAction: UPDATE_RESTRICTIONS,
+      updateAction: UPDATE_DPT_RESTRICTIONS,
     };
     this.props.dispatch({
       popin,
@@ -75,7 +75,7 @@ class RestrictionsTable extends React.PureComponent {
   render () {
     const { selected } = this.props;
     return (
-      <Query query={ALL_RESTRICTIONS} variables={{ dpt: selected }}>
+      <Query query={DPT_RESTRICTIONS} variables={{ dpt: selected }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading... </p>;
           if (error) return <p>Error </p>;
