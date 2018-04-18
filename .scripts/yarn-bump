@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+const fs = require('fs');
 const path = require('path');
 const fse = require('fs-extra');
 const semver = require('semver');
+const dotenv = require('dotenv');
 const exec = require('child_process').exec;
 
 const logger = require('./core/utils/logger');
@@ -51,44 +53,75 @@ if (!numto) {
   process.exit(1);
 }
 
-const updatepackages = version => {
-  Promise.all(
-    [
-      // update all package.json with a new version number
-      path.join(rootcwd, 'package.json'),
-      ...workspaces.map(pth => path.join(rootcwd, pth, 'package.json')),
-    ].map(filepath =>
+async function createcommit(version) {
+  const message = `git add -A . && git ci -m "🚀  bump version v${version}"`;
+  const execoptions = { encoding: 'utf8', cwd: path.join(rootcwd) };
+  await exec(message, execoptions, error => {
+    if (error) {
+      console.log(error);
+      logger.error('Unable to commit changes\n', 'bump');
+      process.exit(1);
+    } else {
+      logger.ok(`Packages updated to version ${version}\n`, 'bump');
+      process.exit(0);
+    }
+  });
+}
+async function updateenvfiles(version) {
+  // FIXME -> endline for specific OS
+  const endline = '\n';
+  const varname = 'REACT_APP_VERSION';
+  const allfiles = [
+    // update all package.json with a new version number
+    path.join(rootcwd, '.env.foreman'),
+    path.join(rootcwd, '.env.staging'),
+    path.join(rootcwd, '.env.production'),
+  ];
+  await Promise.all(
+    allfiles.map(fp =>
+      fse.readFile(fp, { encoding: 'utf-8' }).then(data => {
+        const content = data
+          .split(endline)
+          .filter(l => l)
+          .map(line => {
+            if (line.indexOf(varname) < 0) return line;
+            const [key] = line.split('=');
+            return `${key}=${version}`;
+          })
+          .join(endline);
+        return fse.outputFile(fp, content);
+      })
+    )
+  )
+    .then(() => true)
+    .catch(err => {
+      console.log(err);
+      logger.error('Unable to update env files versions\n', 'bump');
+      process.exit(1);
+    });
+}
+async function updatepackages(version) {
+  const allfiles = [
+    // update all package.json with a new version number
+    path.join(rootcwd, 'package.json'),
+    ...workspaces.map(pth => path.join(rootcwd, pth, 'package.json')),
+  ];
+  await Promise.all(
+    allfiles.map(filepath =>
       fse.readJson(filepath).then(data => {
         const update = { version };
+        // write package.json
         return fse.outputJson(filepath, Object.assign({}, data, update), opts);
       })
     )
   )
-    .then(() => {
-      // create a new git commit with version number
-      // it do not create tag
-      exec(
-        `git add -A . && git ci -m "🚀  bump version v${version}"`,
-        {
-          encoding: 'utf8',
-          cwd: path.join(rootcwd),
-        },
-        error => {
-          if (error) {
-            console.log(error);
-            logger.error('Unable to commit changes\n', 'bump');
-            process.exit(1);
-          } else {
-            logger.ok(`Packages updated to version ${version}\n`, 'bump');
-            process.exit(0);
-          }
-        }
-      );
-    })
+    .then(() => true)
     .catch(err => {
       console.log(err);
       logger.error('Unable to update packages versions\n', 'bump');
       process.exit(1);
     });
-};
+}
 updatepackages(numto);
+updateenvfiles(numto);
+createcommit(numto);
