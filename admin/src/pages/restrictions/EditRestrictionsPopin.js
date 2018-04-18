@@ -15,41 +15,43 @@ const validator = () => {
   return errors;
 };
 
-const RestrictionsPopin = ({ id, onClose }) => (
+const EditRestrictionsPopin = ({ id, onClose }) => (
   <Query query={GET_RESTRICTION} variables={{ id }}>
-    {({ loading, error, data: { departement } }) => {
+    {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
+      console.log('data', data);
+      const { restriction } = data;
       return (
         <div id="edit-popin" className="popin-inner">
           <CloseButton onClose={onClose} />
           <Form mutators={{ ...arrayMutators }}
             validate={validator}
-            initialValues={departement}
+            initialValues={restriction}
             onSubmit={() => {}}
             render={({
               form, invalid, pristine, handleSubmit,
             }) => (
               <form onSubmit={handleSubmit}>
                 <h3>
-                  <span>{`${departement.code} - ${departement.name}`}</span>
+                  <span>{`${restriction.title}`}</span>
                 </h3>
                 <div className="flex-columns flex-between">
                   <TagValues name="suos.situations"
-                    initial={departement.suos.situations}
+                    initial={restriction.situations}
                     push={form.mutators.unshift}
                     label="Situations"
-                    placeholder="Nom de la situation" />
+                    placeholder="Situation" />
                   <TagValues name="suos.usages"
-                    initial={departement.suos.usages}
+                    initial={restriction.usages}
                     label="Usages"
                     push={form.mutators.unshift}
-                    placeholder="Nom de l'usage" />
+                    placeholder="Usage" />
                   <TagValues name="suos.origines"
-                    initial={departement.suos.origines}
+                    initial={restriction.origines}
                     push={form.mutators.unshift}
                     label="Origines"
-                    placeholder="Nom de l'origine" />
+                    placeholder="Origine" />
                 </div>
                 <SubmitButton label="Mettre à jour"
                   invalid={invalid}
@@ -62,9 +64,9 @@ const RestrictionsPopin = ({ id, onClose }) => (
   </Query>
 );
 
-RestrictionsPopin.propTypes = {
+EditRestrictionsPopin.propTypes = {
   id: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 
-export default RestrictionsPopin;
+export default EditRestrictionsPopin;

@@ -14,7 +14,7 @@ const renderRestrictionsTableHeader = () => (
   <thead>
     <tr>
       <th>Titre</th>
-      <th>Description</th>
+      <th className="small" />
       <th className="small" />
       <th className="small" />
     </tr>
@@ -25,13 +25,20 @@ class RestrictionsTable extends React.PureComponent {
   constructor (props) {
     super(props);
     this.onEditClick = this.onEditClick.bind(this);
+    this.onCloneClick = this.onCloneClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
+  onCloneClick (obj) {
+    const { title, id } = obj;
+    const popin = { id, name: title, type: 'EditRestrictionsPopin' };
+    this.props.dispatch({ type: 'onOpenPopin', popin });
+  }
+
   onEditClick (obj) {
     const { title, id } = obj;
-    const popin = { id, name: title, type: 'RestrictionsPopin' };
+    const popin = { id, name: title, type: 'EditRestrictionsPopin' };
     this.props.dispatch({ type: 'onOpenPopin', popin });
   }
 
@@ -51,11 +58,15 @@ class RestrictionsTable extends React.PureComponent {
   }
 
   renderTableRow (obj) {
-    const { id, title, description } = obj;
+    const { id, title } = obj;
     return (
       <tr key={id}>
         <td>{title}</td>
-        <td>{description}</td>
+        <td className="small">
+          <button type="button" onClick={() => this.onCloneClick(obj)}>
+            <i className="icon icon-clone" />
+          </button>
+        </td>
         <td className="small">
           <button type="button" onClick={() => this.onEditClick(obj)}>
             <i className="icon icon-pencil" />
