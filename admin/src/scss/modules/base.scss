@@ -85,6 +85,11 @@ span + .icon,
   }
 }
 
+#application-footer {
+  flex: 0 0 auto;
+  font-size: 0.7em;
+}
+
 #user-logout-button {
   font-size: 2em;
 }

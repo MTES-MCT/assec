@@ -32,7 +32,7 @@ const PageComponent = ({ location, popin }) => (
         rel="stylesheet" />
     </Helmet>
     <MainNavigation path={location.pathname} routes={routes.main} />
-    <div id="page-container" className="flex1">
+    <div id="page-container" className="flex-rows flex-between flex1">
       {/* routes */}
       <Switch>
         {routes.main
