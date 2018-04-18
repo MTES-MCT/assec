@@ -13,7 +13,6 @@ const NoContent = ({ description, link }) => (
     {description && <p className="mt0">{description}</p>}
     {link && (
       <p>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link to={`/${link}`}>
           <span>Ajouter un département</span>
         </Link>

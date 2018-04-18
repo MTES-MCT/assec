@@ -23,6 +23,10 @@
         "nonEmpty": "after-props",
         "selfClosing": "after-props"
       }
-    ]
+    ],
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to" ]
+    }]
   }
 }

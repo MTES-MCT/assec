@@ -20,7 +20,6 @@ const MainNavigation = ({ path, routes, minimize }) => (
         const disabled = isdisabled(obj.path, path) ? 'active' : '';
         const key = keypath(obj.path, 'navigation');
         return (
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
           <Link to={obj.path} key={key} className={`link ${disabled}`}>
             <i className={`icon-${obj.icon}`} />
             {minimize ? null : <span>{obj.label}</span>}
