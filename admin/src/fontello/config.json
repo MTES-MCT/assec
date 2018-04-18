@@ -131,6 +131,12 @@
       "css": "database",
       "code": 59412,
       "src": "entypo"
+    },
+    {
+      "uid": "922ab2cb66943a83de969990289ef1dc",
+      "css": "clone",
+      "code": 59413,
+      "src": "entypo"
     }
   ]
 }
