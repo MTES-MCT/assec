@@ -15,6 +15,20 @@ const deleteEntity = (id, Model) =>
     });
   });
 
+const deleteEntities = (where, Model) =>
+  new Promise((resolve, reject) => {
+    Model.deleteMany(where, (err, doc) => {
+      if (err) {
+        reject(err);
+      } else if (!doc) {
+        const msg = `unable to find document with id: ${where}`;
+        reject(new Error(msg));
+      } else {
+        resolve(doc);
+      }
+    });
+  });
+
 export const Mutation = {
   updateDepartement: (_, args) => {
     const { id } = args;
@@ -25,8 +39,12 @@ export const Mutation = {
   },
   createDepartement: (_, args) => Departement.create(args),
   createRestriction: (_, args) => Restriction.create(args),
-  deleteDepartment: (_, args) => deleteEntity(args.id, Departement),
   deleteRestriction: (_, args) => deleteEntity(args.id, Restriction),
+  deleteDepartment: (_, args) => {
+    deleteEntity(args.id, Departement)
+      .then(doc => deleteEntities({ dpt: doc.id }, Restriction).then(() => doc))
+      .catch(err => err);
+  },
 };
 
 export default Mutation;
