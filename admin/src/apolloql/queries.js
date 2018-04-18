@@ -24,7 +24,7 @@ export const ALL_DEPARTEMENTS = gql(`
   }
 `);
 
-export const ALL_RESTRICTIONS = gql(`
+export const DPT_RESTRICTIONS = gql(`
 query restrictions (
   $dpt: ID
 ) {

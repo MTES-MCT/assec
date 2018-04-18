@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { ALL_RESTRICTIONS } from './queries';
+import { DPT_RESTRICTIONS } from './queries';
 
 export const CREATE_RESTRICTION = gql(`
 mutation createRestriction(
@@ -50,12 +50,12 @@ mutation deleteRestriction (
 const getCurrentRestrictions = (store, dpt) => {
   const data = store.readQuery({
     variables: { dpt },
-    query: ALL_RESTRICTIONS,
+    query: DPT_RESTRICTIONS,
   });
   return data.restrictions;
 };
 
-export const UPDATE_RESTRICTIONS = (store, { data }) => {
+export const UPDATE_DPT_RESTRICTIONS = (store, { data }) => {
   let entries = [];
   let variables = {};
   if (data.createRestriction) {
@@ -76,7 +76,7 @@ export const UPDATE_RESTRICTIONS = (store, { data }) => {
   }
   store.writeQuery({
     variables,
-    query: ALL_RESTRICTIONS,
+    query: DPT_RESTRICTIONS,
     data: { restrictions: entries },
   });
 };
