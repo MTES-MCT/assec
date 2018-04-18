@@ -29,13 +29,9 @@ def dump():
     # run('rm /home/deploy/backups/assec.gz')
 
 def deploy():
-  with cd('/home/deploy/'):
-    with settings(warn_only=True):
-      # stop all containers
-      run('docker stop $(docker ps -a -q)')
-        # remove all stopped containers
-      run('docker rm $(docker ps -q -f status=exited)')
   with cd('/home/deploy/assec'):
     run('git pull origin master')
+    run('yarn install')
     run('yarn build --env=production')
     run('docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p assec up -d --build')
+    run('docker system prune --force')
