@@ -25,7 +25,11 @@ type Mutation {
 
   deleteDepartment(
     id: ID!
-  ): String
+  ): DepartementType
+
+  deleteRestriction(
+    id: ID!
+  ): RestrictionType
 }
 `;
 

@@ -4,12 +4,11 @@ import { Mutation } from 'react-apollo';
 
 // application
 import CloseButton from './CloseButton';
-import { DELETE_DEPARTEMENT, UPDATE_DEPARTEMENTS } from './../../apolloql';
 
-const DeletePopin = ({ id, name, onClose }) => (
-  <Mutation mutation={DELETE_DEPARTEMENT}
-    update={UPDATE_DEPARTEMENTS}
-    onCompleted={onClose}>
+const DeletePopin = ({
+  id, name, onClose, deleteAction, updateAction,
+}) => (
+  <Mutation mutation={deleteAction} update={updateAction} onCompleted={onClose}>
     {deleteDepartment => (
       <div id="delete-popin" className="popin-inner">
         <CloseButton onClose={onClose} />
@@ -40,6 +39,8 @@ DeletePopin.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
+  updateAction: PropTypes.func.isRequired,
+  deleteAction: PropTypes.object.isRequired,
 };
 
 export default DeletePopin;

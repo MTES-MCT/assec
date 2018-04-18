@@ -4,7 +4,11 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 
 // application
-import { ALL_DEPARTEMENTS } from './../../apolloql';
+import {
+  ALL_DEPARTEMENTS,
+  DELETE_DEPARTEMENT,
+  UPDATE_DEPARTEMENTS,
+} from './../../apolloql';
 
 const renderDepartementTableHeader = () => (
   <thead>
@@ -25,14 +29,23 @@ class DepartementTable extends React.PureComponent {
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
-  onEditClick (args) {
-    const popin = { ...args, type: 'DepartementPopin' };
+  onEditClick ({ id, name }) {
+    const popin = { id, name, type: 'DepartementPopin' };
     this.props.dispatch({ type: 'onOpenPopin', popin });
   }
 
-  onDeleteClick (args) {
-    const popin = { ...args, type: 'DeletePopin' };
-    this.props.dispatch({ type: 'onOpenPopin', popin });
+  onDeleteClick ({ id, name }) {
+    const popin = {
+      id,
+      name,
+      type: 'DeletePopin',
+      deleteAction: DELETE_DEPARTEMENT,
+      updateAction: UPDATE_DEPARTEMENTS,
+    };
+    this.props.dispatch({
+      popin,
+      type: 'onOpenPopin',
+    });
   }
 
   renderTableRow (departement) {
@@ -42,14 +55,14 @@ class DepartementTable extends React.PureComponent {
         <td className="small">{code}</td>
         <td>{name}</td>
         <td className="small">
-          <button type="button" onClick={() => this.onEditClick({ id })}>
+          <button type="button" onClick={() => this.onEditClick(departement)}>
             <i className="icon icon-pencil" />
           </button>
         </td>
         <td className="small">
           <button type="button"
             className="danger"
-            onClick={() => this.onDeleteClick({ id, name })}>
+            onClick={() => this.onDeleteClick(departement)}>
             <i className="icon icon-trash" />
           </button>
         </td>

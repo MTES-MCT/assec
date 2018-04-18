@@ -40,7 +40,9 @@ mutation deleteDepartment (
 ) {
   deleteDepartment (
     id: $id
-  )
+  ) {
+    id
+  }
 }
 `);
 
@@ -79,19 +81,25 @@ mutation updateDepartement(
 `);
 
 export const UPDATE_DEPARTEMENTS = (store, { data }) => {
-  const { departements } = store.readQuery({
-    query: ALL_DEPARTEMENTS,
-  });
   let dpts = [];
   if (data.createDepartement) {
+    const { departements } = store.readQuery({
+      query: ALL_DEPARTEMENTS,
+    });
     dpts = departements.concat([data.createDepartement]);
   }
   if (data.updateDepartement) {
+    const { departements } = store.readQuery({
+      query: ALL_DEPARTEMENTS,
+    });
     dpts = departements.map(dpt =>
       (dpt.id === data.updateDepartement.id ? data.updateDepartement.id : dpt));
   }
   if (data.deleteDepartment) {
-    dpts = departements.filter(({ id }) => id !== data.deleteDepartment);
+    const { departements } = store.readQuery({
+      query: ALL_DEPARTEMENTS,
+    });
+    dpts = departements.filter(({ id }) => id !== data.deleteDepartment.id);
   }
   store.writeQuery({
     query: ALL_DEPARTEMENTS,

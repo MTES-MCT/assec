@@ -4,7 +4,11 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 
 // application
-import { ALL_RESTRICTIONS } from './../../apolloql';
+import {
+  ALL_RESTRICTIONS,
+  DELETE_RESTRICTION,
+  UPDATE_RESTRICTIONS,
+} from './../../apolloql';
 
 const renderRestrictionsTableHeader = () => (
   <thead>
@@ -25,32 +29,42 @@ class RestrictionsTable extends React.PureComponent {
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
-  onEditClick (args) {
-    const { title, id } = args;
+  onEditClick (obj) {
+    const { title, id } = obj;
     const popin = { id, name: title, type: 'RestrictionsPopin' };
     this.props.dispatch({ type: 'onOpenPopin', popin });
   }
 
-  onDeleteClick (args) {
-    const { title, id } = args;
-    const popin = { id, name: title, type: 'DeletePopin' };
-    this.props.dispatch({ type: 'onOpenPopin', popin });
+  onDeleteClick (obj) {
+    const { title, id } = obj;
+    const popin = {
+      id,
+      name: title,
+      type: 'DeletePopin',
+      deleteAction: DELETE_RESTRICTION,
+      updateAction: UPDATE_RESTRICTIONS,
+    };
+    this.props.dispatch({
+      popin,
+      type: 'onOpenPopin',
+    });
   }
 
   renderTableRow (obj) {
+    const { id, title, description } = obj;
     return (
-      <tr key={obj.id}>
-        <td>{obj.title}</td>
-        <td>{obj.description}</td>
+      <tr key={id}>
+        <td>{title}</td>
+        <td>{description}</td>
         <td className="small">
-          <button type="button" onClick={() => this.onEditClick()}>
+          <button type="button" onClick={() => this.onEditClick(obj)}>
             <i className="icon icon-pencil" />
           </button>
         </td>
         <td className="small">
           <button type="button"
             className="danger"
-            onClick={() => this.onDeleteClick()}>
+            onClick={() => this.onDeleteClick(obj)}>
             <i className="icon icon-trash" />
           </button>
         </td>
