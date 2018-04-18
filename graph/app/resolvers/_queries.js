@@ -2,7 +2,8 @@ import { Departement, Restriction } from './../drivers/mongodb';
 
 export const Query = {
   departements: () => Departement.find(),
-  departement: (_, { id }) => (id && Departement.findById(id)) || [],
+  departement: (_, { id }) => (id && Departement.findById(id)) || null,
+  restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
   restrictions: (_, { dpt }) => (dpt && Restriction.find({ dpt })) || [],
   suos: (_, { dpt }) =>
     new Promise((resolve, reject) =>
