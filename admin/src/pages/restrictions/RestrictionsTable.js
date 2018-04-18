@@ -26,14 +26,14 @@ class RestrictionsTable extends React.PureComponent {
   }
 
   onEditClick (args) {
-    this.openPopin({ ...args, type: 'RestrictionsPopin' });
+    const { title, id } = args;
+    const popin = { id, name: title, type: 'RestrictionsPopin' };
+    this.props.dispatch({ type: 'onOpenPopin', popin });
   }
 
   onDeleteClick (args) {
-    this.openPopin({ ...args, type: 'DeletePopin' });
-  }
-
-  openPopin (popin) {
+    const { title, id } = args;
+    const popin = { id, name: title, type: 'DeletePopin' };
     this.props.dispatch({ type: 'onOpenPopin', popin });
   }
 
