@@ -35,3 +35,4 @@ def deploy():
     run('yarn build --env=production')
     run('docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p assec up -d --build')
     run('docker system prune --force')
+    run('echo $(df -h | grep /dev/sda1)')
