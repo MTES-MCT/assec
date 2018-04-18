@@ -9,6 +9,7 @@ import {
   DELETE_RESTRICTION,
   UPDATE_DPT_RESTRICTIONS,
 } from './../../apolloql';
+import NoContent from './../../components/ui/NoContent';
 
 const renderRestrictionsTableHeader = () => (
   <thead>
@@ -19,6 +20,12 @@ const renderRestrictionsTableHeader = () => (
       <th className="small" />
     </tr>
   </thead>
+);
+
+const renderNoRestrictions = () => (
+  <div id="page-main-column">
+    <NoContent description="Pour ajouter une nouvelle restriction utilisez le formulaire ci-contre" />
+  </div>
 );
 
 class RestrictionsTable extends React.PureComponent {
@@ -91,6 +98,9 @@ class RestrictionsTable extends React.PureComponent {
           if (loading) return <p>Loading... </p>;
           if (error) return <p>Error </p>;
           const { restrictions } = data;
+          if (!restrictions || !restrictions.length) {
+            return renderNoRestrictions();
+          }
           return (
             <div>
               <table>

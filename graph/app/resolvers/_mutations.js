@@ -40,11 +40,15 @@ export const Mutation = {
   createDepartement: (_, args) => Departement.create(args),
   createRestriction: (_, args) => Restriction.create(args),
   deleteRestriction: (_, args) => deleteEntity(args.id, Restriction),
-  deleteDepartment: (_, args) => {
-    deleteEntity(args.id, Departement)
-      .then(doc => deleteEntities({ dpt: doc.id }, Restriction).then(() => doc))
-      .catch(err => err);
-  },
+  deleteDepartment: (_, args) =>
+    new Promise((resolve, reject) => {
+      deleteEntity(args.id, Departement)
+        .then(doc =>
+          deleteEntities({ dpt: doc.id }, Restriction)
+            .then(() => resolve(doc))
+            .catch(err => reject(err)))
+        .catch(err => reject(err));
+    }),
 };
 
 export default Mutation;

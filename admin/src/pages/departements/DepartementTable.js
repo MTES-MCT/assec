@@ -9,6 +9,13 @@ import {
   DELETE_DEPARTEMENT,
   UPDATE_DEPARTEMENTS,
 } from './../../apolloql';
+import NoContent from './../../components/ui/NoContent';
+
+const renderNoDepartement = () => (
+  <div id="page-main-column">
+    <NoContent description="Ajouter un département en utilisant le formulaire ci-contre" />
+  </div>
+);
 
 const renderDepartementTableHeader = () => (
   <thead>
@@ -73,14 +80,18 @@ class DepartementTable extends React.PureComponent {
   render () {
     return (
       <Query query={ALL_DEPARTEMENTS}>
-        {({ loading, error, data: { departements: dpts } }) => {
+        {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error </p>;
+          const { departements } = data;
+          if (!departements || !departements.length) {
+            return renderNoDepartement();
+          }
           return (
             <div>
               <table>
                 {renderDepartementTableHeader()}
-                <tbody>{dpts && dpts.map(this.renderTableRow)}</tbody>
+                <tbody>{departements.map(this.renderTableRow)}</tbody>
               </table>
             </div>
           );

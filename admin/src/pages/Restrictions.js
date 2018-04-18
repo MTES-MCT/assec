@@ -10,10 +10,16 @@ import RestrictionsForm from './restrictions/RestrictionsForm';
 import RestrictionsTable from './restrictions/RestrictionsTable';
 import EntitySelector from './../components/forms/EntitySelector';
 
-const renderNoContent = () => (
+const renderNoDepartement = () => (
   <div id="page-main-column">
     <NoContent link="departements"
       description="Vous devez ajouter un département avant de pouvoir ajouter des restrictions" />
+  </div>
+);
+
+const renderNoSelected = () => (
+  <div id="page-main-column">
+    <NoContent description="Sélectionnez un département pour modifier/ajouter ses restrictions" />
   </div>
 );
 
@@ -44,6 +50,7 @@ class RestrictionsPage extends React.PureComponent {
   }
 
   render () {
+    const { selected } = this.state;
     const { config, data } = this.props;
     const { name, ...pageopts } = config;
     const hasdepartements = data.departements && data.departements.length > 0;
@@ -58,8 +65,9 @@ class RestrictionsPage extends React.PureComponent {
             </fieldset>
           )
         }>
-        {!hasdepartements && renderNoContent()}
-        {hasdepartements && this.renderContent()}
+        {!hasdepartements && renderNoDepartement()}
+        {!selected && hasdepartements && renderNoSelected()}
+        {selected && hasdepartements && this.renderContent()}
       </AppPage>
     );
   }
