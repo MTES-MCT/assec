@@ -22,27 +22,33 @@ class TagValues extends React.PureComponent {
 
   onAddClick () {
     const { primary } = this.state;
-    const { push, name: id } = this.props;
-    this.setState({ primary: '' }, () => push(id, { name: primary.trim() }));
+    const { mutatorpush, name: id } = this.props;
+    this.setState({ primary: '' }, () => {
+      // le champ tag peut prendre des valeurs
+      // separees par des virgules
+      const values = primary.trim().split(',');
+      values.forEach(value => mutatorpush(id, { name: value }));
+    });
   }
 
   render () {
     const {
-      label, disabled, placeholder, name: id,
+      label, disabled, placeholder, name,
     } = this.props;
     const { primary } = this.state;
+    const forkey = `tagvalues::${name}`;
     const canadd = primary && primary.trim() !== '' && primary.length >= 3;
     return (
       <div className="tagvalues mb12">
-        <span className="as-form-label">
+        <label htmlFor={forkey}>
           <span>{label}</span>
-        </span>
+        </label>
         <p className="tags m0">
-          <FieldArray name={id}>
+          <FieldArray name={name}>
             {({ fields }) =>
-              fields.map((name, index) => (
-                <Tag name={name}
-                  key={getkey(name, index)}
+              fields.map((tagname, index) => (
+                <Tag name={tagname}
+                  key={getkey(tagname, index)}
                   onClick={() => fields.remove(index)} />
               ))
             }
@@ -50,6 +56,7 @@ class TagValues extends React.PureComponent {
         </p>
         <p className="flex-columns m0">
           <input type="text"
+            id={forkey}
             value={primary}
             disabled={disabled}
             placeholder={placeholder}
@@ -62,6 +69,12 @@ class TagValues extends React.PureComponent {
             <span>Ajouter</span>
           </button>
         </p>
+        <p className="form-input-help">
+          <span>
+            Vous pouvez ajouter plusieurs valeurs en les séparant par une
+            virgule
+          </span>
+        </p>
       </div>
     );
   }
@@ -73,9 +86,9 @@ TagValues.defaultProps = {
 
 TagValues.propTypes = {
   disabled: PropTypes.bool,
-  push: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  mutatorpush: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
 };
 

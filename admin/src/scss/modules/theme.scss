@@ -158,7 +158,9 @@ th {
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-.tagvalues {
+.tagvalues,
+.radio-group,
+.checkbox-group {
   background-color: $white;
 }
 

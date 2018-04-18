@@ -9,7 +9,7 @@ const RadioGroup = ({
 }) => {
   const cssclass = `flex-${display !== 'inline' ? 'rows' : 'columns'}`;
   return (
-    <p>
+    <p className="radio-group">
       <label htmlFor={name}>
         <span>{label}</span>
         <span className={cssclass}>

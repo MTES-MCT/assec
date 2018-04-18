@@ -7,25 +7,29 @@ const getkey = (name, index) => `checkbox::${name}::${index}`;
 const CheckboxGroup = ({
   name, label, provider, display, ...rest
 }) => {
-  const cssclass = `flex-${display !== 'inline' ? 'rows' : 'columns'}`;
+  const cssclass = `flex-${display !== 'inline' ? 'rows' : 'columns'} list`;
   return (
-    <p>
-      <label htmlFor={name}>
+    <p className="checkbox-group">
+      <span className="as-form-label">
         <span>{label}</span>
         <span className={cssclass}>
           {provider &&
-            provider.map(obj => (
-              <span key={getkey(name, obj.id)}>
-                <Field {...rest}
-                  name={name}
-                  value={obj.id}
-                  type="checkbox"
-                  component="input" />
-                <span>{obj.name}</span>
-              </span>
-            ))}
+            provider.map((obj) => {
+              const key = getkey(name, obj.id);
+              return (
+                <label htmlFor={key} key={key}>
+                  <Field {...rest}
+                    id={key}
+                    name={name}
+                    value={obj.id}
+                    type="checkbox"
+                    component="input" />
+                  <span>{obj.name}</span>
+                </label>
+              );
+            })}
         </span>
-      </label>
+      </span>
     </p>
   );
 };
