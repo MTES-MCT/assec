@@ -1,6 +1,6 @@
 {
   "name": "assec-api",
-  "version": "0.7.10",
+  "version": "0.7.11",
   "private": true,
   "devDependencies": {
     "casual": "^1.5.19",
