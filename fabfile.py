@@ -15,6 +15,10 @@ def uptime():
   run("uptime")
 
 def dump():
+  """
+  Dump de la BDD (MongoDB)
+  Telecharge une archive dans le dossier ./backups
+  """
   with cd('/home/deploy/'):
     # cree un dump de la base de donnees du container MongoDB
     # --out path doit correspondre au volume defini dans le fichier docker-compose.prod.yml
@@ -28,11 +32,38 @@ def dump():
     # FIXME -> !!! le rm doit se faire en sudo :(
     # run('rm /home/deploy/backups/assec.gz')
 
-def deploy():
+def compose():
+  """
+  Contruit les services docker
+  Fait le menage dans les images et containers docker (prune)
+  Affiche l'espace disque restant sur le serveur
+  """
   with cd('/home/deploy/assec'):
-    run('git pull origin master')
     run('yarn install')
     run('yarn build --env=production')
     run('docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p assec up -d --build')
     run('docker system prune --force')
     run('echo $(df -h | grep /dev/sda1)')
+
+def force_deploy():
+  """
+  Force la recuperation du repository distant
+  A utiliser si la commande deploy echoue sur une erreur de merge
+  """
+  with cd('/home/deploy/assec'):
+    # FIXME -> trouver un meilleur moyen de faire un pull
+    # en ecrasant les changements locals
+    run('git fetch --all')
+    run('git reset --hard origin/master')
+    run('git pull origin master')
+  compose()
+
+def deploy():
+  """
+  Deploy du repository distant sur le serveur
+  """
+  with cd('/home/deploy/assec'):
+    # FIXME -> trouver un meilleur moyen de faire un pull
+    # en ecrasant les changements locals
+    run('git pull origin master')
+  compose()
