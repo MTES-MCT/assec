@@ -1,3 +1,3 @@
 export * from './queries';
-export * from './departements';
-export * from './restrictions';
+export * from './_departments';
+export * from './_restrictions';
