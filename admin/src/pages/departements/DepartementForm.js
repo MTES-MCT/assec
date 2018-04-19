@@ -6,7 +6,7 @@ import createDecorator from 'final-form-calculate';
 
 // application
 import {
-  ALL_DEPARTEMENTS,
+  ALL_DEPARTMENTS,
   CREATE_DEPARTEMENT,
   UPDATE_DEPARTEMENTS,
 } from './../../apolloql';
@@ -59,10 +59,10 @@ const initialValues = {
 };
 
 const DepartementForm = () => (
-  <Query query={ALL_DEPARTEMENTS}>
+  <Query query={ALL_DEPARTMENTS}>
     {({ loading, data }) => {
       if (loading) return <p>Loading... </p>;
-      const dptslist = dptsutils.omit(data.departements);
+      const dptslist = dptsutils.omit(data.departments);
       return (
         <Mutation mutation={CREATE_DEPARTEMENT} update={UPDATE_DEPARTEMENTS}>
           {(createDepartement, result) => (

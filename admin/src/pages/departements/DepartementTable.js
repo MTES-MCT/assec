@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 // application
 import {
-  ALL_DEPARTEMENTS,
+  ALL_DEPARTMENTS,
   DELETE_DEPARTEMENT,
   UPDATE_DEPARTEMENTS,
 } from './../../apolloql';
@@ -55,21 +55,21 @@ class DepartementTable extends React.PureComponent {
     });
   }
 
-  renderTableRow (departement) {
-    const { id, code, name } = departement;
+  renderTableRow (dpt) {
+    const { id, code, name } = dpt;
     return (
       <tr key={id}>
         <td className="small">{code}</td>
         <td>{name}</td>
         <td className="small">
-          <button type="button" onClick={() => this.onEditClick(departement)}>
+          <button type="button" onClick={() => this.onEditClick(dpt)}>
             <i className="icon icon-pencil" />
           </button>
         </td>
         <td className="small">
           <button type="button"
             className="danger"
-            onClick={() => this.onDeleteClick(departement)}>
+            onClick={() => this.onDeleteClick(dpt)}>
             <i className="icon icon-trash" />
           </button>
         </td>
@@ -79,19 +79,19 @@ class DepartementTable extends React.PureComponent {
 
   render () {
     return (
-      <Query query={ALL_DEPARTEMENTS}>
+      <Query query={ALL_DEPARTMENTS}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error </p>;
-          const { departements } = data;
-          if (!departements || !departements.length) {
+          const { departments } = data;
+          if (!departments || !departments.length) {
             return renderNoDepartement();
           }
           return (
             <div>
               <table>
                 {renderDepartementTableHeader()}
-                <tbody>{departements.map(this.renderTableRow)}</tbody>
+                <tbody>{departments.map(this.renderTableRow)}</tbody>
               </table>
             </div>
           );

@@ -9,13 +9,13 @@ const EntitySelector = ({ query, onChange }) => (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      const dpts = data.departements;
+      const dpts = data.departments;
       return (
-        <label htmlFor="departement.selector">
+        <label htmlFor="department.selector">
           <span>Sélectionner un département</span>
           <span className="selectbox">
-            <select id="departement.selector"
-              name="departement.selector"
+            <select id="department.selector"
+              name="department.selector"
               onChange={({ target }) => {
                 const id =
                   target.value && target.value !== '' ? target.value : false;

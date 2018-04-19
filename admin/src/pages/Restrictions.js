@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 
 // application
-import { ALL_DEPARTEMENTS } from './../apolloql';
+import { ALL_DEPARTMENTS } from './../apolloql';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
 import RestrictionsForm from './restrictions/RestrictionsForm';
@@ -53,14 +53,14 @@ class RestrictionsPage extends React.PureComponent {
     const { selected } = this.state;
     const { config, data } = this.props;
     const { name, ...pageopts } = config;
-    const hasdepartements = data.departements && data.departements.length > 0;
+    const hasdepartements = data.departments && data.departments.length > 0;
     return (
       <AppPage name={`Gestion ${name}`}
         {...pageopts}
         header={() =>
           hasdepartements && (
             <fieldset>
-              <EntitySelector query={ALL_DEPARTEMENTS}
+              <EntitySelector query={ALL_DEPARTMENTS}
                 onChange={this.onChange} />
             </fieldset>
           )
@@ -78,4 +78,4 @@ RestrictionsPage.propTypes = {
   config: PropTypes.object.isRequired,
 };
 
-export default graphql(ALL_DEPARTEMENTS)(RestrictionsPage);
+export default graphql(ALL_DEPARTMENTS)(RestrictionsPage);

@@ -1,24 +1,22 @@
 import gql from 'graphql-tag';
 
-export const ALL_DEPARTEMENTS = gql(`
-  query departements {
-    departements {
+export const ALL_DEPARTMENTS = gql(`
+  query departments {
+    departments {
       id
       code
       name
-      suos {
-        usages {
-          id
-          name
-        }
-        origines {
-          id
-          name
-        }
-        situations {
-          id
-          name
-        }
+      usages {
+        id
+        name
+      }
+      origines {
+        id
+        name
+      }
+      situations {
+        id
+        name
       }
     }
   }
@@ -67,29 +65,27 @@ query suos (
 }
 `);
 
-export const GET_DEPARTEMENT = gql(`
-query departement (
+export const GET_DEPARTMENT = gql(`
+query department (
   $id: ID!
 ) {
-  departement (
+  department (
     id: $id
   ) {
     id
     code
     name
-    suos {
-      usages {
-        id
-        name
-      }
-      origines {
-        id
-        name
-      }
-      situations {
-        id
-        name
-      }
+    usages {
+      id
+      name
+    }
+    origines {
+      id
+      name
+    }
+    situations {
+      id
+      name
     }
   }
 }
