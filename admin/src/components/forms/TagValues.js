@@ -26,8 +26,8 @@ class TagValues extends React.PureComponent {
     this.setState({ primary: '' }, () => {
       // le champ tag peut prendre des valeurs
       // separees par des virgules
-      const values = primary.trim().split(',');
-      values.forEach(value => mutatorpush(id, { name: value }));
+      const values = primary.split(',');
+      values.forEach(value => mutatorpush(id, { name: value.trim() }));
     });
   }
 
@@ -46,9 +46,9 @@ class TagValues extends React.PureComponent {
         <p className="tags m0">
           <FieldArray name={name}>
             {({ fields }) =>
-              fields.map((tagname, index) => (
-                <Tag name={tagname}
-                  key={getkey(tagname, index)}
+              fields.map((fieldname, index) => (
+                <Tag name={fieldname}
+                  key={getkey(fieldname, index)}
                   onClick={() => fields.remove(index)} />
               ))
             }
