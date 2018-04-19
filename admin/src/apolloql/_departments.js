@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 import { ALL_DEPARTMENTS } from './queries';
 
-export const CREATE_DEPARTEMENT = gql(`
+export const CREATE_DEPARTMENT = gql(`
 mutation createDepartement(
   $code: String!
   $name: String!
@@ -34,7 +34,7 @@ mutation createDepartement(
 }
 `);
 
-export const DELETE_DEPARTEMENT = gql(`
+export const DELETE_DEPARTMENT = gql(`
 mutation deleteDepartment (
   $id: ID!
 ) {
@@ -76,23 +76,23 @@ mutation updateDepartement(
 }
 `);
 
-export const UPDATE_DEPARTEMENTS = (store, { data }) => {
+export const UPDATE_DEPARTMENTS = (store, { data }) => {
   let dpts = [];
-  const { departements } = store.readQuery({
+  const { departments } = store.readQuery({
     query: ALL_DEPARTMENTS,
   });
   if (data.createDepartement) {
-    dpts = departements.concat([data.createDepartement]);
+    dpts = departments.concat([data.createDepartement]);
   }
   if (data.updateDepartement) {
-    dpts = departements.map(dpt =>
+    dpts = departments.map(dpt =>
       (dpt.id === data.updateDepartement.id ? data.updateDepartement.id : dpt));
   }
   if (data.deleteDepartment) {
-    dpts = departements.filter(({ id }) => id !== data.deleteDepartment.id);
+    dpts = departments.filter(({ id }) => id !== data.deleteDepartment.id);
   }
   store.writeQuery({
     query: ALL_DEPARTMENTS,
-    data: { departements: dpts },
+    data: { departments: dpts },
   });
 };

@@ -11,6 +11,8 @@
 }
 
 #toasts-container {
+  top: 12px;
+  right: 12px;
   position: absolute;
 }
 
@@ -52,5 +54,7 @@
 #toasts-container button {
   top: 3px;
   right: 3px;
+  padding: 3px;
   position: absolute;
+  background-color: transparent;
 }

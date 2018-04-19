@@ -1,90 +1,86 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 // application
 import './apptoaster.css';
 import { noop } from './../core/utils/noop';
-import { removeToast } from './../actions';
+
+const getErrorMessage = err => `ERROR: ${err.operation.operationName}`;
 
 const Toast = ({
-  message, onClose, id, type,
+  type, error, index, onClose,
 }) => (
   <div className={`toast toast-${type}`}>
-    <button onClick={() => onClose(id)}>
+    <button onClick={() => onClose(index)}>
       <i className="icon icon-cancel" />
     </button>
-    <span>{message}</span>
+    <span>{typeof error === 'string' ? error : getErrorMessage(error)}</span>
   </div>
 );
 
 Toast.defaultProps = {
-  id: -1,
+  index: -1,
   onClose: noop,
   type: 'static',
 };
 
 Toast.propTypes = {
-  id: PropTypes.number,
+  index: PropTypes.number,
   type: PropTypes.string,
   onClose: PropTypes.func,
-  message: PropTypes.string.isRequired,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 };
 
 class AppToaster extends React.PureComponent {
   constructor (props) {
     super(props);
-    const { items, dispatch } = this.props;
-    this.state = { stacked: [].concat(items) };
+    this.state = { errors: [] };
     this.onClose = this.onClose.bind(this);
     this.onCloseAll = this.onCloseAll.bind(this);
-    this.actions = bindActionCreators({ removeToast }, dispatch);
   }
 
-  componentWillReceiveProps ({ items }) {
-    if (items.length === this.state.stacked.length) return;
-    const { stacked } = this.state;
-    const filtered = items.filter(toast => !stacked.includes(toast));
+  componentWillReceiveProps ({ error }) {
+    if (!error) return;
+    // if (items.length === this.state.stacked.length) return;
+    // const { stacked } = this.state;
+    // const filtered = items.filter(toast => !stacked.includes(toast));
     this.setState(prev => ({
-      stacked: prev.stacked.concat(filtered),
+      errors: prev.errors.concat([error]),
     }));
   }
 
-  onClose (id) {
-    this.setState(
-      ({ stacked }) => ({
-        stacked: stacked.filter(obj => obj.id !== id),
-      }),
-      () => this.actions.removeToast(id),
-    );
+  onClose (index) {
+    this.setState(({ errors }) => ({
+      errors: errors.filter((obj, idx) => idx !== index),
+    }));
   }
 
   onCloseAll () {
-    const { stacked } = this.state;
-    stacked.map(({ id }) => this.actions.removeToast(id));
-    this.setState({ stacked: [] });
+    this.setState({ errors: [] });
   }
 
   render () {
-    const { stacked } = this.state;
-    const maxlen = 5; // use container height instead
-    const len = stacked.length;
+    const { errors } = this.state;
+    // FIXME -> use container height instead
+    const maxlen = 5;
+    const len = errors.length;
+    const getkey = index => `toast::${index}`;
     return (
       <div id="toasts-container">
         <div className="holder">
-          {stacked &&
-            stacked
+          {errors &&
+            errors
               .slice(0, maxlen)
-              .map(obj => (
-                <Toast key={`toast::${obj.id}`}
-                  onClose={this.onClose}
-                  {...obj} />
+              .map((err, index) => (
+                <Toast key={getkey(index)}
+                  error={err}
+                  index={index}
+                  onClose={this.onClose} />
               ))}
           {len <= maxlen ? null : (
             <Toast key="toast::static"
-              message={`...${len - maxlen} more`}
-              onClose={this.onCloseAll} />
+              onClose={this.onCloseAll}
+              error={`...${len - maxlen} more`} />
           )}
         </div>
       </div>
@@ -92,13 +88,12 @@ class AppToaster extends React.PureComponent {
   }
 }
 
-AppToaster.propTypes = {
-  items: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
+AppToaster.defaultProps = {
+  error: null,
 };
 
-const mapStateToProps = state => ({
-  items: state.toasts,
-});
+AppToaster.propTypes = {
+  error: PropTypes.object,
+};
 
-export default connect(mapStateToProps)(AppToaster);
+export default AppToaster;

@@ -30,6 +30,11 @@ if (usedebug()) {
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
 const { client, NetworkStatusNotifier } = createClient(graphqluri);
 
+const renderToaster = args => <AppToaster error={args.error} />;
+const renderLoader = ({ loading }) => <LinearProgress loading={loading} />;
+const renderGraphError = args =>
+  usedebug() && args.error && <GraphQLError error={args.error} />;
+
 // application
 const history = createHistory();
 const store = configure(history);
@@ -40,20 +45,14 @@ const Root = () => (
         <Fragment>
           <Scrollbars autoHide id="body-scroller">
             <div id="body-scroller-content">
-              <NetworkStatusNotifier
-                render={args => <LinearProgress loading={args.loading} />}
-              />
+              <NetworkStatusNotifier render={renderLoader} />
               <AppHeader title="ASSEC" />
               <Page />
-              <NetworkStatusNotifier
-                render={args =>
-                  args.error && <GraphQLError error={args.error} />
-                }
-              />
+              <NetworkStatusNotifier render={renderGraphError} />
             </div>
           </Scrollbars>
           <AppPopin />
-          <AppToaster />
+          <NetworkStatusNotifier render={renderToaster} />
         </Fragment>
       </ApolloProvider>
     </ConnectedRouter>
