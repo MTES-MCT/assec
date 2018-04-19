@@ -46,17 +46,13 @@ mutation deleteDepartment (
 }
 `);
 
-export const UPDATE_DEPARTEMENT = gql(`
+export const UPDATE_DEPARTMENT = gql(`
 mutation updateDepartement(
   $id: ID!
-  $name: String
-  $code: String
-  $suos: SUOSInput
+  $suos: SUOSInput!
 ) {
   updateDepartement (
     id: $id
-    name: $name
-    code: $code
     suos: $suos
   ) {
     id
@@ -82,23 +78,17 @@ mutation updateDepartement(
 
 export const UPDATE_DEPARTEMENTS = (store, { data }) => {
   let dpts = [];
+  const { departements } = store.readQuery({
+    query: ALL_DEPARTEMENTS,
+  });
   if (data.createDepartement) {
-    const { departements } = store.readQuery({
-      query: ALL_DEPARTEMENTS,
-    });
     dpts = departements.concat([data.createDepartement]);
   }
   if (data.updateDepartement) {
-    const { departements } = store.readQuery({
-      query: ALL_DEPARTEMENTS,
-    });
     dpts = departements.map(dpt =>
       (dpt.id === data.updateDepartement.id ? data.updateDepartement.id : dpt));
   }
   if (data.deleteDepartment) {
-    const { departements } = store.readQuery({
-      query: ALL_DEPARTEMENTS,
-    });
     dpts = departements.filter(({ id }) => id !== data.deleteDepartment.id);
   }
   store.writeQuery({

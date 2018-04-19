@@ -1,62 +1,97 @@
 import React from 'react';
+import omit from 'lodash.omit';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
+import { Query, Mutation } from 'react-apollo';
 
 // application
-import { GET_DEPARTEMENT } from './../../apolloql';
-import TagValues from './../../components/forms/TagValues';
+import { GET_DEPARTEMENT, UPDATE_DEPARTMENT } from './../../apolloql';
+import ArrayValues from './../../components/forms/ArrayValues';
 import CloseButton from './../../components/popins/CloseButton';
 import SubmitButton from './../../components/forms/SubmitButton';
 
-const validator = () => {
+const validator = (values) => {
   const errors = {};
+  if (!values.code || values.code === '') {
+    errors.code = 'Required';
+  }
+  if (!values.name || values.name === '') {
+    errors.name = 'Required';
+  }
   return errors;
+};
+
+const parsesuos = (obj) => {
+  const res = Object.keys(obj).reduce((acc, key) => {
+    const test =
+      (obj[key] &&
+        obj[key].map &&
+        Object.assign({}, acc, {
+          [key]: obj[key].map(o => omit(o, ['__typename'])),
+        })) ||
+      acc;
+    return test;
+  }, {});
+  return res;
 };
 
 const DepartementPopin = ({ id, onClose }) => (
   <Query query={GET_DEPARTEMENT} variables={{ id }}>
-    {({ loading, error, data: { departement } }) => {
+    {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
+      const { departement } = data;
       return (
-        <div id="edit-popin" className="popin-inner">
-          <CloseButton onClose={onClose} />
-          <Form mutators={{ ...arrayMutators }}
-            validate={validator}
-            initialValues={departement}
-            onSubmit={() => {}}
-            render={({
-              form, invalid, pristine, handleSubmit,
-            }) => (
-              <form onSubmit={handleSubmit}>
-                <h3>
-                  <span>{`${departement.code} - ${departement.name}`}</span>
-                </h3>
-                <div className="flex-columns flex-between">
-                  <TagValues name="suos.situations"
-                    initial={departement.suos.situations}
-                    push={form.mutators.unshift}
-                    label="Situations"
-                    placeholder="Nom de la situation" />
-                  <TagValues name="suos.usages"
-                    initial={departement.suos.usages}
-                    label="Usages"
-                    push={form.mutators.unshift}
-                    placeholder="Nom de l'usage" />
-                  <TagValues name="suos.origines"
-                    initial={departement.suos.origines}
-                    push={form.mutators.unshift}
-                    label="Origines"
-                    placeholder="Nom de l'origine" />
-                </div>
-                <SubmitButton label="Mettre à jour"
-                  invalid={invalid}
-                  pristine={pristine} />
-              </form>
-            )} />
-        </div>
+        <Mutation mutation={UPDATE_DEPARTMENT}>
+          {(updateDepartement, result) => (
+            <div id="edit-popin" className="popin-inner">
+              <CloseButton onClose={onClose} />
+              <Form mutators={{ ...arrayMutators }}
+                validate={validator}
+                initialValues={departement}
+                onSubmit={({ suos, ...rest }, form) => {
+                  // const parsed = parsesuos(suos);
+                  // return updateDepartement({
+                  //   variables: { suos: parsed, id: rest.id },
+                  // })
+                  //   .then(() => form.reset())
+                  //   .catch(() => {});
+                }}
+                render={({
+                  form, invalid, pristine, handleSubmit,
+                }) => (
+                  <div>
+                    <h3>{`${departement.code} - ${departement.name}`}</h3>
+                    <form onSubmit={handleSubmit}>
+                      <div className="flex-columns flex-between">
+                        <ArrayValues name="suos.situations"
+                          label="Situations"
+                          push={form.mutators.unshift}
+                          placeholder="Ajouter une situation"
+                          disabled={pristine || result.loading} />
+                        <ArrayValues name="suos.usages"
+                          label="Usages"
+                          push={form.mutators.unshift}
+                          placeholder="Ajouter un usage"
+                          disabled={pristine || result.loading} />
+                        <ArrayValues name="suos.origines"
+                          label="Origines"
+                          push={form.mutators.unshift}
+                          placeholder="Ajouter une Origine"
+                          disabled={pristine || result.loading} />
+                      </div>
+                      <div>
+                        <SubmitButton label="Modifier"
+                          invalid={invalid || result.loading}
+                          pristine={pristine || result.loading} />
+                      </div>
+                    </form>
+                  </div>
+                )} />
+            </div>
+          )}
+        </Mutation>
       );
     }}
   </Query>

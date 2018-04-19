@@ -18,9 +18,7 @@ type Mutation {
 
   updateDepartement(
     id: ID!
-    code: String
-    name: String
-    suos: SUOSInput
+    suos: SUOSInput!
   ): DepartementType
 
   deleteDepartment(

@@ -47,21 +47,29 @@ class ArrayValues extends React.PureComponent {
         <p className="tags">
           <FieldArray name={name}>
             {({ fields }) =>
-              fields.map((fieldname, index) => (
-                <li className="item flex-columns"
-                  key={getkey(fieldname, index)}>
-                  <Field name={`${fieldname}.name`}
-                    type="text"
-                    component="input"
-                    placeholder={placeholder} />
-                  <button type="button"
-                    className="danger"
-                    onClick={() => fields.remove(index)}>
-                    <i className="icon icon-cancel-circled" />
-                    <span>Suppr.</span>
-                  </button>
-                </li>
-              ))
+              fields.map((fieldname, index) => {
+                const dataid =
+                  fields.value && fields.value[index] && fields.value[index].id;
+                return (
+                  <li className="item flex-columns"
+                    key={getkey(fieldname, index)}>
+                    <Field name={`${fieldname}.name`}
+                      type="text"
+                      data-id={dataid}
+                      component="input"
+                      placeholder={placeholder} />
+                    <button type="button"
+                      // FIXME -> remove disable
+                      // Situ 3 -> 5ad858b902320a782b904101
+                      disabled
+                      className="danger"
+                      onClick={() => fields.remove(index)}>
+                      <i className="icon icon-cancel-circled" />
+                      <span>Suppr.</span>
+                    </button>
+                  </li>
+                );
+              })
             }
           </FieldArray>
         </p>
