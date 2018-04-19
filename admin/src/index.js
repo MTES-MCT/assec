@@ -15,6 +15,7 @@ import Page from './page';
 import AppPopin from './components/AppPopin';
 import AppHeader from './components/AppHeader';
 import AppToaster from './components/AppToaster';
+import GraphQLError from './components/ui/GraphQLError';
 import LinearProgress from './components/ui/LinearProgress';
 
 if (usedebug()) {
@@ -29,13 +30,6 @@ if (usedebug()) {
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
 const { client, NetworkStatusNotifier } = createClient(graphqluri);
 
-const renderNetworkStatus = args => (
-  <Fragment>
-    <LinearProgress loading={args.loading} />
-    {args.error && <p>Error: {JSON.stringify(args.error)}</p>}
-  </Fragment>
-);
-
 // application
 const history = createHistory();
 const store = configure(history);
@@ -46,9 +40,16 @@ const Root = () => (
         <Fragment>
           <Scrollbars autoHide id="body-scroller">
             <div id="body-scroller-content">
-              <NetworkStatusNotifier render={renderNetworkStatus} />
+              <NetworkStatusNotifier
+                render={args => <LinearProgress loading={args.loading} />}
+              />
               <AppHeader title="ASSEC" />
               <Page />
+              <NetworkStatusNotifier
+                render={args =>
+                  args.error && <GraphQLError error={args.error} />
+                }
+              />
             </div>
           </Scrollbars>
           <AppPopin />
