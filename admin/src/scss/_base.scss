@@ -191,6 +191,14 @@ fieldset {
   justify-content: space-around;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-wrap-inverse {
+  flex-wrap: wrap-reverse;
+}
+
 .items-center {
   align-items: center;
 }

@@ -29,21 +29,25 @@ $sides: (
 
     @else if $side == 'topbottom' {
       .my#{$space} {
-        margin: #{$space}px;
+        margin-top: #{$space}px;
+        margin-bottom: #{$space}px;
       }
 
       .py#{$space} {
-        padding: #{$space}px;
+        padding-top: #{$space}px;
+        padding-bottom: #{$space}px;
       }
     }
 
     @else if $side == 'leftright' {
       .mx#{$space} {
-        margin: #{$space}px;
+        margin-left: #{$space}px;
+        margin-right: #{$space}px;
       }
 
       .px#{$space} {
-        padding: #{$space}px;
+        padding-left: #{$space}px;
+        padding-right: #{$space}px;
       }
     }
 

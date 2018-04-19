@@ -4,13 +4,14 @@
 
 ----------------------------------- */
 
-#edit-popin,
-#delete-popin {
-  padding: 40px;
-  font-size: 1.3em;
+#edit-popin {
+  @extend .p20;
+
+  width: 80%;
 }
 
 #delete-popin {
+  font-size: 1.3em;
   margin-top: 100px;
 }
 
