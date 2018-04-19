@@ -27,7 +27,8 @@
     "build": "sh ./.scripts/yarn-build",
     "compose": "docker-compose -f docker-compose.yml -p assec up --build",
     "dump": "fab dump",
-    "deploy": "fab deploy"
+    "deploy": "fab deploy",
+    "import:local": "mongorestore --gzip --archive=backups/assec.gz"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
