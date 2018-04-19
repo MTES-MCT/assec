@@ -11,11 +11,11 @@ const EntitySelector = ({ query, onChange }) => (
       if (error) return <p>Error </p>;
       const dpts = data.departments;
       return (
-        <label htmlFor="department.selector">
+        <label htmlFor="entityselector">
           <span>Sélectionner un département</span>
           <span className="selectbox">
-            <select id="department.selector"
-              name="department.selector"
+            <select id="entityselector"
+              name="entityselector"
               onChange={({ target }) => {
                 const id =
                   target.value && target.value !== '' ? target.value : false;
