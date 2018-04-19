@@ -10,7 +10,7 @@ const DeletePopin = ({
 }) => (
   <Mutation mutation={deleteAction} update={updateAction} onCompleted={onClose}>
     {deleteDepartment => (
-      <div id="delete-popin" className="popin-inner">
+      <div id="delete-popin" className="popin-inner p40">
         <CloseButton onClose={onClose} />
         <p className="align-center">
           <span>Êtes vous sûr de vouloir supprimer</span>
