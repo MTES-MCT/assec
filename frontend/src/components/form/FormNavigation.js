@@ -47,7 +47,7 @@ const FormNavigation = ({
       null}
     {canreset && (
       <button onClick={() => dispatch(formReset())}>
-        <span>reset</span>
+        <span>Retour à l’accueil</span>
       </button>
     )}
   </div>

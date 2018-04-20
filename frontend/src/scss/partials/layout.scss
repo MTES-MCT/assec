@@ -42,7 +42,8 @@
   margin: auto auto 0 auto;
   background-color: rgba(0, 0, 0, 0.1);
 
-  .right a ~ a {
+  .right a ~ a,
+  .right span ~ a {
     margin-left: 12px;
   }
 }

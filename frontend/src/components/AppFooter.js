@@ -11,6 +11,10 @@ const AppFooter = () => (
     <div className="right">
       {usedebug() && (
         <Fragment>
+          <span>
+            Mentions légales, conditions générales d’utilisation (en
+            construction)
+          </span>
           <a target="_blank"
             rel="noopener noreferrer"
             href="http://localhost:3100">

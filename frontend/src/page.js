@@ -19,7 +19,8 @@ const PageComponent = ({ activestep }) => (
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" />
     </Helmet>
-    <AppHeader />
+    <AppHeader title="ASSEC"
+      subtitle="Accédez aux règles d’utilisation de l’eau en période de sécheresse en 3 clics" />
     {/* routes */}
     <FormScreen />
     {/* routes */}
