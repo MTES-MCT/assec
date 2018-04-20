@@ -23,6 +23,7 @@ class ArrayValues extends React.PureComponent {
   onAddClick () {
     const { primary } = this.state;
     const { push, name } = this.props;
+    if (primary.trim() === '') return;
     this.setState({ primary: '' }, () => push(name, { name: primary.trim() }));
   }
 
