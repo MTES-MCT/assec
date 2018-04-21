@@ -26,8 +26,8 @@ class TagValues extends React.PureComponent {
     this.setState({ primary: '' }, () => {
       // le champ tag peut prendre des valeurs
       // separees par des virgules
-      const values = primary.split(',');
-      values.forEach(value => mutatorpush(id, { name: value.trim() }));
+      const values = primary.split(',').filter(v => v.trim() !== '');
+      values.forEach(v => mutatorpush(id, { name: v.trim() }));
     });
   }
 
