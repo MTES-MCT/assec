@@ -1,0 +1,17 @@
+[{
+  "id": "canal",
+  "value": "Canal",
+  "help": ""
+}, {
+  "id": "reseau_aep",
+  "value": "Réseau AEP",
+  "help": ""
+}, {
+  "id": "forage",
+  "value": "Forage",
+  "help": ""
+}, {
+  "id": "prelevement_nappe",
+  "value": "Prévélement Nappe Souteraine",
+  "help": ""
+}]
