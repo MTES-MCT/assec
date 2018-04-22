@@ -1,13 +1,13 @@
 [{
   "id": "usage_non_agricole",
-  "value": "Non Agricole (pelouse, lavage voiture...)",
+  "name": "Non Agricole (pelouse, lavage voiture...)",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
 }, {
   "id": "usage_industriel",
-  "value": "Industriel",
+  "name": "Industriel",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
 }, {
   "id": "usage_autre",
-  "value": "Autre",
+  "name": "Autre",
   "help": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus sed ligula nec eleifend. Phasellus non accumsan nibh. Pellentesque sed dui vitae orci porttitor pulvinar. Integer euismod tellus in fringilla sagittis. Nunc vulputate erat sit amet lectus gravida, aliquet molestie diam vehicula. Suspendisse ultrices vulputate ante quis tempus. Quisque enim elit, efficitur ut risus vitae, interdum elementum enim."
 }]

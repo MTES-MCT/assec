@@ -17,7 +17,7 @@ const ListInput = ({
           <option key="listinput::default" />
           {values.map(obj => (
             <option key={`listinput::${obj.id}`} value={obj.id}>
-              {obj.value}
+              {obj.name}
             </option>
           ))}
         </Field>

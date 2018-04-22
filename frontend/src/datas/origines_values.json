@@ -1,17 +1,17 @@
 [{
   "id": "canal",
-  "value": "Canal",
+  "name": "Canal",
   "help": ""
 }, {
   "id": "reseau_aep",
-  "value": "Réseau AEP",
+  "name": "Réseau AEP",
   "help": ""
 }, {
   "id": "forage",
-  "value": "Forage",
+  "name": "Forage",
   "help": ""
 }, {
   "id": "prelevement_nappe",
-  "value": "Prévélement Nappe Souteraine",
+  "name": "Prévélement Nappe Souteraine",
   "help": ""
 }]

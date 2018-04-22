@@ -1,16 +1,17 @@
 import { reset } from 'redux-form';
 
 // application
+import zones from './../datas/zones';
 import fields from './../datas/questions.json';
+import alerts from './../datas/alerts-83.json';
 import schema from './../datas/schemas-83.json';
-// import alerts from './../datas/alerts-83.json';
 import DecisionTree from './../core/decision-tree';
 import { SUOS } from './../apolloql';
 import {
   FORM_NAME,
   FORM_RESET,
   FORM_SUBMIT,
-  // FIELDS_LOADED,
+  FIELDS_LOADED,
 } from './../constants';
 
 // generate decision schema
@@ -43,8 +44,15 @@ export const loadForm = client => (dispatch) => {
   client
     .query({ query: SUOS, variables: { dpt: '5ad84a9f73150f000eeaf0d0' } })
     .then(({ data: { suos } }) => {
-      console.log('fields', fields);
-      console.log('suos', suos);
-      // dispatch({ type: FIELDS_LOADED, fields, alerts });
+      const questions = fields.map((question) => {
+        if (question.id === 'zones') {
+          return { ...question, values: zones };
+        }
+        return {
+          ...question,
+          values: suos.usages.map(({ id, name }) => ({ id, name })),
+        };
+      });
+      dispatch({ type: FIELDS_LOADED, fields: questions, alerts });
     });
 };
