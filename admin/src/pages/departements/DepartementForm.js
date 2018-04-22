@@ -7,8 +7,8 @@ import createDecorator from 'final-form-calculate';
 // application
 import {
   ALL_DEPARTMENTS,
-  CREATE_DEPARTEMENT,
-  UPDATE_DEPARTEMENTS,
+  CREATE_DEPARTMENT,
+  UPDATE_DEPARTMENTS,
 } from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import dptsutils from './../../core/utils/departments';
@@ -64,7 +64,7 @@ const DepartementForm = () => (
       if (loading) return <p>Loading... </p>;
       const dptslist = dptsutils.omit(data.departments);
       return (
-        <Mutation mutation={CREATE_DEPARTEMENT} update={UPDATE_DEPARTEMENTS}>
+        <Mutation mutation={CREATE_DEPARTMENT} update={UPDATE_DEPARTMENTS}>
           {(createDepartement, result) => (
             <Form mutators={{ ...arrayMutators }}
               validate={validator}

@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 // application
 import {
   ALL_DEPARTMENTS,
-  DELETE_DEPARTEMENT,
-  UPDATE_DEPARTEMENTS,
+  DELETE_DEPARTMENT,
+  UPDATE_DEPARTMENTS,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
 
@@ -46,8 +46,8 @@ class DepartementTable extends React.PureComponent {
       id,
       name,
       type: 'DeletePopin',
-      deleteAction: DELETE_DEPARTEMENT,
-      updateAction: UPDATE_DEPARTEMENTS,
+      deleteAction: DELETE_DEPARTMENT,
+      updateAction: UPDATE_DEPARTMENTS,
     };
     this.props.dispatch({
       popin,
