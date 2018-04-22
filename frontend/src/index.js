@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
@@ -10,7 +11,6 @@ import './styles.css';
 import Page from './page';
 import { configure } from './store';
 import { usedebug } from './core/utils';
-import { createClient } from './apollo';
 
 if (usedebug()) {
   /* eslint-disable */
@@ -21,8 +21,9 @@ if (usedebug()) {
   /* eslint-disable */
 }
 
-const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
-const { client, NetworkStatusNotifier } = createClient(graphqluri);
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_URI,
+});
 
 // application
 const history = createHistory();
@@ -31,7 +32,7 @@ const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ApolloProvider client={client}>
-        <Page />
+        <Page client={client} />
       </ApolloProvider>
     </ConnectedRouter>
   </Provider>

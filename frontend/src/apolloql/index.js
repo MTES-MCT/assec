@@ -1,33 +1,5 @@
 import gql from 'graphql-tag';
 
-export const GET_DEPARTMENT = gql(`
-query department (
-  $id: ID!
-) {
-  department (
-    id: $id
-  ) {
-    id
-    code
-    name
-    suos {
-      usages {
-        id
-        name
-      }
-      origines {
-        id
-        name
-      }
-      situations {
-        id
-        name
-      }
-    }
-  }
-}
-`);
-
 export const DPT_RESTRICTIONS = gql(`
 query restrictions (
   $dpt: ID

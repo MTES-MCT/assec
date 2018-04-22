@@ -11,7 +11,7 @@ import FormFields from './../form/FormFields';
 import FormResults from './../form/FormResults';
 import FormNavigation from './../form/FormNavigation';
 import checkRequired from './../../actions/check-required';
-import { loadForm, formSubmit } from './../../actions/form';
+import { formSubmit } from './../../actions/form';
 import StepperProgress from './../form/stepper/StepperProgress';
 import FormSidebarHeader from './../form/sidebar/FormSidebarHeader';
 import FormSidebarContent from './../form/sidebar/FormSidebarContent';
@@ -22,18 +22,12 @@ class FormScreen extends React.PureComponent {
     const { dispatch } = props;
     this.actions = bindActionCreators(
       {
-        loadForm,
         formSubmit,
         clearFields,
         checkRequired,
       },
       dispatch,
     );
-  }
-
-  componentDidMount () {
-    // charge le schema du formulaire au chargement de la page
-    this.actions.loadForm();
   }
 
   componentWillReceiveProps ({ stepskeys, choiceskeys }) {
