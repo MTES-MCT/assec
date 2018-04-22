@@ -65,17 +65,17 @@ const DepartementPopin = ({ id, onClose }) => (
                     <h3>{`${department.code} - ${department.name}`}</h3>
                     <form onSubmit={handleSubmit}>
                       <div className="flex-columns flex-between">
-                        <ArrayValues name="situations"
+                        <ArrayValues name="suos.situations"
                           label="Situations"
                           push={form.mutators.unshift}
                           placeholder="Ajouter une situation"
                           disabled={pristine || result.loading} />
-                        <ArrayValues name="usages"
+                        <ArrayValues name="suos.usages"
                           label="Usages"
                           push={form.mutators.unshift}
                           placeholder="Ajouter un usage"
                           disabled={pristine || result.loading} />
-                        <ArrayValues name="origines"
+                        <ArrayValues name="suos.origines"
                           label="Origines"
                           push={form.mutators.unshift}
                           placeholder="Ajouter une Origine"

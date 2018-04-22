@@ -1,7 +1,10 @@
-import omit from 'lodash.omit';
+// import omit from 'lodash.omit';
 import { Departement, Restriction } from './../drivers/mongodb';
 
 export const Query = {
+  departments: () => Departement.find(),
+  department: (_, { id }) => (id && Departement.findById(id)) || null,
+  /*
   departments: () =>
     new Promise((resolve, reject) => {
       Departement.find((err, docs) => {
@@ -24,6 +27,7 @@ export const Query = {
       });
     });
   },
+  */
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
   restrictions: (_, { dpt }) => (dpt && Restriction.find({ dpt })) || [],
   suos: (_, { dpt }) =>

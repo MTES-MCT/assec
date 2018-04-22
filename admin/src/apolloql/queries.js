@@ -6,17 +6,19 @@ export const ALL_DEPARTMENTS = gql(`
       id
       code
       name
-      usages {
-        id
-        name
-      }
-      origines {
-        id
-        name
-      }
-      situations {
-        id
-        name
+      suos {
+        usages {
+          id
+          name
+        }
+        origines {
+          id
+          name
+        }
+        situations {
+          id
+          name
+        }
       }
     }
   }
@@ -75,17 +77,19 @@ query department (
     id
     code
     name
-    usages {
-      id
-      name
-    }
-    origines {
-      id
-      name
-    }
-    situations {
-      id
-      name
+    suos {
+      usages {
+        id
+        name
+      }
+      origines {
+        id
+        name
+      }
+      situations {
+        id
+        name
+      }
     }
   }
 }
