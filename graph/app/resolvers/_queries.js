@@ -38,32 +38,33 @@ export const Query = {
         return resolve(doc.suos);
       })),
   // Queries pour le Frontend
-  findRestictionByCriteria: (_, { zones, usages, origines }) => {
-    ZoneModel.findById(zones)
-      .then((result) => {
-        const { situation: situations } = result.alerte;
-        return Restriction.find({ situations, usages, origines });
-      })
-      .then(restriction => restriction);
-  },
+  findRestictionByCriteria: (_, { zones, usages, origines }) =>
+    ZoneModel.findById(zones).then((found) => {
+      const { situation: situations } = found.alerte;
+      return Restriction.find({
+        usages: { $in: [usages] },
+        origines: { $in: [origines] },
+        situations: { $in: [situations] },
+      });
+    }),
   hydrateDepartment: (_, { dpt }) =>
     Promise.all([
       Departement.findById(dpt),
       ZoneModel.find({ dpt }),
       Restriction.find({ dpt }),
-    ]).then(([doc, zones, restrictions]) => {
-      const result = Object.assign(
-        {},
-        {
-          zones,
-          restrictions,
-          usages: doc.suos.usages,
-          origines: doc.suos.origines,
-          situations: doc.suos.situations,
-        },
-      );
-      return result;
-    }),
+    ])
+      .then(([doc, zones, restrictions]) =>
+        Promise.resolve(Object.assign(
+          {},
+          {
+            zones,
+            restrictions,
+            usages: doc.suos.usages,
+            origines: doc.suos.origines,
+            situations: doc.suos.situations,
+          },
+        )))
+      .then(result => result),
 };
 
 export default Query;

@@ -47,6 +47,7 @@ class FormScreen extends React.PureComponent {
   render () {
     const {
       steps,
+      rules,
       fields,
       choices,
       activestep,
@@ -54,22 +55,21 @@ class FormScreen extends React.PureComponent {
       showresults,
       canbackward,
       disabledsteps,
-      alertlevel,
     } = this.props;
     return (
       <ApolloConsumer>
         {client => (
           <div id="screen-container">
             <StepperProgress steps={steps}
-              active={!alertlevel ? activestep : activestep + 1} />
+              active={!rules ? activestep : activestep + 1} />
             <div id="app-content" className="flex-columns">
               <div id="app-sidebar-left" className="column flex1">
                 <FormSidebarHeader />
                 <FormSidebarContent fields={fields}
-                  choices={!alertlevel ? choices : alertlevel.submitted} />
+                  choices={!rules ? choices : rules.choices} />
               </div>
               <div id="stepper-form" className="column flex4">
-                {!alertlevel &&
+                {!rules &&
                   fields &&
                   fields.length > 0 && (
                   <FormFields fields={fields}
@@ -80,11 +80,11 @@ class FormScreen extends React.PureComponent {
                     }
                     onRequired={index => this.actions.checkRequired(index)} />
                 )}
-                {alertlevel && <FormResults alertlevel={alertlevel.result} />}
+                {rules && <FormResults rules={rules.values} />}
                 <FormNavigation showresults={showresults}
                   canforward={canforward}
                   canbackward={canbackward}
-                  canreset={alertlevel !== false} />
+                  canreset={rules !== false} />
               </div>
             </div>
           </div>
@@ -99,8 +99,7 @@ FormScreen.propTypes = {
   canforward: PropTypes.bool.isRequired,
   canbackward: PropTypes.bool.isRequired,
   showresults: PropTypes.bool.isRequired,
-  alertlevel: PropTypes.oneOfType([PropTypes.bool, PropTypes.object])
-    .isRequired,
+  rules: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
   //
   steps: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
@@ -114,8 +113,8 @@ FormScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   const {
-    steppedform: { fields, alertlevel },
     stepper: { activestep, disabledsteps },
+    steppedform: { fields, restrictionsapplicable: rules },
   } = state;
   const choices = getFormValues(FORM_NAME)(state) || {};
   const choiceskeys = Object.keys(choices);
@@ -131,11 +130,11 @@ const mapStateToProps = (state) => {
     choiceskeys.length === steps.length && activestep === steps.length - 1;
   return {
     steps,
+    rules,
     fields,
     choices,
     stepskeys,
     activestep,
-    alertlevel,
     canforward,
     choiceskeys,
     canbackward,

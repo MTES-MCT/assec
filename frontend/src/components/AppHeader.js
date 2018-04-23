@@ -6,6 +6,7 @@ const AppHeader = ({ title, subtitle }) => (
     <h1 className="acenter title">
       {/* <i className="icon icon-droplet" /> */}
       <span>{title}</span>
+      <small>beta v{process.env.REACT_APP_VERSION}</small>
     </h1>
     <h6 className="acenter subtitle">
       <small>{subtitle}</small>

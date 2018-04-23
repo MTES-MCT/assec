@@ -12,7 +12,7 @@ type Query {
     zones: ID
     usages: ID
     origines: ID
-  ): RestrictionType
+  ): [RestrictionType]
 }
 `;
 

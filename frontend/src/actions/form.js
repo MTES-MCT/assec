@@ -1,11 +1,7 @@
 import { reset } from 'redux-form';
 
 // application
-// import zones from './../datas/zones';
 import questions from './../datas/questions.json';
-import alerts from './../datas/alerts-83.json';
-// import schema from './../datas/schemas-83.json';
-// import DecisionTree from './../core/decision-tree';
 import { capitalize } from './../core/utils/capitalize';
 import {
   HYDRATE_DEPARTMENT,
@@ -20,12 +16,7 @@ import {
 
 const MOCK_DEPARTEMENT_ID = '5ad84a9f73150f000eeaf0d0';
 
-// generate decision schema
-// const decision = 'alerte';
-// const parameters = ['canal', 'nomcanal', 'usage', 'origine'];
-// const dtree = new DecisionTree(schema, decision, parameters);
-
-export const formSubmit = (client, values) => (dispatch, getstate) => {
+export const formSubmit = (client, values) => (dispatch) => {
   const choices = Object.keys(values).reduce(
     (acc, key) => Object.assign({}, acc, { [key]: values[key].choice }),
     { dpt: MOCK_DEPARTEMENT_ID },
@@ -35,18 +26,15 @@ export const formSubmit = (client, values) => (dispatch, getstate) => {
       query: FIND_RESTRICTION_BY_CRITERIAS,
       variables: choices,
     })
-    .then(({ data: { findRestictionByCriteria: result } }) => {
-      console.log('findRestictionByCriteria', result);
-      // dispatch({
-      //   type: FORM_SUBMIT,
-      //   submitted: { result, submitted },
-      // });
+    .then(({ data }) => {
+      dispatch({
+        type: FORM_SUBMIT,
+        result: {
+          choices: Object.assign({}, values),
+          values: data.findRestictionByCriteria,
+        },
+      });
     });
-  // const { steppedform } = getstate();
-  // const submitted = Object.assign({}, values);
-  // const prediction = Object.assign({}, steppedform.defaults, choices);
-  // const alertindex = dtree.predict(prediction);
-  // const result = steppedform.alerts[alertindex];
 };
 
 export const loadForm = client => (dispatch) => {
@@ -73,7 +61,7 @@ export const loadForm = client => (dispatch) => {
           return { ...question, values };
         })
         .filter(v => v);
-      dispatch({ type: FIELDS_LOADED, fields, alerts });
+      dispatch({ type: FIELDS_LOADED, fields });
     });
 };
 

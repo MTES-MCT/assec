@@ -3,12 +3,12 @@ import { combineReducers } from 'redux';
 // application
 import { FORM_RESET, FORM_SUBMIT, FIELDS_LOADED } from './../constants';
 
-const alertlevel = (state = false, action) => {
+const restrictionsapplicable = (state = false, action) => {
   switch (action.type) {
   case FORM_RESET:
     return false;
   case FORM_SUBMIT:
-    return action.submitted;
+    return action.result;
   default:
     return state;
   }
@@ -51,20 +51,10 @@ const fields = (state = [], action) => {
   }
 };
 
-const alerts = (state = [], action) => {
-  switch (action.type) {
-  case FIELDS_LOADED:
-    return state.concat(action.alerts);
-  default:
-    return state;
-  }
-};
-
 export const form = combineReducers({
   fields,
-  alerts,
   defaults,
-  alertlevel,
+  restrictionsapplicable,
 });
 
 export default form;
