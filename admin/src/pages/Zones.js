@@ -5,9 +5,9 @@ import { graphql } from 'react-apollo';
 // application
 import { ALL_DEPARTMENTS } from './../apolloql';
 import ZonesForm from './zones/ZonesForm';
+import ZonesTable from './zones/ZonesTable';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
-// import RestrictionsTable from './restrictions/RestrictionsTable';
 import EntitySelector from './../components/forms/EntitySelector';
 
 const renderNoDepartement = () => (
@@ -40,7 +40,7 @@ class ZonesPage extends React.PureComponent {
     return (
       <React.Fragment>
         <div id="page-main-column" className="col50">
-          {/* <RestrictionsTable selected={selected} /> */}
+          <ZonesTable selected={selected} />
         </div>
         <div id="page-aside-column" className="col50">
           {selected && <ZonesForm selected={selected} />}

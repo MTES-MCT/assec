@@ -24,6 +24,23 @@ export const ALL_DEPARTMENTS = gql(`
   }
 `);
 
+export const DPT_ZONES = gql(`
+query zones (
+  $dpt: ID
+) {
+  zones (
+    dpt: $dpt
+  ) {
+    id
+    name
+    help
+    order
+    geojson
+    department
+  }
+}
+`);
+
 export const DPT_RESTRICTIONS = gql(`
 query restrictions (
   $dpt: ID
