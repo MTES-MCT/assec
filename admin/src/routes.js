@@ -1,5 +1,4 @@
 import Zones from './pages/Zones';
-import Alerts from './pages/Alerts';
 import Dashboard from './pages/Dashboard';
 import Departements from './pages/Departements';
 import Restrictions from './pages/Restrictions';
@@ -35,13 +34,6 @@ export const routes = {
       path: '/zones',
       name: 'Mes Zones',
       component: Zones,
-    },
-    {
-      exact: false,
-      icon: 'alert',
-      name: 'Mes Alertes',
-      path: '/alerts',
-      component: Alerts,
     },
     // {
     //   exact: false,
