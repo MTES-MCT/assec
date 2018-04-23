@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
+import orderby from 'lodash.orderby';
 import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 
@@ -21,20 +22,27 @@ class LeafletMap extends React.PureComponent {
   render () {
     const { zones, selected } = this.props;
     const position = [this.state.lat, this.state.lng];
+    const ordered = orderby(zones, ['order'], ['asc']);
+    const getzindex = index => 1000 + index;
     return (
       <Map center={position} zoom={this.state.zoom}>
         <TileLayer attribution={TILES_COPYRIGHT} url={TILES_LAYER} />
-        {zones &&
-          zones.map(obj => (
-            <Field key={`mapzone_${obj.id}`}
-              name="choice"
-              selected={selected}
-              component={GeoJSONLayerInput}
-              props={{
-                id: obj.id,
-                geojson: obj.geojson,
-              }} />
-          ))}
+        {ordered &&
+          ordered.map((obj, index) => {
+            const zIndex = getzindex(index);
+            return (
+              <Field key={`mapzone_${obj.id}`}
+                name="choice"
+                selected={selected}
+                component={GeoJSONLayerInput}
+                style={{ zIndex }}
+                props={{
+                  zIndex,
+                  id: obj.id,
+                  geojson: obj.geojson,
+                }} />
+            );
+          })}
       </Map>
     );
   }

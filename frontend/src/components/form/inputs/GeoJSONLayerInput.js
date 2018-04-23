@@ -7,7 +7,7 @@ import { GeoJSON } from 'react-leaflet';
 class GeoJSONLayerInput extends React.PureComponent {
   render () {
     const {
-      id, geojson, input, selected, dispatch,
+      id, geojson, input, selected, dispatch, zIndex,
     } = this.props;
     const isselected = id === selected;
     const commons = {
@@ -23,10 +23,14 @@ class GeoJSONLayerInput extends React.PureComponent {
     return (
       (isselected && (
         <GeoJSON {...commons}
+          style={{ zIndex }}
           key={`mapzone_${id}_active`}
           className="geojson-layer active" />
       )) || (
-        <GeoJSON {...commons} key={`mapzone_${id}`} className="geojson-layer" />
+        <GeoJSON {...commons}
+          style={{ zIndex }}
+          key={`mapzone_${id}`}
+          className="geojson-layer" />
       )
     );
   }
@@ -41,6 +45,7 @@ GeoJSONLayerInput.propTypes = {
   id: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  zIndex: PropTypes.number.isRequired,
   geojson: PropTypes.object.isRequired,
 };
 

@@ -51,27 +51,18 @@ export const loadForm = client => (dispatch) => {
       const fields = questions
         .map((question) => {
           if (!hydrateDepartment[question.id]) return false;
-          const values = hydrateDepartment[question.id];
-          return {
-            ...question,
-            values:
-              values.map((value) => {
-                let obj = {
-                  id: value.id,
-                  // FIXME -> doit pas etre capitalized ici
-                  // mais depuis la base de donnees ou l'input user
-                  name: capitalize(value.name.trim()),
-                };
-                if (value.geojson) {
-                  obj = Object.assign({}, obj, {
-                    // FIXME -> doit pas etre parse en JSON ici
-                    // mais depuis la base de donnees
-                    geojson: JSON.parse(value.geojson) || value.geojson,
-                  });
-                }
-                return obj;
-              }) || [],
-          };
+          const values =
+            hydrateDepartment[question.id].map(value => ({
+              id: value.id,
+              order: value.order || 0,
+              // FIXME -> doit pas etre capitalized ici
+              // mais depuis la base de donnees ou l'input user
+              name: capitalize(value.name.trim()),
+              // FIXME -> doit pas etre parse en JSON ici
+              // mais depuis la base de donnees
+              geojson: (value.geojson && JSON.parse(value.geojson)) || false,
+            })) || [];
+          return { ...question, values };
         })
         .filter(v => v);
       dispatch({ type: FIELDS_LOADED, fields, alerts });
