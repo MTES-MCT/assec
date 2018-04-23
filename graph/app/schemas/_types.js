@@ -36,13 +36,20 @@ type RestrictionType {
 `;
 
 const zone = `
+type AlerteType {
+  situation: ID
+  end_date: String
+  start_date: String
+}
+
 type ZoneType {
   id: ID!
   name: String!
   help: String!
   order: String!
-  geojson: String!
   department: ID!
+  geojson: String!
+  alerte: AlerteType
 }
 `;
 

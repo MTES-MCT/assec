@@ -39,6 +39,7 @@ export const Mutation = {
     return Departement.findByIdAndUpdate(id, rest, returnsnewdoc);
   },
   // CREATES
+  createZone: (_, args) => ZoneModel.create(args),
   createDepartement: (_, args) => Departement.create(args),
   createRestriction: (_, args) => Restriction.create(args),
   // DELETES

@@ -10,12 +10,18 @@ input SUOSInput {
   situations: [SUOInput]
 }
 
+input AlerteInput {
+  situation: ID
+  end_date: String
+  start_date: String
+}
+
 input ZoneInput {
   name: String
   help: String
-  situation: ID
   geojson: String
   department: ID!
+  alerte: [AlerteInput]
 }
 
 input DepartementInput {

@@ -1,4 +1,4 @@
-const mutationsDefs = `
+export default `
 type Mutation {
   createDepartement(
     code: String!
@@ -15,6 +15,15 @@ type Mutation {
     situations: [String]!
     information: String
   ): RestrictionType
+
+  createZone(
+    dpt: ID!
+    help: String
+    name: String!
+    order: String!
+    geojson: String!
+    alerte: [AlerteInput]
+  ): ZoneType
 
   updateDepartement(
     id: ID!
@@ -34,5 +43,3 @@ type Mutation {
   ): ZoneType
 }
 `;
-
-export default mutationsDefs;

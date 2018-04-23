@@ -8,25 +8,22 @@ const SUOSchema = new Schema({
   name: String,
 });
 
-const DepartementSchema = new Schema(
-  {
-    code: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    suos: {
-      usages: [SUOSchema],
-      origines: [SUOSchema],
-      situations: [SUOSchema],
-    },
-    slug: slugType,
+const DepartementSchema = new Schema({
+  code: {
+    type: String,
+    required: true,
   },
-  { strict: true },
-);
+  name: {
+    type: String,
+    required: true,
+  },
+  suos: {
+    usages: [SUOSchema],
+    origines: [SUOSchema],
+    situations: [SUOSchema],
+  },
+  slug: slugType,
+});
 
 function saveMiddleware (next) {
   this.slug = this.name;
