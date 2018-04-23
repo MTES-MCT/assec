@@ -23,12 +23,12 @@ class GeoJSONLayerInput extends React.PureComponent {
     return (
       (isselected && (
         <GeoJSON {...commons}
-          style={{ zIndex }}
+          order={zIndex}
           key={`mapzone_${id}_active`}
           className="geojson-layer active" />
       )) || (
         <GeoJSON {...commons}
-          style={{ zIndex }}
+          order={zIndex}
           key={`mapzone_${id}`}
           className="geojson-layer" />
       )

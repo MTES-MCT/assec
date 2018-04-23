@@ -12,11 +12,25 @@ import { TILES_LAYER, TILES_COPYRIGHT } from './../../../constants';
 class LeafletMap extends React.PureComponent {
   constructor (props) {
     super(props);
+    this.map = null;
+    // FIXME -> pass coordinates from departement
     this.state = {
       zoom: 9,
       lng: 6.244354248046875,
       lat: 43.22319117678928,
     };
+  }
+
+  componentDidUpdate () {
+    if (!this.map) return;
+    // eslint-disable-next-line no-underscore-dangle
+    const layers = this.map.leafletElement._layers;
+    Object.values(layers)
+      .filter(layer => typeof layer.options.order !== 'undefined')
+      .sort((a, b) => a.options.order - b.options.order)
+      .forEach((layer) => {
+        layer.bringToFront();
+      });
   }
 
   render () {
@@ -25,7 +39,11 @@ class LeafletMap extends React.PureComponent {
     const ordered = orderby(zones, ['order'], ['asc']);
     const getzindex = index => 1000 + index;
     return (
-      <Map center={position} zoom={this.state.zoom}>
+      <Map center={position}
+        zoom={this.state.zoom}
+        ref={(ref) => {
+          this.map = ref;
+        }}>
         <TileLayer attribution={TILES_COPYRIGHT} url={TILES_LAYER} />
         {ordered &&
           ordered.map((obj, index) => {
