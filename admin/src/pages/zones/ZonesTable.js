@@ -27,8 +27,22 @@ const renderNoZones = () => (
 class ZonesTable extends React.PureComponent {
   constructor (props) {
     super(props);
+    this.onAlertClick = this.onAlertClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.renderTableRow = this.renderTableRow.bind(this);
+  }
+
+  onAlertClick (obj) {
+    const { name, id, dpt } = obj;
+    this.props.dispatch({
+      type: 'onOpenPopin',
+      popin: {
+        id,
+        dpt,
+        name,
+        type: 'ZonePopin',
+      },
+    });
   }
 
   onDeleteClick (obj) {
@@ -52,7 +66,9 @@ class ZonesTable extends React.PureComponent {
         <td>{name}</td>
         <td className="small">{order}</td>
         <td className="small">
-          <button type="button" className="super" onClick={() => {}}>
+          <button type="button"
+            className="super"
+            onClick={() => this.onAlertClick(obj)}>
             <i className="icon icon-alert" />
           </button>
         </td>

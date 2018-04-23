@@ -10,26 +10,38 @@ const RadioGroup = ({
   const cssclass = `flex-${display !== 'inline' ? 'rows' : 'columns'}`;
   return (
     <p className="radio-group">
-      <label htmlFor={name}>
+      <span className="as-form-label">
         <span>{label}</span>
         <span className={cssclass}>
           {provider &&
-            provider.map(obj => (
-              <span key={getkey(name, obj.id)}>
-                <Field {...rest} name={name} type="radio" component="input" />
-                <span>{obj.name}</span>
-              </span>
-            ))}
+            provider.map((obj) => {
+              const key = getkey(name, obj.id);
+              return (
+                <label htmlFor={key} key={key}>
+                  <Field {...rest}
+                    id={key}
+                    name={name}
+                    type="radio"
+                    value={obj.id}
+                    component="input" />
+                  <span>{obj.name}</span>
+                </label>
+              );
+            })}
         </span>
-      </label>
+      </span>
     </p>
   );
 };
 
+RadioGroup.defaultProps = {
+  display: null,
+};
+
 RadioGroup.propTypes = {
+  display: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  display: PropTypes.string.isRequired,
   provider: PropTypes.array.isRequired,
 };
 

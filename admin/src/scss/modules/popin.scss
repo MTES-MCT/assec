@@ -22,3 +22,8 @@
 #delete-popin button ~ button {
   @extend .ml20;
 }
+
+.popin-fieldset {
+  background-color: #FFFFFF;
+  border-top: 1px solid #000000;
+}
