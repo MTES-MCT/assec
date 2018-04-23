@@ -22,7 +22,32 @@ mutation createZone(
     help
     name
     order
+    alerte
     geojson
+  }
+}
+`);
+
+export const UPDATE_ZONE_ALERTE = gql(`
+mutation updateZoneAlerte (
+  $id: ID!
+  $alerte: AlerteInput!
+) {
+  updateZoneAlerte (
+    id: $id
+    alerte: $alerte
+  ) {
+    id
+    dpt
+    help
+    name
+    order
+    geojson
+    alerte {
+      end_date
+      start_date
+      situation
+    }
   }
 }
 `);
@@ -57,10 +82,12 @@ export const UPDATE_DPT_ZONES = (store, { data }) => {
     entries = zones.concat([data.createZone]);
     variables = { dpt };
   }
-  // if (data.updateZone) {
-  //   entries = zones.map(dpt =>
-  //     (dpt.id === data.updateZone.id ? data.updateZone.id : dpt));
-  // }
+  if (data.updateZoneAlerte) {
+    const { id, dpt, alerte } = data.updateZoneAlerte;
+    const zones = getCurrentZones(store, dpt);
+    entries = zones.map(obj => (obj.id !== id ? obj : Object.assign({}, obj, { alerte })));
+    variables = { dpt };
+  }
   if (data.deleteZone) {
     const { dpt, id } = data.deleteZone;
     const zones = getCurrentZones(store, dpt);

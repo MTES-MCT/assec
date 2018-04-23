@@ -3,24 +3,32 @@ import { slugify } from './../../utils/slugify';
 
 const slugType = { set: slugify, type: String };
 
-const RestrictionSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
+const RestrictionSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    information: {
+      type: String,
+    },
+    slug: slugType,
+    usages: [String],
+    origines: [String],
+    situations: [String],
+    dpt: Schema.Types.ObjectId,
   },
-  description: {
-    type: String,
-    required: true,
+  {
+    timestamps: {
+      createdAt: 'ctime',
+      updatedAt: 'mtime',
+    },
   },
-  information: {
-    type: String,
-  },
-  slug: slugType,
-  usages: [String],
-  origines: [String],
-  situations: [String],
-  dpt: Schema.Types.ObjectId,
-});
+);
 
 function saveMiddleware (next) {
   this.slug = this.title;

@@ -31,6 +31,12 @@ const deleteEntities = (where, Model) =>
 
 export const Mutation = {
   // UPDATES
+  updateZoneAlerte: (_, args) => {
+    const { id } = args;
+    const rest = omit(args, ['id']);
+    const returnsnewdoc = { new: true };
+    return ZoneModel.findByIdAndUpdate(id, rest, returnsnewdoc);
+  },
   updateDepartement: (_, args) => {
     const { id } = args;
     let rest = omit(args, ['id']);

@@ -37,6 +37,11 @@ query zones (
     help
     order
     geojson
+    alerte {
+      end_date
+      start_date
+      situation
+    }
   }
 }
 `);

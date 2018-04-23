@@ -33,13 +33,16 @@ class ZonesTable extends React.PureComponent {
   }
 
   onAlertClick (obj) {
-    const { name, id, dpt } = obj;
+    const {
+      name, id, dpt, alerte,
+    } = obj;
     this.props.dispatch({
       type: 'onOpenPopin',
       popin: {
         id,
         dpt,
         name,
+        alerte,
         type: 'ZonePopin',
       },
     });

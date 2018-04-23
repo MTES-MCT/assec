@@ -11,7 +11,7 @@ input SUOSInput {
 }
 
 input AlerteInput {
-  situation: ID
+  situation: ID!
   end_date: String
   start_date: String
 }

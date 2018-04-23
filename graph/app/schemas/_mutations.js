@@ -30,6 +30,11 @@ type Mutation {
     suos: SUOSInput!
   ): DepartementType
 
+  updateZoneAlerte(
+    id: ID!
+    alerte: AlerteInput!
+  ): ZoneType
+
   deleteDepartment(
     id: ID!
   ): DepartementType

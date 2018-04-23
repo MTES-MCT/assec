@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
+import { Query, Mutation } from 'react-apollo';
 
 // application
-import { SUOS } from './../../apolloql';
+import { SUOS, UPDATE_DPT_ZONES, UPDATE_ZONE_ALERTE } from './../../apolloql';
 import RadioGroup from './../../components/forms/RadioGroup';
 import CloseButton from './../../components/popins/CloseButton';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const ZonePopin = ({
-  dpt, id, name, onClose,
+  dpt, id, name, alerte, onClose,
 }) => (
   <Query query={SUOS} variables={{ dpt }}>
     {({ loading, error, data }) => {
@@ -18,43 +18,47 @@ const ZonePopin = ({
       if (error) return <p>Error </p>;
       const { situations } = data.suos;
       return (
-        <div id="edit-popin" className="popin-inner">
-          <CloseButton onClose={onClose} />
-          <Form initialValues={{ id }}
-            onSubmit={() => {
-              // const parsed = parsesuos(suos);
-              // return updateDepartement({
-              //   variables: { suos: parsed, id: rest.id },
-              // })
-              //   .then(() => {
-              //   form.reset()
-              //   onClose();
-              //   })
-              //   .catch(() => {});
-            }}
-            render={({
-              form, invalid, pristine, handleSubmit,
-            }) => (
-              <div>
-                <h6>Déclaration d&apos;alerte</h6>
-                <h3>{name}</h3>
-                <form onSubmit={handleSubmit}>
-                  <div className="flex-rows flex-between p12 mt20">
-                    <fieldset className="popin-fieldset">
-                      <Field name="id" type="hidden" component="input" />
-                      <RadioGroup name="alerte.situation"
-                        display="inline"
-                        provider={situations}
-                        label="Selectionnez une situation" />
-                    </fieldset>
-                    <SubmitButton label="Modifier"
-                      invalid={invalid}
-                      pristine={pristine} />
+        <Mutation mutation={UPDATE_ZONE_ALERTE} update={UPDATE_DPT_ZONES}>
+          {(updateZoneAlerte, result) => (
+            <div id="edit-popin" className="popin-inner">
+              <CloseButton onClose={onClose} />
+              <Form initialValues={{ id, alerte }}
+                onSubmit={(variables, form) =>
+                  updateZoneAlerte({
+                    variables,
+                  })
+                    .then(() => {
+                      form.reset();
+                      onClose();
+                    })
+                    .catch(() => {})
+                }
+                render={({
+                  form, invalid, pristine, handleSubmit,
+                }) => (
+                  <div>
+                    <h6>Déclaration d&apos;alerte</h6>
+                    <h3>{name}</h3>
+                    <form onSubmit={handleSubmit}>
+                      <div className="flex-rows flex-between p12 mt20">
+                        <fieldset className="popin-fieldset">
+                          <Field name="id" type="hidden" component="input" />
+                          <RadioGroup name="alerte.situation"
+                            display="inline"
+                            provider={situations}
+                            disabled={result.loading}
+                            label="Selectionnez une situation" />
+                        </fieldset>
+                        <SubmitButton label="Modifier"
+                          invalid={invalid || result.loading}
+                          pristine={pristine || result.loading} />
+                      </div>
+                    </form>
                   </div>
-                </form>
-              </div>
-            )} />
-        </div>
+                )} />
+            </div>
+          )}
+        </Mutation>
       );
     }}
   </Query>
@@ -65,6 +69,7 @@ ZonePopin.propTypes = {
   dpt: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
+  alerte: PropTypes.object.isRequired,
 };
 
 export default ZonePopin;
