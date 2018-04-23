@@ -1,5 +1,22 @@
 import gql from 'graphql-tag';
 
+export const GET_DEPARTMENT = gql(`
+query restriction (
+  $dpt: ID!
+) {
+  restriction (
+    dpt: $dpt
+  ) {
+    id
+    dpt
+    suos
+    title
+    zones
+    restrictions
+  }
+}
+`);
+
 export const DPT_RESTRICTIONS = gql(`
 query restrictions (
   $dpt: ID
