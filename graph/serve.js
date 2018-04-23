@@ -2,6 +2,7 @@
 import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
+// import * as bodyParser from 'body-parser-graphql';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
@@ -18,10 +19,11 @@ const schema = makeExecutableSchema({ typeDefs: schemas, resolvers });
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(
   '/graphql',
   // bodyParser is needed just for POST.
-  bodyParser.json(),
+  bodyParser.json({ limit: '50mb' }),
   graphqlExpress({
     schema,
     // Apollo Server accepts a GraphQLOptions object as its single argument
@@ -29,8 +31,11 @@ app.use(
     debug: usedebug(),
   }),
 );
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit: 100000,
+}));
 
 if (usedebug()) {
   // use GraphQL web interface only in development environment
