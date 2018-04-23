@@ -24,6 +24,7 @@ class PageComponent extends React.Component {
       dispatch,
     );
   }
+
   componentDidMount () {
     // charge le schema du formulaire au chargement de la page
     const { client } = this.props;

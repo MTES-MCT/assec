@@ -38,6 +38,14 @@ export const Query = {
         return resolve(doc.suos);
       })),
   // Queries pour le Frontend
+  findRestictionByCriteria: (_, { zones, usages, origines }) => {
+    ZoneModel.findById(zones)
+      .then((result) => {
+        const { situation: situations } = result.alerte;
+        return Restriction.find({ situations, usages, origines });
+      })
+      .then(restriction => restriction);
+  },
   hydrateDepartment: (_, { dpt }) =>
     Promise.all([
       Departement.findById(dpt),

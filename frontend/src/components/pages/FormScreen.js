@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import deepequal from 'fast-deep-equal';
 import { bindActionCreators } from 'redux';
+import { ApolloConsumer } from 'react-apollo';
 import { getFormValues, clearFields } from 'redux-form';
 
 // application
 import { FORM_NAME } from './../../constants';
 import FormFields from './../form/FormFields';
 import FormResults from './../form/FormResults';
+import { formSubmit } from './../../actions/form';
 import FormNavigation from './../form/FormNavigation';
 import checkRequired from './../../actions/check-required';
-import { formSubmit } from './../../actions/form';
 import StepperProgress from './../form/stepper/StepperProgress';
 import FormSidebarHeader from './../form/sidebar/FormSidebarHeader';
 import FormSidebarContent from './../form/sidebar/FormSidebarContent';
@@ -56,33 +57,39 @@ class FormScreen extends React.PureComponent {
       alertlevel,
     } = this.props;
     return (
-      <div id="screen-container">
-        <StepperProgress steps={steps}
-          active={!alertlevel ? activestep : activestep + 1} />
-        <div id="app-content" className="flex-columns">
-          <div id="app-sidebar-left" className="column flex1">
-            <FormSidebarHeader />
-            <FormSidebarContent fields={fields}
-              choices={!alertlevel ? choices : alertlevel.submitted} />
+      <ApolloConsumer>
+        {client => (
+          <div id="screen-container">
+            <StepperProgress steps={steps}
+              active={!alertlevel ? activestep : activestep + 1} />
+            <div id="app-content" className="flex-columns">
+              <div id="app-sidebar-left" className="column flex1">
+                <FormSidebarHeader />
+                <FormSidebarContent fields={fields}
+                  choices={!alertlevel ? choices : alertlevel.submitted} />
+              </div>
+              <div id="stepper-form" className="column flex4">
+                {!alertlevel &&
+                  fields &&
+                  fields.length > 0 && (
+                  <FormFields fields={fields}
+                    activestep={activestep}
+                    disabledsteps={disabledsteps}
+                    onSubmit={values =>
+                      this.actions.formSubmit(client, values)
+                    }
+                    onRequired={index => this.actions.checkRequired(index)} />
+                )}
+                {alertlevel && <FormResults alertlevel={alertlevel.result} />}
+                <FormNavigation showresults={showresults}
+                  canforward={canforward}
+                  canbackward={canbackward}
+                  canreset={alertlevel !== false} />
+              </div>
+            </div>
           </div>
-          <div id="stepper-form" className="column flex4">
-            {!alertlevel &&
-              fields &&
-              fields.length > 0 && (
-              <FormFields fields={fields}
-                activestep={activestep}
-                disabledsteps={disabledsteps}
-                onSubmit={values => this.actions.formSubmit(values)}
-                onRequired={index => this.actions.checkRequired(index)} />
-            )}
-            {alertlevel && <FormResults alertlevel={alertlevel.result} />}
-            <FormNavigation showresults={showresults}
-              canforward={canforward}
-              canbackward={canbackward}
-              canreset={alertlevel !== false} />
-          </div>
-        </div>
-      </div>
+        )}
+      </ApolloConsumer>
     );
   }
 }

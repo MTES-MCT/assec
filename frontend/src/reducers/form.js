@@ -14,6 +14,10 @@ const alertlevel = (state = false, action) => {
   }
 };
 
+// les defaults sont utilises dans le cas d'un formulaire decisionnel
+// si l'utilisateur n'a pas rempli une question du formulaire
+// on prend la valeur par defaut
+// cette valeur correspond à la premiere valeurs d'un SUO
 const defaults = (state = {}, action) => {
   switch (action.type) {
   case FIELDS_LOADED:
@@ -35,6 +39,8 @@ const defaults = (state = {}, action) => {
   }
 };
 
+// les fields sont les champs du formulaire
+// { question, description, valeurs }
 const fields = (state = [], action) => {
   switch (action.type) {
   case FIELDS_LOADED:

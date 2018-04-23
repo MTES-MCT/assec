@@ -7,6 +7,12 @@ type Query {
   restriction(id: ID): RestrictionType
   restrictions(dpt: ID): [RestrictionType]
   hydrateDepartment(dpt: ID): HydratedType
+  findRestictionByCriteria(
+    dpt: ID
+    zones: ID
+    usages: ID
+    origines: ID
+  ): RestrictionType
 }
 `;
 
