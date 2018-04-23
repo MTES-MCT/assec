@@ -15,8 +15,8 @@ const renderRestrictionsTableHeader = () => (
   <thead>
     <tr>
       <th>Titre</th>
-      <th className="small" />
-      <th className="small" />
+      {/* <th className="small" /> */}
+      {/* <th className="small" /> */}
       <th className="small" />
     </tr>
   </thead>
@@ -31,23 +31,23 @@ const renderNoRestrictions = () => (
 class RestrictionsTable extends React.PureComponent {
   constructor (props) {
     super(props);
-    this.onEditClick = this.onEditClick.bind(this);
-    this.onCloneClick = this.onCloneClick.bind(this);
+    // this.onEditClick = this.onEditClick.bind(this);
+    // this.onCloneClick = this.onCloneClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
-  onCloneClick (obj) {
-    const { title, id } = obj;
-    const popin = { id, name: title, type: 'EditRestrictionsPopin' };
-    this.props.dispatch({ type: 'onOpenPopin', popin });
-  }
-
-  onEditClick (obj) {
-    const { title, id } = obj;
-    const popin = { id, name: title, type: 'EditRestrictionsPopin' };
-    this.props.dispatch({ type: 'onOpenPopin', popin });
-  }
+  // onCloneClick (obj) {
+  //   const { title, id } = obj;
+  //   const popin = { id, name: title, type: 'EditRestrictionsPopin' };
+  //   this.props.dispatch({ type: 'onOpenPopin', popin });
+  // }
+  //
+  // onEditClick (obj) {
+  //   const { title, id } = obj;
+  //   const popin = { id, name: title, type: 'EditRestrictionsPopin' };
+  //   this.props.dispatch({ type: 'onOpenPopin', popin });
+  // }
 
   onDeleteClick (obj) {
     const { title, id } = obj;
@@ -69,7 +69,7 @@ class RestrictionsTable extends React.PureComponent {
     return (
       <tr key={id}>
         <td>{title}</td>
-        <td className="small">
+        {/* <td className="small">
           <button type="button" onClick={() => this.onCloneClick(obj)}>
             <i className="icon icon-clone" />
           </button>
@@ -78,7 +78,7 @@ class RestrictionsTable extends React.PureComponent {
           <button type="button" onClick={() => this.onEditClick(obj)}>
             <i className="icon icon-pencil" />
           </button>
-        </td>
+        </td> */}
         <td className="small">
           <button type="button"
             className="danger"

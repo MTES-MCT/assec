@@ -22,7 +22,7 @@ const renderDepartementTableHeader = () => (
     <tr>
       <th className="small">Code</th>
       <th>Nom</th>
-      <th className="small" />
+      {/* <th className="small" /> */}
       <th className="small" />
     </tr>
   </thead>
@@ -31,15 +31,15 @@ const renderDepartementTableHeader = () => (
 class DepartementTable extends React.PureComponent {
   constructor (props) {
     super(props);
-    this.onEditClick = this.onEditClick.bind(this);
+    // this.onEditClick = this.onEditClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
-  onEditClick ({ id, name }) {
-    const popin = { id, name, type: 'DepartementPopin' };
-    this.props.dispatch({ type: 'onOpenPopin', popin });
-  }
+  // onEditClick ({ id, name }) {
+  //   const popin = { id, name, type: 'DepartementPopin' };
+  //   this.props.dispatch({ type: 'onOpenPopin', popin });
+  // }
 
   onDeleteClick ({ id, name }) {
     const popin = {
@@ -61,11 +61,11 @@ class DepartementTable extends React.PureComponent {
       <tr key={id}>
         <td className="small">{code}</td>
         <td>{name}</td>
-        <td className="small">
+        {/* <td className="small">
           <button type="button" onClick={() => this.onEditClick(dpt)}>
             <i className="icon icon-pencil" />
           </button>
-        </td>
+        </td> */}
         <td className="small">
           <button type="button"
             className="danger"
