@@ -1,3 +1,4 @@
+import Zones from './pages/Zones';
 import Alerts from './pages/Alerts';
 import Dashboard from './pages/Dashboard';
 import Departements from './pages/Departements';
@@ -30,18 +31,25 @@ export const routes = {
     },
     {
       exact: false,
-      icon: 'alert',
-      name: 'Alertes',
-      path: '/alerts',
-      component: Alerts,
+      icon: 'map',
+      path: '/zones',
+      name: 'Mes Zones',
+      component: Zones,
     },
     {
       exact: false,
-      icon: 'users',
-      path: '/contributors',
-      name: 'Contributeurs',
-      component: Contributors,
+      icon: 'alert',
+      name: 'Mes Alertes',
+      path: '/alerts',
+      component: Alerts,
     },
+    // {
+    //   exact: false,
+    //   icon: 'users',
+    //   path: '/contributors',
+    //   name: 'Contributeurs',
+    //   component: Contributors,
+    // },
   ],
   sub: [
     {

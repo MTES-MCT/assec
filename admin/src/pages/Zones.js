@@ -23,7 +23,7 @@ const renderNoSelected = () => (
   </div>
 );
 
-class AlertsPage extends React.PureComponent {
+class ZonesPage extends React.PureComponent {
   constructor (props) {
     super(props);
     this.state = { selected: null };
@@ -73,9 +73,9 @@ class AlertsPage extends React.PureComponent {
   }
 }
 
-AlertsPage.propTypes = {
+ZonesPage.propTypes = {
   data: PropTypes.object.isRequired,
   config: PropTypes.object.isRequired,
 };
 
-export default graphql(ALL_DEPARTMENTS)(AlertsPage);
+export default graphql(ALL_DEPARTMENTS)(ZonesPage);
