@@ -28,6 +28,10 @@ type Mutation {
   deleteRestriction(
     id: ID!
   ): RestrictionType
+
+  deleteZone(
+    id: ID!
+  ): ZoneType
 }
 `;
 

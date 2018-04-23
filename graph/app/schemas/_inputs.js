@@ -10,6 +10,14 @@ input SUOSInput {
   situations: [SUOInput]
 }
 
+input ZoneInput {
+  name: String
+  help: String
+  situation: ID
+  geojson: String
+  department: ID!
+}
+
 input DepartementInput {
   id: ID
   code: String

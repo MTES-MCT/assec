@@ -30,6 +30,7 @@ const deleteEntities = (where, Model) =>
   });
 
 export const Mutation = {
+  // UPDATES
   updateDepartement: (_, args) => {
     const { id } = args;
     let rest = omit(args, ['id']);
@@ -37,8 +38,11 @@ export const Mutation = {
     if (rest && rest.name) rest = Object.assign({}, rest, { slug: rest.name });
     return Departement.findByIdAndUpdate(id, rest, returnsnewdoc);
   },
+  // CREATES
   createDepartement: (_, args) => Departement.create(args),
   createRestriction: (_, args) => Restriction.create(args),
+  // DELETES
+  deleteZone: () => null,
   deleteRestriction: (_, args) => deleteEntity(args.id, Restriction),
   deleteDepartment: (_, args) =>
     new Promise((resolve, reject) => {

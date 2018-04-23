@@ -4,81 +4,52 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 
 // application
-import {
-  DPT_ZONES,
-  DELETE_RESTRICTION,
-  UPDATE_DPT_RESTRICTIONS,
-} from './../../apolloql';
+import { DPT_ZONES, DELETE_ZONE, UPDATE_DPT_ZONES } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
 
 const renderZonesTableHeader = () => (
   <thead>
     <tr>
       <th>Titre</th>
-      <th className="small" />
-      <th className="small" />
+      <th className="small">Ordre</th>
       <th className="small" />
     </tr>
   </thead>
 );
 
-const renderNoRestrictions = () => (
+const renderNoZones = () => (
   <div id="page-main-column">
-    <NoContent description="Pour ajouter une nouvelle restriction utilisez le formulaire ci-contre" />
+    <NoContent description="Pour ajouter une nouvelle zone utilisez le formulaire ci-contre" />
   </div>
 );
 
 class ZonesTable extends React.PureComponent {
   constructor (props) {
     super(props);
-    this.onEditClick = this.onEditClick.bind(this);
-    this.onCloneClick = this.onCloneClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
-  onCloneClick (obj) {
-    const { title, id } = obj;
-    const popin = { id, name: title, type: 'EditRestrictionsPopin' };
-    this.props.dispatch({ type: 'onOpenPopin', popin });
-  }
-
-  onEditClick (obj) {
-    const { title, id } = obj;
-    const popin = { id, name: title, type: 'EditRestrictionsPopin' };
-    this.props.dispatch({ type: 'onOpenPopin', popin });
-  }
-
   onDeleteClick (obj) {
-    const { title, id } = obj;
-    const popin = {
-      id,
-      name: title,
-      type: 'DeletePopin',
-      deleteAction: DELETE_RESTRICTION,
-      updateAction: UPDATE_DPT_RESTRICTIONS,
-    };
+    const { name, id } = obj;
     this.props.dispatch({
-      popin,
       type: 'onOpenPopin',
+      popin: {
+        id,
+        name,
+        type: 'DeletePopin',
+        deleteAction: DELETE_ZONE,
+        updateAction: UPDATE_DPT_ZONES,
+      },
     });
   }
 
   renderTableRow (obj) {
-    const { id, title } = obj;
+    const { id, name, order } = obj;
     return (
       <tr key={id}>
-        <td>{title}</td>
-        <td className="small">
-          <button type="button" onClick={() => this.onCloneClick(obj)}>
-            <i className="icon icon-clone" />
-          </button>
-        </td>
-        <td className="small">
-          <button type="button" onClick={() => this.onEditClick(obj)}>
-            <i className="icon icon-pencil" />
-          </button>
-        </td>
+        <td>{name}</td>
+        <td className="small">{order}</td>
         <td className="small">
           <button type="button"
             className="danger"
@@ -97,17 +68,15 @@ class ZonesTable extends React.PureComponent {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading... </p>;
           if (error) return <p>Error </p>;
-          const { restrictions } = data;
-          if (!restrictions || !restrictions.length) {
-            return renderNoRestrictions();
+          const { zones } = data;
+          if (!zones || !zones.length) {
+            return renderNoZones();
           }
           return (
             <div>
               <table>
                 {renderZonesTableHeader()}
-                <tbody>
-                  {restrictions && restrictions.map(this.renderTableRow)}
-                </tbody>
+                <tbody>{zones && zones.map(this.renderTableRow)}</tbody>
               </table>
             </div>
           );
