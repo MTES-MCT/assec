@@ -50,7 +50,10 @@ export const loadForm = client => (dispatch) => {
         }
         return {
           ...question,
-          values: suos.usages.map(({ id, name }) => ({ id, name })),
+          values: suos[question.id].map(({ id, name }) => ({
+            id,
+            name,
+          })),
         };
       });
       dispatch({ type: FIELDS_LOADED, fields: questions, alerts });
