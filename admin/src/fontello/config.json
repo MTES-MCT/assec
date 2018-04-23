@@ -137,6 +137,12 @@
       "css": "clone",
       "code": 59413,
       "src": "entypo"
+    },
+    {
+      "uid": "64f5a50cf7ac972a56a9a511acb5d28e",
+      "css": "map",
+      "code": 59414,
+      "src": "entypo"
     }
   ]
 }
