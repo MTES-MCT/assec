@@ -42,7 +42,7 @@ mutation deleteZone (
     id: $id
   ) {
     id
-    dpt
+    department
   }
 }
 `);
@@ -69,7 +69,7 @@ export const UPDATE_DPT_ZONES = (store, { data }) => {
   //     (dpt.id === data.updateZone.id ? data.updateZone.id : dpt));
   // }
   if (data.deleteZone) {
-    const { dpt, id } = data.deleteZone;
+    const { department: dpt, id } = data.deleteZone;
     const zones = getCurrentZones(store, dpt);
     entries = zones.filter(obj => obj.id !== id);
     variables = { dpt };

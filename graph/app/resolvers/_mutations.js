@@ -1,5 +1,5 @@
 import omit from 'lodash.omit';
-import { Departement, Restriction } from './../drivers/mongodb';
+import { ZoneModel, Departement, Restriction } from './../drivers/mongodb';
 
 const deleteEntity = (id, Model) =>
   new Promise((resolve, reject) => {
@@ -42,7 +42,7 @@ export const Mutation = {
   createDepartement: (_, args) => Departement.create(args),
   createRestriction: (_, args) => Restriction.create(args),
   // DELETES
-  deleteZone: () => null,
+  deleteZone: (_, args) => deleteEntity(args.id, ZoneModel),
   deleteRestriction: (_, args) => deleteEntity(args.id, Restriction),
   deleteDepartment: (_, args) =>
     new Promise((resolve, reject) => {
