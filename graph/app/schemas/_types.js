@@ -35,8 +35,20 @@ type RestrictionType {
 }
 `;
 
+const zone = `
+type ZoneType {
+  id: ID!
+  name: String!
+  help: String!
+  order: String!
+  geojson: String!
+  department: ID!
+}
+`;
+
 const typeDefs = `
 ${suos}
+${zone}
 ${restriction}
 ${departement}
 `;

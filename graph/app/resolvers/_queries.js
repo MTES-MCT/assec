@@ -1,5 +1,5 @@
 // import omit from 'lodash.omit';
-import { Departement, Restriction } from './../drivers/mongodb';
+import { ZoneModel, Departement, Restriction } from './../drivers/mongodb';
 
 export const Query = {
   departments: () => Departement.find(),
@@ -28,6 +28,7 @@ export const Query = {
     });
   },
   */
+  zones: (_, { dpt }) => (dpt && ZoneModel.find({ department: dpt })) || null,
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
   restrictions: (_, { dpt }) => (dpt && Restriction.find({ dpt })) || [],
   suos: (_, { dpt }) =>
