@@ -13,6 +13,7 @@ const renderZonesTableHeader = () => (
       <th>Titre</th>
       <th className="small">Ordre</th>
       <th className="small" />
+      <th className="small" />
     </tr>
   </thead>
 );
@@ -50,6 +51,11 @@ class ZonesTable extends React.PureComponent {
       <tr key={id}>
         <td>{name}</td>
         <td className="small">{order}</td>
+        <td className="small">
+          <button type="button" className="super" onClick={() => {}}>
+            <i className="icon icon-alert" />
+          </button>
+        </td>
         <td className="small">
           <button type="button"
             className="danger"
