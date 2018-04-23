@@ -29,6 +29,8 @@ app.use(
     debug: usedebug(),
   }),
 );
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 if (usedebug()) {
   // use GraphQL web interface only in development environment
