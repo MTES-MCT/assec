@@ -2,29 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
-const TextInput = ({
+const NumberInput = ({
   label, placeholder, name, ...rest
 }) => (
   <p>
     <label htmlFor={name}>
       <span>{label}</span>
       <Field {...rest}
-        type="text"
+        type="number"
         id={name}
         name={name}
+        maxLength="3"
         component="input"
         placeholder={placeholder} />
     </label>
   </p>
 );
 
-TextInput.defaultProps = {
+NumberInput.defaultProps = {
   placeholder: '',
 };
 
-TextInput.propTypes = {
+NumberInput.propTypes = {
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
 };
-export default TextInput;
+export default NumberInput;

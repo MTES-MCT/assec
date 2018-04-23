@@ -62,7 +62,8 @@ legend {
 }
 
 textarea,
-input[type='text'] {
+input[type='text'],
+input[type='number'] {
   background-color: $white;
   border-color: rgba(0, 0, 0, 0.2);
 }

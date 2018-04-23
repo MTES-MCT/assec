@@ -80,6 +80,7 @@ const DepartementForm = () => (
               }) => (
                 <form onSubmit={handleSubmit} className="mb20">
                   <fieldset>
+                    <Field name="name" type="hidden" component="input" />
                     <Legend label="Ajouter un département" />
                     <SelectBox name="code"
                       label="Département"
@@ -88,7 +89,6 @@ const DepartementForm = () => (
                         id: obj.departmentCode,
                         label: `${obj.departmentCode} - ${obj.departmentName}`,
                       }))} />
-                    <Field name="name" type="hidden" component="input" />
                     <TagValues name="suos.situations"
                       label="Situations"
                       mutatorpush={form.mutators.unshift}

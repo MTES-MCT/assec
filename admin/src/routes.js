@@ -3,7 +3,7 @@ import Alerts from './pages/Alerts';
 import Dashboard from './pages/Dashboard';
 import Departements from './pages/Departements';
 import Restrictions from './pages/Restrictions';
-import Contributors from './pages/Contributors';
+// import Contributors from './pages/Contributors';
 import Administrator from './pages/Administrator';
 
 export const routes = {
