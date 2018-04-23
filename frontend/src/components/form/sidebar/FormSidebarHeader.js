@@ -1,7 +1,7 @@
 import React from 'react';
 
 // application
-import { today } from './../../../core/utils';
+import { today } from './../../../core/utils/today';
 
 const FormSidebarHeader = () => (
   <div id="form-sidebar-header">

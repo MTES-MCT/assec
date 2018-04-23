@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // application
-import { usedebug } from './core/utils';
 import { loadForm } from './actions/form';
 import AppHeader from './components/AppHeader';
 import AppFooter from './components/AppFooter';
+import { usedebug } from './core/utils/usedebug';
 
 // routes
 import FormScreen from './components/pages/FormScreen';

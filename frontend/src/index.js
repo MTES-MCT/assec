@@ -10,7 +10,7 @@ import createHistory from 'history/createBrowserHistory';
 import './styles.css';
 import Page from './page';
 import { configure } from './store';
-import { usedebug } from './core/utils';
+import { usedebug } from './core/utils/usedebug';
 
 if (usedebug()) {
   /* eslint-disable */
