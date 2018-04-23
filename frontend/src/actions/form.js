@@ -6,6 +6,7 @@ import fields from './../datas/questions.json';
 import alerts from './../datas/alerts-83.json';
 import schema from './../datas/schemas-83.json';
 import DecisionTree from './../core/decision-tree';
+import { capitalize } from './../core/utils/capitalize';
 import { SUOS } from './../apolloql';
 import {
   FORM_NAME,
@@ -52,7 +53,9 @@ export const loadForm = client => (dispatch) => {
           ...question,
           values: suos[question.id].map(({ id, name }) => ({
             id,
-            name,
+            // FIXME -> ne pas utiliser le trim ici
+            // le trim doit venir la base de données
+            name: capitalize(name.trim()),
           })),
         };
       });
