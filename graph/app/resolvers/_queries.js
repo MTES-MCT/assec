@@ -37,6 +37,25 @@ export const Query = {
         if (err) return reject(err);
         return resolve(doc.suos);
       })),
+  // Queries pour le Frontend
+  hydrateDepartment: (_, { dpt }) =>
+    Promise.all([
+      Departement.findById(dpt),
+      ZoneModel.find({ dpt }),
+      Restriction.find({ dpt }),
+    ]).then(([doc, zones, restrictions]) => {
+      const result = Object.assign(
+        {},
+        {
+          zones,
+          restrictions,
+          usages: doc.suos.usages,
+          origines: doc.suos.origines,
+          situations: doc.suos.situations,
+        },
+      );
+      return result;
+    }),
 };
 
 export default Query;

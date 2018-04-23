@@ -53,9 +53,20 @@ type ZoneType {
 }
 `;
 
+const hydrated = `
+  type HydratedType {
+    usages: [SUOType]!
+    zones: [ZoneType]!
+    origines: [SUOType]!
+    situations: [SUOType]!
+    restrictions: [RestrictionType]!
+  }
+`;
+
 const typeDefs = `
 ${suos}
 ${zone}
+${hydrated}
 ${restriction}
 ${departement}
 `;

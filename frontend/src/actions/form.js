@@ -1,13 +1,13 @@
 import { reset } from 'redux-form';
 
 // application
-import zones from './../datas/zones';
-import fields from './../datas/questions.json';
+// import zones from './../datas/zones';
+import questions from './../datas/questions.json';
 import alerts from './../datas/alerts-83.json';
 import schema from './../datas/schemas-83.json';
 import DecisionTree from './../core/decision-tree';
 import { capitalize } from './../core/utils/capitalize';
-import { SUOS } from './../apolloql';
+import { HYDRATE_DEPARTMENT } from './../apolloql';
 import {
   FORM_NAME,
   FORM_RESET,
@@ -43,22 +43,37 @@ export const formReset = () => (dispatch) => {
 
 export const loadForm = client => (dispatch) => {
   client
-    .query({ query: SUOS, variables: { dpt: '5ad84a9f73150f000eeaf0d0' } })
-    .then(({ data: { suos } }) => {
-      const questions = fields.map((question) => {
-        if (question.id === 'zones') {
-          return { ...question, values: zones };
-        }
-        return {
-          ...question,
-          values: suos[question.id].map(({ id, name }) => ({
-            id,
-            // FIXME -> ne pas utiliser le trim ici
-            // le trim doit venir la base de données
-            name: capitalize(name.trim()),
-          })),
-        };
-      });
-      dispatch({ type: FIELDS_LOADED, fields: questions, alerts });
+    .query({
+      query: HYDRATE_DEPARTMENT,
+      variables: { dpt: '5ad84a9f73150f000eeaf0d0' },
+    })
+    .then(({ data: { hydrateDepartment } }) => {
+      const fields = questions
+        .map((question) => {
+          if (!hydrateDepartment[question.id]) return false;
+          const values = hydrateDepartment[question.id];
+          return {
+            ...question,
+            values:
+              values.map((value) => {
+                let obj = {
+                  id: value.id,
+                  // FIXME -> doit pas etre capitalized ici
+                  // mais depuis la base de donnees ou l'input user
+                  name: capitalize(value.name.trim()),
+                };
+                if (value.geojson) {
+                  obj = Object.assign({}, obj, {
+                    // FIXME -> doit pas etre parse en JSON ici
+                    // mais depuis la base de donnees
+                    geojson: JSON.parse(value.geojson) || value.geojson,
+                  });
+                }
+                return obj;
+              }) || [],
+          };
+        })
+        .filter(v => v);
+      dispatch({ type: FIELDS_LOADED, fields, alerts });
     });
 };

@@ -1,47 +1,10 @@
 import gql from 'graphql-tag';
 
-export const GET_DEPARTMENT = gql(`
-query restriction (
+export const HYDRATE_DEPARTMENT = gql(`
+query hydrateDepartment (
   $dpt: ID!
 ) {
-  restriction (
-    dpt: $dpt
-  ) {
-    id
-    dpt
-    suos
-    title
-    zones
-    restrictions
-  }
-}
-`);
-
-export const DPT_RESTRICTIONS = gql(`
-query restrictions (
-  $dpt: ID
-) {
-  restrictions (
-    dpt: $dpt
-  ) {
-    id
-    dpt
-    slug
-    title
-    usages
-    origines
-    situations
-    description
-    information
-  }
-}
-`);
-
-export const SUOS = gql(`
-query suos (
-  $dpt: ID
-) {
-  suos (
+  hydrateDepartment (
     dpt: $dpt
   ) {
     usages {
@@ -56,25 +19,23 @@ query suos (
       id
       name
     }
+    zones {
+      id
+      name
+      help
+      order
+      geojson
+    }
+    restrictions {
+      id
+      title
+      usages
+      origines
+      situations
+      description
+    }
   }
 }
 `);
 
-export const GET_RESTRICTION = gql(`
-query restriction (
-  $id: ID!
-) {
-  restriction (
-    id: $id
-  ) {
-    id
-    dpt
-    title
-    usages
-    origines
-    situations
-    description
-    information
-  }
-}
-`);
+export default HYDRATE_DEPARTMENT;

@@ -19,7 +19,15 @@ const defaults = (state = {}, action) => {
   case FIELDS_LOADED:
     return action.fields.reduce(
       // take first value from field as default value
-      (acc, { id, values }) => Object.assign({}, acc, { [id]: values[0].id }),
+      (acc, obj) => {
+        const value =
+            (obj &&
+              obj.id &&
+              obj.values &&
+              obj.values[0] && { [obj.id]: obj.values[0].id }) ||
+            {};
+        return Object.assign({}, acc, value);
+      },
       {},
     );
   default:

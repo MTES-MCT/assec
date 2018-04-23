@@ -6,6 +6,7 @@ type Query {
   department(id: ID): DepartementType
   restriction(id: ID): RestrictionType
   restrictions(dpt: ID): [RestrictionType]
+  hydrateDepartment(dpt: ID): HydratedType
 }
 `;
 
