@@ -17,10 +17,11 @@ input AlerteInput {
 }
 
 input ZoneInput {
-  name: String
+  dpt: ID!
   help: String
+  name: String!
+  order: String!
   geojson: String
-  department: ID!
   alerte: [AlerteInput]
 }
 

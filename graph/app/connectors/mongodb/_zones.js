@@ -7,12 +7,13 @@ const ZoneSchema = new Schema({
     required: true,
   },
   order: {
+    default: '0',
     type: String,
-    required: true,
   },
   help: {
+    default: '',
     type: String,
-    required: true,
+    nullable: true,
   },
   geojson: {
     type: String,
@@ -23,7 +24,7 @@ const ZoneSchema = new Schema({
     start_date: { type: String },
     situation: { type: Schema.Types.ObjectId },
   },
-  department: Schema.Types.ObjectId,
+  dpt: Schema.Types.ObjectId,
 });
 
 ZoneSchema.virtual('slug').get(function virtualslug () {

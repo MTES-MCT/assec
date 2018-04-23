@@ -28,7 +28,7 @@ export const Query = {
     });
   },
   */
-  zones: (_, { dpt }) => (dpt && ZoneModel.find({ department: dpt })) || null,
+  zones: (_, { dpt }) => (dpt && ZoneModel.find({ dpt })) || null,
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
   restrictions: (_, { dpt }) => (dpt && Restriction.find({ dpt })) || [],
   suos: (_, { dpt }) =>

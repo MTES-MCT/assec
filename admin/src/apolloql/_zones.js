@@ -5,31 +5,24 @@ import { DPT_ZONES } from './queries';
 export const CREATE_ZONE = gql(`
 mutation createZone(
   $dpt: ID!
-  $title: String!
-  $usages: [String]!
-  $origines: [String]!
-  $information: String
-  $description: String!
-  $situations: [String]!
+  $help: String
+  $name: String!
+  $order: String!
+  $geojson: String!
 ) {
   createZone(
     dpt: $dpt
-    title: $title
-    usages: $usages
-    origines: $origines
-    situations: $situations
-    description: $description
-    information: $information
+    name: $name
+    help: $help
+    order: $order
+    geojson: $geojson
   ) {
     id
     dpt
-    slug
-    title
-    usages
-    origines
-    situations
-    description
-    information
+    help
+    name
+    order
+    geojson
   }
 }
 `);
@@ -42,7 +35,7 @@ mutation deleteZone (
     id: $id
   ) {
     id
-    department
+    dpt
   }
 }
 `);
@@ -69,7 +62,7 @@ export const UPDATE_DPT_ZONES = (store, { data }) => {
   //     (dpt.id === data.updateZone.id ? data.updateZone.id : dpt));
   // }
   if (data.deleteZone) {
-    const { department: dpt, id } = data.deleteZone;
+    const { dpt, id } = data.deleteZone;
     const zones = getCurrentZones(store, dpt);
     entries = zones.filter(obj => obj.id !== id);
     variables = { dpt };

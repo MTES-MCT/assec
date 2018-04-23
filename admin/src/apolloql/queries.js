@@ -32,11 +32,11 @@ query zones (
     dpt: $dpt
   ) {
     id
+    dpt
     name
     help
     order
     geojson
-    department
   }
 }
 `);
