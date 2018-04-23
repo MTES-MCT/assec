@@ -27,6 +27,7 @@
     "build": "sh ./.scripts/yarn-build",
     "compose": "docker-compose -f docker-compose.yml -p assec up --build",
     "dump": "fab dump",
+    "dump:local": "mongodump --archive=backups/local.gz --gzip --db assec",
     "deploy": "fab deploy",
     "import:local": "mongorestore --gzip --archive=backups/assec.gz"
   },
