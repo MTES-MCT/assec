@@ -1,12 +1,17 @@
 // import omit from 'lodash.omit';
-import { ZoneModel, Departement, Restriction } from './drivers/mongodb';
+import {
+  SUOModel,
+  ZoneModel,
+  Departement,
+  Restriction,
+} from './drivers/mongodb';
 
 export const Query = {
   departments: () =>
     Departement.find()
-      .populate('suos.usages')
-      .populate('suos.origines')
-      .populate('suos.situations')
+      .populate('usages')
+      .populate('origines')
+      .populate('situations')
       .exec(),
   department: (_, { id }) => (id && Departement.findById(id)) || null,
   /*

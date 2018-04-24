@@ -5,30 +5,32 @@ import { ALL_DEPARTMENTS } from './queries';
 export const CREATE_DEPARTMENT = gql(`
 mutation createDepartement(
   $code: String!
-  $name: String!
-  $suos: SUOSInput!
+  $label: String!
+  $usages: [SUOInput]!
+  $origines: [SUOInput]!
+  $situations: [SUOInput]!
 ) {
   createDepartement(
     code: $code
-    name: $name
-    suos: $suos
+    label: $label
+    usages: $usages
+    origines: $origines
+    situations: $situations
   ) {
     id
     code
-    name
-    suos {
-      usages {
-        id
-        name
-      }
-      origines {
-        id
-        name
-      }
-      situations {
-        id
-        name
-      }
+    label
+    usages {
+      id
+      label
+    }
+    origines {
+      id
+      label
+    }
+    situations {
+      id
+      label
     }
   }
 }
@@ -57,19 +59,19 @@ mutation updateDepartement(
   ) {
     id
     code
-    name
+    label
     suos {
       usages {
         id
-        name
+        label
       }
       origines {
         id
-        name
+        label
       }
       situations {
         id
-        name
+        label
       }
     }
   }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 const Tag = ({ name, onClick, mode }) => (
-  <Field name={`${name}.name`}
+  <Field name={`${name}.value`}
     render={({ input }) => (
       <button type="button" className="tag" onClick={onClick}>
         <span>{input.value}</span>

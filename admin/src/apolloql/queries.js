@@ -6,19 +6,17 @@ export const ALL_DEPARTMENTS = gql(`
       id
       code
       label
-      suos {
-        usages {
-          id
-          label
-        }
-        origines {
-          id
-          label
-        }
-        situations {
-          id
-          label
-        }
+      usages {
+        id
+        label
+      }
+      origines {
+        id
+        label
+      }
+      situations {
+        id
+        label
       }
     }
   }

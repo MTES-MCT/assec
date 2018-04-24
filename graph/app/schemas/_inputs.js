@@ -27,9 +27,11 @@ input ZoneInput {
 
 input DepartementInput {
   id: ID
-  code: String
-  label: String
-  suos: SUOSInput
+  code: String!
+  label: String!
+  usages: [SUOInput]!
+  origines: [SUOInput]!
+  situations: [SUOInput]!
 }
 `;
 

@@ -17,40 +17,50 @@ import SelectBox from './../../components/forms/SelectBox';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const calculator = createDecorator({
-  // permet de calculer une valeur en fonction
-  // d'une autre, ici c'est le code du département
-  // qui permet d'en sélectionner son nom dans liste
-  // prédéfinies des departements.json
+  // permet de calculer une valeur en fonction d'une autre
   field: 'code',
   updates: {
-    name: code => (!code || code === '' ? '' : dptsutils.get.name(code)),
+    // ici c'est le code du département
+    // qui permet de récupérer son nom dans la liste
+    // prédéfinies des departements.json
+    label: code => (!code || code === '' ? '' : dptsutils.get.name(code)),
   },
 });
 
-const validateSUOS = (suos) => {
+const validatesuos = (suos) => {
   // vérifie que tous les champs validations
   // contiennent au moins une valeur
   const results = Object.keys(suos).filter(key => suos[key].length > 0);
   return results.length === 3;
 };
 
+const parsesuos = suos =>
+  // transforme les valeurs SUOS du formulaire
+  // pour etre exploitable par graphql { value } -> { label }
+  Object.keys(suos).reduce((acc, key) => {
+    const dest = suos[key].map(({ value: label }) => ({ label }));
+    return Object.assign({}, acc, { [key]: dest });
+  }, {});
+
 const validator = (values) => {
+  // valide que les valeurs du formulaire
+  // sont OK avec ce que l'on attend
   const errors = {};
   if (!values.code || values.code === '') {
     errors.code = 'Required';
   }
-  if (!values.name || values.name === '') {
-    errors.name = 'Required';
+  if (!values.label || values.label === '') {
+    errors.label = 'Required';
   }
-  if (!values.suos || !validateSUOS(values.suos)) {
+  if (!values.suos || !validatesuos(values.suos)) {
     errors.suos = 'Required';
   }
   return errors;
 };
 
 const initialValues = {
-  name: '',
   code: '',
+  label: '',
   suos: {
     usages: [],
     origines: [],
@@ -70,17 +80,19 @@ const DepartementForm = () => (
               validate={validator}
               decorators={[calculator]}
               initialValues={initialValues}
-              onSubmit={(values, form) =>
-                createDepartement({ variables: values })
+              onSubmit={({ suos, ...base }, form) => {
+                const psuos = parsesuos(suos);
+                const variables = { ...base, ...psuos };
+                return createDepartement({ variables })
                   .then(() => form.reset())
-                  .catch(() => {})
-              }
+                  .catch(() => {});
+              }}
               render={({
                 form, invalid, pristine, handleSubmit,
               }) => (
                 <form onSubmit={handleSubmit} className="mb20">
                   <fieldset>
-                    <Field name="name" type="hidden" component="input" />
+                    <Field name="label" type="hidden" component="input" />
                     <Legend label="Ajouter un département" />
                     <SelectBox name="code"
                       label="Département"

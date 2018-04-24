@@ -17,7 +17,9 @@ type DepartementType {
   code: String!
   slug: String!
   label: String!
-  suos: SUOSType!
+  usages: [SUOType]!
+  origines: [SUOType]!
+  situations: [SUOType]!
 }
 `;
 

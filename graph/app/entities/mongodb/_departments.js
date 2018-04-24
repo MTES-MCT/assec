@@ -11,11 +11,9 @@ const DepartementSchema = new Schema(
       type: String,
       required: true,
     },
-    suos: {
-      usages: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
-      origines: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
-      situations: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
-    },
+    usages: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
+    origines: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
+    situations: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
   },
   {
     timestamps: {
