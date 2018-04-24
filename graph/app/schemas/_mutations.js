@@ -19,10 +19,10 @@ type Mutation {
   ): RestrictionType
 
   createZone(
-    dpt: ID!
     help: String
     label: String!
     order: String!
+    department: ID!
     geojson: String!
     alerte: [AlerteInput]
   ): ZoneType

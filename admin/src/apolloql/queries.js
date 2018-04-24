@@ -37,8 +37,8 @@ query departmentZones (
     department
     alerte {
       end_date
-      start_date
       situation
+      start_date
     }
   }
 }
@@ -122,10 +122,10 @@ query restriction (
     id: $id
   ) {
     id
-    dpt
     title
     usages
     origines
+    department
     situations
     description
     information

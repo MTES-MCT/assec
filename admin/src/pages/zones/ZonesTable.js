@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 // application
 import {
-  GET_DEPARTMENT_ZONES,
   DELETE_ZONE,
-  UPDATE_DPT_ZONES,
+  GET_DEPARTMENT_ZONES,
+  UPDATE_DEPARTMENT_ZONES,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
 
@@ -45,8 +45,8 @@ class ZonesTable extends React.PureComponent {
       popin: {
         id,
         alerte,
+        department,
         name: label,
-        dpt: department,
         type: 'ZonePopin',
       },
     });
@@ -61,7 +61,7 @@ class ZonesTable extends React.PureComponent {
         name: label,
         type: 'DeletePopin',
         deleteAction: DELETE_ZONE,
-        updateAction: UPDATE_DPT_ZONES,
+        updateAction: UPDATE_DEPARTMENT_ZONES,
       },
     });
   }

@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 
 // application
-import { CREATE_ZONE, UPDATE_DPT_ZONES } from './../../apolloql';
+import { CREATE_ZONE, UPDATE_DEPARTMENT_ZONES } from './../../apolloql';
 import Legend from './../../components/forms/Legend';
 import TextArea from './../../components/forms/TextArea';
 import TextInput from './../../components/forms/TextInput';
@@ -13,8 +13,8 @@ import SubmitButton from './../../components/forms/SubmitButton';
 
 const validator = (values) => {
   const errors = {};
-  if (!values.name || values.name === '') {
-    errors.name = 'Required';
+  if (!values.label || values.label === '') {
+    errors.label = 'Required';
   }
   if (!values.geojson || values.geojson === '') {
     errors.geojson = 'Required';
@@ -23,17 +23,17 @@ const validator = (values) => {
 };
 
 const initialValues = {
-  name: '',
   help: '',
   order: 0,
+  label: '',
   geojson: '',
 };
 
 const ZonesForm = ({ selected }) => (
-  <Mutation mutation={CREATE_ZONE} update={UPDATE_DPT_ZONES}>
+  <Mutation mutation={CREATE_ZONE} update={UPDATE_DEPARTMENT_ZONES}>
     {(createZone, result) => (
       <Form validate={validator}
-        initialValues={{ ...initialValues, dpt: selected }}
+        initialValues={{ ...initialValues, department: selected }}
         onSubmit={(values, form) => {
           const variables = {
             ...values,
@@ -50,10 +50,10 @@ const ZonesForm = ({ selected }) => (
           return (
             <form onSubmit={handleSubmit} className="mb20">
               <fieldset>
-                <Field name="dpt" type="hidden" component="input" />
+                <Field name="department" type="hidden" component="input" />
                 <Legend label="Ajouter une zone" />
                 <TextInput disabled={disabled}
-                  name="name"
+                  name="label"
                   label="Nom de la zone" />
                 <NumberInput disabled={disabled}
                   name="order"

@@ -63,10 +63,6 @@ export const UPDATE_DEPARTMENT_RESTRICTIONS = (store, { data }) => {
     entries = restrictions.concat([data.createRestriction]);
     variables = { department };
   }
-  // if (data.updateRestriction) {
-  //   entries = restrictions.map(dpt =>
-  //     (dpt.id === data.updateRestriction.id ? data.updateRestriction.id : dpt));
-  // }
   if (data.deleteRestriction) {
     const { department, id } = data.deleteRestriction;
     const restrictions = getCurrentRestrictions(store, department);

@@ -4,26 +4,30 @@ import { GET_DEPARTMENT_ZONES } from './queries';
 
 export const CREATE_ZONE = gql(`
 mutation createZone(
-  $dpt: ID!
   $help: String
-  $name: String!
+  $label: String!
   $order: String!
+  $department: ID!
   $geojson: String!
 ) {
   createZone(
-    dpt: $dpt
-    name: $name
     help: $help
+    label: $label
     order: $order
     geojson: $geojson
+    department: $department
   ) {
     id
-    dpt
     help
     label
     order
-    alerte
     geojson
+    department
+    alerte {
+      end_date
+      situation
+      start_date
+    }
   }
 }
 `);
@@ -38,11 +42,11 @@ mutation updateZoneAlerte (
     alerte: $alerte
   ) {
     id
-    dpt
     help
     name
     order
     geojson
+    department
     alerte {
       end_date
       start_date
@@ -60,7 +64,7 @@ mutation deleteZone (
     id: $id
   ) {
     id
-    dpt
+    department
   }
 }
 `);
@@ -73,26 +77,26 @@ const getCurrentZones = (store, department) => {
   return data.departmentZones;
 };
 
-export const UPDATE_DPT_ZONES = (store, { data }) => {
+export const UPDATE_DEPARTMENT_ZONES = (store, { data }) => {
   let entries = [];
   let variables = {};
   if (data.createZone) {
-    const { dpt } = data.createZone;
-    const zones = getCurrentZones(store, dpt);
+    const { department } = data.createZone;
+    const zones = getCurrentZones(store, department);
     entries = zones.concat([data.createZone]);
-    variables = { dpt };
+    variables = { department };
   }
   if (data.updateZoneAlerte) {
-    const { id, dpt, alerte } = data.updateZoneAlerte;
-    const zones = getCurrentZones(store, dpt);
+    const { id, department, alerte } = data.updateZoneAlerte;
+    const zones = getCurrentZones(store, department);
     entries = zones.map(obj => (obj.id !== id ? obj : Object.assign({}, obj, { alerte })));
-    variables = { dpt };
+    variables = { department };
   }
   if (data.deleteZone) {
-    const { dpt, id } = data.deleteZone;
-    const zones = getCurrentZones(store, dpt);
+    const { department, id } = data.deleteZone;
+    const zones = getCurrentZones(store, department);
     entries = zones.filter(obj => obj.id !== id);
-    variables = { dpt };
+    variables = { department };
   }
   store.writeQuery({
     variables,

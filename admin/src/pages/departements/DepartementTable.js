@@ -55,21 +55,21 @@ class DepartementTable extends React.PureComponent {
     });
   }
 
-  renderTableRow (dpt) {
-    const { id, code, label } = dpt;
+  renderTableRow (department) {
+    const { id, code, label } = department;
     return (
       <tr key={id}>
         <td className="small">{code}</td>
         <td>{label}</td>
         {/* <td className="small">
-          <button type="button" onClick={() => this.onEditClick(dpt)}>
+          <button type="button" onClick={() => this.onEditClick(department)}>
             <i className="icon icon-pencil" />
           </button>
         </td> */}
         <td className="small">
           <button type="button"
             className="danger"
-            onClick={() => this.onDeleteClick(dpt)}>
+            onClick={() => this.onDeleteClick(department)}>
             <i className="icon icon-trash" />
           </button>
         </td>

@@ -6,7 +6,7 @@ import { Query, Mutation } from 'react-apollo';
 // application
 import {
   GET_DEPARTMENT_SUOS,
-  UPDATE_DPT_ZONES,
+  UPDATE_DEPARTMENT_ZONES,
   UPDATE_ZONE_ALERTE,
 } from './../../apolloql';
 import RadioGroup from './../../components/forms/RadioGroup';
@@ -14,15 +14,16 @@ import CloseButton from './../../components/popins/CloseButton';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const ZonePopin = ({
-  dpt, id, name, alerte, onClose,
+  department, id, name, alerte, onClose,
 }) => (
-  <Query query={GET_DEPARTMENT_SUOS} variables={{ dpt }}>
+  <Query query={GET_DEPARTMENT_SUOS} variables={{ department }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
       const { situations } = data.suos;
       return (
-        <Mutation mutation={UPDATE_ZONE_ALERTE} update={UPDATE_DPT_ZONES}>
+        <Mutation mutation={UPDATE_ZONE_ALERTE}
+          update={UPDATE_DEPARTMENT_ZONES}>
           {(updateZoneAlerte, result) => (
             <div id="edit-popin" className="popin-inner">
               <CloseButton onClose={onClose} />
@@ -68,10 +69,10 @@ const ZonePopin = ({
 
 ZonePopin.propTypes = {
   id: PropTypes.string.isRequired,
-  dpt: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
   alerte: PropTypes.object.isRequired,
+  department: PropTypes.string.isRequired,
 };
 
 export default ZonePopin;

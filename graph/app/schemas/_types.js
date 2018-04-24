@@ -31,8 +31,8 @@ type RestrictionType {
   department: ID!
   origines: [ID]!
   situations: [ID]!
-  description: String!
   information: String
+  description: String!
 }
 `;
 
