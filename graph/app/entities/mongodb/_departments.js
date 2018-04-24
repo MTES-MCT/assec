@@ -7,7 +7,7 @@ const DepartementSchema = new Schema(
       type: String,
       required: true,
     },
-    name: {
+    label: {
       type: String,
       required: true,
     },
@@ -26,7 +26,7 @@ const DepartementSchema = new Schema(
 );
 
 DepartementSchema.virtual('slug').get(function virtualslug () {
-  return slugify(this.name);
+  return slugify(this.label);
 });
 
 export const Departement = Mongoose.model('departments', DepartementSchema);

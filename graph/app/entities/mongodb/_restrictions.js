@@ -3,7 +3,7 @@ import { slugify } from './../../utils/slugify';
 
 const RestrictionSchema = new Schema(
   {
-    title: {
+    label: {
       type: String,
       required: true,
     },
@@ -14,10 +14,10 @@ const RestrictionSchema = new Schema(
     information: {
       type: String,
     },
-    usages: [String],
-    origines: [String],
-    situations: [String],
-    dpt: Schema.Types.ObjectId,
+    usages: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
+    origines: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
+    situations: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
+    department: { type: Schema.Types.ObjectId, ref: 'departments' },
   },
   {
     timestamps: {
@@ -28,7 +28,7 @@ const RestrictionSchema = new Schema(
 );
 
 RestrictionSchema.virtual('slug').get(function virtualslug () {
-  return slugify(this.name);
+  return slugify(this.label);
 });
 
 export const Restriction = Mongoose.model('restrictions', RestrictionSchema);

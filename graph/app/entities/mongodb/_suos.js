@@ -3,10 +3,11 @@ import { slugify } from './../../utils/slugify';
 
 const SUOSchema = new Schema(
   {
-    name: {
+    label: {
       type: String,
       required: true,
     },
+    department: { type: Schema.Types.ObjectId, ref: 'departments' },
   },
   {
     timestamps: {
@@ -17,7 +18,7 @@ const SUOSchema = new Schema(
 );
 
 SUOSchema.virtual('slug').get(function virtualslug () {
-  return slugify(this.name);
+  return slugify(this.label);
 });
 
 export const SUOModel = Mongoose.model('suos', SUOSchema);

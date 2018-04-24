@@ -3,7 +3,7 @@ import { slugify } from './../../utils/slugify';
 
 const ZoneSchema = new Schema(
   {
-    name: {
+    label: {
       type: String,
       required: true,
     },
@@ -21,7 +21,7 @@ const ZoneSchema = new Schema(
       required: true,
     },
     alerte: {
-      situation: { type: Schema.Types.ObjectId },
+      situation: { type: Schema.Types.ObjectId, ref: 'suos' },
       end_date: {
         type: Date,
         nullable: true,
@@ -35,7 +35,7 @@ const ZoneSchema = new Schema(
         default: Date.now,
       },
     },
-    dpt: Schema.Types.ObjectId,
+    department: { type: Schema.Types.ObjectId, ref: 'departments' },
   },
   {
     timestamps: {
@@ -46,7 +46,7 @@ const ZoneSchema = new Schema(
 );
 
 ZoneSchema.virtual('slug').get(function virtualslug () {
-  return slugify(this.name);
+  return slugify(this.label);
 });
 
 export const ZoneModel = Mongoose.model('zones', ZoneSchema);
