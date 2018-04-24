@@ -44,7 +44,7 @@ class DepartementTable extends React.PureComponent {
   onDeleteClick ({ id, label }) {
     const popin = {
       id,
-      label,
+      name: label,
       type: 'DeletePopin',
       deleteAction: DELETE_DEPARTMENT,
       updateAction: UPDATE_DEPARTMENTS,
