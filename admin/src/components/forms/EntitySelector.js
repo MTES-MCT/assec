@@ -25,7 +25,7 @@ const EntitySelector = ({ query, onChange }) => (
               {dpts &&
                 dpts.map(obj => (
                   <option key={obj.id} value={obj.id}>
-                    {`${obj.code} - ${obj.name}`}
+                    {`${obj.code} - ${obj.label}`}
                   </option>
                 ))}
             </select>
