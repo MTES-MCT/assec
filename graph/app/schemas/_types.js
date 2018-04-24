@@ -1,7 +1,7 @@
 const suos = `
 type SUOType {
   id: ID!
-  name: String!
+  label: String!
 }
 
 type SUOSType {
@@ -15,8 +15,8 @@ const departement = `
 type DepartementType {
   id: ID!
   code: String!
-  name: String!
   slug: String!
+  label: String!
   suos: SUOSType!
 }
 `;
@@ -26,11 +26,11 @@ type RestrictionType {
   id: ID!
   dpt: ID!
   slug: String!
-  title: String!
-  usages: [String]!
-  origines: [String]!
+  label: String!
+  usages: [ID]!
+  origines: [ID]!
+  situations: [ID]!
   description: String!
-  situations: [String]!
   information: String
 }
 `;
@@ -46,7 +46,7 @@ type ZoneType {
   id: ID!
   dpt: ID!
   help: String
-  name: String!
+  label: String!
   order: String!
   geojson: String!
   alerte: AlerteType

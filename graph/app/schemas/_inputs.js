@@ -1,7 +1,7 @@
 const inputsTypeDefs = `
 input SUOInput {
   id: ID
-  name: String!
+  label: String!
 }
 
 input SUOSInput {
@@ -19,7 +19,7 @@ input AlerteInput {
 input ZoneInput {
   dpt: ID!
   help: String
-  name: String!
+  label: String!
   order: String!
   geojson: String
   alerte: [AlerteInput]
@@ -28,7 +28,7 @@ input ZoneInput {
 input DepartementInput {
   id: ID
   code: String
-  name: String
+  label: String
   suos: SUOSInput
 }
 `;

@@ -2,13 +2,13 @@ export default `
 type Mutation {
   createDepartement(
     code: String!
-    name: String!
+    label: String!
     suos: SUOSInput!
   ): DepartementType
 
   createRestriction(
     dpt: ID!
-    title: String!
+    label: String!
     usages: [String]!
     origines: [String]!
     description: String!
@@ -19,7 +19,7 @@ type Mutation {
   createZone(
     dpt: ID!
     help: String
-    name: String!
+    label: String!
     order: String!
     geojson: String!
     alerte: [AlerteInput]

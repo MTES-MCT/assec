@@ -5,19 +5,19 @@ export const ALL_DEPARTMENTS = gql(`
     departments {
       id
       code
-      name
+      label
       suos {
         usages {
           id
-          name
+          label
         }
         origines {
           id
-          name
+          label
         }
         situations {
           id
-          name
+          label
         }
       }
     }
@@ -33,7 +33,7 @@ query zones (
   ) {
     id
     dpt
-    name
+    label
     help
     order
     geojson
@@ -75,15 +75,15 @@ query suos (
   ) {
     usages {
       id
-      name
+      label
     }
     origines {
       id
-      name
+      label
     }
     situations {
       id
-      name
+      label
     }
   }
 }
@@ -98,19 +98,19 @@ query department (
   ) {
     id
     code
-    name
+    label
     suos {
       usages {
         id
-        name
+        label
       }
       origines {
         id
-        name
+        label
       }
       situations {
         id
-        name
+        label
       }
     }
   }

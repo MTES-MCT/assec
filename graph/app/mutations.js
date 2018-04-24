@@ -39,9 +39,8 @@ export const Mutation = {
   },
   updateDepartement: (_, args) => {
     const { id } = args;
-    let rest = omit(args, ['id']);
+    const rest = omit(args, ['id']);
     const returnsnewdoc = { new: true };
-    if (rest && rest.name) rest = Object.assign({}, rest, { slug: rest.name });
     return Departement.findByIdAndUpdate(id, rest, returnsnewdoc);
   },
   // CREATES

@@ -20,7 +20,7 @@ mutation createZone(
     id
     dpt
     help
-    name
+    label
     order
     alerte
     geojson

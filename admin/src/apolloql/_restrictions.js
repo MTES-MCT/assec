@@ -5,7 +5,7 @@ import { DPT_RESTRICTIONS } from './queries';
 export const CREATE_RESTRICTION = gql(`
 mutation createRestriction(
   $dpt: ID!
-  $title: String!
+  $label: String!
   $usages: [String]!
   $origines: [String]!
   $information: String
@@ -14,7 +14,7 @@ mutation createRestriction(
 ) {
   createRestriction(
     dpt: $dpt
-    title: $title
+    label: $label
     usages: $usages
     origines: $origines
     situations: $situations
@@ -24,7 +24,7 @@ mutation createRestriction(
     id
     dpt
     slug
-    title
+    label
     usages
     origines
     situations
