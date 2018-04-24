@@ -1,3 +1,4 @@
+import pick from 'lodash.pick';
 // import omit from 'lodash.omit';
 import {
   SUOModel,
@@ -13,7 +14,21 @@ export const Query = {
       .populate('origines')
       .populate('situations')
       .exec(),
-  department: (_, { id }) => (id && Departement.findById(id)) || null,
+  restrictions: (_, { id }) => {
+    if (!id) return [];
+    return Restriction.find({ department: id })
+      .populate('usages')
+      .populate('origines')
+      .populate('situations')
+      .exec();
+  },
+  departmenSUOs: (_, { id }) =>
+    Departement.findById(id)
+      .populate('usages')
+      .populate('origines')
+      .populate('situations')
+      .exec()
+      .then(doc => pick(doc, ['usages', 'origines', 'situations'])),
   /*
   departments: () =>
     new Promise((resolve, reject) => {
@@ -39,14 +54,8 @@ export const Query = {
   },
   */
   zones: (_, { dpt }) => (dpt && ZoneModel.find({ dpt })) || null,
+  department: (_, { id }) => (id && Departement.findById(id)) || null,
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
-  restrictions: (_, { dpt }) => (dpt && Restriction.find({ dpt })) || [],
-  suos: (_, { dpt }) =>
-    new Promise((resolve, reject) =>
-      Departement.findById(dpt, (err, doc) => {
-        if (err) return reject(err);
-        return resolve(doc.suos);
-      })),
   // Queries pour le Frontend
   findRestictionByCriteria: (_, { zones, usages, origines }) =>
     ZoneModel.findById(zones).then((found) => {

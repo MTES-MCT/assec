@@ -44,19 +44,18 @@ query zones (
 }
 `);
 
-export const DPT_RESTRICTIONS = gql(`
+export const GET_DEPARTMENT_RESTRICTIONS = gql(`
 query restrictions (
-  $dpt: ID
+  $id: ID
 ) {
   restrictions (
-    dpt: $dpt
+    id: $id
   ) {
     id
-    dpt
-    slug
-    title
+    label
     usages
     origines
+    department
     situations
     description
     information
@@ -64,12 +63,12 @@ query restrictions (
 }
 `);
 
-export const SUOS = gql(`
-query suos (
-  $dpt: ID
+export const GET_DEPARTMENT_SUOS = gql(`
+query departmenSUOs (
+  $id: ID
 ) {
-  suos (
-    dpt: $dpt
+  departmenSUOs (
+    id: $id
   ) {
     usages {
       id

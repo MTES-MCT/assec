@@ -26,10 +26,9 @@ type DepartementType {
 const restriction = `
 type RestrictionType {
   id: ID!
-  dpt: ID!
-  slug: String!
-  label: String!
   usages: [ID]!
+  label: String!
+  department: ID!
   origines: [ID]!
   situations: [ID]!
   description: String!

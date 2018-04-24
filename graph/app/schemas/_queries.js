@@ -1,11 +1,11 @@
 const queriesDefs = `
 type Query {
-  suos(dpt: ID): SUOSType
   zones(dpt: ID): [ZoneType]
   departments: [DepartementType]
+  departmenSUOs(id: ID): SUOSType
   department(id: ID): DepartementType
   restriction(id: ID): RestrictionType
-  restrictions(dpt: ID): [RestrictionType]
+  restrictions(id: ID): [RestrictionType]
   hydrateDepartment(dpt: ID): HydratedType
   findRestictionByCriteria(
     dpt: ID

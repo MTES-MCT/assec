@@ -5,7 +5,7 @@ import { Query, Mutation } from 'react-apollo';
 
 // application
 import {
-  SUOS,
+  GET_DEPARTMENT_SUOS,
   CREATE_RESTRICTION,
   UPDATE_DPT_RESTRICTIONS,
 } from './../../apolloql';
@@ -37,11 +37,11 @@ const validator = (values) => {
 };
 
 const RestrictionsForm = ({ selected }) => (
-  <Query query={SUOS} variables={{ dpt: selected }}>
+  <Query query={GET_DEPARTMENT_SUOS} variables={{ id: selected }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      const { suos } = data;
+      const { departmenSUOs } = data;
       return (
         <Mutation mutation={CREATE_RESTRICTION}
           update={UPDATE_DPT_RESTRICTIONS}>
@@ -70,7 +70,7 @@ const RestrictionsForm = ({ selected }) => (
                 const moredisabled =
                   pristine ||
                   result.loading ||
-                  !form.title === '' ||
+                  !form.label === '' ||
                   !(selected && selected !== null);
                 return (
                   <form onSubmit={handleSubmit} className="mb40">
@@ -79,7 +79,7 @@ const RestrictionsForm = ({ selected }) => (
                       <Legend label="Ajouter une restriction" />
                       <Field name="dpt" type="hidden" component="input" />
                       <TextInput disabled={disabled}
-                        name="title"
+                        name="label"
                         label="Titre de la restriction" />
                       <TextArea disabled={moredisabled}
                         name="description"
@@ -88,17 +88,21 @@ const RestrictionsForm = ({ selected }) => (
                         display="inline"
                         label="Situation"
                         disabled={moredisabled}
-                        provider={(suos && suos.situations) || []} />
-                      <CheckboxGroup name="suos.usages"
+                        provider={
+                          (departmenSUOs && departmenSUOs.situations) || []
+                        } />
+                      <CheckboxGroup name="departmenSUOs.usages"
                         label="Usage"
                         display="inline"
                         disabled={moredisabled}
-                        provider={(suos && suos.usages) || []} />
-                      <CheckboxGroup name="suos.origines"
+                        provider={(departmenSUOs && departmenSUOs.usages) || []} />
+                      <CheckboxGroup name="departmenSUOs.origines"
                         label="Origine"
                         display="inline"
                         disabled={moredisabled}
-                        provider={(suos && suos.origines) || []} />
+                        provider={
+                          (departmenSUOs && departmenSUOs.origines) || []
+                        } />
                       <TextArea disabled={moredisabled}
                         name="information"
                         label="Plus d'informations pédagogiques"

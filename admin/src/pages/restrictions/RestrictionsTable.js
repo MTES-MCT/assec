@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 // application
 import {
-  DPT_RESTRICTIONS,
   DELETE_RESTRICTION,
+  GET_DEPARTMENT_RESTRICTIONS,
   UPDATE_DPT_RESTRICTIONS,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
@@ -38,22 +38,22 @@ class RestrictionsTable extends React.PureComponent {
   }
 
   // onCloneClick (obj) {
-  //   const { title, id } = obj;
-  //   const popin = { id, name: title, type: 'EditRestrictionsPopin' };
+  //   const { label, id } = obj;
+  //   const popin = { id, name: label, type: 'EditRestrictionsPopin' };
   //   this.props.dispatch({ type: 'onOpenPopin', popin });
   // }
   //
   // onEditClick (obj) {
-  //   const { title, id } = obj;
-  //   const popin = { id, name: title, type: 'EditRestrictionsPopin' };
+  //   const { label, id } = obj;
+  //   const popin = { id, name: label, type: 'EditRestrictionsPopin' };
   //   this.props.dispatch({ type: 'onOpenPopin', popin });
   // }
 
   onDeleteClick (obj) {
-    const { title, id } = obj;
+    const { label, id } = obj;
     const popin = {
       id,
-      name: title,
+      name: label,
       type: 'DeletePopin',
       deleteAction: DELETE_RESTRICTION,
       updateAction: UPDATE_DPT_RESTRICTIONS,
@@ -65,10 +65,10 @@ class RestrictionsTable extends React.PureComponent {
   }
 
   renderTableRow (obj) {
-    const { id, title } = obj;
+    const { id, label } = obj;
     return (
       <tr key={id}>
-        <td>{title}</td>
+        <td>{label}</td>
         {/* <td className="small">
           <button type="button" onClick={() => this.onCloneClick(obj)}>
             <i className="icon icon-clone" />
@@ -93,10 +93,13 @@ class RestrictionsTable extends React.PureComponent {
   render () {
     const { selected } = this.props;
     return (
-      <Query query={DPT_RESTRICTIONS} variables={{ dpt: selected }}>
+      <Query query={GET_DEPARTMENT_RESTRICTIONS} variables={{ id: selected }}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading... </p>;
           if (error) return <p>Error </p>;
+          // FIXME -> ajouter le loading dans le vue
+          // mais ne pas remplacer completement la vue
+          // par exemple afficher le "pas de données" + "Loading"
+          if (loading) return <p>Loading... </p>;
           const { restrictions } = data;
           if (!restrictions || !restrictions.length) {
             return renderNoRestrictions();

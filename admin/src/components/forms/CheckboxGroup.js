@@ -26,7 +26,7 @@ const CheckboxGroup = ({
                     value={obj.id}
                     type="checkbox"
                     component="input" />
-                  <span>{obj.name}</span>
+                  <span>{obj.label}</span>
                 </label>
               );
             })}

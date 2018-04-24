@@ -4,7 +4,11 @@ import { Form, Field } from 'react-final-form';
 import { Query, Mutation } from 'react-apollo';
 
 // application
-import { SUOS, UPDATE_DPT_ZONES, UPDATE_ZONE_ALERTE } from './../../apolloql';
+import {
+  GET_DEPARTMENT_SUOS,
+  UPDATE_DPT_ZONES,
+  UPDATE_ZONE_ALERTE,
+} from './../../apolloql';
 import RadioGroup from './../../components/forms/RadioGroup';
 import CloseButton from './../../components/popins/CloseButton';
 import SubmitButton from './../../components/forms/SubmitButton';
@@ -12,7 +16,7 @@ import SubmitButton from './../../components/forms/SubmitButton';
 const ZonePopin = ({
   dpt, id, name, alerte, onClose,
 }) => (
-  <Query query={SUOS} variables={{ dpt }}>
+  <Query query={GET_DEPARTMENT_SUOS} variables={{ dpt }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
