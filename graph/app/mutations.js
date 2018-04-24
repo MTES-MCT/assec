@@ -9,21 +9,7 @@ import {
 
 const suoskeys = ['situations', 'origines', 'usages'];
 
-const deleteEntity = (id, Model) =>
-  new Promise((resolve, reject) => {
-    Model.findByIdAndRemove(id, (err, doc) => {
-      if (err) {
-        reject(err);
-      } else if (!doc) {
-        const msg = `unable to find document with id: ${id}`;
-        reject(new Error(msg));
-      } else {
-        resolve(doc);
-      }
-    });
-  });
-
-const hydrateNewSUO = (obj, id) => ({
+const createSUO = (obj, id) => ({
   // cree un nouveau SUO
   // en definissant son departement de rattachement
   department: id,
@@ -40,9 +26,9 @@ export const Mutation = {
     const base = omit(args, suoskeys);
     const id = new Mongoose.Types.ObjectId();
     return Promise.all([
-      SUOModel.create(args.usages.map(o => hydrateNewSUO(o, id))),
-      SUOModel.create(args.origines.map(o => hydrateNewSUO(o, id))),
-      SUOModel.create(args.situations.map(o => hydrateNewSUO(o, id))),
+      SUOModel.create(args.usages.map(o => createSUO(o, id))),
+      SUOModel.create(args.origines.map(o => createSUO(o, id))),
+      SUOModel.create(args.situations.map(o => createSUO(o, id))),
     ]).then(([usages, origines, situations]) => {
       const doc = new Departement({ ...base, _id: id });
       doc.set('usages', usages);
@@ -83,6 +69,8 @@ export const Mutation = {
   ALERTE
 
   ----------------------------------- */
+  createZone: (_, args) => ZoneModel.create(args),
+  deleteZone: (_, args) => ZoneModel.findByIdAndRemove(args.id),
 
   // UPDATES
   updateZoneAlerte: (_, args) => {
@@ -91,10 +79,6 @@ export const Mutation = {
     const returnsnewdoc = { new: true };
     return ZoneModel.findByIdAndUpdate(id, rest, returnsnewdoc);
   },
-  // CREATES
-  createZone: (_, args) => ZoneModel.create(args),
-  // DELETES
-  deleteZone: (_, args) => deleteEntity(args.id, ZoneModel),
 };
 
 export default Mutation;
