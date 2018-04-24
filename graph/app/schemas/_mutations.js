@@ -9,12 +9,12 @@ type Mutation {
   ): DepartementType
 
   createRestriction(
-    dpt: ID!
     label: String!
-    usages: [String]!
-    origines: [String]!
+    usages: [ID]!
+    origines: [ID]!
+    department: ID!
+    situations: [ID]!
     description: String!
-    situations: [String]!
     information: String
   ): RestrictionType
 

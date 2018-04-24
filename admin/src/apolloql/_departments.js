@@ -80,18 +80,18 @@ mutation updateDepartement(
 
 export const UPDATE_DEPARTMENTS = (store, { data }) => {
   let dpts = [];
-  const { departments } = store.readQuery({
+  const { departments: current } = store.readQuery({
     query: ALL_DEPARTMENTS,
   });
   if (data.createDepartement) {
-    dpts = departments.concat([data.createDepartement]);
+    dpts = current.concat([data.createDepartement]);
   }
   if (data.updateDepartement) {
-    dpts = departments.map(dpt =>
+    dpts = current.map(dpt =>
       (dpt.id === data.updateDepartement.id ? data.updateDepartement.id : dpt));
   }
   if (data.deleteDepartment) {
-    dpts = departments.filter(({ id }) => id !== data.deleteDepartment.id);
+    dpts = current.filter(({ id }) => id !== data.deleteDepartment.id);
   }
   store.writeQuery({
     query: ALL_DEPARTMENTS,

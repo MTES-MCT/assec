@@ -4,29 +4,28 @@ import { GET_DEPARTMENT_RESTRICTIONS } from './queries';
 
 export const CREATE_RESTRICTION = gql(`
 mutation createRestriction(
-  $dpt: ID!
   $label: String!
-  $usages: [String]!
-  $origines: [String]!
+  $usages: [ID]!
+  $origines: [ID]!
+  $department: ID!
+  $situations: [ID]!
   $information: String
   $description: String!
-  $situations: [String]!
 ) {
   createRestriction(
-    dpt: $dpt
     label: $label
     usages: $usages
     origines: $origines
+    department: $department
     situations: $situations
     description: $description
     information: $information
   ) {
     id
-    dpt
-    slug
     label
     usages
     origines
+    department
     situations
     description
     information
@@ -42,37 +41,36 @@ mutation deleteRestriction (
     id: $id
   ) {
     id
-    dpt
   }
 }
 `);
 
-const getCurrentRestrictions = (store, dpt) => {
+const getCurrentRestrictions = (store, department) => {
   const data = store.readQuery({
-    variables: { dpt },
+    variables: { id: department },
     query: GET_DEPARTMENT_RESTRICTIONS,
   });
   return data.restrictions;
 };
 
-export const UPDATE_DPT_RESTRICTIONS = (store, { data }) => {
+export const UPDATE_DEPARTMENT_RESTRICTIONS = (store, { data }) => {
   let entries = [];
   let variables = {};
   if (data.createRestriction) {
-    const { dpt } = data.createRestriction;
-    const restrictions = getCurrentRestrictions(store, dpt);
+    const { department } = data.createRestriction;
+    const restrictions = getCurrentRestrictions(store, department);
     entries = restrictions.concat([data.createRestriction]);
-    variables = { dpt };
+    variables = { id: department };
   }
   // if (data.updateRestriction) {
   //   entries = restrictions.map(dpt =>
   //     (dpt.id === data.updateRestriction.id ? data.updateRestriction.id : dpt));
   // }
   if (data.deleteRestriction) {
-    const { dpt, id } = data.deleteRestriction;
-    const restrictions = getCurrentRestrictions(store, dpt);
+    const { department, id } = data.deleteRestriction;
+    const restrictions = getCurrentRestrictions(store, department);
     entries = restrictions.filter(obj => obj.id !== id);
-    variables = { dpt };
+    variables = { id: department };
   }
   store.writeQuery({
     variables,

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import {
   DELETE_RESTRICTION,
   GET_DEPARTMENT_RESTRICTIONS,
-  UPDATE_DPT_RESTRICTIONS,
+  UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
 
@@ -56,7 +56,7 @@ class RestrictionsTable extends React.PureComponent {
       name: label,
       type: 'DeletePopin',
       deleteAction: DELETE_RESTRICTION,
-      updateAction: UPDATE_DPT_RESTRICTIONS,
+      updateAction: UPDATE_DEPARTMENT_RESTRICTIONS,
     };
     this.props.dispatch({
       popin,

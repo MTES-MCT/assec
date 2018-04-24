@@ -7,30 +7,24 @@ import { Query, Mutation } from 'react-apollo';
 import {
   GET_DEPARTMENT_SUOS,
   CREATE_RESTRICTION,
-  UPDATE_DPT_RESTRICTIONS,
+  UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
+import { validatesuos } from './../../core/utils/suos';
 import Legend from './../../components/forms/Legend';
 import TextArea from './../../components/forms/TextArea';
 import TextInput from './../../components/forms/TextInput';
 import CheckboxGroup from './../../components/forms/CheckboxGroup';
 import SubmitButton from './../../components/forms/SubmitButton';
 
-const validateSUOS = (suos) => {
-  // vérifie que tous les champs validations
-  // contiennent au moins une valeur
-  const results = Object.keys(suos).filter(key => suos[key].length > 0);
-  return results.length === 3;
-};
-
 const validator = (values) => {
   const errors = {};
-  if (!values.title || values.title === '') {
-    errors.title = 'Required';
+  if (!values.label || values.label === '') {
+    errors.label = 'Required';
   }
   if (!values.description || values.description === '') {
     errors.description = 'Required';
   }
-  if (!values.suos || !validateSUOS(values.suos)) {
+  if (!values.suos || !validatesuos(values.suos)) {
     errors.suos = 'Required';
   }
   return errors;
@@ -44,20 +38,13 @@ const RestrictionsForm = ({ selected }) => (
       const { departmenSUOs } = data;
       return (
         <Mutation mutation={CREATE_RESTRICTION}
-          update={UPDATE_DPT_RESTRICTIONS}>
+          update={UPDATE_DEPARTMENT_RESTRICTIONS}>
           {(createRestriction, result) => (
             <Form validate={validator}
-              initialValues={{ dpt: selected }}
-              onSubmit={(
-                { suos: { usages, origines, situations }, ...rest },
-                form,
-              ) => {
-                const variables = {
-                  usages,
-                  origines,
-                  situations,
-                  ...rest,
-                };
+              initialValues={{ department: selected }}
+              onSubmit={({ suos, ...base }, form) => {
+                // FIXME -> ajouter l'action redux loading ici
+                const variables = { ...base, ...suos };
                 return createRestriction({ variables })
                   .then(() => form.reset())
                   .catch(() => {});
@@ -77,7 +64,9 @@ const RestrictionsForm = ({ selected }) => (
                     <span name="restriction-form-anchor" />
                     <fieldset>
                       <Legend label="Ajouter une restriction" />
-                      <Field name="dpt" type="hidden" component="input" />
+                      <Field name="department"
+                        type="hidden"
+                        component="input" />
                       <TextInput disabled={disabled}
                         name="label"
                         label="Titre de la restriction" />
@@ -91,12 +80,12 @@ const RestrictionsForm = ({ selected }) => (
                         provider={
                           (departmenSUOs && departmenSUOs.situations) || []
                         } />
-                      <CheckboxGroup name="departmenSUOs.usages"
+                      <CheckboxGroup name="suos.usages"
                         label="Usage"
                         display="inline"
                         disabled={moredisabled}
                         provider={(departmenSUOs && departmenSUOs.usages) || []} />
-                      <CheckboxGroup name="departmenSUOs.origines"
+                      <CheckboxGroup name="suos.origines"
                         label="Origine"
                         display="inline"
                         disabled={moredisabled}

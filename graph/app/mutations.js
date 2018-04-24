@@ -7,6 +7,8 @@ import {
   Restriction,
 } from './drivers/mongodb';
 
+const suoskeys = ['situations', 'origines', 'usages'];
+
 const deleteEntity = (id, Model) =>
   new Promise((resolve, reject) => {
     Model.findByIdAndRemove(id, (err, doc) => {
@@ -35,7 +37,7 @@ export const Mutation = {
 
   ----------------------------------- */
   createDepartement: (_, args) => {
-    const base = omit(args, ['situations', 'origines', 'usages']);
+    const base = omit(args, suoskeys);
     const id = new Mongoose.Types.ObjectId();
     return Promise.all([
       SUOModel.create(args.usages.map(o => hydrateNewSUO(o, id))),
@@ -57,6 +59,18 @@ export const Mutation = {
         ZoneModel.deleteMany({ department: doc.id }),
         Restriction.deleteMany({ department: doc.id }),
       ]).then(() => doc)),
+
+  /* -----------------------------------
+
+  RESTRICTIONS
+
+  ----------------------------------- */
+
+  createRestriction: (_, args) => Restriction.create(args),
+  deleteRestriction: (_, args) =>
+    // FIXME -> remove restriction sur une zone
+    Departement.findByIdAndRemove(args.id),
+
   /* ----------------------------------- */
 
   // UPDATES
@@ -74,10 +88,8 @@ export const Mutation = {
   },
   // CREATES
   createZone: (_, args) => ZoneModel.create(args),
-  createRestriction: (_, args) => Restriction.create(args),
   // DELETES
   deleteZone: (_, args) => deleteEntity(args.id, ZoneModel),
-  deleteRestriction: (_, args) => deleteEntity(args.id, Restriction),
 };
 
 export default Mutation;

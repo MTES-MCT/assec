@@ -10,6 +10,7 @@ import {
   CREATE_DEPARTMENT,
   UPDATE_DEPARTMENTS,
 } from './../../apolloql';
+import { validatesuos, parsesuos } from './../../core/utils/suos';
 import Legend from './../../components/forms/Legend';
 import dptsutils from './../../core/utils/departments';
 import TagValues from './../../components/forms/TagValues';
@@ -27,21 +28,6 @@ const calculator = createDecorator({
   },
 });
 
-const validatesuos = (suos) => {
-  // vérifie que tous les champs validations
-  // contiennent au moins une valeur
-  const results = Object.keys(suos).filter(key => suos[key].length > 0);
-  return results.length === 3;
-};
-
-const parsesuos = suos =>
-  // transforme les valeurs SUOS du formulaire
-  // pour etre exploitable par graphql { value } -> { label }
-  Object.keys(suos).reduce((acc, key) => {
-    const dest = suos[key].map(({ value: label }) => ({ label }));
-    return Object.assign({}, acc, { [key]: dest });
-  }, {});
-
 const validator = (values) => {
   // valide que les valeurs du formulaire
   // sont OK avec ce que l'on attend
@@ -55,6 +41,18 @@ const validator = (values) => {
   if (!values.suos || !validatesuos(values.suos)) {
     errors.suos = 'Required';
   }
+  /*
+  a utilser si on doit valider les suos unitairement
+  if (!values.usages || !values.usages.length) {
+    errors.usages = 'Required';
+  }
+  if (!values.origines || !values.origines.length) {
+    errors.origines = 'Required';
+  }
+  if (!values.situations || !values.situations.length) {
+    errors.situations = 'Required';
+  }
+  */
   return errors;
 };
 
@@ -81,8 +79,8 @@ const DepartementForm = () => (
               decorators={[calculator]}
               initialValues={initialValues}
               onSubmit={({ suos, ...base }, form) => {
-                const psuos = parsesuos(suos);
-                const variables = { ...base, ...psuos };
+                const parsed = parsesuos(suos);
+                const variables = { ...base, ...parsed };
                 return createDepartement({ variables })
                   .then(() => form.reset())
                   .catch(() => {});
