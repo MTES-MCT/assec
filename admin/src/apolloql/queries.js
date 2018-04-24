@@ -46,9 +46,11 @@ query zones (
 
 export const GET_DEPARTMENT_RESTRICTIONS = gql(`
 query restrictions (
+  # FIXME -> changer le id par department
   $id: ID
 ) {
   restrictions (
+    # FIXME -> changer le id par department
     id: $id
   ) {
     id

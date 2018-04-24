@@ -69,7 +69,7 @@ export const Mutation = {
   createRestriction: (_, args) => Restriction.create(args),
   deleteRestriction: (_, args) =>
     // FIXME -> remove restriction sur une zone
-    Departement.findByIdAndRemove(args.id),
+    Restriction.findByIdAndRemove(args.id),
 
   /* ----------------------------------- */
 
