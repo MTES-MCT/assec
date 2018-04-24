@@ -1,13 +1,6 @@
 import Mongoose, { Schema } from 'mongoose';
 import { slugify } from './../../utils/slugify';
 
-// application
-const slugType = { set: slugify, type: String };
-
-const SUOSchema = new Schema({
-  name: String,
-});
-
 const DepartementSchema = new Schema(
   {
     code: {
@@ -19,11 +12,10 @@ const DepartementSchema = new Schema(
       required: true,
     },
     suos: {
-      usages: [SUOSchema],
-      origines: [SUOSchema],
-      situations: [SUOSchema],
+      usages: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
+      origines: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
+      situations: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
     },
-    slug: slugType,
   },
   {
     timestamps: {
@@ -33,14 +25,9 @@ const DepartementSchema = new Schema(
   },
 );
 
-function saveMiddleware (next) {
-  this.slug = this.name;
-  next();
-}
-
-DepartementSchema.pre('save', saveMiddleware);
-DepartementSchema.pre('update', saveMiddleware);
-DepartementSchema.pre('findOneAndUpdate', saveMiddleware);
+DepartementSchema.virtual('slug').get(function virtualslug () {
+  return slugify(this.name);
+});
 
 export const Departement = Mongoose.model('departments', DepartementSchema);
 
