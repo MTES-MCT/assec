@@ -26,7 +26,7 @@ const RadioGroup = ({
                     type="radio"
                     value={obj.id}
                     component="input" />
-                  <span>{obj.name}</span>
+                  <span>{obj.label}</span>
                 </label>
               );
             })}

@@ -43,7 +43,7 @@ mutation updateZoneAlerte (
   ) {
     id
     help
-    name
+    label
     order
     geojson
     department
