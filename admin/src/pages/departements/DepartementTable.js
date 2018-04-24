@@ -36,15 +36,15 @@ class DepartementTable extends React.PureComponent {
     this.renderTableRow = this.renderTableRow.bind(this);
   }
 
-  // onEditClick ({ id, name }) {
-  //   const popin = { id, name, type: 'DepartementPopin' };
+  // onEditClick ({ id, label }) {
+  //   const popin = { id, label, type: 'DepartementPopin' };
   //   this.props.dispatch({ type: 'onOpenPopin', popin });
   // }
 
-  onDeleteClick ({ id, name }) {
+  onDeleteClick ({ id, label }) {
     const popin = {
       id,
-      name,
+      label,
       type: 'DeletePopin',
       deleteAction: DELETE_DEPARTMENT,
       updateAction: UPDATE_DEPARTMENTS,
@@ -56,11 +56,11 @@ class DepartementTable extends React.PureComponent {
   }
 
   renderTableRow (dpt) {
-    const { id, code, name } = dpt;
+    const { id, code, label } = dpt;
     return (
       <tr key={id}>
         <td className="small">{code}</td>
-        <td>{name}</td>
+        <td>{label}</td>
         {/* <td className="small">
           <button type="button" onClick={() => this.onEditClick(dpt)}>
             <i className="icon icon-pencil" />

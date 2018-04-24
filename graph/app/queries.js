@@ -2,7 +2,12 @@
 import { ZoneModel, Departement, Restriction } from './drivers/mongodb';
 
 export const Query = {
-  departments: () => Departement.find(),
+  departments: () =>
+    Departement.find()
+      .populate('suos.usages')
+      .populate('suos.origines')
+      .populate('suos.situations')
+      .exec(),
   department: (_, { id }) => (id && Departement.findById(id)) || null,
   /*
   departments: () =>
