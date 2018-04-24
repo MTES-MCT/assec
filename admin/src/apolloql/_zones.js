@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { DPT_ZONES } from './queries';
+import { GET_DEPARTMENT_ZONES } from './queries';
 
 export const CREATE_ZONE = gql(`
 mutation createZone(
@@ -65,10 +65,10 @@ mutation deleteZone (
 }
 `);
 
-const getCurrentZones = (store, dpt) => {
+const getCurrentZones = (store, department) => {
   const data = store.readQuery({
-    variables: { dpt },
-    query: DPT_ZONES,
+    variables: { department },
+    query: GET_DEPARTMENT_ZONES,
   });
   return data.zones;
 };
@@ -96,7 +96,7 @@ export const UPDATE_DPT_ZONES = (store, { data }) => {
   }
   store.writeQuery({
     variables,
-    query: DPT_ZONES,
     data: { zones: entries },
+    query: GET_DEPARTMENT_ZONES,
   });
 };

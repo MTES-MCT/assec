@@ -60,6 +60,13 @@ export const Mutation = {
         Restriction.deleteMany({ department: doc.id }),
       ]).then(() => doc)),
 
+  updateDepartement: (_, args) => {
+    const { id } = args;
+    const rest = omit(args, ['id']);
+    const returnsnewdoc = { new: true };
+    return Departement.findByIdAndUpdate(id, rest, returnsnewdoc);
+  },
+
   /* -----------------------------------
 
   RESTRICTIONS
@@ -71,7 +78,11 @@ export const Mutation = {
     // FIXME -> remove restriction sur une zone
     Restriction.findByIdAndRemove(args.id),
 
-  /* ----------------------------------- */
+  /* -----------------------------------
+
+  ALERTE
+
+  ----------------------------------- */
 
   // UPDATES
   updateZoneAlerte: (_, args) => {
@@ -79,12 +90,6 @@ export const Mutation = {
     const rest = omit(args, ['id']);
     const returnsnewdoc = { new: true };
     return ZoneModel.findByIdAndUpdate(id, rest, returnsnewdoc);
-  },
-  updateDepartement: (_, args) => {
-    const { id } = args;
-    const rest = omit(args, ['id']);
-    const returnsnewdoc = { new: true };
-    return Departement.findByIdAndUpdate(id, rest, returnsnewdoc);
   },
   // CREATES
   createZone: (_, args) => ZoneModel.create(args),

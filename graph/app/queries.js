@@ -53,7 +53,9 @@ export const Query = {
     });
   },
   */
-  zones: (_, { dpt }) => (dpt && ZoneModel.find({ dpt })) || null,
+  zones: (_, { department }) =>
+    (department && ZoneModel.find({ department })) || null,
+
   department: (_, { id }) => (id && Departement.findById(id)) || null,
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
   // Queries pour le Frontend

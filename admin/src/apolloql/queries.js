@@ -22,19 +22,19 @@ export const ALL_DEPARTMENTS = gql(`
   }
 `);
 
-export const DPT_ZONES = gql(`
+export const GET_DEPARTMENT_ZONES = gql(`
 query zones (
-  $dpt: ID
+  $department: ID!
 ) {
   zones (
-    dpt: $dpt
+    department: $department
   ) {
     id
-    dpt
     label
     help
     order
     geojson
+    department
     alerte {
       end_date
       start_date
@@ -47,7 +47,7 @@ query zones (
 export const GET_DEPARTMENT_RESTRICTIONS = gql(`
 query restrictions (
   # FIXME -> changer le id par department
-  $id: ID
+  $id: ID!
 ) {
   restrictions (
     # FIXME -> changer le id par department
@@ -67,7 +67,7 @@ query restrictions (
 
 export const GET_DEPARTMENT_SUOS = gql(`
 query departmenSUOs (
-  $id: ID
+  $id: ID!
 ) {
   departmenSUOs (
     id: $id

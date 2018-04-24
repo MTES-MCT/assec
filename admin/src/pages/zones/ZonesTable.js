@@ -4,7 +4,11 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 
 // application
-import { DPT_ZONES, DELETE_ZONE, UPDATE_DPT_ZONES } from './../../apolloql';
+import {
+  GET_DEPARTMENT_ZONES,
+  DELETE_ZONE,
+  UPDATE_DPT_ZONES,
+} from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
 
 const renderZonesTableHeader = () => (
@@ -34,27 +38,27 @@ class ZonesTable extends React.PureComponent {
 
   onAlertClick (obj) {
     const {
-      name, id, dpt, alerte,
+      label, id, department, alerte,
     } = obj;
     this.props.dispatch({
       type: 'onOpenPopin',
       popin: {
         id,
-        dpt,
-        name,
         alerte,
+        name: label,
+        dpt: department,
         type: 'ZonePopin',
       },
     });
   }
 
   onDeleteClick (obj) {
-    const { name, id } = obj;
+    const { label, id } = obj;
     this.props.dispatch({
       type: 'onOpenPopin',
       popin: {
         id,
-        name,
+        name: label,
         type: 'DeletePopin',
         deleteAction: DELETE_ZONE,
         updateAction: UPDATE_DPT_ZONES,
@@ -63,10 +67,10 @@ class ZonesTable extends React.PureComponent {
   }
 
   renderTableRow (obj) {
-    const { id, name, order } = obj;
+    const { id, label, order } = obj;
     return (
       <tr key={id}>
-        <td>{name}</td>
+        <td>{label}</td>
         <td className="small">{order}</td>
         <td className="small">
           <button type="button"
@@ -89,7 +93,7 @@ class ZonesTable extends React.PureComponent {
   render () {
     const { selected } = this.props;
     return (
-      <Query query={DPT_ZONES} variables={{ dpt: selected }}>
+      <Query query={GET_DEPARTMENT_ZONES} variables={{ department: selected }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading... </p>;
           if (error) return <p>Error </p>;
