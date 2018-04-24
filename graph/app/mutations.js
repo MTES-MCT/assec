@@ -1,5 +1,5 @@
 import omit from 'lodash.omit';
-import { ZoneModel, Departement, Restriction } from './../drivers/mongodb';
+import { ZoneModel, Departement, Restriction } from './drivers/mongodb';
 
 const deleteEntity = (id, Model) =>
   new Promise((resolve, reject) => {

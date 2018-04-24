@@ -10,12 +10,19 @@ import { logger } from './app/utils/logger';
 import { usedebug } from './app/utils/usedebug';
 
 import schemas from './app/schemas';
-import * as resolvers from './app/resolvers';
+import queries from './app/queries';
+import mutations from './app/mutations';
 
 const graphqlport = process.env.PORT;
 
 // application
-const schema = makeExecutableSchema({ typeDefs: schemas, resolvers });
+const schema = makeExecutableSchema({
+  typeDefs: schemas,
+  resolvers: {
+    Query: queries,
+    Mutation: mutations,
+  },
+});
 
 const app = express();
 app.use(cors());

@@ -1,5 +1,5 @@
 // import omit from 'lodash.omit';
-import { ZoneModel, Departement, Restriction } from './../drivers/mongodb';
+import { ZoneModel, Departement, Restriction } from './drivers/mongodb';
 
 export const Query = {
   departments: () => Departement.find(),

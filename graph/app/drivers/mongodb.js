@@ -33,4 +33,4 @@ Mongoose.connect(DB_BASE, options).then(
   err => logger.error(`MongoDB connection error: ${DB_BASE} => ${err}`),
 );
 
-export * from './../connectors/mongodb';
+export * from './../entities/mongodb';
