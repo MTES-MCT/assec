@@ -38,6 +38,11 @@ fieldset {
   padding: 0;
 }
 
+pre {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
 :disabled,
 :disabled:hover,
 :disabled:visited {
