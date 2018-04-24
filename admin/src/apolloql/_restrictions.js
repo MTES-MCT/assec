@@ -48,11 +48,10 @@ mutation deleteRestriction (
 
 const getCurrentRestrictions = (store, department) => {
   const data = store.readQuery({
-    // FIXME -> changer le id par department
-    variables: { id: department },
+    variables: { department },
     query: GET_DEPARTMENT_RESTRICTIONS,
   });
-  return data.restrictions;
+  return data.departmentRestrictions;
 };
 
 export const UPDATE_DEPARTMENT_RESTRICTIONS = (store, { data }) => {
@@ -62,8 +61,7 @@ export const UPDATE_DEPARTMENT_RESTRICTIONS = (store, { data }) => {
     const { department } = data.createRestriction;
     const restrictions = getCurrentRestrictions(store, department);
     entries = restrictions.concat([data.createRestriction]);
-    // FIXME -> changer le id par department
-    variables = { id: department };
+    variables = { department };
   }
   // if (data.updateRestriction) {
   //   entries = restrictions.map(dpt =>
@@ -73,12 +71,11 @@ export const UPDATE_DEPARTMENT_RESTRICTIONS = (store, { data }) => {
     const { department, id } = data.deleteRestriction;
     const restrictions = getCurrentRestrictions(store, department);
     entries = restrictions.filter(obj => obj.id !== id);
-    // FIXME -> changer le id par department
-    variables = { id: department };
+    variables = { department };
   }
   store.writeQuery({
     variables,
     query: GET_DEPARTMENT_RESTRICTIONS,
-    data: { restrictions: entries },
+    data: { departmentRestrictions: entries },
   });
 };

@@ -23,10 +23,10 @@ export const ALL_DEPARTMENTS = gql(`
 `);
 
 export const GET_DEPARTMENT_ZONES = gql(`
-query zones (
+query departmentZones (
   $department: ID!
 ) {
-  zones (
+  departmentZones (
     department: $department
   ) {
     id
@@ -45,13 +45,11 @@ query zones (
 `);
 
 export const GET_DEPARTMENT_RESTRICTIONS = gql(`
-query restrictions (
-  # FIXME -> changer le id par department
-  $id: ID!
+query departmentRestrictions (
+  $department: ID!
 ) {
-  restrictions (
-    # FIXME -> changer le id par department
-    id: $id
+  departmentRestrictions (
+    department: $department
   ) {
     id
     label
@@ -66,11 +64,11 @@ query restrictions (
 `);
 
 export const GET_DEPARTMENT_SUOS = gql(`
-query departmenSUOs (
-  $id: ID!
+query departmentSUOs (
+  $department: ID!
 ) {
-  departmenSUOs (
-    id: $id
+  departmentSUOs (
+    department: $department
   ) {
     usages {
       id

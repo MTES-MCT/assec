@@ -93,15 +93,16 @@ class RestrictionsTable extends React.PureComponent {
   render () {
     const { selected } = this.props;
     return (
-      <Query query={GET_DEPARTMENT_RESTRICTIONS} variables={{ id: selected }}>
+      <Query query={GET_DEPARTMENT_RESTRICTIONS}
+        variables={{ department: selected }}>
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
           // FIXME -> ajouter le loading dans le vue
           // mais ne pas remplacer completement la vue
           // par exemple afficher le "pas de données" + "Loading"
           if (loading) return <p>Loading... </p>;
-          const { restrictions } = data;
-          if (!restrictions || !restrictions.length) {
+          const { departmentRestrictions } = data;
+          if (!departmentRestrictions || !departmentRestrictions.length) {
             return renderNoRestrictions();
           }
           return (
@@ -109,7 +110,8 @@ class RestrictionsTable extends React.PureComponent {
               <table>
                 {renderRestrictionsTableHeader()}
                 <tbody>
-                  {restrictions && restrictions.map(this.renderTableRow)}
+                  {departmentRestrictions &&
+                    departmentRestrictions.map(this.renderTableRow)}
                 </tbody>
               </table>
             </div>

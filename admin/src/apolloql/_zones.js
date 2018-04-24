@@ -70,7 +70,7 @@ const getCurrentZones = (store, department) => {
     variables: { department },
     query: GET_DEPARTMENT_ZONES,
   });
-  return data.zones;
+  return data.departmentZones;
 };
 
 export const UPDATE_DPT_ZONES = (store, { data }) => {
@@ -96,7 +96,7 @@ export const UPDATE_DPT_ZONES = (store, { data }) => {
   }
   store.writeQuery({
     variables,
-    data: { zones: entries },
     query: GET_DEPARTMENT_ZONES,
+    data: { departmentZones: entries },
   });
 };

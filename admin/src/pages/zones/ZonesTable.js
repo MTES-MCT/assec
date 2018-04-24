@@ -97,15 +97,17 @@ class ZonesTable extends React.PureComponent {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading... </p>;
           if (error) return <p>Error </p>;
-          const { zones } = data;
-          if (!zones || !zones.length) {
+          const { departmentZones } = data;
+          if (!departmentZones || !departmentZones.length) {
             return renderNoZones();
           }
           return (
             <div>
               <table>
                 {renderZonesTableHeader()}
-                <tbody>{zones && zones.map(this.renderTableRow)}</tbody>
+                <tbody>
+                  {departmentZones && departmentZones.map(this.renderTableRow)}
+                </tbody>
               </table>
             </div>
           );

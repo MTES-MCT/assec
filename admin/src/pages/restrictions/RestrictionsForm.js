@@ -5,8 +5,8 @@ import { Query, Mutation } from 'react-apollo';
 
 // application
 import {
-  GET_DEPARTMENT_SUOS,
   CREATE_RESTRICTION,
+  GET_DEPARTMENT_SUOS,
   UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
 import { validatesuos } from './../../core/utils/suos';
@@ -31,11 +31,11 @@ const validator = (values) => {
 };
 
 const RestrictionsForm = ({ selected }) => (
-  <Query query={GET_DEPARTMENT_SUOS} variables={{ id: selected }}>
+  <Query query={GET_DEPARTMENT_SUOS} variables={{ department: selected }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      const { departmenSUOs } = data;
+      const { departmentSUOs } = data;
       return (
         <Mutation mutation={CREATE_RESTRICTION}
           update={UPDATE_DEPARTMENT_RESTRICTIONS}>
@@ -78,19 +78,21 @@ const RestrictionsForm = ({ selected }) => (
                         label="Situation"
                         disabled={moredisabled}
                         provider={
-                          (departmenSUOs && departmenSUOs.situations) || []
+                          (departmentSUOs && departmentSUOs.situations) || []
                         } />
                       <CheckboxGroup name="suos.usages"
                         label="Usage"
                         display="inline"
                         disabled={moredisabled}
-                        provider={(departmenSUOs && departmenSUOs.usages) || []} />
+                        provider={
+                          (departmentSUOs && departmentSUOs.usages) || []
+                        } />
                       <CheckboxGroup name="suos.origines"
                         label="Origine"
                         display="inline"
                         disabled={moredisabled}
                         provider={
-                          (departmenSUOs && departmenSUOs.origines) || []
+                          (departmentSUOs && departmentSUOs.origines) || []
                         } />
                       <TextArea disabled={moredisabled}
                         name="information"

@@ -1,16 +1,16 @@
 const queriesDefs = `
 type Query {
-  zones(department: ID): [ZoneType]
+
+  departmentSUOs(department: ID): SUOSType
+  departmentZones(department: ID): [ZoneType]
+  departmentRestrictions(department: ID): [RestrictionType]
 
   departments: [DepartementType]
-
-  departmenSUOs(id: ID): SUOSType
 
   department(id: ID): DepartementType
 
   restriction(id: ID): RestrictionType
 
-  restrictions(id: ID): [RestrictionType]
 
   hydrateDepartment(dpt: ID): HydratedType
 

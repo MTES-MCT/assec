@@ -1,7 +1,7 @@
 import pick from 'lodash.pick';
 // import omit from 'lodash.omit';
 import {
-  SUOModel,
+  // SUOModel,
   ZoneModel,
   Departement,
   Restriction,
@@ -14,16 +14,18 @@ export const Query = {
       .populate('origines')
       .populate('situations')
       .exec(),
-  restrictions: (_, { id }) => {
-    if (!id) return [];
-    return Restriction.find({ department: id })
+  departmentZones: (_, { department }) =>
+    (department && ZoneModel.find({ department })) || null,
+  departmentRestrictions: (_, { department }) => {
+    if (!department) return [];
+    return Restriction.find({ department })
       .populate('usages')
       .populate('origines')
       .populate('situations')
       .exec();
   },
-  departmenSUOs: (_, { id }) =>
-    Departement.findById(id)
+  departmentSUOs: (_, { department }) =>
+    Departement.findById(department)
       .populate('usages')
       .populate('origines')
       .populate('situations')
@@ -53,8 +55,6 @@ export const Query = {
     });
   },
   */
-  zones: (_, { department }) =>
-    (department && ZoneModel.find({ department })) || null,
 
   department: (_, { id }) => (id && Departement.findById(id)) || null,
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
