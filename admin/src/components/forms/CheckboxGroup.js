@@ -7,9 +7,11 @@ const getkey = (name, index) => `checkbox::${name}::${index}`;
 const CheckboxGroup = ({
   name, label, provider, display, ...rest
 }) => {
-  const cssclass = `flex-${display !== 'inline' ? 'rows' : 'columns'} list`;
+  const cssclass = `flex-${
+    display !== 'inline' ? 'rows' : 'columns'
+  } flex-wrap wrap3 list`;
   return (
-    <p className="checkbox-group">
+    <p className="checkbox-group pt12 px12">
       <span className="as-form-label">
         <span>{label}</span>
         <span className={cssclass}>

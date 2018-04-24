@@ -24,9 +24,7 @@ const ZonePopin = ({
               <CloseButton onClose={onClose} />
               <Form initialValues={{ id, alerte }}
                 onSubmit={(variables, form) =>
-                  updateZoneAlerte({
-                    variables,
-                  })
+                  updateZoneAlerte({ variables })
                     .then(() => {
                       form.reset();
                       onClose();

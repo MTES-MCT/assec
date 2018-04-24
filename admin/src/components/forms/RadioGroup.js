@@ -7,9 +7,11 @@ const getkey = (name, index) => `radio::${name}::${index}`;
 const RadioGroup = ({
   name, label, provider, display, ...rest
 }) => {
-  const cssclass = `flex-${display !== 'inline' ? 'rows' : 'columns'}`;
+  const cssclass = `flex-${
+    display !== 'inline' ? 'rows' : 'columns'
+  } flex-wrap wrap3`;
   return (
-    <p className="radio-group">
+    <p className="radio-group pt12 px12">
       <span className="as-form-label">
         <span>{label}</span>
         <span className={cssclass}>
