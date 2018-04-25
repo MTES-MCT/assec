@@ -14,6 +14,15 @@ env.key_filename = "~/.ssh/assec_deploy"
 def uptime():
   run("uptime")
 
+def importfromlocaldb ():
+  local('yarn dump:local')
+  with cd('/home/deploy'):
+    put('./backups/local.gz', './backups/local.gz')
+    # remove assec database
+    run("docker exec -t assec_mongodb_prod_container mongo assec --eval 'db.dropDatabase();'")
+    # import database file from local file system
+    run('docker exec -t assec_mongodb_prod_container mongorestore --gzip --archive=/backups/local.gz')
+
 def dump():
   """
   Dump de la BDD (MongoDB)
@@ -23,8 +32,7 @@ def dump():
     # cree un dump de la base de donnees du container MongoDB
     # --out path doit correspondre au volume defini dans le fichier docker-compose.prod.yml
     # le nom du container est defini dans le fichier docker-compose.prod.yml
-    command = 'docker exec -it assec_mongodb_prod_container mongodump --archive=/backups/assec.gz --gzip --db assec'
-    run(command)
+    run('docker exec -it assec_mongodb_prod_container mongodump --archive=/backups/assec.gz --gzip --db assec')
     # le path du fichier a telecharger est defini par le volume monte dans le fichier docker-compose.prod.yml
     now = int(time.time())
     localp = './backups/assec_%s.gz' % (now)
@@ -32,7 +40,7 @@ def dump():
     # FIXME -> !!! le rm doit se faire en sudo :(
     # run('rm /home/deploy/backups/assec.gz')
 
-def compose():
+def dockercompose():
   """
   Contruit les services docker
   Fait le menage dans les images et containers docker (prune)
@@ -45,25 +53,34 @@ def compose():
     run('docker system prune --force')
     run('echo $(df -h | grep /dev/sda1)')
 
+def createvolumes():
+  with cd('/home/deploy'):
+    # creation des repertoires pour le user 'deploy'
+    # ces repertoires sont des volumes docker
+    run('mkdir -p backups')
+    run('mkdir -p data/db')
+
 def force_deploy():
   """
   Force la recuperation du repository distant
   A utiliser si la commande deploy echoue sur une erreur de merge
   """
+  createvolumes()
   with cd('/home/deploy/assec'):
     # FIXME -> trouver un meilleur moyen de faire un pull
     # en ecrasant les changements locals
     run('git fetch --all')
     run('git reset --hard origin/master')
     run('git pull origin master')
-  compose()
+  dockercompose()
 
 def deploy():
   """
   Deploy du repository distant sur le serveur
   """
+  createvolumes()
   with cd('/home/deploy/assec'):
     # FIXME -> trouver un meilleur moyen de faire un pull
     # en ecrasant les changements locals
     run('git pull origin master')
-  compose()
+  dockercompose()
