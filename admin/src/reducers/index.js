@@ -12,6 +12,15 @@ const toasts = (state = [], action) => {
   }
 };
 
+const openednav = (state = false, action) => {
+  switch (action.type) {
+  case 'onToggleNavigation':
+    return !state;
+  default:
+    return state;
+  }
+};
+
 const popin = (state = null, action) => {
   switch (action.type) {
   case 'onOpenPopin':
@@ -26,5 +35,6 @@ const popin = (state = null, action) => {
 export default combineReducers({
   popin,
   toasts,
+  openednav,
   router: routerReducer,
 });

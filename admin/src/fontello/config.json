@@ -209,6 +209,18 @@
       "css": "emo-sleep",
       "code": 59424,
       "src": "fontelico"
+    },
+    {
+      "uid": "37f6cfbb4062ed0d01b351ec35c334ff",
+      "css": "right-open-mini",
+      "code": 59425,
+      "src": "entypo"
+    },
+    {
+      "uid": "592717bd601645d61517d2a584d04127",
+      "css": "left-open-mini",
+      "code": 59426,
+      "src": "entypo"
     }
   ]
 }
