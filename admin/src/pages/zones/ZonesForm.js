@@ -47,6 +47,11 @@ const ZonesForm = ({ selected }) => (
           form, invalid, pristine, handleSubmit,
         }) => {
           const disabled = result.loading || !(selected && selected !== null);
+          const moredisabled =
+            pristine ||
+            result.loading ||
+            !form.label === '' ||
+            !(selected && selected !== null);
           return (
             <form onSubmit={handleSubmit} className="mb20">
               <fieldset>
@@ -55,14 +60,14 @@ const ZonesForm = ({ selected }) => (
                 <TextInput disabled={disabled}
                   name="label"
                   label="Nom de la zone" />
-                <NumberInput disabled={disabled}
+                <TextArea disabled={moredisabled}
+                  name="geojson"
+                  label="Coordonnées de la zone" />
+                <NumberInput disabled={moredisabled}
                   name="order"
                   placeholder="Profondeur des calques"
                   label="Ordre d'affichage de la zone" />
-                <TextArea disabled={disabled}
-                  name="geojson"
-                  label="Coordonnées de la zone" />
-                <TextArea disabled={disabled}
+                <TextArea disabled={moredisabled}
                   name="help"
                   label="Texte d'information utilisateur" />
                 <SubmitButton label="Ajouter"

@@ -27,15 +27,15 @@ type Mutation {
     alerte: [AlerteInput]
   ): ZoneType
 
+  updateZoneAlerte(
+    id: ID!
+    situationid: ID!
+  ): ZoneType
+
   updateDepartement(
     id: ID!
     suos: SUOSInput!
   ): DepartementType
-
-  updateZoneAlerte(
-    id: ID!
-    alerte: AlerteInput!
-  ): ZoneType
 
   deleteDepartment(
     id: ID!

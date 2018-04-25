@@ -38,11 +38,11 @@ mutation createZone(
 export const UPDATE_ZONE_ALERTE = gql(`
 mutation updateZoneAlerte (
   $id: ID!
-  $alerte: AlerteInput!
+  $situationid: ID!
 ) {
   updateZoneAlerte (
     id: $id
-    alerte: $alerte
+    situationid: $situationid
   ) {
     id
     help
@@ -53,7 +53,10 @@ mutation updateZoneAlerte (
     alerte {
       end_date
       start_date
-      situation
+      situation {
+        id
+        label
+      }
     }
   }
 }

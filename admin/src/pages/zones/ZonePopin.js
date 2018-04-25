@@ -21,13 +21,17 @@ const ZonePopin = ({
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
       const { situations } = data.departmentSUOs;
+      const initialValues = {
+        id,
+        situationid: alerte.situation.id,
+      };
       return (
         <Mutation mutation={UPDATE_ZONE_ALERTE}
           update={UPDATE_DEPARTMENT_ZONES}>
           {(updateZoneAlerte, result) => (
             <div id="edit-popin" className="popin-inner">
               <CloseButton onClose={onClose} />
-              <Form initialValues={{ id, alerte }}
+              <Form initialValues={initialValues}
                 onSubmit={(variables, form) =>
                   updateZoneAlerte({ variables })
                     .then(() => {
@@ -46,7 +50,7 @@ const ZonePopin = ({
                       <div className="flex-rows flex-between p12 mt20">
                         <fieldset className="popin-fieldset">
                           <Field name="id" type="hidden" component="input" />
-                          <RadioGroup name="alerte.situation"
+                          <RadioGroup name="situationid"
                             display="inline"
                             provider={situations}
                             disabled={result.loading}

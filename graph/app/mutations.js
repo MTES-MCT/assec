@@ -74,10 +74,20 @@ export const Mutation = {
 
   // UPDATES
   updateZoneAlerte: (_, args) => {
-    const { id } = args;
-    const rest = omit(args, ['id']);
-    const returnsnewdoc = { new: true };
-    return ZoneModel.findByIdAndUpdate(id, rest, returnsnewdoc);
+    const { id, situationid } = args;
+    return ZoneModel.findByIdAndUpdate(
+      id,
+      {
+        // update values
+        $set: { 'alerte.situation': situationid },
+      },
+      {
+        // should returns updated document
+        new: true,
+      },
+    )
+      .populate('alerte.situation')
+      .exec();
   },
 };
 
