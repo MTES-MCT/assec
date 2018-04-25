@@ -5,7 +5,9 @@ table {
   font-size: 12px;
   text-align: left;
   border-spacing: 0;
-  border-collapse: separate;
+  overflow-x: scroll;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
 th {
@@ -14,6 +16,8 @@ th {
 
 th,
 td {
+  width: 1px;
+  max-width: 0;
   overflow: hidden;
   padding: 12px 15px;
   white-space: nowrap;
@@ -31,12 +35,48 @@ td:last-child {
   text-align: center;
 }
 
-.small .button {
-  width: auto;
-  padding: 7px;
-}
-
 .medium {
   width: 200px;
   max-width: 200px;
+}
+
+table .small .button {
+  @extend .p7;
+
+  width: auto;
+}
+
+table .order,
+table .expands,
+table .actions {
+  @extend .px7;
+  @extend .align-center;
+}
+
+table .expands {
+  width: 3px;
+}
+
+table .order {
+  width: 5px;
+}
+
+table .actions-1 {
+  width: 8px;
+}
+
+table .actions-2 {
+  width: 8px;
+}
+
+table .actions-3 {
+  width: 10px;
+}
+
+table .actions-4 {
+  width: 10px;
+}
+
+table .actions button ~ button {
+  margin-left: 5px;
 }
