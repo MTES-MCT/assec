@@ -27,6 +27,7 @@ if (usedebug()) {
   /* eslint-disable */
 }
 
+const appversion = process.env.REACT_APP_VERSION;
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
 const { client, NetworkStatusNotifier } = createClient(graphqluri);
 
@@ -46,8 +47,8 @@ const Root = () => (
           <Scrollbars autoHide id="body-scroller">
             <div id="body-scroller-content">
               <NetworkStatusNotifier render={renderLoader} />
-              <AppHeader title="ASSEC" />
-              <Page />
+              <AppHeader title="ASSEC" version={appversion} />
+              <Page version={appversion} />
               <NetworkStatusNotifier render={renderGraphError} />
             </div>
           </Scrollbars>

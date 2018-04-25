@@ -12,15 +12,15 @@ import { usedebug } from './core/utils/usedebug';
 import { pagetitle } from './core/utils/pagetitle';
 import MainNavigation from './components/navs/MainNavigation';
 
-const appversion = process.env.REACT_APP_VERSION;
-
 const getbodyclass = (path, haspopin) =>
   `route-page-${path
     .split('/')
     .filter(v => v)
     .join('-') || 'home'}${haspopin ? ' noscroll' : ''}`;
 
-const PageComponent = ({ location, popin, openednav }) => (
+const PageComponent = ({
+  location, popin, version, openednav,
+}) => (
   <div id="app-container" className="flex-columns">
     <Helmet>
       <body className={getbodyclass(location.pathname, popin)} />
@@ -53,7 +53,7 @@ const PageComponent = ({ location, popin, openednav }) => (
           })}
       </Switch>
       {/* routes */}
-      <AppFooter version={appversion} />
+      <AppFooter version={version} />
     </div>
   </div>
 );
@@ -64,6 +64,7 @@ PageComponent.defaultProps = {
 
 PageComponent.propTypes = {
   popin: PropTypes.object,
+  version: PropTypes.string.isRequired,
   openednav: PropTypes.bool.isRequired,
   location: PropTypes.object.isRequired,
 };

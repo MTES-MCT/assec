@@ -224,6 +224,11 @@ th {
   background-color: $white;
 }
 
+#application-header .title > span small {
+  color: $white;
+  background-color: $green;
+}
+
 #page-title {
   border-color: $gray;
 }

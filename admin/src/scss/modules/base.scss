@@ -67,11 +67,6 @@ span + .icon,
   min-height: $headerHeight;
   padding: 20px 20px 20px 70px;
 
-  span,
-  small {
-    display: block;
-  }
-
   em {
     font-style: normal;
   }
@@ -86,17 +81,31 @@ span + .icon,
 #application-header .title {
   font-weight: normal;
 
+  span {
+    font-size: 1.2em;
+    letter-spacing: 0.4em;
+  }
+
   small {
-    font-size: 0.3em;
+    font-size: 0.15em;
     padding: 3px 12px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  span {
-    font-size: 1.2em;
-    letter-spacing: 0.4em;
+  > small {
+    display: block;
+    font-size: 0.3em;
   }
+}
+
+#application-header .user span,
+#application-header .user small {
+  display: block;
+}
+
+#application-header .title > span small {
+  border-radius: 2px;
 }
 
 #main-navigation .inner {

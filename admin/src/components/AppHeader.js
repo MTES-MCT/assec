@@ -6,20 +6,23 @@ import today from './../core/utils/today';
 
 class AppHeader extends React.PureComponent {
   render () {
-    const { title } = this.props;
+    const { title, version } = this.props;
     return (
       <div id="application-header"
         className="relative flex-columns flex-between items-end">
         <h1 className="title">
           <span>
-            <span>{title}</span>
+            <span>
+              {title}
+              <small>Beta v{version}</small>
+            </span>
           </span>
           <small>
             Optimiser la réponse collective du monde agricole en période de
             sécheresse
           </small>
         </h1>
-        <div className="flex-columns flex-end items-end align-right">
+        <div className="user flex-columns flex-end items-end align-right">
           <div className="m0">
             <small>{today()}</small>
             <span>
@@ -42,6 +45,7 @@ class AppHeader extends React.PureComponent {
 
 AppHeader.propTypes = {
   title: PropTypes.string.isRequired,
+  version: PropTypes.string.isRequired,
 };
 
 export default AppHeader;
