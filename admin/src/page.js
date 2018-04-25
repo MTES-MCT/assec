@@ -20,7 +20,7 @@ const getbodyclass = (path, haspopin) =>
     .filter(v => v)
     .join('-') || 'home'}${haspopin ? ' noscroll' : ''}`;
 
-const PageComponent = ({ location, popin }) => (
+const PageComponent = ({ location, popin, openednav }) => (
   <div id="app-container" className="flex-columns">
     <Helmet>
       <body className={getbodyclass(location.pathname, popin)} />
@@ -31,8 +31,11 @@ const PageComponent = ({ location, popin }) => (
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" />
     </Helmet>
-    <MainNavigation path={location.pathname} routes={routes.main} />
-    <div id="page-container" className="flex-rows flex-between flex1">
+    <MainNavigation routes={routes}
+      minimized={!openednav}
+      path={location.pathname} />
+    <div id="page-container"
+      className={`flex-rows flex-between flex1 ${openednav ? 'opened' : ''}`}>
       {/* routes */}
       <Switch>
         {routes.main
@@ -61,11 +64,13 @@ PageComponent.defaultProps = {
 
 PageComponent.propTypes = {
   popin: PropTypes.object,
+  openednav: PropTypes.bool.isRequired,
   location: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   popin: state.popin,
+  openednav: state.openednav,
   location: state.router.location,
 });
 

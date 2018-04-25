@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 // application
 import AppPage from './../components/AppPage';
 
-class AdministratorPage extends React.PureComponent {
+class MySettingsPage extends React.PureComponent {
   render () {
-    const { config: { name, ...rest } } = this.props;
+    const {
+      config: { name, ...rest },
+    } = this.props;
     return (
       <AppPage name={`Gestion ${name}`} {...rest}>
         <div id="page-main-column" />
@@ -16,8 +18,8 @@ class AdministratorPage extends React.PureComponent {
   }
 }
 
-AdministratorPage.propTypes = {
+MySettingsPage.propTypes = {
   config: PropTypes.object.isRequired,
 };
 
-export default AdministratorPage;
+export default MySettingsPage;

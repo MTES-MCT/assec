@@ -1,9 +1,9 @@
 import Zones from './pages/Zones';
 import Dashboard from './pages/Dashboard';
+import MySettings from './pages/MySettings';
 import Departements from './pages/Departements';
 import Restrictions from './pages/Restrictions';
 // import Contributors from './pages/Contributors';
-import Administrator from './pages/Administrator';
 
 export const routes = {
   main: [
@@ -46,10 +46,10 @@ export const routes = {
   sub: [
     {
       exact: false,
-      icon: 'user',
-      path: '/administrator',
-      name: 'Administrateur',
-      component: Administrator,
+      icon: 'cog',
+      path: '/mysettings',
+      name: 'Mon Compte',
+      component: MySettings,
     },
   ],
 };

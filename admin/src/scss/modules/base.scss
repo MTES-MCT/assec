@@ -1,3 +1,5 @@
+$headerHeight: 105px;
+
 ::placeholder {
   font-size: 0.8em;
 }
@@ -60,9 +62,9 @@ span + .icon,
 }
 
 #application-header {
-  height: 105px;
-  max-height: 105px;
-  min-height: 105px;
+  height: $headerHeight;
+  max-height: $headerHeight;
+  min-height: $headerHeight;
   padding: 20px 20px 20px 70px;
 
   span,
@@ -95,6 +97,15 @@ span + .icon,
     font-size: 1.2em;
     letter-spacing: 0.4em;
   }
+}
+
+#main-navigation .inner {
+  // $innerheight: calc(100vh - #{$headerHeight});
+
+  width: 100%;
+  // height: $innerheight;
+  // min-height: $innerheight;
+  // max-height: $innerheight;
 }
 
 #application-footer {

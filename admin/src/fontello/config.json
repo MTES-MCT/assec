@@ -221,6 +221,12 @@
       "css": "left-open-mini",
       "code": 59426,
       "src": "entypo"
+    },
+    {
+      "uid": "bc64550dd022ce21604f97309b346cea",
+      "css": "cog",
+      "code": 59427,
+      "src": "entypo"
     }
   ]
 }

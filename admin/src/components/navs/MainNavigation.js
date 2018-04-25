@@ -14,36 +14,49 @@ const isdisabled = (path, currentpath) =>
     : currentpath === '/');
 
 const MainNavigation = ({
-  path, routes, openednav, dispatch,
+  path, routes, minimized, dispatch,
 }) => (
-  <div id="main-navigation"
-    className={`flex-rows flex-between ${!openednav ? '' : 'opened'}`}>
-    <button className="no-background"
-      onClick={() => dispatch(toggleNavigation())}>
-      <span>
-        <i className={`icon icon-${!openednav ? 'right' : 'left'}-open-mini`} />
-      </span>
-    </button>
-    <nav className="flex-rows flex-start">
-      {routes.map((obj) => {
-        const disabled = isdisabled(obj.path, path) ? 'active' : '';
-        const key = keypath(obj.path, 'navigation');
-        return (
-          <Link to={obj.path} key={key} className={`link ${disabled}`}>
-            <i className={`icon-${obj.icon}`} />
-            <span className="label">{obj.name}</span>
-          </Link>
-        );
-      })}
-    </nav>
+  <div id="main-navigation" className={`${minimized ? '' : 'opened'}`}>
+    <div className="flex-rows flex-between">
+      <button className="no-background"
+        onClick={() => dispatch(toggleNavigation())}>
+        <span>
+          <i className={`icon icon-${minimized ? 'right' : 'left'}-open-mini`} />
+        </span>
+      </button>
+      <nav className="flex-rows flex-start">
+        {routes.main.map((obj) => {
+          const disabled = isdisabled(obj.path, path) ? 'active' : '';
+          const key = keypath(obj.path, 'navigation');
+          return (
+            <Link to={obj.path} key={key} className={`link ${disabled}`}>
+              <i className={`icon-${obj.icon}`} />
+              {minimized ? null : <span className="label">{obj.name}</span>}
+            </Link>
+          );
+        })}
+      </nav>
+      <nav className="flex-rows flex-end">
+        {routes.sub.map((obj) => {
+          const disabled = isdisabled(obj.path, path) ? 'active' : '';
+          const key = keypath(obj.path, 'navigation');
+          return (
+            <Link to={obj.path} key={key} className={`link ${disabled}`}>
+              <i className={`icon-${obj.icon}`} />
+              {minimized ? null : <span className="label">{obj.name}</span>}
+            </Link>
+          );
+        })}
+      </nav>
+    </div>
   </div>
 );
 
 MainNavigation.propTypes = {
   path: PropTypes.string.isRequired,
-  routes: PropTypes.array.isRequired,
+  routes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
-  openednav: PropTypes.bool.isRequired,
+  minimized: PropTypes.bool.isRequired,
 };
 
-export default connect(({ openednav }) => ({ openednav }))(MainNavigation);
+export default connect()(MainNavigation);
