@@ -10,26 +10,7 @@ import {
   UPDATE_DEPARTMENT_ZONES,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
-
-const renderZonesTableCols = () => (
-  <colgroup>
-    <col className="expands" />
-    <col />
-    <col className="order" />
-    <col className="actions actions-2" />
-  </colgroup>
-);
-
-const renderZonesTableHeader = () => (
-  <thead>
-    <tr>
-      <th className="expands" />
-      <th>Nom de la zone</th>
-      <th className="order">Ordre</th>
-      <th className="actions actions-2">Actions</th>
-    </tr>
-  </thead>
-);
+import DataTable from './../../components/datatable/DataTable';
 
 const renderNoZones = () => (
   <div id="page-main-column">
@@ -40,19 +21,8 @@ const renderNoZones = () => (
 class ZonesTable extends React.PureComponent {
   constructor (props) {
     super(props);
-    this.state = { expandable: null };
     this.onEditClick = this.onEditClick.bind(this);
-    this.onExpandClick = this.onExpandClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
-  }
-
-  onExpandClick (obj, index) {
-    const { expandable } = this.state;
-    if (expandable && expandable.index === index) {
-      this.setState({ expandable: null });
-    } else {
-      this.setState({ expandable: { index, obj } });
-    }
   }
 
   onEditClick (obj) {
@@ -87,7 +57,6 @@ class ZonesTable extends React.PureComponent {
 
   render () {
     const { selected } = this.props;
-    const { expandable } = this.state;
     return (
       <Query query={GET_DEPARTMENT_ZONES} variables={{ department: selected }}>
         {({ loading, error, data }) => {
@@ -98,59 +67,22 @@ class ZonesTable extends React.PureComponent {
             return renderNoZones();
           }
           return (
-            <div className="table-container">
-              <table>
-                {renderZonesTableCols()}
-                {renderZonesTableHeader()}
-                <tbody>
-                  {departmentZones &&
-                    departmentZones.map((obj, index) => {
-                      const { id, label, order } = obj;
-                      return (
-                        <React.Fragment key={`table-fragment::${id}`}>
-                          <tr key={`table-row::${id}`}>
-                            <td className="expands">
-                              <button className="p0"
-                                onClick={() => this.onExpandClick(obj, index)}>
-                                <i className={`icon icon-${
-                                  expandable && expandable.index === index
-                                    ? 'up'
-                                    : 'down'
-                                }-open-mini`} />
-                              </button>
-                            </td>
-                            <td>
-                              <span>{label}</span>
-                            </td>
-                            <td className="order">{order}</td>
-                            <td className="actions actions-2">
-                              <button type="button"
-                                className="super"
-                                onClick={() => this.onEditClick(obj)}>
-                                <i className="icon icon-alert" />
-                              </button>
-                              <button type="button"
-                                className="danger"
-                                onClick={() => this.onDeleteClick(obj)}>
-                                <i className="icon icon-trash" />
-                              </button>
-                            </td>
-                          </tr>
-                          {expandable &&
-                            expandable.index === index && (
-                            <tr key={`table-expandable::${id}`}
-                              className="table-expanded-row">
-                              <td colSpan="4">
-                                {expandable.obj.alerte.situation.label}
-                              </td>
-                            </tr>
-                          )}
-                        </React.Fragment>
-                      );
-                    })}
-                </tbody>
-              </table>
-            </div>
+            <DataTable provider={departmentZones}
+              actions={{
+                edit: this.onEditClick,
+                delete: this.onDeleteClick,
+              }}
+              cols={[
+                {
+                  key: 'label',
+                  label: 'Nom de la zone',
+                },
+                {
+                  key: 'order',
+                  type: 'order',
+                  label: 'Ordre',
+                },
+              ]} />
           );
         }}
       </Query>
