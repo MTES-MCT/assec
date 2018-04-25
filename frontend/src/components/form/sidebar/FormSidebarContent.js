@@ -15,7 +15,7 @@ const FormSidebarContent = ({ choices, fields }) => (
       return (
         <li key={`choice::${key}`}>
           <strong>{label}</strong>
-          <span>{reponse.name}</span>
+          <span>{reponse.label}</span>
         </li>
       );
     })}

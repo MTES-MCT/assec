@@ -2,19 +2,19 @@ import gql from 'graphql-tag';
 
 export const FIND_RESTRICTION_BY_CRITERIAS = gql(`
 query findRestictionByCriteria (
-  $dpt: ID!
   $zones: ID!
   $usages: ID!
   $origines: ID!
+  $department: ID!
 ) {
   findRestictionByCriteria (
-    dpt: $dpt
     zones: $zones
     usages: $usages
     origines: $origines
+    department: $department
   ) {
     id
-    title
+    label
     description
   }
 }
@@ -22,33 +22,33 @@ query findRestictionByCriteria (
 
 export const HYDRATE_DEPARTMENT = gql(`
 query hydrateDepartment (
-  $dpt: ID!
+  $department: ID!
 ) {
   hydrateDepartment (
-    dpt: $dpt
+    department: $department
   ) {
     usages {
       id
-      name
+      label
     }
     origines {
       id
-      name
+      label
     }
     situations {
       id
-      name
+      label
     }
     zones {
       id
-      name
       help
+      label
       order
       geojson
     }
     restrictions {
       id
-      title
+      label
       usages
       origines
       situations

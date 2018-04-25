@@ -27,7 +27,7 @@ const ChoiceInput = ({
               name="choice"
               component="input"
               value={`${obj.id}`} />
-            <span>{obj.name}</span>
+            <span>{obj.label}</span>
           </label>
         );
       })}

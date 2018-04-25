@@ -11,14 +11,19 @@ type Query {
 
   restriction(id: ID): RestrictionType
 
+  # ###################################
+  #
+  # FRONTEND QUERIES
+  #
+  # ###################################
 
-  hydrateDepartment(dpt: ID): HydratedType
+  hydrateDepartment(department: ID): HydratedType
 
   findRestictionByCriteria(
-    dpt: ID
     zones: ID
     usages: ID
     origines: ID
+    department: ID
   ): [RestrictionType]
 }
 `;

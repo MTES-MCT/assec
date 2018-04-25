@@ -65,7 +65,13 @@ export const Query = {
 
   department: (_, { id }) => (id && Departement.findById(id)) || null,
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
-  // Queries pour le Frontend
+
+  /* -----------------------------------
+
+  FRONTEND QUERIES
+
+  ----------------------------------- */
+
   findRestictionByCriteria: (_, { zones, usages, origines }) =>
     ZoneModel.findById(zones).then((found) => {
       const { situation: situations } = found.alerte;
@@ -75,21 +81,28 @@ export const Query = {
         situations: { $in: [situations] },
       });
     }),
-  hydrateDepartment: (_, { dpt }) =>
+
+  hydrateDepartment: (_, { department }) =>
     Promise.all([
-      Departement.findById(dpt),
-      ZoneModel.find({ dpt }),
-      Restriction.find({ dpt }),
+      Departement.findById(department)
+        .populate('usages')
+        .populate('origines')
+        .populate('situations')
+        .exec(),
+      ZoneModel.find({ department })
+        .populate('alerte.situation')
+        .exec(),
+      Restriction.find({ department }),
     ])
-      .then(([doc, zones, restrictions]) =>
+      .then(([{ usages, origines, situations }, zones, restrictions]) =>
         Promise.resolve(Object.assign(
           {},
           {
             zones,
+            usages,
+            origines,
+            situations,
             restrictions,
-            usages: doc.suos.usages,
-            origines: doc.suos.origines,
-            situations: doc.suos.situations,
           },
         )))
       .then(result => result),

@@ -60,13 +60,13 @@ type ZoneType {
 `;
 
 const hydrated = `
-  type HydratedType {
-    usages: [SUOType]!
-    zones: [ZoneType]!
-    origines: [SUOType]!
-    situations: [SUOType]!
-    restrictions: [RestrictionType]!
-  }
+type HydratedType {
+  zones: [ZoneType]!
+  usages: [SUOType]!
+  origines: [SUOType]!
+  situations: [SUOType]!
+  restrictions: [RestrictionType]!
+}
 `;
 
 const typeDefs = `
