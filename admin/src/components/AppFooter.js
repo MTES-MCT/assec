@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AppFooter = ({ version }) => (
-  <div id="application-footer" className="flex-columns flex-between p20 mt20">
+  <div id="application-footer" className="flex-columns flex-between p20 mt60">
     <div className="left">
       <span>
         Une solution Open Source propulsée avec ♥ par{' '}
