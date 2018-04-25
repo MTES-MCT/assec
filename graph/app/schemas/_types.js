@@ -37,10 +37,15 @@ type RestrictionType {
 `;
 
 const zone = `
+type SituationType {
+  id: ID
+  label: String
+}
+
 type AlerteType {
-  situation: ID
   end_date: String
   start_date: String
+  situation: SituationType
 }
 
 type ZoneType {

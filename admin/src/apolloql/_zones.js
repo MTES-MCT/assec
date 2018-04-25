@@ -25,8 +25,11 @@ mutation createZone(
     department
     alerte {
       end_date
-      situation
       start_date
+      situation {
+        id
+        label
+      }
     }
   }
 }

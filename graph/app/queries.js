@@ -14,8 +14,7 @@ export const Query = {
       .populate('origines')
       .populate('situations')
       .exec(),
-  departmentZones: (_, { department }) =>
-    (department && ZoneModel.find({ department })) || null,
+
   departmentRestrictions: (_, { department }) => {
     if (!department) return [];
     return Restriction.find({ department })
@@ -24,6 +23,7 @@ export const Query = {
       .populate('situations')
       .exec();
   },
+
   departmentSUOs: (_, { department }) =>
     Departement.findById(department)
       .populate('usages')
@@ -31,6 +31,13 @@ export const Query = {
       .populate('situations')
       .exec()
       .then(doc => pick(doc, ['usages', 'origines', 'situations'])),
+
+  departmentZones: (_, { department }) =>
+    (department &&
+      ZoneModel.find({ department })
+        .populate('alerte.situation')
+        .exec()) ||
+    null,
   /*
   departments: () =>
     new Promise((resolve, reject) => {
