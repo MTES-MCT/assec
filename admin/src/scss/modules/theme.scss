@@ -188,6 +188,11 @@ th {
   background-color: $gray;
 }
 
+.tinyloader {
+  color: $white;
+  background-color: $header1;
+}
+
 /* ---------------------
 
  LAYOUTS
@@ -242,6 +247,7 @@ th {
 }
 
 .toast,
+.tinyerror,
 #grapqhlerror {
   color: $white;
   background-color: $redActive;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 
 // application
-import { ALL_DEPARTMENTS } from './../apolloql';
+import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import ZonesForm from './zones/ZonesForm';
 import ZonesTable from './zones/ZonesTable';
 import AppPage from './../components/AppPage';
@@ -60,7 +60,7 @@ class ZonesPage extends React.PureComponent {
         header={() =>
           hasdepartements && (
             <fieldset>
-              <EntitySelector query={ALL_DEPARTMENTS}
+              <EntitySelector query={GET_ALL_DEPARTMENTS}
                 onChange={this.onChange} />
             </fieldset>
           )
@@ -78,4 +78,4 @@ ZonesPage.propTypes = {
   config: PropTypes.object.isRequired,
 };
 
-export default graphql(ALL_DEPARTMENTS)(ZonesPage);
+export default graphql(GET_ALL_DEPARTMENTS)(ZonesPage);

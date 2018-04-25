@@ -10,23 +10,8 @@ import {
   UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
-
-const renderRestrictionsTableHeader = () => (
-  <thead>
-    <tr>
-      <th>Titre</th>
-      {/* <th className="small" /> */}
-      {/* <th className="small" /> */}
-      <th className="small" />
-    </tr>
-  </thead>
-);
-
-const renderNoRestrictions = () => (
-  <div id="page-main-column">
-    <NoContent description="Pour ajouter une nouvelle restriction utilisez le formulaire ci-contre" />
-  </div>
-);
+import TinyLoader from './../../components/ui/TinyLoader';
+import DataTable from './../../components/datatable/DataTable';
 
 class RestrictionsTable extends React.PureComponent {
   constructor (props) {
@@ -34,7 +19,6 @@ class RestrictionsTable extends React.PureComponent {
     // this.onEditClick = this.onEditClick.bind(this);
     // this.onCloneClick = this.onCloneClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
-    this.renderTableRow = this.renderTableRow.bind(this);
   }
 
   // onCloneClick (obj) {
@@ -97,24 +81,31 @@ class RestrictionsTable extends React.PureComponent {
         variables={{ department: selected }}>
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
-          // FIXME -> ajouter le loading dans le vue
-          // mais ne pas remplacer completement la vue
-          // par exemple afficher le "pas de données" + "Loading"
-          if (loading) return <p>Loading... </p>;
-          const { departmentRestrictions } = data;
-          if (!departmentRestrictions || !departmentRestrictions.length) {
-            return renderNoRestrictions();
-          }
+          const provider = data.departmentRestrictions || null;
+          const hasrestrictions = provider && provider.length > 0;
           return (
-            <div>
-              <table>
-                {renderRestrictionsTableHeader()}
-                <tbody>
-                  {departmentRestrictions &&
-                    departmentRestrictions.map(this.renderTableRow)}
-                </tbody>
-              </table>
-            </div>
+            <React.Fragment>
+              {loading && <TinyLoader />}
+              {!hasrestrictions && (
+                <div id="page-main-column">
+                  <NoContent description="Pour ajouter une nouvelle restriction utilisez le formulaire ci-contre" />
+                </div>
+              )}
+              {hasrestrictions && (
+                <DataTable provider={provider}
+                  actions={{
+                    edit: () => {},
+                    delete: this.onDeleteClick,
+                  }}
+                  cols={[
+                    {
+                      key: 'label',
+                      type: 'label',
+                      label: 'Nom du département',
+                    },
+                  ]} />
+              )}
+            </React.Fragment>
           );
         }}
       </Query>

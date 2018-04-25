@@ -15,6 +15,18 @@ span + .icon,
   @extend .p20;
 }
 
+.tinyerror,
+.tinyloader {
+  @extend .p12;
+  @extend .my12;
+
+  border-radius: 4px;
+
+  span ~ span {
+    @extend .ml7;
+  }
+}
+
 .notice {
   @extend .p20;
   @extend .align-center;

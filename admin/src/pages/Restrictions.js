@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 
 // application
-import { ALL_DEPARTMENTS } from './../apolloql';
+import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
 import RestrictionsForm from './restrictions/RestrictionsForm';
@@ -60,7 +60,7 @@ class RestrictionsPage extends React.PureComponent {
         header={() =>
           hasdepartements && (
             <fieldset>
-              <EntitySelector query={ALL_DEPARTMENTS}
+              <EntitySelector query={GET_ALL_DEPARTMENTS}
                 onChange={this.onChange} />
             </fieldset>
           )
@@ -78,4 +78,4 @@ RestrictionsPage.propTypes = {
   config: PropTypes.object.isRequired,
 };
 
-export default graphql(ALL_DEPARTMENTS)(RestrictionsPage);
+export default graphql(GET_ALL_DEPARTMENTS)(RestrictionsPage);

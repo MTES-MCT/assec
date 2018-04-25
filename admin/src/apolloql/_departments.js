@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { ALL_DEPARTMENTS } from './queries';
+import { GET_ALL_DEPARTMENTS } from './queries';
 
 export const CREATE_DEPARTMENT = gql(`
 mutation createDepartement(
@@ -78,10 +78,10 @@ mutation updateDepartement(
 }
 `);
 
-export const UPDATE_DEPARTMENTS = (store, { data }) => {
+export const UPDATE_ALL_DEPARTMENTS = (store, { data }) => {
   let dpts = [];
   const { departments: current } = store.readQuery({
-    query: ALL_DEPARTMENTS,
+    query: GET_ALL_DEPARTMENTS,
   });
   if (data.createDepartement) {
     dpts = current.concat([data.createDepartement]);
@@ -94,7 +94,7 @@ export const UPDATE_DEPARTMENTS = (store, { data }) => {
     dpts = current.filter(({ id }) => id !== data.deleteDepartment.id);
   }
   store.writeQuery({
-    query: ALL_DEPARTMENTS,
+    query: GET_ALL_DEPARTMENTS,
     data: { departments: dpts },
   });
 };

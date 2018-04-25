@@ -10,13 +10,8 @@ import {
   UPDATE_DEPARTMENT_ZONES,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
+import TinyLoader from './../../components/ui/TinyLoader';
 import DataTable from './../../components/datatable/DataTable';
-
-const renderNoZones = () => (
-  <div id="page-main-column">
-    <NoContent description="Pour ajouter une nouvelle zone utilisez le formulaire ci-contre" />
-  </div>
-);
 
 class ZonesTable extends React.PureComponent {
   constructor (props) {
@@ -60,29 +55,36 @@ class ZonesTable extends React.PureComponent {
     return (
       <Query query={GET_DEPARTMENT_ZONES} variables={{ department: selected }}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading... </p>;
           if (error) return <p>Error </p>;
-          const { departmentZones } = data;
-          if (!departmentZones || !departmentZones.length) {
-            return renderNoZones();
-          }
+          const provider = data.departmentZones || null;
+          const hasdepartments = provider && provider.length > 0;
           return (
-            <DataTable provider={departmentZones}
-              actions={{
-                edit: this.onEditClick,
-                delete: this.onDeleteClick,
-              }}
-              cols={[
-                {
-                  key: 'label',
-                  label: 'Nom de la zone',
-                },
-                {
-                  key: 'order',
-                  type: 'order',
-                  label: 'Ordre',
-                },
-              ]} />
+            <React.Fragment>
+              {loading && <TinyLoader />}
+              {!hasdepartments && (
+                <div id="page-main-column">
+                  <NoContent description="Pour ajouter une nouvelle zone utilisez le formulaire ci-contre" />
+                </div>
+              )}
+              {hasdepartments && (
+                <DataTable provider={provider}
+                  actions={{
+                    edit: this.onEditClick,
+                    delete: this.onDeleteClick,
+                  }}
+                  cols={[
+                    {
+                      key: 'label',
+                      label: 'Nom de la zone',
+                    },
+                    {
+                      key: 'order',
+                      type: 'small',
+                      label: 'Ordre',
+                    },
+                  ]} />
+              )}
+            </React.Fragment>
           );
         }}
       </Query>

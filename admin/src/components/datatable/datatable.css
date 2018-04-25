@@ -3,24 +3,24 @@
   display: block;
 }
 
-.datatable table .order,
+.datatable table .small,
 .datatable table .expands,
 .datatable table .actions {
   padding: 7px;
   text-align: center;
 }
 
-.datatable table .actions button ~ button {
-  margin-left: 5px;
+.datatable table .small {
+  width: 5px;
 }
 
-.datatable table .expands,
+/* .datatable table .expands,
 .datatable table .bulkable {
   width: 3px;
-}
+} */
 
-.datatable table .order {
-  width: 5px;
+.datatable table .actions button ~ button {
+  margin-left: 5px;
 }
 
 .datatable table .actions-1 {

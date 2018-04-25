@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const ALL_DEPARTMENTS = gql(`
+export const GET_ALL_DEPARTMENTS = gql(`
   query departments {
     departments {
       id

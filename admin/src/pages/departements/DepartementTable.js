@@ -5,35 +5,19 @@ import { connect } from 'react-redux';
 
 // application
 import {
-  ALL_DEPARTMENTS,
   DELETE_DEPARTMENT,
-  UPDATE_DEPARTMENTS,
+  GET_ALL_DEPARTMENTS,
+  UPDATE_ALL_DEPARTMENTS,
 } from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
-
-const renderNoDepartement = () => (
-  <div id="page-main-column">
-    <NoContent description="Ajouter un département en utilisant le formulaire ci-contre" />
-  </div>
-);
-
-const renderDepartementTableHeader = () => (
-  <thead>
-    <tr>
-      <th className="small">Code</th>
-      <th>Nom</th>
-      {/* <th className="small" /> */}
-      <th className="small" />
-    </tr>
-  </thead>
-);
+import TinyLoader from './../../components/ui/TinyLoader';
+import DataTable from './../../components/datatable/DataTable';
 
 class DepartementTable extends React.PureComponent {
   constructor (props) {
     super(props);
     // this.onEditClick = this.onEditClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
-    this.renderTableRow = this.renderTableRow.bind(this);
   }
 
   // onEditClick ({ id, label }) {
@@ -47,7 +31,7 @@ class DepartementTable extends React.PureComponent {
       name: label,
       type: 'DeletePopin',
       deleteAction: DELETE_DEPARTMENT,
-      updateAction: UPDATE_DEPARTMENTS,
+      updateAction: UPDATE_ALL_DEPARTMENTS,
     };
     this.props.dispatch({
       popin,
@@ -55,45 +39,41 @@ class DepartementTable extends React.PureComponent {
     });
   }
 
-  renderTableRow (department) {
-    const { id, code, label } = department;
-    return (
-      <tr key={id}>
-        <td className="small">{code}</td>
-        <td>{label}</td>
-        {/* <td className="small">
-          <button type="button" onClick={() => this.onEditClick(department)}>
-            <i className="icon icon-pencil" />
-          </button>
-        </td> */}
-        <td className="small">
-          <button type="button"
-            className="danger"
-            onClick={() => this.onDeleteClick(department)}>
-            <i className="icon icon-trash" />
-          </button>
-        </td>
-      </tr>
-    );
-  }
-
   render () {
     return (
-      <Query query={ALL_DEPARTMENTS}>
+      <Query query={GET_ALL_DEPARTMENTS}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
           if (error) return <p>Error </p>;
-          const { departments } = data;
-          if (!departments || !departments.length) {
-            return renderNoDepartement();
-          }
+          const provider = data.departments || null;
+          const hasdepartments = provider && provider.length > 0;
           return (
-            <div>
-              <table>
-                {renderDepartementTableHeader()}
-                <tbody>{departments.map(this.renderTableRow)}</tbody>
-              </table>
-            </div>
+            <React.Fragment>
+              {loading && <TinyLoader />}
+              {!hasdepartments && (
+                <div id="page-main-column">
+                  <NoContent description="Ajouter un département en utilisant le formulaire ci-contre" />
+                </div>
+              )}
+              {hasdepartments && (
+                <DataTable provider={provider}
+                  actions={{
+                    edit: () => {},
+                    delete: this.onDeleteClick,
+                  }}
+                  cols={[
+                    {
+                      key: 'code',
+                      type: 'small',
+                      label: '',
+                    },
+                    {
+                      key: 'label',
+                      type: 'label',
+                      label: 'Nom du département',
+                    },
+                  ]} />
+              )}
+            </React.Fragment>
           );
         }}
       </Query>
