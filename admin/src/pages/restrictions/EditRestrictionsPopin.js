@@ -23,7 +23,7 @@ const EditRestrictionsPopin = ({ id, onClose }) => (
       console.log('data', data);
       const { restriction } = data;
       return (
-        <div id="edit-popin" className="flex-columns popin-inner p20">
+        <div id="edit-popin" className="flex-columns popin-container p20">
           <CloseButton onClose={onClose} />
           <Form mutators={{ ...arrayMutators }}
             validate={validator}

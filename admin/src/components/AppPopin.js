@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 // application
 import DeletePopin from './popins/DeletePopin';
 import ZonePopin from './../pages/zones/ZonePopin';
-// import DepartementPopin from './../pages/departements/DepartementPopin';
-// import EditRestrictionsPopin from './../pages/restrictions/EditRestrictionsPopin';
+import SituationPopin from './../pages/departements/SituationPopin';
 
 class AppPopin extends React.PureComponent {
   constructor (props) {
@@ -38,10 +37,8 @@ class AppPopin extends React.PureComponent {
       return <DeletePopin {...rest} onClose={this.closePopin} />;
     case 'ZonePopin':
       return <ZonePopin {...rest} onClose={this.closePopin} />;
-      // case 'DepartementPopin':
-      //   return <DepartementPopin {...rest} onClose={this.closePopin} />;
-      // case 'EditRestrictionsPopin':
-      //   return <EditRestrictionsPopin {...rest} onClose={this.closePopin} />;
+    case 'SituationPopin':
+      return <SituationPopin {...rest} onClose={this.closePopin} />;
     default:
       return null;
     }
@@ -52,9 +49,9 @@ class AppPopin extends React.PureComponent {
     return (
       <div className={`popin ${opened ? 'opened' : ''}`}>
         {opened && (
-          <div className="popin-holder">
-            <div className="popin-overlay" />
-            <div className="popin-content">{this.renderPopin()}</div>
+          <div className="popin-container">
+            <div className="popin-background" />
+            <div className="popin-foreground">{this.renderPopin()}</div>
           </div>
         )}
       </div>

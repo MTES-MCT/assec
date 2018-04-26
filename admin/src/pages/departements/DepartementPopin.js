@@ -45,7 +45,7 @@ const DepartementPopin = ({ id, onClose }) => (
       return (
         <Mutation mutation={UPDATE_DEPARTMENT}>
           {(updateDepartement, result) => (
-            <div id="edit-popin" className="popin-inner">
+            <div id="edit-popin" className="popin-container">
               <CloseButton onClose={onClose} />
               <Form mutators={{ ...arrayMutators }}
                 validate={validator}

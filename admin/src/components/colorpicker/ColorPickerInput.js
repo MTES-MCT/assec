@@ -53,7 +53,9 @@ class ColorInput extends React.PureComponent {
 
   handleClickOutside (evt) {
     const { opened } = this.state;
-    if (!opened || !this.container || this.container.contains(evt.target)) return;
+    if (!opened || !this.container || this.container.contains(evt.target)) {
+      return;
+    }
     this.setState({ opened: false });
   }
 
@@ -73,7 +75,9 @@ class ColorInput extends React.PureComponent {
         <input type="hidden" name={name} defaultValue={color} />
         <div className="popup">
           {!opened ? null : (
-            <ColorPicker color={color} onChange={this.onChange} onChangeComplete={this.onChange} />
+            <ColorPicker color={color}
+              onChange={this.onChange}
+              onChangeComplete={this.onChange} />
           )}
         </div>
       </div>

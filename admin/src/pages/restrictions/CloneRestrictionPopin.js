@@ -21,7 +21,7 @@ const CloneRestrictionsPopin = ({ id, onClose }) => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
       return (
-        <div id="edit-popin" className="popin-inner">
+        <div id="edit-popin" className="popin-container">
           <CloseButton onClose={onClose} />
           <Form mutators={{ ...arrayMutators }}
             validate={validator}

@@ -29,7 +29,7 @@ const ZonePopin = ({
         <Mutation mutation={UPDATE_ZONE_ALERTE}
           update={UPDATE_DEPARTMENT_ZONES}>
           {(updateZoneAlerte, result) => (
-            <div id="edit-popin" className="popin-inner">
+            <div id="edit-popin" className="popin-container">
               <CloseButton onClose={onClose} />
               <Form initialValues={initialValues}
                 onSubmit={(variables, form) =>
@@ -43,9 +43,9 @@ const ZonePopin = ({
                 render={({
                   form, invalid, pristine, handleSubmit,
                 }) => (
-                  <div>
-                    <h6>Déclaration d&apos;alerte</h6>
-                    <h3>{label}</h3>
+                  <div className="popin-inner">
+                    <h6 className="popin-title">Déclaration d&apos;alerte</h6>
+                    <h3 className="popin-subtitle">{label}</h3>
                     <form onSubmit={handleSubmit}>
                       <div className="flex-rows flex-between p12 mt20">
                         <fieldset className="popin-fieldset">

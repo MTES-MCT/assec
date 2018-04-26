@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { CustomPicker } from 'react-color';
 import {
   Hue,
-  EditableInput,
   Saturation,
+  EditableInput,
 } from 'react-color/lib/components/common';
 
 import './colorpicker.css';
