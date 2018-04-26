@@ -1,4 +1,5 @@
 import { ApolloLink } from 'apollo-link';
+import ReduxLink from 'apollo-link-redux';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -28,16 +29,22 @@ const {
   link: networkStatusNotifierLink,
 } = createNetworkStatusNotifier();
 
-export const createClient = (uri) => {
+export const createClient = (uri, store) => {
   const httpLink = new HttpLink({
     uri,
     credentials: 'same-origin',
   });
 
+  // permet de dispatch des actions
+  // start/result pour chaque mutation/query
+  // l'application s'en sert pour informer redux.isloading
+  const reduxLink = new ReduxLink(store);
+
   const client = new ApolloClient({
     cache: new InMemoryCache(),
     connectToDevTools: process.env.NODE_ENV !== 'production',
     link: ApolloLink.from([
+      reduxLink,
       createOmitTypenameLink(),
       networkStatusNotifierLink.concat(httpLink),
     ]),

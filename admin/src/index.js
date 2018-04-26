@@ -27,18 +27,18 @@ if (usedebug()) {
   /* eslint-disable */
 }
 
+const history = createHistory();
+const store = configure(history);
+
 const appversion = process.env.REACT_APP_VERSION;
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
-const { client, NetworkStatusNotifier } = createClient(graphqluri);
+const { client, NetworkStatusNotifier } = createClient(graphqluri, store);
 
 const renderToaster = args => <AppToaster error={args.error} />;
 const renderLoader = ({ loading }) => <LinearProgress loading={loading} />;
 const renderGraphError = args =>
   usedebug() && args.error && <GraphQLError error={args.error} />;
 
-// application
-const history = createHistory();
-const store = configure(history);
 const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
