@@ -4,30 +4,30 @@
 
 ----------------------------------- */
 
-#edit-popin {
-  @extend .p20;
-
-  width: 80%;
+.popin-fieldset {
+  background-color: #FFFFFF;
+  border-top: 1px solid #000000;
 }
 
 #delete-popin {
+  height: auto;
+  width: 360px;
   font-size: 1.3em;
   margin-top: 100px;
+
+  button {
+    font-size: 1em;
+  }
+
+  button ~ button {
+    @extend .ml20;
+  }
 }
 
-#delete-popin button {
-  font-size: 1em;
-}
-
-#delete-popin button ~ button {
-  @extend .ml20;
+#edit-popin {
+  @extend .p20;
 }
 
 #situation-popin {
   width: 120px;
-}
-
-.popin-fieldset {
-  background-color: #FFFFFF;
-  border-top: 1px solid #000000;
 }

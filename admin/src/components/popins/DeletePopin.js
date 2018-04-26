@@ -14,6 +14,7 @@ const DeletePopin = ({
         <CloseButton onClose={onClose} />
         <p className="align-center">
           <span>Êtes vous sûr de vouloir supprimer</span>
+          <br />
           <b>{` ${name} `}</b>
           <span>?</span>
         </p>

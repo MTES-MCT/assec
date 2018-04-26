@@ -49,10 +49,10 @@ class AppPopin extends React.PureComponent {
     return (
       <div className={`popin ${opened ? 'opened' : ''}`}>
         {opened && (
-          <div className="popin-container">
-            <div className="popin-background" />
+          <React.Fragment>
+            <div className="popin-background overlay" />
             <div className="popin-foreground">{this.renderPopin()}</div>
-          </div>
+          </React.Fragment>
         )}
       </div>
     );
