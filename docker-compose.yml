@@ -1,5 +1,7 @@
 version: '2'
 
+# FIXME ->
+# les variables d'env doivent venir des fichier .env
 services:
   nginx-proxy:
     image: jwilder/nginx-proxy

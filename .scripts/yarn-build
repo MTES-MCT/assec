@@ -11,15 +11,19 @@
 #
 # --------------------------------
 
-DEFAULT="staging"
+# default build environment = development
+DEFAULT="development"
+
+# valeur par defaut
+REACT_APP_ENV=$DEFAULT
+
+# recupere l'environment defini via la ligne de commande
 for i in "$@"; do
   case $i in
     -e=*|--env=*)
-    # user defined
     REACT_APP_ENV="${i#*=}"
     ;;
     --default)
-    # default -> staging
     REACT_APP_ENV=$DEFAULT
     ;;
     *)
@@ -27,10 +31,6 @@ for i in "$@"; do
     ;;
   esac
 done
-
-if [ -z $1 ]; then
-  REACT_APP_ENV=$DEFAULT
-fi
 
 ENV_FILE="./../.env.${REACT_APP_ENV}"
 
