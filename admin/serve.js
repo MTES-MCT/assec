@@ -19,7 +19,7 @@ process.on('SIGINT', () => {
 });
 
 // run application
-const port = process.env.PORT;
+const port = parseInt(process.env.PORT, 10);
 app.listen(port, () => {
   if (!usedebug) return;
   process.stdout.write(`Admin server running on http://0.0.0.0:${port}`);
