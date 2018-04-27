@@ -55,4 +55,17 @@ deleteFile "./yarn-error.log"
 deleteFile "./yarn.lock"
 deleteFile "./package-lock.json"
 
+# install with yarn
+yarn install
+
+# ------------------------------------
+# !!! NPM audit will be available soon
+# https://medium.com/npm-inc/announcing-npm-6-5d0b1799a905
+#
+# create a new package.lock file
+# npm i --package-lock-only
+# check for vulnerable packages
+# npm audit
+#
+
 exit 0

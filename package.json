@@ -17,19 +17,22 @@
     "node": "^8.11.0"
   },
   "scripts": {
-    "precommit": "sh ./.scripts/hooks/pre-commit",
     "dev": "nf start --env .env.foreman --port 3000",
     "mongo": "mongod --config ./mongo/mongod.dev.conf",
     "prebump": "sh ./.scripts/git-ensure-clean",
     "bump": "node ./.scripts/yarn-bump",
     "cleanup": "sh ./.scripts/yarn-cleanup",
-    "postcleanup": "yarn install",
     "build": "sh ./.scripts/yarn-build",
     "compose": "docker-compose -f docker-compose.yml -p assec up --build",
     "dump": "fab dump",
     "dump:local": "mongodump --archive=backups/local.gz --gzip --db assec",
     "deploy": "fab deploy",
     "import:local": "mongorestore --gzip --archive=backups/assec.gz"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "sh ./.scripts/hooks/pre-commit"
+    }
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -39,7 +42,7 @@
     "eslint-plugin-react": "^7.7.0",
     "foreman": "^2.0.0",
     "fs-extra": "^5.0.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.2",
     "prettier": "^1.11.1",
     "prettier-eslint": "^8.8.1",
     "semver": "^5.5.0"
