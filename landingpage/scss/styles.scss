@@ -1,0 +1,9 @@
+@import 'reset';
+
+$font-size: 50px;
+
+#page-header {
+  height: 400px;
+  min-height: 400px;
+  font-size: $font-size;
+}
