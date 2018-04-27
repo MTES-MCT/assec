@@ -4,12 +4,13 @@
 # en mode development  est defini par la commande
 # de lancement de Node-Foreman
 # @see ./package.json { scripts.dev }
-# frontend: 3000 > admin: 3100 > graph: 3200
+# landingpage: 3000 > admin: 3100 > graph: 3200 > frontend: 3300
 #
 # -----------
-frontend: cd frontend && npm run start
+landingpage: cd landingpage && npm run dev
 admin: cd admin && npm run start
 graph: cd graph && npm run dev
+frontend: cd frontend && npm run start
 
 # SASS Preprocessor
 # -----------

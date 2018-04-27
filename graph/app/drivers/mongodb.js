@@ -18,16 +18,18 @@ const DB_BASE = `mongodb://${DB_DOMAIN}:${DB_PORT}/${DB_NAME}`;
 const options = {
   // auto generate IDs
   autoIndex: false,
+  autoReconnect: true,
   // Reconnect every 500ms
-  // reconnectInterval: 500,
+  reconnectInterval: 500,
   // Never stop trying to reconnect
-  // reconnectTries: Number.MAX_VALUE,
+  reconnectTries: Number.MAX_VALUE,
   // Maintain up to 10 socket connections
-  // poolSize: 10,
+  poolSize: 10,
   // If not connected
   // return errors immediately rather than waiting for reconnect
   // bufferMaxEntries: 0,
 };
+// http://mongoosejs.com/docs/connections.html
 Mongoose.connect(DB_BASE, options).then(
   () => logger.ok(`MongoDB connection success on: ${DB_BASE}`),
   err => logger.error(`MongoDB connection error: ${DB_BASE} => ${err}`),

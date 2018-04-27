@@ -7,7 +7,8 @@
   "workspaces": [
     "admin",
     "graph",
-    "frontend"
+    "frontend",
+    "landingpage"
   ],
   "author": {
     "name": "Matthieu Lassalvy",

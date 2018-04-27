@@ -25,7 +25,7 @@ do
 done
 
 # Prettify all staged .js files
-echo "$jsfiles" | xargs node_modules/.bin/prettier-eslint --write
+# echo "$jsfiles" | xargs node_modules/.bin/prettier-eslint --write
 echo "$jsfiles" | xargs git add
 
 exit 0
