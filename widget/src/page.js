@@ -6,8 +6,6 @@ import { bindActionCreators } from 'redux';
 
 // application
 import { loadForm } from './actions/form';
-import AppHeader from './components/AppHeader';
-import AppFooter from './components/AppFooter';
 import { usedebug } from './core/utils/usedebug';
 
 // routes
@@ -41,12 +39,7 @@ class PageComponent extends React.Component {
           <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
             rel="stylesheet" />
         </Helmet>
-        <AppHeader title="ASSEC"
-          subtitle="Accédez aux règles d’utilisation de l’eau en période de sécheresse en 3 clics" />
-        {/* routes */}
         <FormScreen />
-        {/* routes */}
-        <AppFooter />
       </div>
     );
   }
