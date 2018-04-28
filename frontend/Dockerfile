@@ -16,16 +16,17 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
 WORKDIR /home/node/www
-COPY serve.js .
 COPY package.json .
+COPY env.config.js .
 COPY next.config.js .
 COPY app/ ./app/
 COPY scss/ ./scss/
 COPY pages/ ./pages/
+COPY static/ ./static/
 
-RUN yarn global add pm2
 RUN yarn install --production
+RUN npm run build
 
 # !!! DO NOT RUN AS `ROOT` !!!
 USER node
-CMD ["pm2-runtime", "serve.js"]
+CMD ["npm", "run", "start"]
