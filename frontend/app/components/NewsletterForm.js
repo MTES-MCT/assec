@@ -25,10 +25,12 @@ const NewsletterForm = (props) => {
             name="courriel"
             component="input"
             placeholder="First Name" />
-          <button className="flex-1 py12 px20"
+          <button className="flex-1 py12 px12 pl20"
             type="submit"
             disabled={pristine || submitting}>
-            <span>Rester informé</span>
+            <span>
+              <span>Rester informé</span>
+            </span>
           </button>
         </div>
       </form>

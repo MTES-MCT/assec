@@ -18,6 +18,7 @@ const HeroContainer = () => (
         </h1>
         <hr className="liner my20" />
         <p className="notice mb12">
+          <i className="icon icon-mail mr3" />
           Prévenez-moi quand le service est opérationnel
         </p>
         <NewsletterForm />

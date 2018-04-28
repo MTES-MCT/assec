@@ -35,6 +35,12 @@
       "css": "mail",
       "code": 59396,
       "src": "entypo"
+    },
+    {
+      "uid": "7ad4d2306ebda8452e5e3eff3cd8241c",
+      "css": "thumbs-up",
+      "code": 59397,
+      "src": "entypo"
     }
   ]
 }

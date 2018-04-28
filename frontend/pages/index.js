@@ -5,6 +5,7 @@ import withRedux from 'next-redux-wrapper';
 // application
 import './../scss/styles.scss';
 import configure from './../app/store';
+import DemoButton from './../app/components/DemoButton';
 import PageLames from './../app/components/PageLames';
 import MainFooter from './../app/components/MainFooter';
 import BottomBlocks from './../app/components/BottomBlocks';
@@ -26,6 +27,7 @@ const App = () => (
     <div id="top-container" className="padded flex-rows flex-between">
       <MainNavigation />
       <HeroContainer />
+      <DemoButton />
     </div>
     <PageLames />
     <BottomBlocks />

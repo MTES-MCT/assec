@@ -47,10 +47,9 @@ textarea {
 ----------------------------------------------- */
 
 .newsletter-form {
-  font-size: 15px;
-
   .field {
     width: auto;
+    font-size: 14px;
     overflow: hidden;
     min-width: 300px;
     border-radius: 12px 0 0 12px;
@@ -60,8 +59,14 @@ textarea {
     border: 0;
     width: 150px;
     height: 100%;
-    font-weight: bold;
+    font-size: 14px;
+    min-width: 150px;
+    max-width: 150px;
     border-radius: 0 12px 12px 0;
+  }
+
+  button .icon {
+    font-size: 1.1em;
   }
 }
 
@@ -78,7 +83,9 @@ textarea {
 
 #top-container {
   height: 100vh;
-  min-height: 550px;
+  // min-height 550px si on enleve le button pour acceder à la démo
+  min-height: 560px;
+  position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
