@@ -1,4 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { ScrollLink } from 'react-scroll';
+
+const LinkComponent = ({ children, ...rest }) => (
+  <button {...rest}>{children}</button>
+);
+
+LinkComponent.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const Link = ScrollLink(LinkComponent);
 
 const styles = {
   container: {
@@ -20,10 +32,10 @@ const styles = {
 
 const DemoButton = () => (
   <div id="demobutton" className="padded" style={styles.container}>
-    <button href="#demo" style={styles.button}>
+    <Link style={styles.button} to="demo" smooth duration={500}>
       <span>Essayez la démo</span>
       <i className="icon icon-thumbs-up ml7" style={styles.icon} />
-    </button>
+    </Link>
   </div>
 );
 

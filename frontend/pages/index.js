@@ -1,13 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
+import { Element } from 'react-scroll';
 import withRedux from 'next-redux-wrapper';
 
 // application
 import './../scss/styles.scss';
 import configure from './../app/store';
-import DemoButton from './../app/components/DemoButton';
 import PageLames from './../app/components/PageLames';
 import MainFooter from './../app/components/MainFooter';
+import DemoButton from './../app/components/DemoButton';
 import BottomBlocks from './../app/components/BottomBlocks';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
@@ -30,6 +31,15 @@ const App = () => (
       <DemoButton />
     </div>
     <PageLames />
+    <Element name="demo" className="element">
+      <iframe title="assec-widget"
+        id="demo"
+        border="0"
+        height="520"
+        width="100%"
+        frameBorder="0"
+        src={process.env.WIDGET_URI} />
+    </Element>
     <BottomBlocks />
     <div id="bottom-container">
       <MainFooter />
