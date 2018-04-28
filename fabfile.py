@@ -74,13 +74,15 @@ def force_deploy():
     run('git pull origin master')
   dockercompose()
 
-def deploy():
+def deploy(branch='master'):
   """
   Deploy du repository distant sur le serveur
   """
+  print("Deploying branch: (%s)" % (branch))
   createvolumes()
   with cd('/home/deploy/assec'):
     # FIXME -> trouver un meilleur moyen de faire un pull
     # en ecrasant les changements locals
-    run('git pull origin master')
+    run('git fetch')
+    run("git pull origin %s" % branch)
   dockercompose()
