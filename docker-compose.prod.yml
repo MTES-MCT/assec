@@ -20,6 +20,12 @@ services:
     environment:
       - NODE_ENV=production
       - VIRTUAL_HOST=admin.iziges.fr,aassec.beta.gouv.fr
+  widget:
+    # les variables pour le build s'ajoute dans les fichier
+    # - .env.build.production
+    environment:
+      - NODE_ENV=production
+      - VIRTUAL_HOST=widget.iziges.fr,wassec.beta.gouv.fr
   frontend:
     # les variables pour le build s'ajoute dans les fichier
     # - .env.build.production

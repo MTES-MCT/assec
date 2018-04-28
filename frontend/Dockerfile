@@ -18,8 +18,10 @@ ENV PATH=$PATH:/home/node/.npm-global/bin
 WORKDIR /home/node/www
 COPY serve.js .
 COPY package.json .
-COPY build/ ./public/
-COPY server/ ./server/
+COPY next.config.js .
+COPY app/ ./app/
+COPY scss/ ./scss/
+COPY pages/ ./pages/
 
 RUN yarn global add pm2
 RUN yarn install --production

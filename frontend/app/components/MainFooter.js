@@ -3,7 +3,7 @@ import React from 'react';
 const MainFooter = () => (
   <div id="main-footer" className="flex-columns flex-between padded py20">
     <p>
-      Une solution Open Source propulsée avec <span className="red">♥</span> par
+      Une solution Open Source propulsée avec <span className="red">❤</span> par
       le{' '}
       <a target="_blank"
         rel="noopener noreferrer"
@@ -16,7 +16,9 @@ const MainFooter = () => (
         beta.gouv.fr
       </a>
     </p>
-    <p>v{process.env.REACT_APP_VERSION}</p>
+    <p>
+      v<span>{process.env.APP_VERSION}</span>
+    </p>
   </div>
 );
 MainFooter.propTypes = {};

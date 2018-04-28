@@ -19,7 +19,7 @@ services:
   graph:
     build: ./graph
     expose:
-      - 3200
+      - 3300
     depends_on:
       - mongo
     environment:
@@ -34,13 +34,25 @@ services:
     # - .env.staging
     build: ./admin
     expose:
-      - 3100
+      - 3200
     depends_on:
       - graph
     environment:
       - PORT=3100
       - NODE_ENV=development
       - VIRTUAL_HOST=admin.docker.loc
+  widget:
+    # les variables pour le build s'ajoute dans les fichier
+    # - .env.staging
+    build: ./widget
+    expose:
+      - 3100
+    depends_on:
+      - graph
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - VIRTUAL_HOST=assec.docker.loc
   frontend:
     # les variables pour le build s'ajoute dans les fichier
     # - .env.staging
@@ -49,6 +61,7 @@ services:
       - 3000
     depends_on:
       - graph
+      - widget
     environment:
       - PORT=3000
       - NODE_ENV=development

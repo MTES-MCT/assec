@@ -34,7 +34,7 @@ done
 
 ENV_FILE="./../.env.${REACT_APP_ENV}"
 
-build_application_with_env_variables() {
+build_CRApp_with_env_variables() {
   echo "\033[1;38;5;132mBuilding '$@ app' Using .env.${REACT_APP_ENV}\033[0m"
   (
     cd $@
@@ -46,7 +46,7 @@ build_application_with_env_variables() {
   )
 }
 
-build_application_with_env_variables 'admin';
-build_application_with_env_variables 'frontend';
+build_CRApp_with_env_variables 'admin';
+build_CRApp_with_env_variables 'widget';
 
 exit 0
