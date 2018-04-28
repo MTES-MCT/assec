@@ -31,6 +31,6 @@ services:
     # - .env.build.production
     environment:
       - NODE_ENV=production
-      - REACT_APP_WIDGET_URI=http://widget.iziges.loc
-      - REACT_APP_GRAPHQL_URI=http://graph.iziges.loc
+      - REACT_APP_WIDGET_URI=http://widget.iziges.fr
+      - REACT_APP_GRAPHQL_URI=http://graph.iziges.fr
       - VIRTUAL_HOST=assec.iziges.fr,assec.beta.gouv.fr
