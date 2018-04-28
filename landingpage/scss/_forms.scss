@@ -1,0 +1,89 @@
+::-webkit-autofill {
+  // -webkit-box-shadow: 0 0 0 30px white inset;
+  // -webkit-text-fill-color: green !important;
+}
+
+::-webkit-search-decoration {
+  display: none;
+}
+
+::-webkit-file-upload-button {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+::placeholder {
+  font-style: italic;
+}
+
+:disabled {
+  cursor: default;
+}
+
+input,
+label,
+select,
+button,
+textarea {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  line-height: 1;
+  background: none;
+  white-space: normal;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input,
+select,
+textarea {
+  box-sizing: content-box;
+}
+
+input:focus,
+select:focus {
+  outline: 0;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  width: 13px;
+  height: 13px;
+}
+
+input[type='search'] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+}
+
+button,
+input[type='reset'],
+input[type='button'],
+input[type='submit'],
+button[type='submit'] {
+  width: auto;
+  cursor: pointer;
+  overflow: visible;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+  min-height: 2.4em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+select[multiple] {
+  vertical-align: top;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block;
+}

@@ -1,0 +1,67 @@
+$red: #F52833;
+$grey: #F7F8FA;
+$gray: #E4E8EE;
+$white: #FFFFFF;
+
+$blue: #427ABD;
+$blueActive: #006AAC;
+
+$color: #1B2734;
+$color-active: #1B2734;
+$color-disabled: #A8B0B8;
+
+body,
+input,
+button,
+textarea {
+  color: $color;
+  font-size: 12px;
+  font-weight: lighter;
+  background-color: $white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.red {
+  color: $red;
+}
+
+.liner {
+  border-left: 30px solid $blue;
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.newsletter-form {
+  .field {
+    background-color: $white;
+  }
+
+  button {
+    color: $white;
+    background-color: $blue;
+    transition: background-color 0.5s;
+
+    &:hover {
+      background-color: $blueActive;
+    }
+  }
+}
+
+#site-container > .liner {
+  height: 5px;
+}
+
+#main-navigation {
+  color: $white;
+
+  a {
+    color: $white;
+  }
+}
+
+#hero-container {
+  color: $white;
+}
+
+#bottom-blocks {
+  background-color: $grey;
+}

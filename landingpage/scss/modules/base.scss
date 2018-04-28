@@ -1,0 +1,154 @@
+::placeholder {
+  opacity: 0.35;
+  font-size: 0.85em;
+}
+
+body {
+  line-height: 1.5em;
+}
+
+body,
+input,
+button,
+textarea {
+  line-height: 1.5em;
+  letter-spacing: 0.02em;
+}
+
+/* -----------------------------------------------
+
+ CLASSES
+
+----------------------------------------------- */
+
+.padded {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.lame {
+  @extend .padded;
+
+  ~ .lame {
+    @extend .mt80;
+  }
+}
+
+.liner {
+  height: 1px;
+  max-width: 37%;
+  min-height: 1px;
+}
+
+/* -----------------------------------------------
+
+ COMPONENTS
+
+----------------------------------------------- */
+
+.newsletter-form {
+  font-size: 15px;
+
+  .field {
+    width: auto;
+    overflow: hidden;
+    min-width: 300px;
+    border-radius: 12px 0 0 12px;
+  }
+
+  button {
+    border: 0;
+    width: 150px;
+    height: 100%;
+    font-weight: bold;
+    border-radius: 0 12px 12px 0;
+  }
+}
+
+/* -----------------------------------------------
+
+ LAYOUTS
+
+----------------------------------------------- */
+
+#site-container {
+  width: 100%;
+  min-width: 100%;
+}
+
+#top-container {
+  height: 100vh;
+  min-height: 550px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  // Photo by Dominik Martin on Unsplash
+  background-image: url('https://source.unsplash.com/YuVzPOBuuf0');
+}
+
+// #logo {
+//   letter-spacing: 0.4em;
+//   text-transform: uppercase;
+// }
+
+#main-navigation {
+  height: 70px;
+  max-height: 70px;
+  min-height: 70px;
+
+  .logos {
+    height: 30px;
+  }
+
+  nav a {
+    text-decoration: none;
+
+    &::before {
+      content: '/';
+      padding-right: 5px;
+    }
+  }
+}
+
+#hero-container {
+  .logo {
+    @extend .mb20;
+
+    font-size: 4.5em;
+    line-height: 1.1em;
+    letter-spacing: 0.4em;
+
+    span {
+      display: block;
+    }
+  }
+
+  .baseline {
+    @extend .mb20;
+
+    font-size: 2.2em;
+    line-height: 1.43em;
+    font-weight: lighter;
+    letter-spacing: 0.05em;
+  }
+
+  .baseline b {
+    padding: 0 7px;
+    box-decoration-break: clone;
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .notice {
+    font-size: 1.15em;
+    font-style: italic;
+  }
+
+  .more {
+    opacity: 0.75;
+    font-size: 4em;
+  }
+}
+
+#bottom-blocks .block {
+  width: 28%;
+}

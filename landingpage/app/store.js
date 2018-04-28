@@ -1,3 +1,4 @@
+import { reducer as formReducer } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
@@ -11,7 +12,9 @@ const bindMiddleware = (middleware = []) => {
   return applyMiddleware(...middleware);
 };
 
-const reducers = combineReducers({});
+const reducers = combineReducers({
+  form: formReducer,
+});
 
 const configure = (initialState = {}) =>
   createStore(reducers, initialState, bindMiddleware());
