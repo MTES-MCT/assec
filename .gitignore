@@ -240,5 +240,6 @@ $RECYCLE.BIN/
 db
 temp
 wiki
+.next
 .scripts/.*
 backups/*.gz
