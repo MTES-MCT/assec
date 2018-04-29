@@ -241,6 +241,7 @@ db
 temp
 wiki
 .next
+SOURCEID
 .scripts/.*
 backups/*.gz
 .env.production

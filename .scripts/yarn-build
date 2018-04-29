@@ -41,6 +41,7 @@ echo "\033[1;38;5;132mBuilding Frontend app\033[0m"
   # les variables d'environnement viennent du serveur
   # il faut les passer via docker et pas depuis le build
   next build
+  git ls-files -s . | git hash-object --stdin > SOURCEID
 )
 
 echo ''
@@ -51,6 +52,7 @@ echo "\033[1;38;5;132mBuilding Admin app"
   ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
   # start react-scripts + configure env variables
   sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
+  git ls-files -s . | git hash-object --stdin > SOURCEID
 )
 
 echo ''
@@ -61,6 +63,7 @@ echo "\033[1;38;5;132mBuilding Widget app"
   ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
   # start react-scripts + configure env variables
   sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
+  git ls-files -s . | git hash-object --stdin > SOURCEID
 )
 
 exit 0

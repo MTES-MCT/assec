@@ -227,6 +227,12 @@
       "css": "cog",
       "code": 59427,
       "src": "entypo"
+    },
+    {
+      "uid": "b7a336095aa4535c3689cb557edf23db",
+      "css": "monitor",
+      "code": 59428,
+      "src": "entypo"
     }
   ]
 }
