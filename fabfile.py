@@ -48,8 +48,8 @@ def dockercompose():
   """
   with cd('/home/deploy/assec'):
     run('yarn install')
-    run('yarn build --env=production')
-    run('docker-compose -f docker-compose.yml -f docker-compose.prod.yml -p assec up -d --build')
+    run('sh ./.scripts/yarn-build --env=production')
+    run('docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml -p assec up -d --build')
     run('docker system prune --force')
     run('echo $(df -h | grep /dev/sda1)')
 

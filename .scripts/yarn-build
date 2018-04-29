@@ -11,8 +11,8 @@
 #
 # --------------------------------
 
-# default build environment = development
-DEFAULT="development"
+# default build environment = staging
+DEFAULT="staging"
 
 # valeur par defaut
 REACT_APP_ENV=$DEFAULT
