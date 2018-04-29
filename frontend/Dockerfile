@@ -16,9 +16,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
 WORKDIR /home/node/www
-COPY .babelrc .
 COPY package.json .
-COPY env.config.js .
 COPY next.config.js .
 COPY app/ ./app/
 COPY scss/ ./scss/

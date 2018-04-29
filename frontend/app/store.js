@@ -1,12 +1,11 @@
+import getConfig from 'next/config';
 import { reducer as formReducer } from 'redux-form';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
-// application
-import usedebug from './core/usedebug';
-
+const { publicRuntimeConfig: envconfig } = getConfig();
 const bindMiddleware = (middleware = []) => {
-  if (usedebug()) {
+  if (envconfig.usedebug) {
     return composeWithDevTools(applyMiddleware(...middleware));
   }
   return applyMiddleware(...middleware);
@@ -17,6 +16,8 @@ const reducers = combineReducers({
 });
 
 const configure = (initialState = {}) =>
+  // les arguments sont auto hydrated via next-redux-wrapper
+  // @see ./../pages/index.js
   createStore(reducers, initialState, bindMiddleware());
 
 export default configure;

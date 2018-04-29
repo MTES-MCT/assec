@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const MainFooter = () => (
+const MainFooter = ({ version }) => (
   <div id="main-footer" className="flex-columns flex-between padded py20">
     <p>
       Une solution Open Source propulsée avec <span className="red">❤</span> par
@@ -17,9 +18,13 @@ const MainFooter = () => (
       </a>
     </p>
     <p>
-      v<span>{process.env.APP_VERSION}</span>
+      v<span>{version}</span>
     </p>
   </div>
 );
-MainFooter.propTypes = {};
+
+MainFooter.propTypes = {
+  version: PropTypes.string.isRequired,
+};
+
 export default MainFooter;

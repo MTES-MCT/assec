@@ -14,7 +14,7 @@ import { usedebug } from './core/utils/usedebug';
 
 if (usedebug()) {
   /* eslint-disable */
-  console.log('**** Frontend Application Debug ****');
+  console.log('**** Widget Application Debug ****');
   console.log('NODE_ENV', process.env.NODE_ENV);
   console.log('REACT_APP_VERSION', process.env.REACT_APP_VERSION);
   console.log('REACT_APP_GRAPHQL_URI', process.env.REACT_APP_GRAPHQL_URI);
