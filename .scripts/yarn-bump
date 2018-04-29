@@ -74,7 +74,7 @@ async function updateenvfiles(version) {
   const allfiles = [
     // update all package.json with a new version number
     path.join(rootcwd, '.env.development'),
-    path.join(rootcwd, '.env.staging'),
+    path.join(rootcwd, '.env.loc'),
     path.join(rootcwd, '.env.production'),
   ];
   await Promise.all(

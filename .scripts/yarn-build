@@ -11,8 +11,8 @@
 #
 # --------------------------------
 
-# default build environment = staging
-DEFAULT="staging"
+# default build environment for docker
+DEFAULT="loc"
 
 # valeur par defaut
 REACT_APP_ENV=$DEFAULT
@@ -46,7 +46,7 @@ echo "\033[1;38;5;132mBuilding Frontend app\033[0m"
 echo ''
 echo "\033[1;38;5;132mBuilding Admin app"
 (
-  cd admin
+  cd ./admin
   # building sass file
   ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
   # start react-scripts + configure env variables
@@ -56,7 +56,7 @@ echo "\033[1;38;5;132mBuilding Admin app"
 echo ''
 echo "\033[1;38;5;132mBuilding Widget app"
 (
-  cd widget
+  cd ./widget
   # building sass file
   ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
   # start react-scripts + configure env variables
