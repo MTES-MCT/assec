@@ -18,13 +18,10 @@ ENV PATH=$PATH:/home/node/.npm-global/bin
 WORKDIR /home/node/www
 COPY package.json .
 COPY next.config.js .
-COPY app/ ./app/
-COPY scss/ ./scss/
-COPY pages/ ./pages/
+COPY build/ ./build/
 COPY static/ ./static/
 
 RUN yarn install --production
-RUN npm run build
 
 # !!! DO NOT RUN AS `ROOT` !!!
 USER node

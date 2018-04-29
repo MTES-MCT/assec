@@ -39,7 +39,6 @@ services:
       - graph
     environment:
       - PORT=3200
-      - NODE_ENV=development
       - VIRTUAL_HOST=admin.docker.loc
   widget:
     # les variables pour le build s'ajoute dans les fichier
@@ -51,7 +50,6 @@ services:
       - graph
     environment:
       - PORT=3100
-      - NODE_ENV=development
       - VIRTUAL_HOST=widget.docker.loc
   frontend:
     # les variables pour le build s'ajoute dans les fichier
@@ -64,7 +62,6 @@ services:
       - widget
     environment:
       - PORT=3000
-      - NODE_ENV=development
       - VIRTUAL_HOST=assec.docker.loc
       - REACT_APP_WIDGET_URI=http://widget.docker.loc
       - REACT_APP_GRAPHQL_URI=http://graph.docker.loc

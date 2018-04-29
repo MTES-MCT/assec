@@ -16,15 +16,15 @@ import MainNavigation from './../app/components/MainNavigation';
 
 const { publicRuntimeConfig: envconfig } = getConfig();
 
-if (envconfig.usedebug) {
-  /* eslint-disable */
-  console.log('**** Frontend Application Debug ****');
-  console.log('USE_DEBUG', envconfig.usedebug);
-  console.log('REACT_APP_VERSION', envconfig.appversion);
-  console.log('REACT_APP_WIDGET_URI', envconfig.widgeturi);
-  console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
-  /* eslint-disable */
-}
+// if (envconfig.usedebug) {
+/* eslint-disable */
+console.log('**** Frontend Application Debug ****');
+console.log('USE_DEBUG', envconfig.usedebug);
+console.log('REACT_APP_VERSION', envconfig.appversion);
+console.log('REACT_APP_WIDGET_URI', envconfig.widgeturi);
+console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
+/* eslint-disable */
+// }
 
 const App = () => (
   <div id="site-container">
