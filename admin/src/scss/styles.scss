@@ -3,14 +3,14 @@
 @import './fontello/css/fontello-embedded.css';
 
 // SCSS Files
-@import 'base';
-@import 'text';
-@import 'form';
-@import 'grid';
-@import 'table';
-@import 'margin';
-@import 'popins';
-@import 'borders';
+@import './_base.scss';
+@import './_text.scss';
+@import './_form.scss';
+@import './_grid.scss';
+@import './_table.scss';
+@import './_margin.scss';
+@import './_popins.scss';
+@import './_borders.scss';
 
 // application
 @import './modules/base.scss';

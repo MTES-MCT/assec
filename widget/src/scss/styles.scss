@@ -2,11 +2,11 @@
 @import './fontello/css/fontello-embedded.css';
 
 // SCSS Files
-@import 'base';
-@import 'form';
-@import 'grid';
+@import './_base.scss';
+@import './_form.scss';
+@import './_grid.scss';
 
 // application
-@import 'partials/map';
-@import 'partials/layout';
-@import 'partials/theme';
+@import './modules/map.scss';
+@import './modules/layout.scss';
+@import './modules/theme.scss';

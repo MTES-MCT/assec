@@ -1,11 +1,11 @@
-@import 'grid';
-@import 'margins';
-@import 'reset';
-@import 'text';
-@import 'forms';
-@import 'base';
+@import './_grid.scss';
+@import './_margins.scss';
+@import './_reset.scss';
+@import './_text.scss';
+@import './_forms.scss';
+@import './_base.scss';
 
 // modules
-@import 'modules/bubble';
-@import 'modules/base';
-@import 'modules/theme';
+@import './modules/bubble.scss';
+@import './modules/base.scss';
+@import './modules/theme.scss';
