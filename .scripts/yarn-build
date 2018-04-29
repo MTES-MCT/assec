@@ -16,7 +16,6 @@ DEFAULT="staging"
 
 # valeur par defaut
 REACT_APP_ENV=$DEFAULT
-
 # recupere l'environment defini via la ligne de commande
 for i in "$@"; do
   case $i in
@@ -33,20 +32,35 @@ for i in "$@"; do
 done
 
 ENV_FILE="./../.env.${REACT_APP_ENV}"
+echo "Using ./../.env.${REACT_APP_ENV} file for env variables definition"
 
-build_CRApp_with_env_variables() {
-  echo "\033[1;38;5;132mBuilding '$@ app' Using .env.${REACT_APP_ENV}\033[0m"
-  (
-    cd $@
-    # building sass file
-    ./node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
-    # start react-scripts + configure env variables
-    sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
-    exit 0
-  )
-}
+echo ''
+echo "\033[1;38;5;132mBuilding Frontend app\033[0m"
+(
+  cd ./frontend
+  # les variables d'environnement viennent du serveur
+  # il faut les passer via docker et pas depuis le build
+  next build
+)
 
-build_CRApp_with_env_variables 'admin';
-build_CRApp_with_env_variables 'widget';
+echo ''
+echo "\033[1;38;5;132mBuilding Admin app"
+(
+  cd admin
+  # building sass file
+  ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
+  # start react-scripts + configure env variables
+  sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
+)
+
+echo ''
+echo "\033[1;38;5;132mBuilding Widget app"
+(
+  cd widget
+  # building sass file
+  ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
+  # start react-scripts + configure env variables
+  sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
+)
 
 exit 0
