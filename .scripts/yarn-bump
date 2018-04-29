@@ -73,29 +73,31 @@ async function updateenvfiles(version) {
   const varname = 'REACT_APP_VERSION';
   const allfiles = [
     // update all package.json with a new version number
-    path.join(rootcwd, '.env.development'),
     path.join(rootcwd, '.env.loc'),
     path.join(rootcwd, '.env.production'),
+    path.join(rootcwd, '.env.development'),
   ];
   await Promise.all(
-    allfiles.map(fp =>
-      fse.readFile(fp, { encoding: 'utf-8' }).then(data => {
-        const content = data
-          .split(endline)
-          .filter(l => l)
-          .map(line => {
-            if (line.indexOf(varname) < 0) return line;
-            const [key] = line.split('=');
-            return `${key}=${version}`;
-          })
-          .join(endline);
-        return fse.outputFile(fp, content);
-      })
+    allfiles.map(
+      fp =>
+        fse.pathExistsSync(fp) &&
+        fse.readFile(fp, { encoding: 'utf-8' }).then(data => {
+          const content = data
+            .split(endline)
+            .filter(l => l)
+            .map(line => {
+              if (line.indexOf(varname) < 0) return line;
+              const [key] = line.split('=');
+              return `${key}=${version}`;
+            })
+            .join(endline);
+          return fse.outputFile(fp, content);
+        })
     )
   )
     .then(() => true)
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       logger.error('Unable to update env files versions\n', 'bump');
       process.exit(1);
     });
