@@ -1,36 +1,38 @@
 version: '2'
 
+# surcharge du fichier docker-compose
+# le fichier docker-compose.prod est utilise pour la production
+# sur le serveur VPS
 services:
   mongo:
+    # reference le container pour pouvoir y acceder facilement
+    # en ligne de commande
     container_name: assec_mongodb_prod_container
     volumes:
       - /home/deploy/data/db:/data/db
       - /home/deploy/backups:/backups
+    env_file:
+      - .env.production
     environment:
-      - NODE_ENV=production
       # - MONGO_INITDB_ROOT_USERNAME="admin"
       # - MONGO_INITDB_ROOT_PASSWORD="password"
   graph:
+    env_file:
+      - .env.production
     environment:
-      - NODE_ENV=production
       - VIRTUAL_HOST=graph.iziges.fr
   admin:
-    # les variables pour le build s'ajoute dans les fichier
-    # - .env.build.production
+    env_file:
+      - .env.production
     environment:
-      - NODE_ENV=production
       - VIRTUAL_HOST=admin.iziges.fr,aassec.beta.gouv.fr
   widget:
-    # les variables pour le build s'ajoute dans les fichier
-    # - .env.build.production
+    env_file:
+      - .env.production
     environment:
-      - NODE_ENV=production
       - VIRTUAL_HOST=widget.iziges.fr,wassec.beta.gouv.fr
   frontend:
-    # les variables pour le build s'ajoute dans les fichier
-    # - .env.build.production
+    env_file:
+      - .env.production
     environment:
-      - NODE_ENV=production
-      - REACT_APP_WIDGET_URI=http://widget.iziges.fr
-      - REACT_APP_GRAPHQL_URI=http://graph.iziges.fr
       - VIRTUAL_HOST=assec.iziges.fr,assec.beta.gouv.fr

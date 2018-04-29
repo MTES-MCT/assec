@@ -73,7 +73,7 @@ async function updateenvfiles(version) {
   const varname = 'REACT_APP_VERSION';
   const allfiles = [
     // update all package.json with a new version number
-    path.join(rootcwd, '.env.foreman'),
+    path.join(rootcwd, '.env.development'),
     path.join(rootcwd, '.env.staging'),
     path.join(rootcwd, '.env.production'),
   ];
