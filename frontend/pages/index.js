@@ -13,6 +13,11 @@ import BottomBlocks from './../app/components/BottomBlocks';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
 
+console.log('process.env.USE_DEBUG', process.env.USE_DEBUG);
+console.log('process.env.WIDGET_URI', process.env.WIDGET_URI);
+console.log('process.env.GRAPHQL_URI', process.env.GRAPHQL_URI);
+console.log('process.env.APP_VERSION', process.env.APP_VERSION);
+
 const App = () => (
   <div id="site-container">
     <Head>
