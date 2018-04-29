@@ -13,9 +13,6 @@ services:
       - /home/deploy/backups:/backups
     env_file:
       - .env.production
-    environment:
-      # - MONGO_INITDB_ROOT_USERNAME="admin"
-      # - MONGO_INITDB_ROOT_PASSWORD="password"
   graph:
     env_file:
       - .env.production

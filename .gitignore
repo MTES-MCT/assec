@@ -243,3 +243,4 @@ wiki
 .next
 .scripts/.*
 backups/*.gz
+.env.production
