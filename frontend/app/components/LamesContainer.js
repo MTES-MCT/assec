@@ -1,8 +1,8 @@
 import React from 'react';
 
-const PageLames = () => (
-  <div id="page-lames">
-    <div id="lame-newsletter" className="lame flex-columns">
+const LamesContainer = () => (
+  <div id="page-lames" className="py60">
+    <div id="lame-newsletter" className="padded lame flex-columns">
       <div className="flex-1">
         <figure>
           <img alt="" src="https://picsum.photos/1280/800" />
@@ -21,7 +21,7 @@ const PageLames = () => (
         </p>
       </div>
     </div>
-    <div id="lame-que-faisons-nous" className="lame flex-columns">
+    <div id="lame-que-faisons-nous" className="padded lame flex-columns pt80">
       <div className="flex-2">
         <h2>
           <span>Pour qui ?</span>
@@ -41,7 +41,7 @@ const PageLames = () => (
         </figure>
       </div>
     </div>
-    <div id="lame-que-faisons-nous" className="lame flex-columns">
+    <div id="lame-que-faisons-nous" className="padded lame flex-columns pt80">
       <div className="flex-1">
         <figure>
           <img alt="" src="https://picsum.photos/1280/800" />
@@ -63,5 +63,5 @@ const PageLames = () => (
     </div>
   </div>
 );
-PageLames.propTypes = {};
-export default PageLames;
+LamesContainer.propTypes = {};
+export default LamesContainer;

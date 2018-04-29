@@ -26,14 +26,6 @@ textarea {
   padding-right: 5%;
 }
 
-.lame {
-  @extend .padded;
-
-  ~ .lame {
-    @extend .mt80;
-  }
-}
-
 .liner {
   height: 1px;
   max-width: 37%;
@@ -139,7 +131,7 @@ textarea {
     letter-spacing: 0.05em;
   }
 
-  .baseline b {
+  .baseline strong {
     padding: 0 7px;
     box-decoration-break: clone;
     background-color: rgba(255, 255, 255, 0.25);

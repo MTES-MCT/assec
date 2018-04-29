@@ -11,9 +11,9 @@ const HeroContainer = () => (
         </h2>
         <h1 className="baseline">
           <span>
-            <b>Optimiser la réponse collective du monde agricole</b> et des
-            services de l&apos;État au problème de pénurie d&apos;eau en période
-            de sécheresse
+            <strong>Optimiser la réponse collective du monde agricole</strong>{' '}
+            et des services de l&apos;État au problème de pénurie d&apos;eau en
+            période de sécheresse
           </span>
         </h1>
         <hr className="liner my20" />

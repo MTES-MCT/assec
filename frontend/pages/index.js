@@ -7,12 +7,12 @@ import withRedux from 'next-redux-wrapper';
 // application
 import './../scss/styles.scss';
 import configure from './../app/store';
-import PageLames from './../app/components/PageLames';
 import MainFooter from './../app/components/MainFooter';
 import DemoButton from './../app/components/DemoButton';
 import BottomBlocks from './../app/components/BottomBlocks';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
+import LamesContainer from './../app/components/LamesContainer';
 
 const { publicRuntimeConfig: envconfig } = getConfig();
 
@@ -47,7 +47,7 @@ const App = () => (
       <HeroContainer />
       <DemoButton />
     </div>
-    <PageLames />
+    <LamesContainer />
     <Element name="demo" className="element">
       <iframe
         title="assec-widget"
