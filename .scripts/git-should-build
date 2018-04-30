@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CURRENT=$(git ls-files -s ./graph | git hash-object --stdin)
+echo $CURRENT
+
+FILE=./graph.hash
+cat $FILE | while  read line ; do
+  echo $line
+done
+
+CURRENT=$(git ls-files -s ./frontend | git hash-object --stdin)
+echo $CURRENT
+
+FILE=./frontend.hash
+cat $FILE | while  read line ; do
+  echo $line
+done

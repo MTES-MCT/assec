@@ -1,15 +1,15 @@
 import React from 'react';
 
 const LamesContainer = () => (
-  <div id="page-lames" className="py60">
+  <div id="page-lames" className="py80">
     <div id="lame-newsletter" className="padded lame flex-columns">
       <div className="flex-1">
         <figure>
           <img alt="" src="https://picsum.photos/1280/800" />
         </figure>
       </div>
-      <div className="flex-2">
-        <h2>
+      <div className="flex-2 ml40">
+        <h2 className="mb40">
           <span>Pourquoi ?</span>
         </h2>
         <p>
@@ -22,8 +22,8 @@ const LamesContainer = () => (
       </div>
     </div>
     <div id="lame-que-faisons-nous" className="padded lame flex-columns pt80">
-      <div className="flex-2">
-        <h2>
+      <div className="flex-2 ml40">
+        <h2 className="mb40">
           <span>Pour qui ?</span>
         </h2>
         <p>
@@ -47,8 +47,8 @@ const LamesContainer = () => (
           <img alt="" src="https://picsum.photos/1280/800" />
         </figure>
       </div>
-      <div className="flex-2">
-        <h2>
+      <div className="flex-2 ml40">
+        <h2 className="mb40">
           <span>Comment participer ?</span>
         </h2>
         <p>
