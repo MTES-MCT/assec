@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 # surcharge du fichier docker-compose
 # le fichier docker-compose.prod est utilise pour la production

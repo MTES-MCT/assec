@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   nginx-proxy:
@@ -11,12 +11,19 @@ services:
     build: ./mongo
     expose:
       - 27017
+    # healthcheck:
+    #   test: echo 'db.stats().ok' | mongo 127.0.0.1:27017/assec --quiet
+    #   retries: 3
+    #   timeout: 10s
+    #   interval: 1m30s
   graph:
     build: ./graph
     expose:
       - 3300
     depends_on:
-      - "mongo"
+      - mongo
+      # mongo:
+      #   condition: service_healthy
     environment:
       - PORT=3300
   admin:
@@ -24,7 +31,7 @@ services:
     expose:
       - 3200
     depends_on:
-      - "graph"
+      - graph
     environment:
       - PORT=3200
   widget:
@@ -32,16 +39,14 @@ services:
     expose:
       - 3100
     depends_on:
-      - "admin"
+      - admin
     environment:
       - PORT=3100
   frontend:
-    # les variables pour le build s'ajoute dans les fichier
-    # - .env.staging
     build: ./frontend
     expose:
       - 3000
     depends_on:
-      - "widget"
+      - widget
     environment:
       - PORT=3000

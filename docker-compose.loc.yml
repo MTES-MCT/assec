@@ -1,11 +1,11 @@
-version: '2'
+version: '2.1'
 
 services:
   mongo:
     volumes:
       # LOCAL
       # Le path /mongodb/db doit être défini dans les parametres
-      # de l'application Docker
+      # de l'application Docker Mac
       - /mongodb/db:/data/db
     env_file:
       - .env.loc

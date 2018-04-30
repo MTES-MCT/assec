@@ -19,7 +19,7 @@
   },
   "scripts": {
     "dev": "nf start --env .env.development --port 3000",
-    "mongo": "mongod --config ./mongo/mongod.conf",
+    "mongo": "mongod --config ./mongo/mongod.local",
     "prebump": "sh ./.scripts/git-ensure-clean",
     "bump": "node ./.scripts/yarn-bump",
     "cleanup": "sh ./.scripts/yarn-cleanup",
