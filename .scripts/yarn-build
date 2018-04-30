@@ -42,14 +42,20 @@ done
 function buildProject() {
   echo ''
   echo "\033[1;38;5;132mBuilding '$1 app' Using .env.${REACT_APP_ENV}\033[0m"
-  (
-    cd ./$1
-    # les variables d'environnement viennent du serveur
-    # il faut les passer via docker et pas depuis le build
-    # start react-scripts + configure env variables
-    sh -ac ". $ENV_FILE; yarn build"
-    exit 0
-  )
+  CURRENT_BUILD_ID=$(git ls-files -s "./$1" | git hash-object --stdin)
+  PREVIOUS_BUILD_ID=$(cat "./.hashs/$1")
+  if [ "$CURRENT_BUILD_ID" = "$PREVIOUS_BUILD_ID" ]; then
+    echo "Project '$1' is up-to-date no new build required"
+  else
+    (
+      cd ./$1
+      # les variables d'environnement viennent du serveur
+      # il faut les passer via docker et pas depuis le build
+      # start react-scripts + configure env variables
+      sh -ac ". $ENV_FILE; yarn build"
+      exit 0
+    )
+  fi;
   echo "Writing $1 project hash"
   git ls-files -s "./$1" | git hash-object --stdin > "./.hashs/$1"
 }

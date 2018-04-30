@@ -2,30 +2,28 @@ version: '2.1'
 
 services:
   mongo:
-    volumes:
-      # LOCAL
-      # Le path /mongodb/db doit être défini dans les parametres
-      # de l'application Docker Mac
-      - /mongodb/db:/data/db
     env_file:
-      - .env.loc
+      - .env.local
+    volumes:
+      # permet d'acceder aux fichiers de backup de la BDD eg: departments.json
+      - ./tmp:/tmp/backups
   graph:
     env_file:
-      - .env.loc
+      - .env.local
     environment:
       - VIRTUAL_HOST=graph.docker.loc
   admin:
     env_file:
-      - .env.loc
+      - .env.local
     environment:
       - VIRTUAL_HOST=admin.docker.loc
   widget:
     env_file:
-      - .env.loc
+      - .env.local
     environment:
       - VIRTUAL_HOST=widget.docker.loc
   frontend:
     env_file:
-      - .env.loc
+      - .env.local
     environment:
       - VIRTUAL_HOST=assec.docker.loc
