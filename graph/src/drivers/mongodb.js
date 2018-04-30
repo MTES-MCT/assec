@@ -30,9 +30,37 @@ const options = {
   // bufferMaxEntries: 0,
 };
 // http://mongoosejs.com/docs/connections.html
-Mongoose.connect(DB_BASE, options).then(
-  () => logger.ok(`MongoDB connection success on: ${DB_BASE}`),
-  err => logger.error(`MongoDB connection error: ${DB_BASE} => ${err}`),
-);
 
+let timer = null;
+let retriescount = 0;
+const maxretries = 10;
+const retrytimeout = 1500; // ms
+const tryConnect = (success, fail) =>
+  Mongoose.connect(DB_BASE, options).then(success, fail);
+
+const onConnectionSuccess = () => {
+  if (timer) clearTimeout(timer);
+  logger.ok(`MongoDB connection success on: ${DB_BASE}`);
+};
+
+const onConnectionFailed = (err) => {
+  if (timer) clearTimeout(timer);
+  let msg = `MongoDB connection error: ${DB_BASE} => ${err}`;
+  logger.warn(msg);
+  if (retriescount >= maxretries) {
+    msg = `MongoDB connection max retries reached: ${DB_BASE} => ${err}`;
+    logger.error(msg);
+    process.exit(1);
+    return;
+  }
+  retriescount += 1;
+  msg = `MongoDB connection retry #${retriescount}`;
+  logger.info(msg);
+  timer = setTimeout(
+    () => tryConnect(onConnectionSuccess, onConnectionFailed),
+    retrytimeout,
+  );
+};
+
+tryConnect(onConnectionSuccess, onConnectionFailed);
 export * from './../entities/mongodb';

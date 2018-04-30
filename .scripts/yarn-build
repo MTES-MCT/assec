@@ -35,6 +35,17 @@ ENV_FILE="./../.env.${REACT_APP_ENV}"
 echo "Using ./../.env.${REACT_APP_ENV} file for env variables definition"
 
 echo ''
+echo "\033[1;38;5;132mBuilding Graph server app\033[0m"
+(
+  cd ./graph
+  # les variables d'environnement viennent du serveur
+  # il faut les passer via docker et pas depuis le build
+  yarn build
+  # FIXME -> GIT Hash du projet pour plus tard gerer les version des builds
+  # git ls-files -s . | git hash-object --stdin > SOURCEID
+)
+
+echo ''
 echo "\033[1;38;5;132mBuilding Frontend app\033[0m"
 (
   cd ./frontend

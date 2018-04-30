@@ -22,10 +22,11 @@ services:
       - 3300
     depends_on:
       - mongo
-      # mongo:
-      #   condition: service_healthy
     environment:
       - PORT=3300
+    # mongo:
+      #   condition: service_healthy
+    # restart: always
   admin:
     build: ./admin
     expose:
