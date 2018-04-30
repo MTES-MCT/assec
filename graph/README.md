@@ -1,5 +1,7 @@
 # ASSEC API
 
+Use Nodemon to watch files while during Babel transpile
+
 ## Requirements
 
 - [GraphQL](http://graphql.org)

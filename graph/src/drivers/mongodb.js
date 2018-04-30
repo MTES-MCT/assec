@@ -20,11 +20,11 @@ const options = {
   autoIndex: false,
   autoReconnect: true,
   // Reconnect every 500ms
-  reconnectInterval: 500,
+  // reconnectInterval: 500,
   // Never stop trying to reconnect
   reconnectTries: Number.MAX_VALUE,
   // Maintain up to 10 socket connections
-  poolSize: 10,
+  // poolSize: 10,
   // If not connected
   // return errors immediately rather than waiting for reconnect
   // bufferMaxEntries: 0,

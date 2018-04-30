@@ -6,12 +6,12 @@ import bodyParser from 'body-parser';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
-import { logger } from './app/utils/logger';
-import { usedebug } from './app/utils/usedebug';
+import { logger } from './utils/logger';
+import { usedebug } from './utils/usedebug';
 
-import schemas from './app/schemas';
-import queries from './app/queries';
-import mutations from './app/mutations';
+import schemas from './schemas';
+import queries from './queries';
+import mutations from './mutations';
 
 const graphqlport = process.env.PORT;
 
