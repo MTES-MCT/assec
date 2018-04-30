@@ -12,10 +12,10 @@
 # --------------------------------
 
 # default build environment for docker
-DEFAULT="loc"
+DEFAULT_ENV="local"
 
 # valeur par defaut
-REACT_APP_ENV=$DEFAULT
+REACT_APP_ENV=$DEFAULT_ENV
 # recupere l'environment defini via la ligne de commande
 for i in "$@"; do
   case $i in
@@ -23,7 +23,7 @@ for i in "$@"; do
     REACT_APP_ENV="${i#*=}"
     ;;
     --default)
-    REACT_APP_ENV=$DEFAULT
+    REACT_APP_ENV=$DEFAULT_ENV
     ;;
     *)
     # unknown option
@@ -31,53 +31,35 @@ for i in "$@"; do
   esac
 done
 
+# function shouldBuild() {
+#   CURRENT=$(git ls-files -s ./graph | git hash-object --stdin)
+#   echo $CURRENT
+#
+#   FILE=./graph.hash
+#   cat $FILE
+# }
+
+function buildProject() {
+  echo ''
+  echo "\033[1;38;5;132mBuilding '$1 app' Using .env.${REACT_APP_ENV}\033[0m"
+  (
+    cd ./$1
+    # les variables d'environnement viennent du serveur
+    # il faut les passer via docker et pas depuis le build
+    # start react-scripts + configure env variables
+    sh -ac ". $ENV_FILE; yarn build"
+    exit 0
+  )
+  echo "Writing $1 project hash"
+  git ls-files -s "./$1" | git hash-object --stdin > "./.hashs/$1"
+}
+
 ENV_FILE="./../.env.${REACT_APP_ENV}"
-echo "Using ./../.env.${REACT_APP_ENV} file for env variables definition"
+echo "Using .env.${REACT_APP_ENV} file for env variables definition"
 
-echo ''
-echo "\033[1;38;5;132mBuilding Graph server app\033[0m"
-(
-  cd ./graph
-  # les variables d'environnement viennent du serveur
-  # il faut les passer via docker et pas depuis le build
-  yarn build
-  # FIXME -> GIT Hash du projet pour plus tard gerer les version des builds
-  cd ..
-  git ls-files -s ./graph | git hash-object --stdin > graph.hash
-)
-
-echo ''
-echo "\033[1;38;5;132mBuilding Frontend app\033[0m"
-(
-  cd ./frontend
-  # les variables d'environnement viennent du serveur
-  # il faut les passer via docker et pas depuis le build
-  next build
-  # FIXME -> GIT Hash du projet pour plus tard gerer les version des builds
-  cd ..
-  git ls-files -s ./frontend | git hash-object --stdin > frontend.hash
-)
-
-echo ''
-echo "\033[1;38;5;132mBuilding Admin app"
-(
-  cd ./admin
-  # building sass file
-  ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
-  # start react-scripts + configure env variables
-  sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
-  git ls-files -s . | git hash-object --stdin > SOURCEID
-)
-
-echo ''
-echo "\033[1;38;5;132mBuilding Widget app"
-(
-  cd ./widget
-  # building sass file
-  ./../node_modules/.bin/node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed
-  # start react-scripts + configure env variables
-  sh -ac ". $ENV_FILE; ./node_modules/.bin/react-scripts build"
-  git ls-files -s . | git hash-object --stdin > SOURCEID
-)
+buildProject 'graph'
+buildProject 'admin'
+buildProject 'widget'
+buildProject 'frontend'
 
 exit 0

@@ -44,9 +44,8 @@
     "uuid": "^3.2.1"
   },
   "scripts": {
-    "prebuild": "npm run sass",
-    "build": "echo \"Error: see file ./.scripts/yarn-build\"",
-    "eject": "react-scripts eject",
+    "prebuild": "node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed",
+    "build": "react-scripts build",
     "generate:schema": "node ./.scripts/schema.js",
     "start": "react-scripts start",
     "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
