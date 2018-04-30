@@ -16,7 +16,7 @@ services:
     expose:
       - 3300
     depends_on:
-      - mongo
+      - "mongo"
     environment:
       - PORT=3300
   admin:
@@ -24,7 +24,7 @@ services:
     expose:
       - 3200
     depends_on:
-      - graph
+      - "graph"
     environment:
       - PORT=3200
   widget:
@@ -32,8 +32,7 @@ services:
     expose:
       - 3100
     depends_on:
-      - graph
-      - admin
+      - "admin"
     environment:
       - PORT=3100
   frontend:
@@ -43,7 +42,6 @@ services:
     expose:
       - 3000
     depends_on:
-      - graph
-      - widget
+      - "widget"
     environment:
       - PORT=3000
