@@ -11,8 +11,7 @@ echo "$(tput bold)Start checking git status$(tput sgr0)"
 # Check if git status is clean
 GIT_STATUS=$(git status --porcelain)
 if [ -n "$GIT_STATUS" ]; then
-  echo "$(tput setaf 136)$(tput bold)❌  Git repository is dirty!$(tput sgr0)"
+  echo "$(tput setaf 136)$(tput bold)❌  Git repository is dirty!, Please commit any changes before proceed$(tput sgr0)"
   echo
-  git status
   exit 1
 fi

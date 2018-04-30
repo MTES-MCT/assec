@@ -25,6 +25,7 @@
     "history": "^4.7.2",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
+    "node-sass": "^4.7.2",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-ace": "^6.0.0",
@@ -46,10 +47,11 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
+    "prebuild": "npm run sass",
     "build": "echo \"Error: see file ./.scripts/yarn-build\"",
     "eject": "echo \"Error: unused\"",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom",
-    "sass": "node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
+    "sass": "./node_modules/.bin/node-sass -w -r src/scss/styles.scss src/styles.css --output-style compressed"
   }
 }

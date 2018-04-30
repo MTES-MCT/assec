@@ -242,6 +242,8 @@ temp
 wiki
 .next
 SOURCEID
+.hashs/*
+!.hashs/.*
 .scripts/.*
 backups/*.gz
 mongod.local

@@ -24,7 +24,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node --watch=server ./src/index.js",
-    "build": "babel ./src -d ./build",
+    "build": "babel ./src -d ./build --quiet",
     "start": "node ./build/index.js"
   }
 }
