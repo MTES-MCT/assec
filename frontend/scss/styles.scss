@@ -5,7 +5,9 @@
 @import './_forms.scss';
 @import './_base.scss';
 
+// third party components
+@import './mixins/bubble.scss';
+
 // modules
-@import './modules/bubble.scss';
 @import './modules/base.scss';
 @import './modules/theme.scss';

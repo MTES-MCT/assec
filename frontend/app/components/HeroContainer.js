@@ -1,5 +1,6 @@
 import React from 'react';
 
+import BubbleSpeech from './ui/BubbleSpeech';
 import NewsletterForm from './NewsletterForm';
 
 const HeroContainer = () => (
@@ -19,12 +20,12 @@ const HeroContainer = () => (
         <hr className="liner my20" />
         <p className="notice mb12">
           <i className="icon icon-mail mr3" />
-          Prévenez-moi quand le service est opérationnel
+          <span>Tester le service en avant-première</span>
         </p>
         <NewsletterForm />
       </div>
       <div className="flex-1 items-start col-50 pl40">
-        <p>Lorem ipsum dolor sit amet</p>
+        <BubbleSpeech />
       </div>
     </div>
     <span className="more pb20 pt80">
