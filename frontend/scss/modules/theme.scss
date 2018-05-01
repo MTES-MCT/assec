@@ -65,17 +65,6 @@ button {
   background-color: $white;
 }
 
-.person {
-  blockquote {
-    color: $dark-disabled;
-  }
-
-  a {
-    color: $white;
-    background-color: $purple-1;
-  }
-}
-
 #site-container > .liner {
   height: 5px;
 }
@@ -92,8 +81,23 @@ button {
   color: $white;
 }
 
-#bottom-blocks {
+#qui-sommes-nous {
   background-color: $grey;
+
+  .person {
+    figure {
+      border: 3px solid $white;
+    }
+
+    blockquote {
+      color: $dark-disabled;
+    }
+
+    a {
+      color: $white;
+      background-color: $purple-0;
+    }
+  }
 }
 
 #demobutton {

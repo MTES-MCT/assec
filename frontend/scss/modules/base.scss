@@ -62,6 +62,15 @@ textarea {
   }
 }
 
+.big-badge {
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  width: 120px;
+  height: 120px;
+}
+
 /* -----------------------------------------------
 
  LAYOUTS
@@ -100,6 +109,8 @@ textarea {
   }
 
   nav a {
+    cursor: pointer;
+    user-select: none;
     text-decoration: none;
 
     &::before {
@@ -148,11 +159,7 @@ textarea {
   }
 }
 
-#bottom-blocks .block {
-  width: 28%;
-}
-
-#whoweare .person {
+#equipe .person {
   figure {
     width: 50px;
     height: 50px;

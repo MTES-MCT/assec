@@ -32,7 +32,12 @@ const styles = {
 
 const DemoButton = () => (
   <div id="demobutton" className="padded" style={styles.container}>
-    <Link style={styles.button} to="demo" smooth duration={500}>
+    <Link to="essayez-la-demo"
+      spy
+      hashSpy
+      smooth
+      duration={800}
+      style={styles.button}>
       <span>Essayez la démo</span>
       <i className="icon icon-thumbs-up ml7" style={styles.icon} />
     </Link>

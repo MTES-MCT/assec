@@ -1,4 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { ScrollLink } from 'react-scroll';
+
+const LinkComponent = ({ children, ...rest }) => <a {...rest}>{children}</a>;
+
+LinkComponent.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const Link = ScrollLink(LinkComponent);
 
 const MainNavigation = () => (
   <div id="main-navigation"
@@ -13,17 +23,27 @@ const MainNavigation = () => (
         src="/static/logo-betagouv.svg" />
     </div>
     <nav>
-      <a href="#lame-why">
+      <Link to="a-propos" spy hashSpy smooth offset={-80} duration={500}>
         <span>A propos</span>
-      </a>
+      </Link>
       <span className="nav-splitter" />
-      <a href="#lame-how" className="pl20">
+      <Link to="comment-participer"
+        spy
+        hashSpy
+        smooth
+        duration={500}
+        className="pl20">
         <span>Comment participer</span>
-      </a>
+      </Link>
       <span className="nav-splitter" />
-      <a href="#bottom-blocks" className="pl20">
+      <Link to="qui-sommes-nous"
+        spy
+        hashSpy
+        smooth
+        duration={1000}
+        className="pl20">
         <span>Nous contacter</span>
-      </a>
+      </Link>
     </nav>
   </div>
 );

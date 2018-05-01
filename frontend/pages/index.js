@@ -9,10 +9,18 @@ import './../scss/styles.scss';
 import configure from './../app/store';
 import MainFooter from './../app/components/MainFooter';
 import DemoButton from './../app/components/DemoButton';
-import BottomBlocks from './../app/components/BottomBlocks';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
-import LamesContainer from './../app/components/LamesContainer';
+
+// blocks
+import Equipe from './../app/components/blocks/Equipe';
+import NosSponsors from './../app/components/blocks/NosSponsors';
+import ContactezNous from './../app/components/blocks/ContactezNous';
+
+// lames
+import APropos from './../app/components/lames/APropos';
+import QueFaisonsNous from './../app/components/lames/QueFaisonsNous';
+import CommentParticiper from './../app/components/lames/CommentParticiper';
 
 const { publicRuntimeConfig: envconfig } = getConfig();
 
@@ -47,8 +55,12 @@ const App = () => (
       <HeroContainer />
       <DemoButton />
     </div>
-    <LamesContainer />
-    <Element id="demo" name="demo">
+    <div id="lames-container" className="py80">
+      <APropos />
+      <QueFaisonsNous />
+      <CommentParticiper />
+    </div>
+    <Element name="essayez-la-demo">
       <iframe
         title="assec-widget"
         id="demo"
@@ -59,7 +71,14 @@ const App = () => (
         src={envconfig.widgeturi}
       />
     </Element>
-    <BottomBlocks />
+    <Element
+      name="qui-sommes-nous"
+      id="qui-sommes-nous"
+      className="flex-columns flex-between padded pt80 pb120">
+      <Equipe />
+      <ContactezNous />
+      <NosSponsors />
+    </Element>
     <MainFooter version={envconfig.appversion} />
   </div>
 );
