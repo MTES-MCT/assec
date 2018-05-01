@@ -17,4 +17,7 @@ module.exports = withSass({
     graphqluri: process.env.REACT_APP_GRAPHQL_URI,
     usedebug: process.env.NODE_ENV !== 'production',
   },
+  exportPathMap: () => ({
+    '/': { page: '/' },
+  }),
 });
