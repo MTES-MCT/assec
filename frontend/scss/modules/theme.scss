@@ -3,6 +3,9 @@ $grey: #F7F8FA;
 $gray: #E4E8EE;
 $white: #FFFFFF;
 
+$dark: #000000;
+$dark-disabled: #999999;
+
 $blue: #427ABD;
 $blueActive: #006AAC;
 $blueDisabled: #94C2EE;
@@ -10,6 +13,10 @@ $blueDisabled: #94C2EE;
 $color: #1B2734;
 $color-active: #1B2734;
 $color-disabled: #A8B0B8;
+
+$purple-0: #14134E;
+$purple-1: #512D5A;
+$purple-2: #843B61;
 
 body,
 input,
@@ -20,6 +27,15 @@ textarea {
   font-weight: lighter;
   background-color: $white;
   font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: $color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 button {
@@ -45,9 +61,18 @@ button {
   background-color: rgba(255, 255, 255, 0.35);
 }
 
-.newsletter-form {
-  .field {
-    background-color: $white;
+.newsletter-form .field {
+  background-color: $white;
+}
+
+.person {
+  blockquote {
+    color: $dark-disabled;
+  }
+
+  a {
+    color: $white;
+    background-color: $purple-1;
   }
 }
 

@@ -48,7 +48,7 @@ const App = () => (
       <DemoButton />
     </div>
     <LamesContainer />
-    <Element name="demo" className="element">
+    <Element id="demo" name="demo">
       <iframe
         title="assec-widget"
         id="demo"
@@ -60,9 +60,7 @@ const App = () => (
       />
     </Element>
     <BottomBlocks />
-    <div id="bottom-container">
-      <MainFooter version={envconfig.appversion} />
-    </div>
+    <MainFooter version={envconfig.appversion} />
   </div>
 );
 

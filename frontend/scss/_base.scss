@@ -73,6 +73,12 @@ strong {
   font-weight: 900;
 }
 
+q,
+blockquote {
+  font-style: italic;
+  quotes: '„' '“' '‚' '‘';
+}
+
 :disabled,
 :disabled:hover,
 :disabled:visited {
