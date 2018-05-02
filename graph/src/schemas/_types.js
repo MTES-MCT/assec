@@ -51,10 +51,12 @@ type AlerteType {
 type ZoneType {
   id: ID!
   help: String
+  name: String!
   label: String!
   order: String!
   department: ID!
   geojson: String!
+  shortname: String!
   alerte: AlerteType
 }
 `;

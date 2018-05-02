@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { GeoJSON, Tooltip, Point } from 'react-leaflet';
+import { GeoJSON, Tooltip } from 'react-leaflet';
 
 // eslint
 class GeoJSONLayerInput extends React.PureComponent {
@@ -12,10 +12,9 @@ class GeoJSONLayerInput extends React.PureComponent {
       selected,
       dispatch,
       obj: {
-        geojson, id, label, alerte,
+        geojson, id, shortname,
       },
     } = this.props;
-    console.log('alerte', alerte);
     const isselected = id === selected;
     const commons = {
       data: geojson,
@@ -32,9 +31,9 @@ class GeoJSONLayerInput extends React.PureComponent {
         order={zIndex}
         key={`mapzone_${id}${(isselected && '_active') || ''}`}
         className={`geojson-layer ${(isselected && 'active') || ''}`}>
-        <Tooltip sticky offset={[8, -12]}>
+        <Tooltip sticky direction="center" offset={[0, 24]}>
           <span>
-            <span>{label}</span>
+            <span>{shortname}</span>
           </span>
         </Tooltip>
       </GeoJSON>

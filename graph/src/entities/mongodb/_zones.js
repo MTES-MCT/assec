@@ -3,7 +3,11 @@ import { slugify } from './../../utils/slugify';
 
 const ZoneSchema = new Schema(
   {
-    label: {
+    name: {
+      type: String,
+      required: true,
+    },
+    shortname: {
       type: String,
       required: true,
     },
@@ -47,6 +51,10 @@ const ZoneSchema = new Schema(
 
 ZoneSchema.virtual('slug').get(function virtualslug () {
   return slugify(this.label);
+});
+
+ZoneSchema.virtual('label').get(function virtualslug () {
+  return `${this.shortname} _ ${this.name}`;
 });
 
 export const ZoneModel = Mongoose.model('zones', ZoneSchema);

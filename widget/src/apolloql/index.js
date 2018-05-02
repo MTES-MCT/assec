@@ -42,9 +42,11 @@ query hydrateDepartment (
     zones {
       id
       help
+      name
       label
       order
       geojson
+      shortname
       alerte {
         end_date
         start_date
