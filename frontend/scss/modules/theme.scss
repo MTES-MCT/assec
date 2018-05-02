@@ -56,6 +56,10 @@ button {
   color: $red;
 }
 
+.shadowed {
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1), 0 8px 40px rgba(0, 0, 0, 0.1);
+}
+
 .liner {
   border-left: 30px solid $blue;
   background-color: rgba(255, 255, 255, 0.35);
@@ -97,6 +101,15 @@ button {
       color: $white;
       background-color: $purple-0;
     }
+  }
+}
+
+#main-footer {
+  color: $white;
+  background-image: linear-gradient(312deg, #14134E, #512D5A 68%, #843B61);
+
+  a {
+    color: $white;
   }
 }
 

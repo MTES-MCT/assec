@@ -63,12 +63,14 @@ textarea {
 }
 
 .big-badge {
-  display: inline-block;
-  text-align: center;
-  border-radius: 50%;
-  border: 3px solid #FFFFFF;
   width: 120px;
   height: 120px;
+  text-align: center;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 5em;
+  line-height: 2em;
+  background-color: #FFFFFF;
 }
 
 /* -----------------------------------------------
@@ -159,7 +161,7 @@ textarea {
   }
 }
 
-#equipe .person {
+#notre-equipe .person {
   figure {
     width: 50px;
     height: 50px;
@@ -188,6 +190,11 @@ textarea {
     font-size: 0.65em;
     border-radius: 2px;
   }
+}
+
+#comment-nous-contacter .col-left {
+  font-size: 1.5em;
+  line-height: 1.25em;
 }
 
 #main-footer {

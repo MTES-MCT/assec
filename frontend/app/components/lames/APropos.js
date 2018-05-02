@@ -12,13 +12,15 @@ const APropos = () => (
       <h2 className="mb40">
         <span>Pourquoi ?</span>
       </h2>
-      <p>
-        Service aux irrigants Vous êtes agriculteur ? Vous craignez pour votre
-        activité en cas de sécheresse ? Nous voulons vous aider à anticiper et
-        gérer la sécheresse pour minimiser l&apos;impact économique sur votre
-        activité. Nous avons besoin de vous pour concevoir un service qui
-        réponde à vos attentes. Laissez-nous vos coordonnées !
-      </p>
+      <div className="shadowed speech-bubble speech-left speech-io p60">
+        <p>
+          Service aux irrigants Vous êtes agriculteur ? Vous craignez pour votre
+          activité en cas de sécheresse ? Nous voulons vous aider à anticiper et
+          gérer la sécheresse pour minimiser l&apos;impact économique sur votre
+          activité. Nous avons besoin de vous pour concevoir un service qui
+          réponde à vos attentes. Laissez-nous vos coordonnées !
+        </p>
+      </div>
     </div>
   </Element>
 );

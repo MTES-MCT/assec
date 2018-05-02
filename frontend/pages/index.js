@@ -9,6 +9,7 @@ import './../scss/styles.scss';
 import configure from './../app/store';
 import MainFooter from './../app/components/MainFooter';
 import DemoButton from './../app/components/DemoButton';
+import ShadowLiner from './../app/components/ui/ShadowLiner';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
 
@@ -74,9 +75,12 @@ const App = () => (
     <Element
       name="qui-sommes-nous"
       id="qui-sommes-nous"
-      className="flex-columns flex-between padded pt80 pb120">
-      <Equipe />
-      <ContactezNous />
+      className="padded pb60">
+      <ShadowLiner className="mb40" />
+      <div className="flex-columns flex-between">
+        <ContactezNous />
+        <Equipe />
+      </div>
       <NosSponsors />
     </Element>
     <MainFooter version={envconfig.appversion} />

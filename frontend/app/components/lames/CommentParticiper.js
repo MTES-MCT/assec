@@ -14,13 +14,16 @@ const CommentParticiper = () => (
       <h2 className="mb40">
         <span>Comment participer ?</span>
       </h2>
-      <p>
-        Que faisons nous ? Nous développons des solutions pour améliorer la
-        réponse au problème de pénurie d&apos;eau lors d&apos;épisodes de
-        sécheresse. Nous travaillons actuellement sur la vallée de l&apos;Asse
-        dans les Alpes-de-haute-Provence. Vous êtes agriculteur sur ce
-        territoire ? Nous avons besoin de vous pour développer un service utile.
-      </p>
+      <div className="shadowed speech-bubble speech-left speech-io p60">
+        <p>
+          Que faisons nous ? Nous développons des solutions pour améliorer la
+          réponse au problème de pénurie d&apos;eau lors d&apos;épisodes de
+          sécheresse. Nous travaillons actuellement sur la vallée de l&apos;Asse
+          dans les Alpes-de-haute-Provence. Vous êtes agriculteur sur ce
+          territoire ? Nous avons besoin de vous pour développer un service
+          utile.
+        </p>
+      </div>
     </div>
   </Element>
 );
