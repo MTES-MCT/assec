@@ -6,16 +6,23 @@ const NosSponsors = () => (
       <span>Nos Sponsors</span>
       <hr className="liner mt12" />
     </h3>
-    <p>
-      <img alt="beta.gouv.fr" height="65" src="/static/logo-betagouv.svg" />
-      <img alt="La fabrique numérique"
+    <p className="flex-columns flex-start">
+      <img className="flex-0"
+        alt="beta.gouv.fr"
         height="65"
-        className="ml20"
+        src="/static/logo-betagouv.svg" />
+      <img className="flex-0 ml20"
+        height="65"
+        alt="La fabrique numérique"
         src="/static/logo-fabnum.svg" />
-      <img alt="Chambres d'Agricultue Provence-Alpes-Côte d'Azur"
+      <img className="flex-0 ml20"
         height="65"
-        className="ml20"
+        alt="Chambres d'Agricultue Provence-Alpes-Côte d'Azur"
         src="/static/logo-dca-paca.png" />
+      <button className="flex-1 ml20 align-center dashed">
+        <i className="icon icon-thumbs-up mr7" />
+        <span>Prêt à nous soutenir ? Ajouter votre logo ici</span>
+      </button>
     </p>
   </div>
 );

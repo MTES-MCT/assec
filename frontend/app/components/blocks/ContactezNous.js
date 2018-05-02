@@ -7,12 +7,12 @@ const ContactezNous = () => (
       <hr className="liner mt12" />
     </h3>
     <div className="flex-columns">
-      <p>
+      <p className="col-left">
         <span className="big-badge">
           <i className="icon icon-mail" />
         </span>
       </p>
-      <div className="col-left ml40">
+      <div className="col-right ml40">
         <p>
           <b style={{ display: 'block ' }}>Nous sommes à votre écoute</b>
           <span style={{ display: 'block ' }}>
@@ -21,7 +21,7 @@ const ContactezNous = () => (
         </p>
         <ul>
           <li className="mt12">
-            <b>Email :</b> assec@beta.gouv.fr
+            <b>eMail :</b> assec@beta.gouv.fr
           </li>
           <li className="mt12">
             <b>Téléphone :</b> +33 (0)1 40 81 95 86

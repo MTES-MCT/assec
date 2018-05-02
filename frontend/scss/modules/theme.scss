@@ -89,6 +89,17 @@ button {
   color: $white;
 }
 
+#nos-sponsors .dashed {
+  opacity: 0.45;
+  color: $dark-disabled;
+  transition: opacity 0.5s;
+  border-color: $dark-disabled;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 #qui-sommes-nous {
   background-color: $grey;
 
