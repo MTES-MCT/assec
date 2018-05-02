@@ -63,7 +63,7 @@ const App = () => (
         }}
       />
     </div>
-    <div id="lames-container" className="py80">
+    <div id="lames-container" className="pb120">
       <APropos />
       <QueFaisonsNous />
       <CommentParticiper />

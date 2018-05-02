@@ -31,9 +31,11 @@ const Person = ({
         </b>
         <span className="ml7">/ {jobtitle}</span>
       </h4>
-      <nav className="mt3">
-        {socials && socials.map(obj => <SocialLink key={obj.type} {...obj} />)}
-      </nav>
+      {socials && (
+        <nav className="mt3">
+          {socials.map(obj => <SocialLink key={obj.type} {...obj} />)}
+        </nav>
+      )}
     </div>
   </React.Fragment>
 );

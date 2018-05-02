@@ -95,6 +95,50 @@ ul.list li {
   }
 }
 
+.lame {
+  @extend .mt120;
+
+  .description {
+    font-size: 1.3em;
+    line-height: 1.8em;
+  }
+}
+
+.person {
+  figure {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+
+  b ~ span {
+    font-size: 0.8em;
+  }
+
+  blockquote {
+    font-size: 1.1em;
+  }
+
+  a {
+    padding: 3px;
+    font-size: 0.65em;
+    border-radius: 2px;
+  }
+}
+
+.testimonial {
+  border-top: 1px solid #000000;
+}
+
 /* -----------------------------------------------
 
  LAYOUTS
@@ -176,37 +220,6 @@ ul.list li {
   .more {
     opacity: 0.75;
     font-size: 4em;
-  }
-}
-
-#notre-equipe .person {
-  figure {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
-    min-height: 50px;
-    overflow: hidden;
-    text-align: center;
-    border-radius: 50%;
-  }
-
-  img {
-    height: 100%;
-    width: auto;
-  }
-
-  b ~ span {
-    font-size: 0.8em;
-  }
-
-  blockquote {
-    font-size: 1.1em;
-  }
-
-  a {
-    padding: 3px;
-    font-size: 0.65em;
-    border-radius: 2px;
   }
 }
 
