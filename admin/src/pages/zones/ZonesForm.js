@@ -13,8 +13,11 @@ import SubmitButton from './../../components/forms/SubmitButton';
 
 const validator = (values) => {
   const errors = {};
-  if (!values.label || values.label === '') {
-    errors.label = 'Required';
+  if (!values.name || values.name === '') {
+    errors.name = 'Required';
+  }
+  if (!values.shortname || values.shortname === '') {
+    errors.shortname = 'Required';
   }
   if (!values.geojson || values.geojson === '') {
     errors.geojson = 'Required';
@@ -23,10 +26,11 @@ const validator = (values) => {
 };
 
 const initialValues = {
-  help: '',
   order: 0,
-  label: '',
+  help: '',
+  name: '',
   geojson: '',
+  shortname: '',
 };
 
 const ZonesForm = ({ selected }) => (
@@ -50,7 +54,8 @@ const ZonesForm = ({ selected }) => (
           const moredisabled =
             pristine ||
             result.loading ||
-            !form.label === '' ||
+            !form.name === '' ||
+            !form.shortname === '' ||
             !(selected && selected !== null);
           return (
             <form onSubmit={handleSubmit} className="mb20">
@@ -58,8 +63,11 @@ const ZonesForm = ({ selected }) => (
                 <Field name="department" type="hidden" component="input" />
                 <Legend label="Ajouter une zone" />
                 <TextInput disabled={disabled}
-                  name="label"
-                  label="Nom de la zone" />
+                  name="name"
+                  label="Nom long de la zone" />
+                <TextInput disabled={disabled}
+                  name="shortname"
+                  label="Nom court de la zone" />
                 <TextArea disabled={moredisabled}
                   name="geojson"
                   label="Coordonnées de la zone" />

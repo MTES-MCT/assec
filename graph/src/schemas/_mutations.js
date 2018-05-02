@@ -20,10 +20,11 @@ type Mutation {
 
   createZone(
     help: String
-    label: String!
+    name: String!
     order: String!
     department: ID!
     geojson: String!
+    shortname: String!
     alerte: [AlerteInput]
   ): ZoneType
 

@@ -30,10 +30,12 @@ query departmentZones (
     department: $department
   ) {
     id
-    label
     help
+    label
+    name
     order
     geojson
+    shortname
     department
     alerte {
       end_date
