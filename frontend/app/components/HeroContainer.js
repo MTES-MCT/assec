@@ -11,17 +11,16 @@ const HeroContainer = () => (
         </h2>
         <h1 className="baseline">
           <span>
-            <strong>Optimiser la réponse collective du monde agricole</strong>{' '}
-            et des services de l&apos;État au problème de pénurie d&apos;eau en
-            période de sécheresse
+            <strong>
+              L&apos;outil qui vous informe des restrictions d&apos;eau en temps
+              réel
+            </strong>
           </span>
         </h1>
         <hr className="liner my20" />
-        <p className="notice mb12">
-          <i className="icon icon-mail mr3" />
-          <span>Tester le service en avant-première</span>
-        </p>
-        <NewsletterForm />
+        <NewsletterForm placeholder="E-Mail"
+          className="notice mb12"
+          label="Me prévenir lors du passage en vigilance" />
       </div>
       <div className="flex-1 col-50" />
     </div>

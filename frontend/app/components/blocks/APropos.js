@@ -13,19 +13,18 @@ const APropos = () => (
         <span>Pourquoi ?</span>
       </h2>
       <p className="description">
-        Service aux irrigants Vous êtes agriculteur ? Vous craignez pour votre
-        activité en cas de sécheresse ? Nous voulons vous aider à anticiper et
-        gérer la sécheresse pour minimiser l&apos;impact économique sur votre
-        activité. Nous avons besoin de vous pour concevoir un service qui
-        réponde à vos attentes. Laissez-nous vos coordonnées !
+        Pour optimiser la réponse collective du monde agricole et des services
+        de l&apos;état au problème de pénurie d&apos;eau en période de
+        sécheresse.
       </p>
-      <p className="person flex-columns testimonial pt20 mt20">
-        <Person firstname="Michel"
-          lastname="Perrel"
-          jobtitle="Intrapreneur"
-          quote="Assec c'est trop super top nickel je suis content parce que c'est bien"
+      <hr className="liner mt40 mb20" />
+      <div className="person flex-columns">
+        <Person firstname="Franck"
+          lastname="Chauvet"
+          jobtitle="Président de la fédération des structures hydrauliques du Var"
+          quote="Les règles discutées avec les services de l’Etat sont enfin accessibles à tous"
           avatar="https://avatars1.githubusercontent.com/u/34424209?s=400&u=ed4fc31733a5e6e3ec3cd2396701812d0c33e801&v=4" />
-      </p>
+      </div>
     </div>
   </Element>
 );

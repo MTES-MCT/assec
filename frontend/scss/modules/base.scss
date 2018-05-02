@@ -135,10 +135,6 @@ ul.list li {
   }
 }
 
-.testimonial {
-  border-top: 1px solid #000000;
-}
-
 /* -----------------------------------------------
 
  LAYOUTS
@@ -191,6 +187,12 @@ ul.list li {
     font-size: 4.5em;
     line-height: 1.1em;
     letter-spacing: 0.4em;
+
+    img {
+      height: auto;
+      width: 100px;
+      max-width: 100px;
+    }
 
     span {
       display: block;

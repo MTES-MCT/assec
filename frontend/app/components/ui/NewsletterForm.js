@@ -15,16 +15,25 @@ const validate = (values) => {
 };
 
 const NewsletterForm = (props) => {
-  const { handleSubmit, pristine, submitting } = props;
+  const {
+    handleSubmit, pristine, submitting, label, placeholder,
+  } = props;
   return (
     <div className="newsletter-form">
       <form onSubmit={handleSubmit}>
+        <label htmlFor="courriel" className="notice mb12">
+          <span>
+            <i className="icon icon-mail mr3" />
+            <span>{label}</span>
+          </span>
+        </label>
         <div className="flex-columns">
           <Field className="field flex-2 py12 px20"
             type="email"
+            id="courriel"
             name="courriel"
             component="input"
-            placeholder="First Name" />
+            placeholder={placeholder || ''} />
           <button className="flex-1 py12 px12 pl20"
             type="submit"
             disabled={pristine || submitting}>
@@ -39,9 +48,11 @@ const NewsletterForm = (props) => {
 };
 
 NewsletterForm.propTypes = {
+  label: PropTypes.string.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default reduxForm({

@@ -3,6 +3,9 @@
 > 🚰 Optimiser la réponse collective du monde agricole et des services de l'État au problème de pénurie d'eau en période de sécheresse
 https://beta.gouv.fr/startup/assec.html
 
+URL IGN Layer Cadastrals
+https://geoservices.ign.fr/documentation/donnees-ressources-wmts.html
+
 ## Requirements
 
 - [GIT](https://git-scm.com)

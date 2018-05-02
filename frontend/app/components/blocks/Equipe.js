@@ -38,27 +38,6 @@ const Equipe = () => (
             },
           ]} />
       </li>
-      <li className="person flex-columns mt20">
-        <Person firstname="Julien"
-          lastname="Dreher"
-          jobtitle="Coach"
-          quote="Coach qui aide à comprendre la logique des réseaux"
-          avatar="https://pbs.twimg.com/profile_images/791311471900762113/kMVrT4Q8_400x400.jpg"
-          socials={[
-            {
-              type: 'twitter',
-              url: 'https://twitter.com/juliendreher',
-            },
-            {
-              type: 'linkedin',
-              url: 'https://www.linkedin.com/in/julien-dreher-a81a5010',
-            },
-            {
-              type: 'home',
-              url: 'http://www.frontierlab.co',
-            },
-          ]} />
-      </li>
     </ul>
   </div>
 );

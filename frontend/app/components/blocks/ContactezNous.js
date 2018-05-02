@@ -13,18 +13,9 @@ const ContactezNous = () => (
         </span>
       </p>
       <div className="col-right ml40">
-        <p>
-          <b style={{ display: 'block ' }}>Nous sommes à votre écoute</b>
-          <span style={{ display: 'block ' }}>
-            du lundi au vendredi, de 9h30 à 18h00.
-          </span>
-        </p>
         <ul className="list pl20 mt40">
           <li className="mt12">
             <b>eMail :</b> assec@beta.gouv.fr
-          </li>
-          <li className="mt12">
-            <b>Téléphone :</b> +33 (0)1 40 81 95 86
           </li>
         </ul>
       </div>
