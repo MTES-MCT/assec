@@ -3,6 +3,7 @@ import Head from 'next/head';
 import getConfig from 'next/config';
 import { Element } from 'react-scroll';
 import withRedux from 'next-redux-wrapper';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 // application
 import './../scss/styles.scss';
@@ -34,7 +35,7 @@ console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
 // }
 
 const App = () => (
-  <div id="site-container">
+  <StickyContainer id="site-container" className="sticky-container">
     <Head>
       <title>My page title</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -50,7 +51,7 @@ const App = () => (
     </Head>
     <hr className="liner" />
     <div id="top-container" className="padded flex-rows flex-between">
-      <MainNavigation />
+      <Sticky>{stickyprops => <MainNavigation {...stickyprops} />}</Sticky>
       <HeroContainer />
       <DemoButton />
     </div>
@@ -82,7 +83,7 @@ const App = () => (
       <NosSponsors />
     </Element>
     <MainFooter version={envconfig.appversion} />
-  </div>
+  </StickyContainer>
 );
 
 export default withRedux(configure)(App);

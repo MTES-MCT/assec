@@ -96,15 +96,11 @@ textarea {
   background-image: url('https://source.unsplash.com/YuVzPOBuuf0');
 }
 
-// #logo {
-//   letter-spacing: 0.4em;
-//   text-transform: uppercase;
-// }
-
 #main-navigation {
-  height: 70px;
-  max-height: 70px;
-  min-height: 70px;
+  z-index: 99999;
+  transition-duration: 0.5s;
+  background-color: transparent;
+  transition-property: background-color, padding;
 
   .logos {
     height: 30px;
