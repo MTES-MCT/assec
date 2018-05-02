@@ -21,6 +21,11 @@ textarea {
 
 ----------------------------------------------- */
 
+ul.list,
+ul.list li {
+  list-style-type: square;
+}
+
 .padded {
   padding-left: 5%;
   padding-right: 5%;
@@ -217,10 +222,13 @@ textarea {
   line-height: calc(65px - 2px);
 }
 
-// FIXME -> ne pas utiliser ml40 comme selecteur
 #comment-nous-contacter .col-right {
   font-size: 1.5em;
   line-height: 1.25em;
+
+  .list {
+    font-size: 0.9em;
+  }
 }
 
 #main-footer {

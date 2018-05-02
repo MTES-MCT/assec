@@ -19,7 +19,7 @@ const ContactezNous = () => (
             du lundi au vendredi, de 9h30 à 18h00.
           </span>
         </p>
-        <ul>
+        <ul className="list pl20 mt40">
           <li className="mt12">
             <b>eMail :</b> assec@beta.gouv.fr
           </li>

@@ -21,7 +21,7 @@ const NosSponsors = () => (
         src="/static/logo-dca-paca.png" />
       <button className="flex-1 ml20 align-center dashed">
         <i className="icon icon-thumbs-up mr7" />
-        <span>Prêt à nous soutenir ? Ajouter votre logo ici</span>
+        <span>Prêt à nous soutenir ? Ajoutez votre logo ici</span>
       </button>
     </p>
   </div>

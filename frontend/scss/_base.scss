@@ -30,6 +30,12 @@ li {
   list-style-type: none;
 }
 
+ul li::before {
+  // accessibilite
+  // @see https://developer.mozilla.org/fr/docs/Web/CSS/list-style-type
+  content: '\200B';
+}
+
 li ~ li {
   margin-top: 12px;
 }
