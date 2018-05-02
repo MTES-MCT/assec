@@ -53,7 +53,15 @@ const App = () => (
     <div id="top-container" className="padded flex-rows flex-between">
       <Sticky>{stickyprops => <MainNavigation {...stickyprops} />}</Sticky>
       <HeroContainer />
-      <DemoButton />
+      <DemoButton
+        islarge
+        className="padded"
+        style={{
+          right: '0',
+          top: '70px',
+          position: 'absolute',
+        }}
+      />
     </div>
     <div id="lames-container" className="py80">
       <APropos />

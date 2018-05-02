@@ -12,36 +12,26 @@ LinkComponent.propTypes = {
 
 const Link = ScrollLink(LinkComponent);
 
-const styles = {
-  container: {
-    right: '0',
-    top: '70px',
-    position: 'absolute',
-  },
-  button: {
-    color: '#FFFFFF',
-    fontSize: '1.3em',
-    borderRadius: '4px',
-    textDecoration: 'none',
-    padding: '12px 18px 12px 24px',
-  },
-  icon: {
-    fontSize: '1.3em',
-  },
-};
-
-const DemoButton = () => (
-  <div id="demobutton" className="padded" style={styles.container}>
+const DemoButton = ({ islarge, ...rest }) => (
+  <div {...rest}>
     <Link to="essayez-la-demo"
       spy
       hashSpy
       smooth
       duration={800}
-      style={styles.button}>
+      className={`demo-button ${(islarge && 'large') || ''}`}>
       <span>Essayez la démo</span>
-      <i className="icon icon-thumbs-up ml7" style={styles.icon} />
+      <i className="icon icon-thumbs-up ml7" />
     </Link>
   </div>
 );
+
+DemoButton.defaultProps = {
+  islarge: false,
+};
+
+DemoButton.propTypes = {
+  islarge: PropTypes.bool,
+};
 
 export default DemoButton;

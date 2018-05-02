@@ -73,6 +73,23 @@ textarea {
   background-color: #FFFFFF;
 }
 
+.demo-button {
+  @extend .py5;
+  @extend .px12;
+
+  font-size: 0.8em;
+  border-radius: 4px;
+  text-decoration: none;
+
+  &.large {
+    @extend .py12;
+
+    padding-left: 24px;
+    padding-right: 18px;
+    font-size: 1.3em;
+  }
+}
+
 /* -----------------------------------------------
 
  LAYOUTS

@@ -56,6 +56,17 @@ button {
   color: $red;
 }
 
+.rainbow {
+  /* stylelint-disable */
+  background-image: linear-gradient(
+    312deg,
+    $purple-0,
+    $purple-1 68%,
+    $purple-2
+  );
+  /* stylelint-enable */
+}
+
 .shadowed {
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1), 0 8px 40px rgba(0, 0, 0, 0.1);
 }
@@ -67,6 +78,19 @@ button {
 
 .newsletter-form .field {
   background-color: $white;
+}
+
+.demo-button {
+  @extend .rainbow;
+
+  color: $white;
+  border: 1px solid $purple-0;
+  /* stylelint-disable */
+  &.large {
+    box-shadow: 0 6px 0 $purple-0, 0 3px 15px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 $purple-2, inset 0 0 3px $purple-2;
+  }
+  /* stylelint-enable */
 }
 
 #site-container > .liner {
@@ -120,21 +144,11 @@ button {
 }
 
 #main-footer {
+  @extend .rainbow;
+
   color: $white;
-  background-image: linear-gradient(312deg, #14134E, #512D5A 68%, #843B61);
 
   a {
     color: $white;
   }
-}
-
-#demobutton {
-  /* stylelint-disable */
-  button {
-    border: 1px solid #14134E;
-    background-image: linear-gradient(312deg, #14134E, #512D5A 68%, #843B61);
-    box-shadow: 0 6px 0 #14134E, 0 3px 15px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(132, 59, 97, 1), inset 0 0 3px rgba(132, 59, 97, 1);
-  }
-  /* stylelint-enable */
 }
