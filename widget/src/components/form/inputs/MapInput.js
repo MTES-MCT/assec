@@ -11,7 +11,7 @@ const ZoningInput = ({
   <FormSection name={id} component="fieldset">
     <div className="input-type-map">
       <div className="flex-columns">
-        <div id="zoning-map" className="flex2">
+        <div id="leaflet-map" className="flex2">
           <LeafletMap zones={values} />
         </div>
         <div className="flex1">

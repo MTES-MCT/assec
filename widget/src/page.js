@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // application
-import { loadForm } from './actions/form';
+import { loadForm } from './actions';
 import { usedebug } from './core/utils/usedebug';
 
 // routes

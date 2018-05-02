@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { GeoJSON } from 'react-leaflet';
+import { GeoJSON, Tooltip, Point } from 'react-leaflet';
 
 // eslint
 class GeoJSONLayerInput extends React.PureComponent {
   render () {
     const {
-      id, geojson, input, selected, dispatch, zIndex,
+      input,
+      zIndex,
+      selected,
+      dispatch,
+      obj: {
+        geojson, id, label, alerte,
+      },
     } = this.props;
+    console.log('alerte', alerte);
     const isselected = id === selected;
     const commons = {
       data: geojson,
@@ -21,17 +28,16 @@ class GeoJSONLayerInput extends React.PureComponent {
       },
     };
     return (
-      (isselected && (
-        <GeoJSON {...commons}
-          order={zIndex}
-          key={`mapzone_${id}_active`}
-          className="geojson-layer active" />
-      )) || (
-        <GeoJSON {...commons}
-          order={zIndex}
-          key={`mapzone_${id}`}
-          className="geojson-layer" />
-      )
+      <GeoJSON {...commons}
+        order={zIndex}
+        key={`mapzone_${id}${(isselected && '_active') || ''}`}
+        className={`geojson-layer ${(isselected && 'active') || ''}`}>
+        <Tooltip sticky offset={[8, -12]}>
+          <span>
+            <span>{label}</span>
+          </span>
+        </Tooltip>
+      </GeoJSON>
     );
   }
 }
@@ -42,11 +48,10 @@ GeoJSONLayerInput.defaultProps = {
 
 GeoJSONLayerInput.propTypes = {
   selected: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  obj: PropTypes.object.isRequired,
   input: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   zIndex: PropTypes.number.isRequired,
-  geojson: PropTypes.object.isRequired,
 };
 
 export default connect()(GeoJSONLayerInput);

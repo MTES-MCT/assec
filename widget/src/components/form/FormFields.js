@@ -4,9 +4,9 @@ import { Form, reduxForm } from 'redux-form';
 
 // application
 import { FORM_NAME } from './../../constants';
+import MapInput from './inputs/MapInput';
 import ListInput from './inputs/ListInput';
 import ChoiceInput from './inputs/ChoiceInput';
-import ZoningInput from './inputs/ZoningInput';
 
 const getinputbytype = (obj) => {
   switch (obj.type) {
@@ -15,7 +15,7 @@ const getinputbytype = (obj) => {
   case 'choice':
     return ChoiceInput;
   case 'zoning':
-    return ZoningInput;
+    return MapInput;
   default:
     return null;
   }

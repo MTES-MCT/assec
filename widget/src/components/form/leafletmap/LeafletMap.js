@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Map, TileLayer } from 'react-leaflet';
 
 // application
-import GeoJSONLayerInput from './../inputs/GeoJSONLayerInput';
+import GeoJSONLayer from './GeoJSONLayer';
 import { TILES_LAYER, TILES_COPYRIGHT } from './../../../constants';
 
 class LeafletMap extends React.PureComponent {
@@ -26,7 +26,8 @@ class LeafletMap extends React.PureComponent {
     // eslint-disable-next-line no-underscore-dangle
     const layers = this.map.leafletElement._layers;
     Object.values(layers)
-      .filter(layer => typeof layer.options.order !== 'undefined')
+      .filter(layer =>
+        layer.options.order && typeof layer.options.order !== 'undefined')
       .sort((a, b) => a.options.order - b.options.order)
       .forEach((layer) => {
         layer.bringToFront();
@@ -51,14 +52,10 @@ class LeafletMap extends React.PureComponent {
             return (
               <Field key={`mapzone_${obj.id}`}
                 name="choice"
-                selected={selected}
-                component={GeoJSONLayerInput}
                 style={{ zIndex }}
-                props={{
-                  zIndex,
-                  id: obj.id,
-                  geojson: obj.geojson,
-                }} />
+                selected={selected}
+                props={{ obj, zIndex }}
+                component={GeoJSONLayer} />
             );
           })}
       </Map>

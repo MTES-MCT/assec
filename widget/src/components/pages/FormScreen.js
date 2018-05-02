@@ -8,9 +8,9 @@ import { getFormValues, clearFields } from 'redux-form';
 
 // application
 import { FORM_NAME } from './../../constants';
+import { formSubmit } from './../../actions';
 import FormFields from './../form/FormFields';
 import FormResults from './../form/FormResults';
-import { formSubmit } from './../../actions/form';
 import FormNavigation from './../form/FormNavigation';
 import checkRequired from './../../actions/check-required';
 import StepperProgress from './../form/stepper/StepperProgress';

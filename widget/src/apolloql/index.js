@@ -45,6 +45,14 @@ query hydrateDepartment (
       label
       order
       geojson
+      alerte {
+        end_date
+        start_date
+        situation {
+          id
+          label
+        }
+      }
     }
     restrictions {
       id
