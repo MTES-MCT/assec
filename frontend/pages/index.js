@@ -8,20 +8,18 @@ import withRedux from 'next-redux-wrapper';
 import './../scss/styles.scss';
 import configure from './../app/store';
 import MainFooter from './../app/components/MainFooter';
-import DemoButton from './../app/components/DemoButton';
+import DemoButton from './../app/components/ui/DemoButton';
 import ShadowLiner from './../app/components/ui/ShadowLiner';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
 
 // blocks
 import Equipe from './../app/components/blocks/Equipe';
+import APropos from './../app/components/blocks/APropos';
 import NosSponsors from './../app/components/blocks/NosSponsors';
 import ContactezNous from './../app/components/blocks/ContactezNous';
-
-// lames
-import APropos from './../app/components/lames/APropos';
-import QueFaisonsNous from './../app/components/lames/QueFaisonsNous';
-import CommentParticiper from './../app/components/lames/CommentParticiper';
+import QueFaisonsNous from './../app/components/blocks/QueFaisonsNous';
+import CommentParticiper from './../app/components/blocks/CommentParticiper';
 
 const { publicRuntimeConfig: envconfig } = getConfig();
 

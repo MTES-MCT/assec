@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NewsletterForm from './NewsletterForm';
+import NewsletterForm from './ui/NewsletterForm';
 
 const HeroContainer = () => (
   <div id="hero-container" className="flex-rows flex-end flex-4">
