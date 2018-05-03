@@ -21,11 +21,6 @@ textarea {
 
 ----------------------------------------------- */
 
-ul.list,
-ul.list li {
-  list-style-type: square;
-}
-
 .padded {
   padding-left: 5%;
   padding-right: 5%;
@@ -135,6 +130,12 @@ ul.list li {
   }
 }
 
+.person.testimonial {
+  blockquote {
+    font-size: 1.4em;
+  }
+}
+
 /* -----------------------------------------------
 
  LAYOUTS
@@ -159,24 +160,40 @@ ul.list li {
 }
 
 #main-navigation {
+  $time: 0.5s;
+
   z-index: 99999;
-  transition-duration: 0.5s;
+  transition-duration: $time;
   background-color: transparent;
   transition-property: background-color, padding;
 
-  .logos {
-    height: 30px;
+  .col-right {
+    overflow: hidden;
+
+    nav {
+      transition: margin-right $time;
+    }
   }
 
   nav a {
+    @extend .py3;
+    @extend .px12;
+
     cursor: pointer;
     user-select: none;
     text-decoration: none;
+    transition-duration: 0.5s;
+    transition-property: color, background-color;
 
     &::before {
       content: '/';
       padding-right: 5px;
     }
+  }
+
+  .demo-button {
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
   }
 }
 

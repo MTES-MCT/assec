@@ -1,22 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollLink } from 'react-scroll';
 
-import DemoButton from './ui/DemoButton';
-
-const LinkComponent = ({ children, ...rest }) => <a {...rest}>{children}</a>;
-
-LinkComponent.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-const Link = ScrollLink(LinkComponent);
+import { TextLink, ButtonLink } from './ui/Links';
 
 const MainNavigation = ({ style, distanceFromTop }) => {
   const issticky = distanceFromTop;
-  const showdemobtn = distanceFromTop <= -510;
-  const padscl = (issticky && 'py12') || 'pt20';
+  const padscl = (issticky && 'py20') || 'pt20';
   const stickycl = (issticky && 'issticky') || '';
+  const margin = distanceFromTop >= -60 ? -170 : 0;
+  // const margin = distanceFromTop >= -150 ? -170 : -170 - (distanceFromTop + 150);
   const csscl = `padded flex-columns flex-between flex-0 ${padscl} ${stickycl}`;
   const mergedstyles = Object.assign({}, style, {
     left: 0,
@@ -25,40 +17,61 @@ const MainNavigation = ({ style, distanceFromTop }) => {
   });
   return (
     <div id="main-navigation" style={mergedstyles} className={csscl}>
-      <div className="logos flex-columns flex-start items-center flex-0">
+      <div className="col-left flex-columns flex-start items-center">
         <img alt="La fabrique numérique"
-          height="30"
+          height="40"
+          className="mr20"
           src="/static/logo-fabnum.svg" />
         <img alt="beta.gouv.fr"
-          height="20"
-          className="ml20"
+          height="30"
+          className="mr20"
           src="/static/logo-betagouv.svg" />
       </div>
-      <div className="flex-columns flex-end items-center">
-        <nav>
-          <Link to="a-propos" spy hashSpy smooth offset={-80} duration={500}>
-            <span>A propos</span>
-          </Link>
-          <span className="nav-splitter" />
-          <Link to="comment-participer"
+      <div className="col-right flex-columns flex-end items-center">
+        <nav style={{ marginRight: (margin < 0 && margin) || 0 }}>
+          <TextLink to="a-propos"
+            className="mr7"
             spy
-            hashSpy
             smooth
+            hashSpy
+            offset={-160}
             duration={500}
-            className="pl20">
-            <span>Comment participer</span>
-          </Link>
+            activeClass="active">
+            <span>A Propos</span>
+          </TextLink>
           <span className="nav-splitter" />
-          <Link to="qui-sommes-nous"
+          <TextLink to="comment-participer"
+            className="mr7"
+            spy
+            smooth
+            hashSpy
+            offset={-180}
+            duration={500}
+            activeClass="active">
+            <span>Comment participer</span>
+          </TextLink>
+          <span className="nav-splitter" />
+          <TextLink to="qui-sommes-nous"
+            className="mr7"
+            spy
+            smooth
+            hashSpy
+            offset={-80}
+            duration={1000}
+            activeClass="active">
+            <span>Nous contacter</span>
+          </TextLink>
+          <ButtonLink to="essayez-la-demo"
             spy
             hashSpy
             smooth
-            duration={1000}
-            className="pl20">
-            <span>Nous contacter</span>
-          </Link>
+            offset={-80}
+            duration={800}
+            className="demo-button">
+            <span>Essayer la démo</span>
+            <i className="icon icon-thumbs-up ml7" />
+          </ButtonLink>
         </nav>
-        {(issticky && showdemobtn && <DemoButton className="ml20" />) || null}
       </div>
     </div>
   );

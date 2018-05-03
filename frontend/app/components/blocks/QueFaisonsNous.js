@@ -10,16 +10,16 @@ const QueFaisonsNous = () => (
         <span>Pour qui ?</span>
       </h2>
       <p className="description">
-        ASSEC s&apos;adresse d&apos;abord aux agriculteurs, pour qui les
-        restrictions dépendent de nombreux facteurs. Il apporte également une
-        réponse pour les industriels et les particuliers.
+        Les restrictions d&apos;eau sont adaptées aux diverses utilisations, aux
+        techniques de prélèvement et aux modalités de gestion, qui sont très
+        variées dans l&apos;agriculture irriguée.
+      </p>
+      <p className="description">
+        ASSEC s&apos;adresse donc d&apos;abord aux agriculteurs irrigants. Il
+        apporte également une réponse pour les particuliers.
       </p>
     </div>
-    <div className="flex-1">
-      <figure>
-        <img alt="" src="https://picsum.photos/1280/800" />
-      </figure>
-    </div>
+    <div className="flex-1" />
   </Element>
 );
 

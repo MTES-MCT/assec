@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ButtonLink } from './ui/Links';
 import NewsletterForm from './ui/NewsletterForm';
 
 const HeroContainer = () => (
@@ -22,12 +23,28 @@ const HeroContainer = () => (
           className="notice mb12"
           label="Me prévenir lors du passage en vigilance" />
       </div>
-      <div className="flex-1 col-50" />
+      <div className="flex-1 col-50">
+        <ButtonLink to="essayez-la-demo"
+          spy
+          hashSpy
+          smooth
+          offset={-80}
+          duration={800}
+          className="demo-button large"
+          style={{
+            right: '5%',
+            top: '70px',
+            position: 'absolute',
+          }}>
+          <span>Essayer la démo</span>
+          <i className="icon icon-thumbs-up ml7" />
+        </ButtonLink>
+      </div>
     </div>
     <span className="more pb20 pt80">
       <i className="ico icon-down-open-big" />
     </span>
   </div>
 );
-HeroContainer.propTypes = {};
+
 export default HeroContainer;

@@ -9,14 +9,13 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import './../scss/styles.scss';
 import configure from './../app/store';
 import MainFooter from './../app/components/MainFooter';
-import DemoButton from './../app/components/ui/DemoButton';
 import ShadowLiner from './../app/components/ui/ShadowLiner';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
 
 // blocks
 import Equipe from './../app/components/blocks/Equipe';
-import APropos from './../app/components/blocks/APropos';
+import Pourquoi from './../app/components/blocks/Pourquoi';
 import NosSponsors from './../app/components/blocks/NosSponsors';
 import ContactezNous from './../app/components/blocks/ContactezNous';
 import QueFaisonsNous from './../app/components/blocks/QueFaisonsNous';
@@ -53,18 +52,9 @@ const App = () => (
     <div id="top-container" className="padded flex-rows flex-between">
       <Sticky>{stickyprops => <MainNavigation {...stickyprops} />}</Sticky>
       <HeroContainer />
-      <DemoButton
-        islarge
-        className="padded"
-        style={{
-          right: '0',
-          top: '70px',
-          position: 'absolute',
-        }}
-      />
     </div>
     <div id="lames-container" className="pb120">
-      <APropos />
+      <Pourquoi />
       <QueFaisonsNous />
       <CommentParticiper />
     </div>

@@ -85,6 +85,10 @@ blockquote {
   quotes: '„' '“' '‚' '‘';
 }
 
+iframe {
+  display: block;
+}
+
 :disabled,
 :disabled:hover,
 :disabled:visited {

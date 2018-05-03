@@ -12,18 +12,16 @@ LinkComponent.propTypes = {
 
 const Link = ScrollLink(LinkComponent);
 
-const DemoButton = ({ islarge, ...rest }) => (
-  <div {...rest}>
-    <Link to="essayez-la-demo"
-      spy
-      hashSpy
-      smooth
-      duration={800}
-      className={`demo-button ${(islarge && 'large') || ''}`}>
-      <span>Essayez la démo</span>
-      <i className="icon icon-thumbs-up ml7" />
-    </Link>
-  </div>
+const DemoButton = ({ islarge }) => (
+  <Link to="essayez-la-demo"
+    spy
+    hashSpy
+    smooth
+    duration={800}
+    className={`demo-button ${(islarge && 'large') || ''}`}>
+    <span>Essayer la démo</span>
+    <i className="icon icon-thumbs-up ml7" />
+  </Link>
 );
 
 DemoButton.defaultProps = {

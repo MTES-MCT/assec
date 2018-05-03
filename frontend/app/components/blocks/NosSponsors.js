@@ -3,7 +3,7 @@ import React from 'react';
 const NosSponsors = () => (
   <div id="nos-sponsors" className="block mt80">
     <h3 className="mb40">
-      <span>Nos Sponsors | Partenaires</span>
+      <span>Nos Sponsors & Partenaires</span>
       <hr className="liner mt12" />
     </h3>
     <p className="flex-columns flex-start">

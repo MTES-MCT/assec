@@ -25,11 +25,11 @@ const Person = ({
     </figure>
     <div className="ml12">
       <blockquote>“{quote}”</blockquote>
-      <h4 className="mt7">
-        <b>
+      <h4 className="mt7 person-infos">
+        <b className="person-name">
           {firstname} {lastname}
         </b>
-        <span className="ml7">/ {jobtitle}</span>
+        <span className="ml7 person-job">/ {jobtitle}</span>
       </h4>
       {socials && (
         <nav className="mt3">
