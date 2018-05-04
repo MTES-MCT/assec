@@ -155,6 +155,9 @@ textarea {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+body:not(.unsubscribe-page) #top-container {
   // Photo by Dominik Martin on Unsplash
   background-image: url('https://source.unsplash.com/YuVzPOBuuf0');
 }

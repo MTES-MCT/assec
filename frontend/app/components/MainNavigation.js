@@ -10,7 +10,7 @@ const MainNavigation = ({ style, distanceFromTop }) => {
   const margin = distanceFromTop >= -60 ? -170 : 0;
   // const margin = distanceFromTop >= -150 ? -170 : -170 - (distanceFromTop + 150);
   const csscl = `padded flex-columns flex-between flex-0 ${padscl} ${stickycl}`;
-  const mergedstyles = Object.assign({}, style, {
+  const mergedstyles = Object.assign({}, style || {}, {
     left: 0,
     right: 0,
     width: '100%',
@@ -78,12 +78,13 @@ const MainNavigation = ({ style, distanceFromTop }) => {
 };
 
 MainNavigation.defaultProps = {
+  style: null,
   distanceFromTop: null,
 };
 
 MainNavigation.propTypes = {
+  style: PropTypes.object,
   distanceFromTop: PropTypes.number,
-  style: PropTypes.object.isRequired,
 };
 
 export default MainNavigation;

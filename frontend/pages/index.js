@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import getConfig from 'next/config';
 import { Element } from 'react-scroll';
 import withRedux from 'next-redux-wrapper';
@@ -35,20 +34,7 @@ console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
 
 const App = () => (
   <StickyContainer id="site-container" className="sticky-container">
-    <Head>
-      <title>My page title</title>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
-      />
-      <link
-        rel="stylesheet"
-        href="/static/fontello/css/fontello-embedded.css"
-      />
-      <link rel="stylesheet" href="/_next/static/style.css" />
-    </Head>
-    <hr className="liner" />
+    <DocumentHead pagetitle="Home" />
     <div id="top-container" className="padded flex-rows flex-between">
       <Sticky>{stickyprops => <MainNavigation {...stickyprops} />}</Sticky>
       <HeroContainer />
