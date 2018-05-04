@@ -23,6 +23,13 @@ type DepartementType {
 }
 `;
 
+const subscriber = `
+type SubscriberType {
+  id: ID!
+  email: String!
+}
+`;
+
 const restriction = `
 type RestrictionType {
   id: ID!
@@ -75,6 +82,7 @@ const typeDefs = `
 ${suos}
 ${zone}
 ${hydrated}
+${subscriber}
 ${restriction}
 ${departement}
 `;

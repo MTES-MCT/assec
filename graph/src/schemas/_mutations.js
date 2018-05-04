@@ -28,6 +28,11 @@ type Mutation {
     alerte: [AlerteInput]
   ): ZoneType
 
+  createSubscriber(
+    id: ID
+    email: String!
+  ): SubscriberType
+
   updateZoneAlerte(
     id: ID!
     situationid: ID!

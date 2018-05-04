@@ -1,13 +1,13 @@
 import React from 'react';
 import getConfig from 'next/config';
 import { Element } from 'react-scroll';
-import withRedux from 'next-redux-wrapper';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 // application
 import './../scss/styles.scss';
-import configure from './../app/store';
+import withApollo from './../app/core/withApollo';
 import MainFooter from './../app/components/MainFooter';
+import DocumentHead from './../app/components/DocumentHead';
 import ShadowLiner from './../app/components/ui/ShadowLiner';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
@@ -32,7 +32,7 @@ console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
 /* eslint-disable */
 // }
 
-const App = () => (
+const App = withApollo(props => (
   <StickyContainer id="site-container" className="sticky-container">
     <DocumentHead pagetitle="Home" />
     <div id="top-container" className="padded flex-rows flex-between">
@@ -68,6 +68,6 @@ const App = () => (
     </Element>
     <MainFooter version={envconfig.appversion} />
   </StickyContainer>
-);
+));
 
-export default withRedux(configure)(App);
+export default App;

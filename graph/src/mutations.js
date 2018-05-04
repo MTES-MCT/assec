@@ -5,6 +5,7 @@ import {
   ZoneModel,
   Departement,
   Restriction,
+  SubscriberModel,
 } from './drivers/mongodb';
 
 const suoskeys = ['situations', 'origines', 'usages'];
@@ -89,6 +90,20 @@ export const Mutation = {
       .populate('alerte.situation')
       .exec();
   },
+
+  /* -----------------------------------
+
+  SUBSCRIBERS
+
+  ----------------------------------- */
+  createSubscriber: (_, args) =>
+    SubscriberModel.findOne({ email: args.email })
+      .then(() => {
+        throw new Error('erroroororro');
+        // if (doc) return SubscriberModel.create(args);
+        // return doc;
+      })
+      .catch(err => err),
 };
 
 export default Mutation;

@@ -1,10 +1,8 @@
 import React from 'react';
 import getConfig from 'next/config';
-import withRedux from 'next-redux-wrapper';
 
 // application
 import './../scss/styles.scss';
-import configure from './../app/store';
 import MainFooter from './../app/components/MainFooter';
 import DocumentHead from './../app/components/DocumentHead';
 import MainNavigation from './../app/components/MainNavigation';
@@ -31,4 +29,4 @@ const App = () => (
   </div>
 );
 
-export default withRedux(configure)(App);
+export default App;
