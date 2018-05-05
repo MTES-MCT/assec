@@ -5,10 +5,13 @@
 @import './_forms.scss';
 @import './_base.scss';
 
-// third party components
+// mixins
 @import './mixins/bubble.scss';
 
+// third party components
+@import './modules/tippy.scss';
+
 // modules
-@import './modules/base.scss';
-@import './modules/theme.scss';
-@import './modules/shadowliner.scss';
+@import './layouts/base.scss';
+@import './layouts/theme.scss';
+@import './layouts/shadowliner.scss';

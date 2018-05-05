@@ -99,9 +99,9 @@ export const Mutation = {
   createSubscriber: (_, args) =>
     SubscriberModel.findOne({ email: args.email })
       .then(() => {
-        throw new Error('erroroororro');
-        // if (doc) return SubscriberModel.create(args);
+        // if (!doc) return SubscriberModel.create(args);
         // return doc;
+        throw new Error('errrrrrr');
       })
       .catch(err => err),
 };

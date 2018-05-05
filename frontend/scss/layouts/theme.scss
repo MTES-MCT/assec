@@ -102,6 +102,15 @@ button {
   }
 }
 
+span.error {
+  color: $red;
+}
+
+.error-tooltip {
+  color: $white;
+  background-color: $red;
+}
+
 #site-container > .liner {
   height: 5px;
 }

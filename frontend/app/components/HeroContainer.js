@@ -19,7 +19,7 @@ const HeroContainer = () => (
           </span>
         </h1>
         <hr className="liner my20" />
-        <NewsletterForm placeholder="E-Mail"
+        <NewsletterForm placeholder="Votre email"
           className="notice mb12"
           label="Me prévenir lors du passage en vigilance" />
       </div>
