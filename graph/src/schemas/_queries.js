@@ -9,6 +9,8 @@ type Query {
 
   department(id: ID): DepartementType
 
+  subscribers: [SubscriberType]
+
   restriction(id: ID): RestrictionType
 
   # ###################################

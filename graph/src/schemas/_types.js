@@ -1,3 +1,10 @@
+const subscriber = `
+type SubscriberType {
+  id: ID!
+  email: String!
+}
+`;
+
 const suos = `
 type SUOType {
   id: ID!
@@ -20,13 +27,6 @@ type DepartementType {
   usages: [SUOType]!
   origines: [SUOType]!
   situations: [SUOType]!
-}
-`;
-
-const subscriber = `
-type SubscriberType {
-  id: ID!
-  email: String!
 }
 `;
 

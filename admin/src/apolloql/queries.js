@@ -137,3 +137,12 @@ query restriction (
   }
 }
 `);
+
+export const GET_ALL_SUBSCRIBERS = gql(`
+  query subscribers {
+    subscribers {
+      id
+      email
+    }
+  }
+`);

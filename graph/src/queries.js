@@ -5,6 +5,7 @@ import {
   ZoneModel,
   Departement,
   Restriction,
+  SubscriberModel,
 } from './drivers/mongodb';
 
 export const Query = {
@@ -14,6 +15,8 @@ export const Query = {
       .populate('origines')
       .populate('situations')
       .exec(),
+
+  subscribers: () => SubscriberModel.find().exec(),
 
   departmentRestrictions: (_, { department }) => {
     if (!department) return [];

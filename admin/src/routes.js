@@ -1,6 +1,7 @@
 import Zones from './pages/Zones';
 import Dashboard from './pages/Dashboard';
 import MySettings from './pages/MySettings';
+import Subscribers from './pages/Subscribers';
 import Departements from './pages/Departements';
 import Restrictions from './pages/Restrictions';
 // import Contributors from './pages/Contributors';
@@ -44,6 +45,13 @@ export const routes = {
     // },
   ],
   sub: [
+    {
+      exact: false,
+      icon: 'mail',
+      path: '/subscribers',
+      name: 'Inscrits',
+      component: Subscribers,
+    },
     {
       exact: false,
       icon: 'cog',

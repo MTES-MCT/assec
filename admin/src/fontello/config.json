@@ -233,6 +233,12 @@
       "css": "monitor",
       "code": 59428,
       "src": "entypo"
+    },
+    {
+      "uid": "e335adbc2d898c7d85d40c507796e7b4",
+      "css": "mail",
+      "code": 59429,
+      "src": "entypo"
     }
   ]
 }
