@@ -141,6 +141,16 @@ textarea {
  LAYOUTS
 
 ----------------------------------------------- */
+#application-toaster {
+  @extend .align-center;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45px;
+  position: fixed;
+  transition: bottom 0.5s;
+}
 
 #site-container {
   width: 100%;

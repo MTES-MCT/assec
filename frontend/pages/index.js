@@ -1,11 +1,14 @@
 import React from 'react';
 import getConfig from 'next/config';
 import { Element } from 'react-scroll';
+import withRedux from 'next-redux-wrapper';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 // application
 import './../scss/styles.scss';
+import configure from './../app/store';
 import withApollo from './../app/core/withApollo';
+import AppToaster from './../app/components/AppToaster';
 import MainFooter from './../app/components/MainFooter';
 import DocumentHead from './../app/components/DocumentHead';
 import ShadowLiner from './../app/components/ui/ShadowLiner';
@@ -22,15 +25,15 @@ import CommentParticiper from './../app/components/blocks/CommentParticiper';
 
 const { publicRuntimeConfig: envconfig } = getConfig();
 
-// if (envconfig.usedebug) {
-/* eslint-disable */
-console.log('**** Frontend Application Debug ****');
-console.log('USE_DEBUG', envconfig.usedebug);
-console.log('REACT_APP_VERSION', envconfig.appversion);
-console.log('REACT_APP_WIDGET_URI', envconfig.widgeturi);
-console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
-/* eslint-disable */
-// }
+if (envconfig.usedebug) {
+  /* eslint-disable */
+  console.log('**** Frontend Application Debug ****');
+  console.log('USE_DEBUG', envconfig.usedebug);
+  console.log('REACT_APP_VERSION', envconfig.appversion);
+  console.log('REACT_APP_WIDGET_URI', envconfig.widgeturi);
+  console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
+  /* eslint-disable */
+}
 
 const App = withApollo(props => (
   <StickyContainer id="site-container" className="sticky-container">
@@ -67,7 +70,8 @@ const App = withApollo(props => (
       <NosSponsors />
     </Element>
     <MainFooter version={envconfig.appversion} />
+    <AppToaster />
   </StickyContainer>
 ));
 
-export default App;
+export default withRedux(configure)(App);

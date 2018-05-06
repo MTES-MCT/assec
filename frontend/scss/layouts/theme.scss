@@ -111,6 +111,23 @@ span.error {
   background-color: $red;
 }
 
+#application-toaster {
+  &.type-error {
+    color: $white;
+    background-color: $red;
+  }
+
+  &.type-warning {
+    color: $white;
+    background-color: $red;
+  }
+
+  &.type-success {
+    color: $white;
+    background-color: $red;
+  }
+}
+
 #site-container > .liner {
   height: 5px;
 }

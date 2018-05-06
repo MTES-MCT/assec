@@ -12,6 +12,7 @@ const DocumentHead = ({ pagetitle }) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" />
+      <link rel="stylesheet" href="/static/fontello/css/animation.css" />
       <link rel="stylesheet"
         href="/static/fontello/css/fontello-embedded.css" />
       <link rel="stylesheet" href="/_next/static/style.css" />
