@@ -38,11 +38,17 @@ done
 #   FILE=./graph.hash
 #   cat $FILE
 # }
+if [ ! -d "./.hashs" ]; then
+  mkdir "./.hashs"
+fi
 
 buildProject () {
   echo ''
   echo "\033[1;38;5;132mBuilding '$1 app' Using .env.${REACT_APP_ENV}\033[0m"
   CURRENT_BUILD_ID=$(git ls-files -s "./$1" | git hash-object --stdin)
+  if [ ! -f "./.hashs/$1" ]; then
+    touch "./.hashs/$1"
+  fi
   PREVIOUS_BUILD_ID=$(cat "./.hashs/$1")
   if [ "$CURRENT_BUILD_ID" = "$PREVIOUS_BUILD_ID" ]; then
     echo "Project '$1' is up-to-date no new build required"

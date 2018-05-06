@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// import { subClosed } from './../actions';
-
 const Toaster = ({ message, type }) => (
-  <div id="toaster" className={`${type && `toaster-${type}`}`}>
+  <div id="toaster" className={`${(type && `toaster-${type}`) || ''}`}>
     <div className="relative">
       {message && (
         <span>
