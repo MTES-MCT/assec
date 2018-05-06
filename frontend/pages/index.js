@@ -2,7 +2,7 @@ import React from 'react';
 import getConfig from 'next/config';
 import { Element } from 'react-scroll';
 import withRedux from 'next-redux-wrapper';
-import { StickyContainer, Sticky } from './../app/components/sticky';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 // application
 import './../scss/styles.scss';
