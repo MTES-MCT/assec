@@ -153,7 +153,7 @@ span.error {
 
 #main-navigation {
   &.issticky {
-    @extend .rainbow;
+    background-color: rgba(0, 0, 0, 0.85);
   }
 
   a {
