@@ -154,7 +154,7 @@ textarea {
   transition-property: color, bottom, background-color;
 
   &.toaster-error,
-  &.toaster-succes,
+  &.toaster-success,
   &.toaster-warning {
     bottom: 0;
   }
