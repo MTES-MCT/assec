@@ -39,7 +39,7 @@ done
 #   cat $FILE
 # }
 
-function buildProject() {
+buildProject () {
   echo ''
   echo "\033[1;38;5;132mBuilding '$1 app' Using .env.${REACT_APP_ENV}\033[0m"
   CURRENT_BUILD_ID=$(git ls-files -s "./$1" | git hash-object --stdin)

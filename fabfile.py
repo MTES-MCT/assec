@@ -10,6 +10,27 @@ env.use_ssh_config = False
 env.hosts = ["54.38.35.159"]
 env.key_filename = "~/.ssh/assec_deploy"
 
+
+def _dockercompose():
+  """
+  Contruit les services docker
+  Fait le menage dans les images et containers docker (prune)
+  Affiche l'espace disque restant sur le serveur
+  """
+  with cd('/home/deploy/assec'):
+    run('yarn install')
+    run('sh ./.scripts/yarn-build --env=production')
+    run('docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml -p assec up -d --build')
+    run('docker system prune --force')
+    run('echo $(df -h | grep /dev/sda1)')
+
+def _createvolumes():
+  with cd('/home/deploy'):
+    # creation des repertoires pour le user 'deploy'
+    # ces repertoires sont des volumes docker
+    run('mkdir -p backups')
+    run('mkdir -p data/db')
+
 # fab -f deploy.py uptime
 def uptime():
   run("uptime")
@@ -40,49 +61,29 @@ def dump():
     # FIXME -> !!! le rm doit se faire en sudo :(
     # run('rm /home/deploy/backups/assec.gz')
 
-def dockercompose():
-  """
-  Contruit les services docker
-  Fait le menage dans les images et containers docker (prune)
-  Affiche l'espace disque restant sur le serveur
-  """
-  with cd('/home/deploy/assec'):
-    run('yarn install')
-    run('sh ./.scripts/yarn-build --env=production')
-    run('docker-compose -f ./docker-compose.yml -f ./docker-compose.prod.yml -p assec up -d --build')
-    run('docker system prune --force')
-    run('echo $(df -h | grep /dev/sda1)')
-
-def createvolumes():
-  with cd('/home/deploy'):
-    # creation des repertoires pour le user 'deploy'
-    # ces repertoires sont des volumes docker
-    run('mkdir -p backups')
-    run('mkdir -p data/db')
-
 def force_deploy():
   """
   Force la recuperation du repository distant
   A utiliser si la commande deploy echoue sur une erreur de merge
   """
-  createvolumes()
+  _createvolumes()
   with cd('/home/deploy/assec'):
     # FIXME -> trouver un meilleur moyen de faire un pull
     # en ecrasant les changements locals
     run('git fetch --all')
     run('git reset --hard origin/master')
     run('git pull origin master')
-  dockercompose()
+  _dockercompose()
 
 def deploy(branch='master'):
   """
   Deploy du repository distant sur le serveur
   """
   print("Deploying branch: (%s)" % (branch))
-  createvolumes()
+  _createvolumes()
   with cd('/home/deploy/assec'):
     # FIXME -> trouver un meilleur moyen de faire un pull
     # en ecrasant les changements locals
     run('git fetch')
     run("git pull origin %s" % branch)
-  dockercompose()
+  _dockercompose()

@@ -5,7 +5,7 @@ LABEL maintainer=matthieu.lassalvy@beta.gouv.fr
 
 WORKDIR /home/node/server
 COPY package.json .
-COPY build ./public/
+COPY build/ ./public/
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
