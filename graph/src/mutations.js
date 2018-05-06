@@ -1,3 +1,4 @@
+import isemail from 'isemail';
 import omit from 'lodash.omit';
 import Mongoose from 'mongoose';
 import {
@@ -96,13 +97,16 @@ export const Mutation = {
   SUBSCRIBERS
 
   ----------------------------------- */
-  createSubscriber: (_, args) =>
-    SubscriberModel.findOne({ email: args.email })
+  createSubscriber: (_, args) => {
+    const { email } = args;
+    if (!isemail.validate(email)) throw new Error('Invalid email');
+    return SubscriberModel.findOne({ email })
       .then((doc) => {
         if (!doc) return SubscriberModel.create(args);
         return doc;
       })
-      .catch(err => err),
+      .catch(err => err);
+  },
 };
 
 export default Mutation;
