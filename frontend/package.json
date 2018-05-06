@@ -12,6 +12,7 @@
   "dependencies": {
     "@zeit/next-sass": "^0.1.2",
     "apollo-cache-inmemory": "^1.2.0",
+    "apollo-link": "^1.2.2",
     "apollo-link-http": "^1.5.4",
     "dotenv": "^5.0.1",
     "final-form": "^4.6.1",

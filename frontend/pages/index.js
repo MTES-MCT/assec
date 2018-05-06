@@ -8,7 +8,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import './../scss/styles.scss';
 import configure from './../app/store';
 import withApollo from './../app/core/withApollo';
-import AppToaster from './../app/components/AppToaster';
+import Toaster from './../app/components/Toaster';
 import MainFooter from './../app/components/MainFooter';
 import DocumentHead from './../app/components/DocumentHead';
 import ShadowLiner from './../app/components/ui/ShadowLiner';
@@ -35,7 +35,7 @@ if (envconfig.usedebug) {
   /* eslint-disable */
 }
 
-const App = withApollo(props => (
+const Application = () => (
   <StickyContainer id="site-container" className="sticky-container">
     <DocumentHead pagetitle="Home" />
     <div id="top-container" className="padded flex-rows flex-between">
@@ -70,8 +70,12 @@ const App = withApollo(props => (
       <NosSponsors />
     </Element>
     <MainFooter version={envconfig.appversion} />
-    <AppToaster />
+    <Toaster />
   </StickyContainer>
-));
+);
 
-export default withRedux(configure)(App);
+export default withRedux(configure)(
+  withApollo(props => {
+    return <Application {...props} />;
+  })
+);

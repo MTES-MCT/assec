@@ -13,5 +13,11 @@ export const subError = () => ({
 export const subSuccess = () => ({
   status: 'success',
   type: 'onSubscriptionStatus',
-  message: "Vous êtes désormais inscris à notre système d'alerte",
+  message: "Vous êtes désormais inscrit à notre système d'alerte",
+});
+
+export const subClose = () => ({
+  status: null,
+  message: null,
+  type: 'onSubscriptionStatus',
 });

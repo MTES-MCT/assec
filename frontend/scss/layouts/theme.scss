@@ -1,7 +1,10 @@
-$red: #F52833;
 $grey: #F7F8FA;
 $gray: #E4E8EE;
 $white: #FFFFFF;
+$green-0: #89C541;
+$red-0: #CC0000;
+$yellow-0: #FFD802;
+$yellow-1: #FFE58F;
 
 $black: #000000;
 $dark: $black;
@@ -54,7 +57,7 @@ button {
 }
 
 .red {
-  color: $red;
+  color: $red-0;
 }
 
 .rainbow {
@@ -103,28 +106,44 @@ button {
 }
 
 span.error {
-  color: $red;
+  color: $red-0;
 }
 
 .error-tooltip {
   color: $white;
-  background-color: $red;
+  background-color: $red-0;
 }
 
-#application-toaster {
-  &.type-error {
-    color: $white;
-    background-color: $red;
+#toaster {
+  button {
+    background-color: $white;
   }
 
-  &.type-warning {
+  &.toaster-error {
     color: $white;
-    background-color: $red;
+    background-color: $red-0;
+
+    button {
+      color: $red-0;
+    }
   }
 
-  &.type-success {
+  &.toaster-warning {
     color: $white;
-    background-color: $red;
+    background-color: $yellow-0;
+
+    button {
+      color: $yellow-0;
+    }
+  }
+
+  &.toaster-success {
+    color: $white;
+    background-color: $green-0;
+
+    button {
+      color: $green-0;
+    }
   }
 }
 
@@ -174,11 +193,6 @@ span.error {
     blockquote {
       color: $dark-disabled;
     }
-
-    a {
-      color: $white;
-      background-color: $purple-0;
-    }
   }
 }
 
@@ -186,8 +200,15 @@ span.error {
   @extend .rainbow;
 
   color: $white;
+}
 
-  a {
-    color: $white;
-  }
+/* ----- LINKS ----- */
+
+#main-footer a {
+  color: $white;
+}
+
+#qui-sommes-nous .person a {
+  color: $white;
+  background-color: $purple-0;
 }

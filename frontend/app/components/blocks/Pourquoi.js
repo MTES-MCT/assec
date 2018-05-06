@@ -26,7 +26,7 @@ const APropos = () => (
           lastname="Chauvet"
           jobtitle="Président de la fédération des structures hydrauliques du Var"
           quote="Les règles discutées avec les services de l’Etat sont enfin accessibles à tous"
-          avatar="https://avatars1.githubusercontent.com/u/34424209?s=400&u=ed4fc31733a5e6e3ec3cd2396701812d0c33e801&v=4" />
+          avatar="/static/default_avatar.png" />
       </div>
     </div>
   </Element>

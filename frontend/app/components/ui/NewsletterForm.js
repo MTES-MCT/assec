@@ -9,7 +9,7 @@ import mutationState from 'react-apollo-mutation-state';
 
 // application
 import { CREATE_SUBSCRIBER } from './../../core/apolloql';
-import { subWarning, subError, subSuccess } from './../../actions';
+import { subWarning, subError, subSuccess, subClose } from './../../actions';
 
 const validate = (values) => {
   const errors = {};
@@ -96,27 +96,32 @@ NewsletterForm.propTypes = {
 };
 
 const withData = graphql(CREATE_SUBSCRIBER, {
-  props: ({ mutate, ownProps: { mutation } }) => ({
-    createSubscriber: (email, dispatch) => {
-      mutation.set({ loading: true, error: false });
-      const timeout = 30 * 1000; // 30 secondes de timeout
-      const timer = setTimeout(() => {
-        if (timer) clearTimeout(timer);
-        dispatch(subWarning());
-      }, timeout);
-      return mutate({ variables: { email } })
-        .then(() => {
+  props: ({ mutate, ownProps: { mutation } }) => {
+    let timer = null;
+    return {
+      createSubscriber: (email, dispatch) => {
+        mutation.set({ loading: true, error: false });
+        const timeout = 3 * 1000; // 30 secondes de timeout
+        timer = setTimeout(() => {
           if (timer) clearTimeout(timer);
-          dispatch(subSuccess());
-          mutation.set({ loading: false, error: false });
-        })
-        .catch(() => {
-          if (timer) clearTimeout(timer);
-          dispatch(subError());
-          mutation.set({ loading: false, error: true });
-        });
-    },
-  }),
+          timer = dispatch(subWarning());
+        }, timeout);
+        return mutate({ variables: { email } })
+          .then(() => {
+            if (timer) clearTimeout(timer);
+            dispatch(subSuccess());
+            timer = setTimeout(() => dispatch(subClose()), timeout);
+            mutation.set({ loading: false, error: false });
+          })
+          .catch(() => {
+            if (timer) clearTimeout(timer);
+            dispatch(subError());
+            timer = setTimeout(() => dispatch(subClose()), timeout);
+            mutation.set({ loading: false, error: true });
+          });
+      },
+    };
+  },
 });
 
 const withMutationState = mutationState();
