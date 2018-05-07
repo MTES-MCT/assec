@@ -9,10 +9,10 @@ import {
   GET_ALL_DEPARTMENTS,
   UPDATE_ALL_DEPARTMENTS,
 } from './../../apolloql';
+import NoContent from './../ui/NoContent';
+import TinyLoader from './../ui/TinyLoader';
+import DataTable from './../datatable/DataTable';
 import { openDeletePopin } from './../../actions';
-import NoContent from './../../components/ui/NoContent';
-import TinyLoader from './../../components/ui/TinyLoader';
-import DataTable from './../../components/datatable/DataTable';
 
 class DepartementTable extends React.PureComponent {
   constructor (props) {

@@ -5,9 +5,9 @@ import { graphql } from 'react-apollo';
 // application
 import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import ZonesForm from './zones/ZonesForm';
-import ZonesTable from './zones/ZonesTable';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
+import ZonesTable from './../components/tables/ZonesTable';
 import EntitySelector from './../components/forms/EntitySelector';
 
 const renderNoDepartement = () => (

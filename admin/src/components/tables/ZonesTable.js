@@ -9,10 +9,10 @@ import {
   GET_DEPARTMENT_ZONES,
   UPDATE_DEPARTMENT_ZONES,
 } from './../../apolloql';
+import NoContent from './../ui/NoContent';
+import TinyLoader from './../ui/TinyLoader';
+import DataTable from './../datatable/DataTable';
 import { openDeletePopin } from './../../actions';
-import NoContent from './../../components/ui/NoContent';
-import TinyLoader from './../../components/ui/TinyLoader';
-import DataTable from './../../components/datatable/DataTable';
 
 class ZonesTable extends React.PureComponent {
   constructor (props) {

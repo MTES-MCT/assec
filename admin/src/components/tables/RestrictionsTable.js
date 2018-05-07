@@ -9,10 +9,10 @@ import {
   GET_DEPARTMENT_RESTRICTIONS,
   UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
+import NoContent from './../ui/NoContent';
+import TinyLoader from './../ui/TinyLoader';
+import DataTable from './../datatable/DataTable';
 import { openDeletePopin } from './../../actions';
-import NoContent from './../../components/ui/NoContent';
-import TinyLoader from './../../components/ui/TinyLoader';
-import DataTable from './../../components/datatable/DataTable';
 
 class RestrictionsTable extends React.PureComponent {
   constructor (props) {

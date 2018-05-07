@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // application
 import AppPage from './../components/AppPage';
 import DepartementForm from './departements/DepartementForm';
-import DepartementTable from './departements/DepartementTable';
+import DepartementTable from './../components/tables/DepartementTable';
 
 const DepartementsPage = ({ config: { name, ...rest } }) => (
   <AppPage name={`Gestion ${name}`} {...rest}>

@@ -7,8 +7,8 @@ import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
 import RestrictionsForm from './restrictions/RestrictionsForm';
-import RestrictionsTable from './restrictions/RestrictionsTable';
 import EntitySelector from './../components/forms/EntitySelector';
+import RestrictionsTable from './../components/tables/RestrictionsTable';
 
 const renderNoDepartement = () => (
   <div id="page-main-column">
