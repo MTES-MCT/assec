@@ -6,7 +6,11 @@ const SubscriberSchema = new Schema(
       type: String,
       required: true,
     },
-    department: { type: Schema.Types.ObjectId, ref: 'departments' },
+    department: {
+      required: true,
+      ref: 'departments',
+      type: Schema.Types.ObjectId,
+    },
   },
   {
     timestamps: {

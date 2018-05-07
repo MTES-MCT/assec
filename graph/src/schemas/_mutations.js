@@ -51,6 +51,11 @@ type Mutation {
     id: ID!
   ): RestrictionType
 
+  deleteSubscriber(
+    id: ID!
+    email: String!
+  ): SubscriberType
+
   deleteZone(
     id: ID!
   ): ZoneType

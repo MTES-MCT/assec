@@ -16,8 +16,6 @@ export const Query = {
       .populate('situations')
       .exec(),
 
-  subscribers: () => SubscriberModel.find().exec(),
-
   departmentRestrictions: (_, { department }) => {
     if (!department) return [];
     return Restriction.find({ department })
@@ -41,32 +39,12 @@ export const Query = {
         .populate('alerte.situation')
         .exec()) ||
     null,
-  /*
-  departments: () =>
-    new Promise((resolve, reject) => {
-      Departement.find((err, docs) => {
-        if (err) return reject(err);
-        const parsed = docs.map((dpt) => {
-          const source = omit(dpt, ['suos']);
-          return Object.assign({}, source, dpt.suos);
-        });
-        return resolve(parsed);
-      });
-    }),
-  department: (_, { id }) => {
-    if (!id) return null;
-    return new Promise((resolve, reject) => {
-      Departement.findById(id, (err, doc) => {
-        if (err) return reject(err);
-        const source = omit(doc, ['suos']);
-        const parsed = Object.assign({}, source, doc.suos);
-        return resolve(parsed);
-      });
-    });
-  },
-  */
+
+  departmentSubscribers: (_, { department }) =>
+    (department && SubscriberModel.find({ department }).exec()) || null,
 
   department: (_, { id }) => (id && Departement.findById(id)) || null,
+
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
 
   /* -----------------------------------

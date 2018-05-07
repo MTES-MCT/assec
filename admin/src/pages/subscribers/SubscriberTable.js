@@ -1,47 +1,82 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 
 // application
-import { GET_ALL_SUBSCRIBERS } from './../../apolloql';
+import {
+  DELETE_SUBSCRIBER,
+  GET_DEPARTMENT_SUBSCRIBERS,
+  UPDATE_DEPARTMENT_SUBSCRIBERS,
+} from './../../apolloql';
 import NoContent from './../../components/ui/NoContent';
 import TinyLoader from './../../components/ui/TinyLoader';
 import DataTable from './../../components/datatable/DataTable';
 
-const SubscriberTable = () => (
-  <Query query={GET_ALL_SUBSCRIBERS}>
-    {({ loading, error, data }) => {
-      if (error) return <p>Error </p>;
-      const provider = data.subscribers || null;
-      const hassubscribers = provider && provider.length > 0;
-      return (
-        <React.Fragment>
-          {loading && <TinyLoader />}
-          {!hassubscribers && (
-            <div id="page-main-column">
-              <NoContent description="Aucune personne n'est encore inscrit" />
-            </div>
-          )}
-          {hassubscribers && (
-            <DataTable provider={provider}
-              actions={{
-                edit: () => {},
-                delete: () => {},
-              }}
-              cols={[
-                {
-                  key: 'email',
-                  type: 'label',
-                  label: 'eMail',
-                },
-              ]} />
-          )}
-        </React.Fragment>
-      );
-    }}
-  </Query>
-);
+class SubscribersTable extends React.PureComponent {
+  constructor (props) {
+    super(props);
+    this.onDeleteClick = this.onDeleteClick.bind(this);
+  }
 
-SubscriberTable.propTypes = {};
+  onDeleteClick (obj) {
+    const { email, id } = obj;
+    this.props.dispatch({
+      type: 'onOpenPopin',
+      popin: {
+        id,
+        name: email,
+        type: 'DeletePopin',
+        deleteAction: DELETE_SUBSCRIBER,
+        updateAction: UPDATE_DEPARTMENT_SUBSCRIBERS,
+      },
+    });
+  }
 
-export default connect()(SubscriberTable);
+  render () {
+    const { selected } = this.props;
+    return (
+      <Query query={GET_DEPARTMENT_SUBSCRIBERS}
+        variables={{ department: selected }}>
+        {({ loading, error, data }) => {
+          if (error) return <p>Error </p>;
+          const provider = data.departmentSubscribers || null;
+          const hasSubscribers = provider && provider.length > 0;
+          return (
+            <React.Fragment>
+              {loading && <TinyLoader />}
+              {!hasSubscribers && (
+                <div id="page-main-column">
+                  <NoContent description="Aucun utilisateur est inscrit à la newsletter alerte" />
+                </div>
+              )}
+              {hasSubscribers && (
+                <DataTable provider={provider}
+                  actions={{
+                    delete: this.onDeleteClick,
+                  }}
+                  cols={[
+                    {
+                      key: 'email',
+                      label: 'eMail utilisateur',
+                    },
+                  ]} />
+              )}
+            </React.Fragment>
+          );
+        }}
+      </Query>
+    );
+  }
+}
+
+SubscribersTable.defaultProps = {
+  selected: null,
+};
+
+SubscribersTable.propTypes = {
+  selected: PropTypes.string,
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default connect()(SubscribersTable);

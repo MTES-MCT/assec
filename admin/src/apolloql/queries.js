@@ -91,6 +91,19 @@ query departmentSUOs (
 }
 `);
 
+export const GET_DEPARTMENT_SUBSCRIBERS = gql(`
+query departmentSubscribers (
+  $department: ID!
+) {
+    departmentSubscribers (
+      department: $department
+    ) {
+      id
+      email
+  }
+}
+`);
+
 export const GET_DEPARTMENT = gql(`
 query department (
   $id: ID!
@@ -136,13 +149,4 @@ query restriction (
     information
   }
 }
-`);
-
-export const GET_ALL_SUBSCRIBERS = gql(`
-  query subscribers {
-    subscribers {
-      id
-      email
-    }
-  }
 `);

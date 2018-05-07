@@ -24,6 +24,7 @@ export const Mutation = {
   DEPARTEMENTS
 
   ----------------------------------- */
+
   createDepartement: (_, args) => {
     const base = omit(args, suoskeys);
     const id = new Mongoose.Types.ObjectId();
@@ -62,6 +63,7 @@ export const Mutation = {
   ----------------------------------- */
 
   createRestriction: (_, args) => Restriction.create(args),
+
   deleteRestriction: (_, args) =>
     // FIXME -> remove restriction sur une zone
     Restriction.findByIdAndRemove(args.id),
@@ -71,7 +73,9 @@ export const Mutation = {
   ALERTE
 
   ----------------------------------- */
+
   createZone: (_, args) => ZoneModel.create(args),
+
   deleteZone: (_, args) => ZoneModel.findByIdAndRemove(args.id),
 
   // UPDATES
@@ -97,6 +101,7 @@ export const Mutation = {
   SUBSCRIBERS
 
   ----------------------------------- */
+
   createSubscriber: (_, args) => {
     const { email } = args;
     if (!isemail.validate(email)) throw new Error('Invalid email');
@@ -107,6 +112,8 @@ export const Mutation = {
       })
       .catch(err => err);
   },
+
+  deleteSubscriber: (_, args) => SubscriberModel.findByIdAndRemove(args.id),
 };
 
 export default Mutation;

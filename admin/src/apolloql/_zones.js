@@ -94,20 +94,20 @@ export const UPDATE_DEPARTMENT_ZONES = (store, { data }) => {
   let variables = {};
   if (data.createZone) {
     const { department } = data.createZone;
-    const zones = getCurrentZones(store, department);
-    entries = zones.concat([data.createZone]);
+    const current = getCurrentZones(store, department);
+    entries = current.concat([data.createZone]);
     variables = { department };
   }
   if (data.updateZoneAlerte) {
     const { id, department, alerte } = data.updateZoneAlerte;
-    const zones = getCurrentZones(store, department);
-    entries = zones.map(obj => (obj.id !== id ? obj : Object.assign({}, obj, { alerte })));
+    const current = getCurrentZones(store, department);
+    entries = current.map(obj => (obj.id !== id ? obj : Object.assign({}, obj, { alerte })));
     variables = { department };
   }
   if (data.deleteZone) {
     const { department, id } = data.deleteZone;
-    const zones = getCurrentZones(store, department);
-    entries = zones.filter(obj => obj.id !== id);
+    const current = getCurrentZones(store, department);
+    entries = current.filter(obj => obj.id !== id);
     variables = { department };
   }
   store.writeQuery({
