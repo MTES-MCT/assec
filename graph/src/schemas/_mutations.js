@@ -53,7 +53,6 @@ type Mutation {
 
   deleteSubscriber(
     id: ID!
-    email: String!
   ): SubscriberType
 
   deleteZone(
