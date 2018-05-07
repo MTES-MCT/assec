@@ -8,7 +8,7 @@ import { Field, Form } from 'react-final-form';
 import mutationState from 'react-apollo-mutation-state';
 
 // application
-import { CREATE_SUBSCRIBER } from './../../core/apolloql';
+import { CREATE_SUBSCRIBER } from './../../apolloql';
 import { subWarning, subError, subSuccess, subClose } from './../../actions';
 
 const validate = (values) => {
@@ -39,6 +39,7 @@ class NewsletterForm extends React.PureComponent {
           return (
             <div className="newsletter-form">
               <form onSubmit={handleSubmit} autoComplete="off">
+                <Field name="department" type="hidden" component="input" />
                 <label htmlFor="email" className="notice mb12">
                   <span>
                     <i className="icon icon-mail mr3" />
@@ -75,15 +76,21 @@ class NewsletterForm extends React.PureComponent {
             </div>
           );
         }}
-        onSubmit={({ email }, form) =>
-          createSubscriber(email, dispatch).then(() => form.reset())
+        onSubmit={(values, form) =>
+          createSubscriber(values, dispatch).then(() => form.reset())
         } />
     );
   }
 }
 
 NewsletterForm.defaultProps = {
-  initialValues: { email: '' },
+  initialValues: {
+    email: '',
+    // FIXME ID du departement 83 pour la demo
+    // cet ID doit etre dynamique soit par l'URL
+    // soit par une selectbox
+    department: '5ad84a9f73150f000eeaf0d0',
+  },
 };
 
 NewsletterForm.propTypes = {
@@ -99,14 +106,14 @@ const withData = graphql(CREATE_SUBSCRIBER, {
   props: ({ mutate, ownProps: { mutation } }) => {
     let timer = null;
     return {
-      createSubscriber: (email, dispatch) => {
+      createSubscriber: (variables, dispatch) => {
         mutation.set({ loading: true, error: false });
         const timeout = 3 * 1000; // 30 secondes de timeout
         timer = setTimeout(() => {
           if (timer) clearTimeout(timer);
           timer = dispatch(subWarning());
         }, timeout);
-        return mutate({ variables: { email } })
+        return mutate({ variables })
           .then(() => {
             if (timer) clearTimeout(timer);
             dispatch(subSuccess());

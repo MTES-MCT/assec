@@ -2,6 +2,7 @@ const subscriber = `
 type SubscriberType {
   id: ID!
   email: String!
+  department: ID!
 }
 `;
 

@@ -29,8 +29,8 @@ type Mutation {
   ): ZoneType
 
   createSubscriber(
-    id: ID
     email: String!
+    department: ID!
   ): SubscriberType
 
   updateZoneAlerte(
