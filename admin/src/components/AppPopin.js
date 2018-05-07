@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import DeletePopin from './popins/DeletePopin';
-import ZonePopin from './../pages/zones/ZonePopin';
-import SituationPopin from './../pages/departements/SituationPopin';
+import { Logger } from './../core/logger';
 
 class AppPopin extends React.PureComponent {
   constructor (props) {
@@ -31,15 +29,11 @@ class AppPopin extends React.PureComponent {
   renderPopin () {
     const { popin } = this.props;
     if (!popin) return null;
-    const { type, ...rest } = popin;
-    switch (type) {
-    case 'DeletePopin':
-      return <DeletePopin {...rest} onClose={this.closePopin} />;
-    case 'ZonePopin':
-      return <ZonePopin {...rest} onClose={this.closePopin} />;
-    case 'SituationPopin':
-      return <SituationPopin {...rest} onClose={this.closePopin} />;
-    default:
+    const { Type, ...rest } = popin;
+    try {
+      return <Type {...rest} onClose={this.closePopin} />;
+    } catch (err) {
+      Logger.debug(`Unable to open popin with type: ${Type}`);
       return null;
     }
   }

@@ -9,6 +9,7 @@ import {
   GET_DEPARTMENT_RESTRICTIONS,
   UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
+import { openDeletePopin } from './../../actions';
 import NoContent from './../../components/ui/NoContent';
 import TinyLoader from './../../components/ui/TinyLoader';
 import DataTable from './../../components/datatable/DataTable';
@@ -35,17 +36,13 @@ class RestrictionsTable extends React.PureComponent {
 
   onDeleteClick (obj) {
     const { label, id } = obj;
-    const popin = {
+    const opts = {
       id,
       name: label,
-      type: 'DeletePopin',
       deleteAction: DELETE_RESTRICTION,
       updateAction: UPDATE_DEPARTMENT_RESTRICTIONS,
     };
-    this.props.dispatch({
-      popin,
-      type: 'onOpenPopin',
-    });
+    this.props.dispatch(openDeletePopin(opts));
   }
 
   renderTableRow (obj) {

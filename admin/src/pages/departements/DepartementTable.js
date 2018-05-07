@@ -9,6 +9,7 @@ import {
   GET_ALL_DEPARTMENTS,
   UPDATE_ALL_DEPARTMENTS,
 } from './../../apolloql';
+import { openDeletePopin } from './../../actions';
 import NoContent from './../../components/ui/NoContent';
 import TinyLoader from './../../components/ui/TinyLoader';
 import DataTable from './../../components/datatable/DataTable';
@@ -26,17 +27,13 @@ class DepartementTable extends React.PureComponent {
   // }
 
   onDeleteClick ({ id, label }) {
-    const popin = {
+    const opts = {
       id,
       name: label,
-      type: 'DeletePopin',
       deleteAction: DELETE_DEPARTMENT,
       updateAction: UPDATE_ALL_DEPARTMENTS,
     };
-    this.props.dispatch({
-      popin,
-      type: 'onOpenPopin',
-    });
+    this.props.dispatch(openDeletePopin(opts));
   }
 
   render () {

@@ -9,7 +9,7 @@ const DeletePopin = ({
   id, name, onClose, deleteAction, updateAction,
 }) => (
   <Mutation mutation={deleteAction} update={updateAction} onCompleted={onClose}>
-    {deleteDepartment => (
+    {deleteByID => (
       <div id="delete-popin" className="popin-container p40">
         <CloseButton onClose={onClose} />
         <p className="align-center">
@@ -25,7 +25,7 @@ const DeletePopin = ({
           </button>
           <button className="big primary"
             onClick={() => {
-              deleteDepartment({ variables: { id } });
+              deleteByID({ variables: { id } });
             }}>
             <span>Oui</span>
             <i className="icon icon-trash" />

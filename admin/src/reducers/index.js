@@ -24,7 +24,7 @@ const openednav = (state = false, action) => {
 const popin = (state = null, action) => {
   switch (action.type) {
   case 'onOpenPopin':
-    return { ...action.popin };
+    return { ...action.options };
   case 'onClosePopin':
     return null;
   default:

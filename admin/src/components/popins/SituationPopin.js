@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CloseButton from './../../components/popins/CloseButton';
-import ColorPickerInput from './../../components/colorpicker/ColorPickerInput';
+import CloseButton from './CloseButton';
+import ColorPickerInput from './../colorpicker/ColorPickerInput';
 
-const SituationPopin = ({
-  situations, label, callback, onClose,
-}) => {
+const SituationPopin = ({ situations, label, onClose }) => {
   const getkey = index => `situations::${index}`;
   return (
-    <div id="situation-popin" className="popin-container">
+    <div id="situation-popin" className="popin-container edit-popin">
       <CloseButton onClose={onClose} />
       <div className="popin-inner">
         <h6 className="popin-title">Définition des situations</h6>
@@ -31,7 +29,7 @@ const SituationPopin = ({
 SituationPopin.propTypes = {
   label: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
-  callback: PropTypes.func.isRequired,
+  // callback: PropTypes.func.isRequired,
   situations: PropTypes.array.isRequired,
 };
 

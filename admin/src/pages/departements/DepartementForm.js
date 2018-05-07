@@ -74,7 +74,7 @@ class DepartementForm extends React.PureComponent {
     this.onHydrateSituations = this.onHydrateSituations.bind(this);
   }
 
-  onHydrateSituations (code, label, situations, callback) {
+  onHydrateSituations ({ code, label, situations }, callback) {
     this.props.dispatch({
       type: 'onOpenPopin',
       popin: {

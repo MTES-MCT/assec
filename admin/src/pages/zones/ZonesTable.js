@@ -9,6 +9,7 @@ import {
   GET_DEPARTMENT_ZONES,
   UPDATE_DEPARTMENT_ZONES,
 } from './../../apolloql';
+import { openDeletePopin } from './../../actions';
 import NoContent from './../../components/ui/NoContent';
 import TinyLoader from './../../components/ui/TinyLoader';
 import DataTable from './../../components/datatable/DataTable';
@@ -38,16 +39,13 @@ class ZonesTable extends React.PureComponent {
 
   onDeleteClick (obj) {
     const { label, id } = obj;
-    this.props.dispatch({
-      type: 'onOpenPopin',
-      popin: {
-        id,
-        name: label,
-        type: 'DeletePopin',
-        deleteAction: DELETE_ZONE,
-        updateAction: UPDATE_DEPARTMENT_ZONES,
-      },
-    });
+    const opts = {
+      id,
+      name: label,
+      deleteAction: DELETE_ZONE,
+      updateAction: UPDATE_DEPARTMENT_ZONES,
+    };
+    this.props.dispatch(openDeletePopin(opts));
   }
 
   render () {

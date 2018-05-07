@@ -9,6 +9,7 @@ import {
   GET_DEPARTMENT_SUBSCRIBERS,
   UPDATE_DEPARTMENT_SUBSCRIBERS,
 } from './../../apolloql';
+import { openDeletePopin } from './../../actions';
 import NoContent from './../../components/ui/NoContent';
 import TinyLoader from './../../components/ui/TinyLoader';
 import DataTable from './../../components/datatable/DataTable';
@@ -21,16 +22,13 @@ class SubscribersTable extends React.PureComponent {
 
   onDeleteClick (obj) {
     const { email, id } = obj;
-    this.props.dispatch({
-      type: 'onOpenPopin',
-      popin: {
-        id,
-        name: email,
-        type: 'DeletePopin',
-        deleteAction: DELETE_SUBSCRIBER,
-        updateAction: UPDATE_DEPARTMENT_SUBSCRIBERS,
-      },
-    });
+    const opts = {
+      id,
+      name: email,
+      deleteAction: DELETE_SUBSCRIBER,
+      updateAction: UPDATE_DEPARTMENT_SUBSCRIBERS,
+    };
+    this.props.dispatch(openDeletePopin(opts));
   }
 
   render () {

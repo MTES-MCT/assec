@@ -197,8 +197,13 @@ th {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
-.popin .popin-container {
+.popin-container {
   background-color: #FFFFFF;
+}
+
+.popin-header {
+  color: #FFFFFF;
+  background-color: $header1;
 }
 
 /* ---------------------
