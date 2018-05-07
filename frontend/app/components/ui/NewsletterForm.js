@@ -39,6 +39,7 @@ class NewsletterForm extends React.PureComponent {
           return (
             <div className="newsletter-form">
               <form onSubmit={handleSubmit} autoComplete="off">
+                {/* FIXME suppr l'ID du department defini en dur via les initalvalues */}
                 <Field name="department" type="hidden" component="input" />
                 <label htmlFor="email" className="notice mb12">
                   <span>
