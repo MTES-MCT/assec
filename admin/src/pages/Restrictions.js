@@ -6,8 +6,8 @@ import { graphql } from 'react-apollo';
 import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
-import RestrictionsForm from './restrictions/RestrictionsForm';
 import EntitySelector from './../components/ui/forms/EntitySelector';
+import RestrictionsForm from './../components/forms/RestrictionsForm';
 import RestrictionsTable from './../components/tables/RestrictionsTable';
 
 const renderNoDepartement = () => (

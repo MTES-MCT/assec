@@ -4,9 +4,9 @@ import { graphql } from 'react-apollo';
 
 // application
 import { GET_ALL_DEPARTMENTS } from './../apolloql';
-import ZonesForm from './zones/ZonesForm';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
+import ZonesForm from './../components/forms/ZonesForm';
 import ZonesTable from './../components/tables/ZonesTable';
 import EntitySelector from './../components/ui/forms/EntitySelector';
 

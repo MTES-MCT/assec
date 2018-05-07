@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // application
 import AppPage from './../components/AppPage';
-import DepartementForm from './departements/DepartementForm';
+import DepartementForm from './../components/forms/DepartementForm';
 import DepartementTable from './../components/tables/DepartementTable';
 
 const DepartementsPage = ({ config: { name, ...rest } }) => (
