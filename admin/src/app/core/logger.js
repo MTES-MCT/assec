@@ -1,11 +1,11 @@
 /* eslint
   no-console: 0
 */
-const usedebug = process.env.NODE_ENV !== 'production';
+import { usedebug } from './utils/usedebug';
 
 export const Logger = {
   debug: (msg) => {
-    if (!usedebug) return;
+    if (!usedebug()) return;
     console.log('Logger.debug message => ', msg);
   },
   ok: (msg) => {

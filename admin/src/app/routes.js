@@ -4,7 +4,6 @@ import MySettings from './pages/MySettings';
 import Subscribers from './pages/Subscribers';
 import Departements from './pages/Departements';
 import Restrictions from './pages/Restrictions';
-// import Contributors from './pages/Contributors';
 
 export const routes = {
   main: [

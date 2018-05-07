@@ -1,4 +1,4 @@
-const datas = require('./../../french_departments.json');
+const datas = require('./../../../static/french_departments.json');
 
 export const departments = {
   get: {

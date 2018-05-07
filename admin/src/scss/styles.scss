@@ -1,6 +1,7 @@
-@import './leaflet/leaflet.css';
-@import './fontello/css/animation.css';
-@import './fontello/css/fontello-embedded.css';
+// relative to output CSS file
+@import './static/leaflet/leaflet.css';
+@import './static/fontello/css/animation.css';
+@import './static/fontello/css/fontello-embedded.css';
 
 // SCSS Files
 @import './_base.scss';

@@ -8,16 +8,16 @@ import createHistory from 'history/createBrowserHistory';
 
 // application
 import './styles.css';
-import Page from './page';
-import { configure } from './store';
-import { Logger } from './core/logger';
-import { createClient } from './apollo';
-import AppPopin from './components/AppPopin';
-import AppHeader from './components/AppHeader';
-import { usedebug } from './core/utils/usedebug';
-import AppToaster from './components/AppToaster';
-import GraphQLError from './components/ui/GraphQLError';
-import LinearProgress from './components/ui/LinearProgress';
+import Page from './app/page';
+import { Logger } from './app/core/logger';
+import { configure } from './app/core/store';
+import { createClient } from './app/core/apollo';
+import AppPopin from './app/components/AppPopin';
+import AppHeader from './app/components/AppHeader';
+import { usedebug } from './app/core/utils/usedebug';
+import AppToaster from './app/components/AppToaster';
+import GraphQLError from './app/components/ui/GraphQLError';
+import LinearProgress from './app/components/ui/LinearProgress';
 
 Logger.debug(`
   **** Admin Application Debug ****

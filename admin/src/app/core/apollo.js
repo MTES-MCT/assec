@@ -5,6 +5,9 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 
+// application
+import { usedebug } from './utils/usedebug';
+
 // FIXME ->
 // prevents __typename to be send to server
 // github.com/apollographql/apollo-client/issues/1564#issuecomment-357492659
@@ -42,7 +45,7 @@ export const createClient = (uri, store) => {
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    connectToDevTools: process.env.NODE_ENV !== 'production',
+    connectToDevTools: usedebug(),
     link: ApolloLink.from([
       reduxLink,
       createOmitTypenameLink(),
