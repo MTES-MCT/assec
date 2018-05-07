@@ -11,8 +11,8 @@ import {
 } from './../../apolloql';
 import NoContent from './../ui/NoContent';
 import TinyLoader from './../ui/TinyLoader';
-import DataTable from './../datatable/DataTable';
 import { openDeletePopin } from './../../actions';
+import DataTable from './../ui/datatable/DataTable';
 
 class ZonesTable extends React.PureComponent {
   constructor (props) {
