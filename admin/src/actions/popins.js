@@ -1,4 +1,4 @@
-import DeletePopin from './../components/popins/DeletePopin';
+import DeletePopin from './../components/ui/popins/DeletePopin';
 
 export const openPopin = opts => ({
   type: 'onOpenPopin',

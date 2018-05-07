@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CloseButton from './CloseButton';
-import ColorPickerInput from './../colorpicker/ColorPickerInput';
+import CloseButton from './../ui/popins/CloseButton';
+import ColorPickerInput from './../ui/colorpicker/ColorPickerInput';
 
 const SituationPopin = ({ situations, label, onClose }) => {
   const getkey = index => `situations::${index}`;

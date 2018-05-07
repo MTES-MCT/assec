@@ -9,8 +9,8 @@ import {
   GET_DEPARTMENT_SUOS,
   UPDATE_DEPARTMENT_ZONES,
 } from './../../apolloql';
+import CloseButton from './../ui/popins/CloseButton';
 import RadioGroup from './../../components/forms/RadioGroup';
-import CloseButton from './../../components/popins/CloseButton';
 import SubmitButton from './../../components/forms/SubmitButton';
 
 const ZonePopin = ({

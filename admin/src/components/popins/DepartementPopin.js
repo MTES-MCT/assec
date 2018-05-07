@@ -7,9 +7,9 @@ import { Query, Mutation } from 'react-apollo';
 
 // application
 import { GET_DEPARTMENT, UPDATE_DEPARTMENT } from './../../apolloql';
-import CloseButton from './CloseButton';
 import ArrayValues from './../forms/ArrayValues';
 import SubmitButton from './../forms/SubmitButton';
+import CloseButton from './../ui/popins/CloseButton';
 
 const validator = (values) => {
   const errors = {};
