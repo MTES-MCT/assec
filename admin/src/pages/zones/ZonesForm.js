@@ -5,11 +5,11 @@ import { Form, Field } from 'react-final-form';
 
 // application
 import { CREATE_ZONE, UPDATE_DEPARTMENT_ZONES } from './../../apolloql';
-import Legend from './../../components/forms/Legend';
-import TextArea from './../../components/forms/TextArea';
-import TextInput from './../../components/forms/TextInput';
-import NumberInput from './../../components/forms/NumberInput';
-import SubmitButton from './../../components/forms/SubmitButton';
+import Legend from './../../components/ui/forms/Legend';
+import TextArea from './../../components/ui/forms/TextArea';
+import TextInput from './../../components/ui/forms/TextInput';
+import NumberInput from './../../components/ui/forms/NumberInput';
+import SubmitButton from './../../components/ui/forms/SubmitButton';
 
 const validator = (values) => {
   const errors = {};

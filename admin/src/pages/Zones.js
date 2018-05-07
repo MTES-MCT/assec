@@ -8,7 +8,7 @@ import ZonesForm from './zones/ZonesForm';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
 import ZonesTable from './../components/tables/ZonesTable';
-import EntitySelector from './../components/forms/EntitySelector';
+import EntitySelector from './../components/ui/forms/EntitySelector';
 
 const renderNoDepartement = () => (
   <div id="page-main-column">

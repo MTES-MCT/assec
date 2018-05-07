@@ -6,7 +6,7 @@ import { graphql } from 'react-apollo';
 import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
-import EntitySelector from './../components/forms/EntitySelector';
+import EntitySelector from './../components/ui/forms/EntitySelector';
 import SubscriberTable from './../components/tables/SubscriberTable';
 
 const renderNoDepartement = () => (

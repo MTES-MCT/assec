@@ -10,11 +10,11 @@ import {
   UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
 import { validatesuos } from './../../core/utils/suos';
-import Legend from './../../components/forms/Legend';
-import TextArea from './../../components/forms/TextArea';
-import TextInput from './../../components/forms/TextInput';
-import CheckboxGroup from './../../components/forms/CheckboxGroup';
-import SubmitButton from './../../components/forms/SubmitButton';
+import Legend from './../../components/ui/forms/Legend';
+import TextArea from './../../components/ui/forms/TextArea';
+import TextInput from './../../components/ui/forms/TextInput';
+import CheckboxGroup from './../../components/ui/forms/CheckboxGroup';
+import SubmitButton from './../../components/ui/forms/SubmitButton';
 
 const validator = (values) => {
   const errors = {};

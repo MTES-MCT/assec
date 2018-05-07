@@ -13,11 +13,11 @@ import {
   UPDATE_ALL_DEPARTMENTS,
 } from './../../apolloql';
 import { validatesuos, parsesuos } from './../../core/utils/suos';
-import Legend from './../../components/forms/Legend';
+import Legend from './../../components/ui/forms/Legend';
 import dptsutils from './../../core/utils/departments';
-import TagValues from './../../components/forms/TagValues';
-import SelectBox from './../../components/forms/SelectBox';
-import SubmitButton from './../../components/forms/SubmitButton';
+import TagValues from './../../components/ui/forms/TagValues';
+import SelectBox from './../../components/ui/forms/SelectBox';
+import SubmitButton from './../../components/ui/forms/SubmitButton';
 
 const calculator = createDecorator({
   // permet de calculer une valeur en fonction d'une autre
