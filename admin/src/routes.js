@@ -36,13 +36,6 @@ export const routes = {
       name: 'Mes Zones',
       component: Zones,
     },
-    // {
-    //   exact: false,
-    //   icon: 'users',
-    //   path: '/contributors',
-    //   name: 'Contributeurs',
-    //   component: Contributors,
-    // },
   ],
   sub: [
     {
