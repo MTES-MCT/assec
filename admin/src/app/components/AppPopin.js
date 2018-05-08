@@ -1,9 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Motion, spring } from 'react-motion';
 
 // application
 import { Logger } from './../core/logger';
+
+const renderOverlay = () => (
+  <Motion style={{ opacity: spring(100) }} defaultStyle={{ opacity: 0 }}>
+    {(value) => {
+      const opacity = value.opacity / 100;
+      return <div style={{ opacity }} className="popin-background overlay" />;
+    }}
+  </Motion>
+);
 
 class AppPopin extends React.PureComponent {
   constructor (props) {
@@ -27,11 +37,16 @@ class AppPopin extends React.PureComponent {
   }
 
   renderPopin () {
-    const { popin } = this.props;
-    if (!popin) return null;
-    const { Type, ...rest } = popin;
+    if (!this.props.popin) return null;
+    const {
+      popin: { Type, ...rest },
+    } = this.props;
     try {
-      return <Type {...rest} onClose={this.closePopin} />;
+      return (
+        <div className="popin-foreground">
+          <Type {...rest} onClose={this.closePopin} />
+        </div>
+      );
     } catch (err) {
       Logger.debug(`Unable to open popin with type: ${Type}`);
       return null;
@@ -44,8 +59,8 @@ class AppPopin extends React.PureComponent {
       <div className={`popin ${opened ? 'opened' : ''}`}>
         {opened && (
           <React.Fragment>
-            <div className="popin-background overlay" />
-            <div className="popin-foreground">{this.renderPopin()}</div>
+            {renderOverlay()}
+            {this.renderPopin()}
           </React.Fragment>
         )}
       </div>
@@ -62,8 +77,4 @@ AppPopin.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  popin: state.popin,
-});
-
-export default connect(mapStateToProps)(AppPopin);
+export default connect(({ popin }) => ({ popin }))(AppPopin);

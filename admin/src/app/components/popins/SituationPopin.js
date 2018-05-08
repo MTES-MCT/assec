@@ -1,36 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CloseButton from './../ui/popins/CloseButton';
-import ColorPickerInput from './../ui/colorpicker/ColorPickerInput';
+// application
+import { GET_DEPARTMENT, UPDATE_DEPARTMENT } from './../../apolloql';
+import ArrayValues from './../ui/forms/ArrayValues';
+import withEditPopin from './../ui/popins/withEditPopin';
 
-const SituationPopin = ({ situations, label, onClose }) => {
-  const getkey = index => `situations::${index}`;
-  return (
-    <div id="situation-popin" className="popin-container edit-popin">
-      <CloseButton onClose={onClose} />
-      <div className="popin-inner">
-        <h6 className="popin-title">Définition des situations</h6>
-        <h3 className="popin-subtitle">{label}</h3>
-        {situations &&
-          situations.map((obj, index) => (
-            <div key={getkey(index)}>
-              <span>{obj.label}</span>
-              <ColorPickerInput color="#FFFFFF"
-                name="color"
-                onChange={value => console.log(value)} />
-            </div>
-          ))}
-      </div>
-    </div>
-  );
+const validator = (values) => {
+  const errors = {};
+  if (!values.code || values.code === '') {
+    errors.code = 'Required';
+  }
+  if (!values.label || values.label === '') {
+    errors.label = 'Required';
+  }
+  return errors;
 };
+
+class SituationPopin extends React.PureComponent {
+  render () {
+    const { disabled, form } = this.props;
+    return (
+      <div className="flex-columns flex-between">
+        <ArrayValues name="situations"
+          label="Situations"
+          push={form.mutators.unshift}
+          placeholder="Ajouter une situation"
+          disabled={disabled} />
+        <ArrayValues name="usages"
+          label="Usages"
+          push={form.mutators.unshift}
+          placeholder="Ajouter un usage"
+          disabled={disabled} />
+        <ArrayValues name="origines"
+          label="Origines"
+          push={form.mutators.unshift}
+          placeholder="Ajouter une Origine"
+          disabled={disabled} />
+      </div>
+    );
+  }
+}
 
 SituationPopin.propTypes = {
-  label: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
-  // callback: PropTypes.func.isRequired,
-  situations: PropTypes.array.isRequired,
+  form: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
-export default SituationPopin;
+export default withEditPopin(SituationPopin, {
+  query: GET_DEPARTMENT,
+  mutation: UPDATE_DEPARTMENT,
+  validator,
+  entityname: 'department',
+  suptitle: 'Gestion du département',
+});

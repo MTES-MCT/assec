@@ -11,8 +11,9 @@ import {
 } from './../../apolloql';
 import NoContent from './../ui/NoContent';
 import TinyLoader from './../ui/TinyLoader';
-import { openDeletePopin } from './../../actions';
+import ZonePopin from './../popins/ZonePopin';
 import DataTable from './../ui/datatable/DataTable';
+import { openDeletePopin, openPopin } from './../../actions';
 
 class ZonesTable extends React.PureComponent {
   constructor (props) {
@@ -25,16 +26,14 @@ class ZonesTable extends React.PureComponent {
     const {
       label, id, department, alerte,
     } = obj;
-    this.props.dispatch({
-      type: 'onOpenPopin',
-      popin: {
-        id,
-        label,
-        alerte,
-        department,
-        type: 'ZonePopin',
-      },
-    });
+    const opts = {
+      id,
+      label,
+      alerte,
+      department,
+      Type: ZonePopin,
+    };
+    this.props.dispatch(openPopin(opts));
   }
 
   onDeleteClick (obj) {

@@ -68,6 +68,33 @@ mutation updateZoneAlerte (
 }
 `);
 
+export const UPDATE_ZONE = gql(`
+mutation zone (
+  $id: ID!
+) {
+  zone (
+    id: $id
+  ) {
+    id
+    help
+    name
+    label
+    order
+    geojson
+    shortname
+    department
+    alerte {
+      end_date
+      start_date
+      situation {
+        id
+        label
+      }
+    }
+  }
+}
+`);
+
 export const DELETE_ZONE = gql(`
 mutation deleteZone (
   $id: ID!

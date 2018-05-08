@@ -54,7 +54,7 @@ ZoneSchema.virtual('slug').get(function virtualslug () {
 });
 
 ZoneSchema.virtual('label').get(function virtualslug () {
-  return `${this.shortname} _ ${this.name}`;
+  return `${this.shortname} - ${this.name}`;
 });
 
 export const ZoneModel = Mongoose.model('zones', ZoneSchema);

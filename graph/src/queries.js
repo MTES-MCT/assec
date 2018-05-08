@@ -9,12 +9,11 @@ import {
 } from './drivers/mongodb';
 
 export const Query = {
-  departments: () =>
-    Departement.find()
-      .populate('usages')
-      .populate('origines')
-      .populate('situations')
-      .exec(),
+  /* -----------------------------------
+
+SINGLES QUERIES
+
+----------------------------------- */
 
   department: (_, { id }) =>
     (id &&
@@ -24,6 +23,35 @@ export const Query = {
         .populate('situations')
         .exec()) ||
     null,
+
+  zone: (_, { id }) =>
+    (id &&
+      ZoneModel.findById(id)
+        .populate('alerte.situation')
+        .exec()) ||
+    null,
+
+  restriction: (_, { id }) =>
+    (id &&
+      Restriction.findById(id)
+        .populate('usages')
+        .populate('origines')
+        .populate('situations')
+        .exec()) ||
+    null,
+
+  /* -----------------------------------
+
+BULKS QUERIES
+
+----------------------------------- */
+
+  departments: () =>
+    Departement.find()
+      .populate('usages')
+      .populate('origines')
+      .populate('situations')
+      .exec(),
 
   departmentRestrictions: (_, { department }) => {
     if (!department) return [];
@@ -51,8 +79,6 @@ export const Query = {
 
   departmentSubscribers: (_, { department }) =>
     (department && SubscriberModel.find({ department }).exec()) || null,
-
-  restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
 
   /* -----------------------------------
 

@@ -5,6 +5,7 @@ export const GET_ALL_DEPARTMENTS = gql(`
     departments {
       id
       code
+      name
       label
       usages {
         id
@@ -31,8 +32,10 @@ query departmentZones (
   ) {
     id
     help
-    label
     name
+    mtime
+    ctime
+    label
     order
     geojson
     shortname
@@ -113,20 +116,21 @@ query department (
   ) {
     id
     code
+    name
     label
-    suos {
-      usages {
-        id
-        label
-      }
-      origines {
-        id
-        label
-      }
-      situations {
-        id
-        label
-      }
+    mtime
+    ctime
+    usages {
+      id
+      label
+    }
+    origines {
+      id
+      label
+    }
+    situations {
+      id
+      label
     }
   }
 }
@@ -147,6 +151,35 @@ query restriction (
     situations
     description
     information
+  }
+}
+`);
+
+export const GET_ZONE = gql(`
+query zone (
+  $id: ID!
+) {
+  zone (
+    id: $id
+  ) {
+    id
+    help
+    name
+    label
+    order
+    mtime
+    ctime
+    geojson
+    shortname
+    department
+    alerte {
+      end_date
+      start_date
+      situation {
+        id
+        label
+      }
+    }
   }
 }
 `);

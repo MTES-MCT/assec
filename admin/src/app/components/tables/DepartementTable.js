@@ -11,20 +11,21 @@ import {
 } from './../../apolloql';
 import NoContent from './../ui/NoContent';
 import TinyLoader from './../ui/TinyLoader';
-import { openDeletePopin } from './../../actions';
 import DataTable from './../ui/datatable/DataTable';
+import DepartementPopin from './../popins/DepartementPopin';
+import { openPopin, openDeletePopin } from './../../actions';
 
 class DepartementTable extends React.PureComponent {
   constructor (props) {
     super(props);
-    // this.onEditClick = this.onEditClick.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  // onEditClick ({ id, label }) {
-  //   const popin = { id, label, type: 'DepartementPopin' };
-  //   this.props.dispatch({ type: 'onOpenPopin', popin });
-  // }
+  onEditClick ({ id, label }) {
+    const popin = { id, label, Type: DepartementPopin };
+    this.props.dispatch(openPopin(popin));
+  }
 
   onDeleteClick ({ id, label }) {
     const opts = {
@@ -54,7 +55,7 @@ class DepartementTable extends React.PureComponent {
               {hasdepartments && (
                 <DataTable provider={provider}
                   actions={{
-                    edit: () => {},
+                    edit: this.onEditClick,
                     delete: this.onDeleteClick,
                   }}
                   cols={[

@@ -12,11 +12,13 @@ import {
   CREATE_DEPARTMENT,
   UPDATE_ALL_DEPARTMENTS,
 } from './../../apolloql';
-import { validatesuos, parsesuos } from './../../core/utils/suos';
-import Legend from './../../components/ui/forms/Legend';
+import { openPopin } from './../../actions';
 import dptsutils from './../../core/utils/departments';
+import Legend from './../../components/ui/forms/Legend';
+import SituationPopin from './../popins/SituationPopin';
 import TagValues from './../../components/ui/forms/TagValues';
 import SelectBox from './../../components/ui/forms/SelectBox';
+import { validatesuos, parsesuos } from './../../core/utils/suos';
 import SubmitButton from './../../components/ui/forms/SubmitButton';
 
 const calculator = createDecorator({
@@ -75,15 +77,13 @@ class DepartementForm extends React.PureComponent {
   }
 
   onHydrateSituations ({ code, label, situations }, callback) {
-    this.props.dispatch({
-      type: 'onOpenPopin',
-      popin: {
-        callback,
-        situations,
-        type: 'SituationPopin',
-        label: `${label} (${code})`,
-      },
-    });
+    const opts = {
+      callback,
+      situations,
+      Type: SituationPopin,
+      label: `${label} (${code})`,
+    };
+    this.props.dispatch(openPopin(opts));
   }
 
   render () {

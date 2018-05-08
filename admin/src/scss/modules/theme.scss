@@ -194,16 +194,32 @@ th {
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.45);
 }
 
 .popin-container {
   background-color: #FFFFFF;
 }
 
+/* ---------------------
+
+ POPINS
+
+--------------------- */
+
 .popin-header {
   color: #FFFFFF;
   background-color: $header1;
+
+  .popin-suptitle {
+    opacity: 0.35;
+  }
+}
+
+.edit-popin .popin-controls button {
+  color: $white;
+  opacity: 0.65;
+  background-color: $header0;
 }
 
 /* ---------------------

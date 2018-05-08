@@ -54,7 +54,7 @@ class ArrayValues extends React.PureComponent {
                 return (
                   <li className="item flex-columns"
                     key={getkey(fieldname, index)}>
-                    <Field name={`${fieldname}.name`}
+                    <Field name={`${fieldname}.label`}
                       type="text"
                       data-id={dataid}
                       component="input"

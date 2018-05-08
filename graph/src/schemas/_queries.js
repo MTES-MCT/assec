@@ -1,14 +1,22 @@
 const queriesDefs = `
 type Query {
-  departments: [DepartementType]
+
+  # SINGLES QUERIES
+  # ###################################
+
+  zone(id: ID): ZoneType
   department(id: ID): DepartementType
+  restriction(id: ID): RestrictionType
+
+  # BULKS QUERIES
+  # ###################################
+
+  departments: [DepartementType]
 
   departmentSUOs(department: ID): SUOSType
   departmentZones(department: ID): [ZoneType]
   departmentSubscribers(department: ID): [SubscriberType]
   departmentRestrictions(department: ID): [RestrictionType]
-
-  restriction(id: ID): RestrictionType
 
   # ###################################
   #
