@@ -11,13 +11,14 @@ import {
 } from './../../apolloql';
 import NoContent from './../ui/NoContent';
 import TinyLoader from './../ui/TinyLoader';
-import { openDeletePopin } from './../../actions';
 import DataTable from './../ui/datatable/DataTable';
+import RestrictionPopin from './../popins/RestrictionPopin';
+import { openDeletePopin, openPopin } from './../../actions';
 
 class RestrictionsTable extends React.PureComponent {
   constructor (props) {
     super(props);
-    // this.onEditClick = this.onEditClick.bind(this);
+    this.onEditClick = this.onEditClick.bind(this);
     // this.onCloneClick = this.onCloneClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
@@ -27,12 +28,12 @@ class RestrictionsTable extends React.PureComponent {
   //   const popin = { id, name: label, type: 'EditRestrictionsPopin' };
   //   this.props.dispatch({ type: 'onOpenPopin', popin });
   // }
-  //
-  // onEditClick (obj) {
-  //   const { label, id } = obj;
-  //   const popin = { id, name: label, type: 'EditRestrictionsPopin' };
-  //   this.props.dispatch({ type: 'onOpenPopin', popin });
-  // }
+
+  onEditClick (obj) {
+    const { label, id } = obj;
+    const popin = { id, name: label, Type: RestrictionPopin };
+    this.props.dispatch(openPopin(popin));
+  }
 
   onDeleteClick (obj) {
     const { label, id } = obj;
@@ -43,32 +44,6 @@ class RestrictionsTable extends React.PureComponent {
       updateAction: UPDATE_DEPARTMENT_RESTRICTIONS,
     };
     this.props.dispatch(openDeletePopin(opts));
-  }
-
-  renderTableRow (obj) {
-    const { id, label } = obj;
-    return (
-      <tr key={id}>
-        <td>{label}</td>
-        {/* <td className="small">
-          <button type="button" onClick={() => this.onCloneClick(obj)}>
-            <i className="icon icon-clone" />
-          </button>
-        </td>
-        <td className="small">
-          <button type="button" onClick={() => this.onEditClick(obj)}>
-            <i className="icon icon-pencil" />
-          </button>
-        </td> */}
-        <td className="small">
-          <button type="button"
-            className="danger"
-            onClick={() => this.onDeleteClick(obj)}>
-            <i className="icon icon-trash" />
-          </button>
-        </td>
-      </tr>
-    );
   }
 
   render () {
@@ -91,7 +66,7 @@ class RestrictionsTable extends React.PureComponent {
               {hasrestrictions && (
                 <DataTable provider={provider}
                   actions={{
-                    edit: () => {},
+                    edit: this.onEditClick,
                     delete: this.onDeleteClick,
                   }}
                   cols={[

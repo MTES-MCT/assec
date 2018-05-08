@@ -144,7 +144,9 @@ query restriction (
     id: $id
   ) {
     id
-    title
+    label
+    mtime
+    ctime
     usages
     origines
     department

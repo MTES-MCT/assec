@@ -52,5 +52,5 @@ export default withEditPopin(DepartementPopin, {
   mutation: UPDATE_DEPARTMENT,
   validator,
   entityname: 'department',
-  suptitle: 'Gestion du département',
+  suptitle: 'Modification du département',
 });

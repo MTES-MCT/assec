@@ -46,6 +46,27 @@ mutation deleteRestriction (
 }
 `);
 
+export const UPDATE_RESTRICTION = gql(`
+mutation deleteRestriction (
+  $id: ID!
+) {
+  deleteRestriction (
+    id: $id
+  ) {
+    id
+    label
+    mtime
+    ctime
+    usages
+    origines
+    department
+    situations
+    description
+    information
+  }
+}
+`);
+
 const getCurrentRestrictions = (store, department) => {
   const data = store.readQuery({
     variables: { department },
