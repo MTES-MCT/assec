@@ -27,6 +27,10 @@ DepartementSchema.virtual('slug').get(function virtualslug () {
   return slugify(this.label);
 });
 
+DepartementSchema.virtual('name').get(function virtualslug () {
+  return `${this.code} - ${this.label}`;
+});
+
 export const Departement = Mongoose.model('departments', DepartementSchema);
 
 export default { Departement, DepartementSchema };

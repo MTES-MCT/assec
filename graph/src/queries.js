@@ -16,6 +16,15 @@ export const Query = {
       .populate('situations')
       .exec(),
 
+  department: (_, { id }) =>
+    (id &&
+      Departement.findById(id)
+        .populate('usages')
+        .populate('origines')
+        .populate('situations')
+        .exec()) ||
+    null,
+
   departmentRestrictions: (_, { department }) => {
     if (!department) return [];
     return Restriction.find({ department })
@@ -42,8 +51,6 @@ export const Query = {
 
   departmentSubscribers: (_, { department }) =>
     (department && SubscriberModel.find({ department }).exec()) || null,
-
-  department: (_, { id }) => (id && Departement.findById(id)) || null,
 
   restriction: (_, { id }) => (id && Restriction.findById(id)) || null,
 

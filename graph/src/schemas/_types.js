@@ -24,6 +24,7 @@ type DepartementType {
   id: ID!
   code: String!
   slug: String!
+  name: String!
   label: String!
   usages: [SUOType]!
   origines: [SUOType]!
