@@ -62,15 +62,15 @@ fieldset .submit-button {
   margin-bottom: 0;
 }
 
+label span,
+.as-form-label span {
+  padding: 7px 0;
+  font-weight: bold;
+}
+
 fieldset label,
 fieldset .as-form-label {
   @extend .flex-rows;
-}
-
-fieldset label span,
-fieldset .as-form-label span {
-  padding: 7px;
-  font-weight: bold;
 }
 
 .selectbox {
@@ -85,6 +85,22 @@ fieldset .as-form-label span {
   select,
   select option {
     width: 100%;
+  }
+}
+
+label.inline {
+  width: 100%;
+
+  span {
+    @extend .pb7;
+
+    display: block;
+  }
+
+  textarea,
+  input[type='text'] {
+    width: 100%;
+    display: block;
   }
 }
 
@@ -109,4 +125,16 @@ fieldset .as-form-label span {
   font-size: 0.8em;
   font-style: italic;
   padding: 7px 0 7px 0;
+}
+
+.situation-input {
+  .picker-container {
+    width: 106px;
+  }
+}
+
+fieldset .tagvalues,
+fieldset .radio-group,
+fieldset .checkbox-group {
+  @extend .px12;
 }

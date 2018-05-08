@@ -47,13 +47,13 @@ type RestrictionType {
   id: ID!
   ctime: Date!
   mtime: Date!
-  usages: [ID]!
   label: String!
   department: ID!
-  origines: [ID]!
-  situations: [ID]!
   information: String
   description: String!
+  usages: [ID]!
+  origines: [ID]!
+  situations: [ID]!
 }
 `;
 

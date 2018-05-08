@@ -6,9 +6,9 @@ export const CREATE_DEPARTMENT = gql(`
 mutation createDepartement(
   $code: String!
   $label: String!
-  $usages: [SUOInput]!
-  $origines: [SUOInput]!
-  $situations: [SUOInput]!
+  $usages: [String]!
+  $origines: [String]!
+  $situations: [String]!
 ) {
   createDepartement(
     code: $code
@@ -60,19 +60,17 @@ mutation updateDepartement(
     id
     code
     label
-    suos {
-      usages {
-        id
-        label
-      }
-      origines {
-        id
-        label
-      }
-      situations {
-        id
-        label
-      }
+    usages {
+      id
+      label
+    }
+    origines {
+      id
+      label
+    }
+    situations {
+      id
+      label
     }
   }
 }

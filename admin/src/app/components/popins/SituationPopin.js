@@ -1,56 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Mutation } from 'react-apollo';
+import arrayMutators from 'final-form-arrays';
+import { Form, Field } from 'react-final-form';
 
 // application
-import { GET_DEPARTMENT, UPDATE_DEPARTMENT } from './../../apolloql';
-import ArrayValues from './../ui/forms/ArrayValues';
-import withEditPopin from './../ui/popins/withEditPopin';
+import { CREATE_DEPARTMENT, UPDATE_ALL_DEPARTMENTS } from './../../apolloql';
+import { noop } from './../../core/utils/noop';
+import CloseButton from './../ui/popins/CloseButton';
+import SubmitButton from './../ui/forms/SubmitButton';
+import SituationInput from './../ui/forms/SituationInput';
 
-const validator = (values) => {
+const validator = () => {
   const errors = {};
-  if (!values.code || values.code === '') {
-    errors.code = 'Required';
-  }
-  if (!values.label || values.label === '') {
-    errors.label = 'Required';
-  }
   return errors;
 };
 
 class SituationPopin extends React.PureComponent {
   render () {
-    const { disabled, form } = this.props;
+    const { values, onClose } = this.props;
+    // code, label, situations, origines, usages,
     return (
-      <div className="flex-columns flex-between">
-        <ArrayValues name="situations"
-          label="Situations"
-          push={form.mutators.unshift}
-          placeholder="Ajouter une situation"
-          disabled={disabled} />
-        <ArrayValues name="usages"
-          label="Usages"
-          push={form.mutators.unshift}
-          placeholder="Ajouter un usage"
-          disabled={disabled} />
-        <ArrayValues name="origines"
-          label="Origines"
-          push={form.mutators.unshift}
-          placeholder="Ajouter une Origine"
-          disabled={disabled} />
-      </div>
+      <Mutation mutation={CREATE_DEPARTMENT}
+        update={UPDATE_ALL_DEPARTMENTS}
+        onCompleted={() => {}}>
+        {(createDepartment, result) => (
+          <div id="situation-popin" className="popin-container">
+            <div className="popin-header p40">
+              <CloseButton onClose={result.loading ? noop : onClose} />
+              <h6 className="popin-suptitle">
+                <span>Gestion des couleurs situations</span>
+              </h6>
+              <h3 className="popin-title">
+                <b>{`${values.code} - ${values.label}`}</b>
+              </h3>
+            </div>
+            <Form initialValues={values}
+              onSubmit={() => {}}
+              validate={validator}
+              mutators={{ ...arrayMutators }}
+              render={({
+                handleSubmit, invalid, pristine, form,
+              }) => (
+                <form onSubmit={handleSubmit}>
+                  <Field type="hidden" name="code" component="input" />
+                  <Field type="hidden" name="label" component="input" />
+                  <Field type="hidden" name="usages" component="input" />
+                  <Field type="hidden" name="origines" component="input" />
+                  <SituationInput />
+                  <SubmitButton label="Modifier"
+                    submit={(values) => {
+                      console.log('values', values);
+                      console.log('submit submit submit submit');
+                    }}
+                    invalid={invalid || result.loading}
+                    pristine={pristine || result.loading} />
+                </form>
+              )} />
+          </div>
+        )}
+      </Mutation>
     );
   }
 }
 
 SituationPopin.propTypes = {
-  form: PropTypes.object.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  reset: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
 };
 
-export default withEditPopin(SituationPopin, {
-  query: GET_DEPARTMENT,
-  mutation: UPDATE_DEPARTMENT,
-  validator,
-  entityname: 'department',
-  suptitle: 'Gestion du département',
-});
+export default SituationPopin;

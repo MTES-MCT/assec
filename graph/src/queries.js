@@ -31,14 +31,7 @@ SINGLES QUERIES
         .exec()) ||
     null,
 
-  restriction: (_, { id }) =>
-    (id &&
-      Restriction.findById(id)
-        .populate('usages')
-        .populate('origines')
-        .populate('situations')
-        .exec()) ||
-    null,
+  restriction: (_, { id }) => (id && Restriction.findById(id).exec()) || null,
 
   /* -----------------------------------
 

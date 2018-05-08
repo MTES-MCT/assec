@@ -9,12 +9,11 @@ import {
   GET_DEPARTMENT_SUOS,
   UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
-import { validatesuos } from './../../core/utils/suos';
 import Legend from './../../components/ui/forms/Legend';
 import TextArea from './../../components/ui/forms/TextArea';
 import TextInput from './../../components/ui/forms/TextInput';
-import CheckboxGroup from './../../components/ui/forms/CheckboxGroup';
 import SubmitButton from './../../components/ui/forms/SubmitButton';
+import CheckboxGroup from './../../components/ui/forms/CheckboxGroup';
 
 const validator = (values) => {
   const errors = {};
@@ -24,8 +23,14 @@ const validator = (values) => {
   if (!values.description || values.description === '') {
     errors.description = 'Required';
   }
-  if (!values.suos || !validatesuos(values.suos)) {
-    errors.suos = 'Required';
+  if (!values.usages || values.usages.length <= 0) {
+    errors.usages = 'Required';
+  }
+  if (!values.origines || values.origines.length <= 0) {
+    errors.origines = 'Required';
+  }
+  if (!values.situations || values.situations.length <= 0) {
+    errors.situations = 'Required';
   }
   return errors;
 };
@@ -35,30 +40,34 @@ const RestrictionsForm = ({ selected }) => (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error </p>;
-      const { departmentSUOs } = data;
+      const {
+        departmentSUOs: { situations, usages, origines },
+      } = data;
       return (
         <Mutation mutation={CREATE_RESTRICTION}
           update={UPDATE_DEPARTMENT_RESTRICTIONS}>
           {(createRestriction, result) => (
             <Form validate={validator}
               initialValues={{ department: selected }}
-              onSubmit={({ suos, ...base }, form) => {
-                // FIXME -> ajouter l'action redux loading ici
-                const variables = { ...base, ...suos };
-                return createRestriction({ variables })
+              onSubmit={(variables, form) =>
+                createRestriction({ variables })
                   .then(() => form.reset())
-                  .catch(() => {});
-              }}
+                  .catch(() => {})
+              }
               render={({
-                form, handleSubmit, pristine, invalid,
+                values, handleSubmit, pristine, invalid,
               }) => {
                 const disabled =
                   result.loading || !(selected && selected !== null);
-                const moredisabled =
+                const ddisabled =
                   pristine ||
-                  result.loading ||
-                  !form.label === '' ||
-                  !(selected && selected !== null);
+                  disabled ||
+                  !values.label ||
+                  values.label.trim() === '';
+                const cdisabled =
+                  ddisabled ||
+                  !values.description ||
+                  values.description.trim() === '';
                 return (
                   <form onSubmit={handleSubmit} className="mb40">
                     <span name="restriction-form-anchor" />
@@ -70,31 +79,25 @@ const RestrictionsForm = ({ selected }) => (
                       <TextInput disabled={disabled}
                         name="label"
                         label="Titre de la restriction" />
-                      <TextArea disabled={moredisabled}
+                      <TextArea disabled={ddisabled}
                         name="description"
                         label="Description de la restriction" />
-                      <CheckboxGroup name="suos.situations"
+                      <CheckboxGroup name="situations"
                         display="inline"
                         label="Situation"
-                        disabled={moredisabled}
-                        provider={
-                          (departmentSUOs && departmentSUOs.situations) || []
-                        } />
-                      <CheckboxGroup name="suos.usages"
+                        disabled={cdisabled}
+                        provider={situations || []} />
+                      <CheckboxGroup name="usages"
                         label="Usage"
                         display="inline"
-                        disabled={moredisabled}
-                        provider={
-                          (departmentSUOs && departmentSUOs.usages) || []
-                        } />
-                      <CheckboxGroup name="suos.origines"
+                        disabled={cdisabled}
+                        provider={usages || []} />
+                      <CheckboxGroup name="origines"
                         label="Origine"
                         display="inline"
-                        disabled={moredisabled}
-                        provider={
-                          (departmentSUOs && departmentSUOs.origines) || []
-                        } />
-                      <TextArea disabled={moredisabled}
+                        disabled={cdisabled}
+                        provider={origines || []} />
+                      <TextArea disabled={cdisabled}
                         name="information"
                         label="Plus d'informations pédagogiques"
                         large />

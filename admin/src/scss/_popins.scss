@@ -72,7 +72,12 @@
 }
 
 .popin-content {
-  overflow: auto;
+  overflow: hidden;
+}
+
+.popin-main {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .popin-sidebar {

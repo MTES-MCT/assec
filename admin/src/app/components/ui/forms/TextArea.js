@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 const TextArea = ({
-  name, label, large, ...rest
+  name, label, large, inline, ...rest
 }) => (
   <p>
-    <label htmlFor={name}>
+    <label htmlFor={name} className={inline ? 'inline' : ''}>
       <span>{label}</span>
       <Field {...rest}
         id={name}
@@ -19,10 +19,12 @@ const TextArea = ({
 
 TextArea.defaultProps = {
   large: false,
+  inline: false,
 };
 
 TextArea.propTypes = {
   large: PropTypes.bool,
+  inline: PropTypes.bool,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
 };

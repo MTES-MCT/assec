@@ -11,8 +11,8 @@ class ColorInput extends React.PureComponent {
     super(props);
     this.container = null;
     this.state = { opened: false };
-    this.onChange = this.onChange.bind(this);
     this.togglePopin = this.togglePopin.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
@@ -35,7 +35,7 @@ class ColorInput extends React.PureComponent {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  onChange ({ hex }) {
+  onInputChange ({ hex }) {
     const { name, onChange } = this.props;
     onChange({ name, value: hex });
   }
@@ -76,8 +76,8 @@ class ColorInput extends React.PureComponent {
         <div className="popup">
           {!opened ? null : (
             <ColorPicker color={color}
-              onChange={this.onChange}
-              onChangeComplete={this.onChange} />
+              onChange={this.onInputChange}
+              onChangeComplete={this.onInputChange} />
           )}
         </div>
       </div>

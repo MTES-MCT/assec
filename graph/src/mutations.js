@@ -11,11 +11,11 @@ import {
 
 const suoskeys = ['situations', 'origines', 'usages'];
 
-const createSUO = (obj, id) => ({
+const createSUO = (label, id) => ({
   // cree un nouveau SUO
   // en definissant son departement de rattachement
+  label,
   department: id,
-  label: obj.label,
 });
 
 export const Mutation = {
@@ -29,9 +29,9 @@ export const Mutation = {
     const base = omit(args, suoskeys);
     const id = new Mongoose.Types.ObjectId();
     return Promise.all([
-      SUOModel.create(args.usages.map(o => createSUO(o, id))),
-      SUOModel.create(args.origines.map(o => createSUO(o, id))),
-      SUOModel.create(args.situations.map(o => createSUO(o, id))),
+      SUOModel.create(args.usages.map(l => createSUO(l, id))),
+      SUOModel.create(args.origines.map(l => createSUO(l, id))),
+      SUOModel.create(args.situations.map(l => createSUO(l, id))),
     ]).then(([usages, origines, situations]) => {
       const doc = new Departement({ ...base, _id: id });
       doc.set('usages', usages);

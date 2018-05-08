@@ -3,9 +3,9 @@ type Mutation {
   createDepartement(
     code: String!
     label: String!
-    usages: [SUOInput]!
-    origines: [SUOInput]!
-    situations: [SUOInput]!
+    usages: [String]!
+    origines: [String]!
+    situations: [String]!
   ): DepartementType
 
   createRestriction(

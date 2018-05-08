@@ -5,7 +5,6 @@ export const GET_ALL_DEPARTMENTS = gql(`
     departments {
       id
       code
-      name
       label
       usages {
         id
@@ -61,12 +60,12 @@ query departmentRestrictions (
   ) {
     id
     label
-    usages
-    origines
     department
-    situations
     description
     information
+    usages
+    origines
+    situations
   }
 }
 `);
@@ -147,12 +146,12 @@ query restriction (
     label
     mtime
     ctime
-    usages
-    origines
     department
-    situations
     description
     information
+    usages
+    origines
+    situations
   }
 }
 `);

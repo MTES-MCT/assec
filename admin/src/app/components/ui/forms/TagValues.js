@@ -30,13 +30,13 @@ class TagValues extends React.PureComponent {
         .split(',')
         .filter(v => v && v.trim() !== '')
         .map(v => v.trim())
-        .forEach(value => mutatorpush(name, { value }));
+        .forEach(value => mutatorpush(name, value));
     });
   }
 
   render () {
     const {
-      label, disabled, placeholder, name,
+      label, disabled, placeholder, name, ...rest
     } = this.props;
     const { primary } = this.state;
     const forkey = `tagvalues::${name}`;
@@ -50,7 +50,8 @@ class TagValues extends React.PureComponent {
           <FieldArray name={name}>
             {({ fields }) =>
               fields.map((fieldname, index) => (
-                <Tag name={fieldname}
+                <Tag {...rest}
+                  name={fieldname}
                   key={getkey(fieldname, index)}
                   onClick={() => fields.remove(index)} />
               ))

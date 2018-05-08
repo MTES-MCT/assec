@@ -30,14 +30,14 @@ const withEditPopin = (
                 onSubmit={() => {}}
                 validate={validator}
                 mutators={{ ...arrayMutators }}
-                render={form => (
+                render={formprops => (
                   <EditPopin {...props}
-                    form={form}
                     entity={entity}
                     suptitle={suptitle}
-                    loading={result.loading}>
-                    <WrappedComponent form={form}
-                      disabled={form.pristine || result.loading} />
+                    loading={result.loading}
+                    formprops={formprops}>
+                    <WrappedComponent formprops={formprops}
+                      disabled={formprops.pristine || result.loading} />
                   </EditPopin>
                 )} />
             )}

@@ -1,24 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { ARRAY_ERROR } from 'final-form';
 import arrayMutators from 'final-form-arrays';
-import { Mutation, Query } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
+import { Query, Mutation } from 'react-apollo';
 import createDecorator from 'final-form-calculate';
 
 // application
 import {
-  GET_ALL_DEPARTMENTS,
   CREATE_DEPARTMENT,
+  GET_ALL_DEPARTMENTS,
   UPDATE_ALL_DEPARTMENTS,
 } from './../../apolloql';
-import { openPopin } from './../../actions';
 import dptsutils from './../../core/utils/departments';
 import Legend from './../../components/ui/forms/Legend';
-import SituationPopin from './../popins/SituationPopin';
 import TagValues from './../../components/ui/forms/TagValues';
 import SelectBox from './../../components/ui/forms/SelectBox';
-import { validatesuos, parsesuos } from './../../core/utils/suos';
 import SubmitButton from './../../components/ui/forms/SubmitButton';
 
 const calculator = createDecorator({
@@ -42,122 +38,86 @@ const validator = (values) => {
   if (!values.label || values.label === '') {
     errors.label = 'Required';
   }
-  if (!values.suos || !validatesuos(values.suos)) {
-    errors.suos = 'Required';
+  if (!values.usages || values.usages.length <= 0) {
+    errors.usages = [];
+    errors.usages[ARRAY_ERROR] = 'Required';
   }
-  /*
-  a utilser si on doit valider les suos unitairement
-  if (!values.usages || !values.usages.length) {
-    errors.usages = 'Required';
+  if (!values.origines || values.origines.length <= 0) {
+    errors.origines = [];
+    errors.origines[ARRAY_ERROR] = 'Required';
   }
-  if (!values.origines || !values.origines.length) {
-    errors.origines = 'Required';
+  if (!values.situations || values.situations.length <= 0) {
+    errors.situations = [];
+    errors.situations[ARRAY_ERROR] = 'Required';
   }
-  if (!values.situations || !values.situations.length) {
-    errors.situations = 'Required';
-  }
-  */
   return errors;
 };
 
 const initialValues = {
   code: '',
   label: '',
-  suos: {
-    usages: [],
-    origines: [],
-    situations: [],
-  },
+  usages: [],
+  origines: [],
+  situations: [],
 };
 
-class DepartementForm extends React.PureComponent {
-  constructor (props) {
-    super(props);
-    this.onHydrateSituations = this.onHydrateSituations.bind(this);
-  }
-
-  onHydrateSituations ({ code, label, situations }, callback) {
-    const opts = {
-      callback,
-      situations,
-      Type: SituationPopin,
-      label: `${label} (${code})`,
-    };
-    this.props.dispatch(openPopin(opts));
-  }
-
-  render () {
-    return (
-      <Query query={GET_ALL_DEPARTMENTS}>
-        {({ loading, data }) => {
-          if (loading) return <p>Loading... </p>;
-          const dptslist = dptsutils.omit(data.departments);
-          return (
-            <Mutation mutation={CREATE_DEPARTMENT}
-              update={UPDATE_ALL_DEPARTMENTS}>
-              {(createDepartement, result) => (
-                <Form mutators={{ ...arrayMutators }}
-                  validate={validator}
-                  decorators={[calculator]}
-                  initialValues={initialValues}
-                  onSubmit={({ suos, ...base }, form) => {
-                    const parsed = parsesuos(suos);
-                    const vars = { ...base, ...parsed };
-                    this.onHydrateSituations(vars, (situations) => {
-                      const variables = { ...vars, ...situations };
-                      return createDepartement({ variables })
-                        .then(() => form.reset())
-                        .catch(() => {});
-                    });
-                  }}
-                  render={({
-                    form, invalid, pristine, handleSubmit,
-                  }) => (
-                    <form onSubmit={handleSubmit} className="mb20">
-                      <fieldset>
-                        <Field name="label" type="hidden" component="input" />
-                        <Legend label="Ajouter un département" />
-                        <SelectBox name="code"
-                          label="Département"
-                          disabled={result.loading}
-                          provider={dptslist.map(obj => ({
-                            id: obj.departmentCode,
-                            label: `${obj.departmentCode} - ${
-                              obj.departmentName
-                            }`,
-                          }))} />
-                        <TagValues name="suos.situations"
-                          label="Situations"
-                          mutatorpush={form.mutators.unshift}
-                          disabled={pristine || result.loading}
-                          placeholder="Nom de la situation" />
-                        <TagValues name="suos.usages"
-                          label="Usages"
-                          disabled={pristine || result.loading}
-                          mutatorpush={form.mutators.unshift}
-                          placeholder="Nom de l'usage" />
-                        <TagValues name="suos.origines"
-                          label="Origines"
-                          mutatorpush={form.mutators.unshift}
-                          disabled={pristine || result.loading}
-                          placeholder="Nom de l'origine" />
-                        <SubmitButton label="Ajouter"
-                          invalid={invalid || result.loading}
-                          pristine={pristine || result.loading} />
-                      </fieldset>
-                    </form>
-                  )} />
+const DepartementForm = () => (
+  <Query query={GET_ALL_DEPARTMENTS}>
+    {({ loading, error, data }) => {
+      if (loading) return <p>Loading... </p>;
+      if (error) return <p>error... </p>;
+      const dptslist = dptsutils.omit(data.departments);
+      return (
+        <Mutation mutation={CREATE_DEPARTMENT} update={UPDATE_ALL_DEPARTMENTS}>
+          {(createDepartement, result) => (
+            <Form mutators={{ ...arrayMutators }}
+              validate={validator}
+              decorators={[calculator]}
+              initialValues={initialValues}
+              render={({
+                form, invalid, pristine, handleSubmit,
+              }) => (
+                <form onSubmit={handleSubmit} className="mb20">
+                  <fieldset>
+                    <Field name="label" type="hidden" component="input" />
+                    <Legend label="Ajouter un département" />
+                    <SelectBox name="code"
+                      label="Département"
+                      provider={dptslist.map(obj => ({
+                        id: obj.departmentCode,
+                        label: `${obj.departmentCode} - ${obj.departmentName}`,
+                      }))} />
+                    <TagValues name="situations"
+                      label="Situations"
+                      placeholder="Nom de la situation"
+                      mutatorpush={form.mutators.unshift}
+                      disabled={pristine || result.loading} />
+                    <TagValues name="usages"
+                      label="Usages"
+                      placeholder="Nom de l'usage"
+                      disabled={pristine || result.loading}
+                      mutatorpush={form.mutators.unshift} />
+                    <TagValues name="origines"
+                      label="Origines"
+                      placeholder="Nom de l'origine"
+                      mutatorpush={form.mutators.unshift}
+                      disabled={pristine || result.loading} />
+                    <SubmitButton label="Ajouter"
+                      invalid={invalid || result.loading}
+                      pristine={pristine || result.loading} />
+                  </fieldset>
+                </form>
               )}
-            </Mutation>
-          );
-        }}
-      </Query>
-    );
-  }
-}
+              onSubmit={(variables, form) =>
+                createDepartement({ variables })
+                  .then(() => form.reset())
+                  .catch(() => {})
+              } />
+          )}
+        </Mutation>
+      );
+    }}
+  </Query>
+);
 
-DepartementForm.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
-export default connect()(DepartementForm);
+export default DepartementForm;

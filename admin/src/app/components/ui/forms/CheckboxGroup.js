@@ -11,7 +11,7 @@ const CheckboxGroup = ({
     display !== 'inline' ? 'rows' : 'columns'
   } flex-wrap wrap3 list`;
   return (
-    <p className="checkbox-group pt12 px12">
+    <p className="checkbox-group pt12">
       <span className="as-form-label">
         <span>{label}</span>
         <span className={cssclass}>
@@ -19,9 +19,9 @@ const CheckboxGroup = ({
             provider.map((obj) => {
               const key = getkey(name, obj.id);
               return (
-                <label htmlFor={key} key={key}>
+                <label htmlFor={obj.id} key={key}>
                   <Field {...rest}
-                    id={key}
+                    id={obj.id}
                     name={name}
                     value={obj.id}
                     type="checkbox"

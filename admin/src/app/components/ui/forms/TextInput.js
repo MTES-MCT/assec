@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 const TextInput = ({
-  label, placeholder, name, ...rest
+  label, inline, placeholder, name, ...rest
 }) => (
   <p>
-    <label htmlFor={name}>
+    <label htmlFor={name} className={inline ? 'inline' : ''}>
       <span>{label}</span>
       <Field {...rest}
         type="text"
@@ -19,10 +19,12 @@ const TextInput = ({
 );
 
 TextInput.defaultProps = {
+  inline: false,
   placeholder: '',
 };
 
 TextInput.propTypes = {
+  inline: PropTypes.bool,
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,

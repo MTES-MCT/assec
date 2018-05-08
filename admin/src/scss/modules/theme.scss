@@ -159,9 +159,9 @@ th {
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-.tagvalues,
-.radio-group,
-.checkbox-group {
+fieldset .tagvalues,
+fieldset .radio-group,
+fieldset .checkbox-group {
   background-color: $white;
 }
 

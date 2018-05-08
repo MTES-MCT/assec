@@ -19,15 +19,8 @@ class RestrictionsTable extends React.PureComponent {
   constructor (props) {
     super(props);
     this.onEditClick = this.onEditClick.bind(this);
-    // this.onCloneClick = this.onCloneClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
-
-  // onCloneClick (obj) {
-  //   const { label, id } = obj;
-  //   const popin = { id, name: label, type: 'EditRestrictionsPopin' };
-  //   this.props.dispatch({ type: 'onOpenPopin', popin });
-  // }
 
   onEditClick (obj) {
     const { label, id } = obj;

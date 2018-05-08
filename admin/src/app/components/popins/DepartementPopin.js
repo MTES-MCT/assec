@@ -19,22 +19,22 @@ const validator = (values) => {
 
 class DepartementPopin extends React.PureComponent {
   render () {
-    const { disabled, form } = this.props;
+    const { disabled, formprops } = this.props;
     return (
       <div className="flex-columns flex-between">
         <ArrayValues name="situations"
           label="Situations"
-          push={form.mutators.unshift}
+          push={formprops.mutators.unshift}
           placeholder="Ajouter une situation"
           disabled={disabled} />
         <ArrayValues name="usages"
           label="Usages"
-          push={form.mutators.unshift}
+          push={formprops.mutators.unshift}
           placeholder="Ajouter un usage"
           disabled={disabled} />
         <ArrayValues name="origines"
           label="Origines"
-          push={form.mutators.unshift}
+          push={formprops.mutators.unshift}
           placeholder="Ajouter une Origine"
           disabled={disabled} />
       </div>
@@ -43,8 +43,8 @@ class DepartementPopin extends React.PureComponent {
 }
 
 DepartementPopin.propTypes = {
-  form: PropTypes.object.isRequired,
   disabled: PropTypes.bool.isRequired,
+  formprops: PropTypes.object.isRequired,
 };
 
 export default withEditPopin(DepartementPopin, {

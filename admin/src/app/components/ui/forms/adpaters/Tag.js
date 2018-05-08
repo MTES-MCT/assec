@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
-const Tag = ({ name, onClick, mode }) => (
-  <Field name={`${name}.value`}
+const Tag = ({
+  name, onClick, mode, ...rest
+}) => (
+  <Field {...rest}
+    name={name}
     render={({ input }) => (
       <button type="button" className="tag" onClick={onClick}>
         <span>{input.value}</span>

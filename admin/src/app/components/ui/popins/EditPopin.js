@@ -11,7 +11,7 @@ import SubmitButton from './../forms/SubmitButton';
 class EditPopinForm extends React.PureComponent {
   renderHeader () {
     const { entity, onClose, suptitle } = this.props;
-    const title = (entity && (entity.label || entity.name)) || '';
+    const title = (entity && (entity.name || entity.label)) || '';
     return (
       <div className="popin-header p40">
         <CloseButton onClose={onClose || noop} />
@@ -26,7 +26,7 @@ class EditPopinForm extends React.PureComponent {
   }
 
   renderSidebar () {
-    const { entity, form, loading } = this.props;
+    const { entity, formprops, loading } = this.props;
     const ctime = (entity && new Date(entity.ctime).toLocaleString()) || '';
     const mtime = (entity && new Date(entity.mtime).toLocaleString()) || '';
     return (
@@ -44,27 +44,29 @@ class EditPopinForm extends React.PureComponent {
           </li>
         </ul>
         <SubmitButton label="Modifier"
-          invalid={form.invalid || loading}
-          pristine={form.pristine || loading} />
+          submit={() => {
+            console.log('submit submit submit submit');
+          }}
+          invalid={formprops.invalid || loading}
+          pristine={formprops.pristine || loading} />
       </React.Fragment>
     );
   }
 
   render () {
-    const { height, form, children } = this.props;
+    const { height, formprops, children } = this.props;
     return (
       <Motion style={{ y: spring(0) }} defaultStyle={{ y: -height }}>
         {value => (
-          <div className="edit-popin popin-container" style={{ top: value.y }}>
+          <div className="edit-popin popin-container flex-rows"
+            style={{ top: value.y }}>
             {this.renderHeader()}
-            <form onSubmit={form.handleSubmit}>
-              <div className="popin-content flex-columns p40">
-                <div className="popin-main flex1 mr40">{children}</div>
-                <div className="popin-sidebar flex0">
-                  {this.renderSidebar()}
-                </div>
+            <div className="popin-content flex-columns p40">
+              <div className="popin-main flex1 pr12 mr28">
+                <form onSubmit={formprops.handleSubmit}>{children}</form>
               </div>
-            </form>
+              <div className="popin-sidebar flex0">{this.renderSidebar()}</div>
+            </div>
           </div>
         )}
       </Motion>
@@ -73,13 +75,14 @@ class EditPopinForm extends React.PureComponent {
 }
 
 EditPopinForm.propTypes = {
-  form: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   entity: PropTypes.object.isRequired,
   height: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
   suptitle: PropTypes.string.isRequired,
+  // FIXME -> use shapeof instead of simple object
+  formprops: PropTypes.object.isRequired,
 };
 
 export default withSizes(({ height }) => ({ height }))(EditPopinForm);

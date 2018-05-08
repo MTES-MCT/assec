@@ -38,9 +38,7 @@ class AppPopin extends React.PureComponent {
 
   renderPopin () {
     if (!this.props.popin) return null;
-    const {
-      popin: { Type, ...rest },
-    } = this.props;
+    const { Type, ...rest } = this.props.popin;
     try {
       return (
         <div className="popin-foreground">

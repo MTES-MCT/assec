@@ -4,7 +4,8 @@
 
 ----------------------------------- */
 
-#delete-popin {
+#delete-popin,
+#situation-popin {
   width: 360px;
   height: auto;
   margin: auto;
@@ -19,4 +20,8 @@
   button ~ button {
     @extend .ml20;
   }
+}
+
+#situation-popin {
+  width: 600px;
 }
