@@ -1,6 +1,12 @@
+const scalars = `
+  scalar Date
+`;
+
 const subscriber = `
 type SubscriberType {
   id: ID!
+  ctime: Date!
+  mtime: Date!
   email: String!
   department: ID!
 }
@@ -9,6 +15,8 @@ type SubscriberType {
 const suos = `
 type SUOType {
   id: ID!
+  ctime: Date!
+  mtime: Date!
   label: String!
 }
 
@@ -22,6 +30,8 @@ type SUOSType {
 const departement = `
 type DepartementType {
   id: ID!
+  ctime: Date!
+  mtime: Date!
   code: String!
   slug: String!
   name: String!
@@ -35,6 +45,8 @@ type DepartementType {
 const restriction = `
 type RestrictionType {
   id: ID!
+  ctime: Date!
+  mtime: Date!
   usages: [ID]!
   label: String!
   department: ID!
@@ -59,6 +71,8 @@ type AlerteType {
 
 type ZoneType {
   id: ID!
+  ctime: Date!
+  mtime: Date!
   help: String
   name: String!
   label: String!
@@ -81,6 +95,7 @@ type HydratedType {
 `;
 
 const typeDefs = `
+${scalars}
 ${suos}
 ${zone}
 ${hydrated}

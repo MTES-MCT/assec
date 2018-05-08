@@ -2,6 +2,7 @@
 import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
+import GraphQLDate from 'graphql-date';
 // import * as bodyParser from 'body-parser-graphql';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
@@ -20,6 +21,7 @@ const schema = makeExecutableSchema({
   typeDefs: schemas,
   resolvers: {
     Query: queries,
+    Date: GraphQLDate,
     Mutation: mutations,
   },
 });
