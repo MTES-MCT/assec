@@ -31,6 +31,10 @@ RestrictionSchema.virtual('slug').get(function virtualslug () {
   return slugify(this.label);
 });
 
+RestrictionSchema.virtual('name').get(function virtualslug () {
+  return this.label;
+});
+
 export const Restriction = Mongoose.model('restrictions', RestrictionSchema);
 
 export default { Restriction, RestrictionSchema };

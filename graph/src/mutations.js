@@ -62,11 +62,18 @@ export const Mutation = {
 
   ----------------------------------- */
 
-  createRestriction: (_, args) => Restriction.create(args),
+  updateRestriction: (_, args) => {
+    const { id } = args;
+    const rest = omit(args, ['id']);
+    const opts = { new: true };
+    return Restriction.findByIdAndUpdate(id, rest, opts);
+  },
 
   deleteRestriction: (_, args) =>
     // FIXME -> remove restriction sur une zone
     Restriction.findByIdAndRemove(args.id),
+
+  createRestriction: (_, args) => Restriction.create(args),
 
   /* -----------------------------------
 
@@ -81,17 +88,11 @@ export const Mutation = {
   // UPDATES
   updateZoneAlerte: (_, args) => {
     const { id, situationid } = args;
-    return ZoneModel.findByIdAndUpdate(
-      id,
-      {
-        // update values
-        $set: { 'alerte.situation': situationid },
-      },
-      {
-        // should returns updated document
-        new: true,
-      },
-    )
+    // update values
+    const query = { $set: { 'alerte.situation': situationid } };
+    // should returns updated document
+    const opts = { new: true };
+    return ZoneModel.findByIdAndUpdate(id, query, opts)
       .populate('alerte.situation')
       .exec();
   },

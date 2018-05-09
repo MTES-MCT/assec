@@ -49,11 +49,6 @@ const RestrictionsForm = ({ selected }) => (
           {(createRestriction, result) => (
             <Form validate={validator}
               initialValues={{ department: selected }}
-              onSubmit={(variables, form) =>
-                createRestriction({ variables })
-                  .then(() => form.reset())
-                  .catch(() => {})
-              }
               render={({
                 values, handleSubmit, pristine, invalid,
               }) => {
@@ -105,7 +100,12 @@ const RestrictionsForm = ({ selected }) => (
                     </fieldset>
                   </form>
                 );
-              }} />
+              }}
+              onSubmit={(variables, form) =>
+                createRestriction({ variables })
+                  .then(() => form.reset())
+                  .catch(() => {})
+              } />
           )}
         </Mutation>
       );

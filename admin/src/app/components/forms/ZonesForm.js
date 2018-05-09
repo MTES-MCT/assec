@@ -38,15 +38,6 @@ const ZonesForm = ({ selected }) => (
     {(createZone, result) => (
       <Form validate={validator}
         initialValues={{ ...initialValues, department: selected }}
-        onSubmit={(values, form) => {
-          const variables = {
-            ...values,
-            order: values.order || '0',
-          };
-          return createZone({ variables })
-            .then(() => form.reset())
-            .catch(() => {});
-        }}
         render={({
           form, invalid, pristine, handleSubmit,
         }) => {
@@ -84,6 +75,15 @@ const ZonesForm = ({ selected }) => (
               </fieldset>
             </form>
           );
+        }}
+        onSubmit={(values, form) => {
+          const variables = {
+            ...values,
+            order: values.order || '0',
+          };
+          return createZone({ variables })
+            .then(() => form.reset())
+            .catch(() => {});
         }} />
     )}
   </Mutation>

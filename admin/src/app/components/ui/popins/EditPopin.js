@@ -43,9 +43,7 @@ class EditPopinForm extends React.PureComponent {
           </li>
         </ul>
         <SubmitButton label="Modifier"
-          submit={() => {
-            console.log('submit submit submit submit');
-          }}
+          submit={formprops.form.submit}
           invalid={formprops.invalid || loading}
           pristine={formprops.pristine || loading} />
         <CancelButton disabled={loading} />

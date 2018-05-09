@@ -27,15 +27,24 @@ const withEditPopin = (
           <Mutation mutation={mutation}>
             {(update, result) => (
               <Form initialValues={entity}
-                onSubmit={() => {}}
+                onSubmit={variables => update({ variables })
+                  .then(() => {})
+                  .catch((err) => {
+                    /* eslint-disable */
+                      console.log('err', err);
+                      console.log(
+                        'FIXME -> gestion des erreurs dans withEditPopin'
+                      );
+                      /* eslint-enable */
+                  })}
                 validate={validator}
                 mutators={{ ...arrayMutators }}
                 render={formprops => (
                   <EditPopin {...props}
                     entity={entity}
                     suptitle={suptitle}
-                    loading={result.loading}
-                    formprops={formprops}>
+                    formprops={formprops}
+                    loading={result.loading}>
                     <WrappedComponent formprops={formprops}
                       disabled={formprops.pristine || result.loading} />
                   </EditPopin>

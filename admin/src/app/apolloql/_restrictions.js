@@ -4,8 +4,8 @@ import { GET_DEPARTMENT_RESTRICTIONS } from './queries';
 
 export const CREATE_RESTRICTION = gql(`
 mutation createRestriction(
-  $label: String!
   $usages: [ID]!
+  $label: String!
   $origines: [ID]!
   $department: ID!
   $situations: [ID]!
@@ -47,11 +47,25 @@ mutation deleteRestriction (
 `);
 
 export const UPDATE_RESTRICTION = gql(`
-mutation deleteRestriction (
+mutation updateRestriction (
   $id: ID!
+  $usages: [ID]!
+  $label: String!
+  $origines: [ID]!
+  $department: ID!
+  $situations: [ID]!
+  $information: String
+  $description: String!
 ) {
-  deleteRestriction (
+  updateRestriction (
     id: $id
+    label: $label
+    usages: $usages
+    origines: $origines
+    department: $department
+    situations: $situations
+    description: $description
+    information: $information
   ) {
     id
     label
@@ -80,14 +94,14 @@ export const UPDATE_DEPARTMENT_RESTRICTIONS = (store, { data }) => {
   let variables = {};
   if (data.createRestriction) {
     const { department } = data.createRestriction;
-    const restrictions = getCurrentRestrictions(store, department);
-    entries = restrictions.concat([data.createRestriction]);
+    const current = getCurrentRestrictions(store, department);
+    entries = current.concat([data.createRestriction]);
     variables = { department };
   }
   if (data.deleteRestriction) {
     const { department, id } = data.deleteRestriction;
-    const restrictions = getCurrentRestrictions(store, department);
-    entries = restrictions.filter(obj => obj.id !== id);
+    const current = getCurrentRestrictions(store, department);
+    entries = current.filter(obj => obj.id !== id);
     variables = { department };
   }
   store.writeQuery({
