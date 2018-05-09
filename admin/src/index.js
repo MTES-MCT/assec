@@ -13,11 +13,10 @@ import { Logger } from './app/core/logger';
 import { configure } from './app/core/store';
 import { createClient } from './app/core/apollo';
 import AppPopin from './app/components/AppPopin';
-import AppHeader from './app/components/AppHeader';
 import { usedebug } from './app/core/utils/usedebug';
 import AppToaster from './app/components/AppToaster';
+// import Preloader from './app/components/ui/Preloader';
 import GraphQLError from './app/components/ui/GraphQLError';
-import LinearProgress from './app/components/ui/LinearProgress';
 
 Logger.debug(`
   **** Admin Application Debug ****
@@ -33,9 +32,9 @@ const appversion = process.env.REACT_APP_VERSION;
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
 const { client, NetworkStatusNotifier } = createClient(graphqluri, store);
 
-const renderGraphToaster = args => <AppToaster error={args.error} />;
+// const renderPreloader = args => <Preloader loading={args.loading} />;
 
-const renderLinearProgress = args => <LinearProgress loading={args.loading} />;
+const renderGraphToaster = args => <AppToaster error={args.error} />;
 
 const renderGraphError = args =>
   usedebug() && args.error && <GraphQLError error={args.error} />;
@@ -47,8 +46,7 @@ const Root = () => (
         <Fragment>
           <Scrollbars autoHide id="body-scroller">
             <div id="body-scroller-content">
-              <NetworkStatusNotifier render={renderLinearProgress} />
-              <AppHeader title="ASSEC" version={appversion} />
+              {/* <NetworkStatusNotifier render={renderPreloader} /> */}
               <Page version={appversion} />
               <NetworkStatusNotifier render={renderGraphError} />
             </div>

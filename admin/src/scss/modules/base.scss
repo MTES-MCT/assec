@@ -61,6 +61,15 @@ span + .icon,
   border-right: 1px solid #E7E7E7;
 }
 
+#page-container {
+  margin-left: 45px;
+  transition: margin-left 0.5s;
+}
+
+#page-container.opened {
+  margin-left: 160px;
+}
+
 #application-header {
   height: $headerHeight;
   max-height: $headerHeight;
@@ -106,15 +115,6 @@ span + .icon,
 
 #application-header .title > span small {
   border-radius: 2px;
-}
-
-#main-navigation .inner {
-  // $innerheight: calc(100vh - #{$headerHeight});
-
-  width: 100%;
-  // height: $innerheight;
-  // min-height: $innerheight;
-  // max-height: $innerheight;
 }
 
 #application-footer {

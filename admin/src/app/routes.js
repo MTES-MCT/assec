@@ -24,17 +24,17 @@ export const routes = {
     },
     {
       exact: false,
-      icon: 'database',
-      path: '/departements',
-      name: 'Départements',
-      component: Departements,
-    },
-    {
-      exact: false,
       icon: 'map',
       path: '/zones',
       name: 'Mes Zones',
       component: Zones,
+    },
+    {
+      exact: false,
+      icon: 'database',
+      path: '/departements',
+      name: 'Départements',
+      component: Departements,
     },
   ],
   sub: [

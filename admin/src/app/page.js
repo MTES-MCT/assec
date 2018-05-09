@@ -10,7 +10,8 @@ import AppFooter from './components/AppFooter';
 import { keypath } from './core/utils/keypath';
 import { usedebug } from './core/utils/usedebug';
 import { pagetitle } from './core/utils/pagetitle';
-import MainNavigation from './components/navs/MainNavigation';
+import AppHeader from './../app/components/AppHeader';
+import AppNavigation from './components/AppNavigation';
 
 const getbodyclass = (path, haspopin) =>
   `route-page-${path
@@ -31,11 +32,12 @@ const PageComponent = ({
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
         rel="stylesheet" />
     </Helmet>
-    <MainNavigation routes={routes}
+    <AppNavigation routes={routes}
       minimized={!openednav}
       path={location.pathname} />
     <div id="page-container"
       className={`flex-rows flex-between flex1 ${openednav ? 'opened' : ''}`}>
+      <AppHeader title="ASSEC" version={version} />
       {/* routes */}
       <Switch>
         {routes.main

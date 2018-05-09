@@ -2,9 +2,13 @@
   flex: 0;
   padding: 0;
   width: 45px;
+  height: 100vh;
   min-width: 45px;
+  position: fixed;
   overflow: hidden;
   font-size: 1.3em;
+  min-height: 100vh;
+  max-height: 100vh;
   justify-content: space-between;
   transition: min-width 0.5s, width 0.5s;
 }
@@ -14,7 +18,11 @@
   min-width: 160px;
 }
 
-#main-navigation > button {
+#main-navigation .inner {
+  width: 100%;
+}
+
+#main-navigation .toggler {
   border-radius: 0;
   color: rgba(255, 255, 255, 0.25);
 }

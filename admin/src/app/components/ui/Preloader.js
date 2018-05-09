@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // application
-import './linearprogress.css';
-
-const LinearProgress = props => (
+const Preloader = props => (
   <div id="preloader">
     <div className={`loader ${!props.loading ? '' : 'loading'}`} />
   </div>
 );
 
-LinearProgress.propTypes = {
+Preloader.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-export default LinearProgress;
+export default Preloader;
