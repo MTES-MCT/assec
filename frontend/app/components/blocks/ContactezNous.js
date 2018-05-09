@@ -15,7 +15,7 @@ const ContactezNous = () => (
       <div className="col-right ml40">
         <ul className="list mt40">
           <li>
-            <b>eMail :</b> assec@beta.gouv.fr
+            <b>eMail :</b> contact@assec.beta.gouv.fr
           </li>
         </ul>
       </div>
