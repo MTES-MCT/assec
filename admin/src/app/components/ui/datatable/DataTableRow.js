@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { usedebug } from './../../../core/utils/usedebug';
+
 class DataTableRow extends React.PureComponent {
   renderActions () {
     const { actions, data } = this.props;
@@ -32,8 +34,9 @@ class DataTableRow extends React.PureComponent {
     const { cols, data } = this.props;
     const actions = this.renderActions();
     const alen = actions && actions.length;
+    const debugprops = (usedebug() && { 'debug-data-id': data.id }) || {};
     return (
-      <tr>
+      <tr {...debugprops}>
         {cols &&
           cols.map(col => (
             <td className={col.type || col.key}
