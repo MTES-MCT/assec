@@ -48,6 +48,7 @@ class RestrictionsTable extends React.PureComponent {
           if (error) return <p>Error </p>;
           const provider = data.departmentRestrictions || null;
           const hasrestrictions = provider && provider.length > 0;
+          const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
@@ -66,7 +67,7 @@ class RestrictionsTable extends React.PureComponent {
                     {
                       key: 'label',
                       type: 'label',
-                      label: 'Nom du département',
+                      label: `${len} Restrictions`,
                     },
                   ]} />
               )}
