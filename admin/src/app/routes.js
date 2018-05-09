@@ -1,4 +1,5 @@
 import Zones from './pages/Zones';
+import Blocks from './pages/Blocks';
 import Dashboard from './pages/Dashboard';
 import MySettings from './pages/MySettings';
 import Subscribers from './pages/Subscribers';
@@ -37,6 +38,13 @@ export const routes = {
     },
   ],
   sub: [
+    {
+      exact: false,
+      icon: 'feather',
+      path: '/blocks',
+      name: 'Blocks CMS',
+      component: Blocks,
+    },
     {
       exact: false,
       icon: 'mail',

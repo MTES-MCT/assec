@@ -21,8 +21,9 @@ const schema = makeExecutableSchema({
   typeDefs: schemas,
   resolvers: {
     Query: queries,
-    Date: GraphQLDate,
     Mutation: mutations,
+    // custom types
+    Date: GraphQLDate,
   },
 });
 

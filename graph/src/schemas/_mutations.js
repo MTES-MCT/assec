@@ -33,6 +33,19 @@ type Mutation {
     department: ID!
   ): SubscriberType
 
+  createBlock(
+    slug: String!
+    label: String!
+    content: String!
+  ): BlockType
+
+  updateBlock(
+    id: ID!
+    slug: String!
+    label: String!
+    content: String!
+  ): BlockType
+
   updateZoneAlerte(
     id: ID!
     situationid: ID!
@@ -53,6 +66,10 @@ type Mutation {
     information: String
     description: String!
   ): RestrictionType
+
+  deleteBlock(
+    id: ID!
+  ): BlockType
 
   deleteDepartment(
     id: ID!

@@ -33,6 +33,10 @@ const appversion = process.env.REACT_APP_VERSION;
 const graphqluri = process.env.REACT_APP_GRAPHQL_URI;
 const { client, NetworkStatusNotifier } = createClient(graphqluri, store);
 
+const renderGraphToaster = args => <AppToaster error={args.error} />;
+
+const renderLinearProgress = args => <LinearProgress loading={args.loading} />;
+
 const renderGraphError = args =>
   usedebug() && args.error && <GraphQLError error={args.error} />;
 
@@ -43,14 +47,14 @@ const Root = () => (
         <Fragment>
           <Scrollbars autoHide id="body-scroller">
             <div id="body-scroller-content">
-              <NetworkStatusNotifier render={args => <LinearProgress loading={args.loading} />} />
+              <NetworkStatusNotifier render={renderLinearProgress} />
               <AppHeader title="ASSEC" version={appversion} />
               <Page version={appversion} />
               <NetworkStatusNotifier render={renderGraphError} />
             </div>
           </Scrollbars>
           <AppPopin />
-          <NetworkStatusNotifier render={args => <AppToaster error={args.error} />} />
+          <NetworkStatusNotifier render={renderGraphToaster} />
         </Fragment>
       </ApolloProvider>
     </ConnectedRouter>

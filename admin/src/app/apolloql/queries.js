@@ -22,6 +22,17 @@ export const GET_ALL_DEPARTMENTS = gql(`
   }
 `);
 
+export const GET_ALL_BLOCKS = gql(`
+  query blocks {
+    blocks {
+      id
+      slug
+      label
+      content
+    }
+  }
+`);
+
 export const GET_DEPARTMENT_ZONES = gql(`
 query departmentZones (
   $department: ID!
@@ -131,6 +142,23 @@ query department (
       id
       label
     }
+  }
+}
+`);
+
+export const GET_BLOCK = gql(`
+query block (
+  $id: ID!
+) {
+  block (
+    id: $id
+  ) {
+    id
+    slug
+    label
+    mtime
+    ctime
+    content
   }
 }
 `);

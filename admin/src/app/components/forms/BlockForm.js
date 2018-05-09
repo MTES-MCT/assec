@@ -1,0 +1,76 @@
+import React from 'react';
+import { Form } from 'react-final-form';
+import { Mutation } from 'react-apollo';
+import createDecorator from 'final-form-calculate';
+
+// application
+import { CREATE_BLOCK, UPDATE_ALL_BLOCKS } from './../../apolloql';
+import { slugify } from './../../core/utils/slugify';
+import Legend from './../../components/ui/forms/Legend';
+import TextInput from './../../components/ui/forms/TextInput';
+import SubmitButton from './../../components/ui/forms/SubmitButton';
+import MarkdownEditor from './../../components/ui/forms/MarkdownEditor';
+
+const calculator = createDecorator({
+  field: 'label',
+  updates: { slug: label => slugify(label) },
+});
+
+const validator = (values) => {
+  // valide que les valeurs du formulaire
+  // sont OK avec ce que l'on attend
+  const errors = {};
+  if (!values.slug || values.slug === '') {
+    errors.slug = 'Required';
+  }
+  if (!values.content || values.content === '') {
+    errors.content = 'Required';
+  }
+
+  return errors;
+};
+
+const initialValues = {
+  slug: '',
+  label: '',
+  content: '',
+};
+
+const DepartementForm = () => (
+  <Mutation mutation={CREATE_BLOCK} update={UPDATE_ALL_BLOCKS}>
+    {(createBlock, result) => (
+      <Form validate={validator}
+        decorators={[calculator]}
+        initialValues={initialValues}
+        render={({
+          form, invalid, pristine, handleSubmit,
+        }) => {
+          const disabled = result.loading;
+          return (
+            <form onSubmit={handleSubmit} className="mb20">
+              <fieldset>
+                <Legend label="Ajouter un block CMS" />
+                <TextInput disabled={disabled}
+                  name="label"
+                  label="Titre de la block" />
+                <TextInput disabled name="slug" label="Identifiant du block" />
+                <MarkdownEditor disabled={disabled}
+                  name="content"
+                  label="Contenu du block" />
+                <SubmitButton label="Ajouter"
+                  invalid={invalid || result.loading}
+                  pristine={pristine || result.loading} />
+              </fieldset>
+            </form>
+          );
+        }}
+        onSubmit={(variables, form) =>
+          createBlock({ variables })
+            .then(() => form.reset())
+            .catch(() => {})
+        } />
+    )}
+  </Mutation>
+);
+
+export default DepartementForm;

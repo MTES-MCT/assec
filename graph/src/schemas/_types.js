@@ -2,6 +2,17 @@ const scalars = `
   scalar Date
 `;
 
+const block = `
+type BlockType {
+  id: ID!
+  ctime: Date!
+  mtime: Date!
+  slug: String!
+  label: String!
+  content: String!
+}
+`;
+
 const subscriber = `
 type SubscriberType {
   id: ID!
@@ -98,6 +109,7 @@ const typeDefs = `
 ${scalars}
 ${suos}
 ${zone}
+${block}
 ${hydrated}
 ${subscriber}
 ${restriction}

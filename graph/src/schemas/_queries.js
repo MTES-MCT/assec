@@ -5,12 +5,14 @@ type Query {
   # ###################################
 
   zone(id: ID): ZoneType
+  block(id: ID): BlockType
   department(id: ID): DepartementType
   restriction(id: ID): RestrictionType
 
   # BULKS QUERIES
   # ###################################
 
+  blocks: [BlockType]
   departments: [DepartementType]
 
   departmentSUOs(department: ID): SUOSType

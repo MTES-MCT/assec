@@ -4,6 +4,7 @@ import Mongoose from 'mongoose';
 import {
   SUOModel,
   ZoneModel,
+  BlockModel,
   Departement,
   Restriction,
   SubscriberModel,
@@ -115,6 +116,23 @@ export const Mutation = {
   },
 
   deleteSubscriber: (_, args) => SubscriberModel.findByIdAndRemove(args.id),
+
+  /* -----------------------------------
+
+  BLOCKS
+
+  ----------------------------------- */
+
+  createBlock: (_, args) => BlockModel.create(args),
+
+  deleteBlock: (_, args) => BlockModel.findByIdAndRemove(args.id),
+
+  updateBlock: (_, args) => {
+    const { id } = args;
+    const rest = omit(args, ['id']);
+    const opts = { new: true };
+    return BlockModel.findByIdAndUpdate(id, rest, opts);
+  },
 };
 
 export default Mutation;

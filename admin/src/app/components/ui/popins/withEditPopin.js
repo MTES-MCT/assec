@@ -14,7 +14,7 @@ function getDisplayName (WrappedComponent) {
 const withEditPopin = (
   WrappedComponent,
   {
-    entityname, suptitle, query, mutation, validator,
+    entityname, suptitle, query, mutation, validator, calculator,
   },
 ) => {
   const PopinHOC = props => (
@@ -27,17 +27,20 @@ const withEditPopin = (
           <Mutation mutation={mutation}>
             {(update, result) => (
               <Form initialValues={entity}
-                onSubmit={variables => update({ variables })
-                  .then(() => {})
-                  .catch((err) => {
-                    /* eslint-disable */
+                onSubmit={variables =>
+                  update({ variables })
+                    .then(() => {})
+                    .catch((err) => {
+                      /* eslint-disable */
                       console.log('err', err);
                       console.log(
                         'FIXME -> gestion des erreurs dans withEditPopin'
                       );
                       /* eslint-enable */
-                  })}
+                    })
+                }
                 validate={validator}
+                calculator={calculator || null}
                 mutators={{ ...arrayMutators }}
                 render={formprops => (
                   <EditPopin {...props}

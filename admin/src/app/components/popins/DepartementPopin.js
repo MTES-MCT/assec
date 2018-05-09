@@ -24,19 +24,19 @@ class DepartementPopin extends React.PureComponent {
       <div className="flex-columns flex-between">
         <ArrayValues name="situations"
           label="Situations"
+          disabled={disabled}
           push={formprops.mutators.unshift}
-          placeholder="Ajouter une situation"
-          disabled={disabled} />
+          placeholder="Ajouter une situation" />
         <ArrayValues name="usages"
           label="Usages"
-          push={formprops.mutators.unshift}
           placeholder="Ajouter un usage"
-          disabled={disabled} />
+          disabled={disabled}
+          push={formprops.mutators.unshift} />
         <ArrayValues name="origines"
           label="Origines"
+          disabled={disabled}
           push={formprops.mutators.unshift}
-          placeholder="Ajouter une Origine"
-          disabled={disabled} />
+          placeholder="Ajouter une Origine" />
       </div>
     );
   }
@@ -48,9 +48,9 @@ DepartementPopin.propTypes = {
 };
 
 export default withEditPopin(DepartementPopin, {
-  query: GET_DEPARTMENT,
-  mutation: UPDATE_DEPARTMENT,
   validator,
+  query: GET_DEPARTMENT,
   entityname: 'department',
+  mutation: UPDATE_DEPARTMENT,
   suptitle: 'Modification du département',
 });

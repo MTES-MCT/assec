@@ -3,6 +3,7 @@ import pick from 'lodash.pick';
 import {
   // SUOModel,
   ZoneModel,
+  BlockModel,
   Departement,
   Restriction,
   SubscriberModel,
@@ -11,9 +12,11 @@ import {
 export const Query = {
   /* -----------------------------------
 
-SINGLES QUERIES
+  SINGLES QUERIES
 
------------------------------------ */
+  ----------------------------------- */
+
+  block: (_, { id }) => (id && BlockModel.findById(id).exec()) || null,
 
   department: (_, { id }) =>
     (id &&
@@ -35,9 +38,9 @@ SINGLES QUERIES
 
   /* -----------------------------------
 
-BULKS QUERIES
+  BULKS QUERIES
 
------------------------------------ */
+  ----------------------------------- */
 
   departments: () =>
     Departement.find()
@@ -69,6 +72,8 @@ BULKS QUERIES
         .populate('alerte.situation')
         .exec()) ||
     null,
+
+  blocks: () => BlockModel.find().exec(),
 
   departmentSubscribers: (_, { department }) =>
     (department && SubscriberModel.find({ department }).exec()) || null,
