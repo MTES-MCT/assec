@@ -7,7 +7,24 @@ import { Map, TileLayer } from 'react-leaflet';
 
 // application
 import GeoJSONLayer from './GeoJSONLayer';
-import { TILES_LAYER, TILES_COPYRIGHT } from './../../../constants';
+
+const IGN_KEY = process.env.REACT_APP_IGN_KEY || '';
+const ignBase = `https://wxs.ign.fr/${IGN_KEY}/geoportail/wmts`;
+const ignOptions = [
+  'TileCol={x}',
+  'TileRow={y}',
+  'Service=WMTS',
+  'Version=1.0.0',
+  'TileMatrix={z}',
+  'Request=GetTile',
+  'tilematrixset=PM',
+];
+const ignLayers = [
+  'GEOGRAPHICALGRIDSYSTEMS.PLANIGN&style=normal&format=image/jpeg',
+  'CADASTRALPARCELS.PARCELS&style=bdparcellaire&Format=image/png',
+];
+const attr =
+  '&copy; <a href="https://www.geoportail.gouv.fr">IGN-F/Geoportail</a>';
 
 class LeafletMap extends React.PureComponent {
   constructor (props) {
@@ -35,17 +52,23 @@ class LeafletMap extends React.PureComponent {
   }
 
   render () {
+    // 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+    // https://geoservices.ign.fr/documentation/donnees-ressources-wmts.html
     const { zones, selected } = this.props;
+    const getzindex = index => 1000 + index;
+    const getkey = index => `ignlayer_${index}`;
     const position = [this.state.lat, this.state.lng];
     const ordered = orderby(zones, ['order'], ['asc']);
-    const getzindex = index => 1000 + index;
     return (
       <Map center={position}
         zoom={this.state.zoom}
         ref={(ref) => {
           this.map = ref;
         }}>
-        <TileLayer attribution={TILES_COPYRIGHT} url={TILES_LAYER} />
+        {ignLayers.map((layer, index) => {
+          const uri = `${ignBase}?${ignOptions.join('&')}&layer=${layer}`;
+          return <TileLayer key={getkey(index)} url={uri} attribution={attr} />;
+        })}
         {ordered &&
           ordered.map((obj, index) => {
             const zIndex = getzindex(index);
