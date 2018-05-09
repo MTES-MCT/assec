@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
+import { popin } from './popin';
+
 const toasts = (state = [], action) => {
   switch (action.type) {
   case 'onAddToast':
@@ -16,17 +18,6 @@ const openednav = (state = false, action) => {
   switch (action.type) {
   case 'onToggleNavigation':
     return !state;
-  default:
-    return state;
-  }
-};
-
-const popin = (state = null, action) => {
-  switch (action.type) {
-  case 'onOpenPopin':
-    return { ...action.options };
-  case 'onClosePopin':
-    return null;
   default:
     return state;
   }

@@ -5,6 +5,7 @@ import { Motion, spring } from 'react-motion';
 
 // application
 import { Logger } from './../core/logger';
+import { closePopin } from './../actions';
 
 const renderOverlay = () => (
   <Motion style={{ opacity: spring(100) }} defaultStyle={{ opacity: 0 }}>
@@ -32,7 +33,7 @@ class AppPopin extends React.PureComponent {
 
   closePopin () {
     const { dispatch } = this.props;
-    const setStateCB = () => dispatch({ type: 'onClosePopin' });
+    const setStateCB = () => dispatch(closePopin());
     this.setState({ opened: false }, setStateCB);
   }
 
