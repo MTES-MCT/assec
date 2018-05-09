@@ -120,6 +120,20 @@ textarea:disabled {
   opacity: 0.5;
 }
 
+.markdown-editor-navs button {
+  color: $grey !important;
+  background-color: transparent;
+
+  &.active {
+    font-weight: bold;
+    color: $dark !important;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
 /* ---------------------
 
  TABLE

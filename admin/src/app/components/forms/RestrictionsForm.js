@@ -10,9 +10,9 @@ import {
   UPDATE_DEPARTMENT_RESTRICTIONS,
 } from './../../apolloql';
 import Legend from './../../components/ui/forms/Legend';
-import TextArea from './../../components/ui/forms/TextArea';
 import TextInput from './../../components/ui/forms/TextInput';
 import SubmitButton from './../../components/ui/forms/SubmitButton';
+import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 import CheckboxGroup from './../../components/ui/forms/CheckboxGroup';
 
 const validator = (values) => {
@@ -74,7 +74,7 @@ const RestrictionsForm = ({ selected }) => (
                       <TextInput disabled={disabled}
                         name="label"
                         label="Titre de la restriction" />
-                      <TextArea disabled={ddisabled}
+                      <MarkdownInput disabled={ddisabled}
                         name="description"
                         label="Description de la restriction" />
                       <CheckboxGroup name="situations"
@@ -92,10 +92,9 @@ const RestrictionsForm = ({ selected }) => (
                         display="inline"
                         disabled={cdisabled}
                         provider={origines || []} />
-                      <TextArea disabled={cdisabled}
+                      <MarkdownInput disabled={cdisabled}
                         name="information"
-                        label="Plus d'informations pédagogiques"
-                        large />
+                        label="Plus d'informations pédagogiques" />
                       <SubmitButton pristine={pristine} invalid={invalid} />
                     </fieldset>
                   </form>

@@ -1,12 +1,16 @@
-$markdownPreviewHeight: 240px;
+$markdownPreviewHeight: 180px;
 
 input,
 select,
 textarea,
 .selectbox {
   width: 100%;
-  font-size: 1.2em;
   border-radius: 0;
+}
+
+input,
+textarea {
+  font-size: 1.2em;
   line-height: 1.2em;
 }
 

@@ -27,11 +27,7 @@ const validator = (values) => {
 const BlockPopin = () => (
   <div className="flex-rows">
     <TextInput inline name="label" label="Titre de la block" />
-    <TextInput disabled
-      inline
-      name="slug"
-      className="inline"
-      label="Identifiant du block" />
+    <TextInput disabled inline name="slug" label="Identifiant du block" />
     <MarkdownInput inline name="content" label="Contenu du block" />
   </div>
 );

@@ -5,25 +5,17 @@ import { Field } from 'react-final-form';
 // application
 import MarkdownEditor from './adpaters/MarkdownEditor';
 
-const MarkdownInput = ({
-  inline, name, label, ...rest
-}) => (
+const MarkdownInput = ({ name, label, ...rest }) => (
   <div>
-    <label className={inline ? 'inline' : ''} htmlFor={name}>
-      <span>{label}</span>
-      <span className="markdown-input">
-        <Field id={name} name={name} component={MarkdownEditor} {...rest} />
-      </span>
-    </label>
+    <Field {...rest}
+      id={name}
+      name={name}
+      label={label}
+      component={MarkdownEditor} />
   </div>
 );
 
-MarkdownInput.defaultProps = {
-  inline: false,
-};
-
 MarkdownInput.propTypes = {
-  inline: PropTypes.bool,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
 };

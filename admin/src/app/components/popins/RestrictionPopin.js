@@ -10,9 +10,9 @@ import {
   GET_DEPARTMENT_SUOS,
 } from './../../apolloql';
 import withEditPopin from './../ui/popins/withEditPopin';
-import TextArea from './../../components/ui/forms/TextArea';
 import TextInput from './../../components/ui/forms/TextInput';
 import CheckboxGroup from './../../components/ui/forms/CheckboxGroup';
+import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 
 const validator = (values) => {
   const errors = {};
@@ -47,10 +47,8 @@ const RestrictionPopin = ({ formprops: { values } }) => (
         <div className="flex-rows">
           <Field name="department" type="hidden" component="input" />
           <TextInput inline name="label" label="Titre de la restriction" />
-          <TextArea inline
-            large
+          <MarkdownInput inline
             name="description"
-            className="inline"
             label="Description de la restriction" />
           <CheckboxGroup name="situations"
             display="inline"
@@ -64,10 +62,8 @@ const RestrictionPopin = ({ formprops: { values } }) => (
             label="Origine"
             display="inline"
             provider={origines || []} />
-          <TextArea inline
-            large
+          <MarkdownInput inline
             name="information"
-            className="inline"
             label="Plus d'informations pédagogiques" />
         </div>
       );
