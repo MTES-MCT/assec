@@ -4,6 +4,23 @@
 
 ----------------------------------- */
 
+.popin {
+  z-index: 9000;
+}
+
+.popin-container {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.popin-sidebar {
+  width: 250px;
+  min-width: 250px;
+}
+
 #delete-popin,
 #situation-popin {
   width: 360px;

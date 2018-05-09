@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // application
-import './apptoaster.css';
 import { noop } from './../core/utils/noop';
 
 const getErrorMessage = err => `ERROR: ${err.operation.operationName}`;

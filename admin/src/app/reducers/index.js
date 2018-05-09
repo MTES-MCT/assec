@@ -2,17 +2,7 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 import { popin } from './popin';
-
-const toasts = (state = [], action) => {
-  switch (action.type) {
-  case 'onAddToast':
-    return state.concat([action.item]);
-  case 'onRemoveToast':
-    return state.filter(obj => obj.id !== action.id);
-  default:
-    return state;
-  }
-};
+import { toasts } from './toaster';
 
 const openednav = (state = false, action) => {
   switch (action.type) {
