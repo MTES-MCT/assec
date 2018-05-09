@@ -34,7 +34,7 @@ const validator = (values) => {
   return errors;
 };
 
-const RestrictionPopin = ({ formrenderprops: { values } }) => (
+const RestrictionPopin = ({ formprops: { values } }) => (
   <Query query={GET_DEPARTMENT_SUOS}
     variables={{ department: values.department }}>
     {({ loading, error, data }) => {
@@ -76,13 +76,13 @@ const RestrictionPopin = ({ formrenderprops: { values } }) => (
 );
 
 RestrictionPopin.propTypes = {
-  formrenderprops: PropTypes.object.isRequired,
+  formprops: PropTypes.object.isRequired,
 };
 
 export default withEditPopin(RestrictionPopin, {
-  query: GET_RESTRICTION,
-  mutation: UPDATE_RESTRICTION,
   validator,
+  query: GET_RESTRICTION,
   entityname: 'restriction',
+  mutation: UPDATE_RESTRICTION,
   suptitle: 'Modification de la restriction',
 });
