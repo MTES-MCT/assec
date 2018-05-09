@@ -1,16 +1,27 @@
+$markdownPreviewHeight: 240px;
+
 input,
 select,
 textarea,
 .selectbox {
+  width: 100%;
+  font-size: 1.2em;
   border-radius: 0;
+  line-height: 1.2em;
 }
 
 input,
-textarea {
-  font-size: 1.2em;
+textarea,
+.markdown-editor-preview {
+  outline: none;
   padding: 9px 7px;
   border-width: 1px;
   border-style: solid;
+}
+
+.markdown-editor-preview {
+  border-width: 0;
+  line-height: inherit;
 }
 
 input[type='number'] {
@@ -26,8 +37,15 @@ textarea {
   }
 
   &.xlarge {
-    height: 18em;
+    resize: none;
   }
+}
+
+textarea.xlarge,
+.markdown-editor-preview {
+  height: $markdownPreviewHeight;
+  min-height: $markdownPreviewHeight;
+  max-height: $markdownPreviewHeight;
 }
 
 button {

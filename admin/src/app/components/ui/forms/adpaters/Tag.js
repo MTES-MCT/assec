@@ -4,18 +4,19 @@ import { Field } from 'react-final-form';
 
 const Tag = ({
   name, onClick, mode, ...rest
-}) => (
-  <Field {...rest}
-    name={name}
-    render={({ input }) => (
-      <button type="button" className="tag" onClick={onClick}>
-        <span>{input.value}</span>
-        <i className={`icon icon-${
-          mode === 'remove' ? 'cancel' : 'plus'
-        }-circled`} />
-      </button>
-    )} />
-);
+}) => {
+  const iconclass = mode === 'remove' ? 'cancel' : 'plus';
+  return (
+    <Field {...rest}
+      name={name}
+      render={({ input }) => (
+        <button type="button" className="tag" onClick={onClick}>
+          <span>{input.value}</span>
+          <i className={`icon icon-${iconclass}-circled`} />
+        </button>
+      )} />
+  );
+};
 
 Tag.defaultProps = {
   mode: 'remove',

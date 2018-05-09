@@ -63,9 +63,14 @@ legend {
 
 textarea,
 input[type='text'],
-input[type='number'] {
+input[type='number'],
+.markdown-editor-preview {
   background-color: $white;
   border-color: rgba(0, 0, 0, 0.2);
+}
+
+.markdown-editor-preview {
+  background-color: $gray;
 }
 
 button {

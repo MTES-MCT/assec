@@ -9,7 +9,7 @@ import { slugify } from './../../core/utils/slugify';
 import Legend from './../../components/ui/forms/Legend';
 import TextInput from './../../components/ui/forms/TextInput';
 import SubmitButton from './../../components/ui/forms/SubmitButton';
-import MarkdownEditor from './../../components/ui/forms/MarkdownEditor';
+import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 
 const calculator = createDecorator({
   field: 'label',
@@ -52,9 +52,10 @@ const DepartementForm = () => (
                 <Legend label="Ajouter un block CMS" />
                 <TextInput disabled={disabled}
                   name="label"
+                  autoComplete="off"
                   label="Titre de la block" />
                 <TextInput disabled name="slug" label="Identifiant du block" />
-                <MarkdownEditor disabled={disabled}
+                <MarkdownInput disabled={disabled}
                   name="content"
                   label="Contenu du block" />
                 <SubmitButton label="Ajouter"

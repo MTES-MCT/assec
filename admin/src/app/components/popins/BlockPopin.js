@@ -6,7 +6,7 @@ import { GET_BLOCK, UPDATE_BLOCK } from './../../apolloql';
 import TextInput from './../ui/forms/TextInput';
 import { slugify } from './../../core/utils/slugify';
 import withEditPopin from './../ui/popins/withEditPopin';
-import MarkdownEditor from './../ui/forms/MarkdownEditor';
+import MarkdownInput from './../ui/forms/MarkdownInput';
 
 const calculator = createDecorator({
   field: 'label',
@@ -26,12 +26,13 @@ const validator = (values) => {
 
 const BlockPopin = () => (
   <div className="flex-rows">
-    <TextInput name="label" className="inline" label="Titre de la block" />
+    <TextInput inline name="label" label="Titre de la block" />
     <TextInput disabled
+      inline
       name="slug"
       className="inline"
       label="Identifiant du block" />
-    <MarkdownEditor name="content" label="Contenu du block" />
+    <MarkdownInput inline name="content" label="Contenu du block" />
   </div>
 );
 
