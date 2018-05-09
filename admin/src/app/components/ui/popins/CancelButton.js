@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 
 import { closePopin } from './../../../actions';
 
-const CancelButton = ({ label, dispatch }) => {
+const CancelButton = ({ disabled, label, dispatch }) => {
   const bprops = {
+    disabled,
     type: 'button',
-    className: 'big super',
+    className: 'big danger',
   };
   return (
     <p className="flex-columns flex-end submit-button">
@@ -20,11 +21,13 @@ const CancelButton = ({ label, dispatch }) => {
 };
 
 CancelButton.defaultProps = {
+  disabled: false,
   label: 'Annuler',
 };
 
 CancelButton.propTypes = {
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 

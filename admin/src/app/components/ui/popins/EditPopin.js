@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // application
 import CloseButton from './CloseButton';
+import CancelButton from './CancelButton';
 import { noop } from './../../../core/utils/noop';
 import SubmitButton from './../forms/SubmitButton';
 
@@ -47,6 +48,7 @@ class EditPopinForm extends React.PureComponent {
           }}
           invalid={formprops.invalid || loading}
           pristine={formprops.pristine || loading} />
+        <CancelButton disabled={loading} />
       </React.Fragment>
     );
   }

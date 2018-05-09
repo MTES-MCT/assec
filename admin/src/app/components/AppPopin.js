@@ -25,20 +25,22 @@ class AppPopin extends React.PureComponent {
   }
 
   componentWillReceiveProps (next) {
-    if (this.state.opened || !next.popin) return;
-    if (next.popin.type !== (this.props.popin && this.props.popin.type)) {
+    if (this.state.opened) return;
+    if (!next.popin && this.state.opened) {
+      this.setState({ opened: false });
+      return;
+    }
+    if (next.popin && !this.state.opened) {
       this.setState({ opened: true });
     }
   }
 
   closePopin () {
     const { dispatch } = this.props;
-    const setStateCB = () => dispatch(closePopin());
-    this.setState({ opened: false }, setStateCB);
+    dispatch(closePopin());
   }
 
   renderPopin () {
-    if (!this.props.popin) return null;
     const { Type, ...rest } = this.props.popin;
     try {
       return (
@@ -54,6 +56,7 @@ class AppPopin extends React.PureComponent {
 
   render () {
     const { opened } = this.state;
+    if (!this.props.popin) return null;
     return (
       <div className={`popin ${opened ? 'opened' : ''}`}>
         {opened && (
