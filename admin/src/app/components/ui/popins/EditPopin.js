@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withSizes from 'react-sizes';
-import { Motion, spring } from 'react-motion';
 
 // application
 import CloseButton from './CloseButton';
@@ -54,22 +52,17 @@ class EditPopinForm extends React.PureComponent {
   }
 
   render () {
-    const { height, formprops, children } = this.props;
+    const { formprops, children } = this.props;
     return (
-      <Motion style={{ y: spring(0) }} defaultStyle={{ y: -height }}>
-        {value => (
-          <div className="edit-popin popin-container flex-rows"
-            style={{ top: value.y }}>
-            {this.renderHeader()}
-            <div className="popin-content flex-columns p40">
-              <div className="popin-main flex1 pr12 mr28">
-                <form onSubmit={formprops.handleSubmit}>{children}</form>
-              </div>
-              <div className="popin-sidebar flex0">{this.renderSidebar()}</div>
-            </div>
+      <div className="edit-popin popin-container flex-rows">
+        {this.renderHeader()}
+        <div className="popin-content flex-columns p40">
+          <div className="popin-main flex1 pr12 mr28">
+            <form onSubmit={formprops.handleSubmit}>{children}</form>
           </div>
-        )}
-      </Motion>
+          <div className="popin-sidebar flex0">{this.renderSidebar()}</div>
+        </div>
+      </div>
     );
   }
 }
@@ -78,11 +71,10 @@ EditPopinForm.propTypes = {
   loading: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   entity: PropTypes.object.isRequired,
-  height: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
   suptitle: PropTypes.string.isRequired,
   // FIXME -> use shapeof instead of simple object
   formprops: PropTypes.object.isRequired,
 };
 
-export default withSizes(({ height }) => ({ height }))(EditPopinForm);
+export default EditPopinForm;
