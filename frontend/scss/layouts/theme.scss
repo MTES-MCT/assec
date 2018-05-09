@@ -169,6 +169,11 @@ span.error {
 
 #hero-container {
   color: $white;
+
+  small {
+    color: $white;
+    background-color: #89C541;
+  }
 }
 
 #nos-sponsors .dashed {

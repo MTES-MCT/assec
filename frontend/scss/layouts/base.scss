@@ -249,6 +249,14 @@ body:not(.unsubscribe-page) #top-container {
     span {
       display: block;
     }
+
+    small {
+      font-size: 0.2em;
+      padding: 3px 12px;
+      border-radius: 2px;
+      margin-left: -40px;
+      letter-spacing: 0.1em;
+    }
   }
 
   .baseline {

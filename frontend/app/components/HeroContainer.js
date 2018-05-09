@@ -8,7 +8,9 @@ const HeroContainer = () => (
     <div className="flex-columns flex-between items-end">
       <div className="flex-1 items-end col-50">
         <h2 className="logo">
-          <span>ASSEC</span>
+          <span>
+            ASSEC <small>beta</small>
+          </span>
         </h2>
         <h1 className="baseline">
           <span>
@@ -21,7 +23,7 @@ const HeroContainer = () => (
         <hr className="liner my20" />
         <NewsletterForm placeholder="Votre email"
           className="notice mb12"
-          label="Me prévenir lors du passage en vigilance" />
+          label="Prévenez-moi quand le département du Var passe en vigilance" />
       </div>
       <div className="flex-1 col-50">
         <ButtonLink to="essayez-la-demo"
