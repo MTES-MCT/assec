@@ -75,7 +75,7 @@ def force_deploy():
     run('git pull origin master')
   _dockercompose()
 
-def deploy(branch='master'):
+def deploy(branch='master',tag='master'):
   """
   Deploy du repository distant sur le serveur
   """
@@ -86,4 +86,5 @@ def deploy(branch='master'):
     # en ecrasant les changements locals
     run('git fetch')
     run("git pull origin %s" % branch)
+    run("git checkout %s" % tag)
   _dockercompose()
