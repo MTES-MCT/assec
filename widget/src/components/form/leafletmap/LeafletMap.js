@@ -8,7 +8,7 @@ import { Map, TileLayer } from 'react-leaflet';
 // application
 import GeoJSONLayer from './GeoJSONLayer';
 
-const IGN_KEY = process.env.REACT_APP_IGN_KEY || '';
+const IGN_KEY = process.env.REACT_APP_IGN_KEY;
 const ignBase = `https://wxs.ign.fr/${IGN_KEY}/geoportail/wmts`;
 const ignOptions = [
   'TileCol={x}',
