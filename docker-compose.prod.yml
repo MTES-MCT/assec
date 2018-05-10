@@ -27,7 +27,7 @@ services:
     env_file:
       - .env.production
     environment:
-      - VIRTUAL_HOST=widget.iziges.fr,wassec.beta.gouv.fr
+      - VIRTUAL_HOST=widget.iziges.fr,widget.assec.beta.gouv.fr
   frontend:
     env_file:
       - .env.production
