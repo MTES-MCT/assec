@@ -257,6 +257,12 @@
       "css": "eye",
       "code": 59432,
       "src": "entypo"
+    },
+    {
+      "uid": "b95cfc96d48a72dd665e0ab109880b5e",
+      "css": "clipboard",
+      "code": 59433,
+      "src": "entypo"
     }
   ]
 }
