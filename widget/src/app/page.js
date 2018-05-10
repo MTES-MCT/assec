@@ -15,7 +15,6 @@ import checkRequired from './actions/check-required';
 import FormFields from './components/FormFields';
 import FormResults from './components/FormResults';
 import FormNavigation from './components/FormNavigation';
-import StepperProgress from './components/stepper/StepperProgress';
 import FormSidebarHeader from './components/sidebar/FormSidebarHeader';
 import FormSidebarContent from './components/sidebar/FormSidebarContent';
 
@@ -35,8 +34,8 @@ class PageComponent extends React.Component {
   }
 
   componentDidMount () {
-    // charge le schema du formulaire au chargement de la page
     const { client } = this.props;
+    // charge le schema du formulaire au chargement de la page
     this.actions.loadForm(client);
   }
 
@@ -55,7 +54,6 @@ class PageComponent extends React.Component {
 
   render () {
     const {
-      steps,
       rules,
       fields,
       choices,
@@ -74,8 +72,6 @@ class PageComponent extends React.Component {
         <ApolloConsumer>
           {client => (
             <div id="screen-container">
-              <StepperProgress steps={steps}
-                active={!rules ? activestep : activestep + 1} />
               <div id="app-content" className="flex-columns">
                 <div id="app-sidebar-left" className="column flex1">
                   <FormSidebarHeader />
@@ -119,7 +115,6 @@ PageComponent.propTypes = {
   showresults: PropTypes.bool.isRequired,
   rules: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
   //
-  steps: PropTypes.array.isRequired,
   fields: PropTypes.array.isRequired,
   choices: PropTypes.object.isRequired,
   stepskeys: PropTypes.array.isRequired,
@@ -145,7 +140,6 @@ const mapStateToProps = (state) => {
   const showresults =
     choiceskeys.length === steps.length && activestep === steps.length - 1;
   return {
-    steps,
     rules,
     fields,
     choices,
