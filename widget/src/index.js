@@ -8,9 +8,9 @@ import createHistory from 'history/createBrowserHistory';
 
 // application
 import './styles.css';
-import Page from './page';
-import { configure } from './store';
-import { usedebug } from './core/utils/usedebug';
+import Page from './app/page';
+import { configure } from './app/store';
+import { usedebug } from './app/core/utils/usedebug';
 
 if (usedebug()) {
   /* eslint-disable */

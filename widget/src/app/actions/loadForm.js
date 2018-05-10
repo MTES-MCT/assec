@@ -1,4 +1,4 @@
-import questions from './../datas/questions.json';
+import questions from './../../static/datas/questions.json';
 import { capitalize } from './../core/utils/capitalize';
 
 import { FIELDS_LOADED } from './../constants';
