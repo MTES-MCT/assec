@@ -14,10 +14,8 @@ const HeroContainer = () => (
         </h2>
         <h1 className="baseline">
           <span>
-            <strong>
-              L&apos;outil qui vous informe des restrictions d&apos;eau en temps
-              réel
-            </strong>
+            <strong>L&apos;outil qui vous informe</strong>
+            <strong>des restrictions d&apos;eau en temps réel</strong>
           </span>
         </h1>
         <hr className="liner my20" />
