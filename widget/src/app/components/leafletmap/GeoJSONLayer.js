@@ -9,11 +9,10 @@ class GeoJSONLayerInput extends React.PureComponent {
     const {
       input,
       zIndex,
+      opacity,
       selected,
       dispatch,
-      obj: {
-        geojson, id, shortname,
-      },
+      obj: { geojson, id, shortname },
     } = this.props;
     const isselected = id === selected;
     const commons = {
@@ -29,9 +28,10 @@ class GeoJSONLayerInput extends React.PureComponent {
     return (
       <GeoJSON {...commons}
         order={zIndex}
+        style={() => ({ fillOpacity: opacity })}
         key={`mapzone_${id}${(isselected && '_active') || ''}`}
         className={`geojson-layer ${(isselected && 'active') || ''}`}>
-        <Tooltip sticky direction="center" offset={[0, 24]}>
+        <Tooltip sticky direction="center" offset={[0, 0]}>
           <span>
             <span>{shortname}</span>
           </span>
@@ -51,6 +51,7 @@ GeoJSONLayerInput.propTypes = {
   input: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   zIndex: PropTypes.number.isRequired,
+  opacity: PropTypes.string.isRequired,
 };
 
 export default connect()(GeoJSONLayerInput);

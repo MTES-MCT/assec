@@ -15,8 +15,8 @@ import checkRequired from './actions/check-required';
 import FormFields from './components/FormFields';
 import FormResults from './components/FormResults';
 import FormNavigation from './components/FormNavigation';
-import FormSidebarHeader from './components/sidebar/FormSidebarHeader';
-import FormSidebarContent from './components/sidebar/FormSidebarContent';
+// import FormSidebarHeader from './components/sidebar/FormSidebarHeader';
+// import FormSidebarContent from './components/sidebar/FormSidebarContent';
 
 class PageComponent extends React.Component {
   constructor (props) {
@@ -56,7 +56,7 @@ class PageComponent extends React.Component {
     const {
       rules,
       fields,
-      choices,
+      // choices,
       activestep,
       canforward,
       showresults,
@@ -73,11 +73,11 @@ class PageComponent extends React.Component {
           {client => (
             <div id="screen-container">
               <div id="app-content" className="flex-columns">
-                <div id="app-sidebar-left" className="column flex1">
+                {/* <div id="app-sidebar-left" className="column flex1">
                   <FormSidebarHeader />
                   <FormSidebarContent fields={fields}
                     choices={!rules ? choices : rules.choices} />
-                </div>
+                </div> */}
                 <div id="stepper-form" className="column flex4">
                   {!rules &&
                     fields &&
@@ -116,7 +116,7 @@ PageComponent.propTypes = {
   rules: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
   //
   fields: PropTypes.array.isRequired,
-  choices: PropTypes.object.isRequired,
+  // choices: PropTypes.object.isRequired,
   stepskeys: PropTypes.array.isRequired,
   choiceskeys: PropTypes.array.isRequired,
   disabledsteps: PropTypes.array.isRequired,
@@ -142,7 +142,7 @@ const mapStateToProps = (state) => {
   return {
     rules,
     fields,
-    choices,
+    // choices,
     stepskeys,
     activestep,
     canforward,

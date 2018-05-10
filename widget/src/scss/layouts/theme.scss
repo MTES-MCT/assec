@@ -17,15 +17,14 @@ body {
   fill: $blue;
   stroke: $blue;
   stroke-width: 1;
-  fill-opacity: 0.4;
   transition: all 0.5s;
 
   &:hover {
-    fill-opacity: 0.6;
+    opacity: 0.6;
   }
 
   &.active {
-    fill-opacity: 0.8;
+    opacity: 0.8;
   }
 }
 
