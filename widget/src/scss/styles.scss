@@ -7,6 +7,6 @@
 @import './_grid.scss';
 
 // application
-@import './modules/map.scss';
-@import './modules/layout.scss';
-@import './modules/theme.scss';
+@import './layouts/map.scss';
+@import './layouts/base.scss';
+@import './layouts/theme.scss';
