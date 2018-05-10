@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 const NumberInput = ({
-  label, placeholder, name, ...rest
+  label, inline, placeholder, name, ...rest
 }) => (
   <p>
-    <label htmlFor={name}>
+    <label htmlFor={name} className={inline ? 'inline' : ''}>
       <span>{label}</span>
       <Field {...rest}
         type="number"
@@ -20,10 +20,12 @@ const NumberInput = ({
 );
 
 NumberInput.defaultProps = {
+  inline: false,
   placeholder: '',
 };
 
 NumberInput.propTypes = {
+  inline: PropTypes.bool,
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,

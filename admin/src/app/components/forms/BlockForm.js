@@ -53,7 +53,7 @@ const DepartementForm = () => (
                 <TextInput disabled={disabled}
                   name="label"
                   autoComplete="off"
-                  label="Titre de la block" />
+                  label="Titre du block" />
                 <TextInput disabled name="slug" label="Identifiant du block" />
                 <MarkdownInput disabled={disabled}
                   name="content"

@@ -10,6 +10,7 @@ import TextArea from './../../components/ui/forms/TextArea';
 import TextInput from './../../components/ui/forms/TextInput';
 import NumberInput from './../../components/ui/forms/NumberInput';
 import SubmitButton from './../../components/ui/forms/SubmitButton';
+import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 
 const validator = (values) => {
   const errors = {};
@@ -66,7 +67,7 @@ const ZonesForm = ({ selected }) => (
                   name="order"
                   placeholder="Profondeur des calques"
                   label="Ordre d'affichage de la zone" />
-                <TextArea disabled={moredisabled}
+                <MarkdownInput disabled={moredisabled}
                   name="help"
                   label="Texte d'information utilisateur" />
                 <SubmitButton label="Ajouter"

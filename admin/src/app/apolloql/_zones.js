@@ -69,17 +69,25 @@ mutation updateZoneAlerte (
 `);
 
 export const UPDATE_ZONE = gql(`
-mutation zone (
+mutation updateZone (
   $id: ID!
+  $name: String!
+  $order: String!
+  $shortname: String!
 ) {
-  zone (
+  updateZone (
     id: $id
+    name: $name
+    order: $order
+    shortname: $shortname
   ) {
     id
     help
     name
     label
     order
+    mtime
+    ctime
     geojson
     shortname
     department

@@ -84,6 +84,13 @@ export const Mutation = {
 
   createZone: (_, args) => ZoneModel.create(args),
 
+  updateZone: (_, args) => {
+    const { id } = args;
+    const rest = omit(args, ['id']);
+    const opts = { new: true };
+    return ZoneModel.findByIdAndUpdate(id, rest, opts);
+  },
+
   deleteZone: (_, args) => ZoneModel.findByIdAndRemove(args.id),
 
   // UPDATES

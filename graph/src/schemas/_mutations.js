@@ -46,6 +46,13 @@ type Mutation {
     content: String!
   ): BlockType
 
+  updateZone(
+    id: ID!
+    name: String!
+    order: String!
+    shortname: String!
+  ): ZoneType
+
   updateZoneAlerte(
     id: ID!
     situationid: ID!
