@@ -9,3 +9,8 @@
 .icon-right-circle:before { content: '\e807'; } /* '' */
 .icon-down-open-mini:before { content: '\e808'; } /* '' */
 .icon-adjust:before { content: '\e809'; } /* '' */
+.icon-direction:before { content: '\e80a'; } /* '' */
+.icon-camera:before { content: '\e80b'; } /* '' */
+.icon-cancel:before { content: '\e80c'; } /* '' */
+.icon-map:before { content: '\e80d'; } /* '' */
+.icon-spin6:before { content: '\e839'; } /* '' */

@@ -30,6 +30,7 @@
     "react-apollo-network-status": "^1.0.0",
     "react-dom": "^16.2.0",
     "react-geolocated": "^2.3.0",
+    "react-geolocation": "^1.0.3",
     "react-helmet": "^5.2.0",
     "react-leaflet": "^1.9.1",
     "react-redux": "^5.0.7",

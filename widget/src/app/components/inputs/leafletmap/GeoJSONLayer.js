@@ -5,33 +5,42 @@ import { GeoJSON, Tooltip } from 'react-leaflet';
 
 // eslint
 class GeoJSONLayerInput extends React.PureComponent {
+  constructor (props) {
+    super(props);
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler () {
+    const {
+      input, dispatch, selected, obj,
+    } = this.props;
+    const isselected = obj.id === selected;
+    input.onChange(obj.id);
+    dispatch({
+      type: 'onAreaSelected',
+      id: isselected ? null : obj.id,
+    });
+  }
+
   render () {
     const {
-      input,
       zIndex,
       opacity,
       selected,
-      dispatch,
       obj: { geojson, id, shortname },
     } = this.props;
     const isselected = id === selected;
-    const commons = {
+    const geojsonprops = {
       data: geojson,
-      onClick: () => {
-        input.onChange(id);
-        dispatch({
-          type: 'onAreaSelected',
-          id: isselected ? null : id,
-        });
-      },
+      onClick: this.clickHandler,
     };
     return (
-      <GeoJSON {...commons}
+      <GeoJSON {...geojsonprops}
         order={zIndex}
         style={() => ({ fillOpacity: opacity })}
         key={`mapzone_${id}${(isselected && '_active') || ''}`}
         className={`geojson-layer ${(isselected && 'active') || ''}`}>
-        <Tooltip sticky direction="center" offset={[0, 0]}>
+        <Tooltip sticky direction="right" offset={[7, 0]}>
           <span>
             <span>{shortname}</span>
           </span>

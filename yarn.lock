@@ -7536,6 +7536,10 @@ react-geolocated@^2.3.0:
   dependencies:
     prop-types "^15.5.8"
 
+react-geolocation@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-geolocation/-/react-geolocation-1.0.3.tgz#6a962d6b436561f34e5462121e69d68c9edf3d36"
+
 react-helmet@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.0.tgz#a81811df21313a6d55c5f058c4aeba5d6f3d97a7"
