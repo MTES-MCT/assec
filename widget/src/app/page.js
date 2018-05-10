@@ -12,12 +12,12 @@ import { FORM_NAME } from './constants';
 import { usedebug } from './core/utils/usedebug';
 import { formSubmit, loadForm } from './actions';
 import checkRequired from './actions/check-required';
-import FormFields from './components/form/FormFields';
-import FormResults from './components/form/FormResults';
-import FormNavigation from './components/form/FormNavigation';
-import StepperProgress from './components/form/stepper/StepperProgress';
-import FormSidebarHeader from './components/form/sidebar/FormSidebarHeader';
-import FormSidebarContent from './components/form/sidebar/FormSidebarContent';
+import FormFields from './components/FormFields';
+import FormResults from './components/FormResults';
+import FormNavigation from './components/FormNavigation';
+import StepperProgress from './components/stepper/StepperProgress';
+import FormSidebarHeader from './components/sidebar/FormSidebarHeader';
+import FormSidebarContent from './components/sidebar/FormSidebarContent';
 
 class PageComponent extends React.Component {
   constructor (props) {

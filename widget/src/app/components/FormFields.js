@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, reduxForm } from 'redux-form';
 
 // application
-import { FORM_NAME } from './../../constants';
+import { FORM_NAME } from './../constants';
 import MapInput from './inputs/MapInput';
 import ListInput from './inputs/ListInput';
 import ChoiceInput from './inputs/ChoiceInput';

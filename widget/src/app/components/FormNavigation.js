@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 // application
 import './form-navigation.css';
-import { formReset } from './../../actions';
-import { FORM_NAME } from './../../constants';
-import { stepForward, stepBackward } from './../../actions/navigation';
+import { formReset } from './../actions';
+import { FORM_NAME } from './../constants';
+import { stepForward, stepBackward } from './../actions/navigation';
 
 const FormNavigation = ({
   dispatch,
