@@ -60,7 +60,9 @@ class MarkdownEditor extends React.PureComponent {
             </div>
             <div className={`markdown-editor-preview ${previewcss}`}
               style={{ display: (preview && 'block') || 'none' }}>
-              <ReactMarkdown className="markdown-body" source={input.value} />
+              <ReactMarkdown className="markdown-body"
+                escapeHtml={false}
+                source={input.value} />
             </div>
           </div>
         </div>

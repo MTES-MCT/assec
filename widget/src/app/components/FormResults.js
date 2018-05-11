@@ -7,7 +7,9 @@ const FormResults = ({ rules }) => (
     {rules.map(obj => (
       <div key={`rule::${obj.id}`}>
         <h3>{obj.title}</h3>
-        <ReactMarkdown className="markdown-body" source={obj.description} />
+        <ReactMarkdown className="markdown-body"
+          escapeHtml={false}
+          source={obj.description} />
       </div>
     ))}
   </div>
