@@ -39,17 +39,17 @@ class SubscribersTable extends React.PureComponent {
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
           const provider = data.departmentSubscribers || null;
-          const hasSubscribers = provider && provider.length > 0;
+          const hasentities = provider && provider.length > 0;
           const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
-              {!hasSubscribers && (
+              {!hasentities && (
                 <div id="page-main-column">
                   <NoContent description="Aucun utilisateur est inscrit à la newsletter alerte" />
                 </div>
               )}
-              {hasSubscribers && (
+              {hasentities && (
                 <DataTable provider={provider}
                   actions={{
                     delete: this.onDeleteClick,

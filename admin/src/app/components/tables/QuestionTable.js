@@ -5,55 +5,44 @@ import { connect } from 'react-redux';
 
 // application
 import {
-  DELETE_ZONE,
-  GET_DEPARTMENT_ZONES,
-  UPDATE_DEPARTMENT_ZONES,
+  DELETE_QUESTION,
+  GET_ALL_QUESTIONS,
+  UPDATE_ALL_QUESTIONS,
 } from './../../apolloql';
 import NoContent from './../ui/NoContent';
 import TinyLoader from './../ui/TinyLoader';
-import ZonePopin from './../popins/ZonePopin';
 import DataTable from './../ui/datatable/DataTable';
-import { openDeletePopin, openPopin } from './../../actions';
+import QuestionPopin from './../popins/QuestionPopin';
+import { openPopin, openDeletePopin } from './../../actions';
 
-class ZonesTable extends React.PureComponent {
+class QuestionTable extends React.PureComponent {
   constructor (props) {
     super(props);
     this.onEditClick = this.onEditClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  onEditClick (obj) {
-    const {
-      label, id, department, alerte,
-    } = obj;
-    const opts = {
-      id,
-      label,
-      alerte,
-      department,
-      Type: ZonePopin,
-    };
-    this.props.dispatch(openPopin(opts));
+  onEditClick ({ id, label }) {
+    const popin = { id, label, Type: QuestionPopin };
+    this.props.dispatch(openPopin(popin));
   }
 
-  onDeleteClick (obj) {
-    const { label, id } = obj;
+  onDeleteClick ({ id, label }) {
     const opts = {
       id,
       name: label,
-      deleteAction: DELETE_ZONE,
-      updateAction: UPDATE_DEPARTMENT_ZONES,
+      deleteAction: DELETE_QUESTION,
+      updateAction: UPDATE_ALL_QUESTIONS,
     };
     this.props.dispatch(openDeletePopin(opts));
   }
 
   render () {
-    const { selected } = this.props;
     return (
-      <Query query={GET_DEPARTMENT_ZONES} variables={{ department: selected }}>
+      <Query query={GET_ALL_QUESTIONS}>
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
-          const provider = data.departmentZones || null;
+          const provider = data.questions || null;
           const hasentities = provider && provider.length > 0;
           const len = (provider && provider.length) || 0;
           return (
@@ -61,7 +50,7 @@ class ZonesTable extends React.PureComponent {
               {loading && <TinyLoader />}
               {!hasentities && (
                 <div id="page-main-column">
-                  <NoContent description="Pour ajouter une nouvelle zone utilisez le formulaire ci-contre" />
+                  <NoContent description="Ajouter un question en utilisant le formulaire ci-contre" />
                 </div>
               )}
               {hasentities && (
@@ -72,13 +61,9 @@ class ZonesTable extends React.PureComponent {
                   }}
                   cols={[
                     {
-                      key: 'label',
-                      label: `${len} Zones`,
-                    },
-                    {
-                      key: 'order',
-                      type: 'small',
-                      label: 'Ordre',
+                      key: 'title',
+                      type: 'title',
+                      label: `${len} Questions`,
                     },
                   ]} />
               )}
@@ -90,13 +75,8 @@ class ZonesTable extends React.PureComponent {
   }
 }
 
-ZonesTable.defaultProps = {
-  selected: null,
-};
-
-ZonesTable.propTypes = {
-  selected: PropTypes.string,
+QuestionTable.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(ZonesTable);
+export default connect()(QuestionTable);

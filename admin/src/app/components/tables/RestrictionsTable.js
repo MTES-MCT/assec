@@ -47,17 +47,17 @@ class RestrictionsTable extends React.PureComponent {
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
           const provider = data.departmentRestrictions || null;
-          const hasrestrictions = provider && provider.length > 0;
+          const hasentities = provider && provider.length > 0;
           const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
-              {!hasrestrictions && (
+              {!hasentities && (
                 <div id="page-main-column">
                   <NoContent description="Pour ajouter une nouvelle restriction utilisez le formulaire ci-contre" />
                 </div>
               )}
-              {hasrestrictions && (
+              {hasentities && (
                 <DataTable provider={provider}
                   actions={{
                     edit: this.onEditClick,

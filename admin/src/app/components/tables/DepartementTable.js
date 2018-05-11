@@ -43,17 +43,17 @@ class DepartementTable extends React.PureComponent {
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
           const provider = data.departments || null;
-          const hasdepartments = provider && provider.length > 0;
+          const hasentities = provider && provider.length > 0;
           const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
-              {!hasdepartments && (
+              {!hasentities && (
                 <div id="page-main-column">
                   <NoContent description="Ajouter un département en utilisant le formulaire ci-contre" />
                 </div>
               )}
-              {hasdepartments && (
+              {hasentities && (
                 <DataTable provider={provider}
                   actions={{
                     edit: this.onEditClick,

@@ -1,6 +1,7 @@
 import Zones from './pages/Zones';
 import Blocks from './pages/Blocks';
 import Dashboard from './pages/Dashboard';
+import Questions from './pages/Questions';
 import MySettings from './pages/MySettings';
 import Subscribers from './pages/Subscribers';
 import Departements from './pages/Departements';
@@ -28,6 +29,13 @@ export const routes = {
       path: '/zones',
       name: 'Mes Zones',
       component: Zones,
+    },
+    {
+      exact: false,
+      icon: 'list',
+      path: '/questions',
+      name: 'Mes questions',
+      component: Questions,
     },
     {
       exact: false,
