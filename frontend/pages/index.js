@@ -10,6 +10,7 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import './../scss/styles.scss';
 // import { RETRIEVE_BLOCKS } from './../app/apolloql';
 import configure from './../app/store';
+import { Logger } from './../app/core/logger';
 import withApollo from './../app/core/withApollo';
 import Toaster from './../app/components/Toaster';
 import MainFooter from './../app/components/MainFooter';
@@ -28,15 +29,12 @@ import CommentParticiper from './../app/components/blocks/CommentParticiper';
 
 const { publicRuntimeConfig: envconfig } = getConfig();
 
-if (envconfig.usedebug) {
-  /* eslint-disable */
-  console.log('**** Frontend Application Debug ****');
-  console.log('USE_DEBUG', envconfig.usedebug);
-  console.log('REACT_APP_VERSION', envconfig.appversion);
-  console.log('REACT_APP_WIDGET_URI', envconfig.widgeturi);
-  console.log('REACT_APP_GRAPHQL_URI', envconfig.graphqluri);
-  /* eslint-disable */
-}
+Logger.debug(`
+  **** Widget Application Debug ****
+  REACT_APP_VERSION => ${envconfig.appversion}
+  REACT_APP_WIDGET_URI => ${envconfig.widgeturi}
+  REACT_APP_GRAPHQL_URI => ${envconfig.graphqluri}
+`);
 
 const Application = () => (
   <StickyContainer id="site-container" className="sticky-container">
@@ -51,18 +49,15 @@ const Application = () => (
       <CommentParticiper />
     </div>
     <Element name="essayez-la-demo">
-      <iframe
-        title="assec-widget"
+      <iframe title="assec-widget"
         id="demo"
         border="0"
         height="520"
         width="100%"
         frameBorder="0"
-        src={envconfig.widgeturi}
-      />
+        src={envconfig.widgeturi} />
     </Element>
-    <Element
-      name="qui-sommes-nous"
+    <Element name="qui-sommes-nous"
       id="qui-sommes-nous"
       className="padded pb60">
       <ShadowLiner className="mb40" />
@@ -93,9 +88,7 @@ const Application = () => (
 //   },
 // })(Application);
 
-const withClient = withApollo((props, ownProps) => {
-  return <Application {...props} />;
-});
+const withClient = withApollo(props => <Application {...props} />);
 
 const connected = withRedux(configure)(withClient);
 

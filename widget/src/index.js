@@ -10,16 +10,14 @@ import createHistory from 'history/createBrowserHistory';
 import './styles.css';
 import Page from './app/page';
 import { configure } from './app/store';
-import { usedebug } from './app/core/utils/usedebug';
+import { Logger } from './app/core/logger';
 
-if (usedebug()) {
-  /* eslint-disable */
-  console.log('**** Widget Application Debug ****');
-  console.log('NODE_ENV', process.env.NODE_ENV);
-  console.log('REACT_APP_VERSION', process.env.REACT_APP_VERSION);
-  console.log('REACT_APP_GRAPHQL_URI', process.env.REACT_APP_GRAPHQL_URI);
-  /* eslint-disable */
-}
+Logger.debug(`
+  **** Widget Application Debug ****
+  NODE_ENV => ${process.env.NODE_ENV}
+  REACT_APP_VERSION => ${process.env.REACT_APP_VERSION}
+  REACT_APP_GRAPHQL_URI => ${process.env.REACT_APP_GRAPHQL_URI}
+`);
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_URI,
