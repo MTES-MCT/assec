@@ -105,6 +105,16 @@ button {
   }
 }
 
+.copy-to-clipboard {
+  color: $dark-disabled;
+  transition: color 0.5s;
+
+  &:hover {
+    color: $color;
+    background-color: transparent;
+  }
+}
+
 span.error {
   color: $red-0;
 }

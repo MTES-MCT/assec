@@ -136,6 +136,17 @@ textarea {
   }
 }
 
+.copy-to-clipboard {
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  font-size: 0.8em;
+  margin-left: 12px;
+  border-width: 1px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
 /* -----------------------------------------------
 
  LAYOUTS

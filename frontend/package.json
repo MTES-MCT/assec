@@ -27,6 +27,7 @@
     "react": "^16.2.0",
     "react-apollo": "^2.1.4",
     "react-apollo-mutation-state": "^1.0.1",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",
     "react-final-form": "^3.4.0",
     "react-redux": "^5.0.7",

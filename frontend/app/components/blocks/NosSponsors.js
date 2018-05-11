@@ -1,5 +1,8 @@
 import React from 'react';
 
+// application
+import Mailto from './../ui/Mailto';
+
 const NosSponsors = () => (
   <div id="nos-sponsors" className="block mt80">
     <h3 className="mb40">
@@ -19,10 +22,11 @@ const NosSponsors = () => (
         height="65"
         alt="Chambres d'Agricultue Provence-Alpes-Côte d'Azur"
         src="/static/logo-dca-paca.png" />
-      <button className="flex-1 ml20 align-center dashed">
+      <Mailto email="contact@assec.beta.gouv.fr"
+        className="flex-1 ml20 align-center dashed">
         <i className="icon icon-thumbs-up mr7" />
         <span>Prêt à nous soutenir ? Ajoutez votre logo ici</span>
-      </button>
+      </Mailto>
     </p>
   </div>
 );
