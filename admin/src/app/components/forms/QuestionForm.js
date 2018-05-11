@@ -3,7 +3,7 @@ import { Form } from 'react-final-form';
 import { Mutation } from 'react-apollo';
 
 // application
-import { CREATE_QUESTION, UPDATE_ALL_QUESTIONS } from './../../apolloql';
+import { CREATE_QUESTION, UPDATE_DEPARTMENT_QUESTIONS } from './../../apolloql';
 import Legend from './../../components/ui/forms/Legend';
 import TextInput from './../../components/ui/forms/TextInput';
 import SelectBox from './../../components/ui/forms/SelectBox';
@@ -48,7 +48,7 @@ const typeProvider = [
 ];
 
 const QuestionForm = () => (
-  <Mutation mutation={CREATE_QUESTION} update={UPDATE_ALL_QUESTIONS}>
+  <Mutation mutation={CREATE_QUESTION} update={UPDATE_DEPARTMENT_QUESTIONS}>
     {(createQuestion, result) => (
       <Form validate={validator}
         initialValues={initialValues}

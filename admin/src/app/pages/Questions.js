@@ -51,7 +51,7 @@ class QuestionsPage extends React.PureComponent {
     const { name, ...pageopts } = config;
     const hasdepartements = data.departments && data.departments.length > 0;
     return (
-      <AppPage name={`Gestion ${name} newsletter alerte`}
+      <AppPage name={`Gestion ${name}`}
         {...pageopts}
         header={() =>
           hasdepartements && (

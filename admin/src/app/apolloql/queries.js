@@ -1,5 +1,11 @@
 import gql from 'graphql-tag';
 
+/* ----------------------------------------
+
+ BULKS
+
+---------------------------------------- */
+
 export const GET_ALL_DEPARTMENTS = gql(`
   query departments {
     departments {
@@ -58,6 +64,22 @@ query departmentZones (
         label
       }
     }
+  }
+}
+`);
+
+export const GET_DEPARTMENT_QUESTIONS = gql(`
+query departmentQuestions (
+  $department: ID!
+) {
+  departmentQuestions (
+    department: $department
+  ) {
+    id
+    type
+    title
+    department
+    description
   }
 }
 `);
@@ -129,6 +151,12 @@ query departmentSubscribers (
   }
 }
 `);
+
+/* ----------------------------------------
+
+ SINGLES
+
+---------------------------------------- */
 
 export const GET_DEPARTMENT = gql(`
 query department (
@@ -222,6 +250,22 @@ query zone (
         label
       }
     }
+  }
+}
+`);
+
+export const GET_QUESTION = gql(`
+query question (
+  $id: ID!
+) {
+  question (
+    id: $id
+  ) {
+    id
+    type
+    title
+    department
+    description
   }
 }
 `);

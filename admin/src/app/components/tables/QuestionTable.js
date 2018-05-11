@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 // application
 import {
   DELETE_QUESTION,
-  GET_ALL_QUESTIONS,
-  UPDATE_ALL_QUESTIONS,
+  GET_DEPARTMENT_QUESTIONS,
+  UPDATE_DEPARTMENT_QUESTIONS,
 } from './../../apolloql';
 import NoContent from './../ui/NoContent';
 import TinyLoader from './../ui/TinyLoader';
@@ -32,14 +32,14 @@ class QuestionTable extends React.PureComponent {
       id,
       name: label,
       deleteAction: DELETE_QUESTION,
-      updateAction: UPDATE_ALL_QUESTIONS,
+      updateAction: UPDATE_DEPARTMENT_QUESTIONS,
     };
     this.props.dispatch(openDeletePopin(opts));
   }
 
   render () {
     return (
-      <Query query={GET_ALL_QUESTIONS}>
+      <Query query={GET_DEPARTMENT_QUESTIONS}>
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
           const provider = data.questions || null;
