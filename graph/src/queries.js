@@ -6,6 +6,7 @@ import {
   BlockModel,
   Departement,
   Restriction,
+  QuestionModel,
   SubscriberModel,
 } from './drivers/mongodb';
 
@@ -102,7 +103,7 @@ export const Query = {
 
   retrieveBlocks: () => BlockModel.find(),
 
-  hydrateDepartment: (_, { department }) =>
+  hydrateWidgetDepartment: (_, { department }) =>
     Promise.all([
       Departement.findById(department)
         .populate('usages')
@@ -113,14 +114,18 @@ export const Query = {
         .populate('alerte.situation')
         .exec(),
       Restriction.find({ department }),
+      QuestionModel.find({ department }),
     ])
-      .then(([{ usages, origines, situations }, zones, restrictions]) =>
+      .then(([{
+        usages, origines, situations, questions,
+      }, zones, restrictions]) =>
         Promise.resolve(Object.assign(
           {},
           {
             zones,
             usages,
             origines,
+            questions,
             situations,
             restrictions,
           },

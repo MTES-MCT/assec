@@ -29,7 +29,7 @@ type Query {
 
   retrieveBlocks: [BlockType]
 
-  hydrateDepartment(department: ID): HydratedType
+  hydrateWidgetDepartment(department: ID): HydratedType
 
   findRestictionByCriteria(
     zones: ID

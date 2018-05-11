@@ -1,30 +1,30 @@
 import gql from 'graphql-tag';
 
-export const FIND_RESTRICTION_BY_CRITERIAS = gql(`
-query findRestictionByCriteria (
-  $zones: ID!
-  $usages: ID!
-  $origines: ID!
-  $department: ID!
-) {
-  findRestictionByCriteria (
-    zones: $zones
-    usages: $usages
-    origines: $origines
-    department: $department
-  ) {
-    id
-    label
-    description
-  }
-}
-`);
+// export const FIND_RESTRICTION_BY_CRITERIAS = gql(`
+// query findRestictionByCriteria (
+//   $zones: ID!
+//   $usages: ID!
+//   $origines: ID!
+//   $department: ID!
+// ) {
+//   findRestictionByCriteria (
+//     zones: $zones
+//     usages: $usages
+//     origines: $origines
+//     department: $department
+//   ) {
+//     id
+//     label
+//     description
+//   }
+// }
+// `);
 
-export const HYDRATE_DEPARTMENT = gql(`
-query hydrateDepartment (
+export const LOAD_WIDGET_DEPARTMENT = gql(`
+query hydrateWidgetDepartment (
   $department: ID!
 ) {
-  hydrateDepartment (
+  hydrateWidgetDepartment (
     department: $department
   ) {
     usages {
@@ -38,6 +38,12 @@ query hydrateDepartment (
     situations {
       id
       label
+    }
+    questions {
+      id
+      type
+      title
+      description
     }
     zones {
       id
@@ -67,3 +73,5 @@ query hydrateDepartment (
   }
 }
 `);
+
+export default LOAD_WIDGET_DEPARTMENT;

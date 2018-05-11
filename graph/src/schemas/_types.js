@@ -95,12 +95,20 @@ type ZoneType {
 }
 `;
 
-const hydrated = `
-type HydratedType {
+const widget = `
+type QuestionType {
+  id: ID!
+  type: String!
+  title: String!
+  description: String!
+}
+
+type WidgetType {
   zones: [ZoneType]!
   usages: [SUOType]!
   origines: [SUOType]!
   situations: [SUOType]!
+  questions: [QuestionType]!
   restrictions: [RestrictionType]!
 }
 `;
@@ -110,7 +118,7 @@ ${scalars}
 ${suos}
 ${zone}
 ${block}
-${hydrated}
+${widget}
 ${subscriber}
 ${restriction}
 ${departement}

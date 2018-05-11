@@ -3,33 +3,34 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import deepequal from 'fast-deep-equal';
-import { bindActionCreators } from 'redux';
-import { ApolloConsumer } from 'react-apollo';
-import { getFormValues, clearFields } from 'redux-form';
+// import { bindActionCreators } from 'redux';
+import { Query } from 'react-apollo';
+// import { getFormValues, clearFields } from 'redux-form';
 
 // application
 import { FORM_NAME } from './constants';
 import { usedebug } from './core/utils/usedebug';
-import { formSubmit, loadForm } from './actions';
-import checkRequired from './actions/check-required';
-import FormFields from './components/FormFields';
-import FormResults from './components/FormResults';
-import FormNavigation from './components/FormNavigation';
+import { LOAD_WIDGET_DEPARTMENT } from './apolloql';
+// import { formSubmit, loadForm } from './actions';
+// import checkRequired from './actions/check-required';
+// import FormFields from './components/FormFields';
+// import FormResults from './components/FormResults';
+// import FormNavigation from './components/FormNavigation';
 
 class PageComponent extends React.Component {
-  constructor (props) {
-    super(props);
-    const { dispatch } = props;
-    this.actions = bindActionCreators(
-      {
-        loadForm,
-        formSubmit,
-        clearFields,
-        checkRequired,
-      },
-      dispatch,
-    );
-  }
+  // constructor (props) {
+  // super(props);
+  // const { dispatch } = props;
+  // this.actions = bindActionCreators(
+  //   {
+  //     loadForm,
+  //     formSubmit,
+  //     clearFields,
+  //     checkRequired,
+  //   },
+  //   dispatch,
+  // );
+  // }
 
   componentDidMount () {
     const { client } = this.props;
@@ -62,17 +63,22 @@ class PageComponent extends React.Component {
       // disabledsteps,
     } = this.props;
     return (
-      <ApolloConsumer>
-        {client => (
-          <div id="app-container" className="flex-rows">
-            <Helmet>
-              <body className={`current-step-${activestep}`} />
-              <title>Assec{usedebug() ? ' | Development' : ''}</title>
-            </Helmet>
-            <div id="screen-container" />
-          </div>
-        )}
-      </ApolloConsumer>
+      <Query query={LOAD_WIDGET_DEPARTMENT} variables={{ department: '' }}>
+        {({ loading, error, data }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>Error :(</p>;
+          console.log('data', data);
+          return (
+            <div id="app-container" className="flex-rows">
+              <Helmet>
+                <body className={`current-step-${activestep}`} />
+                <title>Assec{usedebug() ? ' | Development' : ''}</title>
+              </Helmet>
+              <div id="screen-container" />
+            </div>
+          );
+        }}
+      </Query>
       // <div id="screen-container">
       //   <div id="app-content" className="flex-columns">
       //     <div id="stepper-form" className="column flex4">
