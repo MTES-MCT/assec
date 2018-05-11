@@ -60,8 +60,9 @@ const ZonesForm = ({ selected }) => (
                 <TextInput disabled={disabled}
                   name="shortname"
                   label="Nom court de la zone" />
-                <TextArea disabled={moredisabled}
+                <TextArea large
                   name="geojson"
+                  disabled={moredisabled}
                   label="Coordonnées de la zone" />
                 <NumberInput disabled={moredisabled}
                   name="order"

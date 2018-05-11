@@ -11,7 +11,7 @@ const RadioGroup = ({
     display !== 'inline' ? 'rows' : 'columns'
   } flex-wrap wrap3`;
   return (
-    <p className="radio-group pt12 px12">
+    <p className="radio-group pt12">
       <span className="as-form-label">
         <span>{label}</span>
         <span className={cssclass}>

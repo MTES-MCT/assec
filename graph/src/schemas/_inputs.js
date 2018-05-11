@@ -10,10 +10,15 @@ input SUOSInput {
   situations: [SUOInput]
 }
 
+input SituationInput {
+  id: ID!
+  label: String!
+}
+
 input AlerteInput {
-  situation: ID!
   end_date: String
   start_date: String
+  situation: SituationInput!
 }
 `;
 

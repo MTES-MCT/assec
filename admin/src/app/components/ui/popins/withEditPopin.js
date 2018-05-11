@@ -6,6 +6,7 @@ import { Query, Mutation } from 'react-apollo';
 
 // application
 import EditPopin from './EditPopin';
+import { Logger } from './../../../core/logger';
 
 function getDisplayName (WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -27,8 +28,9 @@ const withEditPopin = (
           <Mutation mutation={mutation}>
             {(update, result) => (
               <Form initialValues={entity}
-                onSubmit={variables =>
-                  update({ variables })
+                onSubmit={(variables) => {
+                  Logger.debug(variables);
+                  return update({ variables })
                     .then(() => {})
                     .catch((err) => {
                       /* eslint-disable */
@@ -37,8 +39,8 @@ const withEditPopin = (
                         'FIXME -> gestion des erreurs dans withEditPopin'
                       );
                       /* eslint-enable */
-                    })
-                }
+                    });
+                }}
                 validate={validator}
                 calculator={calculator || null}
                 mutators={{ ...arrayMutators }}

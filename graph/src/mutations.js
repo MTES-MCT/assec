@@ -84,23 +84,14 @@ export const Mutation = {
 
   createZone: (_, args) => ZoneModel.create(args),
 
-  updateZone: (_, args) => {
-    const { id } = args;
-    const rest = omit(args, ['id']);
-    const opts = { new: true };
-    return ZoneModel.findByIdAndUpdate(id, rest, opts);
-  },
-
   deleteZone: (_, args) => ZoneModel.findByIdAndRemove(args.id),
 
-  // UPDATES
-  updateZoneAlerte: (_, args) => {
-    const { id, situationid } = args;
-    // update values
-    const query = { $set: { 'alerte.situation': situationid } };
-    // should returns updated document
+  updateZone: (_, args) => {
+    const { id, alerte } = args;
+    const rest = omit(args, ['id', 'alerte']);
     const opts = { new: true };
-    return ZoneModel.findByIdAndUpdate(id, query, opts)
+    const query = { $set: { 'alerte.situation': alerte.situation.id } };
+    return ZoneModel.findByIdAndUpdate(id, { ...rest, ...query }, opts)
       .populate('alerte.situation')
       .exec();
   },

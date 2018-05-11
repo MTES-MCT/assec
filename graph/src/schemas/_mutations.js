@@ -25,7 +25,6 @@ type Mutation {
     department: ID!
     geojson: String!
     shortname: String!
-    alerte: [AlerteInput]
   ): ZoneType
 
   createSubscriber(
@@ -48,14 +47,11 @@ type Mutation {
 
   updateZone(
     id: ID!
+    help: String
     name: String!
     order: String!
     shortname: String!
-  ): ZoneType
-
-  updateZoneAlerte(
-    id: ID!
-    situationid: ID!
+    alerte: AlerteInput!
   ): ZoneType
 
   updateDepartement(

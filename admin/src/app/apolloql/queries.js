@@ -104,15 +104,28 @@ query departmentSUOs (
 }
 `);
 
+export const GET_DEPARTMENT_SITUATIONS = gql(`
+query departmentSituations (
+  $department: ID!
+) {
+  departmentSituations (
+    department: $department
+  ) {
+    id
+    label
+  }
+}
+`);
+
 export const GET_DEPARTMENT_SUBSCRIBERS = gql(`
 query departmentSubscribers (
   $department: ID!
 ) {
-    departmentSubscribers (
-      department: $department
-    ) {
-      id
-      email
+  departmentSubscribers (
+    department: $department
+  ) {
+    id
+    email
   }
 }
 `);

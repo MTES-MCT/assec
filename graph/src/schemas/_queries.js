@@ -17,6 +17,7 @@ type Query {
 
   departmentSUOs(department: ID): SUOSType
   departmentZones(department: ID): [ZoneType]
+  departmentSituations(department: ID): [SUOType]
   departmentSubscribers(department: ID): [SubscriberType]
   departmentRestrictions(department: ID): [RestrictionType]
 

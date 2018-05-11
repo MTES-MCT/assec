@@ -39,46 +39,21 @@ mutation createZone(
 }
 `);
 
-export const UPDATE_ZONE_ALERTE = gql(`
-mutation updateZoneAlerte (
-  $id: ID!
-  $situationid: ID!
-) {
-  updateZoneAlerte (
-    id: $id
-    situationid: $situationid
-  ) {
-    id
-    help
-    name
-    label
-    order
-    geojson
-    shortname
-    department
-    alerte {
-      end_date
-      start_date
-      situation {
-        id
-        label
-      }
-    }
-  }
-}
-`);
-
 export const UPDATE_ZONE = gql(`
 mutation updateZone (
   $id: ID!
+  $help: String!
   $name: String!
   $order: String!
   $shortname: String!
+  $alerte: AlerteInput!
 ) {
   updateZone (
     id: $id
     name: $name
+    help: $help
     order: $order
+    alerte: $alerte
     shortname: $shortname
   ) {
     id
@@ -131,12 +106,6 @@ export const UPDATE_DEPARTMENT_ZONES = (store, { data }) => {
     const { department } = data.createZone;
     const current = getCurrentZones(store, department);
     entries = current.concat([data.createZone]);
-    variables = { department };
-  }
-  if (data.updateZoneAlerte) {
-    const { id, department, alerte } = data.updateZoneAlerte;
-    const current = getCurrentZones(store, department);
-    entries = current.map(obj => (obj.id !== id ? obj : Object.assign({}, obj, { alerte })));
     variables = { department };
   }
   if (data.deleteZone) {

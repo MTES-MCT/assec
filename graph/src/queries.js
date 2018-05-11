@@ -66,6 +66,12 @@ export const Query = {
       .exec()
       .then(doc => pick(doc, ['usages', 'origines', 'situations'])),
 
+  departmentSituations: (_, { department }) =>
+    Departement.findById(department)
+      .populate('situations')
+      .exec()
+      .then(doc => doc.situations),
+
   departmentZones: (_, { department }) =>
     (department &&
       ZoneModel.find({ department })
