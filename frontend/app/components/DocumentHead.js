@@ -11,7 +11,7 @@ const DocumentHead = ({ pagetitle }) => (
       <link rel="shortcut icon" href="/static/favicon.ico?v=beta.gouv.fr" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" />
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" />
       <link rel="stylesheet" href="/static/fontello/css/animation.css" />
       <link rel="stylesheet"
         href="/static/fontello/css/fontello-embedded.css" />

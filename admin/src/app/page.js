@@ -29,8 +29,8 @@ const PageComponent = ({
         {pagetitle(routes, location.pathname)}
         {usedebug() ? ' | DEV' : ''} | Assec Backoffice
       </title>
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
-        rel="stylesheet" />
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" />
     </Helmet>
     <AppNavigation routes={routes}
       minimized={!openednav}
