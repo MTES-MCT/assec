@@ -109,12 +109,6 @@
       "src": "entypo"
     },
     {
-      "uid": "630529f03c319c01101aa167181b650e",
-      "css": "tag",
-      "code": 59409,
-      "src": "elusive"
-    },
-    {
       "uid": "74b2f1d1ee541715b3f389f7cdf63d1c",
       "css": "logout",
       "code": 59410,
@@ -269,6 +263,24 @@
       "css": "list",
       "code": 59434,
       "src": "entypo"
+    },
+    {
+      "uid": "8ce732688587909ad0a9d8323eaca8ad",
+      "css": "marquee",
+      "code": 59463,
+      "src": "fontelico"
+    },
+    {
+      "uid": "a41cabcd11152063a37f2407048c5494",
+      "css": "wpforms",
+      "code": 62104,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4c8822c296f8b46e1b0a1c0f627be146",
+      "css": "town-hall",
+      "code": 59452,
+      "src": "maki"
     }
   ]
 }

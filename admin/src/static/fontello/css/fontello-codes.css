@@ -16,7 +16,6 @@
 .icon-check:before { content: '\e80e'; } /* '' */
 .icon-info-circled:before { content: '\e80f'; } /* '' */
 .icon-network:before { content: '\e810'; } /* '' */
-.icon-tag:before { content: '\e811'; } /* '' */
 .icon-logout:before { content: '\e812'; } /* '' */
 .icon-alert:before { content: '\e813'; } /* '' */
 .icon-database:before { content: '\e814'; } /* '' */
@@ -43,3 +42,6 @@
 .icon-clipboard:before { content: '\e829'; } /* '' */
 .icon-list:before { content: '\e82a'; } /* '' */
 .icon-spin3:before { content: '\e832'; } /* '' */
+.icon-town-hall:before { content: '\e83c'; } /* '' */
+.icon-marquee:before { content: '\e847'; } /* '' */
+.icon-wpforms:before { content: '\f298'; } /* '' */
