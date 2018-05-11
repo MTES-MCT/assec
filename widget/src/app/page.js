@@ -15,8 +15,6 @@ import checkRequired from './actions/check-required';
 import FormFields from './components/FormFields';
 import FormResults from './components/FormResults';
 import FormNavigation from './components/FormNavigation';
-// import FormSidebarHeader from './components/sidebar/FormSidebarHeader';
-// import FormSidebarContent from './components/sidebar/FormSidebarContent';
 
 class PageComponent extends React.Component {
   constructor (props) {
@@ -54,53 +52,49 @@ class PageComponent extends React.Component {
 
   render () {
     const {
-      rules,
-      fields,
+      // rules,
+      // fields,
       // choices,
       activestep,
-      canforward,
-      showresults,
-      canbackward,
-      disabledsteps,
+      // canforward,
+      // showresults,
+      // canbackward,
+      // disabledsteps,
     } = this.props;
     return (
-      <div id="app-container" className="flex-rows">
-        <Helmet>
-          <body className={`current-step-${activestep}`} />
-          <title>Assec{usedebug() ? ' | Development' : ''}</title>
-        </Helmet>
-        <ApolloConsumer>
-          {client => (
-            <div id="screen-container">
-              <div id="app-content" className="flex-columns">
-                {/* <div id="app-sidebar-left" className="column flex1">
-                  <FormSidebarHeader />
-                  <FormSidebarContent fields={fields}
-                    choices={!rules ? choices : rules.choices} />
-                </div> */}
-                <div id="stepper-form" className="column flex4">
-                  {!rules &&
-                    fields &&
-                    fields.length > 0 && (
-                    <FormFields fields={fields}
-                      activestep={activestep}
-                      disabledsteps={disabledsteps}
-                      onSubmit={values =>
-                        this.actions.formSubmit(client, values)
-                      }
-                      onRequired={index => this.actions.checkRequired(index)} />
-                  )}
-                  {rules && <FormResults rules={rules.values} />}
-                  <FormNavigation showresults={showresults}
-                    canforward={canforward}
-                    canbackward={canbackward}
-                    canreset={rules !== false} />
-                </div>
-              </div>
-            </div>
-          )}
-        </ApolloConsumer>
-      </div>
+      <ApolloConsumer>
+        {client => (
+          <div id="app-container" className="flex-rows">
+            <Helmet>
+              <body className={`current-step-${activestep}`} />
+              <title>Assec{usedebug() ? ' | Development' : ''}</title>
+            </Helmet>
+            <div id="screen-container" />
+          </div>
+        )}
+      </ApolloConsumer>
+      // <div id="screen-container">
+      //   <div id="app-content" className="flex-columns">
+      //     <div id="stepper-form" className="column flex4">
+      //       {!rules &&
+      //         fields &&
+      //         fields.length > 0 && (
+      //         <FormFields fields={fields}
+      //           activestep={activestep}
+      //           disabledsteps={disabledsteps}
+      //           onSubmit={values =>
+      //             this.actions.formSubmit(client, values)
+      //           }
+      //           onRequired={index => this.actions.checkRequired(index)} />
+      //       )}
+      //       {rules && <FormResults rules={rules.values} />}
+      //       <FormNavigation showresults={showresults}
+      //         canforward={canforward}
+      //         canbackward={canbackward}
+      //         canreset={rules !== false} />
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }
@@ -110,45 +104,45 @@ PageComponent.propTypes = {
   dispatch: PropTypes.func.isRequired,
   activestep: PropTypes.number.isRequired,
   // navigation
-  canforward: PropTypes.bool.isRequired,
-  canbackward: PropTypes.bool.isRequired,
-  showresults: PropTypes.bool.isRequired,
-  rules: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
+  // canforward: PropTypes.bool.isRequired,
+  // canbackward: PropTypes.bool.isRequired,
+  // showresults: PropTypes.bool.isRequired,
+  // rules: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
   //
-  fields: PropTypes.array.isRequired,
+  // fields: PropTypes.array.isRequired,
   // choices: PropTypes.object.isRequired,
   stepskeys: PropTypes.array.isRequired,
   choiceskeys: PropTypes.array.isRequired,
-  disabledsteps: PropTypes.array.isRequired,
+  // disabledsteps: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => {
   const {
     stepper: { activestep, disabledsteps },
-    steppedform: { fields, restrictionsapplicable: rules },
+    // steppedform: { fields, restrictionsapplicable: rules },
   } = state;
-  const choices = getFormValues(FORM_NAME)(state) || {};
-  const choiceskeys = Object.keys(choices);
-  const steps = fields
-    .filter((o, index) => !disabledsteps.includes(index))
-    .map(({ id, label }) => ({ id, label }));
-  const stepskeys = steps.map(({ id }) => id);
-  const canbackward = activestep > 0;
-  const canforward = choiceskeys.length > activestep;
-  // defini si le dernier resultats a ete selectionne
-  // par l'utilisateur
-  const showresults =
-    choiceskeys.length === steps.length && activestep === steps.length - 1;
+  // const choices = getFormValues(FORM_NAME)(state) || {};
+  // const choiceskeys = Object.keys(choices);
+  // const steps = fields
+  //   .filter((o, index) => !disabledsteps.includes(index))
+  //   .map(({ id, label }) => ({ id, label }));
+  // const stepskeys = steps.map(({ id }) => id);
+  // const canbackward = activestep > 0;
+  // const canforward = choiceskeys.length > activestep;
+  // // defini si le dernier resultats a ete selectionne
+  // // par l'utilisateur
+  // const showresults =
+  //   choiceskeys.length === steps.length && activestep === steps.length - 1;
   return {
-    rules,
-    fields,
+    // rules,
+    // fields,
     // choices,
-    stepskeys,
+    // stepskeys,
     activestep,
-    canforward,
-    choiceskeys,
-    canbackward,
-    showresults,
+    // canforward,
+    // choiceskeys,
+    // canbackward,
+    // showresults,
     disabledsteps,
   };
 };

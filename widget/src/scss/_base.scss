@@ -83,47 +83,6 @@ h6 {
 
 /* ------------------------------------------------------
 
- PSEUDOS
-
------------------------------------------------------- */
-// ::placeholder {
-//   color: #ccc;
-//   font-size: 0.8em;
-//   font-style: italic;
-// }
-
-/*
-.active,
-.active:hover,
-.active:visited {
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-*:disabled,
-*:disabled:hover,
-*:disabled:visited,
-.disabled,
-.disabled:hover,
-.disabled:visited {
-  cursor: not-allowed;
-  box-shadow: inherit;
-  text-shadow: inherit;
-  pointer-events: none;
-  border-color: transparent;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.disabled::placeholder,
-:disabled::placeholder { color: #FFF; }
-
-// smooth transition when disabled
-.disabled,
-*:disabled { transition: all $transition-time; }
-*/
-
-/* ------------------------------------------------------
-
  CLASSES
 
 ------------------------------------------------------ */

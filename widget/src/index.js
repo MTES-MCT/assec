@@ -30,7 +30,7 @@ const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ApolloProvider client={client}>
-        <Page client={client} />
+        <Page />
       </ApolloProvider>
     </ConnectedRouter>
   </Provider>
