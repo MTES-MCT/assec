@@ -55,7 +55,7 @@ class RestrictionsPage extends React.PureComponent {
     const { name, ...pageopts } = config;
     const hasdepartements = data.departments && data.departments.length > 0;
     return (
-      <AppPage name={`Gestion ${name}`}
+      <AppPage name={`Gestion des ${name} des zones`}
         {...pageopts}
         header={() =>
           hasdepartements && (

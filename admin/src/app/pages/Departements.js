@@ -7,7 +7,7 @@ import DepartementForm from './../components/forms/DepartementForm';
 import DepartementTable from './../components/tables/DepartementTable';
 
 const DepartementsPage = ({ config: { name, ...rest } }) => (
-  <AppPage name={`Gestion ${name}`} {...rest}>
+  <AppPage name={`Gestion des ${name}`} {...rest}>
     <div id="page-main-column" className="col50">
       <DepartementTable />
     </div>
