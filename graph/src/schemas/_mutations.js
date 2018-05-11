@@ -1,5 +1,12 @@
 export default `
 type Mutation {
+  createQuestion(
+    type: String!
+    title: String!
+    department: ID!
+    description: String!
+  ): QuestionType
+
   createDepartement(
     code: String!
     label: String!
@@ -54,6 +61,13 @@ type Mutation {
     alerte: AlerteInput!
   ): ZoneType
 
+  updateQuestion(
+    id: ID!
+    type: String!
+    title: String!
+    description: String!
+  ): QuestionType
+
   updateDepartement(
     id: ID!
     suos: SUOSInput!
@@ -73,6 +87,10 @@ type Mutation {
   deleteBlock(
     id: ID!
   ): BlockType
+
+  deleteQuestion(
+    id: ID!
+  ): QuestionType
 
   deleteDepartment(
     id: ID!

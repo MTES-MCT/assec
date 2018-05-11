@@ -100,6 +100,7 @@ type QuestionType {
   id: ID!
   type: String!
   title: String!
+  department: ID!
   description: String!
 }
 

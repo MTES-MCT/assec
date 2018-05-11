@@ -14,6 +14,7 @@ const QuestionSchema = new Schema(
       type: String,
       required: true,
     },
+    department: { type: Schema.Types.ObjectId, ref: 'departments' },
   },
   {
     timestamps: {

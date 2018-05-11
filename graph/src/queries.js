@@ -35,6 +35,8 @@ export const Query = {
         .exec()) ||
     null,
 
+  question: (_, { id }) => (id && QuestionModel.findById(id).exec()) || null,
+
   restriction: (_, { id }) => (id && Restriction.findById(id).exec()) || null,
 
   /* -----------------------------------
@@ -80,7 +82,10 @@ export const Query = {
         .exec()) ||
     null,
 
-  blocks: () => BlockModel.find().exec(),
+  blocks: () => BlockModel.find().exec() || null,
+
+  questions: (_, { department }) =>
+    QuestionModel.find({ department }).exec() || null,
 
   departmentSubscribers: (_, { department }) =>
     (department && SubscriberModel.find({ department }).exec()) || null,

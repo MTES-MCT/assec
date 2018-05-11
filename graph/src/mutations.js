@@ -7,6 +7,7 @@ import {
   BlockModel,
   Departement,
   Restriction,
+  QuestionModel,
   SubscriberModel,
 } from './drivers/mongodb';
 
@@ -130,6 +131,23 @@ export const Mutation = {
     const rest = omit(args, ['id']);
     const opts = { new: true };
     return BlockModel.findByIdAndUpdate(id, rest, opts);
+  },
+
+  /* -----------------------------------
+
+  QUESTIONS
+
+  ----------------------------------- */
+
+  createQuestion: (_, args) => QuestionModel.create(args),
+
+  deleteQuestion: (_, args) => QuestionModel.findByIdAndRemove(args.id),
+
+  updateQuestion: (_, args) => {
+    const { id } = args;
+    const rest = omit(args, ['id']);
+    const opts = { new: true };
+    return QuestionModel.findByIdAndUpdate(id, rest, opts);
   },
 };
 

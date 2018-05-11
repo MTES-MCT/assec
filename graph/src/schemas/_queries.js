@@ -6,6 +6,7 @@ type Query {
 
   zone(id: ID): ZoneType
   block(id: ID): BlockType
+  question(id: ID): QuestionType
   department(id: ID): DepartementType
   restriction(id: ID): RestrictionType
 
@@ -15,6 +16,7 @@ type Query {
   blocks: [BlockType]
   departments: [DepartementType]
 
+  questions(department: ID): [QuestionType]
   departmentSUOs(department: ID): SUOSType
   departmentZones(department: ID): [ZoneType]
   departmentSituations(department: ID): [SUOType]
