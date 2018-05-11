@@ -20,11 +20,11 @@ import gql from 'graphql-tag';
 // }
 // `);
 
-export const LOAD_WIDGET_DEPARTMENT = gql(`
-query hydrateWidgetDepartment (
+export const LOAD_DEPARTMENT_WIDGET = gql(`
+query hydrateDepartment (
   $department: ID!
 ) {
-  hydrateWidgetDepartment (
+  hydrateDepartment (
     department: $department
   ) {
     usages {
@@ -62,16 +62,8 @@ query hydrateWidgetDepartment (
         }
       }
     }
-    restrictions {
-      id
-      label
-      usages
-      origines
-      situations
-      description
-    }
   }
 }
 `);
 
-export default LOAD_WIDGET_DEPARTMENT;
+export default LOAD_DEPARTMENT_WIDGET;

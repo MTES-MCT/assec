@@ -118,12 +118,9 @@ export const Query = {
       ZoneModel.find({ department })
         .populate('alerte.situation')
         .exec(),
-      Restriction.find({ department }),
       QuestionModel.find({ department }),
     ])
-      .then(([{
-        usages, origines, situations, questions,
-      }, zones, restrictions]) =>
+      .then(([{ usages, origines, situations }, zones, questions]) =>
         Promise.resolve(Object.assign(
           {},
           {
@@ -132,7 +129,6 @@ export const Query = {
             origines,
             questions,
             situations,
-            restrictions,
           },
         )))
       .then(result => result),

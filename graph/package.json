@@ -17,7 +17,8 @@
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "lodash.times": "^4.3.2",
-    "mongoose": "^5.0.12"
+    "mongoose": "^5.0.12",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

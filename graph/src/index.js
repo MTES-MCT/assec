@@ -1,7 +1,9 @@
 // https://dev-blog.apollodata.com/tutorial-building-a-graphql-server-cddaa023c035
+import zlib from 'zlib';
 import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 import GraphQLDate from 'graphql-date';
 // import * as bodyParser from 'body-parser-graphql';
 import { makeExecutableSchema } from 'graphql-tools';
@@ -30,6 +32,7 @@ const schema = makeExecutableSchema({
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
+app.use(compression({ level: zlib.Z_DEFAULT_COMPRESSION }));
 app.use(
   '/graphql',
   // bodyParser is needed just for POST.

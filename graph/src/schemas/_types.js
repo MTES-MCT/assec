@@ -112,7 +112,6 @@ type WidgetType {
   origines: [SUOType]!
   situations: [SUOType]!
   questions: [QuestionType]!
-  restrictions: [RestrictionType]!
 }
 `;
 

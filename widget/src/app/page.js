@@ -10,7 +10,7 @@ import { Query } from 'react-apollo';
 // application
 import { FORM_NAME } from './constants';
 import { usedebug } from './core/utils/usedebug';
-import { LOAD_WIDGET_DEPARTMENT } from './apolloql';
+import { LOAD_DEPARTMENT_WIDGET } from './apolloql';
 // import { formSubmit, loadForm } from './actions';
 // import checkRequired from './actions/check-required';
 // import FormFields from './components/FormFields';
@@ -35,7 +35,7 @@ class PageComponent extends React.Component {
   componentDidMount () {
     const { client } = this.props;
     // charge le schema du formulaire au chargement de la page
-    this.actions.loadForm(client);
+    // this.actions.loadForm(client);
   }
 
   componentWillReceiveProps ({ stepskeys, choiceskeys }) {
@@ -63,7 +63,8 @@ class PageComponent extends React.Component {
       // disabledsteps,
     } = this.props;
     return (
-      <Query query={LOAD_WIDGET_DEPARTMENT} variables={{ department: '' }}>
+      <Query query={LOAD_DEPARTMENT_WIDGET}
+        variables={{ department: '5ad84a9f73150f000eeaf0d0' }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
@@ -106,7 +107,7 @@ class PageComponent extends React.Component {
 }
 
 PageComponent.propTypes = {
-  client: PropTypes.object.isRequired,
+  // client: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   activestep: PropTypes.number.isRequired,
   // navigation
@@ -117,8 +118,8 @@ PageComponent.propTypes = {
   //
   // fields: PropTypes.array.isRequired,
   // choices: PropTypes.object.isRequired,
-  stepskeys: PropTypes.array.isRequired,
-  choiceskeys: PropTypes.array.isRequired,
+  // stepskeys: PropTypes.array.isRequired,
+  // choiceskeys: PropTypes.array.isRequired,
   // disabledsteps: PropTypes.array.isRequired,
 };
 
