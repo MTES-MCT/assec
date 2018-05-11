@@ -14,6 +14,14 @@ textarea {
   line-height: 1.2em;
 }
 
+select {
+  border: 0;
+  height: 100%;
+  outline: none;
+  font-size: 1em;
+  line-height: 1em;
+}
+
 input,
 textarea,
 .markdown-editor-preview {
@@ -119,12 +127,11 @@ label.inline {
   width: 100%;
 
   span {
-    @extend .pb7;
-
     display: block;
   }
 
   textarea,
+  .selectbox,
   input[type='text'] {
     width: 100%;
     display: block;
@@ -164,12 +171,10 @@ label.inline {
   }
 }
 
-.markdown-editor {
-  .markdown-editor-navs button {
-    width: 100px;
-    margin-left: 1px;
-    border-radius: 2px 2px 0 0;
-  }
+.markdown-editor-views button {
+  width: 100px;
+  margin-left: 1px;
+  border-radius: 2px 2px 0 0;
 }
 
 fieldset .tagvalues,

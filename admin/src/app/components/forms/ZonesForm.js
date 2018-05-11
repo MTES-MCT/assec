@@ -27,9 +27,9 @@ const validator = (values) => {
 };
 
 const initialValues = {
-  order: 0,
   help: '',
   name: '',
+  order: 0,
   geojson: '',
   shortname: '',
 };

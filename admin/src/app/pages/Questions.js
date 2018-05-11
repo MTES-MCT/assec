@@ -6,6 +6,7 @@ import { graphql } from 'react-apollo';
 import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import AppPage from './../components/AppPage';
 import NoContent from './../components/ui/NoContent';
+import QuestionForm from './../components/forms/QuestionForm';
 import QuestionTable from './../components/tables/QuestionTable';
 import EntitySelector from './../components/ui/forms/EntitySelector';
 
@@ -38,8 +39,11 @@ class QuestionsPage extends React.PureComponent {
     const { selected } = this.state;
     return (
       <React.Fragment>
-        <div id="page-main-column" className="col100">
+        <div id="page-main-column" className="col50">
           <QuestionTable selected={selected} />
+        </div>
+        <div id="page-aside-column" className="col50">
+          {selected && <QuestionForm selected={selected} />}
         </div>
       </React.Fragment>
     );

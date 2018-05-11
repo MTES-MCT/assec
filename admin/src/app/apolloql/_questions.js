@@ -4,8 +4,8 @@ import { GET_DEPARTMENT_QUESTIONS } from './queries';
 
 export const CREATE_QUESTION = gql(`
 mutation createQuestion(
-  $type: String
-  $title: String
+  $type: String!
+  $title: String!
   $department: ID!
   $description: String!
 ) {
@@ -18,8 +18,10 @@ mutation createQuestion(
     id
     type
     title
-    description
+    mtime
+    ctime
     department
+    description
   }
 }
 `);
@@ -40,6 +42,8 @@ mutation updateQuestion (
     id
     type
     title
+    mtime
+    ctime
     department
     description
   }

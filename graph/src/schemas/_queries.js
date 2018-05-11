@@ -16,10 +16,10 @@ type Query {
   blocks: [BlockType]
   departments: [DepartementType]
 
-  questions(department: ID): [QuestionType]
   departmentSUOs(department: ID): SUOSType
   departmentZones(department: ID): [ZoneType]
   departmentSituations(department: ID): [SUOType]
+  departmentQuestions(department: ID): [QuestionType]
   departmentSubscribers(department: ID): [SubscriberType]
   departmentRestrictions(department: ID): [RestrictionType]
 

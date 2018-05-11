@@ -78,6 +78,8 @@ query departmentQuestions (
     id
     type
     title
+    mtime
+    ctime
     department
     description
   }
@@ -264,6 +266,8 @@ query question (
     id
     type
     title
+    mtime
+    ctime
     department
     description
   }

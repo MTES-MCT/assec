@@ -38,11 +38,13 @@ class QuestionTable extends React.PureComponent {
   }
 
   render () {
+    const { selected } = this.props;
     return (
-      <Query query={GET_DEPARTMENT_QUESTIONS}>
+      <Query query={GET_DEPARTMENT_QUESTIONS}
+        variables={{ department: selected }}>
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
-          const provider = data.questions || null;
+          const provider = data.departmentQuestions || null;
           const hasentities = provider && provider.length > 0;
           const len = (provider && provider.length) || 0;
           return (
@@ -75,7 +77,12 @@ class QuestionTable extends React.PureComponent {
   }
 }
 
+QuestionTable.defaultProps = {
+  selected: null,
+};
+
 QuestionTable.propTypes = {
+  selected: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
 };
 

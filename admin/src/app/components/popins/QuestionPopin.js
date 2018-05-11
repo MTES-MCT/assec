@@ -38,7 +38,8 @@ const typeProvider = [
 
 const QuestionPopin = () => (
   <div className="flex-rows">
-    <SelectBox name="type"
+    <SelectBox inline
+      name="type"
       provider={typeProvider}
       label="Type de la question" />
     <TextInput inline name="title" label="Titre de la question block" />

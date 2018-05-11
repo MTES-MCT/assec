@@ -39,7 +39,7 @@ export const routes = {
     },
     {
       exact: false,
-      icon: 'town-hall',
+      icon: 'map',
       path: '/departements',
       name: 'Départements',
       component: Departements,

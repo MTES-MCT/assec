@@ -20,17 +20,20 @@ class MarkdownEditor extends React.PureComponent {
 
   render () {
     const { preview } = this.state;
-    const { input, label, ...rest } = this.props;
+    const { input, label } = this.props;
     const editcss = (!preview && 'active') || '';
     const previewcss = (preview && 'active') || '';
     return (
       <div className="markdown-editor">
         <div className="markdown-editor-container">
-          <div className=" flex-columns flex-between">
+          <div className="markdown-editor-header">
             <span>
               <b>{label}</b>
             </span>
-            <nav className="markdown-editor-navs">
+          </div>
+          <div className="flex-columns flex-between">
+            <nav className="markdown-editor-styles" />
+            <nav className="markdown-editor-views">
               <button type="button"
                 disabled={!preview}
                 className={editcss}
@@ -52,8 +55,7 @@ class MarkdownEditor extends React.PureComponent {
           <div className="markdown-editor-views">
             <div className={`markdown-editor-raw ${editcss}`}
               style={{ display: (preview && 'none') || 'block' }}>
-              <textarea {...rest}
-                className="xlarge"
+              <textarea className="xlarge"
                 component="textarea"
                 defaultValue={input.value}
                 onChange={({ target }) => input.onChange(target.value)} />

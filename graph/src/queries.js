@@ -82,10 +82,10 @@ export const Query = {
         .exec()) ||
     null,
 
-  blocks: () => BlockModel.find().exec() || null,
-
-  questions: (_, { department }) =>
+  departmentQuestions: (_, { department }) =>
     QuestionModel.find({ department }).exec() || null,
+
+  blocks: () => BlockModel.find().exec() || null,
 
   departmentSubscribers: (_, { department }) =>
     (department && SubscriberModel.find({ department }).exec()) || null,

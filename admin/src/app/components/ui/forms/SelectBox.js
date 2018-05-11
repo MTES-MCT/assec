@@ -6,10 +6,16 @@ import { Field } from 'react-final-form';
 import SelectAdapter from './adpaters/Select';
 
 const SelectBox = ({
-  name, size, label, multiple, provider, ...rest
+  name,
+  size,
+  label,
+  inline,
+  multiple,
+  provider,
+  ...rest
 }) => (
   <p>
-    <label htmlFor={name}>
+    <label htmlFor={name} className={(inline && 'inline') || ''}>
       <span>{label}</span>
       <span className="selectbox">
         <Field id={name}
@@ -26,11 +32,13 @@ const SelectBox = ({
 
 SelectBox.defaultProps = {
   size: 1,
+  inline: false,
   multiple: false,
 };
 
 SelectBox.propTypes = {
   size: PropTypes.number,
+  inline: PropTypes.bool,
   multiple: PropTypes.bool,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,

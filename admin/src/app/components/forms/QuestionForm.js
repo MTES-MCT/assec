@@ -1,6 +1,7 @@
 import React from 'react';
-import { Form } from 'react-final-form';
+import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
+import { Form, Field } from 'react-final-form';
 
 // application
 import { CREATE_QUESTION, UPDATE_DEPARTMENT_QUESTIONS } from './../../apolloql';
@@ -47,11 +48,11 @@ const typeProvider = [
   },
 ];
 
-const QuestionForm = () => (
+const QuestionForm = ({ selected }) => (
   <Mutation mutation={CREATE_QUESTION} update={UPDATE_DEPARTMENT_QUESTIONS}>
     {(createQuestion, result) => (
       <Form validate={validator}
-        initialValues={initialValues}
+        initialValues={{ ...initialValues, department: selected }}
         render={({
           form, invalid, pristine, handleSubmit,
         }) => {
@@ -60,7 +61,9 @@ const QuestionForm = () => (
             <form onSubmit={handleSubmit} className="mb20">
               <fieldset>
                 <Legend label="Ajouter une question" />
-                <SelectBox name="type"
+                <Field name="department" type="hidden" component="input" />
+                <SelectBox disabled={disabled}
+                  name="type"
                   provider={typeProvider}
                   label="Type de la question" />
                 <TextInput disabled={disabled}
@@ -68,7 +71,7 @@ const QuestionForm = () => (
                   autoComplete="off"
                   label="Titre de la question" />
                 <MarkdownInput disabled={disabled}
-                  name="content"
+                  name="description"
                   label="Description de la question" />
                 <SubmitButton label="Ajouter"
                   invalid={invalid || result.loading}
@@ -85,5 +88,13 @@ const QuestionForm = () => (
     )}
   </Mutation>
 );
+
+QuestionForm.defaultProps = {
+  selected: null,
+};
+
+QuestionForm.propTypes = {
+  selected: PropTypes.string,
+};
 
 export default QuestionForm;
