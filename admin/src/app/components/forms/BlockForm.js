@@ -8,7 +8,7 @@ import { CREATE_BLOCK, UPDATE_ALL_BLOCKS } from './../../apolloql';
 import { slugify } from './../../core/utils/slugify';
 import Legend from './../../components/ui/forms/Legend';
 import TextInput from './../../components/ui/forms/TextInput';
-import SubmitButton from './../../components/ui/forms/SubmitButton';
+import FormButtons from './../../components/ui/forms/FormButtons';
 import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 
 const calculator = createDecorator({
@@ -58,9 +58,8 @@ const DepartementForm = () => (
                 <MarkdownInput disabled={disabled}
                   name="content"
                   label="Contenu du block" />
-                <SubmitButton label="Ajouter"
-                  invalid={invalid || result.loading}
-                  pristine={pristine || result.loading} />
+                <FormButtons reset={form.reset}
+                  disabled={invalid || pristine || result.loading} />
               </fieldset>
             </form>
           );

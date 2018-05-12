@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // application
 import CloseButton from './CloseButton';
-import CancelButton from './CancelButton';
+import { closePopin } from './../../../actions';
+import FormButtons from './../forms/FormButtons';
 import { noop } from './../../../core/utils/noop';
-import SubmitButton from './../forms/SubmitButton';
 
 class EditPopinForm extends React.PureComponent {
   renderHeader () {
@@ -25,7 +26,9 @@ class EditPopinForm extends React.PureComponent {
   }
 
   renderSidebar () {
-    const { entity, formprops, loading } = this.props;
+    const {
+      entity, formprops, loading, dispatch,
+    } = this.props;
     const ctime = (entity && new Date(entity.ctime).toLocaleString()) || '';
     const mtime = (entity && new Date(entity.mtime).toLocaleString()) || '';
     return (
@@ -42,11 +45,18 @@ class EditPopinForm extends React.PureComponent {
             <span>{mtime}</span>
           </li>
         </ul>
-        <SubmitButton label="Modifier"
+        <FormButtons display="rows"
+          labelCancel="Annuler"
+          labelSubmit="Modifier"
           submit={formprops.form.submit}
-          invalid={formprops.invalid || loading}
-          pristine={formprops.pristine || loading} />
-        <CancelButton disabled={loading} />
+          reset={() => {
+            formprops.form.reset();
+            dispatch(closePopin());
+          }}
+          disabled={{
+            cancel: false,
+            submit: formprops.invalid || formprops.pristine || loading,
+          }} />
       </React.Fragment>
     );
   }
@@ -71,10 +81,11 @@ EditPopinForm.propTypes = {
   loading: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   entity: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   suptitle: PropTypes.string.isRequired,
   // FIXME -> use shapeof instead of simple object
   formprops: PropTypes.object.isRequired,
 };
 
-export default EditPopinForm;
+export default connect()(EditPopinForm);

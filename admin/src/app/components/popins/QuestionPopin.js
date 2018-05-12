@@ -15,9 +15,6 @@ const validator = (values) => {
   if (!values.title || values.title === '') {
     errors.title = 'Required';
   }
-  if (!values.description || values.description === '') {
-    errors.description = 'Required';
-  }
   return errors;
 };
 

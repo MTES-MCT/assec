@@ -9,7 +9,7 @@ import Legend from './../../components/ui/forms/Legend';
 import TextArea from './../../components/ui/forms/TextArea';
 import TextInput from './../../components/ui/forms/TextInput';
 import NumberInput from './../../components/ui/forms/NumberInput';
-import SubmitButton from './../../components/ui/forms/SubmitButton';
+import FormButtons from './../../components/ui/forms/FormButtons';
 import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 
 const validator = (values) => {
@@ -71,9 +71,8 @@ const ZonesForm = ({ selected }) => (
                 <MarkdownInput disabled={moredisabled}
                   name="help"
                   label="Texte d'information utilisateur" />
-                <SubmitButton label="Ajouter"
-                  invalid={invalid}
-                  pristine={pristine} />
+                <FormButtons reset={form.reset}
+                  disabled={invalid || pristine || result.loading} />
               </fieldset>
             </form>
           );

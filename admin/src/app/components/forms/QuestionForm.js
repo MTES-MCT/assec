@@ -8,7 +8,7 @@ import { CREATE_QUESTION, UPDATE_DEPARTMENT_QUESTIONS } from './../../apolloql';
 import Legend from './../../components/ui/forms/Legend';
 import TextInput from './../../components/ui/forms/TextInput';
 import SelectBox from './../../components/ui/forms/SelectBox';
-import SubmitButton from './../../components/ui/forms/SubmitButton';
+import FormButtons from './../../components/ui/forms/FormButtons';
 import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 
 const validator = (values) => {
@@ -20,9 +20,6 @@ const validator = (values) => {
   }
   if (!values.title || values.title === '') {
     errors.title = 'Required';
-  }
-  if (!values.description || values.description === '') {
-    errors.description = 'Required';
   }
   return errors;
 };
@@ -73,9 +70,8 @@ const QuestionForm = ({ selected }) => (
                 <MarkdownInput disabled={disabled}
                   name="description"
                   label="Description de la question" />
-                <SubmitButton label="Ajouter"
-                  invalid={invalid || result.loading}
-                  pristine={pristine || result.loading} />
+                <FormButtons reset={form.reset}
+                  disabled={invalid || pristine || result.loading} />
               </fieldset>
             </form>
           );

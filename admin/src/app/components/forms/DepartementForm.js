@@ -15,7 +15,7 @@ import dptsutils from './../../core/utils/departments';
 import Legend from './../../components/ui/forms/Legend';
 import TagValues from './../../components/ui/forms/TagValues';
 import SelectBox from './../../components/ui/forms/SelectBox';
-import SubmitButton from './../../components/ui/forms/SubmitButton';
+import FormButtons from './../../components/ui/forms/FormButtons';
 
 const calculator = createDecorator({
   // permet de calculer une valeur en fonction d'une autre
@@ -102,9 +102,8 @@ const DepartementForm = () => (
                       placeholder="Nom de l'origine"
                       mutatorpush={form.mutators.unshift}
                       disabled={pristine || result.loading} />
-                    <SubmitButton label="Ajouter"
-                      invalid={invalid || result.loading}
-                      pristine={pristine || result.loading} />
+                    <FormButtons reset={form.reset}
+                      disabled={invalid || pristine || result.loading} />
                   </fieldset>
                 </form>
               )}

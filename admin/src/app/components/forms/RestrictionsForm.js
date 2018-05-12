@@ -11,7 +11,7 @@ import {
 } from './../../apolloql';
 import Legend from './../../components/ui/forms/Legend';
 import TextInput from './../../components/ui/forms/TextInput';
-import SubmitButton from './../../components/ui/forms/SubmitButton';
+import FormButtons from './../../components/ui/forms/FormButtons';
 import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 import CheckboxGroup from './../../components/ui/forms/CheckboxGroup';
 
@@ -50,7 +50,7 @@ const RestrictionsForm = ({ selected }) => (
             <Form validate={validator}
               initialValues={{ department: selected }}
               render={({
-                values, handleSubmit, pristine, invalid,
+                form, values, handleSubmit, pristine, invalid,
               }) => {
                 const disabled =
                   result.loading || !(selected && selected !== null);
@@ -95,7 +95,8 @@ const RestrictionsForm = ({ selected }) => (
                       <MarkdownInput disabled={cdisabled}
                         name="information"
                         label="Plus d'informations pédagogiques" />
-                      <SubmitButton pristine={pristine} invalid={invalid} />
+                      <FormButtons reset={form.reset}
+                        disabled={invalid || pristine || result.loading} />
                     </fieldset>
                   </form>
                 );

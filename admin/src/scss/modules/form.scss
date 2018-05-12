@@ -92,11 +92,6 @@ legend {
   border-radius: 4px 4px 0 0;
 }
 
-// FIXME -> last-child
-fieldset .submit-button {
-  margin-bottom: 0;
-}
-
 label span,
 .as-form-label span {
   padding: 7px 0;
@@ -181,4 +176,12 @@ fieldset .tagvalues,
 fieldset .radio-group,
 fieldset .checkbox-group {
   @extend .px12;
+}
+
+.flex-rows > .submit-button {
+  margin-top: 12px;
+}
+
+.flex-columns > .submit-button {
+  margin-left: 12px;
 }

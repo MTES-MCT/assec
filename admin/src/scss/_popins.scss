@@ -82,8 +82,7 @@
   overflow-x: hidden;
 }
 
-.popin-sidebar {
-  .submit-button button {
-    width: 100%;
-  }
+.popin-sidebar .cancel-button,
+.popin-sidebar .submit-button {
+  width: 100%;
 }
