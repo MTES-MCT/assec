@@ -2,13 +2,13 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import deepequal from 'fast-deep-equal';
+// import deepequal from 'fast-deep-equal';
 // import { bindActionCreators } from 'redux';
 import { Query } from 'react-apollo';
 // import { getFormValues, clearFields } from 'redux-form';
 
 // application
-import { FORM_NAME } from './constants';
+// import { FORM_NAME } from './constants';
 import { usedebug } from './core/utils/usedebug';
 import { LOAD_DEPARTMENT_WIDGET } from './apolloql';
 // import { formSubmit, loadForm } from './actions';
@@ -32,24 +32,24 @@ class PageComponent extends React.Component {
   // );
   // }
 
-  componentDidMount () {
-    const { client } = this.props;
-    // charge le schema du formulaire au chargement de la page
-    // this.actions.loadForm(client);
-  }
-
-  componentWillReceiveProps ({ stepskeys, choiceskeys }) {
-    if (deepequal(stepskeys, this.props.stepskeys)) {
-      // si le fil d'ariane contient les même éléments
-      return;
-    }
-    const filtered = choiceskeys.filter(key => !stepskeys.includes(key));
-    if (!filtered.length) return;
-    // Supprime les entrees du formulaire
-    // dont l'input n'est pas present dans le fil d'ariane
-    // utile dans le cas de stepBackward/stepFormard
-    this.actions.clearFields(FORM_NAME, false, false, filtered);
-  }
+  // componentDidMount () {
+  // const { client } = this.props;
+  // charge le schema du formulaire au chargement de la page
+  // this.actions.loadForm(client);
+  // }
+  //
+  // componentWillReceiveProps ({ stepskeys, choiceskeys }) {
+  //   if (deepequal(stepskeys, this.props.stepskeys)) {
+  //     // si le fil d'ariane contient les même éléments
+  //     return;
+  //   }
+  //   const filtered = choiceskeys.filter(key => !stepskeys.includes(key));
+  //   if (!filtered.length) return;
+  //   // Supprime les entrees du formulaire
+  //   // dont l'input n'est pas present dans le fil d'ariane
+  //   // utile dans le cas de stepBackward/stepFormard
+  //   this.actions.clearFields(FORM_NAME, false, false, filtered);
+  // }
 
   render () {
     const {
@@ -63,8 +63,7 @@ class PageComponent extends React.Component {
       // disabledsteps,
     } = this.props;
     return (
-      <Query query={LOAD_DEPARTMENT_WIDGET}
-        variables={{ department: '5ad84a9f73150f000eeaf0d0' }}>
+      <Query query={LOAD_DEPARTMENT_WIDGET} variables={{ code: '83' }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
@@ -108,7 +107,7 @@ class PageComponent extends React.Component {
 
 PageComponent.propTypes = {
   // client: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
   activestep: PropTypes.number.isRequired,
   // navigation
   // canforward: PropTypes.bool.isRequired,

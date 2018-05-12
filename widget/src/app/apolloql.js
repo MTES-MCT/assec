@@ -22,10 +22,10 @@ import gql from 'graphql-tag';
 
 export const LOAD_DEPARTMENT_WIDGET = gql(`
 query hydrateDepartment (
-  $department: ID!
+  $code: String!
 ) {
   hydrateDepartment (
-    department: $department
+    code: $code
   ) {
     usages {
       id
