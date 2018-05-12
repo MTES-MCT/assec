@@ -5,9 +5,23 @@ import ReactMarkdown from 'react-markdown';
 class MarkdownEditor extends React.PureComponent {
   constructor (props) {
     super(props);
-    this.state = { preview: false };
+    this.state = { preview: false, value: '' };
     this.showEditor = this.showEditor.bind(this);
     this.showPreview = this.showPreview.bind(this);
+    this.onTextareaChange = this.onTextareaChange.bind(this);
+  }
+
+  componentWillReceiveProps (nextprops) {
+    if (nextprops.input.value !== this.state.value) {
+      this.setState({ value: nextprops.input.value });
+    }
+  }
+
+  onTextareaChange (evt) {
+    evt.preventDefault();
+    const { value } = evt.target;
+    const { input } = this.props;
+    this.setState({ value }, () => input.onChange(value));
   }
 
   showEditor () {
@@ -19,8 +33,8 @@ class MarkdownEditor extends React.PureComponent {
   }
 
   render () {
-    const { preview } = this.state;
-    const { input, label } = this.props;
+    const { label } = this.props;
+    const { preview, value } = this.state;
     const editcss = (!preview && 'active') || '';
     const previewcss = (preview && 'active') || '';
     return (
@@ -56,15 +70,15 @@ class MarkdownEditor extends React.PureComponent {
             <div className={`markdown-editor-raw ${editcss}`}
               style={{ display: (preview && 'none') || 'block' }}>
               <textarea className="xlarge"
+                value={value}
                 component="textarea"
-                defaultValue={input.value}
-                onChange={({ target }) => input.onChange(target.value)} />
+                onChange={this.onTextareaChange} />
             </div>
             <div className={`markdown-editor-preview ${previewcss}`}
               style={{ display: (preview && 'block') || 'none' }}>
               <ReactMarkdown className="markdown-body"
                 escapeHtml={false}
-                source={input.value} />
+                source={value} />
             </div>
           </div>
         </div>
