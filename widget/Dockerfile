@@ -13,7 +13,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
 ENV NPM_CONFIG_LOGLEVEL warn
-RUN yarn install --production
+RUN yarn install
 
 # !!! DO NOT RUN AS `ROOT` !!!
 USER node

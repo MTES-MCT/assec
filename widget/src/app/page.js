@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
 // import deepequal from 'fast-deep-equal';
 // import { bindActionCreators } from 'redux';
 import { Query } from 'react-apollo';
@@ -18,26 +19,16 @@ import { LOAD_DEPARTMENT_WIDGET } from './apolloql';
 // import FormNavigation from './components/FormNavigation';
 
 class PageComponent extends React.Component {
-  // constructor (props) {
-  // super(props);
-  // const { dispatch } = props;
-  // this.actions = bindActionCreators(
-  //   {
-  //     loadForm,
-  //     formSubmit,
-  //     clearFields,
-  //     checkRequired,
-  //   },
-  //   dispatch,
-  // );
-  // }
+  constructor (props) {
+    super(props);
+    this.state = { code: null };
+  }
 
-  // componentDidMount () {
-  // const { client } = this.props;
-  // charge le schema du formulaire au chargement de la page
-  // this.actions.loadForm(client);
-  // }
-  //
+  componentWillMount () {
+    const parsed = queryString.parse(document.location.search);
+    this.setState({ code: parsed.department || null });
+  }
+
   // componentWillReceiveProps ({ stepskeys, choiceskeys }) {
   //   if (deepequal(stepskeys, this.props.stepskeys)) {
   //     // si le fil d'ariane contient les même éléments
@@ -62,8 +53,9 @@ class PageComponent extends React.Component {
       // canbackward,
       // disabledsteps,
     } = this.props;
+    const { code } = this.state;
     return (
-      <Query query={LOAD_DEPARTMENT_WIDGET} variables={{ code: '83' }}>
+      <Query query={LOAD_DEPARTMENT_WIDGET} variables={{ code }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
