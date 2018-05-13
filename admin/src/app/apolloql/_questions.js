@@ -8,7 +8,7 @@ mutation createQuestion(
   $title: String!
   $department: ID!
   $display: String!
-  $description: String!
+  $description: String
 ) {
   createQuestion(
     type: $type
@@ -35,7 +35,7 @@ mutation updateQuestion (
   $type: String!
   $title: String!
   $display: String!
-  $description: String!
+  $description: String
 ) {
   updateQuestion (
     id: $id

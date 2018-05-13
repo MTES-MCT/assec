@@ -4,7 +4,8 @@ type Mutation {
     type: String!
     title: String!
     department: ID!
-    description: String!
+    display: String!
+    description: String
   ): QuestionType
 
   createDepartement(
@@ -65,6 +66,7 @@ type Mutation {
     id: ID!
     type: String!
     title: String!
+    display: String!
     description: String!
   ): QuestionType
 

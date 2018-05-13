@@ -10,9 +10,13 @@ const QuestionSchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
+    display: {
       type: String,
       required: true,
+    },
+    description: {
+      type: String,
+      required: false,
     },
     department: { type: Schema.Types.ObjectId, ref: 'departments' },
   },

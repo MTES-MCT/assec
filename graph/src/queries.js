@@ -105,33 +105,36 @@ export const Query = {
         situations: { $in: [situations] },
       });
     }),
-
   retrieveBlocks: () => BlockModel.find(),
 
-  hydrateWidgetDepartment: (_, { department }) =>
-    Promise.all([
-      Departement.findById(department)
-        .populate('usages')
-        .populate('origines')
-        .populate('situations')
-        .exec(),
-      ZoneModel.find({ department })
-        .populate('alerte.situation')
-        .exec(),
-      QuestionModel.find({ department }),
-    ])
-      .then(([{ usages, origines, situations }, zones, questions]) =>
-        Promise.resolve(Object.assign(
-          {},
-          {
-            zones,
-            usages,
-            origines,
-            questions,
-            situations,
-          },
-        )))
-      .then(result => result),
+  hydrateWidgetDepartment: (_, { code }) =>
+    Departement.findOne({ code })
+      .populate('usages')
+      .populate('origines')
+      .populate('situations')
+      .exec()
+      .then(doc =>
+        QuestionModel.find({ department: doc.id }).then(questions =>
+          questions.map((quest) => {
+            console.log('quest.type', quest.type);
+            const rez = { ...quest.toObject(), values: doc[quest.type] || {} };
+            console.log('rez', rez);
+            return rez;
+          }))),
+  //   Promise.all([
+  //     Promise.resolve(doc),
+  //     ZoneModel.find({ department: doc.id })
+  //       .populate('alerte.situation')
+  //       .exec(),
+  //     QuestionModel.find({ department: doc.id }),
+  //   ]))
+  // .then(([{ usages, origines, situations }, zones, questions]) => ({
+  //   zones,
+  //   usages,
+  //   origines,
+  //   questions,
+  //   situations,
+  // })),
 };
 
 export default Query;

@@ -103,13 +103,12 @@ type QuestionType {
   type: String!
   title: String!
   department: ID!
-  description: String!
+  display: String!
+  description: String
+  values: [SUOType]
 }
 
 type WidgetType {
-  zones: [ZoneType]!
-  usages: [SUOType]!
-  origines: [SUOType]!
   situations: [SUOType]!
   questions: [QuestionType]!
 }

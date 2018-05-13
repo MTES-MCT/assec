@@ -27,39 +27,14 @@ query hydrateDepartment (
   hydrateDepartment (
     code: $code
   ) {
-    usages {
-      id
-      label
-    }
-    origines {
-      id
-      label
-    }
-    situations {
-      id
-      label
-    }
     questions {
       id
       type
       title
       description
-    }
-    zones {
-      id
-      help
-      name
-      label
-      order
-      geojson
-      shortname
-      alerte {
-        end_date
-        start_date
-        situation {
-          id
-          label
-        }
+      values {
+        id
+        label
       }
     }
   }
