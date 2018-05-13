@@ -47,7 +47,7 @@ query departmentZones (
     department: $department
   ) {
     id
-    help
+    description
     name
     mtime
     ctime
@@ -237,7 +237,7 @@ query zone (
     id: $id
   ) {
     id
-    help
+    description
     name
     label
     order

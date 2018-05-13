@@ -4,29 +4,29 @@ import { GET_DEPARTMENT_ZONES } from './queries';
 
 export const CREATE_ZONE = gql(`
 mutation createZone(
-  $help: String
   $name: String!
   $order: String!
   $department: ID!
   $geojson: String!
   $shortname: String!
+  $description: String
 ) {
   createZone(
-    help: $help
     name: $name
     order: $order
     geojson: $geojson
     shortname: $shortname
     department: $department
+    description: $description
   ) {
     id
-    help
     name
     label
     order
     geojson
     shortname
     department
+    description
     alerte {
       end_date
       start_date
@@ -42,22 +42,21 @@ mutation createZone(
 export const UPDATE_ZONE = gql(`
 mutation updateZone (
   $id: ID!
-  $help: String!
   $name: String!
   $order: String!
   $shortname: String!
+  $description: String!
   $alerte: AlerteInput!
 ) {
   updateZone (
     id: $id
     name: $name
-    help: $help
     order: $order
     alerte: $alerte
     shortname: $shortname
+    description: $description
   ) {
     id
-    help
     name
     label
     order
@@ -66,6 +65,7 @@ mutation updateZone (
     geojson
     shortname
     department
+    description
     alerte {
       end_date
       start_date

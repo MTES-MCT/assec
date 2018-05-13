@@ -43,7 +43,8 @@ const ZonePopin = ({ formprops: { values } }) => {
             name="alerte.situation.id"
             label="Selectionnez une situation"
             provider={(data && data.departmentSituations) || []} />
-          <MarkdownInput name="help" label="Texte d'information utilisateur" />
+          <MarkdownInput name="description"
+            label="Texte d'information utilisateur" />
         </div>
       )}
     </Query>

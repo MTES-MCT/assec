@@ -27,11 +27,11 @@ const validator = (values) => {
 };
 
 const initialValues = {
-  help: '',
   name: '',
   order: 0,
   geojson: '',
   shortname: '',
+  description: '',
 };
 
 const ZonesForm = ({ selected }) => (
@@ -70,7 +70,7 @@ const ZonesForm = ({ selected }) => (
                   placeholder="Profondeur des calques"
                   label="Ordre d'affichage de la zone" />
                 <MarkdownInput disabled={moredisabled}
-                  name="help"
+                  name="description"
                   label="Texte d'information utilisateur" />
                 <FormButtons disabled={sdisabled}
                   reset={() => form.reset(initialValues)} />

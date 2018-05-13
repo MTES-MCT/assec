@@ -11,7 +11,7 @@ const initialValues = {
 const provider = {
   types: [
     {
-      id: 'zones',
+      id: 'situations',
       label: 'Zones',
     },
     {
@@ -34,7 +34,7 @@ const provider = {
       label: 'Choix',
     },
     {
-      id: 'map_with_zone',
+      id: 'zones',
       label: 'Carte avec zones',
     },
   ],
@@ -63,7 +63,7 @@ const calculator = createDecorator({
     // ici c'est le code du département
     // qui permet de récupérer son nom dans la liste
     // prédéfinies des departements.json
-    display: value => (value === 'zones' && 'map_with_zone') || '',
+    display: value => (value === 'situations' && 'zones') || '',
   },
 });
 
