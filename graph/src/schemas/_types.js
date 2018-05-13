@@ -82,20 +82,30 @@ type AlerteType {
 
 type ZoneType {
   id: ID!
-  ctime: Date!
-  mtime: Date!
-  help: String
+  ctime: Date
+  mtime: Date
   name: String!
   label: String!
   order: String!
-  department: ID!
+  department: ID
   geojson: String!
   shortname: String!
   alerte: AlerteType
+  description: String
 }
 `;
 
 const widget = `
+type SituationExtendedType {
+  id: ID!
+  name: String!
+  label: String!
+  order: String!
+  geojson: String!
+  shortname: String!
+  description: String
+}
+
 type QuestionType {
   id: ID!
   order: Int!
@@ -106,13 +116,20 @@ type QuestionType {
   department: ID!
   display: String!
   description: String
-  zones: [ZoneType]
-  values: [SUOType]
 }
 
 type WidgetType {
-  situations: [SUOType]!
-  questions: [QuestionType]!
+  id: ID!
+  order: Int!
+  ctime: Date!
+  mtime: Date!
+  type: String!
+  title: String!
+  department: ID!
+  display: String!
+  description: String
+  zones: [SituationExtendedType]
+  values: [SUOType]
 }
 `;
 

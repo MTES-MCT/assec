@@ -28,12 +28,12 @@ type Mutation {
   ): RestrictionType
 
   createZone(
-    help: String
     name: String!
     order: String!
     department: ID!
     geojson: String!
     shortname: String!
+    description: String
   ): ZoneType
 
   createSubscriber(
@@ -56,10 +56,10 @@ type Mutation {
 
   updateZone(
     id: ID!
-    help: String
     name: String!
     order: String!
     shortname: String!
+    description: String
     alerte: AlerteInput!
   ): ZoneType
 

@@ -10,6 +10,24 @@ import {
   SubscriberModel,
 } from './drivers/mongodb';
 
+const toObjectOpts = { virtuals: true };
+
+const transformZoneToSituation = (zones) => {
+  const parsed = zones.map((obj) => {
+    const zone = obj.toObject(toObjectOpts);
+    const extras = pick(zone, [
+      'name',
+      'order',
+      'geojson',
+      'shortname',
+      'description',
+    ]);
+    const base = pick(zone.alerte.situation, ['id', 'label']);
+    return Object.assign({}, base, extras);
+  });
+  return parsed;
+};
+
 export const Query = {
   /* -----------------------------------
 
@@ -105,9 +123,10 @@ export const Query = {
         situations: { $in: [situations] },
       });
     }),
+
   retrieveBlocks: () => BlockModel.find(),
 
-  hydrateWidgetDepartment: (_, { code }) =>
+  widget: (_, { code }) =>
     Departement.findOne({ code })
       .populate('usages')
       .populate('origines')
@@ -117,27 +136,28 @@ export const Query = {
         Promise.all([
           Promise.resolve(doc),
           ZoneModel.find({ department: doc.id })
-            .populate('alerte.situation')
+            .populate('alerte.situation', ['label', 'id'])
             .exec(),
           QuestionModel.find({ department: doc.id }),
         ]))
       .then(([doc, zones, questions]) => {
-        const parsed = questions.map((entity) => {
-          const quest = entity.toObject({ virtuals: true });
+        const parsedQuestions = questions.map((entity) => {
+          const question = entity.toObject(toObjectOpts);
           const result = {
-            ...quest,
-            zones: (quest.type === 'zones' && zones) || null,
-            values: !doc[quest.type]
-              ? null
-              : doc[quest.type].toObject({ virtuals: true }),
+            ...question,
+            zones:
+              question.type !== 'zones'
+                ? null
+                : transformZoneToSituation(zones),
+            values:
+              question.type === 'zones'
+                ? null
+                : doc[question.type].toObject(toObjectOpts),
           };
           return result;
         });
 
-        return {
-          situations: doc.situations,
-          questions: orderby(parsed, ['order']),
-        };
+        return orderby(parsedQuestions, ['order']);
       }),
 };
 

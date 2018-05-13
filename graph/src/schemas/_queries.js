@@ -31,7 +31,7 @@ type Query {
 
   retrieveBlocks: [BlockType]
 
-  hydrateWidgetDepartment(department: ID): HydratedType
+  widget(code: String): [WidgetType]
 
   findRestictionByCriteria(
     zones: ID

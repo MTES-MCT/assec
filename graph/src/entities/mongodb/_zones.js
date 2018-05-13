@@ -15,14 +15,14 @@ const ZoneSchema = new Schema(
       default: '0',
       type: String,
     },
-    help: {
-      default: '',
-      type: String,
-      nullable: true,
-    },
     geojson: {
       type: String,
       required: true,
+    },
+    description: {
+      default: '',
+      type: String,
+      nullable: true,
     },
     alerte: {
       situation: { type: Schema.Types.ObjectId, ref: 'suos' },
