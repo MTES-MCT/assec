@@ -5,11 +5,9 @@ import { Field } from 'react-final-form';
 const getkey = (name, index) => `radio::${name}::${index}`;
 
 const RadioGroup = ({
-  name, label, provider, display, ...rest
+  name, label, inline, provider, ...rest
 }) => {
-  const cssclass = `flex-${
-    display !== 'inline' ? 'rows' : 'columns'
-  } flex-wrap wrap3`;
+  const cssclass = `flex-${inline ? 'columns' : 'rows'} flex-wrap wrap3`;
   return (
     <p className="radio-group pt12">
       <span className="as-form-label">
@@ -37,11 +35,11 @@ const RadioGroup = ({
 };
 
 RadioGroup.defaultProps = {
-  display: null,
+  inline: false,
 };
 
 RadioGroup.propTypes = {
-  display: PropTypes.string,
+  inline: PropTypes.bool,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   provider: PropTypes.array.isRequired,

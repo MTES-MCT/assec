@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 const TextInput = ({
-  label, inline, placeholder, name, ...rest
+  name,
+  label,
+  inline,
+  placeholder,
+  autoComplete,
+  ...rest
 }) => (
   <p>
     <label htmlFor={name} className={inline ? 'inline' : ''}>
@@ -13,7 +18,8 @@ const TextInput = ({
         id={name}
         name={name}
         component="input"
-        placeholder={placeholder} />
+        placeholder={placeholder}
+        autoComplete={autoComplete ? 'on' : 'off'} />
     </label>
   </p>
 );
@@ -21,10 +27,12 @@ const TextInput = ({
 TextInput.defaultProps = {
   inline: false,
   placeholder: '',
+  autoComplete: false,
 };
 
 TextInput.propTypes = {
   inline: PropTypes.bool,
+  autoComplete: PropTypes.bool,
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,

@@ -7,7 +7,7 @@ import { Field } from 'react-final-form';
 import MarkdownEditor from './adpaters/MarkdownEditor';
 
 const MarkdownInput = ({ name, label, ...rest }) => {
-  const classname = `markdown-input ${rest.className || ''}`;
+  const classname = `markdown-input my12 ${rest.className || ''}`;
   return (
     <div className={classname}>
       <Field {...omit(rest, ['className', 'inline'])}

@@ -51,7 +51,11 @@ const withEditPopin = (
                     formprops={formprops}
                     loading={result.loading}>
                     <WrappedComponent formprops={formprops}
-                      disabled={formprops.pristine || result.loading} />
+                      disabled={
+                        result.loading ||
+                        formprops.invalid ||
+                        formprops.pristine
+                      } />
                   </EditPopin>
                 )} />
             )}

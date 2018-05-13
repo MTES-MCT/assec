@@ -53,7 +53,6 @@ const DepartementForm = () => (
                 <Legend label="Ajouter un block CMS" />
                 <TextInput disabled={disabled}
                   name="label"
-                  autoComplete="off"
                   label="Titre du block" />
                 <TextInput disabled name="slug" label="Identifiant du block" />
                 <MarkdownInput disabled={disabled}

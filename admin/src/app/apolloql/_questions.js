@@ -7,11 +7,13 @@ mutation createQuestion(
   $type: String!
   $title: String!
   $department: ID!
+  $display: String!
   $description: String!
 ) {
   createQuestion(
     type: $type
     title: $title
+    display: $display
     department: $department
     description: $description
   ) {
@@ -20,6 +22,7 @@ mutation createQuestion(
     title
     mtime
     ctime
+    display
     department
     description
   }
@@ -31,12 +34,14 @@ mutation updateQuestion (
   $id: ID!
   $type: String!
   $title: String!
+  $display: String!
   $description: String!
 ) {
   updateQuestion (
     id: $id
     type: $type
     title: $title
+    display: $display
     description: $description
   ) {
     id
@@ -44,6 +49,7 @@ mutation updateQuestion (
     title
     mtime
     ctime
+    display
     department
     description
   }

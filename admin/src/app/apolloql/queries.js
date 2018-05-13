@@ -80,6 +80,7 @@ query departmentQuestions (
     title
     mtime
     ctime
+    display
     department
     description
   }
@@ -268,6 +269,7 @@ query question (
     title
     mtime
     ctime
+    display
     department
     description
   }
