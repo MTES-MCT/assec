@@ -12,7 +12,7 @@ const TextArea = ({
         id={name}
         name={name}
         component="textarea"
-        className={!large ? '' : 'large'} />
+        className={!large ? '' : 'xlarge'} />
     </label>
   </p>
 );

@@ -2,6 +2,7 @@
 @import './static/leaflet/leaflet.css';
 @import './static/fontello/css/animation.css';
 @import './static/fontello/css/fontello-embedded.css';
+@import './static/react-draft-wysiwyg/react-draft-wysiwyg.css';
 
 // SCSS Files
 @import './_base.scss';
@@ -21,3 +22,4 @@
 @import './modules/toasts.scss';
 @import './modules/preloader.scss';
 @import './modules/navigation.scss';
+@import './modules/markdown-editor.scss';

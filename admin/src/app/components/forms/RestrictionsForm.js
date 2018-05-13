@@ -43,12 +43,13 @@ const RestrictionsForm = ({ selected }) => (
       const {
         departmentSUOs: { situations, usages, origines },
       } = data;
+      const initialValues = { department: selected };
       return (
         <Mutation mutation={CREATE_RESTRICTION}
           update={UPDATE_DEPARTMENT_RESTRICTIONS}>
           {(createRestriction, result) => (
             <Form validate={validator}
-              initialValues={{ department: selected }}
+              initialValues={initialValues}
               render={({
                 form, values, handleSubmit, pristine, invalid,
               }) => {
@@ -63,6 +64,7 @@ const RestrictionsForm = ({ selected }) => (
                   ddisabled ||
                   !values.description ||
                   values.description.trim() === '';
+                const sdisabled = invalid || pristine || result.loading;
                 return (
                   <form onSubmit={handleSubmit} className="mb40">
                     <span name="restriction-form-anchor" />
@@ -95,8 +97,8 @@ const RestrictionsForm = ({ selected }) => (
                       <MarkdownInput disabled={cdisabled}
                         name="information"
                         label="Plus d'informations pédagogiques" />
-                      <FormButtons reset={form.reset}
-                        disabled={invalid || pristine || result.loading} />
+                      <FormButtons disabled={sdisabled}
+                        reset={() => form.reset(initialValues)} />
                     </fieldset>
                   </form>
                 );

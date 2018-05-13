@@ -76,37 +76,43 @@ const DepartementForm = () => (
               initialValues={initialValues}
               render={({
                 form, invalid, pristine, handleSubmit,
-              }) => (
-                <form onSubmit={handleSubmit} className="mb20">
-                  <fieldset>
-                    <Field name="label" type="hidden" component="input" />
-                    <Legend label="Ajouter un département" />
-                    <SelectBox name="code"
-                      label="Département"
-                      provider={dptslist.map(obj => ({
-                        id: obj.departmentCode,
-                        label: `${obj.departmentCode} - ${obj.departmentName}`,
-                      }))} />
-                    <TagValues name="situations"
-                      label="Situations"
-                      placeholder="Nom de la situation"
-                      mutatorpush={form.mutators.unshift}
-                      disabled={pristine || result.loading} />
-                    <TagValues name="usages"
-                      label="Usages"
-                      placeholder="Nom de l'usage"
-                      disabled={pristine || result.loading}
-                      mutatorpush={form.mutators.unshift} />
-                    <TagValues name="origines"
-                      label="Origines"
-                      placeholder="Nom de l'origine"
-                      mutatorpush={form.mutators.unshift}
-                      disabled={pristine || result.loading} />
-                    <FormButtons reset={form.reset}
-                      disabled={invalid || pristine || result.loading} />
-                  </fieldset>
-                </form>
-              )}
+              }) => {
+                const disabled = pristine || result.loading;
+                const sdisabled = invalid || pristine || result.loading;
+                return (
+                  <form onSubmit={handleSubmit} className="mb20">
+                    <fieldset>
+                      <Field name="label" type="hidden" component="input" />
+                      <Legend label="Ajouter un département" />
+                      <SelectBox name="code"
+                        label="Département"
+                        provider={dptslist.map(obj => ({
+                          id: obj.departmentCode,
+                          label: `${obj.departmentCode} - ${
+                            obj.departmentName
+                          }`,
+                        }))} />
+                      <TagValues name="situations"
+                        label="Situations"
+                        placeholder="Nom de la situation"
+                        mutatorpush={form.mutators.unshift}
+                        disabled={disabled} />
+                      <TagValues name="usages"
+                        label="Usages"
+                        placeholder="Nom de l'usage"
+                        disabled={disabled}
+                        mutatorpush={form.mutators.unshift} />
+                      <TagValues name="origines"
+                        label="Origines"
+                        placeholder="Nom de l'origine"
+                        mutatorpush={form.mutators.unshift}
+                        disabled={disabled} />
+                      <FormButtons disabled={sdisabled}
+                        reset={() => form.reset(initialValues)} />
+                    </fieldset>
+                  </form>
+                );
+              }}
               onSubmit={(variables, form) =>
                 createDepartement({ variables })
                   .then(() => form.reset())

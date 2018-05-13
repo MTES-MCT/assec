@@ -1,11 +1,13 @@
 const path = require('path');
 const express = require('express');
+const compression = require('compression');
 const usedebug = require('./server/usedebug');
 
 const app = express();
 const www = path.join(__dirname, 'public');
 
 // serve main HTML file
+app.use(compression());
 app.use(express.static(www));
 app.get('/*', (req, res) => {
   const indexfile = path.join(www, 'index.html');

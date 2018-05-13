@@ -46,6 +46,7 @@ const DepartementForm = () => (
           form, invalid, pristine, handleSubmit,
         }) => {
           const disabled = result.loading;
+          const sdisabled = invalid || pristine || result.loading;
           return (
             <form onSubmit={handleSubmit} className="mb20">
               <fieldset>
@@ -58,8 +59,8 @@ const DepartementForm = () => (
                 <MarkdownInput disabled={disabled}
                   name="content"
                   label="Contenu du block" />
-                <FormButtons reset={form.reset}
-                  disabled={invalid || pristine || result.loading} />
+                <FormButtons disabled={sdisabled}
+                  reset={() => form.reset(initialValues)} />
               </fieldset>
             </form>
           );

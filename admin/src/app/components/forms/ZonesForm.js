@@ -49,6 +49,7 @@ const ZonesForm = ({ selected }) => (
             !form.name === '' ||
             !form.shortname === '' ||
             !(selected && selected !== null);
+          const sdisabled = invalid || pristine || result.loading;
           return (
             <form onSubmit={handleSubmit} className="mb20">
               <fieldset>
@@ -71,8 +72,8 @@ const ZonesForm = ({ selected }) => (
                 <MarkdownInput disabled={moredisabled}
                   name="help"
                   label="Texte d'information utilisateur" />
-                <FormButtons reset={form.reset}
-                  disabled={invalid || pristine || result.loading} />
+                <FormButtons disabled={sdisabled}
+                  reset={() => form.reset(initialValues)} />
               </fieldset>
             </form>
           );

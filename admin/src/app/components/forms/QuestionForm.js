@@ -53,25 +53,23 @@ const QuestionForm = ({ selected }) => (
         render={({
           form, invalid, pristine, handleSubmit,
         }) => {
-          const disabled = result.loading;
+          const disabled = invalid || pristine || result.loading;
           return (
             <form onSubmit={handleSubmit} className="mb20">
               <fieldset>
                 <Legend label="Ajouter une question" />
                 <Field name="department" type="hidden" component="input" />
-                <SelectBox disabled={disabled}
-                  name="type"
+                <SelectBox name="type"
                   provider={typeProvider}
                   label="Type de la question" />
-                <TextInput disabled={disabled}
-                  name="title"
+                <TextInput name="title"
                   autoComplete="off"
                   label="Titre de la question" />
                 <MarkdownInput disabled={disabled}
                   name="description"
                   label="Description de la question" />
-                <FormButtons reset={form.reset}
-                  disabled={invalid || pristine || result.loading} />
+                <FormButtons disabled={disabled}
+                  reset={() => form.reset(initialValues)} />
               </fieldset>
             </form>
           );

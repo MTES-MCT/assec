@@ -26,9 +26,11 @@ $greenActive: #68992A;
 
 $gray: #EEEEEE;
 $grayActive: #999999;
+$grayDisabled: #F1F1F1;
 
 $grey: #CCCCCC;
 $greyActive: #666666;
+$greyDisabled: #F8F8F8;
 
 $blue: #5DAEF2;
 $blueActive: #188FFF;
@@ -53,7 +55,7 @@ body {
 --------------------- */
 
 fieldset {
-  background-color: #F8F8F8;
+  background-color: $greyDisabled;
 }
 
 legend {
@@ -64,13 +66,9 @@ legend {
 textarea,
 input[type='text'],
 input[type='number'],
-.markdown-editor-preview {
+.markdown-editor .markdown-draft-editor {
+  border-color: $gray;
   background-color: $white;
-  border-color: rgba(0, 0, 0, 0.2);
-}
-
-.markdown-editor-preview {
-  background-color: $gray;
 }
 
 button {
@@ -143,7 +141,7 @@ table {
 
 thead {
   color: $grayActive;
-  background-color: #F8F8F8;
+  background-color: $greyDisabled;
 }
 
 tbody {
@@ -152,7 +150,7 @@ tbody {
 }
 
 tr:nth-child(even) {
-  background-color: #F8F8F8;
+  background-color: $greyDisabled;
 }
 
 thead tr:active {
@@ -173,6 +171,12 @@ th {
 .selectbox {
   background-color: $white;
   border-color: rgba(0, 0, 0, 0.2);
+}
+
+.tagvalues,
+.radio-group,
+.checkbox-group {
+  background-color: $greyDisabled;
 }
 
 fieldset .tagvalues,
