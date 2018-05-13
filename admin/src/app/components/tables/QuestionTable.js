@@ -67,6 +67,12 @@ class QuestionTable extends React.PureComponent {
                       type: 'title',
                       label: `${len} Questions`,
                     },
+                    {
+                      key: 'order',
+                      type: 'order',
+                      label: 'Ordre',
+                      cssclass: 'small align-center',
+                    },
                   ]} />
               )}
             </React.Fragment>

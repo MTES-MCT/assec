@@ -1,5 +1,5 @@
 import pick from 'lodash.pick';
-// import omit from 'lodash.omit';
+import orderby from 'lodash.orderby';
 import {
   // SUOModel,
   ZoneModel,
@@ -124,16 +124,20 @@ export const Query = {
       .then(([doc, zones, questions]) => {
         const parsed = questions.map((entity) => {
           const quest = entity.toObject({ virtuals: true });
-          const rez = {
+          const result = {
             ...quest,
             zones: (quest.type === 'zones' && zones) || null,
             values: !doc[quest.type]
               ? null
               : doc[quest.type].toObject({ virtuals: true }),
           };
-          return rez;
+          return result;
         });
-        return { questions: parsed, situations: doc.situations };
+
+        return {
+          situations: doc.situations,
+          questions: orderby(parsed, ['order']),
+        };
       }),
 };
 

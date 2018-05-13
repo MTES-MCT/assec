@@ -5,6 +5,7 @@ import { GET_QUESTION, UPDATE_QUESTION } from './../../apolloql';
 import TextInput from './../ui/forms/TextInput';
 import SelectBox from './../ui/forms/SelectBox';
 import RadioGroup from './../ui/forms/RadioGroup';
+import NumberInput from './../ui/forms/NumberInput';
 import MarkdownInput from './../ui/forms/MarkdownInput';
 import withEditPopin from './../ui/popins/withEditPopin';
 import { questions } from './../../components/forms/helpers/questions';
@@ -12,6 +13,7 @@ import { questions } from './../../components/forms/helpers/questions';
 const QuestionPopin = () => (
   <div className="flex-rows">
     <TextInput inline name="title" label="Titre de la question block" />
+    <NumberInput inline name="order" label="Ordre d'affichage de la question" />
     <RadioGroup inline
       name="type"
       provider={questions.provider.types}

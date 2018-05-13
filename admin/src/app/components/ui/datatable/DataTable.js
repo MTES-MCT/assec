@@ -71,13 +71,9 @@ class DataTable extends React.PureComponent {
 
 DataTable.defaultProps = {
   actions: null,
-  // expandable: false,
-  // selectable: false,
 };
 
 DataTable.propTypes = {
-  // selectable: PropTypes.bool,
-  // expandable: PropTypes.bool,
   actions: PropTypes.object,
   cols: PropTypes.array.isRequired,
   provider: PropTypes.array.isRequired,

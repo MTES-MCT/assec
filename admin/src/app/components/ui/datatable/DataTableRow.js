@@ -39,7 +39,7 @@ class DataTableRow extends React.PureComponent {
       <tr {...debugprops}>
         {cols &&
           cols.map(col => (
-            <td className={col.type || col.key}
+            <td className={`${col.type || col.key} ${col.cssclass || ''}`}
               key={`datatablerow::tr::${data.id}::td::${col.key}`}>
               <span>{data[col.key]}</span>
             </td>

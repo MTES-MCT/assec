@@ -10,6 +10,10 @@ const QuestionSchema = new Schema(
       type: String,
       required: true,
     },
+    order: {
+      type: Number,
+      required: true,
+    },
     display: {
       type: String,
       required: true,

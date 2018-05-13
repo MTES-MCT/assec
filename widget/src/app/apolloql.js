@@ -31,6 +31,7 @@ query hydrateDepartment (
       id
       type
       title
+      order
       description
       values {
         id

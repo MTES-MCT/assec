@@ -77,6 +77,7 @@ query departmentQuestions (
   ) {
     id
     type
+    order
     title
     mtime
     ctime
@@ -266,6 +267,7 @@ query question (
   ) {
     id
     type
+    order
     title
     mtime
     ctime

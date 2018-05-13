@@ -10,6 +10,7 @@ import TextInput from './../../components/ui/forms/TextInput';
 import SelectBox from './../../components/ui/forms/SelectBox';
 import RadioGroup from './../../components/ui/forms/RadioGroup';
 import FormButtons from './../../components/ui/forms/FormButtons';
+import NumberInput from './../../components/ui/forms/NumberInput';
 import MarkdownInput from './../../components/ui/forms/MarkdownInput';
 import { questions } from './../../components/forms/helpers/questions';
 
@@ -30,6 +31,9 @@ const QuestionForm = ({ selected }) => (
                 <Legend label="Ajouter une question" />
                 <Field name="department" type="hidden" component="input" />
                 <TextInput name="title" label="Titre de la question" />
+                <NumberInput disabled={disabled && errors.title}
+                  name="order"
+                  label="Ordre d'affichage de la question" />
                 <RadioGroup inline
                   name="type"
                   provider={questions.provider.types}

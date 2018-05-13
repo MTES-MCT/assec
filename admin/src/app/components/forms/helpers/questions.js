@@ -2,6 +2,7 @@ import createDecorator from 'final-form-calculate';
 
 const initialValues = {
   type: '',
+  order: 0,
   title: '',
   display: '',
   description: '',

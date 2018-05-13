@@ -4,6 +4,7 @@ import { GET_DEPARTMENT_QUESTIONS } from './queries';
 
 export const CREATE_QUESTION = gql(`
 mutation createQuestion(
+  $order: Int!
   $type: String!
   $title: String!
   $department: ID!
@@ -12,6 +13,7 @@ mutation createQuestion(
 ) {
   createQuestion(
     type: $type
+    order: $order
     title: $title
     display: $display
     department: $department
@@ -19,6 +21,7 @@ mutation createQuestion(
   ) {
     id
     type
+    order
     title
     mtime
     ctime
@@ -32,6 +35,7 @@ mutation createQuestion(
 export const UPDATE_QUESTION = gql(`
 mutation updateQuestion (
   $id: ID!
+  $order: Int!
   $type: String!
   $title: String!
   $display: String!
@@ -41,11 +45,13 @@ mutation updateQuestion (
     id: $id
     type: $type
     title: $title
+    order: $order
     display: $display
     description: $description
   ) {
     id
     type
+    order
     title
     mtime
     ctime

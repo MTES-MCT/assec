@@ -1,6 +1,7 @@
 export default `
 type Mutation {
   createQuestion(
+    order: Int!
     type: String!
     title: String!
     department: ID!
@@ -64,10 +65,11 @@ type Mutation {
 
   updateQuestion(
     id: ID!
+    order: Int!
     type: String!
     title: String!
     display: String!
-    description: String!
+    description: String
   ): QuestionType
 
   updateDepartement(

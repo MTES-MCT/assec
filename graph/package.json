@@ -15,8 +15,8 @@
     "graphql-tools": "^2.23.1",
     "isemail": "^3.1.2",
     "lodash.omit": "^4.5.0",
+    "lodash.orderby": "^4.6.0",
     "lodash.pick": "^4.4.0",
-    "lodash.times": "^4.3.2",
     "mongoose": "^5.0.12",
     "zlib": "^1.0.5"
   },

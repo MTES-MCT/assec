@@ -98,6 +98,7 @@ type ZoneType {
 const widget = `
 type QuestionType {
   id: ID!
+  order: Int!
   ctime: Date!
   mtime: Date!
   type: String!
