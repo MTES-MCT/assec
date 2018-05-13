@@ -1,34 +1,69 @@
-.flex0 {
+.flex-0 {
   flex: 0;
 }
 
-.flex1 {
+.flex-1 {
   flex: 1;
 }
 
-.flex2 {
+.flex-2 {
   flex: 2;
 }
 
-.flex3 {
+.flex-3 {
   flex: 3;
 }
 
-.flex4 {
+.flex-4 {
   flex: 4;
 }
 
-/* ----- MARGIN ----- */
+/* --------------------------------------------
 
-.mt20 {
-  margin-top: 20px;
+ FLEX Alignments
+
+-------------------------------------------- */
+
+.flex-columns {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
 }
 
-.mb20 {
-  margin-bottom: 20px;
+.flex-rows {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.my20 {
-  @extend .mt20;
-  @extend .mb20;
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-start {
+  justify-content: start;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-around {
+  justify-content: space-around;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }

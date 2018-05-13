@@ -80,9 +80,9 @@ class MapViewComponent extends React.PureComponent {
     } = this.props;
     const ordered = orderby(zones, ['order'], ['asc']);
     return (
-      <Map zoomControl={usezoom}
-        center={center}
+      <Map center={center}
         maxZoom={maxzoom}
+        zoomControl={usezoom}
         zoom={this.props.zoom}
         onZoomEnd={this.onZoomEnd}
         ref={(ref) => {
@@ -104,7 +104,7 @@ class MapViewComponent extends React.PureComponent {
             const zIndex = getzindex(index);
             const opacity = getopacity(this.state.zoom);
             return (
-              <Field key={`mapzone_${obj.id}`}
+              <Field key={`mapzone_${obj.zoneid}`}
                 name="choice"
                 selected={selected}
                 component={GeoJSONLayer}

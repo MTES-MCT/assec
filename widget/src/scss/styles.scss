@@ -6,8 +6,10 @@
 @import './_base.scss';
 @import './_form.scss';
 @import './_grid.scss';
+@import './_margins.scss';
 
 // application
-@import './layouts/map.scss';
 @import './layouts/base.scss';
-@import './layouts/theme.scss';
+@import './layouts/map.scss';
+@import './layouts/form.scss';
+// @import './layouts/theme.scss';

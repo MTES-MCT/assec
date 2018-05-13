@@ -14,11 +14,13 @@ class GeoJSONLayerInput extends React.PureComponent {
     const {
       input, dispatch, selected, obj,
     } = this.props;
-    const isselected = obj.id === selected;
-    input.onChange(obj.id);
+    const isselected = obj.zoneid === selected;
+    console.log('obj', obj);
+    input.onChange(obj.zoneid);
     dispatch({
-      type: 'onAreaSelected',
-      id: isselected ? null : obj.id,
+      id: obj.id,
+      type: 'onZoneSelected',
+      zoneid: isselected ? null : obj.zoneid,
     });
   }
 
@@ -27,18 +29,18 @@ class GeoJSONLayerInput extends React.PureComponent {
       zIndex,
       opacity,
       selected,
-      obj: { geojson, id, shortname },
+      obj: { geojson, zoneid, shortname },
     } = this.props;
-    const isselected = id === selected;
+    const isselected = zoneid === selected;
     const geojsonprops = {
-      data: geojson,
+      data: JSON.parse(geojson),
       onClick: this.clickHandler,
     };
     return (
       <GeoJSON {...geojsonprops}
         order={zIndex}
         style={() => ({ fillOpacity: opacity })}
-        key={`mapzone_${id}${(isselected && '_active') || ''}`}
+        key={`mapzone_${zoneid}${(isselected && '_active') || ''}`}
         className={`geojson-layer ${(isselected && 'active') || ''}`}>
         <Tooltip sticky direction="right" offset={[7, 0]}>
           <span>

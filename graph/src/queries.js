@@ -23,7 +23,7 @@ const transformZoneToSituation = (zones) => {
       'description',
     ]);
     const base = pick(zone.alerte.situation, ['id', 'label']);
-    return Object.assign({}, base, extras);
+    return Object.assign({}, base, extras, { zoneid: zone.id });
   });
   return parsed;
 };
@@ -130,7 +130,6 @@ export const Query = {
     Departement.findOne({ code })
       .populate('usages')
       .populate('origines')
-      .populate('situations')
       .exec()
       .then(doc =>
         Promise.all([
@@ -146,11 +145,11 @@ export const Query = {
           const result = {
             ...question,
             zones:
-              question.type !== 'zones'
+              question.type !== 'situations'
                 ? null
                 : transformZoneToSituation(zones),
             values:
-              question.type === 'zones'
+              question.type === 'situations'
                 ? null
                 : doc[question.type].toObject(toObjectOpts),
           };

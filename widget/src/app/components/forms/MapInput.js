@@ -22,25 +22,17 @@ class MapInput extends React.PureComponent {
   }
 
   render () {
-    const {
-      id, help, label, values, center,
-    } = this.props;
+    const { id, values, center } = this.props;
     const { showsatellite, geocenter } = this.state;
     return (
       <FormSection name={id} component="fieldset">
         <div className="input-type-map">
-          <div className="flex-columns">
-            <div className="flex1">
-              <h3>{label}</h3>
-              {help && <p>{help}</p>}
-            </div>
-            <div id="leaflet-map" className="leaflet-map flex2">
-              <MapControls onToggleView={this.onToggleView}
-                onGeolocation={this.onGeolocation} />
-              <MapView zones={values}
-                center={geocenter || center}
-                showsatellite={showsatellite} />
-            </div>
+          <div id="leaflet-map" className="leaflet-map flex2">
+            <MapControls onToggleView={this.onToggleView}
+              onGeolocation={this.onGeolocation} />
+            <MapView zones={values}
+              center={geocenter || center}
+              showsatellite={showsatellite} />
           </div>
         </div>
       </FormSection>
@@ -58,9 +50,7 @@ MapInput.propTypes = {
   // FIXME -> use shapeof
   center: PropTypes.object,
   id: PropTypes.string.isRequired,
-  help: PropTypes.string.isRequired,
   values: PropTypes.array.isRequired,
-  label: PropTypes.string.isRequired,
 };
 
 export default MapInput;

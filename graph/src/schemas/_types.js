@@ -96,16 +96,6 @@ type ZoneType {
 `;
 
 const widget = `
-type SituationExtendedType {
-  id: ID!
-  name: String!
-  label: String!
-  order: String!
-  geojson: String!
-  shortname: String!
-  description: String
-}
-
 type QuestionType {
   id: ID!
   order: Int!
@@ -115,6 +105,17 @@ type QuestionType {
   title: String!
   department: ID!
   display: String!
+  description: String
+}
+
+type SituationExtendedType {
+  id: ID!
+  zoneid: ID!
+  name: String!
+  label: String!
+  order: String!
+  geojson: String!
+  shortname: String!
   description: String
 }
 

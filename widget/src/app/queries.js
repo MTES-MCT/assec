@@ -21,36 +21,31 @@ import gql from 'graphql-tag';
 // `);
 
 export const LOAD_DEPARTMENT_WIDGET = gql(`
-query hydrateDepartment (
+query widget (
   $code: String!
 ) {
-  hydrateDepartment (
+  widget (
     code: $code
   ) {
-    questions {
+    id
+    type
+    title
+    order
+    display
+    description
+    values {
       id
-      type
-      title
+      label
+    }
+    zones {
+      id
+      name
+      label
       order
+      zoneid
+      geojson
+      shortname
       description
-      values {
-        id
-        label
-      }
-      zones {
-        id
-        label
-        geojson
-        shortname
-        alerte {
-          end_date
-          start_date
-          situation {
-            id
-            label
-          }
-        }
-      }
     }
   }
 }

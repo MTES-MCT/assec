@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { ConnectedRouter } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
 
 // application
 import './styles.css';
 import Page from './app/page';
 import { configure } from './app/store';
 import { Logger } from './app/core/logger';
+import { createClient } from './app/apollo';
 
 Logger.debug(`
   **** Widget Application Debug ****
@@ -19,20 +17,14 @@ Logger.debug(`
   REACT_APP_GRAPHQL_URI => ${process.env.REACT_APP_GRAPHQL_URI}
 `);
 
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_URI,
-});
-
 // application
-const history = createHistory();
-const store = configure(history);
+const store = configure();
+const client = createClient(process.env.REACT_APP_GRAPHQL_URI);
 const Root = () => (
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <ApolloProvider client={client}>
-        <Page />
-      </ApolloProvider>
-    </ConnectedRouter>
+    <ApolloProvider client={client}>
+      <Page />
+    </ApolloProvider>
   </Provider>
 );
 
