@@ -3,10 +3,10 @@ table {
   max-width: 100%;
   min-width: 100%;
   font-size: 12px;
+  overflow: scroll;
   text-align: left;
   border-spacing: 0;
-  overflow-x: scroll;
-  table-layout: fixed;
+  // table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -16,10 +16,9 @@ th {
 
 th,
 td {
-  width: 1px;
-  max-width: 0;
   overflow: hidden;
   padding: 12px 15px;
+  display: table-cell;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -27,21 +26,4 @@ td {
 th:last-child,
 td:last-child {
   border-right: 0;
-}
-
-.small {
-  width: 70px;
-  max-width: 70px;
-  text-align: center;
-}
-
-.medium {
-  width: 200px;
-  max-width: 200px;
-}
-
-table .small button {
-  @extend .p7;
-
-  width: auto;
 }

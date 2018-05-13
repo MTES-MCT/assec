@@ -51,6 +51,9 @@ class DataTable extends React.PureComponent {
     return (
       <div className="datatable">
         <table>
+          <caption>
+            <span>{(provider && provider.length) || 0} élément(s)</span>
+          </caption>
           {this.renderColGroup(actionscol)}
           {this.renderTableHead(actionscol)}
           <tbody>

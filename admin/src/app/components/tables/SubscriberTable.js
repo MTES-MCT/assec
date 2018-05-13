@@ -40,7 +40,6 @@ class SubscribersTable extends React.PureComponent {
           if (error) return <p>Error </p>;
           const provider = data.departmentSubscribers || null;
           const hasentities = provider && provider.length > 0;
-          const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
@@ -57,7 +56,7 @@ class SubscribersTable extends React.PureComponent {
                   cols={[
                     {
                       key: 'email',
-                      label: `${len} Inscrits`,
+                      label: 'Inscrits',
                     },
                   ]} />
               )}

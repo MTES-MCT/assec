@@ -1,22 +1,31 @@
 .datatable {
   width: 100%;
   display: block;
+  overflow: auto;
 }
 
-.datatable table .small,
-.datatable table .expands,
 .datatable table .actions {
   padding: 7px;
   text-align: center;
 }
 
-.datatable table .small {
-  width: 5px;
+.datatable table caption {
+  padding: 12px;
 }
 
-/* .datatable table .expands,
-.datatable table .bulkable {
-  width: 3px;
+/* .datatable table .small {
+  width: 70px;
+  max-width: 70px;
+}
+
+.datatable table .medium {
+  width: 120px;
+  max-width: 120px;
+}
+
+.datatable table .large {
+  width: 200px;
+  max-width: 200px;
 } */
 
 .datatable table .actions button ~ button {

@@ -38,7 +38,7 @@ const ZonePopin = ({ formprops: { values } }) => {
             label="Ordre d'affichage de la zone" />
           <TextInput inline name="shortname" label="Nom court de la zone" />
           <TextInput inline name="name" label="Nom long de la zone" />
-          <RadioGroup display="inline"
+          <RadioGroup inline
             disabled={loading}
             name="alerte.situation.id"
             label="Selectionnez une situation"

@@ -46,7 +46,6 @@ class QuestionTable extends React.PureComponent {
           if (error) return <p>Error </p>;
           const provider = data.departmentQuestions || null;
           const hasentities = provider && provider.length > 0;
-          const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
@@ -64,12 +63,10 @@ class QuestionTable extends React.PureComponent {
                   cols={[
                     {
                       key: 'title',
-                      type: 'title',
-                      label: `${len} Questions`,
+                      label: 'Questions',
                     },
                     {
                       key: 'order',
-                      type: 'order',
                       label: 'Ordre',
                       cssclass: 'small align-center',
                     },

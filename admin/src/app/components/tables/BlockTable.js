@@ -44,7 +44,6 @@ class BlockTable extends React.PureComponent {
           if (error) return <p>Error </p>;
           const provider = data.blocks || null;
           const hasentities = provider && provider.length > 0;
-          const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
@@ -62,8 +61,7 @@ class BlockTable extends React.PureComponent {
                   cols={[
                     {
                       key: 'slug',
-                      type: 'slug',
-                      label: `${len} Blocks CMS`,
+                      label: 'Blocks CMS',
                     },
                   ]} />
               )}

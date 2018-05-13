@@ -55,7 +55,6 @@ class ZonesTable extends React.PureComponent {
           if (error) return <p>Error </p>;
           const provider = data.departmentZones || null;
           const hasentities = provider && provider.length > 0;
-          const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
@@ -73,12 +72,17 @@ class ZonesTable extends React.PureComponent {
                   cols={[
                     {
                       key: 'label',
-                      label: `${len} Zones`,
+                      label: 'Zone',
+                    },
+                    {
+                      cssclass: 'medium',
+                      label: 'Situation',
+                      key: 'alerte.situation.label',
                     },
                     {
                       key: 'order',
-                      type: 'small',
                       label: 'Ordre',
+                      cssclass: 'small align-center',
                     },
                   ]} />
               )}

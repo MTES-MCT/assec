@@ -38,12 +38,16 @@ class DataTableRow extends React.PureComponent {
     return (
       <tr {...debugprops}>
         {cols &&
-          cols.map(col => (
-            <td className={`${col.type || col.key} ${col.cssclass || ''}`}
-              key={`datatablerow::tr::${data.id}::td::${col.key}`}>
-              <span>{data[col.key]}</span>
-            </td>
-          ))}
+          cols.map((col) => {
+            const props = col.key.split('.');
+            const value = props.reduce((acc, key) => acc[key], data);
+            return (
+              <td className={`${col.type || col.key} ${col.cssclass || ''}`}
+                key={`datatablerow::tr::${data.id}::td::${col.key}`}>
+                <span>{value}</span>
+              </td>
+            );
+          })}
         {actions && (
           <td className={`actions actions-${alen}`}
             key={`datatablerow::tr::${data.id}::td::actions`}>

@@ -44,7 +44,6 @@ class DepartementTable extends React.PureComponent {
           if (error) return <p>Error </p>;
           const provider = data.departments || null;
           const hasentities = provider && provider.length > 0;
-          const len = (provider && provider.length) || 0;
           return (
             <React.Fragment>
               {loading && <TinyLoader />}
@@ -62,13 +61,12 @@ class DepartementTable extends React.PureComponent {
                   cols={[
                     {
                       key: 'code',
-                      type: 'small',
+                      cssclass: 'small',
                       label: '',
                     },
                     {
                       key: 'label',
-                      type: 'label',
-                      label: `${len} Départements`,
+                      label: 'Départements',
                     },
                   ]} />
               )}
