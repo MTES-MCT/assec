@@ -114,27 +114,27 @@ export const Query = {
       .populate('situations')
       .exec()
       .then(doc =>
-        QuestionModel.find({ department: doc.id }).then(questions =>
-          questions.map((quest) => {
-            console.log('quest.type', quest.type);
-            const rez = { ...quest.toObject(), values: doc[quest.type] || {} };
-            console.log('rez', rez);
-            return rez;
-          }))),
-  //   Promise.all([
-  //     Promise.resolve(doc),
-  //     ZoneModel.find({ department: doc.id })
-  //       .populate('alerte.situation')
-  //       .exec(),
-  //     QuestionModel.find({ department: doc.id }),
-  //   ]))
-  // .then(([{ usages, origines, situations }, zones, questions]) => ({
-  //   zones,
-  //   usages,
-  //   origines,
-  //   questions,
-  //   situations,
-  // })),
+        Promise.all([
+          Promise.resolve(doc),
+          ZoneModel.find({ department: doc.id })
+            .populate('alerte.situation')
+            .exec(),
+          QuestionModel.find({ department: doc.id }),
+        ]))
+      .then(([doc, zones, questions]) => {
+        const parsed = questions.map((entity) => {
+          const quest = entity.toObject({ virtuals: true });
+          const rez = {
+            ...quest,
+            zones: (quest.type === 'zones' && zones) || null,
+            values: !doc[quest.type]
+              ? null
+              : doc[quest.type].toObject({ virtuals: true }),
+          };
+          return rez;
+        });
+        return { questions: parsed, situations: doc.situations };
+      }),
 };
 
 export default Query;

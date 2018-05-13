@@ -105,6 +105,7 @@ type QuestionType {
   department: ID!
   display: String!
   description: String
+  zones: [ZoneType]
   values: [SUOType]
 }
 

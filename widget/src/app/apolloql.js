@@ -36,6 +36,20 @@ query hydrateDepartment (
         id
         label
       }
+      zones {
+        id
+        label
+        geojson
+        shortname
+        alerte {
+          end_date
+          start_date
+          situation {
+            id
+            label
+          }
+        }
+      }
     }
   }
 }
