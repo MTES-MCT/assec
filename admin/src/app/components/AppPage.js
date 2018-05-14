@@ -8,23 +8,15 @@ class AppPage extends React.PureComponent {
       header, footer, children, path, name,
     } = this.props;
     return (
-      <div id={`${path}-page`} className="page-content">
-        <h1 id="page-title" className="flex-columns mb20 pb12 bb">
+      <div id={`${path}-page`} className="page-content flex-rows flex-start">
+        <h1 id="page-title" className="flex0 mb20 pb12 bb">
           <span>{name}</span>
         </h1>
-        {header && (
-          <div id="page-column-header" className="col100">
-            {header()}
-          </div>
-        )}
-        <div id="page-column-content" className="flex-columns">
+        {header && <div id="page-column-header">{header()}</div>}
+        <div id="page-column-content" className="flex1 flex-columns">
           {children}
         </div>
-        {footer && (
-          <div id="page-column-footer" className="col100">
-            {header()}
-          </div>
-        )}
+        {footer && <div id="page-column-footer">{header()}</div>}
       </div>
     );
   }
