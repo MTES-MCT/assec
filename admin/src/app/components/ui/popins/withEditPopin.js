@@ -42,8 +42,8 @@ const withEditPopin = (
                     });
                 }}
                 validate={validator}
-                calculator={calculator || null}
                 mutators={{ ...arrayMutators }}
+                decorators={(calculator && [calculator]) || null}
                 render={formprops => (
                   <EditPopin {...props}
                     entity={entity}

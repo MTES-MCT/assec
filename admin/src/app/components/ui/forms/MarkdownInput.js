@@ -8,7 +8,7 @@ import MarkdownEditor from './adpaters/MarkdownEditor';
 
 const MarkdownInput = ({ name, label, ...rest }) => (
   <div className={rest.className || ''}>
-    <Field {...omit(rest, ['className'])}
+    <Field {...omit(rest, ['className', 'inline'])}
       id={name}
       name={name}
       label={label}
