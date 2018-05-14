@@ -1,9 +1,7 @@
-import bbox from '@turf/bbox';
 import pick from 'lodash.pick';
-import center from '@turf/center';
-import dissolve from 'geojson-dissolve';
-import cleanCoords from '@turf/clean-coords';
-import transformScale from '@turf/transform-scale';
+
+// application
+import { generateMapFromZone } from './helpers/generateMapFromZone';
 import {
   // SUOModel,
   ZoneModel,
@@ -15,30 +13,6 @@ import {
 } from './drivers/mongodb';
 
 const toObjectOpts = { virtuals: true };
-
-const getDepartmentMap = (zones) => {
-  const merged = dissolve(zones
-    .map((obj) => {
-      const parsed = JSON.parse(obj.geojson);
-      // FIXME -> c'est quoi la différence entre polygon et multipolygon
-      if (parsed.type === 'Polygon') return false;
-      return parsed;
-    })
-    .filter(v => v));
-  const zone = cleanCoords(merged, { mutate: true });
-  const scaled = transformScale(zone, 1.5);
-  const zonecenter = center(zone);
-  const maxbounds = bbox(scaled);
-  console.log('zone', Object.keys(zone));
-  return {
-    zone,
-    maxbounds: [
-      [maxbounds[0], maxbounds[1]].reverse(),
-      [maxbounds[2], maxbounds[3]].reverse(),
-    ].reverse(),
-    center: zonecenter.geometry.coordinates.reverse(),
-  };
-};
 
 const transformZoneToSituation = (zones) => {
   const parsed = zones.map((obj) => {
@@ -171,7 +145,7 @@ export const Query = {
             .exec(),
         ]))
       .then(([doc, zones, questions]) => ({
-        map: getDepartmentMap(zones),
+        map: generateMapFromZone(zones),
         questions: questions.map((entity) => {
           const question = entity.toObject(toObjectOpts);
           const result = {
