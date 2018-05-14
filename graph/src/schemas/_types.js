@@ -1,5 +1,6 @@
 const scalars = `
   scalar Date
+  scalar GeoJSON
 `;
 
 const block = `
@@ -134,7 +135,7 @@ type QuestionExtendedType {
 }
 
 type MapType {
-  zone: String!
+  zone: GeoJSON!
   center: [Float]!
   maxbounds: [[Float]]!
 }

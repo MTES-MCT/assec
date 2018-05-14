@@ -25,18 +25,18 @@ const getDepartmentMap = (zones) => {
       return parsed;
     })
     .filter(v => v));
-  const cleaned = cleanCoords(merged, { mutate: true });
-  const zcenter = center(cleaned);
-  const zone = JSON.stringify(cleaned);
-  const scaled = transformScale(cleaned, 1.5);
+  const zone = cleanCoords(merged, { mutate: true });
+  const scaled = transformScale(zone, 1.5);
+  const zonecenter = center(zone);
   const maxbounds = bbox(scaled);
+  console.log('zone', Object.keys(zone));
   return {
     zone,
     maxbounds: [
       [maxbounds[0], maxbounds[1]].reverse(),
       [maxbounds[2], maxbounds[3]].reverse(),
     ].reverse(),
-    center: zcenter.geometry.coordinates.reverse(),
+    center: zonecenter.geometry.coordinates.reverse(),
   };
 };
 

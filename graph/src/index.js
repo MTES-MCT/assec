@@ -5,6 +5,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import GraphQLDate from 'graphql-date';
+import GraphQLGeoJSON from 'graphql-geojson';
 // import * as bodyParser from 'body-parser-graphql';
 import { makeExecutableSchema } from 'graphql-tools';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
@@ -26,17 +27,20 @@ const schema = makeExecutableSchema({
     Mutation: mutations,
     // custom types
     Date: GraphQLDate,
+    GeoJSON: GraphQLGeoJSON,
   },
 });
 
 const app = express();
+const bodylimit = '2mb';
+const parserlimit = bodyParser.json({ limit: bodylimit });
 app.use(cors());
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(parserlimit);
 app.use(compression({ level: zlib.Z_DEFAULT_COMPRESSION }));
 app.use(
   '/graphql',
   // bodyParser is needed just for POST.
-  bodyParser.json({ limit: '50mb' }),
+  parserlimit,
   graphqlExpress({
     schema,
     // Apollo Server accepts a GraphQLOptions object as its single argument
@@ -45,8 +49,8 @@ app.use(
   }),
 );
 app.use(bodyParser.urlencoded({
-  limit: '50mb',
   extended: true,
+  limit: bodylimit,
   parameterLimit: 100000,
 }));
 

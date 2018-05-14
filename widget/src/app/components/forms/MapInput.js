@@ -5,6 +5,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormSection, Field } from 'redux-form';
 import { Map, GeoJSON, TileLayer } from 'react-leaflet';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 // application
 import { MapControls, GeoJSONLayer } from './leafletmap';
@@ -74,8 +75,11 @@ class MapInput extends React.PureComponent {
       });
   }
 
-  onGeolocation (center) {
-    this.setState({ geocenter: center });
+  onGeolocation (point) {
+    const { center, zone } = this.props;
+    const inside = booleanPointInPolygon(point, zone);
+    console.log('your are geolocated in current zone', inside);
+    this.setState({ geocenter: inside ? point : center });
   }
 
   onToggleView (state) {
@@ -139,8 +143,7 @@ class MapInput extends React.PureComponent {
               onZoomEnd={this.onZoomEnd}>
               {this.renderMapLayers()}
               {zone && (
-                <GeoJSON data={JSON.parse(zone)}
-                  className="geojson-layer department" />
+                <GeoJSON data={zone} className="geojson-layer department" />
               )}
               {/* -------
 
@@ -188,7 +191,7 @@ MapInput.propTypes = {
   usezoom: PropTypes.bool,
   minzoom: PropTypes.number,
   maxzoom: PropTypes.number,
-  zone: PropTypes.string.isRequired,
+  zone: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   zones: PropTypes.array.isRequired,
   center: PropTypes.array.isRequired,

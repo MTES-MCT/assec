@@ -12,6 +12,7 @@
     "node-sass": "^4.7.2"
   },
   "dependencies": {
+    "@turf/boolean-point-in-polygon": "^6.0.1",
     "apollo-boost": "^0.1.4",
     "apollo-cache-inmemory": "^1.2.1",
     "apollo-client": "^2.3.1",
