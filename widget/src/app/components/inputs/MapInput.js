@@ -30,16 +30,16 @@ class MapInput extends React.PureComponent {
       <FormSection name={id} component="fieldset">
         <div className="input-type-map">
           <div className="flex-columns">
+            <div className="flex1">
+              <h3>{label}</h3>
+              {help && <p>{help}</p>}
+            </div>
             <div id="leaflet-map" className="leaflet-map flex2">
               <MapControls onToggleView={this.onToggleView}
                 onGeolocation={this.onGeolocation} />
               <MapView zones={values}
                 center={geocenter || center}
                 showsatellite={showsatellite} />
-            </div>
-            <div className="flex1">
-              <h3>{label}</h3>
-              {help && <p>{help}</p>}
             </div>
           </div>
         </div>
