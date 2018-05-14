@@ -14,14 +14,16 @@ const HeroContainer = () => (
         </h2>
         <h1 className="baseline">
           <span>
-            <strong>L&apos;outil qui vous informe</strong>
-            <strong>des restrictions d&apos;eau en temps réel</strong>
+            <strong>
+              L&apos;outil qui vous informe des règles de partage de l&apos;eau
+              en période de sécheresse
+            </strong>
           </span>
         </h1>
         <hr className="liner my20" />
         <NewsletterForm placeholder="Votre email"
           className="notice mb12"
-          label="Prévenez-moi quand le département du Var passe en vigilance" />
+          label="Tenez moi informé des développements d'ASSEC" />
       </div>
       <div className="flex-1 col-50">
         <ButtonLink to="essayez-la-demo"
@@ -33,7 +35,7 @@ const HeroContainer = () => (
           className="demo-button large"
           style={{
             right: '5%',
-            top: '70px',
+            top: '100px',
             position: 'absolute',
           }}>
           <span>Essayer la démo</span>

@@ -10,13 +10,15 @@ const QueFaisonsNous = () => (
         <span>Pour qui ?</span>
       </h2>
       <p className="description">
-        Les restrictions d&apos;eau sont adaptées aux diverses utilisations, aux
-        techniques de prélèvement et aux modalités de gestion, qui sont très
-        variées dans l&apos;agriculture irriguée.
+        Les règles de partage de l&apos;eau sont adaptées à l&apos;utilisation
+        qui en est faite, aux techniques de prélèvement et de transport de
+        l&apos;eau et aux spécificités locales de gestion de l&apos;eau, qui
+        sont très variées dans l&apos;agriculture irriguée.
       </p>
-      <p className="description">
+      <p className="description mt12">
         ASSEC s&apos;adresse donc d&apos;abord aux agriculteurs irrigants. Il
-        apporte également une réponse pour les particuliers.
+        apporte également une réponse pour les industriels, les particuliers et
+        les collectivités..
       </p>
     </div>
     <div className="flex-1" />

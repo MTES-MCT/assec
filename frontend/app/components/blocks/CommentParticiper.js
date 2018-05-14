@@ -15,13 +15,16 @@ const CommentParticiper = () => (
           Vous êtes intéressé par le déploiement d&apos;ASSEC dans votre
           département ?
         </b>
+        <br />
+        <span>
+          Contactez-nous, nous développons des solutions gratuites, adaptées à
+          vos spécificités, et facilement intégrable sur votre site web
+        </span>
       </p>
-      <p className="description">
+      <p className="description mt12">
         Nous développons actuellement un premier outil en version beta sur le
-        département du Var.
-      </p>
-      <p className="description">
-        Si vous voulez participer, joignez-vous aux ateliers utilisateurs!
+        département du Var.<br />
+        Vous voulez participer, joignez-vous aux ateliers utilisateurs!
       </p>
     </div>
   </Element>

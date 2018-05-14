@@ -21,11 +21,11 @@ class MainNavigation extends React.PureComponent {
       <div id="main-navigation" style={mergedstyles} className={csscl}>
         <div className="col-left flex-columns flex-start items-center">
           <img alt="La fabrique numérique"
-            height="40"
+            height="100"
             className="mr20"
             src="/static/logo-fabnum.svg" />
           <img alt="beta.gouv.fr"
-            height="30"
+            height="40"
             className="mr20"
             src="/static/logo-betagouv.svg" />
         </div>

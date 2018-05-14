@@ -1,11 +1,14 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import getConfig from 'next/config';
+// import { graphql } from 'react-apollo';
 import { Element } from 'react-scroll';
 import withRedux from 'next-redux-wrapper';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 // application
 import './../scss/styles.scss';
+// import { RETRIEVE_BLOCKS } from './../app/apolloql';
 import configure from './../app/store';
 import withApollo from './../app/core/withApollo';
 import Toaster from './../app/components/Toaster';
@@ -74,8 +77,26 @@ const Application = () => (
   </StickyContainer>
 );
 
-export default withRedux(configure)(
-  withApollo(props => {
-    return <Application {...props} />;
-  })
-);
+// const blocksToObject = blocks =>
+//   blocks.reduce((acc, obj) => ({ ...acc, [obj.slug]: obj }), {});
+//
+// Application.propTypes = {
+//   blocks: PropTypes.object.isRequired,
+// };
+//
+// const ApolloApp = graphql(RETRIEVE_BLOCKS, {
+//   options: { variables: {} },
+//   props: ({ data }) => {
+//     const parsed =
+//       !data || !data.retrieveBlocks ? {} : blocksToObject(data.retrieveBlocks);
+//     return { blocks: parsed };
+//   },
+// })(Application);
+
+const withClient = withApollo((props, ownProps) => {
+  return <Application {...props} />;
+});
+
+const connected = withRedux(configure)(withClient);
+
+export default connected;

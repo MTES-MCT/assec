@@ -27,6 +27,8 @@ type Query {
   #
   # ###################################
 
+  retrieveBlocks: [BlockType]
+
   hydrateDepartment(department: ID): HydratedType
 
   findRestictionByCriteria(

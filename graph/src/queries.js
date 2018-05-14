@@ -100,6 +100,8 @@ export const Query = {
       });
     }),
 
+  retrieveBlocks: () => BlockModel.find(),
+
   hydrateDepartment: (_, { department }) =>
     Promise.all([
       Departement.findById(department)
