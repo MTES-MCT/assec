@@ -56,8 +56,9 @@ class MapInput extends React.PureComponent {
     this.setMapReference = this.setMapReference.bind(this);
     this.state = {
       selected: null,
-      // geocenter: null,
+      geocenter: null,
       zoom: props.zoom,
+      showmarker: false,
       showsatellite: false,
       showzonelayer: false,
     };
@@ -76,10 +77,17 @@ class MapInput extends React.PureComponent {
   }
 
   onGeolocation (point) {
-    const { center, zone } = this.props;
-    const inside = booleanPointInPolygon(point, zone);
-    console.log('your are geolocated in current zone', inside);
-    this.setState({ geocenter: inside ? point : center });
+    const {
+      minzoom, maxzoom, center, zone,
+    } = this.props;
+    const coords = [point.lng, point.lat];
+    // const cent = [6.294845731267186, 43.39528702235596];
+    const inside = booleanPointInPolygon(coords, zone);
+    this.setState({
+      showmarker: true,
+      zoom: (inside && maxzoom - 1) || minzoom,
+      geocenter: (inside && point) || center,
+    });
   }
 
   onToggleView (state) {
@@ -133,14 +141,15 @@ class MapInput extends React.PureComponent {
           <div id="leaflet-map" className="leaflet-map flex2">
             <MapControls onToggleView={this.onToggleView}
               onGeolocation={this.onGeolocation} />
-            <Map center={geocenter || center}
+            <Map animate
+              zoom={zoom}
               maxZoom={maxzoom}
               minZoom={minzoom}
               maxBounds={maxbounds}
               zoomControl={usezoom}
-              zoom={this.props.zoom}
               ref={this.setMapReference}
-              onZoomEnd={this.onZoomEnd}>
+              onZoomEnd={this.onZoomEnd}
+              center={geocenter || center}>
               {this.renderMapLayers()}
               {zone && (
                 <GeoJSON data={zone} className="geojson-layer department" />
