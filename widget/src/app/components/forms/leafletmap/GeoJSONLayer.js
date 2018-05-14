@@ -41,9 +41,10 @@ class GeoJSONLayerInput extends React.PureComponent {
         data={JSON.parse(geojson)}
         className={`${classname}`}
         onClick={this.clickHandler}
-        style={() => ({ fillOpacity: opacity })}
+        style={() => ({ fillOpacity: opacity, opacity })}
         key={`mapzone_${zoneid}${(isselected && '_active') || ''}`}>
-        {showtooltip && (
+        {opacity > 0 &&
+          showtooltip && (
           <Tooltip sticky direction="right" offset={[7, 0]}>
             <span>
               <span>{shortname}</span>
@@ -55,13 +56,17 @@ class GeoJSONLayerInput extends React.PureComponent {
   }
 }
 
+GeoJSONLayerInput.defaultProps = {
+  selected: null,
+};
+
 GeoJSONLayerInput.propTypes = {
+  selected: PropTypes.string,
   obj: PropTypes.object.isRequired,
   input: PropTypes.object.isRequired,
   zIndex: PropTypes.number.isRequired,
   onSelect: PropTypes.func.isRequired,
-  opacity: PropTypes.string.isRequired,
-  selected: PropTypes.string.isRequired,
+  opacity: PropTypes.number.isRequired,
   showtooltip: PropTypes.bool.isRequired,
 };
 

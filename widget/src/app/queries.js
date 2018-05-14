@@ -22,7 +22,7 @@ import gql from 'graphql-tag';
 
 export const LOAD_DEPARTMENT_WIDGET = gql(`
 query widget (
-  $code: String!
+  $code: String
 ) {
   widget (
     code: $code

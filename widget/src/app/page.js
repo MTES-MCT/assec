@@ -57,11 +57,12 @@ class PageComponent extends React.Component {
       // disabledsteps,
     } = this.props;
     const { code } = this.state;
+    if (!code) return <p>Error le code est manquant :(</p>;
     return (
       <Query query={LOAD_DEPARTMENT_WIDGET} variables={{ code }}>
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error :(</p>;
+          if (error) return <p>Error graphql :(</p>;
           const questions = (data && data.widget) || [];
           const total = questions.length;
           return (

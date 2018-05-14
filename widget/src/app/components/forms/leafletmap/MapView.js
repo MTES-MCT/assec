@@ -44,7 +44,7 @@ const attr =
   '&copy; <a href="https://www.geoportail.gouv.fr">IGN-F/Geoportail</a>';
 
 const getzindex = index => 1000 + index;
-const getopacity = zoom => (zoom <= precisezoom && '0.4') || '0.1';
+// const getopacity = zoom => (zoom <= precisezoom && '0.4') || '0.1';
 
 class MapViewComponent extends React.PureComponent {
   constructor (props) {
@@ -77,7 +77,12 @@ class MapViewComponent extends React.PureComponent {
 
   render () {
     const {
-      zones, center, usezoom, maxzoom, showsatellite,
+      zones,
+      center,
+      usezoom,
+      maxzoom,
+      showsatellite,
+      showzonelayer,
     } = this.props;
     const { selected, zoom } = this.state;
     const showtooltip = zoom < precisezoom;
@@ -105,7 +110,7 @@ class MapViewComponent extends React.PureComponent {
         {ordered &&
           ordered.map((obj, index) => {
             const zIndex = getzindex(index);
-            const opacity = getopacity(this.state.zoom);
+            const opacity = showzonelayer ? 0.4 : 0;
             const props = {
               obj,
               zIndex,
@@ -131,6 +136,7 @@ MapViewComponent.defaultProps = {
   zoom: 9,
   maxzoom: 18,
   usezoom: false,
+  showzonelayer: false,
   showsatellite: false,
 };
 
@@ -139,6 +145,7 @@ MapViewComponent.propTypes = {
   usezoom: PropTypes.bool,
   maxzoom: PropTypes.number,
   showsatellite: PropTypes.bool,
+  showzonelayer: PropTypes.bool,
   zones: PropTypes.array.isRequired,
   // FIXME -> use shapeof
   center: PropTypes.object.isRequired,

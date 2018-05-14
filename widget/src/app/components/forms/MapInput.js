@@ -10,11 +10,15 @@ class MapInput extends React.PureComponent {
     super(props);
     this.onToggleView = this.onToggleView.bind(this);
     this.onGeolocation = this.onGeolocation.bind(this);
-    this.state = { showsatellite: false, geocenter: null };
+    this.state = {
+      geocenter: null,
+      showsatellite: false,
+      showzonelayer: false,
+    };
   }
 
-  onToggleView (showsatellite) {
-    this.setState({ showsatellite });
+  onToggleView (state) {
+    this.setState(state);
   }
 
   onGeolocation (center) {
@@ -23,7 +27,7 @@ class MapInput extends React.PureComponent {
 
   render () {
     const { name, values, center } = this.props;
-    const { showsatellite, geocenter } = this.state;
+    const { showsatellite, showzonelayer, geocenter } = this.state;
     return (
       <FormSection name={name} component="fieldset">
         <div className="input-type-map">
@@ -32,6 +36,7 @@ class MapInput extends React.PureComponent {
               onGeolocation={this.onGeolocation} />
             <MapView zones={values}
               center={geocenter || center}
+              showzonelayer={showzonelayer}
               showsatellite={showsatellite} />
           </div>
         </div>

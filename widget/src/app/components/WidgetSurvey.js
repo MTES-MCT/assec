@@ -15,7 +15,7 @@ const renderInput = (question) => {
   case 'list':
     return <ListInput {...question} />;
   case 'choice':
-    return <ListInput {...ChoiceInput} />;
+    return <ChoiceInput {...question} />;
   default:
     return null;
   }

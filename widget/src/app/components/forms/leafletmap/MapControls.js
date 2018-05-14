@@ -7,8 +7,9 @@ class MapControlsComponent extends React.PureComponent {
   constructor (props) {
     super(props);
     this.onGeolocation = this.onGeolocation.bind(this);
-    this.state = { showsatellite: false };
     this.toggleSatellite = this.toggleSatellite.bind(this);
+    this.toggleZoneLayer = this.toggleZoneLayer.bind(this);
+    this.state = { showsatellite: false, showzonelayer: false };
   }
 
   onGeolocation (position) {
@@ -21,18 +22,34 @@ class MapControlsComponent extends React.PureComponent {
 
   toggleSatellite () {
     const update = !this.state.showsatellite;
-    this.setState({ showsatellite: update });
-    this.props.onToggleView(update);
+    this.setState({ showsatellite: update }, () => {
+      this.props.onToggleView(this.state);
+    });
+  }
+
+  toggleZoneLayer () {
+    const update = !this.state.showzonelayer;
+    this.setState({ showzonelayer: update }, () => {
+      this.props.onToggleView(this.state);
+    });
   }
 
   render () {
-    const { showsatellite } = this.state;
+    const { showsatellite, showzonelayer } = this.state;
     return (
       <div className="leaflet-map-controls flex-columns">
-        <button type="button" onClick={this.toggleSatellite}>
+        <button type="button"
+          onClick={this.toggleSatellite}
+          className={`${(showsatellite && 'active') || ''}`}>
           <span>
-            {showsatellite && <i className="icon icon-map" />}
-            {!showsatellite && <i className="icon icon-camera" />}
+            <i className="icon icon-camera" />
+          </span>
+        </button>
+        <button type="button"
+          onClick={this.toggleZoneLayer}
+          className={`${(showzonelayer && 'active') || ''}`}>
+          <span>
+            <i className="icon icon-marquee" />
           </span>
         </button>
         <Geolocation lazy
