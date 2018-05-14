@@ -1,35 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Form, reduxForm } from 'redux-form';
 
 // application
 import MapInput from './forms/MapInput';
-// import ListInput from './questions/ListInput';
-// import ChoiceInput from './questions/ChoiceInput';
+import ListInput from './forms/ListInput';
+import ChoiceInput from './forms/ChoiceInput';
 
-const WidgetSurvey = ({ active, provider }) => {
+const renderInput = (question) => {
+  switch (question.display) {
+  case 'zones':
+    return <MapInput {...question} />;
+  case 'list':
+    return <ListInput {...question} />;
+  case 'choice':
+    return <ListInput {...ChoiceInput} />;
+  default:
+    return null;
+  }
+};
+
+const WidgetSurvey = ({ step, provider }) => {
   const question = (!provider && {}) || {
-    id: provider[active].id,
-    type: provider[active].type,
-    display: provider[active].display,
-    values: provider[active].values || provider[active].zones,
+    name: provider[step].type,
+    display: provider[step].display,
+    values: provider[step].values || provider[step].zones,
   };
-
   return (
     <div id="assec-widget-survey">
-      <Form onSubmit={() => {}}>
-        <MapInput {...question} />
-      </Form>
+      <Form onSubmit={() => {}}>{renderInput(question)}</Form>
     </div>
   );
 };
 
 WidgetSurvey.propTypes = {
-  active: PropTypes.number.isRequired,
+  step: PropTypes.number.isRequired,
   provider: PropTypes.array.isRequired,
 };
 
+const connected = connect(state => ({
+  step: state.step,
+}))(WidgetSurvey);
+
 export default reduxForm({
-  form: 'ASSEC_SURVER_FORM',
   initialValues: {},
-})(WidgetSurvey);
+  form: 'ASSEC_SURVEY_FORM',
+})(connected);

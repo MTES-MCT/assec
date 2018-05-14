@@ -2,14 +2,18 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 // application
-const active = (state = 0, action) => {
+const step = (state = 0, action) => {
   switch (action.type) {
+  case 'onStepForward':
+    return state + 1;
+  case 'onStepBackward':
+    return state - 1;
   default:
     return state;
   }
 };
 
 export default combineReducers({
-  active,
+  step,
   form: formReducer,
 });

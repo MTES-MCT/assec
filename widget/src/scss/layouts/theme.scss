@@ -2,9 +2,15 @@ $header0: #14134E;
 $header1: #512D5A;
 $header2: #843B61;
 
-$black: #000000;
 $blue: #61AFEF;
 $white: #FFFFFF;
+$black: #000000;
+
+$level-alert-0: #4CB85E;
+$level-alert-1: #FFD802;
+$level-alert-2: #F2930E;
+$level-alert-3: #CC0000;
+$level-alert-4: #910AD7;
 
 body {
   font-size: 14px;
@@ -12,21 +18,51 @@ body {
   background-color: rgba(255, 255, 255, 0);
 }
 
-// .geojson-layer {
-//   opacity: 1;
-//   fill: $blue;
-//   stroke: $blue;
-//   stroke-width: 1;
-//   transition: all 0.5s;
-//
-//   &:hover {
-//     opacity: 0.6;
-//   }
-//
-//   &.active {
-//     opacity: 0.8;
-//   }
-// }
+.geojson-layer {
+  fill: $white;
+  stroke: #B7B7B7;
+  opacity: 0.3;
+  stroke-width: 1;
+  transition: all 0.5s;
+
+  &.normale {
+    // $level-alert-0
+    fill: $level-alert-0;
+    stroke: $level-alert-0;
+  }
+
+  &.vigilance {
+    // $level-alert-1
+    fill: $level-alert-1;
+    stroke: $level-alert-1;
+  }
+
+  &.alerte {
+    // $level-alert-2
+    fill: $level-alert-2;
+    stroke: $level-alert-2;
+  }
+
+  &.alerte-renforcee {
+    // $level-alert-3
+    fill: $level-alert-3;
+    stroke: $level-alert-3;
+  }
+
+  &.crise {
+    // $level-alert-4
+    fill: $level-alert-4;
+    stroke: $level-alert-4;
+  }
+
+  &:hover {
+    opacity: 0.65;
+  }
+
+  &.active {
+    opacity: 0.8;
+  }
+}
 
 // #app-header {
 //   color: $white;

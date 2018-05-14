@@ -11,6 +11,7 @@ import { Map, TileLayer } from 'react-leaflet';
 // application
 import GeoJSONLayer from './GeoJSONLayer';
 
+const precisezoom = 13;
 const IGN_KEY = process.env.REACT_APP_IGN_KEY;
 const ignBase = `https://wxs.ign.fr/${IGN_KEY}/geoportail/wmts`;
 const ignOptions = [
@@ -35,7 +36,7 @@ const ignLayers = [
   },
   {
     name: 'zonelayer',
-    zoom: { max: 13, min: 18 },
+    zoom: { max: precisezoom, min: 18 },
     layer: 'CADASTRALPARCELS.PARCELS&style=bdparcellaire&format=image/png',
   },
 ];
@@ -43,14 +44,15 @@ const attr =
   '&copy; <a href="https://www.geoportail.gouv.fr">IGN-F/Geoportail</a>';
 
 const getzindex = index => 1000 + index;
-const getopacity = zoom => (zoom <= 11 && '0.4') || '0.1';
+const getopacity = zoom => (zoom <= precisezoom && '0.4') || '0.1';
 
 class MapViewComponent extends React.PureComponent {
   constructor (props) {
     super(props);
     this.map = null;
-    this.state = { zoom: props.zoom };
     this.onZoomEnd = this.onZoomEnd.bind(this);
+    this.state = { zoom: props.zoom, selected: null };
+    this.onLayerSelect = this.onLayerSelect.bind(this);
   }
 
   componentDidUpdate () {
@@ -69,15 +71,16 @@ class MapViewComponent extends React.PureComponent {
     this.setState({ zoom: target._zoom });
   }
 
+  onLayerSelect (zoneid) {
+    this.setState({ selected: zoneid });
+  }
+
   render () {
     const {
-      zones,
-      center,
-      usezoom,
-      maxzoom,
-      selected,
-      showsatellite,
+      zones, center, usezoom, maxzoom, showsatellite,
     } = this.props;
+    const { selected, zoom } = this.state;
+    const showtooltip = zoom < precisezoom;
     const ordered = orderby(zones, ['order'], ['asc']);
     return (
       <Map center={center}
@@ -91,8 +94,8 @@ class MapViewComponent extends React.PureComponent {
         {ignLayers
           .filter(({ name }) =>
             name !== 'satlayer' || (name === 'satlayer' && showsatellite))
-          .filter(({ zoom }) => {
-            const { max, min } = zoom;
+          .filter((obj) => {
+            const { max, min } = obj.zoom;
             return max <= this.state.zoom && min >= this.state.zoom;
           })
           .map(({ layer, name }) => {
@@ -103,13 +106,20 @@ class MapViewComponent extends React.PureComponent {
           ordered.map((obj, index) => {
             const zIndex = getzindex(index);
             const opacity = getopacity(this.state.zoom);
+            const props = {
+              obj,
+              zIndex,
+              opacity,
+              selected,
+              showtooltip,
+              onSelect: this.onLayerSelect,
+            };
             return (
               <Field key={`mapzone_${obj.zoneid}`}
                 name="choice"
-                selected={selected}
+                props={props}
                 component={GeoJSONLayer}
-                style={{ zIndex, opacity }}
-                props={{ obj, zIndex, opacity }} />
+                style={{ zIndex, opacity }} />
             );
           })}
       </Map>
@@ -121,7 +131,6 @@ MapViewComponent.defaultProps = {
   zoom: 9,
   maxzoom: 18,
   usezoom: false,
-  selected: null,
   showsatellite: false,
 };
 
@@ -129,15 +138,12 @@ MapViewComponent.propTypes = {
   zoom: PropTypes.number,
   usezoom: PropTypes.bool,
   maxzoom: PropTypes.number,
-  selected: PropTypes.string,
   showsatellite: PropTypes.bool,
   zones: PropTypes.array.isRequired,
   // FIXME -> use shapeof
   center: PropTypes.object.isRequired,
 };
 
-export const MapView = connect(state => ({
-  selected: state.selected,
-}))(MapViewComponent);
+export const MapView = connect()(MapViewComponent);
 
 export default MapView;

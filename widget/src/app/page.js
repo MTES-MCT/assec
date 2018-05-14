@@ -50,7 +50,7 @@ class PageComponent extends React.Component {
       // rules,
       // fields,
       // choices,
-      active,
+      step,
       // canforward,
       // showresults,
       // canbackward,
@@ -67,15 +67,13 @@ class PageComponent extends React.Component {
           return (
             <React.Fragment>
               <Helmet>
-                <body className={`current-step-${active}`} />
+                <body className={`current-step-${step}`} />
                 <title>Assec{usedebug() ? ' | Development' : ''}</title>
               </Helmet>
               <div id="assec-widget" className="flex-rows">
-                <WidgetHeader active={active} total={total} />
-                <WidgetSummary active={active} provider={questions} />
-                <WidgetSurvey active={active}
-                  provider={questions}
-                  choices={[]} />
+                <WidgetHeader total={total} />
+                <WidgetSummary provider={questions} />
+                <WidgetSurvey provider={questions} choices={[]} />
               </div>
             </React.Fragment>
           );
@@ -86,13 +84,13 @@ class PageComponent extends React.Component {
 }
 
 PageComponent.propTypes = {
-  active: PropTypes.number.isRequired,
+  step: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const { active } = state;
+  const { step } = state;
   return {
-    active,
+    step,
   };
 };
 

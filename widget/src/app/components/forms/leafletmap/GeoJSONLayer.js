@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { GeoJSON, Tooltip } from 'react-leaflet';
 
-// eslint
+// application
+// import { selectSituation } from './../../../actions';
+import { slugify } from './../../../core/slugify';
+
 class GeoJSONLayerInput extends React.PureComponent {
   constructor (props) {
     super(props);
@@ -12,16 +14,12 @@ class GeoJSONLayerInput extends React.PureComponent {
 
   clickHandler () {
     const {
-      input, dispatch, selected, obj,
+      input, selected, onSelect, obj,
     } = this.props;
     const isselected = obj.zoneid === selected;
-    console.log('obj', obj);
-    input.onChange(obj.zoneid);
-    dispatch({
-      id: obj.id,
-      type: 'onZoneSelected',
-      zoneid: isselected ? null : obj.zoneid,
-    });
+    const value = (!isselected && obj) || null;
+    input.onChange(value);
+    onSelect(obj.zoneid);
   }
 
   render () {
@@ -29,40 +27,42 @@ class GeoJSONLayerInput extends React.PureComponent {
       zIndex,
       opacity,
       selected,
-      obj: { geojson, zoneid, shortname },
+      showtooltip,
+      obj: {
+        geojson, zoneid, shortname, label,
+      },
     } = this.props;
     const isselected = zoneid === selected;
-    const geojsonprops = {
-      data: JSON.parse(geojson),
-      onClick: this.clickHandler,
-    };
+    const situclass = slugify(label);
+    const selectclass = (isselected && 'active') || '';
+    const classname = `geojson-layer ${situclass} ${selectclass}`;
     return (
-      <GeoJSON {...geojsonprops}
-        order={zIndex}
+      <GeoJSON order={zIndex}
+        data={JSON.parse(geojson)}
+        className={`${classname}`}
+        onClick={this.clickHandler}
         style={() => ({ fillOpacity: opacity })}
-        key={`mapzone_${zoneid}${(isselected && '_active') || ''}`}
-        className={`geojson-layer ${(isselected && 'active') || ''}`}>
-        <Tooltip sticky direction="right" offset={[7, 0]}>
-          <span>
-            <span>{shortname}</span>
-          </span>
-        </Tooltip>
+        key={`mapzone_${zoneid}${(isselected && '_active') || ''}`}>
+        {showtooltip && (
+          <Tooltip sticky direction="right" offset={[7, 0]}>
+            <span>
+              <span>{shortname}</span>
+            </span>
+          </Tooltip>
+        )}
       </GeoJSON>
     );
   }
 }
 
-GeoJSONLayerInput.defaultProps = {
-  selected: null,
-};
-
 GeoJSONLayerInput.propTypes = {
-  selected: PropTypes.string,
   obj: PropTypes.object.isRequired,
   input: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
   zIndex: PropTypes.number.isRequired,
+  onSelect: PropTypes.func.isRequired,
   opacity: PropTypes.string.isRequired,
+  selected: PropTypes.string.isRequired,
+  showtooltip: PropTypes.bool.isRequired,
 };
 
-export default connect()(GeoJSONLayerInput);
+export default GeoJSONLayerInput;
