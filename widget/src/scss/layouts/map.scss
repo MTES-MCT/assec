@@ -20,6 +20,14 @@
   right: inherit;
 }
 
+.leaflet-map-controls button {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+
 .leaflet-control-attribution {
   opacity: 0.2;
   float: inherit;
