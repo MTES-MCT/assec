@@ -62,6 +62,11 @@ body {
   &.active {
     opacity: 0.8;
   }
+
+  &.department {
+    stroke: $black;
+    fill-opacity: 0;
+  }
 }
 
 // #app-header {

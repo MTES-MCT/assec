@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Geolocation from 'react-geolocation';
 
-class MapControlsComponent extends React.PureComponent {
+export class MapControls extends React.PureComponent {
   constructor (props) {
     super(props);
     this.onGeolocation = this.onGeolocation.bind(this);
@@ -78,11 +77,9 @@ class MapControlsComponent extends React.PureComponent {
   }
 }
 
-MapControlsComponent.propTypes = {
+MapControls.propTypes = {
   onToggleView: PropTypes.func.isRequired,
   onGeolocation: PropTypes.func.isRequired,
 };
-
-export const MapControls = connect()(MapControlsComponent);
 
 export default MapControls;

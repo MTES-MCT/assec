@@ -1,6 +1,20 @@
 import Mongoose, { Schema } from 'mongoose';
 import { slugify } from './../../utils/slugify';
 
+const DepartmentMapSchema = new Schema(
+  {
+    zone: { type: String, required: true },
+    center: { type: Array, required: true },
+    maxbounds: { type: Array, required: true },
+  },
+  {
+    timestamps: {
+      createdAt: 'ctime',
+      updatedAt: 'mtime',
+    },
+  },
+);
+
 const DepartementSchema = new Schema(
   {
     code: {
@@ -10,6 +24,11 @@ const DepartementSchema = new Schema(
     label: {
       type: String,
       required: true,
+    },
+    map: {
+      nullable: true,
+      required: true,
+      type: DepartmentMapSchema,
     },
     usages: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
     origines: [{ type: Schema.Types.ObjectId, ref: 'suos' }],

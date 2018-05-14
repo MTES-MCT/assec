@@ -31,7 +31,7 @@ type Query {
 
   retrieveBlocks: [BlockType]
 
-  widget(code: String): [WidgetType]
+  widget(code: String): WidgetType
 
   findRestictionByCriteria(
     zones: ID

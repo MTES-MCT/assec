@@ -1,25 +1,21 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-// import deepequal from 'fast-deep-equal';
-// import { bindActionCreators } from 'redux';
-import { Query } from 'react-apollo';
-// import { getFormValues, clearFields } from 'redux-form';
+import { reduxForm, Form } from 'redux-form';
 
 // application
-// import { FORM_NAME } from './constants';
 import { usedebug } from './core/utils/usedebug';
 import { LOAD_DEPARTMENT_WIDGET } from './queries';
 import WidgetHeader from './components/WidgetHeader';
-import WidgetSurvey from './components/WidgetSurvey';
 import WidgetSummary from './components/WidgetSummary';
-// import { formSubmit, loadForm } from './actions';
-// import checkRequired from './actions/check-required';
-// import FormFields from './components/FormFields';
-// import FormResults from './components/FormResults';
-// import FormNavigation from './components/FormNavigation';
+
+// inputs
+import MapInput from './components/forms/MapInput';
+import ListInput from './components/forms/ListInput';
+import ChoiceInput from './components/forms/ChoiceInput';
 
 class PageComponent extends React.Component {
   constructor (props) {
@@ -46,16 +42,7 @@ class PageComponent extends React.Component {
   // }
 
   render () {
-    const {
-      // rules,
-      // fields,
-      // choices,
-      step,
-      // canforward,
-      // showresults,
-      // canbackward,
-      // disabledsteps,
-    } = this.props;
+    const { step } = this.props;
     const { code } = this.state;
     if (!code) return <p>Error le code est manquant :(</p>;
     return (
@@ -63,7 +50,10 @@ class PageComponent extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error graphql :(</p>;
-          const questions = (data && data.widget) || [];
+          const widget = (data && data.widget) || null;
+          const questions = (widget && widget.questions) || null;
+          const question = (questions && questions[step]) || null;
+          const map = (widget && widget.map) || null;
           const total = questions.length;
           return (
             <React.Fragment>
@@ -73,8 +63,23 @@ class PageComponent extends React.Component {
               </Helmet>
               <div id="assec-widget" className="flex-rows">
                 <WidgetHeader total={total} />
-                <WidgetSummary provider={questions} />
-                <WidgetSurvey provider={questions} choices={[]} />
+                <WidgetSummary questions={questions} />
+                <div id="assec-widget-survey">
+                  <Form onSubmit={() => {}}>
+                    {question &&
+                      question.display === 'list' && (
+                      <ListInput {...question} />
+                    )}
+                    {question &&
+                      question.display === 'choice' && (
+                      <ChoiceInput {...question} />
+                    )}
+                    {question &&
+                      question.display === 'zones' && (
+                      <MapInput {...question} {...map} />
+                    )}
+                  </Form>
+                </div>
               </div>
             </React.Fragment>
           );
@@ -88,11 +93,15 @@ PageComponent.propTypes = {
   step: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  const { step } = state;
-  return {
-    step,
-  };
-};
+const connected = connect(state => ({
+  step: state.step,
+}))(PageComponent);
 
-export default connect(mapStateToProps)(PageComponent);
+export default reduxForm({
+  initialValues: {
+    usage: { choice: null },
+    origine: { choice: null },
+    situation: { choice: null },
+  },
+  form: 'ASSEC_WIDGET_FORM',
+})(connected);

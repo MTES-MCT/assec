@@ -6,7 +6,7 @@ import { GeoJSON, Tooltip } from 'react-leaflet';
 // import { selectSituation } from './../../../actions';
 import { slugify } from './../../../core/slugify';
 
-class GeoJSONLayerInput extends React.PureComponent {
+export class GeoJSONLayer extends React.PureComponent {
   constructor (props) {
     super(props);
     this.clickHandler = this.clickHandler.bind(this);
@@ -56,11 +56,11 @@ class GeoJSONLayerInput extends React.PureComponent {
   }
 }
 
-GeoJSONLayerInput.defaultProps = {
+GeoJSONLayer.defaultProps = {
   selected: null,
 };
 
-GeoJSONLayerInput.propTypes = {
+GeoJSONLayer.propTypes = {
   selected: PropTypes.string,
   obj: PropTypes.object.isRequired,
   input: PropTypes.object.isRequired,
@@ -70,4 +70,4 @@ GeoJSONLayerInput.propTypes = {
   showtooltip: PropTypes.bool.isRequired,
 };
 
-export default GeoJSONLayerInput;
+export default GeoJSONLayer;

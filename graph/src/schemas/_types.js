@@ -119,7 +119,7 @@ type SituationExtendedType {
   description: String
 }
 
-type WidgetType {
+type QuestionExtendedType {
   id: ID!
   order: Int!
   ctime: Date!
@@ -131,6 +131,17 @@ type WidgetType {
   description: String
   zones: [SituationExtendedType]
   values: [SUOType]
+}
+
+type MapType {
+  zone: String!
+  center: [Float]!
+  maxbounds: [[Float]]!
+}
+
+type WidgetType {
+  map: MapType
+  questions: [QuestionExtendedType]
 }
 `;
 

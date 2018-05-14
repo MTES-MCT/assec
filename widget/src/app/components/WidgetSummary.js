@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const WidgetSummary = ({ provider, step }) => (
+const WidgetSummary = ({ questions, step }) => (
   <div id="assec-widget-summary" className="p20">
     <div className="questions pt12">
-      {provider &&
-        provider.map((question, index) => {
+      {questions &&
+        questions.map((question, index) => {
           const isactive = step === index;
           return (
             <div key={question.id}
@@ -28,7 +28,7 @@ const WidgetSummary = ({ provider, step }) => (
 WidgetSummary.propTypes = {
   // choices: PropTypes.array.isRequired,
   step: PropTypes.number.isRequired,
-  provider: PropTypes.array.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default connect(state => ({

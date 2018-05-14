@@ -1,2 +1,2 @@
-export * from './MapView';
 export * from './MapControls';
+export * from './GeoJSONLayer';

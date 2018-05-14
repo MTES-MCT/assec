@@ -27,25 +27,32 @@ query widget (
   widget (
     code: $code
   ) {
-    id
-    type
-    title
-    order
-    display
-    description
-    values {
-      id
-      label
+    map {
+      zone
+      center
+      maxbounds
     }
-    zones {
+    questions {
       id
-      name
-      label
+      type
+      title
       order
-      zoneid
-      geojson
-      shortname
+      display
       description
+      values {
+        id
+        label
+      }
+      zones {
+        id
+        name
+        label
+        order
+        zoneid
+        geojson
+        shortname
+        description
+      }
     }
   }
 }
