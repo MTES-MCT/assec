@@ -39,7 +39,7 @@ textarea {
 input,
 select,
 textarea {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 input:focus,
