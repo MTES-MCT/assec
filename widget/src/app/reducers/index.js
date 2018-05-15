@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 
 // application
 const step = (state = 0, action) => {
@@ -13,7 +12,19 @@ const step = (state = 0, action) => {
   }
 };
 
+// application
+const popin = (state = false, action) => {
+  switch (action.type) {
+  case 'onOpenPopin':
+    return action.value;
+  case 'onClosePopin':
+    return false;
+  default:
+    return state;
+  }
+};
+
 export default combineReducers({
   step,
-  form: formReducer,
+  popin,
 });

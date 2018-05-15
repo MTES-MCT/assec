@@ -1,12 +1,16 @@
 // z-index des zones de la carte
 // -> 1000
 
-.leaflet-map-controls {
-  z-index: 9999;
+.assec-widget-popin {
+  z-index: 5000;
 }
 
 .tippy-popper {
-  z-index: 9999;
+  z-index: 3000;
+}
+
+.leaflet-map-controls {
+  z-index: 2300;
 }
 
 .tippy-tooltip [x-circle] {
@@ -15,4 +19,8 @@
 
 .leaflet-marker-divicon-pulse {
   z-index: 2000;
+}
+
+#assec-widget-summary {
+  z-index: 4000;
 }

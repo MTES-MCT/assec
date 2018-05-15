@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import { reduxForm, Form } from 'redux-form';
+import { Form } from 'react-final-form';
 
 // application
 import { usedebug } from './core/utils/usedebug';
 import { LOAD_DEPARTMENT_WIDGET } from './queries';
 import WidgetHeader from './components/WidgetHeader';
-import WidgetSummary from './components/WidgetSummary';
+// import WidgetSummary from './components/WidgetSummary';
+import WidgetPopin from './components/WidgetPopin';
 
 // inputs
 import MapInput from './components/forms/MapInput';
@@ -42,8 +43,8 @@ class PageComponent extends React.Component {
   // }
 
   render () {
-    const { step } = this.props;
     const { code } = this.state;
+    const { step, popin } = this.props;
     if (!code) return <p>Error le code est manquant :(</p>;
     return (
       <Query query={LOAD_DEPARTMENT_WIDGET} variables={{ code }}>
@@ -61,26 +62,35 @@ class PageComponent extends React.Component {
                 <body className={`current-step-${step}`} />
                 <title>Assec{usedebug() ? ' | Development' : ''}</title>
               </Helmet>
-              <div id="assec-widget" className="flex-rows">
-                <WidgetHeader total={total} />
-                <WidgetSummary questions={questions} />
-                <div id="assec-widget-survey">
-                  <Form onSubmit={() => {}}>
-                    {question &&
-                      question.display === 'list' && (
-                      <ListInput {...question} />
-                    )}
-                    {question &&
-                      question.display === 'choice' && (
-                      <ChoiceInput {...question} />
-                    )}
-                    {question &&
-                      question.display === 'zones' && (
-                      <MapInput {...question} {...map} />
-                    )}
-                  </Form>
-                </div>
+              {console.log('popin', popin)}
+              {console.log('question', question)}
+              {popin &&
+                question && (
+                <WidgetPopin title={question.title}
+                  description={question.description} />
+              )}
+              {/* <WidgetSummary questions={questions} /> */}
+              <div id="assec-widget-survey">
+                <Form onSubmit={() => {}}
+                  render={({ handleSubmit, values }) => (
+                    <form onSubmit={handleSubmit}>
+                      {console.log('form values => ', values)}
+                      {question &&
+                        question.display === 'list' && (
+                        <ListInput {...question} />
+                      )}
+                      {question &&
+                        question.display === 'choice' && (
+                        <ChoiceInput {...question} />
+                      )}
+                      {question &&
+                        question.display === 'zones' && (
+                        <MapInput {...question} {...map} />
+                      )}
+                    </form>
+                  )} />
               </div>
+              <WidgetHeader total={total} />
             </React.Fragment>
           );
         }}
@@ -91,17 +101,10 @@ class PageComponent extends React.Component {
 
 PageComponent.propTypes = {
   step: PropTypes.number.isRequired,
+  popin: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };
 
-const connected = connect(state => ({
+export default connect(state => ({
   step: state.step,
+  popin: state.popin,
 }))(PageComponent);
-
-export default reduxForm({
-  initialValues: {
-    usage: { choice: null },
-    origine: { choice: null },
-    situation: { choice: null },
-  },
-  form: 'ASSEC_WIDGET_FORM',
-})(connected);

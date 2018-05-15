@@ -1,2 +1,2 @@
-export * from './form';
+export * from './popin';
 export * from './navigation';

@@ -1,40 +1,89 @@
-// fieldset h3 {
-//   margin-bottom: 20px;
-//
-//   ~ p {
-//     margin-top: 0;
-//   }
-// }
+body {
+  overflow: hidden;
+}
 
-// application
-#root,
+.shadowed {
+  box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.25);
+}
+
+.assec-widget-popin {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .container {
+    top: 10%;
+    width: 80%;
+    height: 200px;
+    padding: 40px;
+    margin: 0 auto;
+    min-width: 180px;
+    max-width: 500px;
+    position: relative;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 1);
+  }
+}
+
 #assec-widget {
   width: 100vw;
   height: 100vh;
+  min-width: 200px;
+  overflow: hidden;
+  min-height: 350px;
+  position: relative;
 }
 
-#assec-widget-header {
-  .progressbar {
-    height: 3px;
+#assec-widget-summary {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+#assec-widget-navigation {
+  height: 15px;
+  min-height: 15px;
+  max-height: 15px;
+  box-sizing: content-box;
+}
+
+#assec-widget-position {
+  min-width: 60px;
+  font-size: 0.8em;
+  box-sizing: content-box;
+}
+
+#assec-widget-progressbar {
+  height: 3px;
+  width: 100%;
+
+  .container {
     width: 100%;
+    height: 3px;
+    min-height: 3px;
+  }
 
-    .container {
-      width: 100%;
-      height: 3px;
-      min-height: 3px;
-    }
+  .container > * {
+    display: block;
+  }
 
-    .container > * {
-      display: block;
-    }
+  .bar {
+    background-color: #000000;
+  }
 
-    .bar {
-      background-color: #000000;
-    }
-
-    .thumb {
-      background-color: #ACE539;
-    }
+  .thumb {
+    background-color: #ACE539;
   }
 }
 

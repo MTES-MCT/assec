@@ -12,6 +12,11 @@ const WidgetSummary = ({ questions, step }) => (
             <div key={question.id}
               data-id={question.id}
               className={`question pb12 ${isactive}`}>
+              <div className="badge">
+                <span>
+                  <span>{index}</span>
+                </span>
+              </div>
               <div className="title">
                 <span>{question.title}</span>
               </div>

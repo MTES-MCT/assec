@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tippy';
-import Geolocation from 'react-geolocation';
+// import Geolocation from 'react-geolocation';
 
 export class MapControls extends React.PureComponent {
   constructor (props) {
@@ -90,7 +90,7 @@ export class MapControls extends React.PureComponent {
             </span>
           </button>
         </Tooltip>
-        <Tooltip arrow
+        {/* <Tooltip arrow
           offset={-15}
           arrowSize="small"
           position="top-end"
@@ -99,7 +99,7 @@ export class MapControls extends React.PureComponent {
           <Geolocation lazy
             enableHighAccuracy
             onSuccess={this.onGeolocationSuccess}
-            render={({ /* error, */ fetchingPosition, getCurrentPosition }) => (
+            render={({ error fetchingPosition, getCurrentPosition }) => (
               <button className={`${(geoactive && 'active') || ''}`}
                 onClick={(evt) => {
                   evt.preventDefault();
@@ -114,7 +114,7 @@ export class MapControls extends React.PureComponent {
                 </span>
               </button>
             )} />
-        </Tooltip>
+        </Tooltip> */}
       </div>
     );
   }

@@ -4,11 +4,14 @@
 import React from 'react';
 import Leaflet from 'leaflet';
 import PropTypes from 'prop-types';
-import { FormSection, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import { Field } from 'react-final-form';
+import { bindActionCreators } from 'redux';
 import { Map, GeoJSON, Marker, TileLayer } from 'react-leaflet';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 // application
+import { openPopin } from './../../actions';
 import { MapControls, GeoJSONLayer } from './leafletmap';
 
 const precisezoom = 13;
@@ -56,7 +59,6 @@ const markerIcon = Leaflet.divIcon({
 });
 
 const getzindex = index => 1000 + index;
-// const getopacity = zoom => (zoom <= precisezoom && '0.4') || '0.1';
 
 class MapInput extends React.PureComponent {
   constructor (props) {
@@ -64,10 +66,11 @@ class MapInput extends React.PureComponent {
     this.map = null;
     this.onZoomEnd = this.onZoomEnd.bind(this);
     this.onToggleView = this.onToggleView.bind(this);
-    this.onLayerClick = this.onLayerClick.bind(this);
+    this.fieldClickHandler = this.fieldClickHandler.bind(this);
     this.onGeolocation = this.onGeolocation.bind(this);
     this.renderMapLayers = this.renderMapLayers.bind(this);
     this.setMapReference = this.setMapReference.bind(this);
+    this.bounds = bindActionCreators({ openPopin }, props.dispatch);
     this.state = {
       marker: null,
       mapzoom: null,
@@ -98,6 +101,9 @@ class MapInput extends React.PureComponent {
     const coords = [point.lng, point.lat];
     // const coords = [43.39528702235596, 6.294845731267186];
     const inside = booleanPointInPolygon(coords, zone);
+    // si le point n'est pas dans la zone du departement
+    // on ne fait pas de mise à jour
+    // -> FIXME indiquer une erreur a l'user lui indiquant
     const moveto = (inside && point) || null;
     if (!moveto) return;
     this.setState({ marker: moveto }, () => {
@@ -117,13 +123,6 @@ class MapInput extends React.PureComponent {
     });
   }
 
-  onLayerClick (zoneid, point) {
-    this.setState({
-      marker: point,
-      selected: zoneid,
-    });
-  }
-
   onZoomEnd () {
     const mapzoom = this.map.leafletElement.getZoom();
     this.setState({ mapzoom });
@@ -131,6 +130,20 @@ class MapInput extends React.PureComponent {
 
   setMapReference (ref) {
     this.map = ref;
+  }
+
+  fieldClickHandler ({
+    latlng, zoneid, value, input,
+  }) {
+    const state = {
+      marker: latlng,
+      selected: zoneid,
+    };
+    // envoi de la valeur du form
+    this.setState(state, () => {
+      input.onChange(value);
+      this.bounds.openPopin(value);
+    });
   }
 
   renderMapLayers () {
@@ -165,73 +178,69 @@ class MapInput extends React.PureComponent {
       selected, mapzoom, marker, showzonelayer,
     } = this.state;
     return (
-      <FormSection name={type} component="fieldset">
-        <div className="input-type-map">
-          <div id="leaflet-map" className="leaflet-map flex2">
-            <MapControls hasmarker={marker !== null}
-              onToggleView={this.onToggleView}
-              onGeolocation={this.onGeolocation} />
-            <Map animate={false}
-              center={center}
-              maxZoom={maxzoom}
-              minZoom={minzoom}
-              maxBounds={maxbounds}
-              zoomControl={usezoom}
-              zoom={mapzoom || zoom}
-              onZoomEnd={this.onZoomEnd}
-              ref={this.setMapReference}>
-              {/* -------
+      <div className="input-type-map">
+        <div id="leaflet-map" className="leaflet-map flex2">
+          <MapControls hasmarker={marker !== null}
+            onToggleView={this.onToggleView}
+            onGeolocation={this.onGeolocation} />
+          <Map animate={false}
+            center={center}
+            maxZoom={maxzoom}
+            minZoom={minzoom}
+            maxBounds={maxbounds}
+            zoomControl={usezoom}
+            zoom={mapzoom || zoom}
+            onZoomEnd={this.onZoomEnd}
+            ref={this.setMapReference}>
+            {/* -------
 
                 couches IGN
 
               ------- */}
-              {this.renderMapLayers()}
-              {/* -------
+            {this.renderMapLayers()}
+            {/* -------
 
                 zone globale du department
 
               ------- */}
-              {zone && (
-                <GeoJSON data={zone} className="geojson-layer department" />
-              )}
-              {/* -------
+            {zone && (
+              <GeoJSON data={zone} className="geojson-layer department" />
+            )}
+            {/* -------
 
                 render des zones du department comme inputs de form
 
               ------- */}
-              {zones &&
-                zones.map((obj, index) => {
-                  const zIndex = getzindex(index);
-                  const opacity = showzonelayer ? 0.4 : 0;
-                  const showtooltip = zoom < precisezoom;
-                  const props = {
-                    obj,
-                    zIndex,
-                    opacity,
-                    selected,
-                    showtooltip,
-                    onClick: this.onLayerClick,
-                  };
-                  return (
-                    <Field key={`mapzone_${obj.zoneid}`}
-                      name="choice"
-                      props={props}
-                      component={GeoJSONLayer}
-                      style={{ zIndex, opacity }} />
-                  );
-                })}
-              {/* -------
+            {zones &&
+              zones.map((obj, index) => {
+                const zIndex = getzindex(index);
+                const opacity = showzonelayer ? 0.4 : 0;
+                const showtooltip = zoom < precisezoom;
+                const props = {
+                  obj,
+                  zIndex,
+                  opacity,
+                  selected,
+                  showtooltip,
+                };
+                return (
+                  <Field {...props}
+                    name={type}
+                    component={GeoJSONLayer}
+                    style={{ zIndex, opacity }}
+                    key={`mapzone_${obj.zoneid}`}
+                    onChange={this.fieldClickHandler} />
+                );
+              })}
+            {/* -------
 
                 point marker
 
               ------- */}
-              {marker && (
-                <Marker draggable icon={markerIcon} position={marker} />
-              )}
-            </Map>
-          </div>
+            {marker && <Marker icon={markerIcon} position={marker} />}
+          </Map>
         </div>
-      </FormSection>
+      </div>
     );
   }
 }
@@ -243,16 +252,17 @@ MapInput.defaultProps = {
 };
 
 MapInput.propTypes = {
-  // FIXME -> use shapeof
   zoom: PropTypes.number,
   usezoom: PropTypes.bool,
   minzoom: PropTypes.number,
   maxzoom: PropTypes.number,
+  // FIXME -> use shapeof
   zone: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   zones: PropTypes.array.isRequired,
   center: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
   maxbounds: PropTypes.array.isRequired,
 };
 
-export default MapInput;
+export default connect()(MapInput);
