@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const RETRIEVE_BLOCKS = gql(`
-query retrieveBlocks {
-  retrieveBlocks {
+query blocks {
+  blocks {
     id
     slug
     label

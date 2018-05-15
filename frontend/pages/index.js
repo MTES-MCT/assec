@@ -55,7 +55,7 @@ const Application = () => (
         height="520"
         width="100%"
         frameBorder="0"
-        src={envconfig.widgeturi} />
+        src={`${envconfig.widgeturi}?department=83`} />
     </Element>
     <Element name="qui-sommes-nous"
       id="qui-sommes-nous"
@@ -83,7 +83,7 @@ const Application = () => (
 //   options: { variables: {} },
 //   props: ({ data }) => {
 //     const parsed =
-//       !data || !data.retrieveBlocks ? {} : blocksToObject(data.retrieveBlocks);
+//       !data || !data.blocks ? {} : blocksToObject(data.blocks);
 //     return { blocks: parsed };
 //   },
 // })(Application);
