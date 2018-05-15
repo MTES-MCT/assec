@@ -1,0 +1,101 @@
+.leaflet-marker-divicon {
+  position: relative;
+}
+
+.leaflet-marker-divicon-container {
+  top: -10px;
+  position: absolute;
+}
+
+.leaflet-marker-divicon-inner {
+  position: relative;
+}
+
+.leaflet-marker-divicon-pin {
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  margin: 0 0 0 0;
+  position: absolute;
+  background: #89849B;
+  transform: rotate(-45deg);
+  border-radius: 50% 50% 50% 0;
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.leaflet-marker-divicon-pin::after {
+  width: 6px;
+  height: 6px;
+  content: '';
+  border-radius: 50%;
+  position: absolute;
+  background: #2F2F2F;
+  margin: 3px 0 0 3px;
+}
+
+.leaflet-marker-divicon-pulse {
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 50%;
+  margin: 14px 0 0 1px;
+  transform: rotateX(55deg);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-marker-divicon-pulse::after {
+  opacity: 0;
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  margin: -5px 0 0 -5px;
+  box-shadow: 0 0 1px 2px #89849B;
+  animation: pulsate 1s ease-out;
+  animation-delay: 1.1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0;
+    transform: scale(0.1, 0.1);
+  }
+
+  50% {
+    opacity: 1;
+    filter: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.2, 1.2);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px) rotate(-45deg);
+  }
+
+  60% {
+    opacity: 1;
+    filter: none;
+    transform: translateY(30px) rotate(-45deg);
+  }
+
+  80% {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-45deg);
+  }
+}

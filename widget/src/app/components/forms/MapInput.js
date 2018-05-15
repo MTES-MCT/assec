@@ -43,8 +43,16 @@ const ignLayers = [
 const attr =
   '&copy; <a href="https://www.geoportail.gouv.fr">IGN-F/Geoportail</a>';
 
-const markerIcon = Leaflet.icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
+const markerIcon = Leaflet.divIcon({
+  className: 'leaflet-marker-divicon',
+  html: `
+  <div class="leaflet-marker-divicon-container">
+    <div class="leaflet-marker-divicon-inner">
+      <div class="leaflet-marker-divicon-pin"></div>
+      <div class="leaflet-marker-divicon-pulse"></div>
+    </div>
+  </div>
+  `,
 });
 
 const getzindex = index => 1000 + index;
@@ -58,12 +66,12 @@ class MapInput extends React.PureComponent {
     this.onToggleView = this.onToggleView.bind(this);
     this.onLayerClick = this.onLayerClick.bind(this);
     this.onGeolocation = this.onGeolocation.bind(this);
+    this.renderMapLayers = this.renderMapLayers.bind(this);
     this.setMapReference = this.setMapReference.bind(this);
     this.state = {
       marker: null,
+      mapzoom: null,
       selected: null,
-      geocenter: null,
-      zoom: props.zoom,
       showsatellite: false,
       showzonelayer: false,
     };
@@ -82,25 +90,20 @@ class MapInput extends React.PureComponent {
   }
 
   onGeolocation (point) {
-    const {
-      minzoom, maxzoom, center, zone,
-    } = this.props;
+    const { minzoom, maxzoom, zone } = this.props;
     const coords = [point.lng, point.lat];
-    // const cent = [6.294845731267186, 43.39528702235596];
+    // const coords = [43.39528702235596, 6.294845731267186];
     const inside = booleanPointInPolygon(coords, zone);
-    this.setState({
-      marker: (inside && point) || null,
-      zoom: (inside && maxzoom - 1) || minzoom,
-      geocenter: (inside && point) || center,
+    const marker = (inside && point) || null;
+    if (!marker) return;
+    this.setState({ marker }, () => {
+      const zoom = (inside && maxzoom - 2) || minzoom;
+      this.map.leafletElement.flyTo(marker, zoom);
     });
   }
 
-  onToggleView (state) {
-    this.setState(state);
-  }
-
-  onZoomEnd ({ target }) {
-    this.setState({ zoom: target._zoom });
+  onToggleView ({ showzonelayer, showsatellite }) {
+    this.setState({ showzonelayer, showsatellite });
   }
 
   onLayerClick (zoneid, point) {
@@ -110,12 +113,17 @@ class MapInput extends React.PureComponent {
     });
   }
 
+  onZoomEnd ({ target }) {
+    this.setState({ mapzoom: target._zoom });
+  }
+
   setMapReference (ref) {
     this.map = ref;
   }
 
   renderMapLayers () {
-    const { zoom, showsatellite } = this.state;
+    const { showsatellite } = this.state;
+    const zoom = this.state.mapzoom || this.props.zoom;
     return ignLayers
       .filter(({ name }) =>
         name !== 'satlayer' || (name === 'satlayer' && showsatellite))
@@ -133,6 +141,7 @@ class MapInput extends React.PureComponent {
     const {
       type,
       zone,
+      zoom,
       zones,
       center,
       minzoom,
@@ -141,7 +150,7 @@ class MapInput extends React.PureComponent {
       maxbounds,
     } = this.props;
     const {
-      zoom, selected, marker, geocenter, showzonelayer,
+      selected, mapzoom, marker, showzonelayer,
     } = this.state;
     return (
       <FormSection name={type} component="fieldset">
@@ -149,16 +158,26 @@ class MapInput extends React.PureComponent {
           <div id="leaflet-map" className="leaflet-map flex2">
             <MapControls onToggleView={this.onToggleView}
               onGeolocation={this.onGeolocation} />
-            <Map animate
-              zoom={zoom}
+            <Map animate={false}
+              center={center}
               maxZoom={maxzoom}
               minZoom={minzoom}
               maxBounds={maxbounds}
               zoomControl={usezoom}
-              ref={this.setMapReference}
+              zoom={mapzoom || zoom}
               onZoomEnd={this.onZoomEnd}
-              center={geocenter || center}>
+              ref={this.setMapReference}>
+              {/* -------
+
+                couches IGN
+
+              ------- */}
               {this.renderMapLayers()}
+              {/* -------
+
+                zone globale du department
+
+              ------- */}
               {zone && (
                 <GeoJSON data={zone} className="geojson-layer department" />
               )}
@@ -188,6 +207,11 @@ class MapInput extends React.PureComponent {
                       style={{ zIndex, opacity }} />
                   );
                 })}
+              {/* -------
+
+                point marker
+
+              ------- */}
               {marker && (
                 <Marker draggable icon={markerIcon} position={marker} />
               )}
