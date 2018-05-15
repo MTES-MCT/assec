@@ -28,6 +28,7 @@ const WidgetPopin = ({
           <button disabled={step <= 0}
             onClick={() => {
               dispatch(stepBackward());
+              dispatch(closePopin());
             }}>
             <span>Revenir à la question précédente</span>
           </button>
@@ -40,6 +41,7 @@ const WidgetPopin = ({
           <button className="ml20"
             onClick={() => {
               dispatch(stepForward());
+              dispatch(closePopin());
             }}>
             <span>Passer à la question suivante</span>
           </button>

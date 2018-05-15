@@ -62,8 +62,6 @@ class PageComponent extends React.Component {
                 <body className={`current-step-${step}`} />
                 <title>Assec{usedebug() ? ' | Development' : ''}</title>
               </Helmet>
-              {console.log('popin', popin)}
-              {console.log('question', question)}
               {popin &&
                 question && (
                 <WidgetPopin title={question.title}
@@ -72,9 +70,8 @@ class PageComponent extends React.Component {
               {/* <WidgetSummary questions={questions} /> */}
               <div id="assec-widget-survey">
                 <Form onSubmit={() => {}}
-                  render={({ handleSubmit, values }) => (
+                  render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
-                      {console.log('form values => ', values)}
                       {question &&
                         question.display === 'list' && (
                         <ListInput {...question} />

@@ -19,7 +19,7 @@ export class GeoJSONLayer extends React.PureComponent {
       input,
       latlng,
       zoneid,
-      value: obj,
+      object: obj,
     });
   }
 

@@ -133,7 +133,7 @@ class MapInput extends React.PureComponent {
   }
 
   fieldClickHandler ({
-    latlng, zoneid, value, input,
+    latlng, zoneid, object, input,
   }) {
     const state = {
       marker: latlng,
@@ -141,8 +141,8 @@ class MapInput extends React.PureComponent {
     };
     // envoi de la valeur du form
     this.setState(state, () => {
-      input.onChange(value);
-      this.bounds.openPopin(value);
+      input.onChange(latlng);
+      this.bounds.openPopin(object);
     });
   }
 
