@@ -2,9 +2,10 @@
   no-underscore-dangle: 0
   */
 import React from 'react';
+import Leaflet from 'leaflet';
 import PropTypes from 'prop-types';
 import { FormSection, Field } from 'redux-form';
-import { Map, GeoJSON, TileLayer } from 'react-leaflet';
+import { Map, GeoJSON, Marker, TileLayer } from 'react-leaflet';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 // application
@@ -42,6 +43,10 @@ const ignLayers = [
 const attr =
   '&copy; <a href="https://www.geoportail.gouv.fr">IGN-F/Geoportail</a>';
 
+const markerIcon = Leaflet.icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon-2x.png',
+});
+
 const getzindex = index => 1000 + index;
 // const getopacity = zoom => (zoom <= precisezoom && '0.4') || '0.1';
 
@@ -51,14 +56,14 @@ class MapInput extends React.PureComponent {
     this.map = null;
     this.onZoomEnd = this.onZoomEnd.bind(this);
     this.onToggleView = this.onToggleView.bind(this);
+    this.onLayerClick = this.onLayerClick.bind(this);
     this.onGeolocation = this.onGeolocation.bind(this);
-    this.onLayerSelect = this.onLayerSelect.bind(this);
     this.setMapReference = this.setMapReference.bind(this);
     this.state = {
+      marker: null,
       selected: null,
       geocenter: null,
       zoom: props.zoom,
-      showmarker: false,
       showsatellite: false,
       showzonelayer: false,
     };
@@ -84,7 +89,7 @@ class MapInput extends React.PureComponent {
     // const cent = [6.294845731267186, 43.39528702235596];
     const inside = booleanPointInPolygon(coords, zone);
     this.setState({
-      showmarker: true,
+      marker: (inside && point) || null,
       zoom: (inside && maxzoom - 1) || minzoom,
       geocenter: (inside && point) || center,
     });
@@ -98,8 +103,11 @@ class MapInput extends React.PureComponent {
     this.setState({ zoom: target._zoom });
   }
 
-  onLayerSelect (zoneid) {
-    this.setState({ selected: zoneid });
+  onLayerClick (zoneid, point) {
+    this.setState({
+      marker: point,
+      selected: zoneid,
+    });
   }
 
   setMapReference (ref) {
@@ -133,7 +141,7 @@ class MapInput extends React.PureComponent {
       maxbounds,
     } = this.props;
     const {
-      zoom, selected, geocenter, showzonelayer,
+      zoom, selected, marker, geocenter, showzonelayer,
     } = this.state;
     return (
       <FormSection name={type} component="fieldset">
@@ -170,7 +178,7 @@ class MapInput extends React.PureComponent {
                     opacity,
                     selected,
                     showtooltip,
-                    onSelect: this.onLayerSelect,
+                    onClick: this.onLayerClick,
                   };
                   return (
                     <Field key={`mapzone_${obj.zoneid}`}
@@ -180,6 +188,9 @@ class MapInput extends React.PureComponent {
                       style={{ zIndex, opacity }} />
                   );
                 })}
+              {marker && (
+                <Marker draggable icon={markerIcon} position={marker} />
+              )}
             </Map>
           </div>
         </div>

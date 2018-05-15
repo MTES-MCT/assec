@@ -12,14 +12,14 @@ export class GeoJSONLayer extends React.PureComponent {
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  clickHandler () {
+  clickHandler ({ latlng }) {
     const {
-      input, selected, onSelect, obj,
+      input, selected, onClick, obj,
     } = this.props;
     const isselected = obj.zoneid === selected;
     const value = (!isselected && obj) || null;
     input.onChange(value);
-    onSelect(obj.zoneid);
+    onClick(obj.zoneid, latlng);
   }
 
   render () {
@@ -65,7 +65,7 @@ GeoJSONLayer.propTypes = {
   obj: PropTypes.object.isRequired,
   input: PropTypes.object.isRequired,
   zIndex: PropTypes.number.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   opacity: PropTypes.number.isRequired,
   showtooltip: PropTypes.bool.isRequired,
 };
