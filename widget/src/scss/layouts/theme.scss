@@ -69,6 +69,24 @@ body {
   }
 }
 
+/* ------------------------------------------------
+
+ MAP
+
+------------------------------------------------ */
+
+.leaflet-map-controls button {
+  color: $header2;
+  background-color: $white;
+  transition-duration: 0.5s;
+  transition-property: color, background-color;
+
+  &.active {
+    color: $white;
+    background-color: $header2;
+  }
+}
+
 .leaflet-marker-divicon-pin {
   background: $header2;
 }

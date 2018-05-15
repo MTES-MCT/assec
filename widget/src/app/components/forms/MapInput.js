@@ -90,20 +90,31 @@ class MapInput extends React.PureComponent {
   }
 
   onGeolocation (point) {
+    if (!point) {
+      this.setState({ marker: null });
+      return;
+    }
     const { minzoom, maxzoom, zone } = this.props;
     const coords = [point.lng, point.lat];
     // const coords = [43.39528702235596, 6.294845731267186];
     const inside = booleanPointInPolygon(coords, zone);
-    const marker = (inside && point) || null;
-    if (!marker) return;
-    this.setState({ marker }, () => {
-      const zoom = (inside && maxzoom - 2) || minzoom;
-      this.map.leafletElement.flyTo(marker, zoom);
+    const moveto = (inside && point) || null;
+    if (!moveto) return;
+    this.setState({ marker: moveto }, () => {
+      const zoomto = (inside && maxzoom - 2) || minzoom;
+      const mapzoom = this.map.leafletElement.getZoom();
+      const mapbounds = this.map.leafletElement.getBounds();
+      const shouldfly = mapbounds.contains(point) && mapzoom !== zoomto;
+      if (!shouldfly) return;
+      this.map.leafletElement.flyTo(moveto, zoomto, { duration: 1.5 });
     });
   }
 
-  onToggleView ({ showzonelayer, showsatellite }) {
-    this.setState({ showzonelayer, showsatellite });
+  onToggleView ({ satellized, layered }) {
+    this.setState({
+      showzonelayer: layered,
+      showsatellite: satellized,
+    });
   }
 
   onLayerClick (zoneid, point) {
@@ -113,8 +124,9 @@ class MapInput extends React.PureComponent {
     });
   }
 
-  onZoomEnd ({ target }) {
-    this.setState({ mapzoom: target._zoom });
+  onZoomEnd () {
+    const mapzoom = this.map.leafletElement.getZoom();
+    this.setState({ mapzoom });
   }
 
   setMapReference (ref) {
@@ -156,7 +168,8 @@ class MapInput extends React.PureComponent {
       <FormSection name={type} component="fieldset">
         <div className="input-type-map">
           <div id="leaflet-map" className="leaflet-map flex2">
-            <MapControls onToggleView={this.onToggleView}
+            <MapControls hasmarker={marker !== null}
+              onToggleView={this.onToggleView}
               onGeolocation={this.onGeolocation} />
             <Map animate={false}
               center={center}
