@@ -73,12 +73,6 @@
       "src": "fontelico"
     },
     {
-      "uid": "f8513213799b244e66b2836aeee88531",
-      "css": "direction",
-      "code": 59402,
-      "src": "entypo"
-    },
-    {
       "uid": "85017ab6ca074831a8de771b40e9640c",
       "css": "camera",
       "code": 59403,
@@ -101,6 +95,18 @@
       "css": "marquee",
       "code": 59463,
       "src": "fontelico"
+    },
+    {
+      "uid": "a42b598e4298f3319b25a2702a02e7ff",
+      "css": "location",
+      "code": 59406,
+      "src": "entypo"
+    },
+    {
+      "uid": "f8513213799b244e66b2836aeee88531",
+      "css": "direction",
+      "code": 59402,
+      "src": "entypo"
     }
   ]
 }

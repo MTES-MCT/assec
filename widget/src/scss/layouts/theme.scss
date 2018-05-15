@@ -69,18 +69,18 @@ body {
   }
 }
 
-// #app-header {
-//   color: $white;
-//   // stylelint-disable-next-line
-//   background-image: linear-gradient(
-//     312deg,
-//     $header0 0%,
-//     $header1 68%,
-//     $header2 100%
-//   );
-// }
-//
-// #selecteur-departement {
-//   color: $white;
-//   background-color: #01BCD5;
-// }
+.leaflet-marker-divicon-pin {
+  background: $header2;
+}
+
+.leaflet-marker-divicon-pin::after {
+  background: $white;
+}
+
+.leaflet-marker-divicon-pulse {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-marker-divicon-pulse::after {
+  box-shadow: 0 0 1px 2px $header2;
+}
