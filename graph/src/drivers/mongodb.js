@@ -63,4 +63,4 @@ const onConnectionFailed = (err) => {
 };
 
 tryConnect(onConnectionSuccess, onConnectionFailed);
-export * from './../entities/mongodb';
+export * from './../mongodb';

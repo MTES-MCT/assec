@@ -1,5 +1,5 @@
 import Mongoose, { Schema } from 'mongoose';
-import { slugify } from './../../utils/slugify';
+import { slugify } from './../utils/slugify';
 
 const DepartmentMapSchema = new Schema(
   {
