@@ -99,19 +99,23 @@ export const Query = {
 
   ----------------------------------- */
 
-  findRestriction: (_, { situations, usages, origines }) => {
-    console.log('usages', usages);
-    console.log('origines', origines);
-    console.log('situations', situations);
-    // ZoneModel.findById(zones).then((found) => {
-    //   const { situation: situations } = found.alerte;
-    //   return Restriction.find({
-    //     usages: { $in: [usages] },
-    //     origines: { $in: [origines] },
-    //     situations: { $in: [situations] },
-    //   });
-    return null;
-  },
+  findRestriction: (_, {
+    department, situations, usages, origines,
+  }) =>
+    ZoneModel.find({ department })
+      .exec()
+      .then((zones) => {
+        console.log('zones', zones);
+        console.log('usages', usages);
+        console.log('origines', origines);
+        console.log('situations', situations);
+      }) || null, // ZoneModel.findById(zones).then((found) => {
+  //   const { situation: situations } = found.alerte;
+  //   return Restriction.find({
+  //     usages: { $in: [usages] },
+  //     origines: { $in: [origines] },
+  //     situations: { $in: [situations] },
+  //   });
 
   widget: (_, { code }) =>
     Departement.findOne({ code })
@@ -130,6 +134,7 @@ export const Query = {
             .exec(),
         ]))
       .then(([doc, zones, questions]) => ({
+        department: doc.id,
         map: generateMapFromZones(zones),
         questions: questions.map((entity) => {
           const question = entity.toObject({ virtuals: true });

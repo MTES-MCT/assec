@@ -4,11 +4,13 @@ export const LOAD_RESTRICTION_CASE = gql(`
 query findRestriction (
   $usages: ID!
   $origines: ID!
+  $department: ID!
   $situations: [Float]!
 ) {
   findRestriction (
     usages: $usages
     origines: $origines
+    department: $department
     situations: $situations
   ) {
     id
@@ -24,6 +26,7 @@ query widget (
   widget (
     code: $code
   ) {
+    department
     map {
       zone
       center

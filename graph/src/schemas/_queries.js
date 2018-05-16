@@ -32,10 +32,10 @@ type Query {
   widget(code: String): WidgetType
 
   findRestriction(
-    usages: ID
-    origines: ID
-    department: ID
-    situations: [Float]
+    usages: ID!
+    origines: ID!
+    department: ID!
+    situations: [Float]!
   ): [RestrictionType]
 }
 `;

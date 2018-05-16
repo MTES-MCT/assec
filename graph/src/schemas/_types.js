@@ -141,8 +141,9 @@ type MapType {
 }
 
 type WidgetType {
-  map: MapType
-  questions: [QuestionExtendedType]
+  map: MapType!
+  department: ID!
+  questions: [QuestionExtendedType]!
 }
 `;
 

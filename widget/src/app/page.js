@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import { Form } from 'react-final-form';
+import { Form, Field } from 'react-final-form';
 
 // application
 import { LOAD_DEPARTMENT_WIDGET } from './apolloql/queries';
@@ -33,7 +33,7 @@ class PageComponent extends React.Component {
     return (
       <Query query={LOAD_DEPARTMENT_WIDGET} variables={{ code }}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (!error && (!data || loading)) return <p>Loading...</p>;
           if (error) return <p>Erreur graphql :(</p>;
           const widget = (data && data.widget) || null;
           const questions = (widget && widget.questions) || null;
@@ -46,16 +46,21 @@ class PageComponent extends React.Component {
               </Helmet>
               {/* <WidgetSummary questions={questions} /> */}
               <Form onSubmit={noop}
+                initialValues={{
+                  department: (data.widget && data.widget.department) || null,
+                }}
                 render={({ values, handleSubmit }) => {
                   const question = (questions && questions[step]) || null;
                   const map = (widget && widget.map) || null;
                   const showresult = total <= step;
-                  console.log('step', step);
                   const isfirst = step === 0;
                   const islast = step === total - 1;
                   const formValue = (question && values[question.type]) || null;
                   return (
                     <React.Fragment>
+                      <Field name="department"
+                        type="hidden"
+                        component="input" />
                       <WidgetSurvey map={map}
                         question={question}
                         formValue={formValue}
