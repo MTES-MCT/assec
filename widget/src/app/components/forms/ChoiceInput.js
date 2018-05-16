@@ -31,7 +31,6 @@ class ChoiceInput extends React.PureComponent {
                     checked={obj.id === formValue}
                     onChange={() => {
                       input.onChange(obj.id);
-                      this.bounds.openPopin(obj);
                     }} />
                   <span>{obj.label}</span>
                 </label>

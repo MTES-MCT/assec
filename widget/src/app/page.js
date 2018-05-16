@@ -11,9 +11,25 @@ import { LOAD_DEPARTMENT_WIDGET } from './apolloql/queries';
 import { noop } from './core/noop';
 import { usedebug } from './core/usedebug';
 import WidgetPopin from './components/WidgetPopin';
+import WidgetHeader from './components/WidgetHeader';
 import WidgetFooter from './components/WidgetFooter';
 import WidgetResult from './components/WidgetResult';
 import WidgetSurvey from './components/WidgetSurvey';
+import WidgetNavigation from './components/WidgetNavigation';
+
+const buildValidator = (questions) => {
+  const keys = questions.map(obj => obj.type);
+  return (values) => {
+    const errors = {};
+    keys.reduce((acc, key) => {
+      if (!values[key]) {
+        return { ...acc, [key]: 'Required' };
+      }
+      return acc;
+    }, errors);
+    return errors;
+  };
+};
 
 class PageComponent extends React.Component {
   constructor (props) {
@@ -38,40 +54,57 @@ class PageComponent extends React.Component {
           const widget = (data && data.widget) || null;
           const questions = (widget && widget.questions) || null;
           const total = questions.length;
+          const bodyclass = `current-step-${step} ${(popin && 'haspopin') ||
+            ''}`;
           return (
             <React.Fragment>
               <Helmet>
-                <body className={`current-step-${step}`} />
+                <body className={bodyclass} />
                 <title>Assec{usedebug() ? ' | Development' : ''}</title>
               </Helmet>
-              {/* <WidgetSummary questions={questions} /> */}
               <Form onSubmit={noop}
+                validate={buildValidator(questions)}
                 initialValues={{
                   department: (data.widget && data.widget.department) || null,
                 }}
-                render={({ values, handleSubmit }) => {
+                render={({ values, invalid, handleSubmit }) => {
                   const question = (questions && questions[step]) || null;
                   const map = (widget && widget.map) || null;
-                  const showresult = total <= step;
                   const isfirst = step === 0;
+                  const isresult = total <= step;
                   const islast = step === total - 1;
                   const formValue = (question && values[question.type]) || null;
+                  // la premiere valeur est le field hidden department
+                  const canforward = Object.keys(values).length > step + 1;
                   return (
                     <React.Fragment>
-                      <Field name="department"
-                        type="hidden"
-                        component="input" />
-                      <WidgetSurvey map={map}
-                        question={question}
-                        formValue={formValue}
-                        handleSubmit={handleSubmit} />
+                      {!isresult && (
+                        <React.Fragment>
+                          {/* <WidgetSummary questions={questions} values={values}  /> */}
+                          <WidgetHeader isfirst={isfirst}
+                            title={question.title} />
+                          <form onSubmit={handleSubmit}>
+                            <Field name="department"
+                              type="hidden"
+                              component="input" />
+                            <WidgetSurvey map={map}
+                              question={question}
+                              formValue={formValue} />
+                            {!isfirst && (
+                              <WidgetNavigation islast={islast}
+                                cansubmit={!invalid}
+                                canforward={canforward} />
+                            )}
+                          </form>
+                        </React.Fragment>
+                      )}
                       {popin && (
                         <WidgetPopin {...question}
                           step={step}
                           islast={islast}
                           isfirst={isfirst} />
                       )}
-                      {showresult && <WidgetResult values={values} />}
+                      {isresult && <WidgetResult values={values} />}
                     </React.Fragment>
                   );
                 }} />

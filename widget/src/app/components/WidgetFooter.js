@@ -21,9 +21,9 @@ class WidgetFooter extends React.PureComponent {
         </div>
         <div id="assec-widget-progressbar" className="progressbar flex-1">
           <div className="container relative">
+            <span className="bar absolute" />
             <span className="thumb absolute"
               style={{ right: `${calculate(total, step)}%` }} />
-            <span className="bar absolute" />
           </div>
         </div>
       </div>

@@ -9,18 +9,16 @@ import ChoiceInput from './forms/ChoiceInput';
 
 class WidgetSurvey extends React.PureComponent {
   render () {
-    const {
-      question, map, formValue, handleSubmit,
-    } = this.props;
+    const { question, map, formValue } = this.props;
     const type = (question && question.display) || null;
-    const props = Object.assign({}, question, map || {}, { formValue });
+    const props = Object.assign({}, question, map || {}, {
+      formValue,
+    });
     return (
       <div id="assec-widget-survey">
-        <form onSubmit={handleSubmit}>
-          {type === 'list' && <ListInput {...props} />}
-          {type === 'choice' && <ChoiceInput {...props} />}
-          {type === 'zones' && <MapInput {...props} />}
-        </form>
+        {type === 'list' && <ListInput {...props} />}
+        {type === 'choice' && <ChoiceInput {...props} />}
+        {type === 'zones' && <MapInput {...props} />}
       </div>
     );
   }
@@ -28,15 +26,13 @@ class WidgetSurvey extends React.PureComponent {
 
 WidgetSurvey.defaultProps = {
   map: null,
-  question: null,
   formValue: null,
 };
 
 WidgetSurvey.propTypes = {
   map: PropTypes.object,
-  question: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  question: PropTypes.object.isRequired,
   formValue: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };
 

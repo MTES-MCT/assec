@@ -16,8 +16,8 @@ class ListInput extends React.PureComponent {
     const { formValue, values, type } = this.props;
     const [selection] = (formValue &&
       values
-        .map((obj, index) => (obj.id === formValue && index) || false)
-        .filter(v => v !== false)) || [-1];
+        .map((obj, index) => (obj.id === formValue && index + 1) || false)
+        .filter(v => v)) || [0];
     return (
       <label className="list-input" htmlFor={type}>
         <Field name={type}
@@ -25,14 +25,16 @@ class ListInput extends React.PureComponent {
             <select {...input}
               value={selection}
               onChange={({ target }) => {
-                if (!target.value) return;
-                const value = values[target.value];
+                if (!target.value) {
+                  input.onChange(null);
+                  return;
+                }
+                const value = values[target.value - 1];
                 input.onChange(value.id);
-                this.bounds.openPopin(value);
               }}>
               <option key="listinput::default" />
               {values.map((value, index) => (
-                <option key={`listinput::${value.id}`} value={index}>
+                <option key={`listinput::${value.id}`} value={index + 1}>
                   {value.label}
                 </option>
               ))}

@@ -2,6 +2,10 @@ body {
   overflow: hidden;
 }
 
+form {
+  display: flex;
+}
+
 .shadowed {
   box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.25);
 }
@@ -21,17 +25,31 @@ body {
   }
 
   .container {
-    top: 10%;
     width: 80%;
     height: 200px;
-    padding: 40px;
     margin: 0 auto;
     min-width: 180px;
     max-width: 500px;
     position: relative;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 1);
   }
+
+  .overlay,
+  .container {
+    opacity: 0;
+    transition-duration: 1s;
+    transition-property: opacity;
+  }
+
+  .navigation button {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.haspopin .assec-widget-popin .overlay,
+.haspopin .assec-widget-popin .container {
+  opacity: 1;
 }
 
 #assec-widget {
