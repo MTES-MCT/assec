@@ -8,7 +8,7 @@ import './styles.css';
 import Page from './app/page';
 import { configure } from './app/store';
 import { Logger } from './app/core/logger';
-import { createClient } from './app/apollo';
+import { createClient } from './app/apolloql/client';
 
 Logger.debug(`
   **** Widget Application Debug ****

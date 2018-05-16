@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const LOAD_DEPARTMENT_RESTRICTION = gql(`
+export const LOAD_RESTRICTION_CASE = gql(`
 query findRestriction (
   $usages: String!
   $origines: String!
@@ -54,5 +54,3 @@ query widget (
   }
 }
 `);
-
-export default LOAD_DEPARTMENT_WIDGET;

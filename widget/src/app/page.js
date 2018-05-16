@@ -7,9 +7,9 @@ import queryString from 'query-string';
 import { Form } from 'react-final-form';
 
 // application
+import { LOAD_DEPARTMENT_WIDGET } from './apolloql/queries';
 import { noop } from './core/noop';
 import { usedebug } from './core/usedebug';
-import { LOAD_DEPARTMENT_WIDGET } from './queries';
 import WidgetPopin from './components/WidgetPopin';
 import WidgetFooter from './components/WidgetFooter';
 import WidgetResult from './components/WidgetResult';
