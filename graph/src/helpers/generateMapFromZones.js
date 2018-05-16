@@ -4,7 +4,7 @@ import dissolve from 'geojson-dissolve';
 import cleanCoords from '@turf/clean-coords';
 import transformScale from '@turf/transform-scale';
 
-export const generateMapFromZone = (zones) => {
+export const generateMapFromZones = (zones) => {
   const merged = dissolve(zones
     .map((obj) => {
       const parsed = JSON.parse(obj.geojson);
@@ -27,4 +27,4 @@ export const generateMapFromZone = (zones) => {
   };
 };
 
-export default generateMapFromZone;
+export default generateMapFromZones;

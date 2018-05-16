@@ -1,7 +1,8 @@
 import pick from 'lodash.pick';
 
 // application
-import { generateMapFromZone } from './helpers/generateMapFromZone';
+import { generateMapFromZones } from './helpers/generateMapFromZones';
+import { transformZoneToSituation } from './helpers/transformZoneToSituation';
 import {
   // SUOModel,
   ZoneModel,
@@ -11,24 +12,6 @@ import {
   QuestionModel,
   SubscriberModel,
 } from './drivers/mongodb';
-
-const toObjectOpts = { virtuals: true };
-
-const transformZoneToSituation = (zones) => {
-  const parsed = zones.map((obj) => {
-    const zone = obj.toObject(toObjectOpts);
-    const extras = pick(zone, [
-      'name',
-      'order',
-      'geojson',
-      'shortname',
-      'description',
-    ]);
-    const base = pick(zone.alerte.situation, ['id', 'label']);
-    return Object.assign({}, base, extras, { zoneid: zone.id });
-  });
-  return parsed;
-};
 
 export const Query = {
   /* -----------------------------------
@@ -120,6 +103,13 @@ export const Query = {
     console.log('usages', usages);
     console.log('origines', origines);
     console.log('situations', situations);
+    // ZoneModel.findById(zones).then((found) => {
+    //   const { situation: situations } = found.alerte;
+    //   return Restriction.find({
+    //     usages: { $in: [usages] },
+    //     origines: { $in: [origines] },
+    //     situations: { $in: [situations] },
+    //   });
     return null;
   },
 
@@ -140,9 +130,9 @@ export const Query = {
             .exec(),
         ]))
       .then(([doc, zones, questions]) => ({
-        map: generateMapFromZone(zones),
+        map: generateMapFromZones(zones),
         questions: questions.map((entity) => {
-          const question = entity.toObject(toObjectOpts);
+          const question = entity.toObject({ virtuals: true });
           const result = {
             ...question,
             zones:
@@ -152,7 +142,7 @@ export const Query = {
             values:
               question.type === 'situations'
                 ? null
-                : doc[question.type].toObject(toObjectOpts),
+                : doc[question.type].toObject({ virtuals: true }),
           };
           return result;
         }),
