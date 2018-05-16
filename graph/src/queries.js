@@ -126,8 +126,6 @@ export const Query = {
       });
     }),
 
-  retrieveBlocks: () => BlockModel.find(),
-
   widget: (_, { code }) =>
     Departement.findOne({ code })
       .populate('usages')
