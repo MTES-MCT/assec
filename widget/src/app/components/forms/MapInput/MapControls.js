@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tippy';
 // import Geolocation from 'react-geolocation';
 
-export class MapControls extends React.PureComponent {
+class MapControls extends React.PureComponent {
   constructor (props) {
     super(props);
     this.toggleSatellite = this.toggleSatellite.bind(this);
@@ -56,10 +56,8 @@ export class MapControls extends React.PureComponent {
   }
 
   render () {
-    const {
-      satellized, layered, geolocated, hasmarker,
-    } = this.state;
-    const geoactive = geolocated || hasmarker;
+    const { satellized, layered /* geolocated, hasmarker, */ } = this.state;
+    // const geoactive = geolocated || hasmarker;
     return (
       <div className="leaflet-map-controls flex-columns">
         <Tooltip arrow

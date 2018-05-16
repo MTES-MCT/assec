@@ -6,7 +6,7 @@ import { GeoJSON, Tooltip } from 'react-leaflet';
 // import { selectSituation } from './../../../actions';
 import { slugify } from './../../../core/slugify';
 
-export class GeoJSONLayer extends React.PureComponent {
+class GeoJSONLayer extends React.PureComponent {
   constructor (props) {
     super(props);
     this.clickHandler = this.clickHandler.bind(this);

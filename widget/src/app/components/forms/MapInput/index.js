@@ -11,8 +11,9 @@ import { Map, GeoJSON, Marker, TileLayer } from 'react-leaflet';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 // application
-import { openPopin } from './../../actions';
-import { MapControls, GeoJSONLayer } from './leafletmap';
+import { openPopin } from './../../../actions';
+import MapControls from './MapControls';
+import GeoJSONLayer from './GeoJSONLayer';
 
 const precisezoom = 13;
 const IGN_KEY = process.env.REACT_APP_IGN_KEY;
@@ -72,11 +73,11 @@ class MapInput extends React.PureComponent {
     this.setMapReference = this.setMapReference.bind(this);
     this.bounds = bindActionCreators({ openPopin }, props.dispatch);
     this.state = {
-      marker: null,
       mapzoom: null,
       selected: null,
       showsatellite: false,
       showzonelayer: false,
+      marker: props.formValue,
     };
   }
 
@@ -249,6 +250,7 @@ MapInput.defaultProps = {
   minzoom: 8,
   maxzoom: 18,
   usezoom: false,
+  formValue: null,
 };
 
 MapInput.propTypes = {
@@ -256,6 +258,7 @@ MapInput.propTypes = {
   usezoom: PropTypes.bool,
   minzoom: PropTypes.number,
   maxzoom: PropTypes.number,
+  formValue: PropTypes.object,
   // FIXME -> use shapeof
   zone: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,

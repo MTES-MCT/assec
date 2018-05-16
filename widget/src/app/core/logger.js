@@ -1,7 +1,7 @@
 /* eslint
   no-console: 0
 */
-import { usedebug } from './utils/usedebug';
+import { usedebug } from './usedebug';
 
 export const Logger = {
   debug: (msg) => {

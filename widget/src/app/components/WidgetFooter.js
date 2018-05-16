@@ -3,29 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { stepBackward, stepForward } from './../actions';
-
 const calculate = (total, count) => {
   const mult = 100 * count;
   return 100 - Math.round(mult / total);
 };
 
-class WidgetHeader extends React.PureComponent {
-  constructor (props) {
-    super(props);
-    this.prevHandler = this.prevHandler.bind(this);
-    this.nextHandler = this.nextHandler.bind(this);
-  }
-
-  prevHandler () {
-    const { dispatch } = this.props;
-    dispatch(stepBackward());
-  }
-  nextHandler () {
-    const { dispatch } = this.props;
-    dispatch(stepForward());
-  }
-
+class WidgetFooter extends React.PureComponent {
   render () {
     const { step, total } = this.props;
     return (
@@ -48,12 +31,11 @@ class WidgetHeader extends React.PureComponent {
   }
 }
 
-WidgetHeader.propTypes = {
+WidgetFooter.propTypes = {
   step: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(state => ({
   step: state.step,
-}))(WidgetHeader);
+}))(WidgetFooter);

@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import { stepForward, closePopin, stepBackward } from './../actions';
 
 const WidgetPopin = ({
-  title, description, step, dispatch,
+  title, description, dispatch, step,
 }) => {
   const content = description;
   // const content = description.split('\\s\\s').join('\\n');
@@ -26,6 +26,7 @@ const WidgetPopin = ({
         </div>
         <nav className="navigation">
           <button disabled={step <= 0}
+            type="button"
             onClick={() => {
               dispatch(stepBackward());
               dispatch(closePopin());
@@ -33,17 +34,27 @@ const WidgetPopin = ({
             <span>Revenir à la question précédente</span>
           </button>
           <button className="ml20"
+            type="button"
             onClick={() => {
               dispatch(closePopin());
             }}>
             <span>Modifier mon choix</span>
           </button>
           <button className="ml20"
+            type="button"
             onClick={() => {
               dispatch(stepForward());
               dispatch(closePopin());
             }}>
             <span>Passer à la question suivante</span>
+          </button>
+          <button className="ml20"
+            type="button"
+            onClick={() => {
+              dispatch(stepForward());
+              dispatch(closePopin());
+            }}>
+            <span>Voir les restrictions</span>
           </button>
         </nav>
       </div>

@@ -13,13 +13,19 @@ class ListInput extends React.PureComponent {
   }
 
   render () {
-    const { values, type } = this.props;
+    const { formValue, values, type } = this.props;
+    const [selection] = (formValue &&
+      values
+        .map((obj, index) => (obj.id === formValue && index) || false)
+        .filter(v => v !== false)) || [-1];
     return (
       <label className="list-input" htmlFor={type}>
         <Field name={type}
           render={({ input }) => (
             <select {...input}
+              value={selection}
               onChange={({ target }) => {
+                if (!target.value) return;
                 const value = values[target.value];
                 input.onChange(value.id);
                 this.bounds.openPopin(value);
@@ -37,7 +43,12 @@ class ListInput extends React.PureComponent {
   }
 }
 
+ListInput.defaultProps = {
+  formValue: null,
+};
+
 ListInput.propTypes = {
+  formValue: PropTypes.string,
   type: PropTypes.string.isRequired,
   values: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,

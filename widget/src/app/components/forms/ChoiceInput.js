@@ -13,29 +13,29 @@ class ChoiceInput extends React.PureComponent {
   }
 
   render () {
-    const { values, type } = this.props;
+    const { formValue, values, type } = this.props;
     return (
       <div className="flex-rows">
         {values.map((obj, index) => {
           const htmlfor = `choice_${index}`;
           const key = `choiceinput::${obj.id}`;
           return (
-            <label key={key}
-              htmlFor={htmlfor}
-              className="choice-input items-center">
-              <Field id={htmlfor}
-                name={type}
-                value={obj.id}
-                render={({ input }) => (
+            <Field key={key}
+              name={type}
+              value={obj.id}
+              render={({ input }) => (
+                <label htmlFor={htmlfor} className="choice-input items-center">
                   <input {...input}
+                    id={htmlfor}
                     type="radio"
+                    checked={obj.id === formValue}
                     onChange={() => {
                       input.onChange(obj.id);
                       this.bounds.openPopin(obj);
                     }} />
-                )} />
-              <span>{obj.label}</span>
-            </label>
+                  <span>{obj.label}</span>
+                </label>
+              )} />
           );
         })}
       </div>
@@ -43,7 +43,12 @@ class ChoiceInput extends React.PureComponent {
   }
 }
 
+ChoiceInput.defaultProps = {
+  formValue: null,
+};
+
 ChoiceInput.propTypes = {
+  formValue: PropTypes.string,
   type: PropTypes.string.isRequired,
   values: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
