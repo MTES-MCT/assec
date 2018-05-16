@@ -29,15 +29,13 @@ type Query {
   #
   # ###################################
 
-  retrieveBlocks: [BlockType]
-
   widget(code: String): WidgetType
 
-  findRestictionByCriteria(
-    zones: ID
+  findRestriction(
     usages: ID
     origines: ID
     department: ID
+    situations: [Float]
   ): [RestrictionType]
 }
 `;

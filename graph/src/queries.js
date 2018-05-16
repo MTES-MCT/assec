@@ -116,15 +116,12 @@ export const Query = {
 
   ----------------------------------- */
 
-  findRestictionByCriteria: (_, { zones, usages, origines }) =>
-    ZoneModel.findById(zones).then((found) => {
-      const { situation: situations } = found.alerte;
-      return Restriction.find({
-        usages: { $in: [usages] },
-        origines: { $in: [origines] },
-        situations: { $in: [situations] },
-      });
-    }),
+  findRestriction: (_, { situations, usages, origines }) => {
+    console.log('usages', usages);
+    console.log('origines', origines);
+    console.log('situations', situations);
+    return null;
+  },
 
   widget: (_, { code }) =>
     Departement.findOne({ code })

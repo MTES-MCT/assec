@@ -142,7 +142,7 @@ class MapInput extends React.PureComponent {
     };
     // envoi de la valeur du form
     this.setState(state, () => {
-      input.onChange(latlng);
+      input.onChange([latlng.lat, latlng.lng]);
       this.bounds.openPopin(object);
     });
   }
@@ -258,7 +258,7 @@ MapInput.propTypes = {
   usezoom: PropTypes.bool,
   minzoom: PropTypes.number,
   maxzoom: PropTypes.number,
-  formValue: PropTypes.object,
+  formValue: PropTypes.array,
   // FIXME -> use shapeof
   zone: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,

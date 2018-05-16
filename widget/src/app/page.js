@@ -37,10 +37,7 @@ class PageComponent extends React.Component {
           if (error) return <p>Erreur graphql :(</p>;
           const widget = (data && data.widget) || null;
           const questions = (widget && widget.questions) || null;
-          const question = (questions && questions[step]) || null;
-          const map = (widget && widget.map) || null;
           const total = questions.length;
-          const cansubmit = total <= step;
           return (
             <React.Fragment>
               <Helmet>
@@ -50,6 +47,12 @@ class PageComponent extends React.Component {
               {/* <WidgetSummary questions={questions} /> */}
               <Form onSubmit={noop}
                 render={({ values, handleSubmit }) => {
+                  const question = (questions && questions[step]) || null;
+                  const map = (widget && widget.map) || null;
+                  const showresult = total <= step;
+                  console.log('step', step);
+                  const isfirst = step === 0;
+                  const islast = step === total - 1;
                   const formValue = (question && values[question.type]) || null;
                   return (
                     <React.Fragment>
@@ -57,8 +60,13 @@ class PageComponent extends React.Component {
                         question={question}
                         formValue={formValue}
                         handleSubmit={handleSubmit} />
-                      {popin && <WidgetPopin {...question} />}
-                      {cansubmit && <WidgetResult values={values} />}
+                      {popin && (
+                        <WidgetPopin {...question}
+                          step={step}
+                          islast={islast}
+                          isfirst={isfirst} />
+                      )}
+                      {showresult && <WidgetResult values={values} />}
                     </React.Fragment>
                   );
                 }} />

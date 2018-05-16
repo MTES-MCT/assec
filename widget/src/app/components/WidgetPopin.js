@@ -7,7 +7,12 @@ import ReactMarkdown from 'react-markdown';
 import { stepForward, closePopin, stepBackward } from './../actions';
 
 const WidgetPopin = ({
-  title, description, dispatch, step,
+  step,
+  title,
+  islast,
+  isfirst,
+  dispatch,
+  description,
 }) => {
   const content = description;
   // const content = description.split('\\s\\s').join('\\n');
@@ -25,14 +30,15 @@ const WidgetPopin = ({
           <ReactMarkdown source={content} escapeHtml={false} />
         </div>
         <nav className="navigation">
-          <button disabled={step <= 0}
-            type="button"
-            onClick={() => {
-              dispatch(stepBackward());
-              dispatch(closePopin());
-            }}>
-            <span>Revenir à la question précédente</span>
-          </button>
+          {!isfirst && (
+            <button type="button"
+              onClick={() => {
+                dispatch(stepBackward());
+                dispatch(closePopin());
+              }}>
+              <span>Revenir à la question précédente</span>
+            </button>
+          )}
           <button className="ml20"
             type="button"
             onClick={() => {
@@ -40,22 +46,26 @@ const WidgetPopin = ({
             }}>
             <span>Modifier mon choix</span>
           </button>
-          <button className="ml20"
-            type="button"
-            onClick={() => {
-              dispatch(stepForward());
-              dispatch(closePopin());
-            }}>
-            <span>Passer à la question suivante</span>
-          </button>
-          <button className="ml20"
-            type="button"
-            onClick={() => {
-              dispatch(stepForward());
-              dispatch(closePopin());
-            }}>
-            <span>Voir les restrictions</span>
-          </button>
+          {!islast && (
+            <button className="ml20"
+              type="button"
+              onClick={() => {
+                dispatch(stepForward());
+                dispatch(closePopin());
+              }}>
+              <span>Passer à la question suivante</span>
+            </button>
+          )}
+          {islast && (
+            <button className="ml20"
+              type="button"
+              onClick={() => {
+                dispatch(stepForward());
+                dispatch(closePopin());
+              }}>
+              <span>Voir les restrictions</span>
+            </button>
+          )}
         </nav>
       </div>
     </div>
@@ -64,9 +74,11 @@ const WidgetPopin = ({
 
 WidgetPopin.propTypes = {
   step: PropTypes.number.isRequired,
+  islast: PropTypes.bool.isRequired,
+  isfirst: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
   description: PropTypes.string.isRequired,
 };
 
-export default connect(state => ({ step: state.step }))(WidgetPopin);
+export default connect()(WidgetPopin);

@@ -37,7 +37,7 @@ WidgetSurvey.propTypes = {
   question: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  formValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  formValue: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };
 
 export default connect()(WidgetSurvey);
