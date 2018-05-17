@@ -12,6 +12,13 @@ const WidgetResult = ({ values }) => (
       const restrictions = (data && data.findRestriction) || [];
       return (
         <div id="assec-widget-results">
+          <h5>
+            <span>Vos Règles</span>
+          </h5>
+          <p>
+            En fonction de vos réponses au formulaire voici les règles qui
+            s&apos;appliquent à votre situation:
+          </p>
           <ul>
             {restrictions.map(obj => <li key={obj.id}>{obj.description}</li>)}
           </ul>
