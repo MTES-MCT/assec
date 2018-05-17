@@ -15,7 +15,7 @@ class WidgetSurvey extends React.PureComponent {
       formValue,
     });
     return (
-      <div id="assec-widget-survey">
+      <div id="assec-widget-survey" className="flex-center items-start flex-0">
         {type === 'list' && <ListInput {...props} />}
         {type === 'choice' && <ChoiceInput {...props} />}
         {type === 'zones' && <MapInput {...props} />}

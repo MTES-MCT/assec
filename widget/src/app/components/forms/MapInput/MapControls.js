@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tippy';
-// import Geolocation from 'react-geolocation';
+import Geolocation from 'react-geolocation';
 
 class MapControls extends React.PureComponent {
   constructor (props) {
@@ -56,8 +56,10 @@ class MapControls extends React.PureComponent {
   }
 
   render () {
-    const { satellized, layered /* geolocated, hasmarker, */ } = this.state;
-    // const geoactive = geolocated || hasmarker;
+    const {
+      satellized, layered, geolocated, hasmarker,
+    } = this.state;
+    const geoactive = geolocated || hasmarker;
     return (
       <div className="leaflet-map-controls flex-columns">
         <Tooltip arrow
@@ -97,7 +99,7 @@ class MapControls extends React.PureComponent {
           <Geolocation lazy
             enableHighAccuracy
             onSuccess={this.onGeolocationSuccess}
-            render={({ error fetchingPosition, getCurrentPosition }) => (
+            render={({ error, fetchingPosition, getCurrentPosition }) => (
               <button className={`${(geoactive && 'active') || ''}`}
                 onClick={(evt) => {
                   evt.preventDefault();

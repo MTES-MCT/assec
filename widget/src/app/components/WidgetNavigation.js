@@ -12,7 +12,8 @@ const WidgetSurveyNavigation = ({
   cansubmit,
   canforward,
 }) => (
-  <div id="assec-widget-survey-navigation">
+  <div id="assec-widget-survey-navigation"
+    className="flex-columns flex-1 flex-end items-start mt20">
     <button type={islast ? 'submit' : 'button'}
       disabled={!canforward || (canforward && !cansubmit)}
       onClick={islast ? noop : () => dispatch(stepForward())}>

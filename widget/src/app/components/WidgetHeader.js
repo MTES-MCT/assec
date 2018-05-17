@@ -8,7 +8,7 @@ import { stepBackward } from './../actions';
 const WidgetHeader = ({
   title, description, isfirst, dispatch,
 }) => (
-  <div id="assec-widget-header" className="p20">
+  <div id="assec-widget-header" className="px20">
     {!isfirst && (
       <button className="small mb12"
         type="button"

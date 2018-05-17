@@ -109,17 +109,19 @@ class PageComponent extends React.Component {
                             title={question.title}
                             description={question.description} />
                           <form onSubmit={handleSubmit}>
-                            <Field name="department"
-                              type="hidden"
-                              component="input" />
-                            <WidgetSurvey map={map}
-                              question={question}
-                              formValue={formValue} />
-                            {!isfirst && (
-                              <WidgetNavigation islast={islast}
-                                cansubmit={!invalid}
-                                canforward={canforward} />
-                            )}
+                            <div className="flex-rows flex-start p20">
+                              <Field name="department"
+                                type="hidden"
+                                component="input" />
+                              <WidgetSurvey map={map}
+                                question={question}
+                                formValue={formValue} />
+                              {!isfirst && (
+                                <WidgetNavigation islast={islast}
+                                  cansubmit={!invalid}
+                                  canforward={canforward} />
+                              )}
+                            </div>
                           </form>
                         </React.Fragment>
                       )}

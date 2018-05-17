@@ -5,6 +5,7 @@ import { Field } from 'react-final-form';
 import { bindActionCreators } from 'redux';
 
 import { openPopin } from './../../actions';
+import { capitalize } from './../../core/capitalize';
 
 class ChoiceInput extends React.PureComponent {
   constructor (props) {
@@ -15,7 +16,7 @@ class ChoiceInput extends React.PureComponent {
   render () {
     const { formValue, values, type } = this.props;
     return (
-      <div className="flex-rows">
+      <div className="choice-input">
         {values.map((obj, index) => {
           const htmlfor = `choice_${index}`;
           const key = `choiceinput::${obj.id}`;
@@ -24,7 +25,7 @@ class ChoiceInput extends React.PureComponent {
               name={type}
               value={obj.id}
               render={({ input }) => (
-                <label htmlFor={htmlfor} className="choice-input items-center">
+                <label htmlFor={htmlfor} className={index > 0 ? 'mt20' : ''}>
                   <input {...input}
                     id={htmlfor}
                     type="radio"
@@ -32,7 +33,7 @@ class ChoiceInput extends React.PureComponent {
                     onChange={() => {
                       input.onChange(obj.id);
                     }} />
-                  <span>{obj.label}</span>
+                  <span className="ml12">{capitalize(obj.label)}</span>
                 </label>
               )} />
           );
