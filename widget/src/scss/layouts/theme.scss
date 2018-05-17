@@ -2,6 +2,8 @@ $header0: #14134E;
 $header1: #512D5A;
 $header2: #843B61;
 
+$grey: #F7F8FA;
+$gray: #E4E8EE;
 $blue: #61AFEF;
 $white: #FFFFFF;
 $black: #000000;
@@ -121,4 +123,19 @@ body {
 
 .leaflet-marker-divicon-pulse::after {
   box-shadow: 0 0 1px 2px $header2;
+}
+
+/* ------------------------------------------------
+
+ LAYOUT
+
+------------------------------------------------ */
+#assec-widget-progressbar {
+  .bar {
+    background-color: $grey;
+  }
+
+  .thumb {
+    background-color: $blue;
+  }
 }
