@@ -21,3 +21,11 @@ export const subClose = () => ({
   message: null,
   type: 'onSubscriptionStatus',
 });
+
+export const closePopin = () => ({
+  type: 'onClosePopin',
+});
+
+export const openPopin = () => ({
+  type: 'onOpenPopin',
+});

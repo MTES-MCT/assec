@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { TextLink, ButtonLink } from './ui/Links';
+// application
+import { TextLink } from './ui/Links';
+import { openPopin } from './../actions';
 
 class MainNavigation extends React.PureComponent {
   render () {
-    const { style, distanceFromTop } = this.props;
+    const { style, dispatch, distanceFromTop } = this.props;
     const issticky = distanceFromTop;
     const padscl = (issticky && 'py12') || 'pt20';
     const stickycl = (issticky && 'issticky') || '';
@@ -50,16 +53,12 @@ class MainNavigation extends React.PureComponent {
               activeClass="active">
               <span>Nous Contacter</span>
             </TextLink>
-            <ButtonLink to="essayez-la-demo"
-              spy
-              hashSpy
-              smooth
-              offset={-80}
-              duration={800}
-              className="demo-button">
+            <button type="button"
+              className="demo-button"
+              onClick={() => dispatch(openPopin())}>
               <span>Essayer la démo</span>
               <i className="icon icon-thumbs-up ml7" />
-            </ButtonLink>
+            </button>
           </nav>
         </div>
       </div>
@@ -75,6 +74,7 @@ MainNavigation.defaultProps = {
 MainNavigation.propTypes = {
   style: PropTypes.object,
   distanceFromTop: PropTypes.number,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default MainNavigation;
+export default connect()(MainNavigation);

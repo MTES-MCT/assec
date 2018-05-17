@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import getConfig from 'next/config';
+import { connect } from 'react-redux';
 import { Element } from 'react-scroll';
 import withRedux from 'next-redux-wrapper';
 import { StickyContainer, Sticky } from 'react-sticky';
@@ -34,16 +36,12 @@ Logger.debug(`
 `);
 
 class Application extends React.PureComponent {
-  constructor (props) {
-    super(props);
-    this.state = { opened: false };
-  }
-
   render () {
-    const { opened } = this.state;
+    const { popin } = this.props;
     return (
       <React.Fragment>
-        <StickyContainer id="site-container" className="sticky-container">
+        <StickyContainer id="site-container"
+          className={`sticky-container ${popin ? 'opened' : ''}`}>
           <DocumentHead pagetitle="Home" />
           <div id="top-container" className="padded flex-rows flex-between">
             <Sticky>
@@ -70,13 +68,19 @@ class Application extends React.PureComponent {
           <MainFooter version={envconfig.appversion} />
           <Toaster />
         </StickyContainer>
-        <DemoPopup opened={opened} />
+        {popin && <DemoPopup />}
       </React.Fragment>
     );
   }
 }
 
-const withClient = withApollo(props => <Application {...props} />);
+Application.propTypes = {
+  popin: PropTypes.bool.isRequired,
+};
+
+const Connected = connect(({ popin }) => ({ popin }))(Application);
+
+const withClient = withApollo(props => <Connected {...props} />);
 
 const connected = withRedux(configure)(withClient);
 
