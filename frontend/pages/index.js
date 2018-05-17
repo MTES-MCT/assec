@@ -10,6 +10,7 @@ import configure from './../app/store';
 import { Logger } from './../app/core/logger';
 import withApollo from './../app/core/withApollo';
 import Toaster from './../app/components/Toaster';
+import DemoPopup from './../app/components/DemoPopup';
 import MainFooter from './../app/components/MainFooter';
 import DocumentHead from './../app/components/DocumentHead';
 import ShadowLiner from './../app/components/ui/ShadowLiner';
@@ -32,33 +33,48 @@ Logger.debug(`
   REACT_APP_GRAPHQL_URI => ${envconfig.graphqluri}
 `);
 
-const Application = () => (
-  <StickyContainer id="site-container" className="sticky-container">
-    <DocumentHead pagetitle="Home" />
-    <div id="top-container" className="padded flex-rows flex-between">
-      <Sticky>{stickyprops => <MainNavigation {...stickyprops} />}</Sticky>
-      <HeroContainer />
-    </div>
-    <div id="lames-container" className="pb120">
-      <Element name="a-propos">
-        <Pourquoi />
-        <QueFaisonsNous />
-      </Element>
-      <CommentParticiper />
-    </div>
-    <Element name="qui-sommes-nous"
-      id="qui-sommes-nous"
-      className="padded pb120">
-      <ShadowLiner className="mb40" />
-      <div className="flex-columns flex-between">
-        <Equipe />
-        <NosSponsors />
-      </div>
-    </Element>
-    <MainFooter version={envconfig.appversion} />
-    <Toaster />
-  </StickyContainer>
-);
+class Application extends React.PureComponent {
+  constructor (props) {
+    super(props);
+    this.state = { opened: false };
+  }
+
+  render () {
+    const { opened } = this.state;
+    return (
+      <React.Fragment>
+        <StickyContainer id="site-container" className="sticky-container">
+          <DocumentHead pagetitle="Home" />
+          <div id="top-container" className="padded flex-rows flex-between">
+            <Sticky>
+              {stickyprops => <MainNavigation {...stickyprops} />}
+            </Sticky>
+            <HeroContainer />
+          </div>
+          <div id="lames-container" className="pb120">
+            <Element name="a-propos">
+              <Pourquoi />
+              <QueFaisonsNous />
+            </Element>
+            <CommentParticiper />
+          </div>
+          <Element name="qui-sommes-nous"
+            id="qui-sommes-nous"
+            className="padded pb120">
+            <ShadowLiner className="mb40" />
+            <div className="flex-columns flex-between">
+              <Equipe />
+              <NosSponsors />
+            </div>
+          </Element>
+          <MainFooter version={envconfig.appversion} />
+          <Toaster />
+        </StickyContainer>
+        <DemoPopup opened={opened} />
+      </React.Fragment>
+    );
+  }
+}
 
 const withClient = withApollo(props => <Application {...props} />);
 

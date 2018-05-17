@@ -84,18 +84,13 @@ button {
 }
 
 .demo-button {
+  @extend .rainbow;
+
   color: $white;
-  border: 1px solid $purple-0;
-  background-color: $purple-2;
-
-  &.large {
-    @extend .rainbow;
-
-    /* stylelint-disable */
-    box-shadow: 0 6px 0 $purple-0, 0 3px 15px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 $purple-2, inset 0 0 3px $purple-2;
-    /* stylelint-enable */
-  }
+  /* stylelint-disable */
+  box-shadow: 0 6px 0 $purple-0, 0 3px 15px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 $purple-2, inset 0 0 3px $purple-2;
+  /* stylelint-enable */
 }
 
 .person.testimonial {
@@ -169,7 +164,7 @@ span.error {
   }
 }
 
-#nos-sponsors .dashed {
+#nos-sponsors .calltoaction {
   color: $black-disabled;
 }
 

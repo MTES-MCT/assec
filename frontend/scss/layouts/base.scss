@@ -88,31 +88,15 @@ figure {
   }
 }
 
-.big-badge {
-  width: 120px;
-  height: 120px;
-  text-align: center;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 5em;
-  line-height: 2em;
-  background-color: #FFFFFF;
-}
-
 .demo-button {
-  @extend .py5;
-  @extend .px12;
+  @extend .py12;
+  @extend .px24;
 
-  font-size: 0.8em;
+  font-size: 1.3em;
   border-radius: 4px;
   text-decoration: none;
-
-  &.large {
-    @extend .py12;
-    @extend .px24;
-
-    font-size: 1.3em;
-  }
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .lame {
@@ -266,11 +250,6 @@ body:not(.unsubscribe-page) #top-container {
     }
   }
 
-  .demo-button {
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
   .col-left img {
     transition: height 0.5s;
   }
@@ -337,15 +316,9 @@ body:not(.unsubscribe-page) #top-container {
   }
 }
 
-#nos-sponsors .dashed {
+#nos-sponsors .calltoaction {
   border: 0;
   font-size: 1.1em;
-  // border-width: 1px;
-  // border-radius: 20px;
-  // border-style: dashed;
-  // border-color: transparent;
-  // 2px represente les 2px pixels des bordures
-  // line-height: calc(65px - 2px);
   line-height: 65px;
   text-transform: uppercase;
   background-color: transparent;

@@ -24,7 +24,7 @@ const NosSponsors = () => (
         src="/static/logo-betagouv.svg" />
     </p>
     <p className="align-center">
-      <Mailto email="contact@assec.beta.gouv.fr" className="dashed">
+      <Mailto email="contact@assec.beta.gouv.fr" className="calltoaction">
         <i className="icon icon-thumbs-up mr7" />
         <span>Prêt à nous soutenir ? Ajoutez votre logo ici</span>
       </Mailto>

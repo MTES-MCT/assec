@@ -56,7 +56,7 @@ class MainNavigation extends React.PureComponent {
               smooth
               offset={-80}
               duration={800}
-              className="demo-button large">
+              className="demo-button">
               <span>Essayer la démo</span>
               <i className="icon icon-thumbs-up ml7" />
             </ButtonLink>
