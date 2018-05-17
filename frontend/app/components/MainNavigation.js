@@ -60,16 +60,6 @@ class MainNavigation extends React.PureComponent {
               <span>Essayer la démo</span>
               <i className="icon icon-thumbs-up ml7" />
             </ButtonLink>
-            {/* <ButtonLink to="essayez-la-demo"
-              spy
-              hashSpy
-              smooth
-              offset={-80}
-              duration={800}
-              className="demo-button">
-              <span>Essayer la démo</span>
-              <i className="icon icon-thumbs-up ml7" />
-            </ButtonLink> */}
           </nav>
         </div>
       </div>

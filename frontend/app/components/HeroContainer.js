@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { ButtonLink } from './ui/Links';
 import NewsletterForm from './ui/NewsletterForm';
 
 const HeroContainer = () => (

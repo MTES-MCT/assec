@@ -10,9 +10,6 @@ const Toaster = ({ message, type }) => (
           <b>{message}</b>
         </span>
       )}
-      {/* <button onClick={() => dispatch(subClosed())}>
-        <i className="icon icon-cancel" />
-      </button> */}
     </div>
   </div>
 );
