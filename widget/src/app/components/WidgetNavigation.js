@@ -17,6 +17,7 @@ const WidgetSurveyNavigation = ({
       disabled={!canforward || (canforward && !cansubmit)}
       onClick={islast ? noop : () => dispatch(stepForward())}>
       <span>{!islast ? 'Question suivante' : 'Voir les résultats'}</span>
+      <i className="icon icon-right-open-big ml7" />
     </button>
   </div>
 );

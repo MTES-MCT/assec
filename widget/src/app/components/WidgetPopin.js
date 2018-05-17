@@ -15,6 +15,7 @@ const WidgetPopin = ({ dispatch }) => (
           onClick={() => {
             dispatch(closePopin());
           }}>
+          <i className="icon icon-cancel mr7" />
           <span>Modifier</span>
         </button>
         <button className="mx12 p20 shadowed"
@@ -23,6 +24,7 @@ const WidgetPopin = ({ dispatch }) => (
             dispatch(stepForward());
             dispatch(closePopin());
           }}>
+          <i className="icon icon-right-open-big mr7" />
           <span>Question suivante</span>
         </button>
       </nav>

@@ -107,6 +107,18 @@
       "css": "direction",
       "code": 59402,
       "src": "entypo"
+    },
+    {
+      "uid": "b6fc2f656ef87275889422e19550680a",
+      "css": "reply",
+      "code": 59407,
+      "src": "entypo"
+    },
+    {
+      "uid": "14017aae737730faeda4a6fd8fb3a5f0",
+      "css": "check",
+      "code": 59408,
+      "src": "entypo"
     }
   ]
 }
