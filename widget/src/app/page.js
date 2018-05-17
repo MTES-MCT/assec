@@ -15,6 +15,7 @@ import WidgetHeader from './components/WidgetHeader';
 import WidgetFooter from './components/WidgetFooter';
 import WidgetResult from './components/WidgetResult';
 import WidgetSurvey from './components/WidgetSurvey';
+import WidgetWelcome from './components/WidgetWelcome';
 import WidgetNavigation from './components/WidgetNavigation';
 
 const buildValidator = (questions) => {
@@ -31,6 +32,28 @@ const buildValidator = (questions) => {
   };
 };
 
+const renderLoader = () => (
+  <div id="assec-widget-event-window">
+    <p className="align-center mb0">
+      <i className="icon icon-spin6 animate-spin" />
+    </p>
+    <p className="align-center">
+      <b>Chargement...</b>
+    </p>
+  </div>
+);
+
+const renderError = code => (
+  <div id="assec-widget-event-window">
+    <p className="align-center mb0">
+      <i className="icon icon-emo-unhappy" />
+    </p>
+    <p className="align-center">
+      <b>{`Erreur graphql code: (${code})`}</b>
+    </p>
+  </div>
+);
+
 class PageComponent extends React.Component {
   constructor (props) {
     super(props);
@@ -44,17 +67,18 @@ class PageComponent extends React.Component {
 
   render () {
     const { code } = this.state;
-    const { step, popin } = this.props;
-    if (!code) return <p>Erreur le code est manquant :(</p>;
+    const { step, popin, welcome } = this.props;
+    if (!code) return renderError(404);
     return (
       <Query query={LOAD_DEPARTMENT_WIDGET} variables={{ code }}>
         {({ loading, error, data }) => {
-          if (!error && (!data || loading)) return <p>Loading...</p>;
-          if (error) return <p>Erreur graphql :(</p>;
+          if (!error && (!data || loading)) return renderLoader();
+          if (error) return renderError(500);
           const widget = (data && data.widget) || null;
           const questions = (widget && widget.questions) || null;
           const total = questions.length;
-          const bodyclass = `current-step-${step} ${(popin && 'haspopin') ||
+          const bodyclass = `current-step-${step} ${((welcome || popin) &&
+            'haspopin') ||
             ''}`;
           return (
             <React.Fragment>
@@ -104,6 +128,7 @@ class PageComponent extends React.Component {
                           islast={islast}
                           isfirst={isfirst} />
                       )}
+                      {welcome && <WidgetWelcome />}
                       {isresult && <WidgetResult values={values} />}
                     </React.Fragment>
                   );
@@ -124,10 +149,12 @@ PageComponent.defaultProps = {
 PageComponent.propTypes = {
   form: PropTypes.object,
   step: PropTypes.number.isRequired,
+  welcome: PropTypes.oneOfType([PropTypes.bool]).isRequired,
   popin: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };
 
 export default connect(state => ({
   step: state.step,
   popin: state.popin,
+  welcome: state.welcome,
 }))(PageComponent);

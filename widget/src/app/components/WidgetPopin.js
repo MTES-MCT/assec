@@ -7,7 +7,7 @@ import { stepForward, closePopin } from './../actions';
 
 const WidgetPopin = ({ dispatch }) => (
   <div className="assec-widget-popin flex-rows flex-end items-center">
-    <div className="overlay" />
+    <div className="overlay dark" />
     <div className="container mb100">
       <nav className="navigation flex-columns flex-center">
         <button className="mx12 p20 shadowed"
@@ -15,7 +15,7 @@ const WidgetPopin = ({ dispatch }) => (
           onClick={() => {
             dispatch(closePopin());
           }}>
-          <i className="icon icon-cancel mr7" />
+          <i className="icon icon-left-open-big mr7" />
           <span>Modifier</span>
         </button>
         <button className="mx12 p20 shadowed"
@@ -24,8 +24,8 @@ const WidgetPopin = ({ dispatch }) => (
             dispatch(stepForward());
             dispatch(closePopin());
           }}>
-          <i className="icon icon-right-open-big mr7" />
           <span>Question suivante</span>
+          <i className="icon icon-right-open-big mr7" />
         </button>
       </nav>
     </div>

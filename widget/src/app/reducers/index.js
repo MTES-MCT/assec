@@ -24,7 +24,18 @@ const popin = (state = false, action) => {
   }
 };
 
+// application
+const welcome = (state = true, action) => {
+  switch (action.type) {
+  case 'onCloseWelcome':
+    return false;
+  default:
+    return state;
+  }
+};
+
 export default combineReducers({
   step,
   popin,
+  welcome,
 });

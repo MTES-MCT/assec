@@ -6,3 +6,7 @@ export const openPopin = value => ({
 export const closePopin = () => ({
   type: 'onClosePopin',
 });
+
+export const closeWelcome = () => ({
+  type: 'onCloseWelcome',
+});

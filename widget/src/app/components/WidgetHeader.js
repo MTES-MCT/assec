@@ -9,7 +9,7 @@ const WidgetHeader = ({ title, isfirst, dispatch }) => (
   <div id="assec-widget-header" className="p20">
     {!isfirst && (
       <button type="button" onClick={() => dispatch(stepBackward())}>
-        <i className="icon icon-reply mr7" />
+        <i className="icon icon-left-open-big mr7" />
         <span>Question précédente</span>
       </button>
     )}
