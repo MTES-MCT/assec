@@ -21,6 +21,17 @@ const WidgetWelcome = ({ dispatch }) => (
           <i className="icon icon-right-open-big ml7" />
         </button>
       </nav>
+      <div className="note mt40">
+        <p>
+          <b>Module en cours de développement dans le Var.</b>
+        </p>
+        <p className="mt7">
+          <i>
+            il s&apos;agit d&apos;un module test qui pour l&apos;heure ne
+            délivre pas une information légale sur les règles applicables
+          </i>
+        </p>
+      </div>
     </div>
   </div>
 );

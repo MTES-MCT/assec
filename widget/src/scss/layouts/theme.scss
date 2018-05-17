@@ -7,6 +7,10 @@ $gray: #E4E8EE;
 $white: #FFFFFF;
 $black: #000000;
 
+$note: #FFF4CD;
+$note-color: #856405;
+$note-border: #FFEEBA;
+
 $blue: #61AFEF;
 $blue-form: #3B99FC;
 
@@ -48,6 +52,12 @@ button {
     box-shadow: none;
     background-color: $gray !important;
   }
+}
+
+.note {
+  color: $note-color;
+  background-color: $note;
+  border-color: $note-border;
 }
 
 .geojson-layer {
