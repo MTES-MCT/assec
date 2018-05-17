@@ -9,15 +9,17 @@ const WidgetResult = ({ values }) => (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error graphql :(</p>;
-      const restrictions = (data && data.findRestriction) || [];
+      const rules = (data && data.findRestriction) || [];
+      const { situation, restrictions } = rules;
       return (
-        <div id="assec-widget-results">
+        <div id="assec-widget-results" className="p20">
           <h5>
             <span>Vos Règles</span>
           </h5>
           <p>
-            En fonction de vos réponses au formulaire voici les règles qui
-            s&apos;appliquent à votre situation:
+            Votre territoire est placé en situation de{' '}
+            <b>{`${situation.label}`}.</b> Les règles de partage de l&apos;eau
+            qui vous sont applicables sont les suivantes:
           </p>
           <ul>
             {restrictions.map(obj => <li key={obj.id}>{obj.description}</li>)}

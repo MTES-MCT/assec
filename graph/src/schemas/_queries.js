@@ -36,7 +36,7 @@ type Query {
     origines: ID!
     department: ID!
     situations: [Float]!
-  ): [RestrictionType]
+  ): RulesType
 }
 `;
 

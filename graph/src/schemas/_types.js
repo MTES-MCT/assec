@@ -67,6 +67,11 @@ type RestrictionType {
   information: String
   description: String!
 }
+
+type RulesType {
+  situation: SituationType
+  restrictions: [RestrictionType]
+}
 `;
 
 const zone = `

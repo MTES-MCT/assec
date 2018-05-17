@@ -13,9 +13,14 @@ query findRestriction (
     department: $department
     situations: $situations
   ) {
-    id
-    label
-    description
+    situation {
+      label
+    }
+    restrictions {
+      id
+      label
+      description
+    }
   }
 }`);
 

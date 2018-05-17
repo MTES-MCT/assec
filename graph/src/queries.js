@@ -104,14 +104,19 @@ export const Query = {
     department, situations, usages, origines,
   }) =>
     ZoneModel.find({ department })
+      .populate('alerte.situation')
       .exec()
       .then((zones) => {
         const zone = findZoneParentForPoint(situations, zones);
         if (!zone) return null;
+        const { situation } = zone.alerte;
         return Restriction.find({
           usages: { $in: [usages] },
           origines: { $in: [origines] },
-          situations: { $in: [zone.alerte.situation] },
+          situations: { $in: [situation.id] },
+        }).then((docs) => {
+          console.log('docs', docs);
+          return Object.assign({}, { situation, restrictions: docs });
         });
       }) || null,
 
