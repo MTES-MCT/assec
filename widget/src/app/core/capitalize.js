@@ -1,4 +1,6 @@
-export const capitalize = str =>
-  `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
+export const capitalize = (str = '') => {
+  const rez = str.toLocaleLowerCase().trim();
+  return `${rez.charAt(0).toUpperCase()}${rez.slice(1)}`;
+};
 
 export default capitalize;

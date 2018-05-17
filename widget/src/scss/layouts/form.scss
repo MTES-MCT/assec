@@ -3,9 +3,15 @@
   height: 100%;
 }
 
-.choice-input {
-  @extend .flex-rows;
+.list-input {
+  width: 100%;
 
+  label {
+    width: 100%;
+  }
+}
+
+.choice-input {
   label {
     padding: 20px;
     border-radius: 20px;
