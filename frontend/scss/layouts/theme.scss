@@ -151,6 +151,10 @@ span.error {
   }
 }
 
+#top-container {
+  background-color: $color-disabled;
+}
+
 #main-navigation.issticky {
   background-color: $white;
 }
