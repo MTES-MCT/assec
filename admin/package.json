@@ -1,6 +1,6 @@
 {
   "name": "assec-backoffice",
-  "version": "0.10.9",
+  "version": "0.10.10",
   "homepage": "./",
   "private": true,
   "devDependencies": {
