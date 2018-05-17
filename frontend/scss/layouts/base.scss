@@ -15,6 +15,32 @@ textarea {
   letter-spacing: 0.02em;
 }
 
+figure.large {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 12px solid #F7F8FA;
+}
+
+figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img,
+  img.portrait {
+    width: 100%;
+    height: auto;
+  }
+
+  img.paysage {
+    width: auto;
+    height: 100%;
+  }
+}
+
 /* -----------------------------------------------
 
  CLASSES
@@ -83,9 +109,8 @@ textarea {
 
   &.large {
     @extend .py12;
+    @extend .px24;
 
-    padding-left: 24px;
-    padding-right: 18px;
     font-size: 1.3em;
   }
 }
@@ -111,8 +136,8 @@ textarea {
   }
 
   img {
-    height: 100%;
     width: auto;
+    height: 100%;
   }
 
   b ~ span {
@@ -225,21 +250,37 @@ body:not(.unsubscribe-page) #top-container {
     @extend .py3;
     @extend .px12;
 
+    opacity: 0.5;
     cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 100;
     user-select: none;
     text-decoration: none;
     transition-duration: 0.5s;
     transition-property: color, background-color;
 
-    &::before {
-      content: '/';
-      padding-right: 5px;
+    &:hover,
+    &.active {
+      opacity: 1;
+      text-decoration: underline;
     }
   }
 
   .demo-button {
     letter-spacing: 0.15em;
     text-transform: uppercase;
+  }
+
+  .col-left img {
+    transition: height 0.5s;
+  }
+
+  &.issticky .col-left img {
+    height: 40px;
+  }
+
+  &.issticky .col-left img + img {
+    height: 25px;
   }
 }
 
@@ -297,15 +338,17 @@ body:not(.unsubscribe-page) #top-container {
 }
 
 #nos-sponsors .dashed {
+  border: 0;
   font-size: 1.1em;
-  border-width: 1px;
-  border-radius: 20px;
-  border-style: dashed;
-  border-color: transparent;
+  // border-width: 1px;
+  // border-radius: 20px;
+  // border-style: dashed;
+  // border-color: transparent;
+  // 2px represente les 2px pixels des bordures
+  // line-height: calc(65px - 2px);
+  line-height: 65px;
   text-transform: uppercase;
   background-color: transparent;
-  // 2px represente les 2px pixels des bordures
-  line-height: calc(65px - 2px);
 }
 
 #comment-nous-contacter .col-right {
@@ -315,6 +358,14 @@ body:not(.unsubscribe-page) #top-container {
   .list {
     font-size: 0.9em;
   }
+}
+
+#widget-demo {
+  @extend .p40;
+
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 100vh;
 }
 
 #main-footer {

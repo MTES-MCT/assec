@@ -17,7 +17,6 @@ const DocumentHead = ({ pagetitle }) => (
         href="/static/fontello/css/fontello-embedded.css" />
       <link rel="stylesheet" href="/_next/static/style.css" />
     </Head>
-    <hr className="liner" />
   </React.Fragment>
 );
 

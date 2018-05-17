@@ -1,22 +1,17 @@
 import React from 'react';
-import { Element } from 'react-scroll';
 
 import Person from './../ui/Person';
 
 const APropos = () => (
-  <Element name="a-propos" id="a-propos" className="padded lame flex-columns">
+  <div id="a-propos" className="padded lame flex-columns">
     <div className="flex-1">
-      <figure style={{
-        width: '300px',
-        height: '300px',
-        overflow: 'hidden',
-        borderRadius: '50%',
-      }}>
-        <img alt="Crédits: Ramin Khatibi on Unsplash"
-          src="https://source.unsplash.com/OG8L9s1bYKc" />
+      <figure className="large">
+        <img className="portrait"
+          alt="Crédits: Ramin Khatibi on Unsplash"
+          src="/static/ramin-khatibi-577822-unsplash.jpg" />
       </figure>
     </div>
-    <div className="flex-2 ml40">
+    <div className="flex-2 ml20">
       <h2 className="mb40">
         <span>Pourquoi ?</span>
       </h2>
@@ -39,6 +34,6 @@ const APropos = () => (
           avatar="/static/default_avatar.png" />
       </div>
     </div>
-  </Element>
+  </div>
 );
 export default APropos;

@@ -1,14 +1,13 @@
 $grey: #F7F8FA;
 $gray: #E4E8EE;
 $white: #FFFFFF;
-$green-0: #89C541;
 $red-0: #CC0000;
+$green-0: #89C541;
 $yellow-0: #FFD802;
 $yellow-1: #FFE58F;
 
 $black: #000000;
-$dark: $black;
-$dark-disabled: #CCCCCC;
+$black-disabled: #CCCCCC;
 
 $blue: #427ABD;
 $blueActive: #006AAC;
@@ -101,12 +100,12 @@ button {
 
 .person.testimonial {
   .person-infos {
-    color: $dark-disabled;
+    color: $black-disabled;
   }
 }
 
 .copy-to-clipboard {
-  color: $dark-disabled;
+  color: $black-disabled;
   transition: color 0.5s;
 
   &:hover {
@@ -157,24 +156,8 @@ span.error {
   }
 }
 
-#site-container > .liner {
-  height: 5px;
-}
-
-#main-navigation {
-  &.issticky {
-    background-color: rgba(0, 0, 0, 0.85);
-  }
-
-  a {
-    color: $white;
-    transition: color 0.5s;
-  }
-
-  a.active {
-    color: $purple-2;
-    background-color: $white;
-  }
+#main-navigation.issticky {
+  background-color: $white;
 }
 
 #hero-container {
@@ -187,14 +170,7 @@ span.error {
 }
 
 #nos-sponsors .dashed {
-  opacity: 0.45;
-  color: $dark-disabled;
-  transition: opacity 0.5s;
-  border-color: $dark-disabled;
-
-  &:hover {
-    opacity: 1;
-  }
+  color: $black-disabled;
 }
 
 #qui-sommes-nous {
@@ -206,7 +182,7 @@ span.error {
     }
 
     blockquote {
-      color: $dark-disabled;
+      color: $black-disabled;
     }
   }
 }

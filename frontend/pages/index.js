@@ -23,7 +23,7 @@ import MainNavigation from './../app/components/MainNavigation';
 import Equipe from './../app/components/blocks/Equipe';
 import Pourquoi from './../app/components/blocks/Pourquoi';
 import NosSponsors from './../app/components/blocks/NosSponsors';
-import ContactezNous from './../app/components/blocks/ContactezNous';
+// import ContactezNous from './../app/components/blocks/ContactezNous';
 import QueFaisonsNous from './../app/components/blocks/QueFaisonsNous';
 import CommentParticiper from './../app/components/blocks/CommentParticiper';
 
@@ -43,29 +43,42 @@ const Application = () => (
       <Sticky>{stickyprops => <MainNavigation {...stickyprops} />}</Sticky>
       <HeroContainer />
     </div>
-    <div id="lames-container" className="pb120">
-      <Pourquoi />
-      <QueFaisonsNous />
-      <CommentParticiper />
-    </div>
-    <Element name="essayez-la-demo">
-      <iframe title="assec-widget"
-        id="demo"
+    {/* <Element name="essayez-la-demo">
+      <div id="bandeau-demo" className="align-center p40">
+        <h4>Essayez la démo! Module en cours de développement dans le Var.</h4>
+        <p>
+          <small>
+            <b>Avertissement:</b>{' '}
+            <i>
+              il s&apos;agit d&apos;un module test qui pour l&apos;heure ne
+              délivre pas une information légale sur les règles applicables
+            </i>
+          </small>
+        </p>
+      </div>
+      <iframe id="widget-demo"
         border="0"
-        height="520"
         width="100%"
         frameBorder="0"
+        title="assec-widget-demo"
         src={`${envconfig.widgeturi}?department=83`} />
-    </Element>
+    </Element> */}
+    <div id="lames-container" className="pb120">
+      <Element name="a-propos">
+        <Pourquoi />
+        <QueFaisonsNous />
+      </Element>
+      <CommentParticiper />
+    </div>
     <Element name="qui-sommes-nous"
       id="qui-sommes-nous"
-      className="padded pb60">
+      className="padded pb120">
       <ShadowLiner className="mb40" />
       <div className="flex-columns flex-between">
-        <ContactezNous />
+        {/* <ContactezNous /> */}
         <Equipe />
+        <NosSponsors />
       </div>
-      <NosSponsors />
     </Element>
     <MainFooter version={envconfig.appversion} />
     <Toaster />

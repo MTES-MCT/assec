@@ -1,6 +1,8 @@
 import React from 'react';
 import { Element } from 'react-scroll';
 
+import Person from './../ui/Person';
+
 const QueFaisonsNous = () => (
   <Element name="que-faisons-nous"
     id="que-faisons-nous"
@@ -20,8 +22,26 @@ const QueFaisonsNous = () => (
         apporte également une réponse pour les industriels, les particuliers et
         les collectivités..
       </p>
+      <hr className="liner mt40 mb20" />
+      <div className="person testimonial flex-columns">
+        <Person firstname="Georges"
+          lastname="Contreras"
+          jobtitle="Viticulteur"
+          quote="C'est super"
+          avatar="/static/default_avatar.png" />
+      </div>
     </div>
-    <div className="flex-1" />
+    <div className="flex-1">
+      <figure className="large">
+        {/* Crédits: Nacho Domínguez Argenta on Unsplash
+          https://source.unsplash.com/F_ilCik66Hg */}
+        {/* Crédits: Igor Ovsyannykov on Unsplash
+          https://source.unsplash.com/a4xt7ieZ85A */}
+        <img className="paysage"
+          alt="Crédits: Igor Ovsyannykov on Unsplash"
+          src="/static/igor-ovsyannykov-347292-unsplash.jpg" />
+      </figure>
+    </div>
   </Element>
 );
 
