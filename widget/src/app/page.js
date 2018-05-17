@@ -106,7 +106,8 @@ class PageComponent extends React.Component {
                         <React.Fragment>
                           {/* <WidgetSummary questions={questions} values={values}  /> */}
                           <WidgetHeader isfirst={isfirst}
-                            title={question.title} />
+                            title={question.title}
+                            description={question.description} />
                           <form onSubmit={handleSubmit}>
                             <Field name="department"
                               type="hidden"
