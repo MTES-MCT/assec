@@ -2,6 +2,7 @@ import pick from 'lodash.pick';
 
 // application
 import { generateMapFromZones } from './helpers/generateMapFromZones';
+import { findZoneParentForPoint } from './helpers/findZoneParentForPoint';
 import { transformZoneToSituation } from './helpers/transformZoneToSituation';
 import {
   // SUOModel,
@@ -105,17 +106,14 @@ export const Query = {
     ZoneModel.find({ department })
       .exec()
       .then((zones) => {
-        console.log('zones', zones);
-        console.log('usages', usages);
-        console.log('origines', origines);
-        console.log('situations', situations);
-      }) || null, // ZoneModel.findById(zones).then((found) => {
-  //   const { situation: situations } = found.alerte;
-  //   return Restriction.find({
-  //     usages: { $in: [usages] },
-  //     origines: { $in: [origines] },
-  //     situations: { $in: [situations] },
-  //   });
+        const zone = findZoneParentForPoint(situations, zones);
+        if (!zone) return null;
+        return Restriction.find({
+          usages: { $in: [usages] },
+          origines: { $in: [origines] },
+          situations: { $in: [zone.alerte.situation] },
+        });
+      }) || null,
 
   widget: (_, { code }) =>
     Departement.findOne({ code })

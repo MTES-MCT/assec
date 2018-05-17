@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { noop } from './../core/noop';
 import { stepForward } from './../actions';
 
 const WidgetSurveyNavigation = ({
@@ -16,7 +15,7 @@ const WidgetSurveyNavigation = ({
     <button className="next action"
       type={islast ? 'submit' : 'button'}
       disabled={!canforward || (canforward && !cansubmit)}
-      onClick={islast ? noop : () => dispatch(stepForward())}>
+      onClick={() => dispatch(stepForward())}>
       <span>{!islast ? 'Question suivante' : 'Voir les résultats'}</span>
       <i className="icon icon-right-open-big ml7" />
     </button>

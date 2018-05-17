@@ -9,7 +9,14 @@ const WidgetResult = ({ values }) => (
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error graphql :(</p>;
-      return <div />;
+      const restrictions = (data && data.findRestriction) || [];
+      return (
+        <div id="assec-widget-results">
+          <ul>
+            {restrictions.map(obj => <li key={obj.id}>{obj.description}</li>)}
+          </ul>
+        </div>
+      );
     }}
   </Query>
 );

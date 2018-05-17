@@ -3,7 +3,9 @@
   "version": "0.10.13",
   "private": true,
   "dependencies": {
+    "@turf/area": "^6.0.1",
     "@turf/bbox": "^6.0.1",
+    "@turf/boolean-point-in-polygon": "^6.0.1",
     "@turf/center": "^6.0.1",
     "@turf/clean-coords": "^6.0.1",
     "@turf/transform-scale": "^5.1.5",
@@ -20,6 +22,8 @@
     "graphql-geojson": "^1.0.0",
     "graphql-tools": "^2.23.1",
     "isemail": "^3.1.2",
+    "lodash.min": "^4.0.1",
+    "lodash.minby": "^4.6.0",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "mongoose": "^5.0.12",

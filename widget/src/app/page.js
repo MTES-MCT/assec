@@ -95,35 +95,34 @@ class PageComponent extends React.Component {
                   const question = (questions && questions[step]) || null;
                   const map = (widget && widget.map) || null;
                   const isfirst = step === 0;
-                  const isresult = total <= step;
+                  const isresult = step === total;
                   const islast = step === total - 1;
                   const formValue = (question && values[question.type]) || null;
                   // la premiere valeur est le field hidden department
                   const canforward = Object.keys(values).length > step + 1;
                   return (
                     <React.Fragment>
-                      {!isresult && (
-                        <React.Fragment>
-                          {/* <WidgetSummary questions={questions} values={values}  /> */}
-                          <WidgetHeader isfirst={isfirst}
-                            title={question.title}
-                            description={question.description} />
-                          <form className="flex-rows flex-start items-end p20"
-                            onSubmit={handleSubmit}>
-                            <Field name="department"
-                              type="hidden"
-                              component="input" />
-                            <WidgetSurvey map={map}
-                              question={question}
-                              formValue={formValue} />
-                            {!isfirst && (
-                              <WidgetNavigation islast={islast}
-                                cansubmit={!invalid}
-                                canforward={canforward} />
-                            )}
-                          </form>
-                        </React.Fragment>
-                      )}
+                      <WidgetHeader isfirst={isfirst}
+                        isresult={isresult}
+                        title={isresult ? '' : question.title}
+                        description={isresult ? '' : question.description} />
+                      <form className="flex-rows flex-start items-end p20"
+                        onSubmit={handleSubmit}>
+                        <Field name="department"
+                          type="hidden"
+                          component="input" />
+                        {!isresult && (
+                          <WidgetSurvey map={map}
+                            question={question}
+                            formValue={formValue} />
+                        )}
+                        {!isfirst &&
+                          !isresult && (
+                          <WidgetNavigation islast={islast}
+                            cansubmit={!invalid}
+                            canforward={canforward} />
+                        )}
+                      </form>
                       {popin && (
                         <WidgetPopin {...question}
                           step={step}
