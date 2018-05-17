@@ -16,14 +16,14 @@ const APropos = () => (
         <span>Pourquoi ?</span>
       </h2>
       <p className="description">
-        Pour partager l&apos;eau en période de sécheresse. Des règles de partage
-        sont décidées par l&apos;Etat en concertation avec tous les usagers de
-        l&apos;eau.
+        <b>Pour partager l&apos;eau en période de sécheresse.</b> Des règles de
+        partage sont décidées par l&apos;Etat en concertation avec tous les
+        usagers de l&apos;eau.
       </p>
       <p className="description mt12">
         Connaître ces règles de partage de l&apos;eau en période de sécheresse
         est utile pour minimiser l&apos;impact économique sur son exploitation
-        agricole et nécessaire pour être en règle
+        agricole et nécessaire pour être en règle.
       </p>
       <hr className="liner mt40 mb20" />
       <div className="person testimonial flex-columns">

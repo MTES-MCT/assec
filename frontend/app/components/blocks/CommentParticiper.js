@@ -27,8 +27,9 @@ const CommentParticiper = ({ email }) => (
         département ?
       </p>
       <p className="description mt12">
-        Contactez-nous, nous développons des solutions gratuites, adaptées à vos
-        spécificités, et facilement intégrable sur votre site web
+        Contactez-nous, nous développons des <b>solutions gratuites</b>,
+        adaptées à vos spécificités, et facilement{' '}
+        <b>intégrable sur votre site web.</b>
       </p>
       <p className="description mt12">
         Nous développons actuellement un premier outil en version beta sur le

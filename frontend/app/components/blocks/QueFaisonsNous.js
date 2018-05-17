@@ -18,9 +18,9 @@ const QueFaisonsNous = () => (
         sont très variées dans l&apos;agriculture irriguée.
       </p>
       <p className="description mt12">
-        ASSEC s&apos;adresse donc d&apos;abord aux agriculteurs irrigants. Il
-        apporte également une réponse pour les industriels, les particuliers et
-        les collectivités..
+        ASSEC s&apos;adresse donc d&apos;abord aux{' '}
+        <b>agriculteurs irrigants.</b> Il apporte également une réponse pour les
+        industriels, les particuliers et les collectivités.
       </p>
       <hr className="liner mt40 mb20" />
       <div className="person testimonial flex-columns">
