@@ -6,11 +6,10 @@ import { connect } from 'react-redux';
 import { stepBackward } from './../actions';
 
 const WidgetHeader = ({
-  title, description, isfirst, isresult, dispatch,
+  title, description, isfirst, dispatch,
 }) => (
   <div id="assec-widget-header" className="flex-0 px20">
-    {!isfirst &&
-      !isresult && (
+    {!isfirst && (
       <button className="small mb12"
         type="button"
         onClick={() => dispatch(stepBackward())}>
@@ -31,7 +30,6 @@ WidgetHeader.propTypes = {
   title: PropTypes.string.isRequired,
   isfirst: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
-  isresult: PropTypes.bool.isRequired,
   description: PropTypes.string.isRequired,
 };
 

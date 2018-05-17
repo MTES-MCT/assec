@@ -12,7 +12,7 @@ const WidgetResult = ({ values }) => (
       const rules = (data && data.findRestriction) || [];
       const { situation, restrictions } = rules;
       return (
-        <div id="assec-widget-results" className="p20">
+        <div id="assec-widget-results" className="flex-1 p20">
           <h5>
             <span>Vos Règles</span>
           </h5>

@@ -102,10 +102,11 @@ class PageComponent extends React.Component {
                   const canforward = Object.keys(values).length > step + 1;
                   return (
                     <React.Fragment>
-                      <WidgetHeader isfirst={isfirst}
-                        isresult={isresult}
-                        title={isresult ? '' : question.title}
-                        description={isresult ? '' : question.description} />
+                      {!isresult && (
+                        <WidgetHeader isfirst={isfirst}
+                          title={question.title}
+                          description={question.description} />
+                      )}
                       <form className="flex-rows flex-start items-end p20"
                         onSubmit={handleSubmit}>
                         <Field name="department"
