@@ -27,7 +27,7 @@ const QueFaisonsNous = () => (
         <Person firstname="Georges"
           lastname="Contreras"
           jobtitle="Viticulteur"
-          quote="C'est super"
+          quote="C'est pratique, c'est simple d'utilisation!"
           avatar="/static/default_avatar.png" />
       </div>
     </div>
