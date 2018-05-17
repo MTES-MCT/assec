@@ -12,9 +12,9 @@ const WidgetSurveyNavigation = ({
   cansubmit,
   canforward,
 }) => (
-  <div id="assec-widget-survey-navigation"
-    className="flex-columns flex-1 flex-end items-start mt20">
-    <button type={islast ? 'submit' : 'button'}
+  <div id="assec-widget-survey-navigation" className="mt20">
+    <button className="next action"
+      type={islast ? 'submit' : 'button'}
       disabled={!canforward || (canforward && !cansubmit)}
       onClick={islast ? noop : () => dispatch(stepForward())}>
       <span>{!islast ? 'Question suivante' : 'Voir les résultats'}</span>

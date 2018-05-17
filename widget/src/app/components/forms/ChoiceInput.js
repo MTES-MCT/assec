@@ -16,7 +16,7 @@ class ChoiceInput extends React.PureComponent {
   render () {
     const { formValue, values, type } = this.props;
     return (
-      <div className="choice-input flex-rows">
+      <div className="choice-input">
         {values.map((obj, index) => {
           const htmlfor = `choice_${index}`;
           const key = `choiceinput::${obj.id}`;

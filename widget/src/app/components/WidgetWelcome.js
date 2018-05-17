@@ -14,7 +14,7 @@ const WidgetWelcome = ({ dispatch }) => (
         <span>Accédez aux règles de partage de l&apos;eau en trois clics</span>
       </h5>
       <nav className="navigation flex-columns flex-center">
-        <button className="mx12 p20 shadowed"
+        <button className="mx12 next action"
           type="button"
           onClick={() => dispatch(closeWelcome())}>
           <span>Commencer</span>

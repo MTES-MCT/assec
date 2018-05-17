@@ -4,9 +4,11 @@ $header2: #843B61;
 
 $grey: #F7F8FA;
 $gray: #E4E8EE;
-$blue: #61AFEF;
 $white: #FFFFFF;
 $black: #000000;
+
+$blue: #61AFEF;
+$blue-form: #3B99FC;
 
 $level-alert-0: #4CB85E;
 $level-alert-1: #FFD802;
@@ -18,6 +20,34 @@ body {
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
   background-color: rgba(255, 255, 255, 0);
+}
+
+button {
+  background-color: $white;
+
+  &.action {
+    @extend .p20;
+    @extend .shadowed;
+
+    width: 170px;
+    border-radius: 4px;
+    transition: background-color 0.5s;
+  }
+
+  &.small {
+    font-size: 0.7em;
+  }
+
+  &.next {
+    color: $white;
+    background-color: $blue-form;
+  }
+
+  &.disabled,
+  &:disabled {
+    box-shadow: none;
+    background-color: $gray !important;
+  }
 }
 
 .geojson-layer {
@@ -85,10 +115,6 @@ body {
   .overlay.light {
     background: rgba(255, 255, 255, 0.85);
   }
-
-  .navigation button {
-    background-color: rgba(255, 255, 255, 1);
-  }
 }
 
 /* ------------------------------------------------
@@ -98,19 +124,19 @@ body {
 ------------------------------------------------ */
 
 .leaflet-map-controls button {
-  color: $header2;
+  color: $blue-form;
   background-color: $white;
   transition-duration: 0.5s;
   transition-property: color, background-color;
 
   &.active {
     color: $white;
-    background-color: $header2;
+    background-color: $blue-form;
   }
 }
 
 .leaflet-marker-divicon-pin {
-  background: $header2;
+  background: $blue-form;
 }
 
 .leaflet-marker-divicon-pin::after {
@@ -122,7 +148,7 @@ body {
 }
 
 .leaflet-marker-divicon-pulse::after {
-  box-shadow: 0 0 1px 2px $header2;
+  box-shadow: 0 0 1px 2px $blue-form;
 }
 
 /* ------------------------------------------------
@@ -136,6 +162,6 @@ body {
   }
 
   .thumb {
-    background-color: $blue;
+    background-color: $blue-form;
   }
 }

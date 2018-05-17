@@ -13,7 +13,7 @@ class WidgetFooter extends React.PureComponent {
     const { step, total } = this.props;
     return (
       <div id="assec-widget-navigation"
-        className="flex-columns items-center flex-0 py12 px20">
+        className="flex-0 flex-columns items-center py12 px20">
         <div id="assec-widget-position" className="align-center flex-0 pr20">
           <span>
             Etape {step + 1}/{total}

@@ -10,7 +10,7 @@ const WidgetPopin = ({ dispatch }) => (
     <div className="overlay dark" />
     <div className="container mb100">
       <nav className="navigation flex-columns flex-center">
-        <button className="mx12 p20 shadowed"
+        <button className="mx12 action"
           type="button"
           onClick={() => {
             dispatch(closePopin());
@@ -18,7 +18,7 @@ const WidgetPopin = ({ dispatch }) => (
           <i className="icon icon-left-open-big mr7" />
           <span>Modifier</span>
         </button>
-        <button className="mx12 p20 shadowed"
+        <button className="mx12 next action"
           type="button"
           onClick={() => {
             dispatch(stepForward());
