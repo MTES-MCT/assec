@@ -1,6 +1,6 @@
 {
   "name": "assec-api",
-  "version": "0.10.10",
+  "version": "0.10.11",
   "private": true,
   "dependencies": {
     "@turf/bbox": "^6.0.1",
