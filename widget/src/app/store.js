@@ -12,7 +12,7 @@ const bindMiddleware = (middleware = []) => {
   return applyMiddleware(...middleware);
 };
 
-export const configure = (history, initialState = {}) =>
+export const configure = (initialState = {}) =>
   createStore(reducers, initialState, bindMiddleware());
 
 export default configure;

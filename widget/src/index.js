@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 
 // application
 import './styles.css';
-import Page from './app/page';
+import Widget from './app/widget';
 import { configure } from './app/store';
 import { Logger } from './app/core/logger';
 import { createClient } from './app/apolloql/client';
@@ -23,7 +23,7 @@ const client = createClient(process.env.REACT_APP_GRAPHQL_URI);
 const Root = () => (
   <Provider store={store}>
     <ApolloProvider client={client}>
-      <Page />
+      <Widget />
     </ApolloProvider>
   </Provider>
 );
