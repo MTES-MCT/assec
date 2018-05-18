@@ -5,8 +5,14 @@ import { connect } from 'react-redux';
 // application
 import { closeWelcome } from './../../actions';
 
-const renderBetaNote = () => (
-  <div className="note mb20">
+const renderTitle = () => (
+  <span>
+    <span>Accédez aux règles de partage de l&apos;eau en trois clics</span>
+  </span>
+);
+
+const renderNote = () => (
+  <React.Fragment>
     <p>
       <b>Module en cours de développement dans le Var.</b>
     </p>
@@ -16,18 +22,16 @@ const renderBetaNote = () => (
         pas une information légale sur les règles applicables
       </i>
     </p>
-  </div>
+  </React.Fragment>
 );
 
 const WidgetWelcome = ({ dispatch }) => (
-  <div id="widget-welcome" className="assec-widget-popin light">
-    <div className="container">
-      <h5 className="mb20">
-        <span>Accédez aux règles de partage de l&apos;eau en trois clics</span>
-      </h5>
-      {renderBetaNote()}
+  <div id="assec-widget-welcome-popin" className="popin light">
+    <div className="container align-center py40 px20">
+      <h5 className="title mb20">{renderTitle()}</h5>
+      <div className="note p12 mb20">{renderNote()}</div>
       <nav className="navigation">
-        <button className="mx12 next action"
+        <button className="next action"
           type="button"
           onClick={() => dispatch(closeWelcome())}>
           <span>Commencer</span>

@@ -74,7 +74,7 @@ $types: (
   }
 
   .#{$key}-center {
-    #{$value}: flex-center;
+    #{$value}: center;
   }
 }
 

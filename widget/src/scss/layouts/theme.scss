@@ -11,8 +11,9 @@ $note: #FFF4CD;
 $note-color: #856405;
 $note-border: #FFEEBA;
 
-$blue: #61AFEF;
-$blue-form: #3B99FC;
+$blue: #3B99FC;
+$blue-dark: #3B99FC;
+$blue-light: #61AFEF;
 
 $level-alert-0: #4CB85E;
 $level-alert-1: #FFD802;
@@ -59,6 +60,7 @@ button {
     background-color: $gray !important;
   }
 }
+*/
 
 .note {
   color: $note-color;
@@ -66,6 +68,7 @@ button {
   border-color: $note-border;
 }
 
+/*
 .geojson-layer {
   fill: $white;
   stroke: #B7B7B7;
@@ -120,17 +123,27 @@ button {
 
 /* ------------------------------------------------
 
- MAP
+ Popin
 
 ------------------------------------------------ */
-.assec-widget-popin {
-  .overlay.dark {
-    background: rgba(0, 0, 0, 0.65);
-  }
+.popin .container {
+  background-color: $white;
+}
 
-  .overlay.light {
-    background: rgba(255, 255, 255, 0.85);
-  }
+.popin.dark,
+.overlay.dark {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.popin.light,
+.overlay.light {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.transparent,
+.popin.transparent,
+.overlay.transparent {
+  background: transparent;
 }
 
 /* ------------------------------------------------

@@ -10,11 +10,11 @@ import queryString from 'query-string';
 // import { LOAD_DEPARTMENT_WIDGET } from './apolloql/queries';
 // import { noop } from './core/noop';
 import { usedebug } from './core/usedebug';
-// import WidgetPopin from './components/WidgetPopin';
 import WidgetForm from './components/WidgetForm';
+// import WidgetPopin from './components/WidgetPopin';
 import WidgetHeader from './components/WidgetHeader';
 import WidgetFooter from './components/WidgetFooter';
-// import WelcomePopin from './components/popins/WelcomePopin';
+import WelcomePopin from './components/popins/WelcomePopin';
 // import WidgetResult from './components/WidgetResult';
 // import WidgetSurvey from './components/WidgetSurvey';
 // import WidgetNavigation from './components/WidgetNavigation';
@@ -83,7 +83,7 @@ class Widget extends React.Component {
           <WidgetForm code={code} />
           <WidgetFooter code={code} />
         </div>
-        {/* {welcome && <WelcomePopin />} */}
+        {welcome && <WelcomePopin />}
       </React.Fragment>
     );
 
