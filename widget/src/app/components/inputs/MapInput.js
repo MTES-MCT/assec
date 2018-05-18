@@ -11,9 +11,9 @@ import { Map, GeoJSON, Marker, TileLayer } from 'react-leaflet';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 // application
-import { openPopin } from './../../../actions';
-import MapControls from './MapControls';
-import GeoJSONLayer from './GeoJSONLayer';
+import { openPopin } from './../../actions';
+import MapControls from './mapinput/MapControls';
+import GeoJSONLayer from './mapinput/GeoJSONLayer';
 
 const precisezoom = 13;
 const IGN_KEY = process.env.REACT_APP_IGN_KEY;
@@ -98,10 +98,10 @@ class MapInput extends React.PureComponent {
       this.setState({ marker: null });
       return;
     }
-    const { minzoom, maxzoom, zone } = this.props;
+    const { minzoom, maxzoom, map } = this.props;
     const coords = [point.lng, point.lat];
     // const coords = [43.39528702235596, 6.294845731267186];
-    const inside = booleanPointInPolygon(coords, zone);
+    const inside = booleanPointInPolygon(coords, map.zone);
     // si le point n'est pas dans la zone du departement
     // on ne fait pas de mise à jour
     // -> FIXME indiquer une erreur a l'user lui indiquant
@@ -165,32 +165,24 @@ class MapInput extends React.PureComponent {
 
   render () {
     const {
-      type,
-      zone,
-      zoom,
-      zones,
-      center,
-      minzoom,
-      maxzoom,
-      usezoom,
-      maxbounds,
+      map, type, zoom, zones, minzoom, maxzoom, usezoom,
     } = this.props;
     const {
       selected, mapzoom, marker, showzonelayer,
     } = this.state;
     return (
-      <div className="input-type-map">
-        <div id="leaflet-map" className="leaflet-map flex2">
+      <div className="input-type-map relative">
+        <div className="leaflet-map">
           <MapControls hasmarker={marker !== null}
             onToggleView={this.onToggleView}
             onGeolocation={this.onGeolocation} />
           <Map animate={false}
-            center={center}
             maxZoom={maxzoom}
             minZoom={minzoom}
-            maxBounds={maxbounds}
+            center={map.center}
             zoomControl={usezoom}
             zoom={mapzoom || zoom}
+            maxBounds={map.maxbounds}
             onZoomEnd={this.onZoomEnd}
             ref={this.setMapReference}>
             {/* -------
@@ -204,8 +196,8 @@ class MapInput extends React.PureComponent {
                 zone globale du department
 
               ------- */}
-            {zone && (
-              <GeoJSON data={zone} className="geojson-layer department" />
+            {map && (
+              <GeoJSON data={map.zone} className="geojson-layer department" />
             )}
             {/* -------
 
@@ -260,12 +252,10 @@ MapInput.propTypes = {
   maxzoom: PropTypes.number,
   formValue: PropTypes.array,
   // FIXME -> use shapeof
-  zone: PropTypes.object.isRequired,
+  map: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   zones: PropTypes.array.isRequired,
-  center: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
-  maxbounds: PropTypes.array.isRequired,
 };
 
 export default connect()(MapInput);

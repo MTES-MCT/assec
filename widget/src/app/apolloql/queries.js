@@ -32,11 +32,6 @@ query widget (
     code: $code
   ) {
     department
-    map {
-      zone
-      center
-      maxbounds
-    }
     questions {
       id
       type
@@ -47,6 +42,11 @@ query widget (
       values {
         id
         label
+      }
+      map {
+        zone
+        center
+        maxbounds
       }
       zones {
         id

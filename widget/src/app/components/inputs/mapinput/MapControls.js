@@ -59,7 +59,7 @@ class MapControls extends React.PureComponent {
     const { satellized, layered /* geolocated, hasmarker, */ } = this.state;
     // const geoactive = geolocated || hasmarker;
     return (
-      <div className="leaflet-map-controls flex-columns">
+      <div className="leaflet-map-controls flex-columns absolute">
         <Tooltip arrow
           offset={-15}
           arrowSize="small"

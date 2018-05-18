@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import { Form } from 'react-final-form';
+import { connect } from 'react-redux';
+import { Form, Field } from 'react-final-form';
 
 // application
 import { LOAD_DEPARTMENT_WIDGET } from './../apolloql/queries';
+import MapInput from './inputs/MapInput';
+import ListInput from './inputs/ListInput';
+import ChoiceInput from './inputs/ChoiceInput';
 
 const validator = (questions) => {
   const keys = questions.map(obj => obj.type);
@@ -20,28 +24,60 @@ const validator = (questions) => {
   };
 };
 
-const WidgetForm = ({ code }) => (
-  <Query query={LOAD_DEPARTMENT_WIDGET} skip={!code} variables={{ code }}>
-    {({ loading, error, data: { widget } }) => {
-      if (error || !widget || loading) return <p>...</p>;
-      const questions = (widget && widget.questions) || null;
-      const validate = validator(questions);
-      return (
-        <div id="assec-widget-form" className="flex-1">
-          <Form onSubmit={() => {}}
-            validate={validate}
-            initialValues={{
-              department: null,
-            }}
-            render={formprops => <div>toto</div>} />
-        </div>
-      );
-    }}
-  </Query>
-);
+const getComponentByType = (display) => {
+  switch (display) {
+  case 'list':
+    return ListInput;
+  case 'choice':
+    return ChoiceInput;
+  case 'zones':
+    return MapInput;
+  default:
+    return null;
+  }
+};
+
+class WidgetForm extends React.PureComponent {
+  render () {
+    const { code, step } = this.props;
+    return (
+      <Query query={LOAD_DEPARTMENT_WIDGET} skip={!code} variables={{ code }}>
+        {({ loading, error, data: { widget } }) => {
+          if (error || !widget || loading) return <p>...</p>;
+          const { questions, department } = widget;
+          const initialValues = { department };
+          const validate = validator(questions);
+          return (
+            <div id="assec-widget-form" className="flex-1">
+              <Form initialValues={initialValues}
+                validate={validate}
+                render={({ handleSubmit }) => (
+                  <form className="" onSubmit={handleSubmit}>
+                    <Field name="department" type="hidden" component="input" />
+                    {questions.map((question, index) => {
+                      const isvisible = index === step;
+                      const Component = getComponentByType(question.display);
+                      if (!Component || !isvisible) return null;
+                      return (
+                        <Component {...question}
+                          key={question.id}
+                          visible={isvisible} />
+                      );
+                    })}
+                  </form>
+                )}
+                onSubmit={() => {}} />
+            </div>
+          );
+        }}
+      </Query>
+    );
+  }
+}
 
 WidgetForm.propTypes = {
+  step: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
 };
 
-export default WidgetForm;
+export default connect(({ step }) => ({ step }))(WidgetForm);

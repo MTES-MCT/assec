@@ -1,3 +1,9 @@
+form {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 button.action {
   @extend .p20;
   @extend .clearfix;
@@ -28,15 +34,30 @@ button.action {
   }
 }
 
-/*
 .input-type-map {
   width: 100%;
   height: 100%;
   min-width: 100%;
   min-height: 100%;
+
+  .leaflet-map {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: #C4C4C4;
+  }
+
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    cursor: default;
+  }
 }
 
-.list-input {
+/*
+.input-type-list {
   width: 100%;
 
   label {
@@ -44,7 +65,7 @@ button.action {
   }
 }
 
-.choice-input {
+.input-type-choice {
   label {
     padding: 12px;
     display: block;

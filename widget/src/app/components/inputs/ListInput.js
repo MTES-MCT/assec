@@ -15,7 +15,7 @@ class ListInput extends React.PureComponent {
       label: capitalize(value.label),
     }));
     return (
-      <div className="list-input">
+      <div className="input-type-list">
         <label htmlFor={type}>
           <Field name={type}
             render={({ input }) => (
