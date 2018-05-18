@@ -125,6 +125,12 @@ type SituationExtendedType {
   description: String
 }
 
+type MapType {
+  zone: GeoJSON!
+  center: [Float]!
+  maxbounds: [[Float]]!
+}
+
 type QuestionExtendedType {
   id: ID!
   order: Int!
@@ -134,19 +140,13 @@ type QuestionExtendedType {
   title: String!
   department: ID!
   display: String!
+  map: MapType
+  values: [SUOType]
   description: String
   zones: [SituationExtendedType]
-  values: [SUOType]
-}
-
-type MapType {
-  zone: GeoJSON!
-  center: [Float]!
-  maxbounds: [[Float]]!
 }
 
 type WidgetType {
-  map: MapType!
   department: ID!
   questions: [QuestionExtendedType]!
 }

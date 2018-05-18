@@ -114,10 +114,7 @@ export const Query = {
           usages: { $in: [usages] },
           origines: { $in: [origines] },
           situations: { $in: [situation.id] },
-        }).then((docs) => {
-          console.log('docs', docs);
-          return Object.assign({}, { situation, restrictions: docs });
-        });
+        }).then(docs => Object.assign({}, { situation, restrictions: docs }));
       }) || null,
 
   widget: (_, { code }) =>
@@ -138,11 +135,14 @@ export const Query = {
         ]))
       .then(([doc, zones, questions]) => ({
         department: doc.id,
-        map: generateMapFromZones(zones),
         questions: questions.map((entity) => {
           const question = entity.toObject({ virtuals: true });
           const result = {
             ...question,
+            map:
+              question.type !== 'situations'
+                ? null
+                : generateMapFromZones(zones),
             zones:
               question.type !== 'situations'
                 ? null
