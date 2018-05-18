@@ -1,9 +1,9 @@
 const path = require('path');
 const express = require('express');
-const usedebug = require('./server/usedebug');
 
 const app = express();
 const www = path.join(__dirname, 'public');
+const usedebug = process.env.NODE_ENV !== 'production';
 
 // serve main HTML file
 app.use(express.static(www));
