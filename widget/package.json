@@ -41,9 +41,9 @@
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
     "react-select": "^1.2.1",
+    "react-sizes": "^1.0.3",
     "react-tippy": "^1.2.2",
-    "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2"
+    "redux": "^3.7.2"
   },
   "scripts": {
     "prebuild": "node-sass -r ./src/scss/styles.scss ./src/styles.css --output-style compressed",

@@ -1,16 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 // application
 import reducers from './reducers';
-import { usedebug } from './core/usedebug';
 
-const bindMiddleware = (middleware = []) => {
-  if (usedebug()) {
-    return composeWithDevTools(applyMiddleware(...middleware));
-  }
-  return applyMiddleware(...middleware);
-};
+const bindMiddleware = (middleware = []) => applyMiddleware(...middleware);
 
 export const configure = (initialState = {}) =>
   createStore(reducers, initialState, bindMiddleware());
