@@ -17,7 +17,7 @@ const WidgetHeader = ({ step, code, dispatch }) => {
         const question = (questions && questions[step]) || null;
         if (!question) return <p>...</p>;
         return (
-          <div id="assec-widget-header" className="">
+          <div id="assec-widget-header" className="mb20">
             {canbackward && (
               <button className="small mb12"
                 type="button"
@@ -29,7 +29,7 @@ const WidgetHeader = ({ step, code, dispatch }) => {
             <h4 className="title">
               <span>{question.title}</span>
             </h4>
-            <p className="mt0">
+            <p className="description mt7">
               <span>{question.description}</span>
             </p>
           </div>

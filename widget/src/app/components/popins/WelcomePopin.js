@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // application
-import { closeWelcome } from './../actions';
+import { closeWelcome } from './../../actions';
 
 const renderBetaNote = () => (
   <div className="note mb20">
@@ -20,15 +20,13 @@ const renderBetaNote = () => (
 );
 
 const WidgetWelcome = ({ dispatch }) => (
-  <div id="widget-welcome"
-    className="assec-widget-popin flex-rows flex-center items-center">
-    <div className="overlay light" />
-    <div className="container align-center">
+  <div id="widget-welcome" className="assec-widget-popin light">
+    <div className="container">
       <h5 className="mb20">
         <span>Accédez aux règles de partage de l&apos;eau en trois clics</span>
       </h5>
       {renderBetaNote()}
-      <nav className="navigation flex-columns flex-center">
+      <nav className="navigation">
         <button className="mx12 next action"
           type="button"
           onClick={() => dispatch(closeWelcome())}>

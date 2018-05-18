@@ -28,4 +28,4 @@ const Root = () => (
   </Provider>
 );
 
-ReactDOM.render(<Root />, document.getElementById('assec-widget'));
+ReactDOM.render(<Root />, document.getElementById('assec-widget-root'));

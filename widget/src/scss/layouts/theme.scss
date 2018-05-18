@@ -20,12 +20,18 @@ $level-alert-2: #F2930E;
 $level-alert-3: #CC0000;
 $level-alert-4: #910AD7;
 
-body {
-  font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
-  background-color: rgba(255, 255, 255, 0);
+.progressbar,
+.progressblocks {
+  .bar {
+    background-color: $grey;
+  }
+
+  .thumb {
+    background-color: $blue;
+  }
 }
 
+/*
 button {
   background-color: $white;
 
@@ -110,6 +116,7 @@ button {
     fill-opacity: 0;
   }
 }
+*/
 
 /* ------------------------------------------------
 
@@ -117,9 +124,8 @@ button {
 
 ------------------------------------------------ */
 .assec-widget-popin {
-  .overlay,
   .overlay.dark {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.65);
   }
 
   .overlay.light {
@@ -133,6 +139,7 @@ button {
 
 ------------------------------------------------ */
 
+/*
 .leaflet-map-controls button {
   color: $blue-form;
   background-color: $white;
@@ -160,12 +167,15 @@ button {
 .leaflet-marker-divicon-pulse::after {
   box-shadow: 0 0 1px 2px $blue-form;
 }
+*/
 
 /* ------------------------------------------------
 
  LAYOUT
 
 ------------------------------------------------ */
+
+/*
 #assec-widget-progressbar {
   .bar {
     background-color: $grey;
@@ -175,3 +185,4 @@ button {
     background-color: $blue-form;
   }
 }
+*/

@@ -11,11 +11,12 @@ import queryString from 'query-string';
 // import { noop } from './core/noop';
 import { usedebug } from './core/usedebug';
 // import WidgetPopin from './components/WidgetPopin';
+import WidgetForm from './components/WidgetForm';
 import WidgetHeader from './components/WidgetHeader';
 import WidgetFooter from './components/WidgetFooter';
+// import WelcomePopin from './components/popins/WelcomePopin';
 // import WidgetResult from './components/WidgetResult';
 // import WidgetSurvey from './components/WidgetSurvey';
-// import WidgetWelcome from './components/WidgetWelcome';
 // import WidgetNavigation from './components/WidgetNavigation';
 
 // const buildValidator = (questions) => {
@@ -77,8 +78,12 @@ class Widget extends React.Component {
           <body className={`${stepclass} ${popinclass}`} />
           <title>Assec{usedebug() ? ' | Development' : ''}</title>
         </Helmet>
-        <WidgetHeader code={code} />
-        <WidgetFooter code={code} />
+        <div id="assec-widget" className="flex-rows flex-between p20">
+          <WidgetHeader code={code} />
+          <WidgetForm code={code} />
+          <WidgetFooter code={code} />
+        </div>
+        {/* {welcome && <WelcomePopin />} */}
       </React.Fragment>
     );
 

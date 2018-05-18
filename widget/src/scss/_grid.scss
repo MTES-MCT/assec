@@ -1,21 +1,17 @@
-.flex-0 {
-  flex: 0;
-}
+$flexs: (
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+);
 
-.flex-1 {
-  flex: 1;
-}
-
-.flex-2 {
-  flex: 2;
-}
-
-.flex-3 {
-  flex: 3;
-}
-
-.flex-4 {
-  flex: 4;
+@each $flex in $flexs {
+  .flex-#{$flex} {
+    flex: #{$flex};
+    display: flex;
+  }
 }
 
 /* --------------------------------------------
@@ -36,34 +32,80 @@
   flex-direction: column;
 }
 
-.flex-end {
-  justify-content: flex-end;
+.flex-reverse {
+  &.flex-columns {
+    flex-direction: row-reverse;
+  }
+
+  &.flex-rows {
+    flex-direction: column-reverse;
+  }
 }
 
-.flex-start {
-  justify-content: start;
+$wraps: (
+  wrap,
+  nowrap,
+  wrap-reverse
+);
+
+@each $wrap in $wraps {
+  .flex-#{$wrap} {
+    flex-wrap: $wrap;
+  }
 }
 
-.flex-center {
-  justify-content: center;
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
-.flex-between {
-  justify-content: space-between;
+$types: (
+  items: align-items,
+  flex: justify-content,
+  content: align-content
+);
+
+@each $key, $value in $types {
+  .#{$key}-end {
+    #{$value}: flex-end;
+  }
+
+  .#{$key}-start {
+    #{$value}: flex-start;
+  }
+
+  .#{$key}-center {
+    #{$value}: flex-center;
+  }
 }
 
-.flex-around {
-  justify-content: space-around;
+$spaces: (
+  evenly,
+  around,
+  between
+);
+
+@each $space in $spaces {
+  .flex-#{$space} {
+    justify-content: space-#{$space};
+  }
 }
 
-.items-center {
-  align-items: center;
+.items-stretch {
+  align-items: stretch;
 }
 
-.items-start {
-  align-items: flex-start;
+.items-baseline {
+  align-items: baseline;
 }
 
-.items-end {
-  align-items: flex-end;
+.content-stretch {
+  align-content: stretch;
+}
+
+.content-around {
+  align-content: around;
+}
+
+.content-between {
+  align-content: between;
 }
