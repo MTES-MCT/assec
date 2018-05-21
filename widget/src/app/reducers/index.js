@@ -5,6 +5,8 @@ const step = (state = 0, action) => {
   switch (action.type) {
   case 'onStepForward':
     return state + 1;
+  case 'onSubmitForm':
+    return state + 1;
   case 'onStepBackward':
     return state - 1;
   default:
@@ -25,6 +27,16 @@ const popin = (state = false, action) => {
 };
 
 // application
+const choices = (state = null, action) => {
+  switch (action.type) {
+  case 'onSubmitForm':
+    return action.values;
+  default:
+    return state;
+  }
+};
+
+// application
 const welcome = (state = true, action) => {
   switch (action.type) {
   case 'onCloseWelcome':
@@ -37,5 +49,6 @@ const welcome = (state = true, action) => {
 export default combineReducers({
   step,
   popin,
+  choices,
   welcome,
 });

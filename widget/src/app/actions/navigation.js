@@ -5,3 +5,8 @@ export const stepForward = () => ({
 export const stepBackward = () => ({
   type: 'onStepBackward',
 });
+
+export const submitForm = values => ({
+  values,
+  type: 'onSubmitForm',
+});

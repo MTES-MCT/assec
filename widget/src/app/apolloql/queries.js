@@ -5,7 +5,7 @@ query findRestriction (
   $usages: ID!
   $origines: ID!
   $department: ID!
-  $situations: [Float]!
+  $situations: LatLngInput!
 ) {
   findRestriction (
     usages: $usages

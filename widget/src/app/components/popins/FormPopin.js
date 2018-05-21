@@ -1,28 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const FormPopin = ({ cancelHandler, confirmHandler }) => (
+// application
+import { closePopin } from './../../actions';
+import SubmitButton from './../buttons/SubmitButton';
+import ConfirmButton from './../buttons/ConfirmButton';
+
+const FormPopin = ({ islast, dispatch }) => (
   <div className="popin dark">
-    <button onClick={cancelHandler} className="absolute" />
+    <button className="absolute" onClick={() => dispatch(closePopin())} />
     <div className="container flex-rows items-center flex-end">
       <nav className="navigation">
-        <button className="mx12 action" type="button" onClick={cancelHandler}>
+        <button className="mx12 action"
+          type="button"
+          onClick={() => dispatch(closePopin())}>
           <i className="icon icon-left-open-big mr7" />
           <span>Modifier</span>
         </button>
-        <button className="mx12 next action"
-          type="button"
-          onClick={confirmHandler}>
-          <span>Question suivante</span>
-          <i className="icon icon-right-open-big mr7" />
-        </button>
+        {(islast && <SubmitButton />) || <ConfirmButton />}
       </nav>
     </div>
   </div>
 );
+
 FormPopin.propTypes = {
-  cancelHandler: PropTypes.func.isRequired,
-  confirmHandler: PropTypes.func.isRequired,
+  islast: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default FormPopin;
+export default connect()(FormPopin);

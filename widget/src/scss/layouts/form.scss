@@ -11,7 +11,6 @@ button.action {
   @extend .p20;
   @extend .clearfix;
 
-  width: 170px;
   font-size: 1.1em;
   border-radius: 4px;
   background-color: $white;
@@ -73,10 +72,6 @@ button.action {
     height: auto;
     margin-bottom: 40px;
     background: transparent;
-  }
-
-  .popin button.next.action {
-    width: 230px;
   }
 
   .leaflet-map {

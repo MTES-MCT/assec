@@ -6,12 +6,13 @@ import 'react-select/dist/react-select.css';
 
 // application
 import { capitalize } from './../../core/capitalize';
-import FormNavigation from './../forms/FormNavigation';
+import SubmitButton from './../buttons/SubmitButton';
+import ConfirmButton from './../buttons/ConfirmButton';
 
 class ListInput extends React.PureComponent {
   render () {
     const {
-      formValue, values, type, onConfirmHandler,
+      type, values, islast, formValue,
     } = this.props;
     return (
       <div className="input-type-list">
@@ -32,7 +33,9 @@ class ListInput extends React.PureComponent {
               )} />
           </label>
         </div>
-        <FormNavigation confirmHandler={onConfirmHandler} />
+        <nav className="navigation">
+          {(islast && <SubmitButton />) || <ConfirmButton />}
+        </nav>
       </div>
     );
   }
@@ -45,8 +48,8 @@ ListInput.defaultProps = {
 ListInput.propTypes = {
   formValue: PropTypes.string,
   type: PropTypes.string.isRequired,
+  islast: PropTypes.bool.isRequired,
   values: PropTypes.array.isRequired,
-  onConfirmHandler: PropTypes.func.isRequired,
 };
 
 export default ListInput;

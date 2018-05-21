@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Form, Field } from 'react-final-form';
 
 // application
 import { LOAD_DEPARTMENT_WIDGET } from './../apolloql/queries';
+import { submitForm } from './../actions';
 import MapInput from './inputs/MapInput';
-import { stepForward } from './../actions';
 import ListInput from './inputs/ListInput';
 import FormResults from './forms/FormResults';
 import ChoiceInput from './inputs/ChoiceInput';
@@ -40,8 +41,13 @@ const getComponentByType = (display) => {
 };
 
 class WidgetForm extends React.PureComponent {
+  constructor (props) {
+    super(props);
+    const { dispatch } = this.props;
+    this.actions = bindActionCreators({ submitForm }, dispatch);
+  }
   render () {
-    const { code, step, dispatch } = this.props;
+    const { code, step, choices } = this.props;
     return (
       <Query query={LOAD_DEPARTMENT_WIDGET} skip={!code} variables={{ code }}>
         {({ loading, error, data: { widget } }) => {
@@ -49,37 +55,37 @@ class WidgetForm extends React.PureComponent {
           const { questions, department } = widget;
           const initialValues = { department };
           const validate = validator(questions);
-          const showresults = step > questions.length;
           return (
             <div id="assec-widget-form" className="flex-1">
               <Form initialValues={initialValues}
                 validate={validate}
-                render={({ handleSubmit, values }) => (
-                  <form className="" onSubmit={handleSubmit}>
-                    {console.log('values', values)}
+                onSubmit={(values) => {
+                  console.log('submit values', values);
+                  this.actions.submitForm(values);
+                }}
+                render={({ handleSubmit, values, form }) => (
+                  <form onSubmit={handleSubmit}>
                     <Field name="department" type="hidden" component="input" />
-                    {!showresults &&
+                    {!choices &&
                       questions.map((question, index) => {
                         const { display } = question;
                         const isvisible = index === step;
+                        const islast = step + 1 === questions.length;
                         const Component = getComponentByType(display);
                         const formValue =
                           (values && values[question.type]) || null;
                         if (!Component || !isvisible) return null;
                         return (
                           <Component {...question}
+                            islast={islast}
                             key={question.id}
                             visible={isvisible}
-                            formValue={formValue}
-                            onConfirmHandler={() => {
-                              dispatch(stepForward());
-                            }} />
+                            formValue={formValue} />
                         );
                       })}
                   </form>
-                )}
-                onSubmit={() => {}} />
-              {(showresults && <FormResults />) || null}
+                )} />
+              {(choices && <FormResults values={choices} />) || null}
             </div>
           );
         }}
@@ -88,10 +94,14 @@ class WidgetForm extends React.PureComponent {
   }
 }
 
+WidgetForm.defaultProps = {
+  choices: null,
+};
 WidgetForm.propTypes = {
+  choices: PropTypes.object,
   step: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect(({ step }) => ({ step }))(WidgetForm);
+export default connect(({ step, choices }) => ({ step, choices }))(WidgetForm);

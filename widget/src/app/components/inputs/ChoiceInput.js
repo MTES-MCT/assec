@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
 import { capitalize } from './../../core/capitalize';
-import FormNavigation from './../forms/FormNavigation';
+import SubmitButton from './../buttons/SubmitButton';
+import ConfirmButton from './../buttons/ConfirmButton';
 
 class ChoiceInput extends React.PureComponent {
   render () {
     const {
-      formValue, values, type, onConfirmHandler,
+      type, values, formValue, islast,
     } = this.props;
     return (
       <div className="input-type-choice">
@@ -35,7 +36,9 @@ class ChoiceInput extends React.PureComponent {
             );
           })}
         </div>
-        <FormNavigation confirmHandler={onConfirmHandler} />
+        <nav className="navigation">
+          {(islast && <SubmitButton />) || <ConfirmButton />}
+        </nav>
       </div>
     );
   }
@@ -48,8 +51,8 @@ ChoiceInput.defaultProps = {
 ChoiceInput.propTypes = {
   formValue: PropTypes.string,
   type: PropTypes.string.isRequired,
+  islast: PropTypes.bool.isRequired,
   values: PropTypes.array.isRequired,
-  onConfirmHandler: PropTypes.func.isRequired,
 };
 
 export default ChoiceInput;

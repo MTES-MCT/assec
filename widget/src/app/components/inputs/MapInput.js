@@ -66,7 +66,9 @@ class MapInput extends React.PureComponent {
     const {
       popin, marker, showzonelayer, showsatellite,
     } = this.state;
-    const { map, type, zones } = this.props;
+    const {
+      map, type, islast, zones,
+    } = this.props;
     return (
       <div className="input-type-map relative">
         <div className="leaflet-map">
@@ -85,10 +87,7 @@ class MapInput extends React.PureComponent {
               </React.Fragment>
             )} />
         </div>
-        {popin && (
-          <FormPopin cancelHandler={this.onTogglePopin}
-            confirmHandler={this.props.onConfirmHandler} />
-        )}
+        {popin && <FormPopin islast={islast} />}
       </div>
     );
   }
@@ -104,7 +103,7 @@ MapInput.propTypes = {
   map: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   zones: PropTypes.array.isRequired,
-  onConfirmHandler: PropTypes.func.isRequired,
+  islast: PropTypes.bool.isRequired,
 };
 
 export default MapInput;
