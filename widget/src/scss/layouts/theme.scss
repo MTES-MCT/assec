@@ -45,59 +45,6 @@ button {
   border-color: $note-border;
 }
 
-/*
-.geojson-layer {
-  fill: $white;
-  stroke: #B7B7B7;
-  opacity: 0.3;
-  stroke-width: 1;
-  transition: all 0.5s;
-
-  &.normale {
-    // $level-alert-0
-    fill: $level-alert-0;
-    stroke: $level-alert-0;
-  }
-
-  &.vigilance {
-    // $level-alert-1
-    fill: $level-alert-1;
-    stroke: $level-alert-1;
-  }
-
-  &.alerte {
-    // $level-alert-2
-    fill: $level-alert-2;
-    stroke: $level-alert-2;
-  }
-
-  &.alerte-renforcee {
-    // $level-alert-3
-    fill: $level-alert-3;
-    stroke: $level-alert-3;
-  }
-
-  &.crise {
-    // $level-alert-4
-    fill: $level-alert-4;
-    stroke: $level-alert-4;
-  }
-
-  &:hover {
-    opacity: 0.65;
-  }
-
-  &.active {
-    opacity: 0.8;
-  }
-
-  &.department {
-    stroke: $black;
-    fill-opacity: 0;
-  }
-}
-*/
-
 /* ------------------------------------------------
 
  Popin
@@ -129,21 +76,20 @@ button {
 
 ------------------------------------------------ */
 
-/*
 .leaflet-map-controls button {
-  color: $blue-form;
+  color: $blue;
   background-color: $white;
   transition-duration: 0.5s;
   transition-property: color, background-color;
 
   &.active {
     color: $white;
-    background-color: $blue-form;
+    background-color: $blue;
   }
 }
 
 .leaflet-marker-divicon-pin {
-  background: $blue-form;
+  background: $blue;
 }
 
 .leaflet-marker-divicon-pin::after {
@@ -155,9 +101,8 @@ button {
 }
 
 .leaflet-marker-divicon-pulse::after {
-  box-shadow: 0 0 1px 2px $blue-form;
+  box-shadow: 0 0 1px 2px $blue;
 }
-*/
 
 /* ------------------------------------------------
 

@@ -31,17 +31,14 @@ $level-alert-2: #F2930E;
 $level-alert-3: #CC0000;
 $level-alert-4: #910AD7;
 
+@import './modules/map.scss';
+@import './modules/tippy.scss';
+
 // application
 @import './layouts/z-index.scss';
 @import './layouts/theme.scss';
 @import './layouts/form.scss';
 @import './layouts/base.scss';
-
-// @import './layouts/tippy.scss';
-
-// map
-// @import './layouts/map.scss';
-// @import './layouts/map-marker.scss';
 
 // responsive
 @import './layouts/responsive.scss';

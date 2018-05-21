@@ -6,6 +6,7 @@ import { Form, Field } from 'react-final-form';
 
 // application
 import { LOAD_DEPARTMENT_WIDGET } from './../apolloql/queries';
+import FormResults from './forms/FormResults';
 import MapInput from './inputs/MapInput';
 import ListInput from './inputs/ListInput';
 import ChoiceInput from './inputs/ChoiceInput';
@@ -47,26 +48,34 @@ class WidgetForm extends React.PureComponent {
           const { questions, department } = widget;
           const initialValues = { department };
           const validate = validator(questions);
+          const showresults = step > questions.length;
           return (
             <div id="assec-widget-form" className="flex-1">
               <Form initialValues={initialValues}
                 validate={validate}
-                render={({ handleSubmit }) => (
+                render={({ handleSubmit, values }) => (
                   <form className="" onSubmit={handleSubmit}>
+                    {console.log('values', values)}
                     <Field name="department" type="hidden" component="input" />
-                    {questions.map((question, index) => {
-                      const isvisible = index === step;
-                      const Component = getComponentByType(question.display);
-                      if (!Component || !isvisible) return null;
-                      return (
-                        <Component {...question}
-                          key={question.id}
-                          visible={isvisible} />
-                      );
-                    })}
+                    {!showresults &&
+                      questions.map((question, index) => {
+                        const { display } = question;
+                        const isvisible = index === step;
+                        const Component = getComponentByType(display);
+                        if (!Component || !isvisible) return null;
+                        return (
+                          <Component {...question}
+                            key={question.id}
+                            visible={isvisible}
+                            onForwardHandler={() => {
+                              console.log('clicked on next');
+                            }} />
+                        );
+                      })}
                   </form>
                 )}
                 onSubmit={() => {}} />
+              {(showresults && <FormResults />) || null}
             </div>
           );
         }}

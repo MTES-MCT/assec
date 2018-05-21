@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const WidgetSummary = ({ questions, step }) => (
+const FormSummary = ({ questions, step }) => (
   <div id="assec-widget-summary" className="p20">
     <div className="questions pt12">
       {questions &&
@@ -30,7 +30,7 @@ const WidgetSummary = ({ questions, step }) => (
   </div>
 );
 
-WidgetSummary.propTypes = {
+FormSummary.propTypes = {
   // choices: PropTypes.array.isRequired,
   step: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
@@ -38,4 +38,4 @@ WidgetSummary.propTypes = {
 
 export default connect(state => ({
   step: state.step,
-}))(WidgetSummary);
+}))(FormSummary);

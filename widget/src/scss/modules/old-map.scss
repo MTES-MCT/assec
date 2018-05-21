@@ -1,9 +1,3 @@
-.leaflet-map-controls {
-  right: 12px;
-  bottom: 12px;
-  position: absolute;
-}
-
 .leaflet-bottom.leaflet-right {
   right: inherit;
 }
@@ -13,18 +7,6 @@
   height: 40px;
   cursor: pointer;
   border-radius: 50%;
-}
-
-.leaflet-control-attribution {
-  opacity: 0.2;
-  float: inherit;
-  font-size: 0.8em;
-  background-color: transparent;
-}
-
-.leaflet-control-attribution a,
-.leaflet-control-attribution a:hover {
-  color: #000000;
 }
 
 #leaflet-map {

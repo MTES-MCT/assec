@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tippy';
-// import Geolocation from 'react-geolocation';
+import Geolocation from 'react-geolocation';
 
 class MapControls extends React.PureComponent {
   constructor (props) {
@@ -12,16 +12,9 @@ class MapControls extends React.PureComponent {
     this.onGeolocationSuccess = this.onGeolocationSuccess.bind(this);
     this.state = {
       layered: false,
-      hasmarker: false,
       geolocated: false,
       satellized: false,
     };
-  }
-
-  componentWillReceiveProps (next) {
-    if (next.hasmarker !== this.props.hasmarker) {
-      this.setState({ hasmarker: next.hasmarker });
-    }
   }
 
   onGeolocationSuccess (position) {
@@ -29,15 +22,15 @@ class MapControls extends React.PureComponent {
     const coords = (position && position.coords) || null;
     const lat = (coords && coords.latitude) || null;
     const lng = (coords && coords.longitude) || null;
-    const center = (lat && lng && { lat, lng }) || null;
-    this.setState({ geolocated: true, hasmarker: true }, () => {
-      this.props.onGeolocation(center);
+    const point = (lat && lng && { lat, lng }) || null;
+    this.setState({ geolocated: true }, () => {
+      this.props.onGeolocation(point);
     });
   }
 
   toggleGeoLocation () {
-    this.setState({ geolocated: false, hasmarker: true }, () => {
-      this.props.onGeolocation(false);
+    this.setState({ geolocated: false }, () => {
+      this.props.onGeolocation(null);
     });
   }
 
@@ -56,10 +49,11 @@ class MapControls extends React.PureComponent {
   }
 
   render () {
-    const { satellized, layered /* geolocated, hasmarker, */ } = this.state;
-    // const geoactive = geolocated || hasmarker;
+    const { satellized, layered, geolocated } = this.state;
+    const { onGeolocation, marker } = this.props;
+    const geoactive = geolocated || marker;
     return (
-      <div className="leaflet-map-controls flex-columns absolute">
+      <div className="leaflet-map-controls">
         <Tooltip arrow
           offset={-15}
           arrowSize="small"
@@ -88,38 +82,44 @@ class MapControls extends React.PureComponent {
             </span>
           </button>
         </Tooltip>
-        {/* <Tooltip arrow
-          offset={-15}
-          arrowSize="small"
-          position="top-end"
-          trigger="mouseenter"
-          title={geoactive ? 'Supprimer le marker' : 'Me géolocaliser'}>
-          <Geolocation lazy
-            enableHighAccuracy
-            onSuccess={this.onGeolocationSuccess}
-            render={({ error, fetchingPosition, getCurrentPosition }) => (
-              <button className={`${(geoactive && 'active') || ''}`}
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  if (geoactive) this.toggleGeoLocation();
-                  else getCurrentPosition();
-                }}>
-                <span>
-                  {!fetchingPosition && <i className="icon icon-direction" />}
-                  {fetchingPosition && (
-                    <i className="icon icon-spin6 animate-spin" />
-                  )}
-                </span>
-              </button>
-            )} />
-        </Tooltip> */}
+        {onGeolocation && (
+          <Tooltip arrow
+            offset={-15}
+            arrowSize="small"
+            position="top-end"
+            trigger="mouseenter"
+            title={geoactive ? 'Supprimer le marker' : 'Me géolocaliser'}>
+            <Geolocation lazy
+              enableHighAccuracy
+              onSuccess={this.onGeolocationSuccess}
+              render={({ error, fetchingPosition, getCurrentPosition }) => (
+                <button className={`${(geoactive && 'active') || ''}`}
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    if (geoactive) this.toggleGeoLocation();
+                    else getCurrentPosition();
+                  }}>
+                  <span>
+                    {!fetchingPosition && <i className="icon icon-direction" />}
+                    {fetchingPosition && (
+                      <i className="icon icon-spin6 animate-spin" />
+                    )}
+                  </span>
+                </button>
+              )} />
+          </Tooltip>
+        )}
       </div>
     );
   }
 }
 
+MapControls.defaultProps = {
+  marker: null,
+};
+
 MapControls.propTypes = {
-  hasmarker: PropTypes.bool.isRequired,
+  marker: PropTypes.object,
   onToggleView: PropTypes.func.isRequired,
   onGeolocation: PropTypes.func.isRequired,
 };

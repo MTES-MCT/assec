@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import { LOAD_RESTRICTION_CASE } from './../apolloql/queries';
+import { LOAD_RESTRICTION_CASE } from './../../apolloql/queries';
 
-const WidgetResult = ({ values }) => (
+const FormResults = ({ values }) => (
   <Query query={LOAD_RESTRICTION_CASE} variables={values}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -30,8 +30,8 @@ const WidgetResult = ({ values }) => (
   </Query>
 );
 
-WidgetResult.propTypes = {
+FormResults.propTypes = {
   values: PropTypes.object.isRequired,
 };
 
-export default WidgetResult;
+export default FormResults;

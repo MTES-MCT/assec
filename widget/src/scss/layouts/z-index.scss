@@ -1,7 +1,8 @@
 // z-index des zones de la carte
 // -> 1000
 $zindex-popin: 9000;
-$zindex-mapcontrols: 2000;
+$zindex-mapcontrols: 3000;
+$zindex-mapmarker: 2000;
 
 .popin {
   z-index: $zindex-popin;
@@ -10,18 +11,19 @@ $zindex-mapcontrols: 2000;
 // .tippy-popper {
 //   z-index: 3000;
 // }
-//
+
 .leaflet-map-controls {
   z-index: $zindex-mapcontrols;
 }
-//
+
 // .tippy-tooltip [x-circle] {
 //   z-index: -1;
 // }
-//
-// .leaflet-marker-divicon-pulse {
-//   z-index: 2000;
-// }
+
+.leaflet-marker-divicon-pulse {
+  z-index: $zindex-mapmarker;
+}
+
 //
 // #assec-widget-summary {
 //   z-index: 4000;
