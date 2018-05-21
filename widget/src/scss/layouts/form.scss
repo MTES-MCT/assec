@@ -67,6 +67,16 @@ button.action {
   min-width: 100%;
   min-height: 100%;
 
+  .popin .container {
+    height: auto;
+    margin-bottom: 40px;
+    background: transparent;
+  }
+
+  .popin button.next.action {
+    width: 230px;
+  }
+
   .leaflet-map {
     width: 100%;
     height: 100%;

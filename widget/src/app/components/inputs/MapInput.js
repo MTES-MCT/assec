@@ -4,7 +4,7 @@ import { Field } from 'react-final-form';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 // application
-import FormPopin from './../forms/FormPopin';
+import FormPopin from './../popins/FormPopin';
 import MapView from './mapinput/MapView';
 import MapControls from './mapinput/MapControls';
 
@@ -18,29 +18,24 @@ class MapInput extends React.PureComponent {
     this.state = {
       popin: false,
       marker: null,
-      // mapzoom: null,
-      // selected: null,
       showsatellite: false,
       showzonelayer: false,
-      // marker: props.formValue,
     };
   }
 
   onUserPosition (input) {
     return (point) => {
-      console.log('point', point);
       const { zone } = this.props.map;
       const coords = (point && [point.lng, point.lat]) || null;
       const inside = coords && booleanPointInPolygon(coords, zone);
       if (!point || !inside) {
         // -> FIXME indiquer une erreur a l'user lui indiquant
-        // on ne fait pas de mise à jour
         // si le point n'est pas dans la zone du departement
-        // affiche une erreur si l'user est en dehors
         // ou n'est pas geocalise dans la zone
       }
       this.setState({ marker: point }, () => {
         input.onChange(point);
+        if (point) this.onTogglePopin();
       });
       // const zoomto = (inside && maxZoom - 2) || minZoom;
       // const mapzoom = this.map.leafletElement.getZoom();
@@ -67,7 +62,6 @@ class MapInput extends React.PureComponent {
     const {
       popin, marker, showzonelayer, showsatellite,
     } = this.state;
-    console.log('marker', marker);
     const { map, type, zones } = this.props;
     return (
       <div className="input-type-map relative">
@@ -88,7 +82,8 @@ class MapInput extends React.PureComponent {
             )} />
         </div>
         {popin && (
-          <FormPopin cancelHandler={() => {}} confirmHandler={() => {}} />
+          <FormPopin cancelHandler={this.onTogglePopin}
+            confirmHandler={() => {}} />
         )}
       </div>
     );

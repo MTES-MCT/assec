@@ -47,7 +47,8 @@ class MapView extends React.PureComponent {
   constructor (props) {
     super(props);
     this.map = null;
-    this.getMapZoom = this.getMapZoom.bind(this);
+    this.state = { mapzoom: props.defaultZoom };
+    this.onZoomEnd = this.onZoomEnd.bind(this);
     this.renderMapLayers = this.renderMapLayers.bind(this);
     this.renderRegionLayer = this.renderRegionLayer.bind(this);
   }
@@ -66,9 +67,10 @@ class MapView extends React.PureComponent {
       });
   }
 
-  getMapZoom () {
+  onZoomEnd () {
     const { defaultZoom } = this.props;
-    return (this.map && this.map.leafletElement.getZoom()) || defaultZoom;
+    const zoom = (this.map && this.map.leafletElement.getZoom()) || defaultZoom;
+    this.setState({ mapzoom: zoom });
   }
 
   renderRegionLayer () {
@@ -78,14 +80,14 @@ class MapView extends React.PureComponent {
   }
 
   renderMapLayers () {
+    const { mapzoom } = this.state;
     const { showSatellite } = this.props;
-    const zoom = this.getMapZoom();
     return ignLayers
       .filter(({ name }) =>
         name !== 'satlayer' || (name === 'satlayer' && showSatellite))
       .filter((obj) => {
         const { max, min } = obj.zoom;
-        return max <= zoom && min >= zoom;
+        return max <= mapzoom && min >= mapzoom;
       })
       .map(({ layer, name, attr }) => {
         const uri = `${IGN_BASE_URI}?${IGN_OPTIONS.join('&')}&layer=${layer}`;
@@ -103,10 +105,10 @@ class MapView extends React.PureComponent {
       showZone,
       map: { maxbounds, center },
     } = this.props;
-    const zoom = this.getMapZoom();
+    const { mapzoom } = this.state;
     return (
       <Map animate={false}
-        zoom={zoom}
+        zoom={mapzoom}
         center={center}
         maxZoom={maxZoom}
         minZoom={minZoom}
@@ -122,7 +124,7 @@ class MapView extends React.PureComponent {
           layers.map((obj, index) => {
             const zIndex = getzindex(index);
             const opacity = showZone ? 0.4 : 0;
-            const showtooltip = zoom < precisezoom;
+            const showtooltip = mapzoom < precisezoom;
             return (
               <MapZone obj={obj}
                 zIndex={zIndex}
