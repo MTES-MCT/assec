@@ -59,10 +59,7 @@ class WidgetForm extends React.PureComponent {
             <div id="assec-widget-form" className="flex-1">
               <Form initialValues={initialValues}
                 validate={validate}
-                onSubmit={(values) => {
-                  console.log('submit values', values);
-                  this.actions.submitForm(values);
-                }}
+                onSubmit={values => this.actions.submitForm(values)}
                 render={({ handleSubmit, values, form }) => (
                   <form onSubmit={handleSubmit}>
                     <Field name="department" type="hidden" component="input" />

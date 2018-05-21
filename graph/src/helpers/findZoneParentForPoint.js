@@ -3,8 +3,7 @@ import minBy from 'lodash.minby';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
 
 export const findZoneParentForPoint = (point, zones) => {
-  const coords = [].concat(point);
-  coords.reverse();
+  const coords = [point.lng, point.lat];
   const founds = zones
     .map(zone => zone.toObject({ virtuals: true }))
     .map(zone =>
