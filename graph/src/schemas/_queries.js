@@ -35,7 +35,7 @@ type Query {
     usages: ID!
     origines: ID!
     department: ID!
-    situations: [Float]!
+    situations: LatLngInput!
   ): RulesType
 }
 `;

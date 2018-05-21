@@ -10,6 +10,11 @@ input SUOSInput {
   situations: [SUOInput]
 }
 
+input LatLngInput {
+  lat: Float
+  lng: Float
+}
+
 input SituationInput {
   id: ID!
   label: String!
