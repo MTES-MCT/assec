@@ -1,43 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Field } from 'react-final-form';
-import { bindActionCreators } from 'redux';
 
-import { openPopin } from './../../actions';
 import { capitalize } from './../../core/capitalize';
+import FormNavigation from './../forms/FormNavigation';
 
 class ChoiceInput extends React.PureComponent {
-  constructor (props) {
-    super(props);
-    this.bounds = bindActionCreators({ openPopin }, props.dispatch);
-  }
-
   render () {
-    const { formValue, values, type } = this.props;
+    const {
+      formValue, values, type, onConfirmHandler,
+    } = this.props;
     return (
       <div className="input-type-choice">
-        {values.map((obj, index) => {
-          const htmlfor = `choice_${index}`;
-          const key = `choiceinput::${obj.id}`;
-          return (
-            <Field key={key}
-              name={type}
-              value={obj.id}
-              render={({ input }) => (
-                <label htmlFor={htmlfor} className={index > 0 ? 'mt20' : ''}>
-                  <input {...input}
-                    id={htmlfor}
-                    type="radio"
-                    checked={obj.id === formValue}
-                    onChange={() => {
-                      input.onChange(obj.id);
-                    }} />
-                  <span className="ml12">{capitalize(obj.label)}</span>
-                </label>
-              )} />
-          );
-        })}
+        <div className="fields">
+          {values.map((obj, index) => {
+            const htmlfor = `choice_${index}`;
+            const key = `choiceinput::${obj.id}`;
+            return (
+              <Field key={key}
+                name={type}
+                value={obj.id}
+                render={({ input }) => (
+                  <label htmlFor={htmlfor} className={index > 0 ? 'mt20' : ''}>
+                    <input {...input}
+                      id={htmlfor}
+                      type="radio"
+                      checked={obj.id === formValue}
+                      onChange={() => {
+                        input.onChange(obj.id);
+                      }} />
+                    <span className="ml12">{capitalize(obj.label)}</span>
+                  </label>
+                )} />
+            );
+          })}
+        </div>
+        <FormNavigation confirmHandler={onConfirmHandler} />
       </div>
     );
   }
@@ -51,7 +49,7 @@ ChoiceInput.propTypes = {
   formValue: PropTypes.string,
   type: PropTypes.string.isRequired,
   values: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  onConfirmHandler: PropTypes.func.isRequired,
 };
 
-export default connect()(ChoiceInput);
+export default ChoiceInput;

@@ -17,9 +17,9 @@ class MapInput extends React.PureComponent {
     this.onUserPosition = this.onUserPosition.bind(this);
     this.state = {
       popin: false,
-      marker: null,
       showsatellite: false,
       showzonelayer: false,
+      marker: props.formValue,
     };
   }
 
@@ -87,20 +87,24 @@ class MapInput extends React.PureComponent {
         </div>
         {popin && (
           <FormPopin cancelHandler={this.onTogglePopin}
-            confirmHandler={() => {}} />
+            confirmHandler={this.props.onConfirmHandler} />
         )}
       </div>
     );
   }
 }
 
+MapInput.defaultProps = {
+  formValue: null,
+};
+
 MapInput.propTypes = {
-  // formValue: PropTypes.array,
-  // onForwardHandler: PropTypes.func.isRequired,
   // FIXME -> use shapeof
+  formValue: PropTypes.object,
   map: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
   zones: PropTypes.array.isRequired,
+  onConfirmHandler: PropTypes.func.isRequired,
 };
 
 export default MapInput;

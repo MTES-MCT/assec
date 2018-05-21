@@ -6,9 +6,10 @@ import { Form, Field } from 'react-final-form';
 
 // application
 import { LOAD_DEPARTMENT_WIDGET } from './../apolloql/queries';
-import FormResults from './forms/FormResults';
 import MapInput from './inputs/MapInput';
+import { stepForward } from './../actions';
 import ListInput from './inputs/ListInput';
+import FormResults from './forms/FormResults';
 import ChoiceInput from './inputs/ChoiceInput';
 
 const validator = (questions) => {
@@ -40,7 +41,7 @@ const getComponentByType = (display) => {
 
 class WidgetForm extends React.PureComponent {
   render () {
-    const { code, step } = this.props;
+    const { code, step, dispatch } = this.props;
     return (
       <Query query={LOAD_DEPARTMENT_WIDGET} skip={!code} variables={{ code }}>
         {({ loading, error, data: { widget } }) => {
@@ -62,13 +63,16 @@ class WidgetForm extends React.PureComponent {
                         const { display } = question;
                         const isvisible = index === step;
                         const Component = getComponentByType(display);
+                        const formValue =
+                          (values && values[question.type]) || null;
                         if (!Component || !isvisible) return null;
                         return (
                           <Component {...question}
                             key={question.id}
                             visible={isvisible}
-                            onForwardHandler={() => {
-                              console.log('clicked on next');
+                            formValue={formValue}
+                            onConfirmHandler={() => {
+                              dispatch(stepForward());
                             }} />
                         );
                       })}
@@ -87,6 +91,7 @@ class WidgetForm extends React.PureComponent {
 WidgetForm.propTypes = {
   step: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(({ step }) => ({ step }))(WidgetForm);
