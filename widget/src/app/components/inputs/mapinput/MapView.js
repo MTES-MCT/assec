@@ -21,22 +21,25 @@ const IGN_OPTIONS = [
 
 const ignLayers = [
   {
+    order: 0,
     name: 'baselayer',
-    zoom: { max: 0, min: 18 },
+    zoom: { min: 0, max: 18 },
     layer: 'GEOGRAPHICALGRIDSYSTEMS.PLANIGN&style=normal&format=image/jpeg',
     attr:
       '&copy; <a href="https://www.geoportail.gouv.fr">IGN-F/Geoportail</a>',
   },
   {
-    att: '',
+    order: 1,
+    attr: null,
     name: 'satlayer',
-    zoom: { max: 0, min: 18 },
+    zoom: { min: 0, max: 18 },
     layer: 'ORTHOIMAGERY.ORTHOPHOTOS&style=normal&format=image/jpeg',
   },
   {
-    att: '',
+    order: 2,
+    attr: null,
     name: 'zonelayer',
-    zoom: { max: precisezoom, min: 18 },
+    zoom: { min: precisezoom, max: 18 },
     layer: 'CADASTRALPARCELS.PARCELS&style=bdparcellaire&format=image/png',
   },
 ];
@@ -80,18 +83,22 @@ class MapView extends React.PureComponent {
   }
 
   renderMapLayers () {
-    const { mapzoom } = this.state;
     const { showSatellite } = this.props;
     return ignLayers
       .filter(({ name }) =>
         name !== 'satlayer' || (name === 'satlayer' && showSatellite))
-      .filter((obj) => {
-        const { max, min } = obj.zoom;
-        return max <= mapzoom && min >= mapzoom;
-      })
-      .map(({ layer, name, attr }) => {
+      .map(({
+        layer, name, attr, order, zoom: { max, min },
+      }) => {
         const uri = `${IGN_BASE_URI}?${IGN_OPTIONS.join('&')}&layer=${layer}`;
-        return <TileLayer key={name} url={uri} attribution={attr} />;
+        return (
+          <TileLayer url={uri}
+            key={name}
+            minZoom={min}
+            maxZoom={max}
+            zIndex={order}
+            attribution={attr} />
+        );
       });
   }
 
