@@ -106,7 +106,7 @@ class MapView extends React.PureComponent {
       map: { maxbounds, center, zone },
     } = this.props;
     const { mapzoom } = this.state;
-    const zoneopacity = mapzoom < precisezoom - 2 ? 0.3 : 0;
+    const zoneopacity = mapzoom < precisezoom - 2 && !showZone ? 0.3 : 0;
     return (
       <Map animate={false}
         zoom={mapzoom}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const FormPopin = ({ cancelHandler, confirmHandler }) => (
   <div className="popin dark">
+    <button onClick={cancelHandler} className="absolute" />
     <div className="container flex-rows items-center flex-end">
       <nav className="navigation">
         <button className="mx12 action" type="button" onClick={cancelHandler}>

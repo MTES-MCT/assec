@@ -25,18 +25,22 @@ class MapInput extends React.PureComponent {
 
   onUserPosition (input) {
     return (point) => {
+      const { marker } = this.state;
       const { zone } = this.props.map;
       const coords = (point && [point.lng, point.lat]) || null;
       const inside = coords && booleanPointInPolygon(coords, zone);
-      if (!point || !inside) {
-        // -> FIXME indiquer une erreur a l'user lui indiquant
-        // si le point n'est pas dans la zone du departement
-        // ou n'est pas geocalise dans la zone
+      if (marker && !point) {
+        this.setState({ marker: null }, () => {
+          input.onChange(null);
+        });
+      } else if (!inside) {
+        // FIXME -> warn outside the zone
+      } else {
+        this.setState({ marker: point }, () => {
+          input.onChange(point);
+          this.onTogglePopin();
+        });
       }
-      this.setState({ marker: point }, () => {
-        input.onChange(point);
-        if (point) this.onTogglePopin();
-      });
       // const zoomto = (inside && maxZoom - 2) || minZoom;
       // const mapzoom = this.map.leafletElement.getZoom();
       // const mapbounds = this.map.leafletElement.getBounds();
