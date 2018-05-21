@@ -53,7 +53,6 @@ class MapView extends React.PureComponent {
     this.state = { mapzoom: props.defaultZoom };
     this.onZoomEnd = this.onZoomEnd.bind(this);
     this.renderMapLayers = this.renderMapLayers.bind(this);
-    this.renderRegionLayer = this.renderRegionLayer.bind(this);
   }
 
   componentDidUpdate () {
@@ -74,12 +73,6 @@ class MapView extends React.PureComponent {
     const { defaultZoom } = this.props;
     const zoom = (this.map && this.map.leafletElement.getZoom()) || defaultZoom;
     this.setState({ mapzoom: zoom });
-  }
-
-  renderRegionLayer () {
-    const { zone } = this.props.map;
-    if (!zone) return null;
-    return <GeoJSON data={zone} className="geojson-layer department" />;
   }
 
   renderMapLayers () {
@@ -110,9 +103,10 @@ class MapView extends React.PureComponent {
       minZoom,
       useZoom,
       showZone,
-      map: { maxbounds, center },
+      map: { maxbounds, center, zone },
     } = this.props;
     const { mapzoom } = this.state;
+    const zoneopacity = mapzoom < precisezoom - 2 ? 0.3 : 0;
     return (
       <Map animate={false}
         zoom={mapzoom}
@@ -127,6 +121,11 @@ class MapView extends React.PureComponent {
           this.map = ref;
         }}>
         {this.renderMapLayers()}
+        {zone && (
+          <GeoJSON data={zone}
+            className="geojson-layer department"
+            style={() => ({ fillOpacity: zoneopacity, opacity: 1 })} />
+        )}
         {layers &&
           layers.map((obj, index) => {
             const zIndex = getzindex(index);
@@ -141,7 +140,6 @@ class MapView extends React.PureComponent {
                 style={{ zIndex, opacity }} />
             );
           })}
-        {this.renderRegionLayer()}
         {marker && (
           <MapMarker position={marker} onChange={this.props.onClick} />
         )}

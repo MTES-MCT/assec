@@ -28,11 +28,16 @@
 ---------------------------------------------------- */
 
 .geojson-layer {
-  fill: #FFFFFF;
-  stroke: #B7B7B7;
+  fill: $white;
   opacity: 0.3;
+  stroke: #B7B7B7;
   stroke-width: 1;
   transition: all 0.5s;
+
+  &.department {
+    opacity: 1;
+    fill: $blue;
+  }
 
   &.normale {
     // $level-alert-0
@@ -70,11 +75,6 @@
 
   &.active {
     opacity: 0.8;
-  }
-
-  &.department {
-    stroke: $black;
-    fill-opacity: 0;
   }
 }
 
