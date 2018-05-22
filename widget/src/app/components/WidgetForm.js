@@ -47,7 +47,11 @@ class WidgetForm extends React.PureComponent {
                 onSubmit={values => this.actions.submitForm(values)}
                 render={({ handleSubmit, values, form }) => (
                   <React.Fragment>
-                    {choices && <ResetButton reset={() => form.reset()} />}
+                    {choices && (
+                      <nav className="navigation">
+                        <ResetButton reset={() => form.reset()} />
+                      </nav>
+                    )}
                     <form onSubmit={handleSubmit}
                       className={choices ? 'hidden' : ''}>
                       <Field name="department"

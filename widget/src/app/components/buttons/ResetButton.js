@@ -12,7 +12,7 @@ const ResetButton = ({ dispatch, reset, disabled }) => (
       reset();
       dispatch(resetForm());
     }}
-    className={`action reset mb12 ${disabled ? 'disabled' : ''}`}>
+    className={`previous small mb12 ${disabled ? 'disabled' : ''}`}>
     <i className="icon icon-left-open-big" />
     <span>Recommencer</span>
   </button>
