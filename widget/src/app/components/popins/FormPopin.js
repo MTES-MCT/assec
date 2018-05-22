@@ -10,8 +10,8 @@ const FormPopin = ({ islast, cancel }) => (
     <button type="button" className="absolute" onClick={cancel} />
     <div className="container flex-rows items-center flex-end">
       <nav className="navigation">
-        <button className="mx12 action" type="button" onClick={cancel}>
-          <i className="icon icon-left-open-big mr7" />
+        <button className="mr12 action" type="button" onClick={cancel}>
+          <i className="icon icon-left-open-big" />
           <span>Modifier</span>
         </button>
         {!islast && <ConfirmButton />}

@@ -35,7 +35,7 @@ const WidgetWelcome = ({ dispatch }) => (
           type="button"
           onClick={() => dispatch(closeWelcome())}>
           <span>Commencer</span>
-          <i className="icon icon-right-open-big ml7" />
+          <i className="icon icon-right-open-big" />
         </button>
       </nav>
     </div>

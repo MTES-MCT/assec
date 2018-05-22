@@ -1,7 +1,15 @@
 .leaflet-map-controls {
   right: 12px;
   bottom: 12px;
+  overflow: hidden;
   position: absolute;
+  border-radius: 4px;
+
+  button {
+    width: 30px;
+    height: 30px;
+    box-sizing: content-box;
+  }
 }
 
 /* <!-- Deplace les liens de copyright des layers en bas de la carte --> */
@@ -16,11 +24,6 @@
   background-color: transparent;
 }
 
-.leaflet-control-attribution a,
-.leaflet-control-attribution a:hover {
-  color: #000000;
-}
-
 /* ----------------------------------------------------
 
  MAP MARKER
@@ -28,45 +31,12 @@
 ---------------------------------------------------- */
 
 .geojson-layer {
-  fill: $white;
   opacity: 0.3;
-  stroke: #B7B7B7;
   stroke-width: 1;
   transition: all 0.5s;
 
   &.department {
     opacity: 1;
-    fill: $blue;
-  }
-
-  &.normale {
-    // $level-alert-0
-    fill: $level-alert-0;
-    stroke: $level-alert-0;
-  }
-
-  &.vigilance {
-    // $level-alert-1
-    fill: $level-alert-1;
-    stroke: $level-alert-1;
-  }
-
-  &.alerte {
-    // $level-alert-2
-    fill: $level-alert-2;
-    stroke: $level-alert-2;
-  }
-
-  &.alerte-renforcee {
-    // $level-alert-3
-    fill: $level-alert-3;
-    stroke: $level-alert-3;
-  }
-
-  &.crise {
-    // $level-alert-4
-    fill: $level-alert-4;
-    stroke: $level-alert-4;
   }
 
   &:hover {

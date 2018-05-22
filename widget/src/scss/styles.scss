@@ -8,29 +8,7 @@
 @import './_grid.scss';
 @import './_margins.scss';
 
-$header0: #14134E;
-$header1: #512D5A;
-$header2: #843B61;
-
-$grey: #F7F8FA;
-$gray: #E4E8EE;
-$white: #FFFFFF;
-$black: #000000;
-
-$note: #FFF4CD;
-$note-color: #856405;
-$note-border: #FFEEBA;
-
-$blue: #3B99FC;
-$blue-dark: #3B99FC;
-$blue-light: #61AFEF;
-
-$level-alert-0: #4CB85E;
-$level-alert-1: #FFD802;
-$level-alert-2: #F2930E;
-$level-alert-3: #CC0000;
-$level-alert-4: #910AD7;
-
+// modules
 @import './modules/map.scss';
 @import './modules/tippy.scss';
 

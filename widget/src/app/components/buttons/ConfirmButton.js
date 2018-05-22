@@ -7,10 +7,10 @@ import { stepForward } from './../../actions';
 
 const ConfirmButton = ({ dispatch }) => (
   <button type="button"
-    className="mx12 next action"
+    className="next action"
     onClick={() => dispatch(stepForward())}>
     <span>Question Suivante</span>
-    <i className="icon icon-right-open-big mr7" />
+    <i className="icon icon-right-open-big" />
   </button>
 );
 

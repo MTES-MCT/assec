@@ -1,3 +1,33 @@
+$header0: #14134E;
+$header1: #512D5A;
+$header2: #843B61;
+
+$grey: #F7F8FA;
+$gray: #E4E8EE;
+$white: #FFFFFF;
+$black: #000000;
+$border-color: #D7D8D8;
+
+$note: #FFF4CD;
+$note-color: #856405;
+$note-border: #FFEEBA;
+
+$blue: #3B99FC;
+$blue-dark: #3B99FC;
+$blue-light: #61AFEF;
+
+$level-alert-0: #4CB85E;
+$level-alert-1: #FFD802;
+$level-alert-2: #F2930E;
+$level-alert-3: #CC0000;
+$level-alert-4: #910AD7;
+
+.note {
+  color: $note-color;
+  background-color: $note;
+  border-color: $note-border;
+}
+
 .progressbar,
 .progressblocks {
   .bar {
@@ -9,45 +39,33 @@
   }
 }
 
-/*
-button {
+/* ------------------------------------------------
+
+ INPUTS / BUTTONS
+
+------------------------------------------------ */
+
+button.action {
   background-color: $white;
-
-  &.action {
-    @extend .p20;
-    @extend .shadowed;
-
-    width: 170px;
-    border-radius: 4px;
-    transition: background-color 0.5s;
-  }
-
-  &.small {
-    font-size: 0.7em;
-  }
 
   &.next {
     color: $white;
-    background-color: $blue-form;
-  }
-
-  &.disabled,
-  &:disabled {
-    box-shadow: none;
-    background-color: $gray !important;
+    background-color: $blue;
+    border: 1px solid $blue-dark;
   }
 }
-*/
 
-.note {
-  color: $note-color;
-  background-color: $note;
-  border-color: $note-border;
+.input-type-choice label {
+  border-color: $border-color;
+}
+
+.input-type-map {
+  border: 1px solid $border-color;
 }
 
 /* ------------------------------------------------
 
- Popin
+ POPIN
 
 ------------------------------------------------ */
 .popin .container {
@@ -76,6 +94,58 @@ button {
 
 ------------------------------------------------ */
 
+.leaflet-map {
+  background-color: $border-color;
+}
+
+.leaflet-control-attribution a,
+.leaflet-control-attribution a:hover {
+  color: $black;
+}
+
+.geojson-layer {
+  fill: $white;
+  stroke: $border-color;
+
+  &.department {
+    fill: $blue;
+  }
+
+  &.normale {
+    // $level-alert-0
+    fill: $level-alert-0;
+    stroke: $level-alert-0;
+  }
+
+  &.vigilance {
+    // $level-alert-1
+    fill: $level-alert-1;
+    stroke: $level-alert-1;
+  }
+
+  &.alerte {
+    // $level-alert-2
+    fill: $level-alert-2;
+    stroke: $level-alert-2;
+  }
+
+  &.alerte-renforcee {
+    // $level-alert-3
+    fill: $level-alert-3;
+    stroke: $level-alert-3;
+  }
+
+  &.crise {
+    // $level-alert-4
+    fill: $level-alert-4;
+    stroke: $level-alert-4;
+  }
+}
+
+.leaflet-map-controls {
+  background-color: $white;
+}
+
 .leaflet-map-controls button {
   color: $blue;
   background-color: $white;
@@ -103,21 +173,3 @@ button {
 .leaflet-marker-divicon-pulse::after {
   box-shadow: 0 0 1px 2px $blue;
 }
-
-/* ------------------------------------------------
-
- LAYOUT
-
------------------------------------------------- */
-
-/*
-#assec-widget-progressbar {
-  .bar {
-    background-color: $grey;
-  }
-
-  .thumb {
-    background-color: $blue-form;
-  }
-}
-*/

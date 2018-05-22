@@ -62,7 +62,7 @@ class MapControls extends React.PureComponent {
           title={`${satellized ? 'Masquer' : 'Afficher'} la vue satellite`}>
           <button type="button"
             onClick={this.toggleSatellite}
-            className={`${(satellized && 'active') || ''} mr7`}>
+            className={`${(satellized && 'active') || ''}`}>
             <span>
               <i className="icon icon-camera" />
             </span>
@@ -76,7 +76,7 @@ class MapControls extends React.PureComponent {
           title={`${layered ? 'Masquer' : 'Afficher'} les zones`}>
           <button type="button"
             onClick={this.toggleZoneLayer}
-            className={`${(layered && 'active') || ''} mr7`}>
+            className={`${(layered && 'active') || ''}`}>
             <span>
               <i className="icon icon-marquee" />
             </span>
@@ -92,8 +92,12 @@ class MapControls extends React.PureComponent {
             <Geolocation lazy
               enableHighAccuracy
               onSuccess={this.onGeolocationSuccess}
-              render={({ error, fetchingPosition, getCurrentPosition }) => (
-                <button className={`${(geoactive && 'active') || ''}`}
+              render={({
+                /* error, */
+                fetchingPosition,
+                getCurrentPosition,
+              }) => (
+                <button className={`${(geoactive && 'active') || ''} spinner`}
                   onClick={(evt) => {
                     evt.preventDefault();
                     if (geoactive) this.toggleGeoLocation();

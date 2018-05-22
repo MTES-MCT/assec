@@ -33,7 +33,7 @@ class ListInput extends React.PureComponent {
               )} />
           </label>
         </div>
-        <nav className="navigation">
+        <nav className="navigation mt12">
           {(islast && <SubmitButton />) || <ConfirmButton />}
         </nav>
       </div>

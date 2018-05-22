@@ -36,7 +36,7 @@ class ChoiceInput extends React.PureComponent {
             );
           })}
         </div>
-        <nav className="navigation">
+        <nav className="navigation mt12">
           {(islast && <SubmitButton />) || <ConfirmButton />}
         </nav>
       </div>
