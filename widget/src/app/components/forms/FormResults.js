@@ -26,13 +26,15 @@ const FormResults = ({ values }) => (
             <b className={`situation-${slug}`}>{`${label}`}.</b> Les règles de
             partage de l&apos;eau qui vous sont applicables sont les suivantes:
           </p>
-          <ul className="descriptions">
-            {restrictions.map(obj => (
-              <li className="description" key={obj.id}>
-                <ReactMarkdown source={obj.description} />
-              </li>
-            ))}
-          </ul>
+          <div className="relative">
+            <ul className="descriptions absolute">
+              {restrictions.map(obj => (
+                <li className="description" key={obj.id}>
+                  <ReactMarkdown source={obj.description} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       );
     }}
