@@ -77,6 +77,7 @@ type RulesType {
 const zone = `
 type SituationType {
   id: ID
+  slug: String
   label: String
 }
 

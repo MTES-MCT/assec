@@ -126,7 +126,7 @@ export const Query = {
         Promise.all([
           Promise.resolve(doc),
           ZoneModel.find({ department: doc.id })
-            .populate('alerte.situation', ['label', 'id'])
+            .populate('alerte.situation', ['label', 'id', 'slug'])
             .sort({ order: 1 })
             .exec(),
           QuestionModel.find({ department: doc.id })
