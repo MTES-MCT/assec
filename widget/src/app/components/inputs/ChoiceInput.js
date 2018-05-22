@@ -11,6 +11,7 @@ class ChoiceInput extends React.PureComponent {
     const {
       type, values, formValue, islast,
     } = this.props;
+    const disabled = !(formValue !== null);
     return (
       <div className="input-type-choice">
         <div className="fields">
@@ -36,8 +37,10 @@ class ChoiceInput extends React.PureComponent {
             );
           })}
         </div>
-        <nav className="navigation mt12">
-          {(islast && <SubmitButton />) || <ConfirmButton />}
+        <nav className="navigation mt20">
+          {(islast && <SubmitButton disabled={disabled} />) || (
+            <ConfirmButton disabled={disabled} />
+          )}
         </nav>
       </div>
     );

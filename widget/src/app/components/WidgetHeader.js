@@ -4,10 +4,10 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 
 // application
-import { stepBackward } from './../actions';
+import PreviousButton from './buttons/PreviousButton';
 import { LOAD_DEPARTMENT_WIDGET } from './../apolloql/queries';
 
-const WidgetHeader = ({ step, code, dispatch }) => {
+const WidgetHeader = ({ step, code }) => {
   const canbackward = step > 0;
   return (
     <Query query={LOAD_DEPARTMENT_WIDGET} skip={!code} variables={{ code }}>
@@ -18,14 +18,7 @@ const WidgetHeader = ({ step, code, dispatch }) => {
         if (!question) return <p>...</p>;
         return (
           <div id="assec-widget-header" className="mb20">
-            {canbackward && (
-              <button className="small mb12"
-                type="button"
-                onClick={() => dispatch(stepBackward())}>
-                <i className="icon icon-left-open-big mr3" />
-                <span>Question précédente</span>
-              </button>
-            )}
+            {canbackward && <PreviousButton />}
             <h4 className="title">
               <span>{question.title}</span>
             </h4>
@@ -42,7 +35,6 @@ const WidgetHeader = ({ step, code, dispatch }) => {
 WidgetHeader.propTypes = {
   code: PropTypes.string.isRequired,
   step: PropTypes.number.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(({ step }) => ({ step }))(WidgetHeader);

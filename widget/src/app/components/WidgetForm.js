@@ -13,19 +13,19 @@ import ListInput from './inputs/ListInput';
 import FormResults from './forms/FormResults';
 import ChoiceInput from './inputs/ChoiceInput';
 
-const validator = (questions) => {
-  const keys = questions.map(obj => obj.type);
-  return (values) => {
-    const errors = {};
-    keys.reduce((acc, key) => {
-      if (!values[key]) {
-        return { ...acc, [key]: 'Required' };
-      }
-      return acc;
-    }, errors);
-    return errors;
-  };
-};
+// const validator = (questions) => {
+//   const keys = questions.map(obj => obj.type);
+//   return (values) => {
+//     const errors = {};
+//     keys.reduce((acc, key) => {
+//       if (!values[key]) {
+//         return { ...acc, [key]: 'Required' };
+//       }
+//       return acc;
+//     }, errors);
+//     return errors;
+//   };
+// };
 
 const getComponentByType = (display) => {
   switch (display) {
@@ -54,11 +54,9 @@ class WidgetForm extends React.PureComponent {
           if (error || !widget || loading) return <p>...</p>;
           const { questions, department } = widget;
           const initialValues = { department };
-          const validate = validator(questions);
           return (
             <div id="assec-widget-form" className="flex-1">
               <Form initialValues={initialValues}
-                validate={validate}
                 onSubmit={values => this.actions.submitForm(values)}
                 render={({ handleSubmit, values, form }) => (
                   <form onSubmit={handleSubmit}>

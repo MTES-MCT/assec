@@ -14,6 +14,7 @@ class ListInput extends React.PureComponent {
     const {
       type, values, islast, formValue,
     } = this.props;
+    const disabled = !(formValue !== null);
     return (
       <div className="input-type-list">
         <div className="fields">
@@ -33,8 +34,10 @@ class ListInput extends React.PureComponent {
               )} />
           </label>
         </div>
-        <nav className="navigation mt12">
-          {(islast && <SubmitButton />) || <ConfirmButton />}
+        <nav className="navigation mt20">
+          {(islast && <SubmitButton disabled={disabled} />) || (
+            <ConfirmButton disabled={disabled} />
+          )}
         </nav>
       </div>
     );
