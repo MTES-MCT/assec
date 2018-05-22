@@ -6,11 +6,6 @@ import { connect } from 'react-redux';
 // application
 import { LOAD_DEPARTMENT_WIDGET } from './../apolloql/queries';
 
-const percent = (total, count) => {
-  const mult = 100 * count;
-  return 100 - Math.round(mult / total);
-};
-
 const position = (total, count) => {
   const mult = 100 * count;
   return Math.round(mult / total);
@@ -24,29 +19,38 @@ class WidgetFooter extends React.PureComponent {
         {({ loading, error, data: { widget } }) => {
           if (error || !widget || loading) return <p>...</p>;
           const questions = (widget && widget.questions) || null;
-          const total = questions.length;
+          const total = questions.length + 1;
+          const isresult = step + 1 >= total;
           return (
-            <div id="assec-widget-footer" className="mt20">
+            <div id="assec-widget-footer"
+              className="mt20 flex-columns items-center">
               <span className="label mr12">
                 <span>
-                  Etape {step + 1}/{total}
+                  {!isresult && `Etape ${step + 1}/${total}`}
+                  {isresult && 'Résultats'}
                 </span>
               </span>
-              <span className="progressbar relative">
-                <span className="bar absolute" />
-                <span className="thumb absolute"
-                  style={{ right: `${percent(total, step)}%` }} />
-              </span>
               <span className="progressblocks relative">
-                {questions.map(obj => (
-                  <span key={obj.id}
-                    className="thumb absolute"
-                    style={{
-                      paddingLeft: '1px',
-                      width: `${100 / total}%`,
-                      left: `${position(total, step)}%`,
-                    }} />
-                ))}
+                {questions.map((obj, index) => {
+                  const prev = (index < step && 'previous') || '';
+                  const curr = (index === step && 'active') || '';
+                  return (
+                    <span key={obj.id}
+                      className={`thumb absolute ${curr} ${prev}`}
+                      style={{
+                        width: `${100 / total}%`,
+                        left: `${position(total, index)}%`,
+                        borderLeft: (index && '1px solid #FFFFFF') || '0',
+                      }} />
+                  );
+                })}
+                <span key="results"
+                  className={`thumb absolute last ${isresult && 'active'}`}
+                  style={{
+                    width: `${100 / total}%`,
+                    borderLeft: '1px solid #FFFFFF',
+                    left: `${position(total, questions.length)}%`,
+                  }} />
               </span>
             </div>
           );

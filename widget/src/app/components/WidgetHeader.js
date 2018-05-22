@@ -15,7 +15,7 @@ const WidgetHeader = ({ step, code }) => {
         if (error || !widget || loading) return <p>...</p>;
         const questions = (widget && widget.questions) || null;
         const question = (questions && questions[step]) || null;
-        if (!question) return <p>...</p>;
+        if (!question) return null;
         return (
           <div id="assec-widget-header" className="mb20">
             {canbackward && <PreviousButton />}

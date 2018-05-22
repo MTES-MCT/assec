@@ -20,6 +20,10 @@ button.spinner {
   border-width: 1px;
   border-radius: 4px;
   border-style: solid;
+
+  &.large {
+    font-size: 1em;
+  }
 }
 
 .popin {
@@ -52,6 +56,16 @@ button.spinner {
 
 #assec-widget {
   height: 100%;
+}
+
+#assec-widget-footer {
+  height: 20px;
+  max-height: 20px;
+  min-height: 20px;
+
+  .label {
+    width: 80px;
+  }
 }
 
 #assec-widget-welcome-popin {

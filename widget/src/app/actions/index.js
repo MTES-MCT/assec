@@ -19,6 +19,10 @@ export const stepBackward = () => ({
   type: 'onStepBackward',
 });
 
+export const resetForm = () => ({
+  type: 'onResetForm',
+});
+
 export const submitForm = values => ({
   values,
   type: 'onSubmitForm',

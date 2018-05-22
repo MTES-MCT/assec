@@ -3,6 +3,8 @@ import { combineReducers } from 'redux';
 // application
 const step = (state = 0, action) => {
   switch (action.type) {
+  case 'onResetForm':
+    return 0;
   case 'onSubmitForm':
   case 'onStepForward':
     return state + 1;
@@ -28,6 +30,8 @@ const popin = (state = false, action) => {
 // application
 const choices = (state = null, action) => {
   switch (action.type) {
+  case 'onResetForm':
+    return null;
   case 'onSubmitForm':
     return action.values;
   default:

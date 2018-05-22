@@ -30,17 +30,6 @@ $level-alert-4: #910AD7;
   border-color: $note-border;
 }
 
-.progressbar,
-.progressblocks {
-  .bar {
-    background-color: $grey;
-  }
-
-  .thumb {
-    background-color: $blue;
-  }
-}
-
 /* ------------------------------------------------
 
  INPUTS / BUTTONS
@@ -183,4 +172,18 @@ button:disabled {
 
 .leaflet-marker-divicon-pulse::after {
   box-shadow: 0 0 1px 2px $blue;
+}
+
+#assec-widget-footer .progressblocks {
+  .thumb {
+    background-color: $grey;
+  }
+
+  .thumb.previous {
+    background-color: $blue-light;
+  }
+
+  .thumb.active {
+    background-color: $blue-dark;
+  }
 }

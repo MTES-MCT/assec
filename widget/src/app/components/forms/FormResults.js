@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
+import ReactMarkdown from 'react-markdown';
 
+// application
 import { LOAD_RESTRICTION_CASE } from './../../apolloql/queries';
 
 const FormResults = ({ values }) => (
@@ -12,17 +14,23 @@ const FormResults = ({ values }) => (
       const rules = (data && data.findRestriction) || [];
       const { situation, restrictions } = rules;
       return (
-        <div id="assec-widget-results" className="flex-1 p20">
+        <div id="assec-widget-results" className="flex-rows flex-1">
           <h5>
             <span>Vos Règles</span>
           </h5>
-          <p>
+          <p className="note large p20">
             Votre territoire est placé en situation de{' '}
             <b>{`${situation.label}`}.</b> Les règles de partage de l&apos;eau
             qui vous sont applicables sont les suivantes:
           </p>
           <ul>
-            {restrictions.map(obj => <li key={obj.id}>{obj.description}</li>)}
+            {restrictions.map(obj => (
+              <li key={obj.id}>
+                <ReactMarkdown source={obj.description.split('\\s').join('\n')}
+                  skipHtml
+                  escapeHtml />
+              </li>
+            ))}
           </ul>
         </div>
       );

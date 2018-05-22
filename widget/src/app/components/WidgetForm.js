@@ -12,20 +12,7 @@ import MapInput from './inputs/MapInput';
 import ListInput from './inputs/ListInput';
 import FormResults from './forms/FormResults';
 import ChoiceInput from './inputs/ChoiceInput';
-
-// const validator = (questions) => {
-//   const keys = questions.map(obj => obj.type);
-//   return (values) => {
-//     const errors = {};
-//     keys.reduce((acc, key) => {
-//       if (!values[key]) {
-//         return { ...acc, [key]: 'Required' };
-//       }
-//       return acc;
-//     }, errors);
-//     return errors;
-//   };
-// };
+import ResetButton from './buttons/ResetButton';
 
 const getComponentByType = (display) => {
   switch (display) {
@@ -55,32 +42,38 @@ class WidgetForm extends React.PureComponent {
           const { questions, department } = widget;
           const initialValues = { department };
           return (
-            <div id="assec-widget-form" className="flex-1">
+            <div id="assec-widget-form" className="flex-rows flex-1">
               <Form initialValues={initialValues}
                 onSubmit={values => this.actions.submitForm(values)}
                 render={({ handleSubmit, values, form }) => (
-                  <form onSubmit={handleSubmit}>
-                    <Field name="department" type="hidden" component="input" />
-                    {!choices &&
-                      questions.map((question, index) => {
-                        const { display } = question;
-                        const isvisible = index === step;
-                        const islast = step + 1 === questions.length;
-                        const Component = getComponentByType(display);
-                        const formValue =
-                          (values && values[question.type]) || null;
-                        if (!Component || !isvisible) return null;
-                        return (
-                          <Component {...question}
-                            islast={islast}
-                            key={question.id}
-                            visible={isvisible}
-                            formValue={formValue} />
-                        );
-                      })}
-                  </form>
+                  <React.Fragment>
+                    {choices && <ResetButton reset={() => form.reset()} />}
+                    <form onSubmit={handleSubmit}
+                      className={choices ? 'hidden' : ''}>
+                      <Field name="department"
+                        type="hidden"
+                        component="input" />
+                      {!choices &&
+                        questions.map((question, index) => {
+                          const { display } = question;
+                          const isvisible = index === step;
+                          const islast = step + 1 === questions.length;
+                          const Component = getComponentByType(display);
+                          const formValue =
+                            (values && values[question.type]) || null;
+                          if (!Component || !isvisible) return null;
+                          return (
+                            <Component {...question}
+                              islast={islast}
+                              key={question.id}
+                              visible={isvisible}
+                              formValue={formValue} />
+                          );
+                        })}
+                    </form>
+                    {choices && <FormResults values={choices} />}
+                  </React.Fragment>
                 )} />
-              {(choices && <FormResults values={choices} />) || null}
             </div>
           );
         }}
