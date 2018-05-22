@@ -3,9 +3,8 @@ import { combineReducers } from 'redux';
 // application
 const step = (state = 0, action) => {
   switch (action.type) {
-  case 'onStepForward':
-    return state + 1;
   case 'onSubmitForm':
+  case 'onStepForward':
     return state + 1;
   case 'onStepBackward':
     return state - 1;

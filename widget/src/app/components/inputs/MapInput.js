@@ -87,7 +87,7 @@ class MapInput extends React.PureComponent {
               </React.Fragment>
             )} />
         </div>
-        {popin && <FormPopin islast={islast} />}
+        {popin && <FormPopin cancel={this.onTogglePopin} islast={islast} />}
       </div>
     );
   }
