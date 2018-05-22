@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Editor } from 'react-draft-wysiwyg';
-import draftToMarkdown from 'draftjs-to-markdown';
-import { convertToRaw, EditorState } from 'draft-js';
+import { EditorState } from 'draft-js';
+import { stateToMarkdown } from 'draft-js-export-markdown';
 import { stateFromMarkdown } from 'draft-js-import-markdown';
 
 const setEditorState = (value) => {
   const rawvalue = value || '';
   const content = stateFromMarkdown(rawvalue);
   return EditorState.createWithContent(content);
+};
+
+const getRawContent = (editorState) => {
+  const content = editorState.getCurrentContent();
+  const rawvalue = stateToMarkdown(content);
+  return rawvalue;
 };
 
 const editorToolbar = {
@@ -38,7 +44,7 @@ class MarkdownEditor extends React.PureComponent {
 
   componentWillReceiveProps (next) {
     if (next.input.value !== this.state.rawvalue) {
-      const rawvalue = next.input.value;
+      const rawvalue = next.input.value || '';
       this.setState({
         rawvalue,
         editorState: setEditorState(rawvalue),
@@ -48,9 +54,7 @@ class MarkdownEditor extends React.PureComponent {
 
   onEditorStateChange (editorState) {
     const { input } = this.props;
-    const rawvalue =
-      editorState &&
-      draftToMarkdown(convertToRaw(editorState.getCurrentContent()));
+    const rawvalue = getRawContent(editorState);
     this.setState({ editorState, rawvalue }, () => input.onChange(rawvalue));
   }
 
