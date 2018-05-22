@@ -27,7 +27,6 @@ button.spinner {
 }
 
 .popin {
-  @extend .overlay;
   @extend .absolute;
   @extend .flex-columns;
 
@@ -85,4 +84,30 @@ button.spinner {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+/* ------------------------------------------
+
+ MARKDOWN
+ Affichage des restrictions depuis le backoffice
+
+------------------------------------------ */
+
+#assec-widget-results .descriptions {
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#assec-widget-results .description {
+  margin: 0;
+}
+
+#assec-widget-results .description div {
+  padding: 12px 7px;
+}
+
+#assec-widget-results .description p {
+  margin-top: 7px;
+  margin-bottom: 7px;
 }

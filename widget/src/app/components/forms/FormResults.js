@@ -12,7 +12,10 @@ const FormResults = ({ values }) => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error graphql :(</p>;
       const rules = (data && data.findRestriction) || [];
-      const { situation, restrictions } = rules;
+      const {
+        restrictions,
+        situation: { label, slug },
+      } = rules;
       return (
         <div id="assec-widget-results" className="flex-rows flex-1">
           <h5>
@@ -20,15 +23,13 @@ const FormResults = ({ values }) => (
           </h5>
           <p className="note large p20">
             Votre territoire est placé en situation de{' '}
-            <b>{`${situation.label}`}.</b> Les règles de partage de l&apos;eau
-            qui vous sont applicables sont les suivantes:
+            <b className={`situation-${slug}`}>{`${label}`}.</b> Les règles de
+            partage de l&apos;eau qui vous sont applicables sont les suivantes:
           </p>
-          <ul>
+          <ul className="descriptions">
             {restrictions.map(obj => (
-              <li key={obj.id}>
-                <ReactMarkdown source={obj.description.split('\\s').join('\n')}
-                  skipHtml
-                  escapeHtml />
+              <li className="description" key={obj.id}>
+                <ReactMarkdown source={obj.description} />
               </li>
             ))}
           </ul>

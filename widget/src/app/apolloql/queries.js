@@ -14,6 +14,7 @@ query findRestriction (
     situations: $situations
   ) {
     situation {
+      slug
       label
     }
     restrictions {
