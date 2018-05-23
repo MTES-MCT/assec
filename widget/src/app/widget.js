@@ -2,14 +2,17 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import withSizes from 'react-sizes';
+import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 
 // application
 import { usedebug } from './core/usedebug';
 import { parseQuery } from './core/parse-query';
-import WidgetForm from './components/WidgetForm';
+import { LOAD_DEPARTMENT_WIDGET } from './apolloql/queries';
 import WidgetHeader from './components/WidgetHeader';
 import WidgetFooter from './components/WidgetFooter';
+import WidgetResults from './components/WidgetResults';
+import WidgetQuestions from './components/WidgetQuestions';
 import WelcomePopin from './components/popins/WelcomePopin';
 
 const renderError = code => (
@@ -38,7 +41,7 @@ class Widget extends React.Component {
   render () {
     const { code } = this.state;
     const {
-      step, popin, welcome, ismobile, istablet,
+      step, choices, popin, welcome, ismobile, istablet,
     } = this.props;
     if (!code) return renderError(404);
     const stepclass = `current-step-${step}`;
@@ -53,7 +56,24 @@ class Widget extends React.Component {
         </Helmet>
         <div id="assec-widget" className="flex-rows flex-between p20">
           <WidgetHeader code={code} />
-          <WidgetForm code={code} />
+          <Query query={LOAD_DEPARTMENT_WIDGET}
+            skip={!code}
+            variables={{ code }}>
+            {({ loading, error, data: { widget } }) => {
+              if (error || !widget || loading) return <p>...</p>;
+              const { questions, department } = widget;
+              const initialValues = { department };
+              return (
+                <div id="assec-widget-content" className="flex-rows flex-1">
+                  <WidgetQuestions step={step}
+                    choices={choices}
+                    questions={questions}
+                    initialValues={initialValues} />
+                  {choices && <WidgetResults values={choices} />}
+                </div>
+              );
+            }}
+          </Query>
           <WidgetFooter code={code} />
         </div>
         {welcome && <WelcomePopin />}
@@ -64,9 +84,11 @@ class Widget extends React.Component {
 
 Widget.defaultProps = {
   form: null,
+  choices: null,
 };
 
 Widget.propTypes = {
+  choices: PropTypes.object,
   step: PropTypes.number.isRequired,
   ismobile: PropTypes.bool.isRequired,
   istablet: PropTypes.bool.isRequired,
@@ -77,6 +99,7 @@ Widget.propTypes = {
 const connected = connect(state => ({
   step: state.step,
   popin: state.popin,
+  choices: state.choices,
   welcome: state.welcome,
 }))(Widget);
 
