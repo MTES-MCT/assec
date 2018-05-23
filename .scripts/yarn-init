@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir ./tmp
+cp ./.kiss/mongod.local ./mongo/mongod.local
