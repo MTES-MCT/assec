@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import withSizes from 'react-sizes';
 import { connect } from 'react-redux';
-// import queryString from 'query-string';
 
 // application
 import { usedebug } from './core/usedebug';
