@@ -58,6 +58,8 @@ def dump():
     now = int(time.time())
     localp = './backups/assec_%s.gz' % (now)
     get('/home/deploy/backups/assec.gz', localp)
+    localp = './backups/assec.gz'
+    get('/home/deploy/backups/assec.gz', localp)
     # FIXME -> !!! le rm doit se faire en sudo :(
     # run('rm /home/deploy/backups/assec.gz')
 
