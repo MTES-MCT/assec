@@ -64,6 +64,17 @@ button:disabled {
   background-color: $grey !important;
 }
 
+#alert-input {
+  input {
+    border-color: $border-color;
+  }
+
+  button {
+    color: $white;
+    background-color: $blue;
+  }
+}
+
 .input-type-choice label {
   border-color: $border-color;
 }
