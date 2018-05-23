@@ -3,10 +3,11 @@ import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import withSizes from 'react-sizes';
 import { connect } from 'react-redux';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 
 // application
 import { usedebug } from './core/usedebug';
+import { parseQuery } from './core/parse-query';
 import WidgetForm from './components/WidgetForm';
 import WidgetHeader from './components/WidgetHeader';
 import WidgetFooter from './components/WidgetFooter';
@@ -30,8 +31,9 @@ class Widget extends React.Component {
   }
 
   componentWillMount () {
-    const parsed = queryString.parse(document.location.search);
-    this.setState({ code: parsed.department || null });
+    const { search = null } = document.location;
+    const parsed = parseQuery(search);
+    this.setState({ code: (parsed && parsed.department) || null });
   }
 
   render () {
