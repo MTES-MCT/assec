@@ -39,6 +39,7 @@ type Mutation {
   createSubscriber(
     email: String!
     department: ID!
+    preferences: PreferencesInput
   ): SubscriberType
 
   createBlock(

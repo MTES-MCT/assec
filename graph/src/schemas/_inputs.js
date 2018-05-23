@@ -20,6 +20,12 @@ input SituationInput {
   label: String!
 }
 
+input PreferencesInput {
+  usages: ID!
+  latlng: ID!
+  origines: LatLngInput!
+}
+
 input AlerteInput {
   end_date: String
   start_date: String
