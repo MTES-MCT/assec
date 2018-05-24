@@ -56,6 +56,13 @@ export const Query = {
       .populate('situations')
       .exec(),
 
+  subscribers: (_, { department }) => {
+    if (department) {
+      return null;
+    }
+    return SubscriberModel.find().exec();
+  },
+
   departmentRestrictions: (_, { department }) => {
     if (!department) return [];
     return Restriction.find({ department })
@@ -90,9 +97,6 @@ export const Query = {
     QuestionModel.find({ department }).exec() || null,
 
   blocks: () => BlockModel.find().exec() || null,
-
-  departmentSubscribers: (_, { department }) =>
-    (department && SubscriberModel.find({ department }).exec()) || null,
 
   /* -----------------------------------
 

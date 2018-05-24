@@ -5,22 +5,22 @@ import { graphql } from 'react-apollo';
 // application
 import { GET_ALL_DEPARTMENTS } from './../apolloql';
 import AppPage from './../components/AppPage';
-import NoContent from './../components/ui/NoContent';
+// import NoContent from './../components/ui/NoContent';
 import EntitySelector from './../components/ui/forms/EntitySelector';
 import SubscriberTable from './../components/tables/SubscriberTable';
 
-const renderNoDepartement = () => (
-  <div id="page-main-column">
-    <NoContent link="departements"
-      description="Vous devez ajouter un département avant de pouvoir gérer ses utilisateurs" />
-  </div>
-);
+// const renderNoDepartement = () => (
+//   <div id="page-main-column">
+//     <NoContent link="departements"
+//       description="Vous devez ajouter un département avant de pouvoir gérer ses utilisateurs" />
+//   </div>
+// );
 
-const renderNoSelected = () => (
-  <div id="page-main-column">
-    <NoContent description="Sélectionnez un département pour voir ses utilisateurs" />
-  </div>
-);
+// const renderNoSelected = () => (
+//   <div id="page-main-column">
+//     <NoContent description="Sélectionnez un département pour voir ses utilisateurs" />
+//   </div>
+// );
 
 class SubscribersPage extends React.PureComponent {
   constructor (props) {
@@ -46,7 +46,7 @@ class SubscribersPage extends React.PureComponent {
   }
 
   render () {
-    const { selected } = this.state;
+    // const { selected } = this.state;
     const { config, data } = this.props;
     const { name, ...pageopts } = config;
     const hasdepartements = data.departments && data.departments.length > 0;
@@ -61,9 +61,10 @@ class SubscribersPage extends React.PureComponent {
             </fieldset>
           )
         }>
-        {!hasdepartements && renderNoDepartement()}
-        {!selected && hasdepartements && renderNoSelected()}
-        {selected && hasdepartements && this.renderContent()}
+        {/* {!hasdepartements && renderNoDepartement()} */}
+        {/* {!selected && hasdepartements && renderNoSelected()} */}
+        {/* {selected && hasdepartements && this.renderContent()} */}
+        {this.renderContent()}
       </AppPage>
     );
   }

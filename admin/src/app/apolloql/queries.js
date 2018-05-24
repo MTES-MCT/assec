@@ -144,10 +144,10 @@ query departmentSituations (
 `);
 
 export const GET_DEPARTMENT_SUBSCRIBERS = gql(`
-query departmentSubscribers (
-  $department: ID!
+query subscribers (
+  $department: ID
 ) {
-  departmentSubscribers (
+  subscribers (
     department: $department
   ) {
     id
