@@ -39,7 +39,6 @@ class SubscribersTable extends React.PureComponent {
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
           const provider = data.subscribers || null;
-          console.log('provider', provider);
           const hasentities = provider && provider.length > 0;
           return (
             <React.Fragment>

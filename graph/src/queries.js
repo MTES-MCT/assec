@@ -57,10 +57,10 @@ export const Query = {
       .exec(),
 
   subscribers: (_, { department }) => {
-    if (department) {
-      return null;
-    }
-    return SubscriberModel.find().exec();
+    if (!department) return SubscriberModel.find().exec();
+    return SubscriberModel.find({
+      preferences: { $elemMatch: { department } },
+    }).exec();
   },
 
   departmentRestrictions: (_, { department }) => {
