@@ -38,7 +38,7 @@ class NewsletterForm extends React.PureComponent {
           const errmessage = 'Veuillez saisir une adresse email valide.';
           return (
             <div className="newsletter-form">
-              <form onSubmit={handleSubmit} autoComplete="off">
+              <form onSubmit={handleSubmit}>
                 {/* FIXME suppr l'ID du department defini en dur via les initalvalues */}
                 <Field name="department" type="hidden" component="input" />
                 <label htmlFor="email" className="notice mb12">

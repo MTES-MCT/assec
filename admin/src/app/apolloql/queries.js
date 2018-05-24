@@ -152,6 +152,9 @@ query subscribers (
   ) {
     id
     email
+    preferences {
+      department
+    }
   }
 }
 `);

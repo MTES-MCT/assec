@@ -44,7 +44,11 @@ class DataTableRow extends React.PureComponent {
             return (
               <td className={`${col.type || col.key} ${col.cssclass || ''}`}
                 key={`datatablerow::tr::${data.id}::td::${col.key}`}>
-                <span>{value}</span>
+                {col.type !== 'bool' && <span>{value}</span>}
+                {col.type === 'bool' &&
+                  col.validate(value) && <i className="icon icon-check" />}
+                {col.type === 'bool' &&
+                  !col.validate(value) && <i className="icon icon-cancel" />}
               </td>
             );
           })}

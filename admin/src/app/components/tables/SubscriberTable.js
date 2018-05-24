@@ -58,6 +58,12 @@ class SubscribersTable extends React.PureComponent {
                       key: 'email',
                       label: 'Inscrits',
                     },
+                    {
+                      type: 'bool',
+                      key: 'preferences',
+                      label: 'Preferences',
+                      validate: v => (!!(v && v.length)),
+                    },
                   ]} />
               )}
             </React.Fragment>
