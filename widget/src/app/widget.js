@@ -69,7 +69,9 @@ class Widget extends React.Component {
                     choices={choices}
                     questions={questions}
                     initialValues={initialValues} />
-                  {choices && <WidgetResults values={choices} />}
+                  {choices && (
+                    <WidgetResults choices={choices} questions={questions} />
+                  )}
                 </div>
               );
             }}

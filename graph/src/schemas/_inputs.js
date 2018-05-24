@@ -22,8 +22,9 @@ input SituationInput {
 
 input PreferencesInput {
   usages: ID!
-  latlng: ID!
-  origines: LatLngInput!
+  origines: ID!
+  department: ID!
+  latlng: LatLngInput!
 }
 
 input AlerteInput {

@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tippy';
 import { Form, Field } from 'react-final-form';
 
+// application
+// import { capitalize } from './../../core/capitalize';
+
 const validate = (values) => {
   const errors = {};
   if (!values.email || !isemail.validate(values.email)) {
@@ -12,39 +15,46 @@ const validate = (values) => {
   return errors;
 };
 
-const SummaryView = ({ values, mutate, disabled }) => (
-  <Form initialValues={values}
+const valuesToVariables = (obj) => {
+  const { lat, lng } = obj.situations;
+  return {
+    email: obj.email,
+    preferences: {
+      latlng: { lat, lng },
+      usages: obj.usages.value,
+      department: obj.department,
+      origines: obj.origines.value,
+    },
+  };
+};
+
+const parseChoices = (values, questions) =>
+  questions.map((obj) => {
+    const { type, title, display } = obj;
+    const value = values[type].label || values[type];
+    return { value, title, display };
+  });
+
+const SummaryView = ({
+  questions, choices, mutate, disabled,
+}) => (
+  <Form initialValues={choices}
     validate={validate}
-    initalvalues={values}
+    initalvalues={choices}
     onSubmit={(formValues, form) => {
-      const {
-        situations: { lat, lng },
-        email,
-        usages,
-        origines,
-        department,
-      } = formValues;
-      return mutate({
-        variables: {
-          email,
-          department,
-          preferences: {
-            usages,
-            origines,
-            department,
-            latlng: { lat, lng },
-          },
-        },
-      }).then(() => form.reset());
+      const variables = valuesToVariables(formValues);
+      return mutate({ variables }).then(() => form.reset());
     }}
     render={({ handleSubmit, pristine, invalid }) => {
       const showtooltip = !disabled && (!pristine && invalid);
       const errmessage = 'Veuillez saisir une adresse email valide.';
       return (
         <div className="col-right flex-rows">
-          <h5 className="mb20">
+          {console.log('choices', parseChoices(choices, questions))}
+          <h5 className="mb40">
             <span>Vos Préférences</span>
           </h5>
+          <ul />
           <form name="preferences-form" onSubmit={handleSubmit}>
             <label htmlFor="email" className="mb12">
               <span>
@@ -87,7 +97,8 @@ const SummaryView = ({ values, mutate, disabled }) => (
 SummaryView.propTypes = {
   mutate: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
-  values: PropTypes.object.isRequired,
+  choices: PropTypes.object.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default SummaryView;

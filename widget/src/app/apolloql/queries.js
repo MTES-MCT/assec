@@ -13,6 +13,9 @@ query findRestriction (
     department: $department
     situations: $situations
   ) {
+    zone {
+      label
+    }
     situation {
       slug
       label

@@ -15,12 +15,24 @@ type BlockType {
 `;
 
 const subscriber = `
+type LatLngType {
+  lat: Float!
+  lng: Float!
+}
+
+type PreferenceType {
+  usages: ID!
+  origines: ID!
+  department: ID!
+  latlng: LatLngType!
+}
+
 type SubscriberType {
   id: ID!
   ctime: Date!
   mtime: Date!
   email: String!
-  department: ID!
+  preferences: [PreferenceType]
 }
 `;
 
@@ -69,6 +81,7 @@ type RestrictionType {
 }
 
 type RulesType {
+  zone: ZoneType
   situation: SituationType
   restrictions: [RestrictionType]
 }

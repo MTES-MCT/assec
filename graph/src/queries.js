@@ -114,7 +114,8 @@ export const Query = {
           usages: { $in: [usages] },
           origines: { $in: [origines] },
           situations: { $in: [situation.id] },
-        }).then(docs => Object.assign({}, { situation, restrictions: docs }));
+        }).then(docs =>
+          Object.assign({}, { zone, situation, restrictions: docs }));
       }) || null,
 
   widget: (_, { code }) =>

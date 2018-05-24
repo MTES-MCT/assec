@@ -26,7 +26,7 @@ class ListInput extends React.PureComponent {
                   searchable={false}
                   className="select-box"
                   placeholder="Sélectionner une valeur"
-                  onChange={obj => input.onChange((obj && obj.value) || null)}
+                  onChange={obj => input.onChange(obj)}
                   options={values.map(value => ({
                     value: value.id,
                     label: capitalize(value.label),
@@ -49,7 +49,7 @@ ListInput.defaultProps = {
 };
 
 ListInput.propTypes = {
-  formValue: PropTypes.string,
+  formValue: PropTypes.object,
   type: PropTypes.string.isRequired,
   islast: PropTypes.bool.isRequired,
   values: PropTypes.array.isRequired,

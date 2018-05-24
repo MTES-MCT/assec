@@ -18,19 +18,19 @@ class ChoiceInput extends React.PureComponent {
           {values.map((obj, index) => {
             const htmlfor = `choice_${index}`;
             const key = `choiceinput::${obj.id}`;
+            const ischecked =
+              obj.id === (formValue && formValue.value) || false;
+            const value = (obj && { value: obj.id, label: obj.label }) || null;
             return (
               <Field key={key}
                 name={type}
-                value={obj.id}
                 render={({ input }) => (
                   <label htmlFor={htmlfor} className={index > 0 ? 'mt20' : ''}>
                     <input {...input}
                       id={htmlfor}
                       type="radio"
-                      checked={obj.id === formValue}
-                      onChange={() => {
-                        input.onChange(obj.id);
-                      }} />
+                      checked={ischecked}
+                      onChange={() => input.onChange(value)} />
                     <span className="ml12">{capitalize(obj.label)}</span>
                   </label>
                 )} />
@@ -52,7 +52,7 @@ ChoiceInput.defaultProps = {
 };
 
 ChoiceInput.propTypes = {
-  formValue: PropTypes.string,
+  formValue: PropTypes.object,
   type: PropTypes.string.isRequired,
   islast: PropTypes.bool.isRequired,
   values: PropTypes.array.isRequired,

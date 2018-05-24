@@ -8,11 +8,21 @@ import { LOAD_RESTRICTION_CASE } from './../apolloql/queries';
 import ResultsView from './views/ResultsView';
 import SummaryView from './views/SummaryView';
 
-const FormResults = ({ values }) => (
+const choicesToVariables = choices =>
+  Object.keys(choices).reduce(
+    (acc, key) =>
+      Object.assign({}, acc, {
+        [key]: (choices[key] && choices[key].value) || choices[key],
+      }),
+    {},
+  );
+
+const FormResults = ({ questions, choices }) => (
   <div id="assec-widget-results" className="flex-rows flex-1">
     <div className="flex-columns flex-1 flex-between">
       <div className="col-left flex-rows mr20">
-        <Query query={LOAD_RESTRICTION_CASE} variables={values}>
+        <Query query={LOAD_RESTRICTION_CASE}
+          variables={choicesToVariables(choices)}>
           {({ loading, error, data }) => {
             if (error || loading) return <p>...</p>;
             const rules = (data && data.findRestriction) || [];
@@ -29,13 +39,15 @@ const FormResults = ({ values }) => (
         </Query>
       </div>
       <div className="col-right flex-rows ml20">
-        <Mutation mutation={CREATE_SUBSCRIBER} variables={values}>
+        <Mutation mutation={CREATE_SUBSCRIBER}
+          variables={choicesToVariables(choices)}>
           {(createSubscriber, { loading, error }) => {
             if (error || loading) return <p>...</p>;
             return (
               <SummaryView mutate={createSubscriber}
-                values={values}
-                disabled={loading} />
+                choices={choices}
+                disabled={loading}
+                questions={questions} />
             );
           }}
         </Mutation>
@@ -45,7 +57,8 @@ const FormResults = ({ values }) => (
 );
 
 FormResults.propTypes = {
-  values: PropTypes.object.isRequired,
+  choices: PropTypes.object.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default FormResults;

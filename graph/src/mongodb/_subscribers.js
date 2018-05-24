@@ -31,11 +31,6 @@ const SubscriberSchema = new Schema(
       type: String,
       required: true,
     },
-    department: {
-      required: true,
-      ref: 'departments',
-      type: Schema.Types.ObjectId,
-    },
     preferences: {
       required: false,
       type: [{ type: PreferencesSchema }],
