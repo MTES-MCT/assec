@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { GET_DEPARTMENT_SUBSCRIBERS } from './queries';
+import { GET_SUBSCRIBERS } from './queries';
 
 export const DELETE_SUBSCRIBER = gql(`
 mutation deleteSubscriber (
@@ -10,31 +10,28 @@ mutation deleteSubscriber (
     id: $id
   ) {
     id
-    department
   }
 }
 `);
 
-const getCurrentSubscribers = (store, department) => {
+const getCurrentSubscribers = (store) => {
   const data = store.readQuery({
-    variables: { department },
-    query: GET_DEPARTMENT_SUBSCRIBERS,
+    variables: { department: null },
+    query: GET_SUBSCRIBERS,
   });
-  return data.departmentSubscribers;
+  return data.subscribers;
 };
 
-export const UPDATE_DEPARTMENT_SUBSCRIBERS = (store, { data }) => {
-  let entries = [];
-  let variables = {};
+export const UPDATE_SUBSCRIBERS = (store, { data }) => {
+  let subscribers = [];
   if (data.deleteSubscriber) {
-    const { department, id } = data.deleteSubscriber;
-    const current = getCurrentSubscribers(store, department);
-    entries = current.filter(obj => obj.id !== id);
-    variables = { department };
+    const { id } = data.deleteSubscriber;
+    const current = getCurrentSubscribers(store);
+    subscribers = current.filter(obj => obj.id !== id);
   }
   store.writeQuery({
-    variables,
-    query: GET_DEPARTMENT_SUBSCRIBERS,
-    data: { departmentSubscribers: entries },
+    variables: { department: null },
+    query: GET_SUBSCRIBERS,
+    data: { subscribers },
   });
 };

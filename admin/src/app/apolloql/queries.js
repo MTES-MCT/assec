@@ -143,7 +143,7 @@ query departmentSituations (
 }
 `);
 
-export const GET_DEPARTMENT_SUBSCRIBERS = gql(`
+export const GET_SUBSCRIBERS = gql(`
 query subscribers (
   $department: ID
 ) {

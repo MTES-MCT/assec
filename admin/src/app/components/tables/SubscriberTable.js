@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 // application
 import {
   DELETE_SUBSCRIBER,
-  GET_DEPARTMENT_SUBSCRIBERS,
-  UPDATE_DEPARTMENT_SUBSCRIBERS,
+  GET_SUBSCRIBERS,
+  UPDATE_SUBSCRIBERS,
 } from './../../apolloql';
 import NoContent from './../ui/NoContent';
 import TinyLoader from './../ui/TinyLoader';
@@ -26,7 +26,7 @@ class SubscribersTable extends React.PureComponent {
       id,
       name: email,
       deleteAction: DELETE_SUBSCRIBER,
-      updateAction: UPDATE_DEPARTMENT_SUBSCRIBERS,
+      updateAction: UPDATE_SUBSCRIBERS,
     };
     this.props.dispatch(openDeletePopin(opts));
   }
@@ -34,7 +34,7 @@ class SubscribersTable extends React.PureComponent {
   render () {
     const { selected } = this.props;
     return (
-      <Query query={GET_DEPARTMENT_SUBSCRIBERS}
+      <Query query={GET_SUBSCRIBERS}
         variables={{ department: selected }}>
         {({ loading, error, data }) => {
           if (error) return <p>Error </p>;
