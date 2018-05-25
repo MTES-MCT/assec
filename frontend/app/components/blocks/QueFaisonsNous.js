@@ -12,10 +12,10 @@ const QueFaisonsNous = () => (
         <span>Pour qui ?</span>
       </h2>
       <p className="description">
-        Les règles de partage de l&apos;eau sont adaptées à l&apos;utilisation
-        qui en est faite, aux techniques de prélèvement et de transport de
-        l&apos;eau et aux spécificités locales de gestion de l&apos;eau, qui
-        sont très variées dans l&apos;agriculture irriguée.
+        Avec ASSEC, les règles de partage de l&apos;eau sont adaptées à
+        l&apos;utilisation qui en est faite, aux techniques de prélèvement et de
+        transport de l&apos;eau et aux spécificités locales de gestion de
+        l&apos;eau, qui sont très variées dans l&apos;agriculture irriguée.
       </p>
       <p className="description mt12">
         ASSEC s&apos;adresse donc d&apos;abord aux{' '}

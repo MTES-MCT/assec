@@ -22,8 +22,8 @@ const APropos = () => (
       </p>
       <p className="description mt12">
         Connaître ces règles de partage de l&apos;eau en période de sécheresse
-        est utile pour minimiser l&apos;impact économique sur son exploitation
-        agricole et nécessaire pour être en règle.
+        est utile pour minimiser l&apos;impact sur l&apos;économie agricole et
+        nécessaire pour être en règle.
       </p>
       <hr className="liner mt40 mb20" />
       <div className="person testimonial flex-columns">
