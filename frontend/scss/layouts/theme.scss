@@ -7,11 +7,12 @@ $yellow-0: #FFD802;
 $yellow-1: #FFE58F;
 
 $black: #000000;
+$black-active: #999999;
 $black-disabled: #CCCCCC;
 
 $blue: #427ABD;
-$blueActive: #006AAC;
-$blueDisabled: #94C2EE;
+$blue-active: #006AAC;
+$blue-disabled: #94C2EE;
 
 $color: #1B2734;
 $color-active: #1B2734;
@@ -47,11 +48,11 @@ button {
   transition: background-color 0.5s;
 
   &:disabled {
-    background-color: $blueDisabled;
+    background-color: $blue-disabled;
   }
 
   &:hover {
-    background-color: $blueActive;
+    background-color: $blue-active;
   }
 }
 
@@ -181,7 +182,7 @@ span.error {
     }
 
     blockquote {
-      color: $black-disabled;
+      color: $black-active;
     }
   }
 }
