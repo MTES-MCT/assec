@@ -109,7 +109,14 @@ export const Mutation = {
     return SubscriberModel.findOne({ email })
       .then((doc) => {
         if (!doc) return SubscriberModel.create(args);
-        return doc;
+        const opts = { new: true };
+        const curr = doc.preferences || [];
+        const rest = omit(args, ['id', 'preferences']);
+        const next = curr.concat(args.preferences || []);
+        const query =
+          (next.length > 0 && { $set: { preferences: next } }) || {};
+        const props = { ...rest, ...query };
+        return SubscriberModel.findByIdAndUpdate(doc.id, props, opts);
       })
       .catch(err => err);
   },
