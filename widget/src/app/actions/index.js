@@ -27,3 +27,11 @@ export const submitForm = values => ({
   values,
   type: 'onSubmitForm',
 });
+
+export const subscribeError = () => ({
+  type: 'onSubscribeError',
+});
+
+export const subscribeSuccess = () => ({
+  type: 'onSubscribeSuccess',
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Map, GeoJSON, TileLayer } from 'react-leaflet';
+import { Map, GeoJSON, TileLayer, ZoomControl } from 'react-leaflet';
 
 // application
 import MapZone from './MapZone';
@@ -101,8 +101,8 @@ class MapView extends React.PureComponent {
       layers,
       maxZoom,
       minZoom,
-      useZoom,
       showZone,
+      useZoomControl,
       map: { maxbounds, center, zone },
     } = this.props;
     const { mapzoom } = this.state;
@@ -111,16 +111,18 @@ class MapView extends React.PureComponent {
       <Map animate={false}
         zoom={mapzoom}
         center={center}
+        position="right"
         maxZoom={maxZoom}
         minZoom={minZoom}
+        zoomControl={false}
         maxBounds={maxbounds}
-        zoomControl={useZoom}
         onZoomEnd={this.onZoomEnd}
         onClick={({ latlng }) => this.props.onClick(latlng)}
         ref={(ref) => {
           this.map = ref;
         }}>
         {this.renderMapLayers()}
+        {useZoomControl && <ZoomControl position="topright" />}
         {zone && (
           <GeoJSON data={zone}
             className="geojson-layer department"
@@ -154,18 +156,18 @@ MapView.defaultProps = {
   minZoom: 8,
   maxZoom: 18,
   marker: null,
-  useZoom: false,
   defaultZoom: 8,
+  useZoomControl: false,
 };
 
 MapView.propTypes = {
   map: PropTypes.object,
   marker: PropTypes.object,
   layers: PropTypes.array,
-  useZoom: PropTypes.bool,
   minZoom: PropTypes.number,
   maxZoom: PropTypes.number,
   defaultZoom: PropTypes.number,
+  useZoomControl: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   showZone: PropTypes.bool.isRequired,
   showSatellite: PropTypes.bool.isRequired,

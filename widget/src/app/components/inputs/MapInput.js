@@ -78,7 +78,8 @@ class MapInput extends React.PureComponent {
                 <MapControls marker={marker}
                   onToggleView={this.onToggleView}
                   onGeolocation={this.onUserPosition(input)} />
-                <MapView map={map}
+                <MapView useZoomControl
+                  map={map}
                   layers={zones}
                   marker={marker}
                   showZone={showzonelayer}

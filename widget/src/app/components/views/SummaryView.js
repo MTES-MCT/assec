@@ -1,11 +1,11 @@
 import React from 'react';
 import isemail from 'isemail';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'react-tippy';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
 
 // application
-// import { capitalize } from './../../core/capitalize';
+import SummaryChoices from './SummaryChoices';
+import EmailInput from './../inputs/EmailInput';
 
 const validate = (values) => {
   const errors = {};
@@ -28,13 +28,6 @@ const valuesToVariables = (obj) => {
   };
 };
 
-const parseChoices = (values, questions) =>
-  questions.map((obj) => {
-    const { type, title, display } = obj;
-    const value = values[type].label || values[type];
-    return { value, title, display };
-  });
-
 const SummaryView = ({
   questions, choices, mutate, disabled,
 }) => (
@@ -47,14 +40,8 @@ const SummaryView = ({
     }}
     render={({ handleSubmit, pristine, invalid }) => {
       const showtooltip = !disabled && (!pristine && invalid);
-      const errmessage = 'Veuillez saisir une adresse email valide.';
       return (
-        <div className="col-right flex-rows">
-          {console.log('choices', parseChoices(choices, questions))}
-          <h5 className="mb40">
-            <span>Vos Préférences</span>
-          </h5>
-          <ul />
+        <div id="summary-view" className="col-right flex-rows">
           <form name="preferences-form" onSubmit={handleSubmit}>
             <label htmlFor="email" className="mb12">
               <span>
@@ -62,33 +49,9 @@ const SummaryView = ({
                 <span>Prévenez moi de tout changement des règles</span>
               </span>
             </label>
-            <div id="alert-input" className="flex-columns">
-              <Tooltip arrow
-                hideOnClick
-                position="top"
-                trigger="keyup"
-                arrowSize="small"
-                open={showtooltip}
-                title={errmessage}
-                disabled={!showtooltip}>
-                <Field className="field flex-2 py12 px20"
-                  id="email"
-                  type="email"
-                  name="email"
-                  component="input"
-                  disabled={disabled}
-                  placeholder="Votre email" />
-              </Tooltip>
-              <button className="align-center py12 px12 pl20"
-                type="submit"
-                disabled={disabled}>
-                <span>
-                  {disabled && <i className="animate-spin icon-spin6" />}
-                  {!disabled && <span>Rester informé</span>}
-                </span>
-              </button>
-            </div>
+            <EmailInput disabled={disabled} showtooltip={showtooltip} />
           </form>
+          <SummaryChoices choices={choices} questions={questions} />
         </div>
       );
     }} />

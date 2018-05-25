@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 
-// application
 const step = (state = 0, action) => {
   switch (action.type) {
   case 'onResetForm':
@@ -15,7 +14,6 @@ const step = (state = 0, action) => {
   }
 };
 
-// application
 const popin = (state = false, action) => {
   switch (action.type) {
   case 'onOpenPopin':
@@ -27,7 +25,6 @@ const popin = (state = false, action) => {
   }
 };
 
-// application
 const choices = (state = null, action) => {
   switch (action.type) {
   case 'onResetForm':
@@ -39,7 +36,17 @@ const choices = (state = null, action) => {
   }
 };
 
-// application
+const subscribed = (state = false, action) => {
+  switch (action.type) {
+  case 'onResetForm':
+    return false;
+  case 'onSubscribeSuccess':
+    return true;
+  default:
+    return state;
+  }
+};
+
 const welcome = (state = true, action) => {
   switch (action.type) {
   case 'onCloseWelcome':
@@ -54,4 +61,5 @@ export default combineReducers({
   popin,
   choices,
   welcome,
+  subscribed,
 });
