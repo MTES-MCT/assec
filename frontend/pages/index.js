@@ -38,10 +38,11 @@ Logger.debug(`
 class Application extends React.PureComponent {
   render () {
     const { popin } = this.props;
+    const popincss = (popin && 'opened') || '';
     return (
       <React.Fragment>
         <StickyContainer id="site-container"
-          className={`sticky-container ${popin ? 'opened' : ''}`}>
+          className={`sticky-container ${popincss}`}>
           <DocumentHead pagetitle="Home" />
           <div id="top-container" className="padded flex-rows flex-between">
             <Sticky>
@@ -78,10 +79,12 @@ Application.propTypes = {
   popin: PropTypes.bool.isRequired,
 };
 
-const Connected = connect(({ popin }) => ({ popin }))(Application);
+const mapPropsToState = ({ popin }) => ({ popin });
 
-const withClient = withApollo(props => <Connected {...props} />);
+const ApplicationComponent = connect(mapPropsToState)(Application);
 
-const connected = withRedux(configure)(withClient);
+const withClient = withApollo(props => <ApplicationComponent {...props} />);
 
-export default connected;
+const withStore = withRedux(configure)(withClient);
+
+export default withStore;

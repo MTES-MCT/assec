@@ -1,0 +1,71 @@
+@media screen and (max-width: 640px) {
+  #main-navigation {
+    display: none;
+    visibility: hidden;
+  }
+
+  #top-container {
+    height: inherit;
+    padding-top: 20px;
+    min-height: inherit;
+  }
+
+  #hero-container .logo {
+    font-size: 5em;
+    position: relative;
+    letter-spacing: 0.2em;
+  }
+
+  #hero-container .logo small {
+    left: 0;
+    bottom: -15px;
+    margin-left: 0;
+    display: inline;
+    line-height: 1em;
+    position: absolute;
+  }
+
+  #hero-container .col-50 {
+    min-width: 100%;
+  }
+
+  #hero-container .col-50 + .col-50 {
+    max-width: 0;
+    max-height: 0;
+    display: none;
+    visibility: hidden;
+  }
+
+  #hero-container .baseline {
+    font-size: 1.6em;
+    margin-top: 40px;
+  }
+
+  #hero-container .more {
+    padding-top: 20px;
+  }
+
+  .newsletter-form label span {
+    font-size: 0.9em;
+  }
+
+  .newsletter-form .flex-columns {
+    flex-direction: column;
+  }
+
+  .newsletter-form .field,
+  .newsletter-form button[type='submit'] {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .newsletter-form .field {
+    min-width: 100%;
+    box-sizing: border-box;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .newsletter-form button[type='submit'] {
+    border-radius: 0 0 12px 12px;
+  }
+}
