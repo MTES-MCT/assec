@@ -4,7 +4,7 @@ import React from 'react';
 import Mailto from './../ui/Mailto';
 
 const NosSponsors = () => (
-  <div id="nos-sponsors" className="block mt40">
+  <div id="nos-sponsors" className="col-right block mt40">
     <h3 className="mb40">
       <span>Nos Sponsors & Partenaires</span>
       <hr className="liner mt12" />

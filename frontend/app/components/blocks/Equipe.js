@@ -3,7 +3,7 @@ import React from 'react';
 import Person from './../ui/Person';
 
 const Equipe = () => (
-  <div id="notre-equipe" className="block flex-1 mr40">
+  <div id="notre-equipe" className="col-left block flex-1 mr40">
     <h3 className="mt40 mb40">
       <span>Qui sommes nous ?</span>
       <hr className="liner mt12" />
