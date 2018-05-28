@@ -12,7 +12,7 @@ class MainNavigation extends React.PureComponent {
     const issticky = distanceFromTop;
     const padscl = (issticky && 'py12') || 'pt20';
     const stickycl = (issticky && 'issticky') || '';
-    const csscl = `padded flex-columns flex-between flex-0 ${padscl} ${stickycl}`;
+    const csscl = `padded flex-columns flex-between flex-0 ${padscl} ${stickycl} hide-on-mobile`;
     const mergedstyles = Object.assign({}, style || {}, {
       left: 0,
       right: 0,

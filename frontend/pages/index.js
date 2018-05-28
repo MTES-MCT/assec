@@ -15,7 +15,6 @@ import Toaster from './../app/components/Toaster';
 import DemoPopup from './../app/components/DemoPopup';
 import MainFooter from './../app/components/MainFooter';
 import DocumentHead from './../app/components/DocumentHead';
-import ShadowLiner from './../app/components/ui/ShadowLiner';
 import HeroContainer from './../app/components/HeroContainer';
 import MainNavigation from './../app/components/MainNavigation';
 
@@ -45,9 +44,13 @@ class Application extends React.PureComponent {
           className={`sticky-container ${popincss}`}>
           <DocumentHead pagetitle="Home" />
           <div id="top-container" className="padded flex-rows flex-between">
-            <Sticky>
-              {stickyprops => <MainNavigation {...stickyprops} />}
-            </Sticky>
+            {/* <Sticky>
+              {(stickyprops) => {
+                const { width } = stickyprops.style;
+                if (!width || width <= 640) return <div />;
+                return <MainNavigation {...stickyprops} />;
+              }}
+            </Sticky> */}
             <HeroContainer />
           </div>
           <div id="lames-container" className="pb120">
@@ -60,8 +63,7 @@ class Application extends React.PureComponent {
           <Element name="qui-sommes-nous"
             id="qui-sommes-nous"
             className="padded pb120">
-            <ShadowLiner className="mb40" />
-            <div className="flex-columns flex-between">
+            <div className="flex-columns flex-between pt40">
               <Equipe />
               <NosSponsors />
             </div>

@@ -39,8 +39,6 @@ class NewsletterForm extends React.PureComponent {
           return (
             <div className="newsletter-form">
               <form onSubmit={handleSubmit}>
-                {/* FIXME suppr l'ID du department defini en dur via les initalvalues */}
-                <Field name="department" type="hidden" component="input" />
                 <label htmlFor="email" className="notice mb12">
                   <span>
                     <i className="icon icon-mail mr3" />
@@ -58,8 +56,8 @@ class NewsletterForm extends React.PureComponent {
                     disabled={!showtooltip}>
                     <Field className="field flex-2 py12 px20"
                       id="email"
-                      type="email"
                       name="email"
+                      type="email"
                       component="input"
                       disabled={loading}
                       placeholder={placeholder || ''} />
