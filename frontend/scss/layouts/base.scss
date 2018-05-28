@@ -215,6 +215,10 @@ figure {
 #main-navigation {
   $time: 0.5s;
 
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: fixed;
   transition-duration: $time;
   background-color: transparent;
   transition-property: background-color, padding;

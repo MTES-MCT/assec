@@ -4,7 +4,6 @@ import getConfig from 'next/config';
 import { connect } from 'react-redux';
 import { Element } from 'react-scroll';
 import withRedux from 'next-redux-wrapper';
-import { StickyContainer, Sticky } from 'react-sticky';
 
 // application
 import './../scss/styles.scss';
@@ -40,17 +39,10 @@ class Application extends React.PureComponent {
     const popincss = (popin && 'opened') || '';
     return (
       <React.Fragment>
-        <StickyContainer id="site-container"
-          className={`sticky-container ${popincss}`}>
+        <div id="site-container" className={`${popincss}`}>
           <DocumentHead pagetitle="Home" />
           <div id="top-container" className="padded flex-rows flex-between">
-            {/* <Sticky>
-              {(stickyprops) => {
-                const { width } = stickyprops.style;
-                if (!width || width <= 640) return <div />;
-                return <MainNavigation {...stickyprops} />;
-              }}
-            </Sticky> */}
+            <MainNavigation />
             <HeroContainer />
           </div>
           <div id="lames-container" className="pb120">
@@ -70,7 +62,7 @@ class Application extends React.PureComponent {
           </Element>
           <MainFooter version={envconfig.appversion} />
           <Toaster />
-        </StickyContainer>
+        </div>
         {popin && <DemoPopup />}
       </React.Fragment>
     );
