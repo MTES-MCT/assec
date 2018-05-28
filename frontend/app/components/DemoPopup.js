@@ -13,13 +13,13 @@ const DemoPopup = ({ dispatch }) => (
   <div id="demo-popup">
     <div className="overlay" style={{ opacity: 1 }} />
     <div className="container" style={{ opacity: 1 }}>
-      <button type="button"
-        className="close-popup-button"
-        onClick={() => dispatch(closePopin())}>
-        <i className="icon icon-cancel" />
-        <span>Fermer</span>
-      </button>
       <div className="inner">
+        <button type="button"
+          className="close-popup-button"
+          onClick={() => dispatch(closePopin())}>
+          <i className="icon icon-cancel" />
+          <span>Fermer</span>
+        </button>
         <iframe title="assec-demo-widget"
           width="100%"
           height="100%"
