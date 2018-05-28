@@ -1,9 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+// application
 import NewsletterForm from './ui/NewsletterForm';
+import { withViewport } from './../core/withViewport';
 
-const HeroContainer = () => (
-  <div id="hero-container" className="flex-rows flex-end flex-4">
+const HeroContainer = ({ isMobile }) => (
+  <div id="hero-container"
+    className={`flex-rows flex-end flex-4 ${(isMobile && 'mobile') || ''}`}>
     <div className="flex-columns flex-between items-end">
       <div className="flex-1 items-end col-50">
         <h2 className="logo">
@@ -32,4 +36,8 @@ const HeroContainer = () => (
   </div>
 );
 
-export default HeroContainer;
+HeroContainer.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
+};
+
+export default withViewport(HeroContainer);

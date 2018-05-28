@@ -5,26 +5,29 @@ import { connect } from 'react-redux';
 // application
 import { TextLink } from './ui/Links';
 import { openPopin } from './../actions';
-import { withScrollPosition } from './../core/withScrollPosition';
+import { withViewport } from './../core/withViewport';
 
 class MainNavigation extends React.PureComponent {
   render () {
-    const { dispatch, top } = this.props;
-    const issticky = (top > 40 && 'issticky') || '';
-    const csss = 'padded flex-columns flex-between flex-0 pt20 hide-on-mobile';
+    const {
+      dispatch, top, isMobile, isTablet, isDesktop,
+    } = this.props;
+    const flexpos = (isMobile && 'flex-start') || 'flex-end';
+    const style = 'padded flex-columns flex-between flex-0 pt20';
+    const issticky = (isDesktop && (top > 40 && 'issticky')) || '';
+    const rponsive = (isMobile && 'mobile') || (isTablet && 'tablet') || '';
     return (
-      <div id="main-navigation" className={`${csss} ${issticky}`}>
-        <div className="col-left flex-columns flex-start items-center">
+      <div id="main-navigation" className={`${style} ${issticky} ${rponsive}`}>
+        <div className="col-left flex-columns flex-0 flex-start items-center">
           <img alt="La fabrique numérique"
             height="100"
-            className="mr20"
             src="/static/logo-fabnum.svg" />
           <img alt="beta.gouv.fr"
             height="40"
-            className="mr20"
+            className="ml20"
             src="/static/logo-betagouv.svg" />
         </div>
-        <div className="col-right flex-columns flex-end items-center">
+        <div className={`col-right flex-columns flex-1 ${flexpos} items-center`}>
           <nav>
             <TextLink to="a-propos"
               className="mr7"
@@ -48,10 +51,10 @@ class MainNavigation extends React.PureComponent {
               <span>Nous Contacter</span>
             </TextLink>
             <button type="button"
-              className="demo-button"
+              className={`demo-button ${(isMobile && 'small') || ''}`}
               onClick={() => dispatch(openPopin())}>
-              <span>Essayer la démo</span>
-              <i className="icon icon-thumbs-up ml7" />
+              <span>{(!isMobile && 'Essayer la') || ''} démo</span>
+              {!isMobile && <i className="icon icon-thumbs-up ml7" />}
             </button>
           </nav>
         </div>
@@ -62,9 +65,12 @@ class MainNavigation extends React.PureComponent {
 
 MainNavigation.propTypes = {
   top: PropTypes.number.isRequired,
+  isTablet: PropTypes.bool.isRequired,
+  isMobile: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
+  isDesktop: PropTypes.bool.isRequired,
 };
 
-const composed = withScrollPosition(MainNavigation);
+const composed = withViewport(MainNavigation);
 
 export default connect()(composed);

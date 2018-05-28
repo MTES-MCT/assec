@@ -6,8 +6,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // application
 import Mailto from './../ui/Mailto';
+import { withViewport } from './../../core/withViewport';
 
-const CommentParticiper = ({ email }) => (
+const CommentParticiper = ({ email, isMobile }) => (
   <Element name="comment-participer"
     id="comment-participer"
     className="padded lame flex-columns">
@@ -38,20 +39,22 @@ const CommentParticiper = ({ email }) => (
       </p>
       <div className="description mt40">
         <b>eMail :</b> <Mailto email={email} />
-        <Tooltip arrow
-          size="small"
-          title="COPIER"
-          position="right"
-          arrowSize="small"
-          theme="transparent">
-          <CopyToClipboard text={email}>
-            <button type="button" className="copy-to-clipboard">
-              <span>
-                <i className="icon icon-docs" />
-              </span>
-            </button>
-          </CopyToClipboard>
-        </Tooltip>
+        {!isMobile && (
+          <Tooltip arrow
+            size="small"
+            title="COPIER"
+            position="right"
+            arrowSize="small"
+            theme="transparent">
+            <CopyToClipboard text={email}>
+              <button type="button" className="copy-to-clipboard">
+                <span>
+                  <i className="icon icon-docs" />
+                </span>
+              </button>
+            </CopyToClipboard>
+          </Tooltip>
+        )}
       </div>
     </div>
   </Element>
@@ -63,6 +66,7 @@ CommentParticiper.defaultProps = {
 
 CommentParticiper.propTypes = {
   email: PropTypes.string,
+  isMobile: PropTypes.bool.isRequired,
 };
 
-export default CommentParticiper;
+export default withViewport(CommentParticiper);

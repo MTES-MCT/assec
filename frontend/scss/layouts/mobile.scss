@@ -1,24 +1,30 @@
 @media screen and (max-width: 640px) {
-  .hide-on-mobile,
-  .copy-to-clipboard {
-    top: 0 !important;
-    left: -9999999px !important;
-    width: 0;
-    height: 0;
-    font-size: 0;
-    max-width: 0;
-    max-height: 0;
-    display: none;
-    line-height: 0;
-    overflow: hidden;
-    visibility: hidden;
-    position: absolute !important;
-  }
-
   #top-container {
     height: inherit;
-    padding-top: 20px;
+    padding-top: 60px;
     min-height: inherit;
+  }
+
+  #main-navigation {
+    top: 0;
+    font-size: 0.8em;
+    padding: 12px 20px;
+  }
+
+  #main-navigation .col-left {
+    display: none;
+    visibility: hidden;
+  }
+
+  #main-navigation .col-right {
+    overflow: inherit;
+    position: relative;
+  }
+
+  #main-navigation .col-right .demo-button {
+    right: 0;
+    position: absolute;
+    box-shadow: inherit;
   }
 
   #hero-container .logo {
@@ -137,17 +143,5 @@
   #main-footer p + p {
     margin-top: 12px;
     font-weight: bold;
-  }
-}
-
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-  html {
-    left: 0;
-    top: 100%;
-    width: 100vh;
-    position: absolute;
-    overflow-x: hidden;
-    transform: rotate(-90deg);
-    transform-origin: left top;
   }
 }

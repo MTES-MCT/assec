@@ -97,6 +97,11 @@ figure {
   text-decoration: none;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+
+  &.small {
+    font-size: 0.8em;
+    padding: 3px 20px;
+  }
 }
 
 .lame {
@@ -255,14 +260,17 @@ figure {
     transition: height 0.5s;
   }
 
+  &.mobile,
   &.issticky {
     @extend .pb20;
   }
 
+  &.mobile .col-left img,
   &.issticky .col-left img {
     height: 40px;
   }
 
+  &.mobile .col-left img + img,
   &.issticky .col-left img + img {
     height: 25px;
   }
