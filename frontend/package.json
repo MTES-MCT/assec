@@ -18,6 +18,7 @@
     "final-form": "^4.6.1",
     "graphql-tag": "^2.9.2",
     "isemail": "^3.1.2",
+    "lodash.debounce": "^4.0.8",
     "marked": "^0.3.19",
     "next": "^5.1.0",
     "next-apollo": "^1.0.13",

@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 // application
 import { TextLink } from './ui/Links';
 import { openPopin } from './../actions';
+import { withScrollPosition } from './../core/withScrollPosition';
 
 class MainNavigation extends React.PureComponent {
   render () {
-    const { dispatch } = this.props;
-    const csscl = 'padded flex-columns flex-between flex-0 pt20 hide-on-mobile';
+    const { dispatch, top } = this.props;
+    const issticky = (top > 40 && 'issticky') || '';
+    const csss = 'padded flex-columns flex-between flex-0 pt20 hide-on-mobile';
     return (
-      <div id="main-navigation" className={csscl}>
+      <div id="main-navigation" className={`${csss} ${issticky}`}>
         <div className="col-left flex-columns flex-start items-center">
           <img alt="La fabrique numérique"
             height="100"
@@ -59,7 +61,10 @@ class MainNavigation extends React.PureComponent {
 }
 
 MainNavigation.propTypes = {
+  top: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(MainNavigation);
+const composed = withScrollPosition(MainNavigation);
+
+export default connect()(composed);

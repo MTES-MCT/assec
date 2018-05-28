@@ -255,6 +255,10 @@ figure {
     transition: height 0.5s;
   }
 
+  &.issticky {
+    @extend .pb20;
+  }
+
   &.issticky .col-left img {
     height: 40px;
   }
