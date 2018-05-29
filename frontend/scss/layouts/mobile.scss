@@ -1,4 +1,10 @@
 @media screen and (max-width: 640px) {
+  #demo-popup .close-popup-button {
+    top: 10px;
+    right: 20px;
+    color: #000000;
+  }
+
   #top-container {
     height: inherit;
     padding-top: 60px;
