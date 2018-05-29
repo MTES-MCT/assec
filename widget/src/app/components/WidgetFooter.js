@@ -16,9 +16,9 @@ class WidgetFooter extends React.PureComponent {
     const { step, code } = this.props;
     return (
       <Query query={LOAD_DEPARTMENT_WIDGET} skip={!code} variables={{ code }}>
-        {({ loading, error, data: { widget } }) => {
-          if (error || !widget || loading) return <p>...</p>;
-          const questions = (widget && widget.questions) || null;
+        {({ loading, error, data }) => {
+          if (error || !data.widget || loading) return <p>...</p>;
+          const questions = (data.widget && data.widget.questions) || null;
           const total = questions.length + 1;
           const isresult = step + 1 >= total;
           return (

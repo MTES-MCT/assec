@@ -11,9 +11,9 @@ const WidgetHeader = ({ step, code }) => {
   const canbackward = step > 0;
   return (
     <Query query={LOAD_DEPARTMENT_WIDGET} skip={!code} variables={{ code }}>
-      {({ loading, error, data: { widget } }) => {
-        if (error || !widget || loading) return <p>...</p>;
-        const questions = (widget && widget.questions) || null;
+      {({ loading, error, data }) => {
+        if (error || !data.widget || loading) return <p>...</p>;
+        const questions = (data.widget && data.widget.questions) || null;
         const question = (questions && questions[step]) || null;
         if (!question) return null;
         return (

@@ -248,3 +248,5 @@ SOURCEID
 .scripts/.*
 backups/*.gz
 mongod.local
+.env.*
+!.env.example
