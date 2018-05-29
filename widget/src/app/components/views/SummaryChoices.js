@@ -42,7 +42,7 @@ const SummaryChoices = ({ choices, questions }) => {
   const parsed = parseChoices(choices, questions);
   return (
     <div id="summary-choices">
-      <h5 className="mb40">
+      <h5 className="mb12">
         <span>Vos Préférences</span>
       </h5>
       <div className="choices-summary-details">

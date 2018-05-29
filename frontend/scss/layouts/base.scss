@@ -204,6 +204,11 @@ figure {
   min-width: 100%;
 }
 
+#site-container.opened {
+  overflow: hidden;
+  max-height: 100vh;
+}
+
 #top-container {
   height: 100vh;
   // min-height 550px si on enleve le button pour acceder à la démo

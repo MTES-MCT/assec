@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
 const ResultsView = ({ restrictions, slug, label }) => (
-  <div id="results-view">
+  <div id="results-view" className="flex-rows">
     <h5 className="title mb20">
       <span>Vos Règles</span>
     </h5>
@@ -13,7 +13,7 @@ const ResultsView = ({ restrictions, slug, label }) => (
       de l&apos;eau qui vous sont applicables sont les suivantes:
     </p>
     <div className="results relative">
-      <ul className="descriptions absolute">
+      <ul className="descriptions">
         {restrictions.map(obj => (
           <li className="description" key={obj.id}>
             <ReactMarkdown source={obj.description} />
