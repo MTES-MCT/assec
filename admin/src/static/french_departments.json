@@ -616,5 +616,11 @@
     "departmentName": "Nouvelle Calédonie",
     "regionCode": "",
     "regionName": ""
+  },
+  {
+    "departmentCode": "00",
+    "departmentName": "Departement de Test",
+    "regionCode": "00",
+    "regionName": "Departement de Test"
   }
 ]

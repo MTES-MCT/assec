@@ -27,7 +27,7 @@ const DepartementSchema = new Schema(
     },
     map: {
       nullable: true,
-      required: true,
+      required: false,
       type: DepartmentMapSchema,
     },
     usages: [{ type: Schema.Types.ObjectId, ref: 'suos' }],
