@@ -7,6 +7,11 @@ const SUOSchema = new Schema(
       type: String,
       required: true,
     },
+    order: {
+      default: 0,
+      type: Number,
+      required: false,
+    },
     department: { type: Schema.Types.ObjectId, ref: 'departments' },
   },
   {

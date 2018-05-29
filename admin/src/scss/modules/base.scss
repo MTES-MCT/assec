@@ -38,6 +38,15 @@ span + .icon,
   }
 }
 
+.resize-button {
+  color: #CCCCCC;
+  font-size: 0.7em;
+  background-color: transparent;
+
+  &:hover {
+  }
+}
+
 /* ------------------------------------------------
 
  LAYOUTS
@@ -127,6 +136,10 @@ span + .icon,
 }
 
 #page-title {
+  height: 50px;
+  max-height: 50px;
+  box-sizing: inherit;
+
   .badge {
     font-size: 0.6em;
   }
@@ -140,6 +153,10 @@ span + .icon,
   @extend .mt20;
 }
 
+#page-column-content {
+  overflow-x: hidden;
+}
+
 #page-main-column {
   flex: 1;
 }
@@ -151,4 +168,9 @@ span + .icon,
 
 #page-main-column + #page-aside-column {
   @extend .ml20;
+}
+
+#page-column-content.opened #page-main-column {
+  width: 100%;
+  min-width: 100%;
 }

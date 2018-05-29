@@ -43,18 +43,6 @@
       "src": "entypo"
     },
     {
-      "uid": "6a12c2b74456ea21cc984e11dec227a1",
-      "css": "globe",
-      "code": 59399,
-      "src": "entypo"
-    },
-    {
-      "uid": "f8e120c48c070f8afd2d072651b4fb9f",
-      "css": "light-up",
-      "code": 59400,
-      "src": "entypo"
-    },
-    {
       "uid": "97902f87200ce74d181044df02a0458d",
       "css": "attention",
       "code": 59401,
@@ -247,12 +235,6 @@
       "src": "entypo"
     },
     {
-      "uid": "25fc99a30fecc4021fdcae5fff5ba9ac",
-      "css": "eye",
-      "code": 59432,
-      "src": "entypo"
-    },
-    {
       "uid": "b95cfc96d48a72dd665e0ab109880b5e",
       "css": "clipboard",
       "code": 59433,
@@ -281,6 +263,24 @@
       "css": "town-hall",
       "code": 59452,
       "src": "maki"
+    },
+    {
+      "uid": "3a230e539a4f3b904debd04c6c155034",
+      "css": "help",
+      "code": 59436,
+      "src": "entypo"
+    },
+    {
+      "uid": "9aeaf29161eb005a308bbd624d6e066a",
+      "css": "left-dir",
+      "code": 59432,
+      "src": "entypo"
+    },
+    {
+      "uid": "ff9a85aa20950dcc0615a2707a2b3f8e",
+      "css": "right-dir",
+      "code": 59399,
+      "src": "entypo"
     }
   ]
 }
