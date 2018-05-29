@@ -59,9 +59,9 @@ class Widget extends React.Component {
           <Query query={LOAD_DEPARTMENT_WIDGET}
             skip={!code}
             variables={{ code }}>
-            {({ loading, error, data: { widget } }) => {
-              if (error || !widget || loading) return <p>...</p>;
-              const { questions, department } = widget;
+            {({ loading, error, data }) => {
+              if (error || !data.widget || loading) return <p>...</p>;
+              const { questions, department } = data.widget;
               const initialValues = { department };
               return (
                 <div id="assec-widget-content" className="flex-rows flex-1">

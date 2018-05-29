@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
 const ResultsView = ({ restrictions, slug, label }) => (
-  <React.Fragment>
-    <h5 className="mb20">
+  <div id="results-view">
+    <h5 className="title mb20">
       <span>Vos Règles</span>
     </h5>
     <p className="note large p20">
@@ -12,7 +12,7 @@ const ResultsView = ({ restrictions, slug, label }) => (
       <b className={`situation-${slug}`}>{`${label}`}.</b> Les règles de partage
       de l&apos;eau qui vous sont applicables sont les suivantes:
     </p>
-    <div className="relative">
+    <div className="results relative">
       <ul className="descriptions absolute">
         {restrictions.map(obj => (
           <li className="description" key={obj.id}>
@@ -21,7 +21,7 @@ const ResultsView = ({ restrictions, slug, label }) => (
         ))}
       </ul>
     </div>
-  </React.Fragment>
+  </div>
 );
 
 ResultsView.propTypes = {

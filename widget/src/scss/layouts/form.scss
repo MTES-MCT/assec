@@ -4,18 +4,16 @@ form {
   display: block;
 }
 
-#alert-input {
-  input {
-    width: 260px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 4px 0 0 4px;
-  }
+#alert-input input {
+  width: 260px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px 0 0 4px;
+}
 
-  button {
-    width: 180px;
-    border-radius: 0 4px 4px 0;
-  }
+#alert-input button {
+  width: 180px;
+  border-radius: 0 4px 4px 0;
 }
 
 button.action {
