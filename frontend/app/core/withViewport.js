@@ -31,9 +31,9 @@ export const withViewport = (
     }
 
     componentDidMount () {
-      this.updateState();
       window.addEventListener('resize', this.dbounceSizes, true);
       window.addEventListener('scroll', this.dbounceSizes, true);
+      this.updateState();
     }
 
     componentWillUnmount () {

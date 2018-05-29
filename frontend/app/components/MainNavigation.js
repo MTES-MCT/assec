@@ -10,11 +10,12 @@ import { withViewport } from './../core/withViewport';
 class MainNavigation extends React.PureComponent {
   render () {
     const {
-      dispatch, top, isMobile, isTablet, isDesktop,
+      dispatch, top, height, isMobile, isTablet, isDesktop,
     } = this.props;
     const flexpos = (isMobile && 'flex-start') || 'flex-end';
     const style = 'padded flex-columns flex-between flex-0 pt20';
-    const issticky = (isDesktop && (top > 40 && 'issticky')) || '';
+    const issmall = top > 40 || height < 600;
+    const issticky = (isDesktop && (issmall && 'issticky')) || '';
     const rponsive = (isMobile && 'mobile') || (isTablet && 'tablet') || '';
     return (
       <div id="main-navigation" className={`${style} ${issticky} ${rponsive}`}>
@@ -65,6 +66,7 @@ class MainNavigation extends React.PureComponent {
 
 MainNavigation.propTypes = {
   top: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
   isTablet: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
