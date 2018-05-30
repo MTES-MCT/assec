@@ -11,25 +11,25 @@ const renderTitle = () => (
   </span>
 );
 
-const renderNote = () => (
-  <React.Fragment>
-    <p>
-      <b>Module en cours de développement dans le Var.</b>
-    </p>
-    <p className="mt7">
-      <i>
-        il s&apos;agit d&apos;un module test qui pour l&apos;heure ne délivre
-        pas une information légale sur les règles applicables
-      </i>
-    </p>
-  </React.Fragment>
-);
+// const renderNote = () => (
+//   <React.Fragment>
+//     <p>
+//       <b>Module en cours de développement dans le Var.</b>
+//     </p>
+//     <p className="mt7">
+//       <i>
+//         il s&apos;agit d&apos;un module test qui pour l&apos;heure ne délivre
+//         pas une information légale sur les règles applicables
+//       </i>
+//     </p>
+//   </React.Fragment>
+// );
 
 const WidgetWelcome = ({ dispatch }) => (
   <div id="assec-widget-welcome-popin" className="popin light">
     <div className="container align-center py40 px20">
       <h5 className="title mb20">{renderTitle()}</h5>
-      <div className="note p12 mb20">{renderNote()}</div>
+      {/* <div className="note p12 mb20">{renderNote()}</div> */}
       <nav className="navigation">
         <button className="next action"
           type="button"
