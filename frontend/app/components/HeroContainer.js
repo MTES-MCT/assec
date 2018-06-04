@@ -18,8 +18,8 @@ const HeroContainer = ({ isMobile }) => (
         <h1 className="baseline">
           <span>
             <strong>
-              L&apos;outil qui vous informe des règles de partage de l&apos;eau
-              en période de sécheresse
+              ASSEC, vous alerte des utilisations possibles de l&apos;eau en
+              sécheresse
             </strong>
           </span>
         </h1>
