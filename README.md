@@ -7,9 +7,9 @@ https://beta.gouv.fr/startup/assec.html
 
 Ce projet utilise le mode mono repo de [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/)<br>
 
-Le Backoffice et le Widget ont été générées à l'aide de [create-react-app](https://github.com/facebook/create-react-app)<br>
+Le Backoffice et le Widget ont été généré à l'aide de [create-react-app](https://github.com/facebook/create-react-app)<br>
 
-Le Frontend/Landing Page a été générée grâce à [NextJS](https://github.com/zeit/next.js/)<br>
+Le Frontend/Landing Page a été généré grâce à [NextJS](https://github.com/zeit/next.js/)<br>
 
 Le Backend [GraphQL](http://graphql.org)/NodeJS/Express est exploitée via [Apollo GraphQL](https://www.apollographql.com)<br>
 
@@ -21,6 +21,7 @@ La librairie [Fabric Python](http://www.fabfile.org) est utilisée pour déploye
 
 1. **Création d'un dossier local de la base de données MongoDB**
 ```bash
+# installer MongoDB
 # /data/db est le dossier par défaut à l'installation de mongodb
 sudo mkdir -p /data/db
 sudo chmod -R go+w /data/db
@@ -40,7 +41,6 @@ Pou le dévelopement local, le serveur de la base de données MongoDB doit être
 
 1. **démarrer la base de données MongoDB**
 ```bash
-# Processus 1
 cd assec
 yarn mongo
 ```
@@ -53,7 +53,6 @@ yarn mongo
 > Les ports ouverts pour l'application sont définis dans le fichier [Procfile](./Procfile)
 
 ```bash
-# Processus 2
 cd assec
 yarn dev
 ```
@@ -66,7 +65,7 @@ L'utilisation de `git rebase` en mode `--interactive` est préférée pour gére
 
 Afin de gèrer plusieurs version de NodeJS sur le même poste de dévelopement,  [NVM](https://github.com/creationix/nvm) doit être installé, le fichier [.nvmrc](./.nvmrc) défini quelle version de est utilisé pour ce projet<br>
 
-Les modules [Husky](https://github.com/typicode/husky), [ESLint](https://eslint.org), [StyleLint](https://stylelint.io) et [Prettier](https://prettier.io) permettent de maintenir un cadre dévelopment continu pour l'environnement de dev, chaque commit est vérifié et formatté  grâce au script [pre-commit](./.scripts/hooks/pre-commit) avant d'être poussé  sur le repository Git distant
+Les modules [Husky](https://github.com/typicode/husky), [ESLint](https://eslint.org), [StyleLint](https://stylelint.io) et [Prettier](https://prettier.io) permettent de maintenir un cadre dévelopment continu pour l'environnement de dev, chaque commit est vérifié et formatté  grâce au script [pre-commit](./.scripts/hooks/pre-commit) avant d'être poussé  sur le repository GIT distant
 
 **En savoir plus**
 [Wiki ASSEC](https://github.com/MTES-MCT/assec)
@@ -77,7 +76,7 @@ Les modules [Husky](https://github.com/typicode/husky), [ESLint](https://eslint.
 - Lance toutes les application en mode développment local
 
 **`yarn build`**
-- Compile toutes les applications pour une exploitaion Docker/Production
+- Compile toutes les applications pour une exploitation Docker/Production
 
 **`yarn compose`**
 - Lance l'application dans un Docker local pour debug
