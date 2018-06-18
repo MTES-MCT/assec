@@ -15,11 +15,11 @@
 # compilation du CSS pour le Widget
 (
   cd widget
-  npm run sass
+  ./node_modules/.bin/node-sass -r src/scss/styles.scss src/styles.css --output-style compressed
 )
 
 # compilation du CSS pour le Widget
 (
   cd admin
-  npm run sass
+  ./node_modules/.bin/node-sass -r src/scss/styles.scss src/styles.css --output-style compressed
 )
