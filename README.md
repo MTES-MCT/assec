@@ -26,12 +26,36 @@ sudo mkdir -p /data/db
 sudo chmod -R go+w /data/db
 ```
 
-2. Récupération du projet et installation des dépendances
+2. Récupération du projet et installation des librairies externes
 ```bash
 git clone git@github.com:MTES-MCT/assec.git
 cd assec
 nvm use
 yarn install
+```
+
+## Usages
+
+Pou le dévelopement local, le serveur de la base de données MongoDB doit être démarré avant de lancer les autres sous-projets, la configuration par défaut de MongoDB est utilisée, les deux commandes doivent être éxécutées dans des processus différents<br>
+
+1. démarrer la base de données MongoDB**
+```bash
+# Processus 1
+cd assec
+yarn mongo
+```
+
+
+2. démarrer les applications web**
+
+> Les variables d'environment sont chargées depuis le fichier [.env.foreman](./.env.development)
+
+> Les ports ouverts pour l'application sont définis dans le fichier [Procfile](./Procfile)
+
+```bash
+# Processus 2
+cd assec
+yarn dev
 ```
 
 ## Contribution
@@ -47,32 +71,6 @@ Les modules [Husky](https://github.com/typicode/husky), [ESLint](https://eslint.
 **En savoir plus**
 [Wiki ASSEC](https://github.com/MTES-MCT/assec)
 
-## Usages & Commandes
-
-### Usages
-
-**Développment Local**
-
-En mode dévelopement local, le serveur de la base de données MongoDB doit être démarré avant de lancer les autres sous-projets, la configuration par défaut de MongoDB est utilisée, les deux commandes doivent être éxécutées dans des processus différents<br>
-
-```bash
-# Processus 1
-yarn mongo
-# Processus 2
-yarn dev
-```
-
-> Les variables d'environment sont chargées depuis le fichier [.env.foreman](./.env.development)
-
-**Tester la machine Docker en local**
-
-> Les variables d'environment sont chargées depuis le fichier [docker-compose.yml](./docker-compose.yml)
-
-```bash
-yarn build
-yarn compose
-```
-
 ### Commandes
 
 **`yarn dev`**
@@ -80,6 +78,9 @@ yarn compose
 
 **`yarn build`**
 - Compile toutes les applications pour une exploitaion Docker/Production
+
+**`yarn compose`**
+- Lance l'application dans un Docker local pour debug
 
 **`yarn cleanup`**
 - Supprime tous les dossiers `node_modules` des sous-projets
