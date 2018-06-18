@@ -39,6 +39,9 @@ done
 #   cat $FILE
 # }
 if [ ! -d "./.hashs" ]; then
+  # create a new folder
+  # which store previous build version number
+  # to compare if an app should be built again or not
   mkdir "./.hashs"
 fi
 
