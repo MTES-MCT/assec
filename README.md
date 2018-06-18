@@ -19,14 +19,14 @@ La librairie [Fabric Python](http://www.fabfile.org) est utilisée pour déploye
 
 ## Installation
 
-1. Création d'un dossier local de la base de données MongoDB
+1. **Création d'un dossier local de la base de données MongoDB**
 ```bash
 # /data/db est le dossier par défaut à l'installation de mongodb
 sudo mkdir -p /data/db
 sudo chmod -R go+w /data/db
 ```
 
-2. Récupération du projet et installation des librairies externes
+2. **Récupération du projet et installation des librairies externes**
 ```bash
 git clone git@github.com:MTES-MCT/assec.git
 cd assec
@@ -38,7 +38,7 @@ yarn install
 
 Pou le dévelopement local, le serveur de la base de données MongoDB doit être démarré avant de lancer les autres sous-projets, la configuration par défaut de MongoDB est utilisée, les deux commandes doivent être éxécutées dans des processus différents<br>
 
-1. démarrer la base de données MongoDB**
+1. **démarrer la base de données MongoDB**
 ```bash
 # Processus 1
 cd assec
@@ -46,7 +46,7 @@ yarn mongo
 ```
 
 
-2. démarrer les applications web**
+2. **démarrer les applications web**
 
 > Les variables d'environment sont chargées depuis le fichier [.env.foreman](./.env.development)
 
