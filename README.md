@@ -38,14 +38,20 @@ yarn mongo
 
 ```bash
 cd assec
+yarn sass
 yarn dev
 ```
 
 > Pour le dévelopement local, le serveur de la base de données MongoDB doit être démarré avant de lancer les autres sous-projets, la configuration par défaut de MongoDB est utilisée, les deux commandes doivent être éxécutées dans des processus différents<br>
 
-> Les variables d'environment sont chargées depuis le fichier [.env.foreman](./.env.development)
+> Les variables d'environment sont chargées depuis le fichier [.env.development](./.env.development)
 
 > Les ports ouverts pour l'application sont définis dans le fichier [Procfile](./Procfile)
+
+- Frontend: http://localhost:3000
+- Widget: http://localhost:3100
+- Admin/Backoffice: http://localhost:3200
+- Backend: http://localhost:3300
 
 **Plus de détails**
 [Wiki ASSEC](https://github.com/MTES-MCT/assec)

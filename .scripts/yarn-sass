@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# --------------------------------
+#
+# Ce script est a utilisé uniquement avant le lancement de `yarn dev`
+# Si les fichiers CSS ne sont pas déjà compilés
+# et qu'ils sont manquant à la première installation de l'application
+#
+# Usage
+# ---
+# $ sh ./.scripts/yarn-sass
+#
+# --------------------------------
+
+# compilation du CSS pour le Widget
+(
+  cd widget
+  npm run sass
+)
+
+# compilation du CSS pour le Widget
+(
+  cd admin
+  npm run sass
+)

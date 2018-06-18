@@ -19,6 +19,7 @@
   },
   "scripts": {
     "dev": "nf start --env .env.development --port 3000",
+    "sass": "sh ./.scripts/yarn-sass",
     "mongo": "mongod --dbpath /mongodb/db",
     "prebump": "sh ./.scripts/git-ensure-clean",
     "bump": "node ./.scripts/yarn-bump",
