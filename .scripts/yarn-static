@@ -14,5 +14,8 @@ mkdir -p dist
 (
   cd frontend
   yarn export
+  cd dist
+  touch .nojekyll
+  cd ..
   cp -r ./dist/* ./../dist/
 )
