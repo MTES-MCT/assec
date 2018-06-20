@@ -19,6 +19,3 @@ REACT_APP_GRAPHQL_URI=http://localhost:3200/graphql
 ## Documentation
 
 - [Documentation IGN](https://geoservices.ign.fr/documentation/donnees-ressources-wmts.html)
-
-**Fond de carte OSM**<br>
-`http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png`
