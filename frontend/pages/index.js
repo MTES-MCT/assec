@@ -41,11 +41,7 @@ class Application extends React.PureComponent {
       <React.Fragment>
         <div id="site-container" className={`${popincss}`}>
           <DocumentHead pagetitle="Home" />
-          <div id="top-container"
-            className="padded flex-rows flex-between"
-            style={{
-              backgroundImage: 'url(\'/static/dominik-martin-675-unsplash.jpg\')',
-            }}>
+          <div id="top-container" className="padded flex-rows flex-between">
             <MainNavigation />
             <HeroContainer />
           </div>

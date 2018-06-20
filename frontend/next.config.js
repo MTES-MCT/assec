@@ -19,7 +19,6 @@ module.exports = withSass({
     widgeturi: process.env.REACT_APP_WIDGET_URI,
     graphqluri: process.env.REACT_APP_GRAPHQL_URI,
   },
-  assetPrefix: '/assec',
   exportPathMap: () => ({
     '/': { page: '/' },
   }),
