@@ -18,6 +18,6 @@ module.exports = withSass({
     usedebug: process.env.NODE_ENV !== 'production',
   },
   exportPathMap: () => ({
-    '/landing': { page: '/' },
+    '/': { page: '/' },
   }),
 });
