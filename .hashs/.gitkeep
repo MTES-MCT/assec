@@ -1,4 +1,0 @@
-# Do not remove this folder from repository
-# This folder contains auto-generated files with Applications Build ID
-# The IDs are computed using a GIT command
-# git ls-files -s ./<my app project name> | git hash-object --stdin

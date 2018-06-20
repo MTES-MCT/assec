@@ -1,1 +1,0 @@
-# ASSEC Public Frontend

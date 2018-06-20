@@ -2,14 +2,8 @@
   "name": "assec",
   "version": "0.11.10",
   "license": "ISC",
-  "description": "ASSEC",
+  "description": "Version Statique ASSEC",
   "private": true,
-  "workspaces": [
-    "admin",
-    "graph",
-    "widget",
-    "frontend"
-  ],
   "author": {
     "name": "Matthieu Lassalvy",
     "email": "matthieu.lassalvy@beta.gouv.fr"
@@ -17,41 +11,7 @@
   "engines": {
     "node": "^8.11.0"
   },
-  "scripts": {
-    "dev": "nf start --env .env.development --port 3000",
-    "prestatic": "sh ./.scripts/yarn-sass",
-    "static": "sh ./.scripts/yarn-static",
-    "sass": "sh ./.scripts/yarn-sass",
-    "mongo": "mongod --dbpath /mongodb/db",
-    "prebump": "sh ./.scripts/git-ensure-clean",
-    "bump": "node ./.scripts/yarn-bump",
-    "cleanup": "sh ./.scripts/yarn-cleanup",
-    "build": "sh ./.scripts/yarn-build --env=local",
-    "compose": "docker-compose -f docker-compose.yml  -f ./docker-compose.local.yml -p assec up --build",
-    "dump": "fab dump",
-    "dump:local": "mongodump --archive=backups/local.gz --gzip --db assec",
-    "deploy": "fab deploy",
-    "import:local": "mongorestore --gzip --archive=backups/assec.gz"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "sh ./.scripts/hooks/pre-commit"
-    }
-  },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
-    "foreman": "^2.0.0",
-    "fs-extra": "^5.0.0",
-    "husky": "^1.0.0-rc.2",
-    "node-sass": "^4.7.2",
-    "prettier": "^1.11.1",
-    "prettier-eslint": "^8.8.1",
-    "prettier-stylelint": "^0.4.2",
-    "semver": "^5.5.0",
-    "stylelint-config-standard": "^18.2.0"
+    "husky": "^1.0.0-rc.2"
   }
 }
