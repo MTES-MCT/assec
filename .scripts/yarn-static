@@ -9,7 +9,10 @@
 
 #yarn install
 yarn sass
-mkdir -p dist
+if [ -d ./dist ]; then
+  rm -rf ./dist
+fi
+mkdir -p ./dist
 
 (
   cd frontend
@@ -19,4 +22,8 @@ mkdir -p dist
   cd ..
   cp -r ./dist/* ./../dist/
   cp ./dist/.nojekyll ./../dist/.nojekyll
+  echo '---------'
+  echo '1. Remplacer tous les chemins dans index.html'
+  echo '2. Remplacer tous les chemins dans static/style.css'
+  echo '---------'
 )
