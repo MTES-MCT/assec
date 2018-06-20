@@ -1,5 +1,7 @@
 const withSass = require('@zeit/next-sass');
 
+const isproduction = process.env.NODE_ENV === 'production';
+
 module.exports = withSass({
   distDir: 'build',
   publicRuntimeConfig: {
@@ -12,12 +14,13 @@ module.exports = withSass({
     //
     // Production
     // ---------
+    usedebug: !isproduction,
     appversion: process.env.REACT_APP_VERSION,
     widgeturi: process.env.REACT_APP_WIDGET_URI,
     graphqluri: process.env.REACT_APP_GRAPHQL_URI,
-    usedebug: process.env.NODE_ENV !== 'production',
   },
   exportPathMap: () => ({
     '/': { page: '/' },
   }),
+  assetPrefix: isproduction ? '/assec' : '',
 });
