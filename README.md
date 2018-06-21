@@ -5,11 +5,19 @@ https://beta.gouv.fr/startup/assec.html
 
 ## Installation
 
-1. Installer MongoDB
+1. **Install NodeJS**
+
+[System Downloads](https://nodejs.org/en/download/)
+
+2. **Install NVM (Node Version Manager)**
+
+[Documentation](https://github.com/creationix/nvm#installation)
+
+3. **Installer MongoDB**
 
 [Installer MongoDB sous Mac avec Hombrew](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-community-edition-with-homebrew)
 
-2. **Création d'un dossier local de la base de données MongoDB**
+4. **Création d'un dossier local de la base de données MongoDB**
 ```bash
 # /data/db est le dossier par défaut à l'installation de mongodb
 # l'application ASSEC utilise le dossier nommé 'mongodb'
@@ -18,7 +26,7 @@ sudo mkdir -p /mongodb/db
 sudo chmod -R go+w /mongodb/db
 ```
 
-3. **Récupération du projet et installation des librairies externes**
+5. **Récupération du projet et installation des librairies externes**
 ```bash
 git clone git@github.com:MTES-MCT/assec.git
 cd assec
