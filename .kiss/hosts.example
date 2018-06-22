@@ -1,0 +1,7 @@
+# Nginx/Docker ASSEC
+127.0.0.1       docker.loc
+127.0.0.1       assec.docker.loc
+127.0.0.1       admin.docker.loc
+127.0.0.1       graph.docker.loc
+127.0.0.1       mongo.docker.loc
+127.0.0.1       widget.docker.loc
